@@ -93,31 +93,6 @@ most common index types and provide sample code for creating each index type. Fo
 
 .. common-content-end
 
-.. driver-content-begin
-
-.. tip::
-
-   The MongoDB Java Driver provides the :java-core-api:`Indexes </com/mongodb/client/model/Indexes.html>` class that
-   includes static factory methods to create index specification documents for different MongoDB Index key types.
-
-The following examples use the
-:java-sync-api:`createIndex </com/mongodb/client/MongoCollection.html#createIndex(org.bson.conversions.Bson,com.mongodb.client.model.IndexOptions)>`
-to create various indexes, and the following setup:
-
-.. literalinclude:: /includes/fundamentals/code-snippets/IndexPage.java
-   :language: java
-   :dedent:
-   :start-after: begin imports
-   :end-before: end imports
-
-
-.. literalinclude:: /includes/fundamentals/code-snippets/IndexPage.java
-   :language: java
-   :dedent:
-   :start-after: begin declaration
-   :end-before: end declaration
-
-.. driver-content-end
 
 .. common-content-begin
 
@@ -141,23 +116,9 @@ The following example creates an index in ascending order on the ``title`` field
 
 .. common-content-end
 
-.. driver-content-begin
-.. literalinclude:: /includes/fundamentals/code-snippets/IndexPage.java
-   :language: java
-   :dedent:
-   :start-after: begin single index
-   :end-before: end single index
-.. driver-content-end
 
 The following is an example of a query that would be covered by the index created above:
 
-.. driver-content-begin
-.. literalinclude:: /includes/fundamentals/code-snippets/IndexPage.java
-   :language: java
-   :dedent:
-   :start-after: begin covered single query
-   :end-before: end covered single query
-.. driver-content-end
 
 .. common-content-begin
 
@@ -177,22 +138,6 @@ The following example creates a compound index on the ``type`` and ``rated`` fie
 
 .. common-content-end
 
-.. driver-content-begin
-
-.. literalinclude:: /includes/fundamentals/code-snippets/IndexPage.java
-   :language: java
-   :dedent:
-   :start-after: begin compound index
-   :end-before: end compound index
-
-The following is an example of a query that would be covered by the index created above:
-
-.. literalinclude:: /includes/fundamentals/code-snippets/IndexPage.java
-   :language: java
-   :dedent:
-   :start-after: begin covered compound query
-   :end-before: end covered compound query
-.. driver-content-end
 
 .. common-content-begin
 
@@ -208,21 +153,6 @@ The following example creates a compound, multikey index on the ``rated`, ``genr
 Strings), and ``title`` fields:
 
 .. common-content-end
-.. driver-content-begin
-.. literalinclude:: /includes/fundamentals/code-snippets/IndexPage.java
-   :language: java
-   :dedent:
-   :start-after: begin multikey index
-   :end-before: end multikey index
-
-The following is an example of a query that would be covered by the index created above:
-
-.. literalinclude:: /includes/fundamentals/code-snippets/IndexPage.java
-   :language: java
-   :dedent:
-   :start-after: begin covered multikey query
-   :end-before: end covered multikey query
-.. driver-content-end
 
 .. common-content-begin
 
@@ -248,26 +178,6 @@ language as an option when creating the index.
 
 .. common-content-end
 
-.. driver-content-begin
-
-The following example creates a text index on the ``plot`` field:
-
-.. literalinclude:: /includes/fundamentals/code-snippets/IndexPage.java
-   :language: java
-   :dedent:
-   :start-after: begin text index
-   :end-before: end text index
-
-The following is an example of a query that would use the index created above. Note that the ``sort`` is
-omitted because text indexes do not contain sort order.
-
-.. literalinclude:: /includes/fundamentals/code-snippets/IndexPage.java
-   :language: java
-   :dedent:
-   :start-after: begin text query
-   :end-before: end text query
-
-.. driver-content-end
 .. common-content-begin
 
 For a full explanation of text search with MongoDB, refer to :manual:`Text Indexes </core/index-text>` in the MongoDB
@@ -317,23 +227,7 @@ The following example creates a ``2dsphere`` index on the ``location.geo`` field
    Attemping to create a geospatial index on a field that is covered by a geospatial index will result in an error.
 
 .. common-content-end
-.. driver-content-begin
 
-.. literalinclude:: /includes/fundamentals/code-snippets/IndexPage.java
-   :language: java
-   :dedent:
-   :start-after: begin geospatial index
-   :end-before: end geospatial index
-
-The following is an example of a geospatial query using the "location.geo" index.
-
-.. literalinclude:: /includes/fundamentals/code-snippets/IndexPage.java
-   :language: java
-   :dedent:
-   :start-after: begin geospatial query
-   :end-before: end geospatial query
-
-.. driver-content-end
 .. common-content-begin
 
 MongoDB also supports ``2d`` indexes for calculating distances on a Euclidean plane and for working with the "legacy
@@ -352,22 +246,3 @@ fields that you want to prevent duplication on and set the ``unique`` option to 
 The following example creates a unique, descending index on the ``theaterId`` field:
 
 .. common-content-end
-.. driver-content-begin
-
-.. literalinclude:: /includes/fundamentals/code-snippets/IndexPage.java
-   :language: java
-   :dedent:
-   :start-after: begin unique index
-   :end-before: end unique index
-
-.. warning::
-
-   Attempting to perform a write operation that stores a duplicate value that violates the unique index, the MongoDB
-   Java driver will raise a ``DuplicateKeyException``, and MongoDB will throw an error resembling the following:
-
-.. code-block:: none
-
-   E11000 duplicate key error index
-
-Refer to the :manual:`Unique Indexes page </core/index-unique>` in the MongoDB server manual for more information.
-.. driver-content-end

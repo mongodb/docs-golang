@@ -1,7 +1,7 @@
 Set up a Free Tier Cluster in Atlas
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-After setting up your Java project dependencies, create a MongoDB cluster
+After setting up your Go project dependencies, create a MongoDB cluster
 where you can store and manage your data. Complete the
 :atlas:`Get Started with Atlas </getting-started>` guide to set up a new
 Atlas account, free tier MongoDB cluster, load datasets, and
@@ -14,7 +14,7 @@ into your cluster.
 Connect to your Cluster
 -----------------------
 
-In this step, we create and run an application that uses the Java MongoDB
+In this step, we create and run an application that uses the Go MongoDB
 driver to connect to your MongoDB cluster and run a query on the sample
 data.
 
@@ -32,7 +32,7 @@ want to connect to as shown below.
 .. figure:: /includes/figures/atlas_connection_select_cluster.png
    :alt: Atlas Connection GUI cluster selection screen
 
-Proceed to the **Connect Your Application** step and select the Java driver.
+Proceed to the **Connect Your Application** step and select the Go driver.
 Then, select the "Connection String Only" tab and click the **Copy**
 button to copy the *connection string* to your clipboard as shown below.
 

@@ -7,7 +7,6 @@ Usage Examples
 .. toctree::
 
 ..
-
    /usage-examples/find-operations
    /usage-examples/insert-operations
    /usage-examples/update-operations
@@ -31,7 +30,7 @@ operations. Each example provides:
 - an explanation of how to use the operation, including parameters,
   return values, and common exceptions you might encounter
 
-- a full Java class that you can copy and paste to run the example
+- a full Go program that you can copy and paste to run the example
   in your own environment
 
 How to Use the Usage Examples
@@ -48,14 +47,14 @@ or you can
 Once you have imported the dataset, you can copy and paste a usage
 example into your development environment of choice. You can follow the
 :doc:`quick start guide </quick-start>` to learn more about getting
-started with the MongoDB Java driver. Once you've copied a usage example,
+started with the MongoDB Go Driver. Once you've copied a usage example,
 you'll need to edit the connection string to get the example connected to
 your instance of MongoDB:
 
-.. code-block:: java
+.. code-block:: go
 
    // Replace the following with your MongoDB deployment's connection string.
-   String uri = "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
+   uri := "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
 
 You can use the :guides:`Atlas Connectivity Guide </cloud/connectionstring/>`
 to enable connectivity to your instance of Atlas and find the

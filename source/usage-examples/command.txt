@@ -14,6 +14,6 @@ to run your raw database operation.
 
 .. note::
     Use the :manual:`mongo shell </reference/mongo-shell>` for
-    administrative tasks instead of the Java driver whenever possible,
+    administrative tasks instead of the Go driver whenever possible,
     since these tasks are often quicker and easier to implement with the
-    shell than in a Java application.
+    shell than in a Go application.
