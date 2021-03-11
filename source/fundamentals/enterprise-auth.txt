@@ -17,8 +17,8 @@ Edition.
 You can use the following mechanisms with the latest version of the MongoDB
 Enterprise Edition:
 
-- :ref:`Kerberos (GSSAPI) <gssapi-auth-mechanism>`
-- :ref:`LDAP (PLAIN) <plain-auth-mechanism>`
+Kerberos (GSSAPI)
+LDAP (PLAIN)
 
 To authenticate using another mechanism, see the
 :doc:`Authentication Mechanisms guide </fundamentals/auth>`. For more
