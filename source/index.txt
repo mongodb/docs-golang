@@ -38,7 +38,7 @@ learning material on using the Go driver for the following:
 
 API
 ---
-See the TODO: link to api docs if you are looking
+See the `API Documentation <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo>`_ link to api docs if you are looking
 for technical information about classes, methods, and configuration objects
 within the MongoDB Go Driver.
 
