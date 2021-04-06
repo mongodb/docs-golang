@@ -1,0 +1,29 @@
+===============
+Find a Document
+===============
+
+.. default-domain:: mongodb
+
+You can query for a document in a collection with the ``collection.findOne()``
+method. 
+
+The ``findOne()`` method takes a ``context.Context`` object, a ``filter``, and a
+pointer to an ``options.FindOneOptions`` object as arguments.
+
+``context.Context`` is an interface type designed to help a set of go routines
+access values tied to a single event. In our application below, we use a
+``Context`` set a timeout value of ten seconds for to complete the MongoDB
+server requests in the ``main()`` function.
+
+A ''filter'' is an 
+
+.. literalinclude:: findOne.go
+   :language: go
+
+If you run the example above, you should see a result that looks like this:
+
+.. literalinclude:: findOne.go.result
+   :language: none
+
+For a further discussion of the methods and interfaces discussed in this
+section, see the following MongoDB Go Driver API documentation:
