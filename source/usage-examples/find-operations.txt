@@ -4,11 +4,11 @@ Find Operations
 
 .. default-domain:: mongodb
 
-- :doc:`Find a Document </usage-examples/findOneDoc>`
+- :doc:`Find a Document </usage-examples/getOneDoc>`
 - :doc:`Find Multiple Documents </usage-examples/find>`
 
 .. toctree::
    :caption: Examples
 
-   /usage-examples/findOneDoc
+   /usage-examples/getOneDoc
    /usage-examples/find
