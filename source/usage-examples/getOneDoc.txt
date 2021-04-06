@@ -12,4 +12,8 @@ method.
 
 If you run the example above, you should see a result that looks like this:
 
+
+.. literalinclude:: findOne.go.result
+   :language: none
+
 .. include:: /includes/findOneResult.rst
