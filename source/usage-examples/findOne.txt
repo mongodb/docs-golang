@@ -3,3 +3,7 @@ Find a Document
 ===============
 
 .. default-domain:: mongodb
+
+
+.. literalinclude:: findOne.go
+   :language: go
