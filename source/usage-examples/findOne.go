@@ -23,7 +23,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	// Disconnect Client
+	// Disconnect the client once the function returns
 	defer func() {
 		if err = client.Disconnect(ctx); err != nil {
 			panic(err)
