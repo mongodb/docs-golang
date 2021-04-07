@@ -24,9 +24,12 @@ interface type, but the value you pass as your ``filter`` argument must specify
 a document. For more information on documents in the MongoDB Go driver, see our
 :doc:`guide on data formats </fundamentals/data-formats>`.
 
-The configuration object is used to specify any additional configurations for
-our ``findOne()`` method call. In the following example, we specify a **sort** 
-and a **projection** using our configuration object.  
+Your configuration object is used to specify any additional configuration
+options for your ``findOne()`` method call. A full list of supported options
+can be found in 
+:go-api:`the API documentation for the FindOneOptions type </mongo/options#FindOneOptions>`. 
+In the following example, we specify a **sort** and a **projection** using a
+a value of type ``FindOneOptions``.  
 
 Example
 -------
