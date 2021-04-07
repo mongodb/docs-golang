@@ -10,14 +10,11 @@ You can retrieve a single document from your collection with the
 The ``findOne()`` method takes a **context**, a **filter**, and a
 pointer to a configuration object as arguments.
 
-A context is a value of type ``context.Context`` that is helpful in concurrent
-server programming. A discussion of the context pattern and the ``context``
-package is outside the scope of this page, but if you are interested you can
-find more information
+A context is a value of type ``context.Context``. Contexts are useful in
+concurrent server programming. A discussion of the context pattern and the
+``context`` package is outside the scope of this page, but if you are interested
+you can find more information
 `in this article on The Go Blog <https://blog.golang.org/context>`__.
-For the purpose of the following example we will use
-the empty placeholder context returned by ``context.TODO()`` as an argument in
-our call to ``findOne()``.
 
 Your filter argument is your query to MongoDB. The filter parameter takes a query
 document that specifies the subset of your collection that you would like to
@@ -28,14 +25,14 @@ For more information on documents in the MongoDB Go driver, see our
 :doc:`guide on data formats </fundamentals/data-formats>`.
 
 The configuration object is used to specify any additional configurations for
-our ``findOne()`` method call. In the following example, we specify a **sort** and a
-**projection** using our configuration object.  
+our ``findOne()`` method call. In the following example, we specify a **sort** 
+and a **projection** using our configuration object.  
 
 Example
 -------
 
-The following snippet finds a single document from the ``movies`` collection.
-It uses the following methods and values:
+The following code examples finds a single document from the ``movies``
+collection. It uses the following functions, methods, and values:
 
 - A **query filter** value that is passed to the ``findOne()`` method. The filter
   matches only movies with the title exactly matching the text ``'The Room'``.
@@ -45,7 +42,7 @@ It uses the following methods and values:
   configuration also **projects** our results so that only the ``title`` and
   ``imdb`` fields are retrieved.
 
-- An empty **context** returned from ``context.TODO()``.
+- An empty **context** returned from the ``context.TODO()`` function.
 
 .. literalinclude:: findOne.go
    :language: go
