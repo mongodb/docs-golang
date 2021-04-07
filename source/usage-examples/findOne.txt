@@ -52,7 +52,7 @@ collection. It uses the following functions, methods, and values:
 
 If you run the example above, you should see a result that looks like this:
 
-.. literalinclude:: findOne.go.result
+.. literalinclude:: findOne.go.txt
    :language: none
 
 For more information on the classes and methods mentioned on this
