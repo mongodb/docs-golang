@@ -35,14 +35,14 @@ func main() {
 	// Define Collection
 	coll := client.Database("sample_mflix").Collection("movies")
 	var result bson.M
-	// Create your FindOne options
+	// Initialize an empty *FindOneoptions value
 	opts := options.FindOne()
-	// Include only the `title` and `imdb` fields in the returned document
-	opts = opts.SetProjection(bson.D{{"_id", 0}, {"title", 1}, {"imdb", 1}})
+	// Project only the `title` and `imdb` fields in the returned document
+	opts = opts.SetProjection(bson.M{{"_id", 0}, {"title", 1}, {"imdb", 1}})
 	// Sort matched documents in descending order by rating
-	opts = opts.SetSort(bson.D{{"rating", -1}})
-	// Retrieve your document
-	err = coll.FindOne(ctx, bson.D{{"title", "The Room"}}, opts).Decode(&result)
+	opts = opts.SetSort(bson.M{{"rating", -1}})
+	// Retrieve your document using a query and your configuration options
+	err = coll.FindOne(ctx, bson.M{{"title", "The Room"}}, opts).Decode(&result)
 	if err != nil {
 		// ErrNoDocuments means that the filter did not match any documents in the collection
 		if err == mongo.ErrNoDocuments {

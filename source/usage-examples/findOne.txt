@@ -29,7 +29,7 @@ options for your ``findOne()`` method call. A full list of supported options
 can be found in 
 :go-api:`the API documentation for the FindOneOptions type </mongo/options#FindOneOptions>`. 
 In the following example, we specify a **sort** and a **projection** using a
-value of type ``FindOneOptions``.  
+value of type ``*FindOneOptions``.  
 
 Example
 -------
