@@ -16,7 +16,7 @@ import (
 func main() {
 
 	// Replace the uri string with your MongoDB deployment's connection string.
-	uri := os.Getenv("DRIVER_URL")
+	uri := "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority"
 
 	// Create an empty context
 	ctx := context.TODO()

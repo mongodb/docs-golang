@@ -16,7 +16,7 @@ package is outside the scope of this page, but if you are interested you can
 find more information
 `in this article on The Go Blog <https://blog.golang.org/context>`__.
 For the purpose of the following example we will use
-the empty placeholder context returned by ``context.TODO()``as an argument in
+the empty placeholder context returned by ``context.TODO()`` as an argument in
 our call to ``findOne()``.
 
 Your filter argument is your query to MongoDB. The filter parameter takes a query
