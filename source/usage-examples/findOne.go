@@ -10,7 +10,6 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
-	"time"
 )
 
 //main finds and prints the lowest rated movie titled "The Room" in the sample dataset.
@@ -19,9 +18,8 @@ func main() {
 	// Replace the uri string with your MongoDB deployment's connection string.
 	uri := os.Getenv("DRIVER_URL")
 
-	// Create a context with a 10 second timeout.
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
+	// Create an empty context
+	ctx := context.TODO()
 
 	// Connect to your MongoDB deployment
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
@@ -43,6 +41,7 @@ func main() {
 	opts = opts.SetProjection(bson.D{{"_id", 0}, {"title", 1}, {"imdb", 1}})
 	// Sort matched documents in descending order by rating
 	opts = opts.SetSort(bson.D{{"rating", -1}})
+	// Retrieve your document
 	err = coll.FindOne(ctx, bson.D{{"title", "The Room"}}, opts).Decode(&result)
 	if err != nil {
 		// ErrNoDocuments means that the filter did not match any documents in the collection

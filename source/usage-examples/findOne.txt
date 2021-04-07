@@ -4,18 +4,47 @@ Find a Document
 
 .. default-domain:: mongodb
 
-You can query for a document in a collection with the ``collection.findOne()``
-method. 
+You can retrieve a single document from your collection with the
+``collection.findOne()`` method. 
 
-The ``findOne()`` method takes a ``context.Context`` object, a ``filter``, and a
-pointer to an ``options.FindOneOptions`` object as arguments.
+The ``findOne()`` method takes a **context**, a **filter**, and a
+pointer to a configuration object as arguments.
 
-``context.Context`` is an interface type designed to help a set of go routines
-access values tied to a single event. In our application below, we use a
-``Context`` set a timeout value of ten seconds for to complete the MongoDB
-server requests in the ``main()`` function.
+A context is a value of type ``context.Context`` that is helpful in concurrent
+server programming. A discussion of the context pattern and the ``context``
+package is outside the scope of this page, but if you are interested you can
+find more information
+`in this article on The Go Blog <https://blog.golang.org/context>`__.
+For the purpose of the following example we will use
+the empty placeholder context returned by ``context.TODO()``.
 
-A ''filter'' is an 
+The filter parameter represents our query. The filter parameter takes a query
+document that specifies the subset of your collection that you would like to
+retrieve. If you provide an empty document, MongoDB returns all the documents
+in your collection. The filter parameter has an empty interface type, but the
+value you pass must specify a document. For more information on documents in the
+MongoDB Go driver, see our
+:doc:`guide on data formats </fundamentals/data-formats>`.
+
+The configuration object is used to specify any additional configurations for
+our ``findOne()`` method call. In the following example, we specify a **sort** and a
+**projection** using our configuration object.  
+
+Example
+-------
+
+The following snippet finds a single document from the ``movies`` collection.
+It uses the following methods and values:
+
+- A **query filter** value that is passed to the ``findOne()`` method. The filter
+  matches only movies with the title exactly matching the text ``'The Room'``.
+
+- A **configuration** that **sorts** matched documents in descending order by
+  rating, such that the returned document has the highest rating. Our
+  configuration also **projects** our results so that only the ``title`` and
+  ``imdb`` fields are retrieved.
+
+- A **context**
 
 .. literalinclude:: findOne.go
    :language: go
@@ -25,5 +54,7 @@ If you run the example above, you should see a result that looks like this:
 .. literalinclude:: findOne.go.result
    :language: none
 
-For a further discussion of the methods and interfaces discussed in this
-section, see the following MongoDB Go Driver API documentation:
+For more information on the classes and methods mentioned on this
+page, see the following API documentation:
+
+- :go-api:`FindOne </mongo#Collection.FindOne>`
