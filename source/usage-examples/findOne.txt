@@ -16,12 +16,12 @@ concurrent server programming. A discussion of the context pattern and the
 you can find more information
 `in this article on The Go Blog <https://blog.golang.org/context>`__.
 
-Your filter argument is your query to MongoDB. The filter parameter takes a query
+Your ``filter`` argument is your query to MongoDB. The ``filter`` parameter takes a query
 document that specifies the subset of your collection that you would like to
-retrieve. If you provide an empty document as your filter argument, MongoDB
-returns all the documents in your collection. The filter parameter has an empty
-interface type, but the value you pass as your filter must specify a document.
-For more information on documents in the MongoDB Go driver, see our
+retrieve. If you provide an empty document as your ``filter`` argument, MongoDB
+returns all the documents in your collection. The ``filter`` parameter has an empty
+interface type, but the value you pass as your ``filter`` argument must specify
+a document. For more information on documents in the MongoDB Go driver, see our
 :doc:`guide on data formats </fundamentals/data-formats>`.
 
 The configuration object is used to specify any additional configurations for
