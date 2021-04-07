@@ -3,7 +3,6 @@
 package main
 
 import (
-	"os"
 	"context"
 	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
@@ -38,11 +37,11 @@ func main() {
 	// Initialize an empty *FindOneoptions value
 	opts := options.FindOne()
 	// Project only the `title` and `imdb` fields in the returned document
-	opts = opts.SetProjection(bson.M{{"_id", 0}, {"title", 1}, {"imdb", 1}})
+	opts = opts.SetProjection(bson.M{"_id": 0, "title": 1, "imdb": 1})
 	// Sort matched documents in descending order by rating
-	opts = opts.SetSort(bson.M{{"rating", -1}})
+	opts = opts.SetSort(bson.D{{"rating", -1}})
 	// Retrieve your document using a query and your configuration options
-	err = coll.FindOne(ctx, bson.M{{"title", "The Room"}}, opts).Decode(&result)
+	err = coll.FindOne(ctx, bson.M{"title": "The Room"}, opts).Decode(&result)
 	if err != nil {
 		// ErrNoDocuments means that the filter did not match any documents in the collection
 		if err == mongo.ErrNoDocuments {
