@@ -1,5 +1,4 @@
-//Package main will provides a code example showing
-//how to find a document using the MongoDB Go Driver.
+// This program finds a document titled 'The Room' in your MongoDB deployment.
 package main
 
 import (
@@ -11,7 +10,6 @@ import (
 	"log"
 )
 
-//main finds and prints the lowest rated movie titled "The Room" in the sample dataset.
 func main() {
 
 	// Replace the uri string with your MongoDB deployment's connection string.
