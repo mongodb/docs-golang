@@ -16,14 +16,15 @@ package is outside the scope of this page, but if you are interested you can
 find more information
 `in this article on The Go Blog <https://blog.golang.org/context>`__.
 For the purpose of the following example we will use
-the empty placeholder context returned by ``context.TODO()``.
+the empty placeholder context returned by ``context.TODO()``as an argument in
+our call to ``findOne()``.
 
-The filter parameter represents our query. The filter parameter takes a query
+Your filter argument is your query to MongoDB. The filter parameter takes a query
 document that specifies the subset of your collection that you would like to
-retrieve. If you provide an empty document, MongoDB returns all the documents
-in your collection. The filter parameter has an empty interface type, but the
-value you pass must specify a document. For more information on documents in the
-MongoDB Go driver, see our
+retrieve. If you provide an empty document as your filter argument, MongoDB
+returns all the documents in your collection. The filter parameter has an empty
+interface type, but the value you pass as your filter must specify a document.
+For more information on documents in the MongoDB Go driver, see our
 :doc:`guide on data formats </fundamentals/data-formats>`.
 
 The configuration object is used to specify any additional configurations for
@@ -44,7 +45,7 @@ It uses the following methods and values:
   configuration also **projects** our results so that only the ``title`` and
   ``imdb`` fields are retrieved.
 
-- A **context**
+- An empty **context** returned from ``context.TODO()``.
 
 .. literalinclude:: findOne.go
    :language: go
