@@ -58,3 +58,5 @@ For more information on the classes and methods mentioned on this
 page, see the following API documentation:
 
 - :go-api:`FindOne </mongo#Collection.FindOne>`
+- `context <https://pkg.go.dev/context>`__
+- :go-api:`FindOneOptions </mongo/options#FindOneOptions>`
