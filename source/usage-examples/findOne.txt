@@ -45,15 +45,15 @@ Example
 The following code examples finds a single document from the ``movies``
 collection. It uses the following functions, methods, and values:
 
-- A **query filter** value that is passed to the ``findOne()`` method. The filter
-  matches only movies with the title exactly matching the text ``'The Room'``.
-
-- A **configuration** that **sorts** matched documents in descending order by
-  rating, such that the returned document has the highest rating. Our
-  configuration also **projects** our results so that only the ``title`` and
-  ``imdb`` fields are retrieved.
-
 - An empty **context** returned from the ``context.TODO()`` function.
+
+- A **query document** that is passed to the ``findOne()`` method. The filter
+  only matches movies with the title exactly matching the text ``'The Room'``.
+
+- A **configuration** that specifies a **sort** on matched documents in
+  descending order by rating, such that the returned document has the highest
+  rating. Our configuration also specifies a **projection** for our results so
+  that only the ``title`` and ``imdb`` fields are retrieved.
 
 .. literalinclude:: findOne.go
    :language: go
