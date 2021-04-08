@@ -7,33 +7,37 @@ Find a Document
 You can retrieve a single document from your collection with the
 ``*Collection.findOne()`` method. 
 
+..
+   method
+
 The ``findOne()`` method takes a takes a query document that specifies the
 subset of your collection that you would like to retrieve as an argument. If you
-provide an empty document, MongoDB will retrieve your entire collection.
-
-You can specify additional options for your ``findOne()`` method call by passing
-the ``findOne()`` method a ``*FindOneOptions`` value. For example, your
-``FindOneOptions`` value can specify a skip, sort, and projection for your
-``findOne()`` method call. 
+provide an empty document, MongoDB will retrieve your entire collection. For
+more information on documents in the MongoDB Go driver, see our
+:doc:`guide on data formats </fundamentals/data-formats>`.
 
 The ``findOne()`` method must be passed a ``context.Context`` interface type
 value. For more information on the ``context.Context`` interface and the
 ``context`` package, see our :doc:`guide on context </fundamentals/context>`.
 
-Your ``filter`` argument is your query to MongoDB. The ``filter`` parameter takes a query
-document that specifies the subset of your collection that you would like to
-retrieve. If you provide an empty document as your ``filter`` argument, MongoDB
-returns all the documents in your collection. The ``filter`` parameter has an empty
-interface type, but the value you pass as your ``filter`` argument must specify
-a document. For more information on documents in the MongoDB Go driver, see our
-:doc:`guide on data formats </fundamentals/data-formats>`.
+..
+   options
 
-Your configuration object is used to specify any additional configuration
-options for your ``findOne()`` method call. A full list of supported options
-can be found in 
-:go-api:`the API documentation for the FindOneOptions type </mongo/options#FindOneOptions>`. 
-In the following example, we specify a **sort** and a **projection** using a
-value of type ``*FindOneOptions``.  
+You can specify additional options for your ``findOne()`` method call by passing
+the ``findOne()`` method a ``*FindOneOptions`` value. For example, your
+``FindOneOptions`` value can specify a projection for your results, which
+configures the fields in the returned documents. Your can also specify a sort 
+
+..
+   return + error
+
+the ``findOne`` returns a value of type ``SingleResult`` that represents one
+document. Call the ``*SingleResult.Decode()`` method passing in a pointer to the
+variable you would like to unmarshal you document into. If there was an error
+retrieving your document, that error will be returned by the ``Decode()``
+method. If no documents matched your query, ``Decode()`` will return an
+``ErrNoDocuments`` error. 
+
 
 Example
 -------
