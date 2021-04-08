@@ -7,14 +7,18 @@ Find a Document
 You can retrieve a single document from your collection with the
 ``*Collection.findOne()`` method. 
 
-The ``findOne()`` method takes a **context**, a **filter**, and a
-pointer to a configuration object as arguments.
+The ``findOne()`` method takes a takes a query document that specifies the
+subset of your collection that you would like to retrieve as an argument. If you
+provide an empty document, MongoDB will retrieve your entire collection.
 
-A context is a value of type ``context.Context``. Contexts are useful in
-concurrent server programming. A discussion of the context pattern and the
-``context`` package is outside the scope of this page, but if you are interested
-you can find more information
-`in this article on The Go Blog <https://blog.golang.org/context>`__.
+You can specify additional options for your ``findOne()`` method call by passing
+the ``findOne()`` method a ``*FindOneOptions`` value. For example, your
+``FindOneOptions`` value can specify a skip, sort, and projection for your
+``findOne()`` method call. 
+
+The ``findOne()`` method must be passed a ``context.Context`` interface type
+value. For more information on the ``context.Context`` interface and the
+``context`` package, see our :doc:`guide on context </fundamentals/context>`.
 
 Your ``filter`` argument is your query to MongoDB. The ``filter`` parameter takes a query
 document that specifies the subset of your collection that you would like to
