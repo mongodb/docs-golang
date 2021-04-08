@@ -5,26 +5,26 @@ Find a Document
 .. default-domain:: mongodb
 
 You can retrieve a single document from your collection with the
-``*Collection.findOne()`` method. 
+``Collection.FindOne()`` method. 
 
 ..
    method
 
-The ``findOne()`` method takes a query document that specifies the
+The ``FindOne()`` method takes a query document that specifies the
 subset of your collection that you would like to retrieve. If you
-pass the ``findOne()`` method an empty document, MongoDB will retrieve your
+pass the ``FindOne()`` method an empty document, MongoDB will retrieve your
 entire collection. For more information on documents in the MongoDB Go driver,
 see our :doc:`guide on data formats </fundamentals/data-formats>`.
 
-You must pass the ``findOne()`` method a ``context.Context`` interface type
+You must pass the ``FindOne()`` method a ``context.Context`` interface type
 value. For more information on the ``context.Context`` interface and the
 ``context`` package, see our :doc:`guide on context </fundamentals/context>`.
 
 ..
    options
 
-You can specify additional options for your ``findOne()`` method call by passing
-the ``findOne()`` method a ``*FindOneOptions`` value. For example, your
+You can specify additional options for your ``FindOne()`` method call by passing
+the ``FindOne()`` method a ``*FindOneOptions`` value. For example, your
 ``FindOneOptions`` value can specify a projection for your results, which
 configures the fields in the returned documents. Your ``FindOneOptions`` value
 can also specify a **sort**, which orders your results. 
@@ -32,9 +32,9 @@ can also specify a **sort**, which orders your results.
 ..
    return + error
 
-The ``findOne()`` method returns a value of type ``SingleResult``. The
+The ``FindOne()`` method returns a value of type ``SingleResult``. The
 ``SingleResult`` type represents a single document returned from a query to a
-MongoDB instance. You can call the ``*SingleResult.Decode()`` method
+MongoDB instance. You can call the ``SingleResult.Decode()`` method
 to unmarshall a ``SingleResult`` value into a variable with a type that can
 represent a document. If there was an error retrieving your document, that error
 will be returned by the ``Decode()`` method. If no documents matched your
@@ -53,7 +53,7 @@ collection. It uses the following functions and methods:
   rating. Our configuration also specifies a **projection** for our results so
   that only the ``title`` and ``imdb`` fields are retrieved.
 
-- A **query document** that is passed to the ``findOne()`` method. The query
+- A **query document** that is passed to the ``FindOne()`` method. The query
   only matches movies with the title exactly matching the text ``'The Room'``.
 
 .. include:: /includes/connect-guide-note.rst
