@@ -44,7 +44,7 @@ Example
 -------
 
 The following code example retrieves a single document from the ``movies``
-collection. It uses the following functions, methods, and values:
+collection. It uses the following functions and methods:
 
 - An empty **context** returned from the ``context.TODO()`` function.
 
@@ -67,8 +67,9 @@ If you run the example above, you should see a result that looks like this:
 For more information on the functions, structs, methods, and packages mentioned
 on this page, see the following API documentation:
 
-- :go-api:`FindOne </mongo#Collection.FindOne>`
+- :go-api:`Collection.FindOne() </mongo#Collection.FindOne>`
 - `context.Context <https://pkg.go.dev/context#Context>`__
 - :go-api:`FindOneOptions </mongo/options#FindOneOptions>`
+- :go-api:`options.FindOne() </mongo/options#FindOne>`
 - :go-api:`SingleResult </mongo/options#FindOneOptions>`
 - `context.TODO() <https://pkg.go.dev/context#TODO>`__
