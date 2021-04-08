@@ -10,13 +10,13 @@ You can retrieve a single document from your collection with the
 ..
    method
 
-The ``findOne()`` method takes a takes a query document that specifies the
-subset of your collection that you would like to retrieve as an argument. If you
-provide an empty document, MongoDB will retrieve your entire collection. For
-more information on documents in the MongoDB Go driver, see our
-:doc:`guide on data formats </fundamentals/data-formats>`.
+The ``findOne()`` method takes a query document that specifies the
+subset of your collection that you would like to retrieve. If you
+pass the ``findOne()`` method an empty document, MongoDB will retrieve your
+entire collection. For more information on documents in the MongoDB Go driver,
+see our :doc:`guide on data formats </fundamentals/data-formats>`.
 
-The ``findOne()`` method must be passed a ``context.Context`` interface type
+You must pass the ``findOne()`` method a ``context.Context`` interface type
 value. For more information on the ``context.Context`` interface and the
 ``context`` package, see our :doc:`guide on context </fundamentals/context>`.
 
@@ -26,18 +26,19 @@ value. For more information on the ``context.Context`` interface and the
 You can specify additional options for your ``findOne()`` method call by passing
 the ``findOne()`` method a ``*FindOneOptions`` value. For example, your
 ``FindOneOptions`` value can specify a projection for your results, which
-configures the fields in the returned documents. Your can also specify a sort 
+configures the fields in the returned documents. Your ``FindOneOptions`` value
+can also specify a **sort**, which orders your results. 
 
 ..
    return + error
 
-the ``findOne`` returns a value of type ``SingleResult`` that represents one
-document. Call the ``*SingleResult.Decode()`` method passing in a pointer to the
-variable you would like to unmarshal you document into. If there was an error
-retrieving your document, that error will be returned by the ``Decode()``
-method. If no documents matched your query, ``Decode()`` will return an
-``ErrNoDocuments`` error. 
-
+The ``findOne()`` method returns a value of type ``SingleResult``. The
+``SingleResult`` type represents a single document returned from a query to a
+MongoDB instance. You can call the ``*SingleResult.Decode()`` method
+to unmarshall a ``SingleResult`` value into a variable with a type that can
+represent a document. If there was an error retrieving your document, that error
+will be returned by the ``Decode()`` method. If no documents matched your
+query, ``Decode()`` will return an ``ErrNoDocuments`` error. 
 
 Example
 -------
@@ -47,7 +48,7 @@ collection. It uses the following functions, methods, and values:
 
 - An empty **context** returned from the ``context.TODO()`` function.
 
-- A **query document** that is passed to the ``findOne()`` method. The filter
+- A **query document** that is passed to the ``findOne()`` method. The query
   only matches movies with the title exactly matching the text ``'The Room'``.
 
 - A **configuration** that specifies a **sort** on matched documents in
