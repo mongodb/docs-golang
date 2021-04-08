@@ -66,8 +66,8 @@ If you run the example above, you should see a result that looks like this:
 .. literalinclude:: findOne.go.txt
    :language: none
 
-For more information on the functions, structs, methods, and packages mentioned
-on this page, see the following API documentation:
+For more information on the methods, interfaces, structs, and functions
+mentioned on this page, see the following API documentation:
 
 - :go-api:`Collection.FindOne() </mongo#Collection.FindOne>`
 - `Context <https://pkg.go.dev/context#Context>`__
