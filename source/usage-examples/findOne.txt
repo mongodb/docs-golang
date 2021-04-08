@@ -56,6 +56,8 @@ collection. It uses the following functions and methods:
 - A **query document** that is passed to the ``findOne()`` method. The query
   only matches movies with the title exactly matching the text ``'The Room'``.
 
+.. include:: /includes/connect-guide-note.rst
+
 .. literalinclude:: findOne.go
    :language: go
 
