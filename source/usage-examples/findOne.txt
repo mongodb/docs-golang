@@ -48,13 +48,13 @@ collection. It uses the following functions and methods:
 
 - An empty **context** returned from the ``context.TODO()`` function.
 
-- A **query document** that is passed to the ``findOne()`` method. The query
-  only matches movies with the title exactly matching the text ``'The Room'``.
-
 - A **configuration** that specifies a **sort** on matched documents in
   descending order by rating, such that the returned document has the highest
   rating. Our configuration also specifies a **projection** for our results so
   that only the ``title`` and ``imdb`` fields are retrieved.
+
+- A **query document** that is passed to the ``findOne()`` method. The query
+  only matches movies with the title exactly matching the text ``'The Room'``.
 
 .. literalinclude:: findOne.go
    :language: go
