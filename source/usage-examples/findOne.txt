@@ -42,7 +42,7 @@ method. If no documents matched your query, ``Decode()`` will return an
 Example
 -------
 
-The following code examples finds a single document from the ``movies``
+The following code example retrieves a single document from the ``movies``
 collection. It uses the following functions, methods, and values:
 
 - An empty **context** returned from the ``context.TODO()`` function.
