@@ -70,7 +70,7 @@ For more information on the functions, structs, methods, and packages mentioned
 on this page, see the following API documentation:
 
 - :go-api:`Collection.FindOne() </mongo#Collection.FindOne>`
-- `context.Context <https://pkg.go.dev/context#Context>`__
+- `Context <https://pkg.go.dev/context#Context>`__
 - :go-api:`FindOneOptions </mongo/options#FindOneOptions>`
 - :go-api:`options.FindOne() </mongo/options#FindOne>`
 - :go-api:`SingleResult </mongo/options#FindOneOptions>`
