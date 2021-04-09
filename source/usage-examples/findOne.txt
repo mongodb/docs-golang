@@ -25,7 +25,7 @@ value. For more information on the ``context.Context`` interface and the
    options
 
 You can specify additional options when retrieving a document such as whether to
-**sort** the matches of your query, this retrieves the matching document
+**sort** the matches of your query, which retrieves the matching document
 with the minimum or maximum value as specified in your sort criteria. You can
 also specify a **projection**, which configures the fields in the returned
 document. You can specify additional options by passing the ``FindOne()`` method
@@ -50,11 +50,11 @@ document.
 The ``Decode()`` method will return the error value of your ``FindOne()`` method
 call. 
 
-#. If a document matched your query, and there are no errors retrieving the
+- If a document matched your query, and there are no errors retrieving the
    document, the ``Decode()`` method will return ``nil``. 
-#. If no documents matched your query, the ``Decode()`` method will return an
+- If no documents matched your query, the ``Decode()`` method will return an
    ``ErrNoDocuments`` error. 
-#. If there was an error retrieving your document, the ``Decode()`` method will
+- If there was an error retrieving your document, the ``Decode()`` method will
    return the error. 
 
 Example
@@ -87,9 +87,11 @@ If you run the example above, you should see a result that looks like this:
 For more information on the methods, interfaces, structs, and functions
 mentioned on this page, see the following API documentation:
 
-- :go-api:`Collection.FindOne() </mongo#Collection.FindOne>`
+- :go-api:`*Collection.FindOne() </mongo#Collection.FindOne>`
 - `Context <https://pkg.go.dev/context#Context>`__
 - :go-api:`FindOneOptions </mongo/options#FindOneOptions>`
+- :go-api:`*FindOneOptions.SetProjection() </mongo/options#FindOneOptions.SetProjection>`
 - :go-api:`options.FindOne() </mongo/options#FindOne>`
-- :go-api:`SingleResult </mongo/options#FindOneOptions>`
+- :go-api:`SingleResult </mongo#SingleResult>`
+- :go-api:`*SingleResult.Decode() </mongo#SingleResult.Decode>`
 - `context.TODO() <https://pkg.go.dev/context#TODO>`__
