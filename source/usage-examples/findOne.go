@@ -28,8 +28,8 @@ func main() {
 	coll := client.Database("sample_mflix").Collection("movies")
 	var result bson.M
 	opts := options.FindOne()
-	opts = opts.SetProjection(bson.M{"_id": 0, "title": 1, "imdb": 1})
-	opts = opts.SetSort(bson.D{{"rating", -1}})
+	opts.SetProjection(bson.M{"_id": 0, "title": 1, "imdb": 1})
+	opts.SetSort(bson.D{{"imdb.rating", -1}})
 	err = coll.FindOne(ctx, bson.M{"title": "The Room"}, opts).Decode(&result)
 	if err != nil {
 		if err == mongo.ErrNoDocuments {
