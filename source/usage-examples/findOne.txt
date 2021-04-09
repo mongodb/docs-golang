@@ -40,10 +40,16 @@ or more documents in the collection, it returns the first matched result. The
 return type ``SingleResult`` represents a single document returned from a query
 to a MongoDB instance. You can call the ``*SingleResult.Decode()`` method
 to unmarshall a ``SingleResult`` value into a variable with a type that can
-represent a document. If there were no errors retrieving your document,
-``Decode()`` will return ``Nil``. If there was an error retrieving your
-document, ``Decode()`` will return the error. If no documents matched your
-query, ``Decode()`` will return an ``ErrNoDocuments`` error. 
+represent a document. Pass the ``Decode()`` method a pointer to the variable
+that you would like to contain your returned document. The ``Decode()`` method
+will return the error value of your ``FindOne()``method call. 
+
+#. If a document matched your query, and there were no errors retrieving the
+   document, the ``Decode()`` method will return ``nil``. 
+#. If no documents matched your query, the ``Decode()`` method will return an
+   ``ErrNoDocuments`` error. 
+#. If there was an error retrieving your document, the ``Decode()`` method will
+   return the error. 
 
 Example
 -------
