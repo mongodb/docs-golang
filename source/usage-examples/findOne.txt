@@ -54,7 +54,7 @@ collection. It uses the following functions and methods:
   that only the ``title`` and ``imdb`` fields are retrieved.
 
 - A **query document** that is passed to the ``FindOne()`` method. The query
-  only matches movies with the title exactly matching the text ``'The Room'``.
+  only matches movies with the title exactly matching the text ``"The Room"``.
 
 .. include:: /includes/connect-guide-note.rst
 
