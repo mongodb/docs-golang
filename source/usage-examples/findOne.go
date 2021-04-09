@@ -1,4 +1,3 @@
-// This program finds a document titled 'The Room' in your MongoDB deployment.
 package main
 
 import (
