@@ -32,12 +32,14 @@ can also specify a **sort**, which orders your results.
 ..
    return + error
 
-The ``FindOne()`` method returns a value of type ``SingleResult``. The
-``SingleResult`` type represents a single document returned from a query to a
-MongoDB instance. You can call the ``SingleResult.Decode()`` method
+If the query filter you specified in your ``FindOne()`` method call matches one
+or more documents in the collection, it returns the first matched result. The
+return type ``SingleResult`` represents a single document returned from a query
+to a MongoDB instance. You can call the ``*SingleResult.Decode()`` method
 to unmarshall a ``SingleResult`` value into a variable with a type that can
-represent a document. If there was an error retrieving your document, that error
-will be returned by the ``Decode()`` method. If no documents matched your
+represent a document. If there were no errors retrieving your document,
+``Decode()`` will return ``Nil``. If there was an error retrieving your
+document, ``Decode()`` will return the error. If no documents matched your
 query, ``Decode()`` will return an ``ErrNoDocuments`` error. 
 
 Example
