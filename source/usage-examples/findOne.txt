@@ -51,11 +51,11 @@ The ``Decode()`` method will return the error value of your ``FindOne()`` method
 call. 
 
 - If a document matched your query, and there are no errors retrieving the
-   document, the ``Decode()`` method will return ``nil``. 
+  document, the ``Decode()`` method will return ``nil``. 
 - If no documents matched your query, the ``Decode()`` method will return an
-   ``ErrNoDocuments`` error. 
+  ``ErrNoDocuments`` error. 
 - If there was an error retrieving your document, the ``Decode()`` method will
-   return the error. 
+  return the error. 
 
 Example
 -------
@@ -64,10 +64,8 @@ The following code example retrieves a single document from the ``movies``
 collection. It uses the following arguments for the ``FindOne()`` method:
 
 - An empty **Context** instance returned from the ``context.TODO()`` function.
-
 - A **query document** that only matches movies with the title exactly matching
   the text ``"The Room"``.
-
 - A **configuration** that specifies a **sort** on matched documents in
   descending order by rating, such that the retrieved document has the highest
   rating. Our configuration also specifies a **projection** for our results so
