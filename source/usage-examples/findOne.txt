@@ -26,8 +26,9 @@ value. For more information on the ``context.Context`` interface and the
 You can specify additional options for your ``FindOne()`` method call by passing
 the ``FindOne()`` method a ``*FindOneOptions`` value. For example, your
 ``FindOneOptions`` value can specify a projection for your results, which
-configures the fields in the returned documents. Your ``FindOneOptions`` value
-can also specify a **sort**, which orders your results. 
+configures the fields in the returned document. Your ``FindOneOptions`` value
+can also specify a **sort**, which orders your results before the first
+document is selected from your result set.
 
 ..
    return + error
