@@ -46,7 +46,7 @@ Example
 The following code example retrieves a single document from the ``movies``
 collection. It uses the following functions and methods:
 
-- An empty **context** returned from the ``context.TODO()`` function.
+- An empty **context** instance returned from the ``context.TODO()`` function.
 
 - A **configuration** that specifies a **sort** on matched documents in
   descending order by rating, such that the returned document has the highest
