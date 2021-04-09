@@ -32,7 +32,7 @@ func main() {
 	err = coll.FindOne(ctx, bson.M{"title": "The Room"}, opts).Decode(&result)
 	if err != nil {
 		if err == mongo.ErrNoDocuments {
-			// This error means your filter did not match any documents.
+			// This error means your query did not match any documents.
 			return
 		}
 		log.Fatal(err)
