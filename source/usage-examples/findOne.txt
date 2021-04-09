@@ -64,8 +64,8 @@ collection. It uses the following arguments to the ``FindOne()`` method:
 
 - An empty **Context** instance returned from the ``context.TODO()`` function.
 
-- A **query document** that is passed to the ``FindOne()`` method. The query
-  only matches movies with the title exactly matching the text ``"The Room"``.
+- A **query document** that only matches movies with the title exactly matching
+  the text ``"The Room"``.
 
 - A **configuration** that specifies a **sort** on matched documents in
   descending order by rating, such that the retrieved document has the highest
