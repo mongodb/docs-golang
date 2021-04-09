@@ -23,12 +23,14 @@ value. For more information on the ``context.Context`` interface and the
 ..
    options
 
-You can specify additional options for your ``FindOne()`` method call by passing
-the ``FindOne()`` method a ``*FindOneOptions`` value. For example, your
-``FindOneOptions`` value can specify a projection for your results, which
-configures the fields in the returned document. Your ``FindOneOptions`` value
-can also specify a **sort**, which orders your results before the first
-document is selected from your result set.
+You can specify additional options when retrieving a document such as whether to
+**sort** the matches of your query, this retrieves the matching document
+with the minimum or maximum value as specified in your sort criteria. You can
+also specify a **projection**, which configures the fields in the returned
+document. You can specify additional options by passing the ``FindOne()`` method
+a pointer to an instance of a ``FindOneOptions`` value. You can configure a
+``FindOneOptions`` value by using setter methods such as the
+``*FindOneOptions.SetProjection()`` method.
 
 ..
    return + error
