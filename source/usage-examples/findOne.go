@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -37,5 +38,9 @@ func main() {
 		}
 		log.Fatal(err)
 	}
-	fmt.Println(result)
+	jsonByteSlice, err := json.MarshalIndent(result, "", "    ")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s\n", jsonByteSlice)
 }
