@@ -27,10 +27,10 @@ value. For more information on the ``context.Context`` interface and the
 You can specify options that modify the behavior of your ``FindOne()`` method.
 One example of an option is **sort**, which orders the subset of your collection
 that matches your query before the first document is retrieved. Another example
-of an option is a **projection**, which configures the fields in the returned
-document. You can specify additional options by passing the ``FindOne()`` method
-a pointer to an instance of a ``FindOneOptions`` value. You can configure a
-``FindOneOptions`` value by using setter methods such as the
+of an option is a **projection**, which specifies or restricts the fields in
+your returned document. You can specify additional options by passing the
+``FindOne()`` method a pointer to an instance of a ``FindOneOptions`` value. You
+can configure a ``FindOneOptions`` value by using setter methods such as the
 ``*FindOneOptions.SetProjection()`` method.
 
 ..
