@@ -47,15 +47,16 @@ document.
 ..
    error 
 
-The ``Decode()`` method will return the error value of your ``FindOne()`` method
-call. 
+When you call the ``Decode()`` method to unmarhsall your result, the method
+returns an ``error`` interface type which can contain one of the following
+values: 
 
 - If a document matched your query, and there are no errors retrieving the
-  document, the ``Decode()`` method will return ``nil``. 
-- If no documents matched your query, the ``Decode()`` method will return an
+  document, the ``Decode()`` method returns ``nil``. 
+- If no documents matched your query, the ``Decode()`` method returns an
   ``ErrNoDocuments`` error. 
-- If there was an error retrieving your document, the ``Decode()`` method will
-  return the error. 
+- If there was an error retrieving your document, the ``Decode()`` method
+  returns the error. 
 
 Example
 -------
