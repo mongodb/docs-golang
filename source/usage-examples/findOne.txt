@@ -79,7 +79,7 @@ collection. It uses the following arguments for the ``FindOne()`` method:
 
 If you run the example above, you should see a result that looks like this:
 
-.. literalinclude:: findOne.go.txt
+.. literalinclude:: findOne-output.txt
    :language: none
 
 .. include:: /includes/sample-data-note.rst
