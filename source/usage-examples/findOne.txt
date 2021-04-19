@@ -68,9 +68,9 @@ collection. It uses the following arguments for the ``FindOne()`` method:
   the text ``"The Room"``.
 - A **configuration** that specifies a **sort** on matched documents in
   descending order by rating, such that the first document has the highest
-  rating. Our configuration also specifies a **projection** for our results so
-  that our MongoDB instance only sends the ``title`` and ``imdb`` fields of
-  our retrieved document.
+  rating. The configuration also specifies a **projection** for the results so
+  that the MongoDB instance only sends the ``title`` and ``imdb`` fields of
+  the retrieved document.
 
 .. include:: /includes/connect-guide-note.rst
 
