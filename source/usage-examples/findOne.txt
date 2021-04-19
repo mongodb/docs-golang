@@ -29,7 +29,7 @@ One example of an option is **sort**, which orders the subset of your collection
 that matches your query before the first document is retrieved. Another example
 of an option is a **projection**, which specifies or restricts the fields in
 your returned document. You can specify additional options by passing the
-``FindOne()`` method a pointer to an instance of a ``FindOneOptions`` value. You
+``FindOne()`` method a pointer to a ``FindOneOptions`` value. You
 can configure a ``FindOneOptions`` value by using setter methods such as the
 ``*FindOneOptions.SetProjection()`` method.
 
