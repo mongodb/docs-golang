@@ -26,11 +26,11 @@ func main() {
 		}
 	}()
 	coll := client.Database("sample_mflix").Collection("movies")
-	var result bson.M
+	var result bson.D
 	opts := options.FindOne()
-	opts.SetProjection(bson.M{"_id": 0, "title": 1, "imdb": 1})
+	opts.SetProjection(bson.D{{"_id", 0}, {"title", 1}, {"imdb", 1}})
 	opts.SetSort(bson.D{{"imdb.rating", -1}})
-	err = coll.FindOne(ctx, bson.M{"title": "The Room"}, opts).Decode(&result)
+	err = coll.FindOne(ctx, bson.D{{"title", "The Room"}}, opts).Decode(&result)
 	if err != nil {
 		if err == mongo.ErrNoDocuments {
 			// This error means your query did not match any documents.
