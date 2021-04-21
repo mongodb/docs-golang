@@ -23,12 +23,12 @@ no other reasonable interpretation. Consult the documentation in the
      - | **Description:**
        | Refers to a list of one or more structs, functions, or methods within a file identified by the text ``package <name>`` at the top.
        | **Recommendation:**
-       | Use monospace and lowercase to refer to a package name. Example:
+       | Use monospace and lowercase to refer to a package name.
+       | Example:
+
          - "Import the ``colors`` package."
 
-       When disambiguating which package a method/function belongs to,
-       either use the syntax ``<package>.<func name>()`` or describe it as
-       follows: "``<func name>()`` from the ``<package>`` package.
+       | When disambiguating which package a method/function belongs to, either use the syntax ``<package>.<func name>()`` or describe it as follows: "``<func name>()`` from the ``<package>`` package.
 
    * - **function**
      - | **Description:**
@@ -44,8 +44,7 @@ no other reasonable interpretation. Consult the documentation in the
        | Examples:
 
          - "Call the ``NewColor()`` function"
-         - "You can call the ``color.Rename()`` or ``person.Rename()``
-           method."
+         - "You can call the ``color.Rename()`` or ``person.Rename()`` method."
 
    * - **method**
      - | **Description:**
@@ -60,14 +59,12 @@ no other reasonable interpretation. Consult the documentation in the
 
           func (a *Color) isPrimary() bool {}
 
-       This is how the method might be called:
+       | "You can call the ``isPrimary()`` method on a ``Color`` pointer receiver type to determine whether the color is red, yellow, or blue as shown below:"
 
        .. code-block:: go
 
           // assume assignment c := NewColor("red")
           c.isPrimary()
-
-       | "You can call the ``isPrimary()`` method on a ``Color`` pointer receiver type to determine whether the color is red, yellow, or blue."
 
    * - **return values/lists**
      - | **Description:**
@@ -99,8 +96,8 @@ no other reasonable interpretation. Consult the documentation in the
        | Use this term when you are describing the method/function signature.
        | Example(s):
 
-       - "The ``NewColor()`` method accepts one ``int`` parameter."
-       - "``func RGB(r int, g int, b int)``. This function has three parameters, ``r``, ``g``, and ``b``.
+         - "The ``NewColor()`` method accepts one ``int`` parameter."
+         - "``func RGB(r int, g int, b int)``. This function has three parameters, ``r``, ``g``, and ``b``.
 
        | When referring to result parameters (also called identifiers), use **result** or **result list**. Example(s):
 
@@ -134,10 +131,8 @@ no other reasonable interpretation. Consult the documentation in the
        | Use struct or struct type to refer to both the declaration within a package as well as the data held by a variable.
        | Example(s):
 
-       - "The color struct type contains three ``int`` fields."
-       - ``c := color(name: "crimson", r: 153, g: 0, b: 0)`` Call
-         ``isPrimary() on the ``color`` struct to determine whether it is
-         a primary color.
+         - "The color struct type contains three ``int`` fields."
+         - ``c := color(name: "crimson", r: 153, g: 0, b: 0)`` Call ``isPrimary() on the ``color`` struct to determine whether it is a primary color.
 
    * - **variable**
      - | **Description:**
@@ -151,10 +146,9 @@ no other reasonable interpretation. Consult the documentation in the
           var pColor *Color
 
        | **Recommendation:**
-       | Use "variable" when you are referencing one but do not require any specificity. If it is more helpful to refer to the variable by its name, use that instead. 
+       | Use "variable" when you are referencing one but do not require any specificity. If it is more helpful to refer to the variable by its name, use that instead.
        | Example:
-       - "You can store the return value in a value so you can access it
-         later."
+         - "You can store the return value in a value so you can access it later."
 
    * - **pointer reciever**
      - | **Description:**
@@ -167,7 +161,8 @@ no other reasonable interpretation. Consult the documentation in the
 Sources
 -------
 
-- `Golang.org reference docs <https://golang.org/ref/spec>__
+- `Golang.org reference docs <https://golang.org/ref/spec>`__
 - `Golang Codewalks <https://golang.org/doc/codewalk>`__
 - `Go By Example <https://gobyexample.com/>`__
 - `Tour of Go <<https://tour.golang.org>`__
+
