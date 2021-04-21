@@ -165,5 +165,5 @@ Sources
 - `Golang.org reference docs <https://golang.org/ref/spec>`__
 - `Golang Codewalks <https://golang.org/doc/codewalk>`__
 - `Go By Example <https://gobyexample.com/>`__
-- `Tour of Go <<https://tour.golang.org>`__
+- `Tour of Go <https://tour.golang.org>`__
 
