@@ -1,0 +1,126 @@
+==============================
+Go Terminology Recommendations
+==============================
+
+.. default-domain:: mongodb
+
+
+This is a subset of terms and situations in which we may need to use
+throughout our Go Driver documentation. We should use these when
+appropriate to disambiguate terms, but do not need to use them if there is
+no other reasonable interpretation. Consult the documentation in the
+:ref:`Sources <golang-terms-sources>` for additional guidance.
+
+.. list-table::
+   :header-rows: 1
+
+   * - Term
+     - Description
+     - Recommendation
+
+   * - **package**
+     - a list of struct, function, and/or method in a file, identified by
+       the "package <name>" at the top of the file.
+     -
+
+   * - **module**
+     - a collection of packages in the same directory, described by
+       a go.mod file at the directory root.
+     -
+   * - **Function**
+     - Declared in a package using ``func`` and does not specify a receiver.
+     - Refer to this as a "function", omitting parameters. Feel free to
+       use appropriate modifiers for specificity such as "variadic". The
+       function in the example below is ``NewColor()``:
+
+       .. code-block:: go
+
+          func NewColor(name string) *Color {}
+
+       Common usage:
+
+       - "Call the ``NewColor()`` function"
+
+   * - **Method**
+     - A function declared with a receiver.
+     - Refer to this as a "method", omitting parameters, and ensure you
+       include context on what the receiver is. Feel free to use
+       appropriate modifiers for specificity such as "variadic". The method
+       in the example below is ``isPrimary()`` and the receiver is ``Color``.
+
+       .. code-block:: go
+
+          func (a *Color) isPrimary() bool {}
+
+       This is how the method might be called:
+
+       .. code-block:: go
+
+          // assume assignment c := NewColor("red")
+          c.isPrimary()
+
+   * - **(return/result) values**
+     - The data returned from a method or function. You can find 
+       signature.
+     -
+
+   * - **value**
+     - data
+     - See https://golang.org/ref/spec#Assignability
+       https://golang.org/ref/spec#Representability
+
+     - See https://golang.org/ref/spec#Type_identity
+      
+   * - **argument**
+     - data you pass to a function or method that corresponds to one
+       of its parameters.
+     - Use this term when you need to describe the data you're passing without
+       specific details like type, usually to refer to position in the
+       method/function signature.
+
+       Here are a few examples of how to use this term:
+       - "Pass your connection string as the second argument to
+         ``mongo.Connect()``"
+       - "The ``NewColor()`` function takes a ``string`` argument."
+       - `Golang.org reference docs <https://golang.org/ref/spec#Passing_arguments_to_..._parameters>`__
+
+   * - **parameter**
+     -
+     -
+     
+   * - **type**
+     - "A type determines a set of values together with operations and
+       methods specific to those values" (`Types <https://golang.org/ref/spec#Types>`__)
+     - Use this when describing a data type
+
+   * - **struct, struct type**
+     - "A type determines a set of values together with operations and
+       methods specific to those values" (`Struct types <https://golang.org/ref/spec#Struct_types>`__)
+     -
+
+   * - **interface**
+     -
+     -
+
+   * - **variable**
+     -
+     -
+      
+   * - **pointer reciever**
+     -
+     - We decided as a team that no further specificity is needed when
+       using this term in prose, but can use the ``*`` prefix when it is
+       featured in a list of links to API documentation.
+
+   
+
+.. _golang-terms-sources
+
+Sources
+-------
+
+- `Golang.org reference docs <https://golang.org/ref/spec>__
+- `Golang Codewalks <https://golang.org/doc/codewalk>`__
+- `Go By Example <https://gobyexample.com/>`__
+
+
