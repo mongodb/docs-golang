@@ -14,60 +14,47 @@ no other reasonable interpretation. Consult the documentation in the
 .. list-table::
    :header-rows: 1
    :stub-columns: 1
-   :widths: 24 34 42
+   :widths: 25 75
 
    * - Term
-     - Description
-     - Recommendation
+     - Description / Recommendation
 
    * - **package**
-     - Refers to a list of one or more structs, functions, or methods
-       within a file identified by the text ``package <name>`` at the top.
-     - Use monospace and lowercase to refer to a package name. Example:
-       - "Import the ``colors`` package."
+     - | **Description:**
+       | Refers to a list of one or more structs, functions, or methods within a file identified by the text ``package <name>`` at the top.
+       | **Recommendation:**
+       | Use monospace and lowercase to refer to a package name. Example:
+         - "Import the ``colors`` package."
 
        When disambiguating which package a method/function belongs to,
        either use the syntax ``<package>.<func name>()`` or describe it as
        follows: "``<func name>()`` from the ``<package>`` package.
 
-
    * - **function**
-     - Declared in a package using ``func`` and does not specify a receiver.
-       The function in the example below is ``NewColor()``:
+     - | **Description:**
+       | Declared in a package using ``func`` and does not specify a receiver. The function in the example below is ``NewColor()``:
 
        .. code-block:: go
 
           func NewColor(name string) *Color {}
 
-     - Refer to functions as "function" if you require the non-specific form.
-       Otherwise, use name within monospace with ``()`` appended to the
-       end of the name, and omit parameter information unless describing
-       the signature.
-       Only prepend the function name with the package that it comes from when
-       disambiguation seems necessary or when listing links to API
-       documentation.
+       | **Recommendation:**
+       | Refer to functions as "function" if you require the non-specific form. Otherwise, use name within monospace with ``()`` appended to the end of the name, and omit parameter information unless describing the signature.
+       | Only prepend the function name with the package that it comes from when disambiguation seems necessary or when listing links to API documentation.
+       | Examples:
 
-       Examples:
+         - "Call the ``NewColor()`` function"
+         - "You can call the ``color.Rename()`` or ``person.Rename()``
+           method."
 
-       - "Call the ``NewColor()`` function"
-       - "You can call the ``color.Rename()`` or ``person.Rename()``
-         method."
-
-   * - **Method**
-     - A function declared with a receiver.
-     - Refer to this as a "method" if you require the non-specific form.
-       Otherwise, use the name within monospace with ``()`` appended to
-       the end of the name, and omit parameter information unless
-       describing the signature. Ensure that you include context on what
-       the receiver is.
-
-       Only prepend the function name with the package that it comes from when
-       disambiguation seems necessary or when listing links to API
-       documentation.
-
-       Example:
-
-       Assume the documentation refers to this method:
+   * - **method**
+     - | **Description:**
+       | A function declared with a receiver.
+       | **Recommendation:**
+       | Refer to this as a "method" if you require the non-specific form. Otherwise, use the name within monospace with ``()`` appended to the end of the name, and omit parameter information unless describing the signature. Ensure that you include context on what the receiver is.
+       | Only prepend the function name with the package that it comes from when disambiguation seems necessary or when listing links to API documentation.
+       | Example:
+       | Assume the documentation refers to this method:
 
        .. code-block:: go
 
@@ -80,71 +67,61 @@ no other reasonable interpretation. Consult the documentation in the
           // assume assignment c := NewColor("red")
           c.isPrimary()
 
-       "You can call the ``isPrimary()`` method on a ``Color`` pointer receiver
-       type to determine whether the color is red, yellow, or blue."
+       | "You can call the ``isPrimary()`` method on a ``Color`` pointer receiver type to determine whether the color is red, yellow, or blue."
 
    * - **return values/lists**
-     - The data returned from a method or function. You can find the type
-       and name (if named) parameters in the method/function signature in what
-       we call the **result** or **result list**. See **parameter**.
-     - Refer to these as return values or return lists. See the
-       **parameter** term for an example of its usage.
+     - | **Description:**
+       | The data returned from a method or function. You can find the type and name (if named) parameters in the method/function signature in what we call the **result** or **result list**. See **parameter**.
+       | **Recommendation:**
+       | Refer to these as return values or return lists. See the **parameter** term for an example of its usage.
 
    * - **argument**
-     - Refers to non-specific data that you pass to a method or function.
-     - Use this term when you need to describe the data you're passing without
-       specific details like type, usually to refer to position in the
-       method/function signature.
+     - | **Description:**
+       | Refers to non-specific data that you pass to a method or function.
+       | **Recommendation:**
+       | Use this term when you need to describe the data you're passing without specific details like type, usually to refer to position in the method/function signature.
 
-       Here are a few examples of how to use this term:
+       | Here are a few examples of how to use this term:
        - "Pass your connection string as the second argument to ``mongo.Connect()``"
        - "The ``NewColor()`` function takes a ``string`` argument."
        - `Golang.org reference docs <https://golang.org/ref/spec#Passing_arguments_to_..._parameters>`__
 
    * - **value** (passed)
-     - Similar to the `wikipedia definition of value
-       <https://en.wikipedia.org/wiki/Value_(computer_science)>`__ in that
-       it is the "value of a variable" that can be of any data type. This
-       is different from **return values/lists** in that it refers to the
-       contents of the type. See `Go by Example: Values
-       <https://gobyexample.com/values>`__ for examples.
-     - TODO: decide whether this should be formatted in monospace, quotes, or both.
+     - | **Description:**
+       | Similar to the `wikipedia definition of value <https://en.wikipedia.org/wiki/Value_(computer_science)>`__ in that it is the "value of a variable" that can be of any data type. This is different from **return values/lists** in that it refers to the contents of the type. See `Go by Example: Values <https://gobyexample.com/values>`__ for examples.
+       | **Recommendation:**
+       | **TODO:** decide whether this term should be formatted in monospace, quotes, or both.
 
    * - **parameter**
-     - Identifiers used in method/function signatures. See
-       `Function types <https://golang.org/ref/spec#Function_types>`__ for more info.
-     - Use this term when you are describing the method/function
-       signature. Example(s):
+     - | **Description:**
+       | Identifiers used in method/function signatures. See `Function types <https://golang.org/ref/spec#Function_types>`__ for more info.
+       | **Recommendation:**
+       | Use this term when you are describing the method/function signature.
+       | Example(s):
 
        - "The ``NewColor()`` method accepts one ``int`` parameter."
        - "``func RGB(r int, g int, b int)``. This function has three parameters, ``r``, ``g``, and ``b``.
 
-       When referring to result parameters (also called identifiers), use
-       **result** or **result list**. Example(s):
+       | When referring to result parameters (also called identifiers), use **result** or **result list**. Example(s):
 
-       - "``func ChangeColor(newColor string) (string, error)``. This function
-         returns a result list containing a ``string`` and ``error``."
+       - "``func ChangeColor(newColor string) (string, error)``. This function returns a result list containing a ``string`` and ``error``."
 
    * - **type**
-     - "A type determines a set of values together with operations and
-       methods specific to those values" (`Types <https://golang.org/ref/spec#Types>`__)
-     - Use this when describing a data type, including categorical
-       (pointer, function, strcut, array, string, etc.). The term "type"
-       should not receive any special formatting, but a specific type
-       name should be monospaced.
+     - | **Description:**
+       | "A type determines a set of values together with operations and methods specific to those values" (`Types <https://golang.org/ref/spec#Types>`__)
+       | **Recommendation:**
+       | Use this when describing a data type, including categorical (pointer, function, strcut, array, string, etc.). The term "type" should not receive any special formatting, but a specific type name should be monospaced.
 
    * - **pointer**
-     - References to values/records. See `Go by Example: Pointers
-       <https://gobyexample.com/pointers>`__ for further explanation and
-       examples.
-     - We can talk about pointers as ``*C`` or "pointer to ``C``". The
-       latter may be easier for a new developer to understand, and to
-       discover the meaning through a google search.
+     - | **Description:**
+       | References to values/records. See `Go by Example: Pointers <https://gobyexample.com/pointers>`__ for further explanation and examples.
+       | **Recommendation:**
+       | We can talk about pointers as ``*C`` or "pointer to ``C``". The latter may be easier for a new developer to understand, and to discover the meaning through a google search.
 
    * - **struct, struct type**
-     - "A type determines a set of values together with operations and
-       methods specific to those values" (`Struct types <https://golang.org/ref/spec#Struct_types>`__)
-       An example of a struct:
+     - | **Description:**
+       | "A type determines a set of values together with operations and methods specific to those values" (`Struct types <https://golang.org/ref/spec#Struct_types>`__)
+       | An example of a struct:
 
        .. code-block:: go
 
@@ -153,8 +130,9 @@ no other reasonable interpretation. Consult the documentation in the
             r,g,b int
           }
 
-     - Use struct or struct type to refer to both the declaration within
-       a package as well as the data held by a variable. Example(s):
+       | **Recommendation:**
+       | Use struct or struct type to refer to both the declaration within a package as well as the data held by a variable.
+       | Example(s):
 
        - "The color struct type contains three ``int`` fields."
        - ``c := color(name: "crimson", r: 153, g: 0, b: 0)`` Call
@@ -162,10 +140,8 @@ no other reasonable interpretation. Consult the documentation in the
          a primary color.
 
    * - **variable**
-     - Holds data whether a data structure or pointer type and is
-       accessed by the name by which it was declared. See
-       `Variables <https://golang.org/ref/spec#Variables>`__ for more
-       info. The following shows a few example variable declarations:
+     - | **Description:**
+       | Holds data whether a data structure or pointer type and is accessed by the name by which it was declared. See `Variables <https://golang.org/ref/spec#Variables>`__ for more info. The following shows a few example variable declarations:
 
        .. code-block:: go
 
@@ -174,21 +150,17 @@ no other reasonable interpretation. Consult the documentation in the
           _, g, _ := c.RGBValues()
           var pColor *Color
 
-     - Use "variable" when you are referencing one but do not require any
-       specificity. If it is more helpful to refer to the variable by its
-       name, use that instead. Example:
+       | **Recommendation:**
+       | Use "variable" when you are referencing one but do not require any specificity. If it is more helpful to refer to the variable by its name, use that instead. 
+       | Example:
        - "You can store the return value in a value so you can access it
          later."
 
    * - **pointer reciever**
-     - "You can declare methods with pointer receivers. This means the
-       receiver type has the literal syntax ``*T`` for some type ``T``.
-       (Also, ``T`` cannot itself be a pointer such as ``*int``.)" (from
-       `Pointer receivers <https://tour.golang.org/methods/4>`__.
-     - We decided as a team that no further specificity is needed when
-       using this term in prose, but can use the ``*`` prefix when it is
-       featured in a list of links to API documentation.
-
+     - | **Description:**
+     - | "You can declare methods with pointer receivers. This means the receiver type has the literal syntax ``*T`` for some type ``T``. (Also, ``T`` cannot itself be a pointer such as ``*int``.)" (from `Pointer receivers <https://tour.golang.org/methods/4>`__.
+       | **Recommendation:**
+       | We decided as a team that no further specificity is needed when using this term in prose, but can use the ``*`` prefix when it is featured in a list of links to API documentation.
 
 .. _golang-terms-sources:
 
@@ -198,4 +170,4 @@ Sources
 - `Golang.org reference docs <https://golang.org/ref/spec>__
 - `Golang Codewalks <https://golang.org/doc/codewalk>`__
 - `Go By Example <https://gobyexample.com/>`__
-
+- `Tour of Go <<https://tour.golang.org>`__
