@@ -28,7 +28,8 @@ no other reasonable interpretation. Consult the documentation in the
 
        - "Import the ``colors`` package."
 
-       | When disambiguating which package a method/function belongs to, either use the syntax ``<package>.<func name>()`` or describe it as follows: "``<func name>()`` from the ``<package>`` package.
+       | When disambiguating which package a method/function belongs to,
+       either use the syntax ``<package>.<func name>()`` or describe it as follows: "``<func name>()`` from the ``<package>`` package."
 
    * - **function**
      - | **Description:**
@@ -57,9 +58,9 @@ no other reasonable interpretation. Consult the documentation in the
 
        .. code-block:: go
 
-          func (a *Color) isPrimary() bool {}
+          func (a *color) isPrimary() bool {}
 
-       | "You can call the ``isPrimary()`` method on a ``Color`` pointer receiver type to determine whether the color is red, yellow, or blue as shown below:"
+       | "You can call the ``isPrimary()`` method on a ``color`` pointer receiver type to determine whether the color is red, yellow, or blue as shown below:"
 
        .. code-block:: go
 
@@ -107,7 +108,7 @@ no other reasonable interpretation. Consult the documentation in the
      - | **Description:**
        | "A type determines a set of values together with operations and methods specific to those values" (`Types <https://golang.org/ref/spec#Types>`__)
        | **Recommendation:**
-       | Use this when describing a data type, including categorical (pointer, function, strcut, array, string, etc.). The term "type" should not receive any special formatting, but a specific type name should be monospaced.
+       | Use this when describing a data type, including categorical (pointer, function, struct, array, string, etc.). The term "type" should not receive any special formatting, but a specific type name should be monospaced.
 
    * - **pointer**
      - | **Description:**
@@ -132,7 +133,7 @@ no other reasonable interpretation. Consult the documentation in the
        | Example(s):
 
        - "The color struct type contains three ``int`` fields."
-       - ``c := color(name: "crimson", r: 153, g: 0, b: 0)`` Call ``isPrimary() on the ``color`` struct to determine whether it is a primary color.
+       - ``c := color(name: "crimson", r: 153, g: 0, b: 0)`` Call ``isPrimary()`` on the ``color`` struct to determine whether it is a primary color.
 
    * - **variable**
      - | **Description:**
