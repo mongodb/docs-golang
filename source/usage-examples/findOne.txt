@@ -47,7 +47,7 @@ document.
 ..
    error 
 
-When you call the ``Decode()`` method to unmarshall your result, the method
+When you call the ``Decode()`` method to unmarshal your result, the method
 returns an ``error`` interface type which can contain one of the following
 values: 
 
