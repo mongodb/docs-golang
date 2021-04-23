@@ -20,12 +20,15 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	// Disconnect the client once the function returns.
 	defer func() {
 		if err = client.Disconnect(ctx); err != nil {
 			panic(err)
 		}
+
 	}()
+
 	coll := client.Database("sample_mflix").Collection("movies")
 	var result bson.D
 	opts := options.FindOne()
@@ -37,11 +40,14 @@ func main() {
 			// This error means your query did not match any documents.
 			return
 		}
+
 		panic(err)
 	}
+
 	jsonByteSlice, err := json.MarshalIndent(result, "", "    ")
 	if err != nil {
 		panic(err)
 	}
+
 	fmt.Printf("%s\n", jsonByteSlice)
 }
