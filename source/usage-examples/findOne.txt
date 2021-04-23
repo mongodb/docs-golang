@@ -10,11 +10,11 @@ You can retrieve a single document from your collection with the
 ..
    method
 
-The ``FindOne()`` method takes a filter document that specifies the
-subset of your collection that you would like to retrieve a document from. If you
-pass the ``FindOne()`` method an empty document, MongoDB will consider your
-entire collection when retrieving your document. For more information on documents
-in the MongoDB Go driver, see our
+The ``FindOne()`` method takes a filter document. Calling the ``FindOne()``
+method will retrieve a document from your MongoDB instance that matches your
+filter document. If you pass the ``FindOne()`` method an empty document, MongoDB will
+consider your entire collection when retrieving your document. For more
+information on documents in the MongoDB Go driver, see our
 :doc:`guide on data formats </fundamentals/data-formats>`.
 
 You must pass the ``FindOne()`` method a ``context.Context`` interface type
