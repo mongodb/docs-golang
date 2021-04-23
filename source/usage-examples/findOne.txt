@@ -11,9 +11,9 @@ You can retrieve a single document from your collection with the
    method
 
 The ``FindOne()`` method takes a filter document. Calling the ``FindOne()``
-method will retrieve a document from your MongoDB instance that matches your
+method retrieves a document from your MongoDB instance that matches your
 filter document. If you pass the ``FindOne()`` method an empty filter document,
-MongoDB will consider your entire collection when retrieving your document. For more
+MongoDB considers your entire collection when retrieving your document. For more
 information on documents in the MongoDB Go driver, see our
 :doc:`guide on data formats </fundamentals/data-formats>`.
 
