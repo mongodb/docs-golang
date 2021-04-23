@@ -24,14 +24,17 @@ value. For more information on the ``context.Context`` interface and the
 ..
    options
 
-You can specify options that modify the behavior of your ``FindOne()`` method.
-One example of an option is **sort**, which orders the subset of your collection
-that matches your query before the first document is retrieved. Another example
-of an option is a **projection**, which specifies or restricts the fields in
-your returned document. You can specify additional options by passing the
-``FindOne()`` method a pointer to a ``FindOneOptions`` struct. You
-can configure a ``FindOneOptions`` struct by using setter methods such as the
-``*FindOneOptions.SetProjection()`` method.
+You can specify options that change the behavior of the ``FindOne()`` method.
+One example of an option is **sort**, which instructs your MongoDB instance to
+order the matching documents of your collection before MongoDB retrieves the
+first document. Another example of an option is a **projection**, which
+specifies or restricts the fields in your returned document. You can specify
+options by passing the ``FindOne()`` method a pointer to a ``FindOneOptions`` struct.  
+You can configure a ``FindOneOptions`` struct by using setter methods such as the
+``*FindOneOptions.SetProjection()`` method. For more information on the sort operation,
+:doc:`see our guide on sorting </fundamentals/crud/read-operations/sort/>`.
+For information on the projection operation, 
+:doc:`see our guide on projections </fundamentals/crud/read-operations/project/>`.  
 
 ..
    return
