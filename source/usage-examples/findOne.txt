@@ -40,7 +40,7 @@ If the query filter you specified in your ``FindOne()`` method call matches one
 or more documents in the collection, it returns the first matched result. The
 return type ``SingleResult`` represents a single document returned from a query
 to a MongoDB instance. You can call the ``*SingleResult.Decode()`` method
-to unmarshall a ``SingleResult`` value into a variable. Pass the ``Decode()`` 
+to unmarshal a ``SingleResult`` value into a variable. Pass the ``Decode()`` 
 method a pointer to the variable that you would like to contain your returned
 document. 
 
