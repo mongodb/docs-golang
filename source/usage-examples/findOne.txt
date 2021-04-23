@@ -57,8 +57,9 @@ values:
 - ``nil`` if a document matched your query, and there were no errors retrieving
   the document. 
 - ``ErrNoDocuments`` if no documents matched your query. 
-- If there was an error retrieving your document, the ``Decode()`` method
-  returns the error. 
+- If there was an error retrieving your document during execution of the
+  ``FindOne()`` method, the error propagates to the ``Decode()`` method and
+  ``Decode()`` returns the error. 
 
 Example
 -------
