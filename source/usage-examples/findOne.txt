@@ -64,7 +64,7 @@ The following code example retrieves a single document from the ``movies``
 collection. It uses the following arguments for the ``FindOne()`` method:
 
 - An empty **Context** instance returned from the ``context.TODO()`` function.
-- A **query document** that only matches movies with the title exactly matching
+- A **filter document** that only matches movies with the title exactly matching
   the text ``"The Room"``.
 - **Options** that specify a **sort** of matched documents in
   descending order by rating, such that the first document has the highest
