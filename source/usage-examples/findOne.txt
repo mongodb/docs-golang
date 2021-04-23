@@ -66,9 +66,9 @@ collection. It uses the following arguments for the ``FindOne()`` method:
 - An empty **Context** instance returned from the ``context.TODO()`` function.
 - A **query document** that only matches movies with the title exactly matching
   the text ``"The Room"``.
-- A **configuration** that specifies a **sort** of matched documents in
+- **Options** that specify a **sort** of matched documents in
   descending order by rating, such that the first document has the highest
-  rating. The configuration also specifies a **projection** for the results so
+  rating. The options also specify a **projection** for the results so
   that the MongoDB instance only sends the ``title`` and ``imdb`` fields of
   the retrieved document.
 
