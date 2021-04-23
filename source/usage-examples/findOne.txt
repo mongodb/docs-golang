@@ -10,7 +10,7 @@ You can retrieve a single document from your collection with the
 ..
    method
 
-The ``FindOne()`` method takes a query document that specifies the
+The ``FindOne()`` method takes a filter document that specifies the
 subset of your collection that you would like to retrieve a document from. If you
 pass the ``FindOne()`` method an empty document, MongoDB will consider your
 entire collection when retrieving your document. For more information on documents
