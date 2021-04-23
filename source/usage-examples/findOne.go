@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"log"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -38,11 +37,11 @@ func main() {
 			// This error means your query did not match any documents.
 			return
 		}
-		log.Fatal(err)
+		panic(err)
 	}
 	jsonByteSlice, err := json.MarshalIndent(result, "", "    ")
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 	fmt.Printf("%s\n", jsonByteSlice)
 }
