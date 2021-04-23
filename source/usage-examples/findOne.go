@@ -4,17 +4,19 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"log"
 )
 
-func main() {
+// Replace the uri string with your MongoDB deployment's connection string.
+const uri = "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority"
 
-	// Replace the uri string with your MongoDB deployment's connection string.
-	uri := "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority"
-	ctx := context.TODO()
+var ctx = context.TODO()
+
+func main() {
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
 	if err != nil {
 		panic(err)
