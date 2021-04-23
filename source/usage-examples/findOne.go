@@ -21,7 +21,6 @@ func main() {
 		panic(err)
 	}
 
-	// Disconnect the client once the function returns.
 	defer func() {
 		if err = client.Disconnect(ctx); err != nil {
 			panic(err)
