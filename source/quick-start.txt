@@ -18,7 +18,7 @@ Set up Your Project
 Initialize with Go Mod
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Initialize your project with ``go mod``.
+Create a new directory and initialize your project with ``go mod``.
 
 .. code-block:: shell
 
@@ -31,7 +31,7 @@ Initialize your project with ``go mod``.
 Add MongoDB as a Dependency
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Add the MongoDB Go driver as a dependency to your project.
+Use ``go get`` to add the Go driver as a dependency.
 
 .. code-block:: shell
 
