@@ -43,7 +43,7 @@ func main() {
 			fmt.Printf("No document was found with the title %s\n", title)
 			return
 		} else {
-			log.Panic(findResult.Err().Error())
+			log.Panic(err.Error())
 		}
 	}
 
