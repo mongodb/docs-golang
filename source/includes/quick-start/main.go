@@ -14,12 +14,13 @@ import (
 )
 
 var (
-	uri         = os.Getenv("MONGODB_URI")
-	ctx, cancel = context.WithTimeout(context.Background(), 20*time.Second)
+	uri = os.Getenv("MONGODB_URI")
 )
 
 func main() {
+	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
 	defer cancel()
+
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
 	if err != nil {
 		log.Panic(err)
@@ -31,23 +32,19 @@ func main() {
 		}
 	}()
 
-	db := client.Database("sample_mflix")
-	coll := db.Collection("movies")
+	coll := client.Database("sample_mflix").Collection("movies")
 	title := "Back to the Future"
 
 	findResult := coll.FindOne(ctx, bson.D{{"title", title}})
-	if findResult.Err() != nil {
-		if findResult.Err() == mongo.ErrNoDocuments {
+
+	var doc bson.D
+	if err = findResult.Decode(&doc); err != nil {
+		if err == mongo.ErrNoDocuments {
 			fmt.Printf("No document was found with the title %s\n", title)
 			return
 		} else {
 			log.Panic(findResult.Err().Error())
 		}
-	}
-
-	var doc bson.D
-	if err = findResult.Decode(&doc); err != nil {
-		log.Panic(err)
 	}
 
 	jsonData, err := json.MarshalIndent(doc, "", "    ")
