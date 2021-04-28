@@ -14,7 +14,7 @@ import (
 const uri = "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority"
 
 func main() {
-	ctx = context.TODO()
+	ctx := context.TODO()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
 	if err != nil {
 		panic(err)
