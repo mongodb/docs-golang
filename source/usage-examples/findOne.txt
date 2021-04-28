@@ -31,9 +31,9 @@ first document. Another example of an option is a **projection**, which
 specifies or restricts the fields in your returned document. You can specify
 options by passing the ``FindOne()`` method a pointer to a ``FindOneOptions`` struct.  
 You can configure a ``FindOneOptions`` struct by using setter methods such as the
-``FindOneOptions.SetProjection()`` method. For more information on the sort operation,
+``FindOneOptions.SetProjection()`` method. For more information on the sort option,
 :doc:`see our guide on sorting </fundamentals/crud/read-operations/sort/>`.
-For more information on the projection operation, 
+For more information on the projection option, 
 :doc:`see our guide on projections </fundamentals/crud/read-operations/project/>`.  
 
 ..
