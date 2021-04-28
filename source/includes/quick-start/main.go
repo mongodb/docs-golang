@@ -42,9 +42,8 @@ func main() {
 		if err == mongo.ErrNoDocuments {
 			fmt.Printf("No document was found with the title %s\n", title)
 			return
-		} else {
-			log.Panic(err.Error())
 		}
+		log.Panic(err.Error())
 	}
 
 	jsonData, err := json.MarshalIndent(doc, "", "    ")
