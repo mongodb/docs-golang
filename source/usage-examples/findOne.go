@@ -13,9 +13,8 @@ import (
 // Replace the uri string with your MongoDB deployment's connection string.
 const uri = "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority"
 
-var ctx = context.TODO()
-
 func main() {
+	ctx = context.TODO()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
 	if err != nil {
 		panic(err)
