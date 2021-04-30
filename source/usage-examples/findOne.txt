@@ -94,7 +94,7 @@ For more information on the methods, interfaces, structs, and functions
 mentioned on this page, see the following API documentation:
 
 - :go-api:`*Collection.FindOne() <mongo#Collection.FindOne>`
-- `Context <https://pkg.go.dev/context#Context/>`__
+- `Context <https://pkg.go.dev/context#Context>`__
 - :go-api:`FindOneOptions <mongo/options#FindOneOptions>`
 - :go-api:`*FindOneOptions.SetProjection() <mongo/options#FindOneOptions.SetProjection>`
 - :go-api:`options.FindOne() <mongo/options#FindOne>`
