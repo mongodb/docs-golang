@@ -19,7 +19,7 @@ information on documents in the MongoDB Go driver, see our
 
 You must pass the ``FindOne()`` method a ``context.Context`` interface type
 value. For more information on the ``context.Context`` interface and the
-``context`` package, see our :doc:`guide on context </fundamentals/context>`.
+``context`` package, see our :doc:`guide on contexts </fundamentals/context>`.
 
 ..
    options
