@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -39,7 +38,7 @@ func main() {
 		panic(err)
 	}
 
-	jsonByteSlice, err := json.MarshalIndent(result, "", "    ")
+	jsonByteSlice, err := bson.MarshalExtJSON(result, false, false)
 	if err != nil {
 		panic(err)
 	}
