@@ -38,9 +38,9 @@ func main() {
 		panic(err)
 	}
 
-	jsonByteSlice, err := bson.MarshalExtJSON(result, false, false)
+	relaxedJSONBytes, err := bson.MarshalExtJSON(result, false, false)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("%s\n", jsonByteSlice)
+	fmt.Printf("%s\n", relaxedJSONBytes)
 }
