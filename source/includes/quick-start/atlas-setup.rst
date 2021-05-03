@@ -8,8 +8,8 @@ Atlas account, free tier MongoDB cluster, load datasets, and
 interact with the data.
 
 After completing the steps in the Atlas guide, you should have a new MongoDB
-cluster deployed in Atlas, a new database user, and sample datasets loaded
-into your cluster.
+cluster deployed in Atlas, a new database user, and
+:atlas:`sample datasets loaded </sample-data/>` into your cluster.
 
 Connect to your Cluster
 -----------------------
