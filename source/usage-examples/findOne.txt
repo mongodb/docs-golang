@@ -101,3 +101,5 @@ mentioned on this page, see the following API documentation:
 - :go-api:`SingleResult <mongo#SingleResult>`
 - :go-api:`*SingleResult.Decode() <mongo#SingleResult.Decode>`
 - `context.TODO() <https://pkg.go.dev/context#TODO>`__
+- :go-api:`bson.D <bson#D>`
+- :go-api:`bson.MarshalExtJSON() <bson#MarshalExtJSON>`
