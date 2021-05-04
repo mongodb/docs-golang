@@ -93,13 +93,13 @@ If you run the example above, you should see a result that looks like this:
 For more information on the methods, interfaces, structs, and functions
 mentioned on this page, see the following API documentation:
 
-- :go-api:`*Collection.FindOne() <mongo#Collection.FindOne>`
+- :go-api:`Collection.FindOne() <mongo#Collection.FindOne>`
 - `Context <https://pkg.go.dev/context#Context>`__
 - :go-api:`FindOneOptions <mongo/options#FindOneOptions>`
-- :go-api:`*FindOneOptions.SetProjection() <mongo/options#FindOneOptions.SetProjection>`
+- :go-api:`FindOneOptions.SetProjection() <mongo/options#FindOneOptions.SetProjection>`
 - :go-api:`options.FindOne() <mongo/options#FindOne>`
 - :go-api:`SingleResult <mongo#SingleResult>`
-- :go-api:`*SingleResult.Decode() <mongo#SingleResult.Decode>`
+- :go-api:`SingleResult.Decode() <mongo#SingleResult.Decode>`
 - `context.TODO() <https://pkg.go.dev/context#TODO>`__
 - :go-api:`bson.D <bson#D>`
 - :go-api:`bson.MarshalExtJSON() <bson#MarshalExtJSON>`
