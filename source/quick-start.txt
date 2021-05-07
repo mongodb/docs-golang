@@ -63,12 +63,19 @@ with your Atlas connection string.
    :language: go
    :dedent:
 
+Run the sample code with teh following command from your command line:
+
+.. code-block:: shell
+
+   go run main.go
+
 
 .. include:: /includes/quick-start/query-output.rst
 
 After completing this step, you should have a working application that uses
 the Go driver to connect to your MongoDB cluster, run a query on the
 sample data, and print out the result.
+
 
 
 Next steps
