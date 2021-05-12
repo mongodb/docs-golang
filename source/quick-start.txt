@@ -67,7 +67,7 @@ with your Atlas connection string.
    :language: go
    :dedent:
 
-Run the sample code with teh following command from your command line:
+Run the sample code with the following command from your command line:
 
 .. code-block:: shell
 
