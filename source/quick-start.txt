@@ -76,6 +76,11 @@ Run the sample code with the following command from your command line:
 
 .. include:: /includes/quick-start/query-output.rst
 
+.. tip::
+
+   If your output is empty, ensure you have loaded the
+   :atlas:`sample datasets </sample-data/>` into your cluster.
+
 After completing this step, you should have a working application that uses
 the Go driver to connect to your MongoDB cluster, run a query on the
 sample data, and print out the result.
