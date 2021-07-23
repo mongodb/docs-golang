@@ -11,7 +11,7 @@ import (
 )
 
 // Replace the uri string with your MongoDB deployment's connection string.
-const uri = "mongodb+srv://m220student:m220student@mflix.jojrz.mongodb.net/myFirstDatabase?retryWrites=true&writeConcern=majority"
+const uri = "mongodb+srv://<username>:<password>@<cluster-address>/test?w=majority"
 	
 func main() {
 
@@ -37,4 +37,5 @@ func main() {
 	}
 
 	fmt.Printf("%v document was deleted.\n", result.DeletedCount)
+	// After running this file, it should print "1 document was deleted."
 }
