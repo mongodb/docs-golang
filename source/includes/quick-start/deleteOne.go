@@ -35,6 +35,6 @@ func main() {
 		log.Panic(err)
 	}
 
-	// When you run this file for the first time, it should print "1 document was deleted."
-	fmt.Printf("%d document was deleted.\n", result)
+	// When you run this file for the first time, it should print "Number of documents deleted: 1"
+	fmt.Printf("Number of documents deleted: %d\n", result)
 }

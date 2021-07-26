@@ -35,10 +35,11 @@ You should not be able to find the following document:
       ...
     }
 
-To check if you successfully deleted this document, try performing a
-find operation with the ``title`` field on the collection. For an
-example of how to perform the find operation, see our <TODO: Find One
-Usage Example guide>. 
+After deleting this document, you should not be able to find it in the
+``movies`` collection. 
+
+For an example of finding a document, see our <TODO: Find
+One Usage Example>. 
 
 Additional Information
 ----------------------
