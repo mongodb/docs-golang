@@ -28,14 +28,13 @@ func main() {
 
 	// begin deleteOne
 	coll := client.Database("sample_mflix").Collection("movies")
-
-	result, err := coll.DeleteOne(ctx, bson.D{{"title", "The Room"}})
+	result, err := coll.DeleteOne(ctx, bson.D{{"title", "Twilight"}})
 	// end deleteOne
 
 	if err != nil {
 		log.Panic(err)
 	}
 
-	fmt.Printf("%v document was deleted.\n", result.DeletedCount)
-	// After running this file, it should print "1 document was deleted."
+	// When you run this file for the first time, it should print "1 document was deleted."
+	fmt.Printf("%d document was deleted.\n", result)
 }

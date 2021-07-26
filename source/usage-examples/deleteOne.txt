@@ -8,7 +8,7 @@ You can delete a single document in a collection using the
 ``DeleteOne()`` method.
 
 The following example specifies a query filter that matches documents in
-the ``movies`` collection with the value "The Room" in the ``title`` field, and
+the ``movies`` collection with the value "Twilight" in the ``title`` field, and
 deletes the first document that matches. 
 
 .. include:: /includes/quick-start/run-example-tip.rst
@@ -16,7 +16,7 @@ deletes the first document that matches.
 .. literalinclude:: /includes/quick-start/deleteOne.go
    :start-after: begin deleteOne
    :end-before: end deleteOne
-   :emphasize-lines: 3
+   :emphasize-lines: 2
    :language: go
    :dedent:
 
@@ -25,7 +25,20 @@ Click here <TODO> to see a fully runnable example.
 Expected Result
 ---------------
 
-After you run the code example, you cannot find the deleted document.
+You should not be able to find the following document: 
+
+.. code-block:: json
+
+    { "_id": { "$oid": "573a13bff29313caabd5e06b" }, 
+      ...
+      "title": "Twilight",
+      ...
+    }
+
+To check if you successfully deleted this document, try performing a
+find operation with the ``title`` field on the collection. For an
+example of how to perform the find operation, see our <TODO: Find One
+Usage Example guide>. 
 
 Additional Information
 ----------------------
