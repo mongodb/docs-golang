@@ -38,15 +38,15 @@ You should not be able to find the following document:
 After deleting this document, you should not be able to find it in the
 ``movies`` collection. 
 
-For an example of finding a document, see our <TODO: Find
-One Usage Example>. 
+For an example of finding a document, see our :doc:`Find
+One Usage Example </usage-examples/findOne>`.
 
 Additional Information
 ----------------------
 
 For more information on deleting documents, specifying query filters,
 and handling potential errors, see our guide on <TODO:
-fundamental delete a doc>.
+Deleting a Document>.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
