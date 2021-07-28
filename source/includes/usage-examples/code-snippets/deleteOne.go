@@ -14,27 +14,26 @@ import (
 const uri = "mongodb+srv://<username>:<password>@<cluster-address>/test?w=majority"
 	
 func main() {
-
-	ctx := context.TODO()
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
+	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
+	
 	if err != nil {
 		panic(err)
 	}
 	defer func() {
-		if err = client.Disconnect(ctx); err != nil {
+		if err = client.Disconnect(context.TODO()); err != nil {
 			panic(err)
 		}
 	}()
 
 	// begin deleteOne
 	coll := client.Database("sample_mflix").Collection("movies")
-	result, err := coll.DeleteOne(ctx, bson.D{{"title", "Twilight"}})
+	result, err := coll.DeleteOne(context.TODO(), bson.D{{"title", "Twilight"}})
 	// end deleteOne
 
 	if err != nil {
-		log.Panic(err)
+		panic(err)
 	}
 
-	// When you run this file for the first time, it should print "Number of documents deleted: 1"
-	fmt.Printf("Number of documents deleted: %d\n", result)
+	// When you run this file for the first time, it should print "Documents deleted: 1"
+	fmt.Printf("Documents deleted: %d\n", result)
 }

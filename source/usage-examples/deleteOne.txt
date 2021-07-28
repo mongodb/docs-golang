@@ -4,16 +4,16 @@ Delete a Document
 
 .. default-domain:: mongodb
 
-You can delete a single document in a collection using the
-``DeleteOne()`` method.
+You can delete a document in a collection using the ``DeleteOne()``
+method. 
 
 The following example specifies a query filter that matches documents in
 the ``movies`` collection with the value "Twilight" in the ``title`` field, and
 deletes the first document that matches. 
 
-.. include:: /includes/quick-start/run-example-tip.rst
+.. include:: /includes/run-example-tip.rst
 
-.. literalinclude:: /includes/quick-start/deleteOne.go
+.. literalinclude:: /includes/usage-examples/code-snippets/deleteOne.go
    :start-after: begin deleteOne
    :end-before: end deleteOne
    :emphasize-lines: 2
