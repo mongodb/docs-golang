@@ -35,5 +35,5 @@ func main() {
 	}
 
 	// When you run this file for the first time, it should print "Documents deleted: 1"
-	fmt.Printf("Documents deleted: %d\n", result)
+	fmt.Printf("Documents deleted: %d\n", result.DeletedCount)
 }

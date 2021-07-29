@@ -11,7 +11,7 @@ The following example specifies a query filter that matches documents in
 the ``movies`` collection with the value "Twilight" in the ``title`` field, and
 deletes the first document that matches. 
 
-.. include:: /includes/run-example-tip.rst
+.. include:: /includes/usage-examples/run-example-tip.rst
 
 .. literalinclude:: /includes/usage-examples/code-snippets/deleteOne.go
    :start-after: begin deleteOne
@@ -49,4 +49,4 @@ Deleting a Document>.
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-:go-api:`DeleteOne() <mongo#Collection.DeleteOne>`
+`DeleteOne() <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.0/mongo#Collection.DeleteOne>`__
