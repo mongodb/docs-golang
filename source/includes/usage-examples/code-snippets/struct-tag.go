@@ -33,6 +33,7 @@ func main() {
 		}
 	}()
 
+	// begin create and insert
 	myCollection := client.Database("sample_training").Collection("blogPosts")
 
 	post1 := BlogPost{
@@ -51,6 +52,8 @@ func main() {
 	docs := []interface{}{post1, post2}
 
 	insertResult, err := myCollection.InsertMany(context.TODO(), docs)
+	// end create and insert
+
 	_ = insertResult
 
 	if err != nil {
