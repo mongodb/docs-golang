@@ -27,7 +27,9 @@ func main() {
 
 	// begin deleteOne
 	coll := client.Database("sample_mflix").Collection("movies")
-	result, err := coll.DeleteOne(context.TODO(), bson.D{{"title", "Twilight"}})
+	filter := bson.D{{"title", "Twilight"}}
+
+	result, err := coll.DeleteOne(context.TODO(), filter)
 	// end deleteOne
 
 	if err != nil {

@@ -27,7 +27,7 @@ func main() {
 
 	// begin deleteMany
 	coll := client.Database("sample_mflix").Collection("movies")
-	filter := bson.M{"runtime": bson.M{"$gt": 800}}
+	filter := bson.D{{"runtime": bson.D{"$gt": 800}}}
 
 	results, err := coll.DeleteMany(context.TODO(), filter)
 	// end deleteMany

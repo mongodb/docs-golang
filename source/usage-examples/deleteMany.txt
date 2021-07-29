@@ -9,14 +9,14 @@ You can delete multiple documents in a collection by using the
 
 The following example specifies a query filter that matches documents in
 the ``movies`` collection where the ``runtime`` field is greater than
-*800*, and deletes all documents that match.
+*800*, and deletes all the matching documents.
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
 .. literalinclude:: /includes/usage-examples/code-snippets/deleteMany.go
    :start-after: begin deleteMany
    :end-before: end deleteMany
-   :emphasize-lines: 3
+   :emphasize-lines: 4
    :language: go
    :dedent:
 

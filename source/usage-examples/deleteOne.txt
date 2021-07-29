@@ -16,7 +16,7 @@ deletes the first document that matches.
 .. literalinclude:: /includes/usage-examples/code-snippets/deleteOne.go
    :start-after: begin deleteOne
    :end-before: end deleteOne
-   :emphasize-lines: 2
+   :emphasize-lines: 4
    :language: go
    :dedent:
 
