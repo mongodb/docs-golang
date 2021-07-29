@@ -16,8 +16,7 @@ includes an ``omitempty`` instruction:
 .. include:: /includes/usage-examples/run-example-tip.rst
 
 .. literalinclude:: /includes/usage-examples/code-snippets/struct-tag.go
-   :start-after: begin create struct
-   :end-before: end create struct
+   :lines: 16-22
    :language: go
    :dedent:
 
