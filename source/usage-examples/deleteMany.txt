@@ -48,4 +48,4 @@ Deleting a Document>.
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-`DeleteOne() <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.0/mongo#Collection.DeleteOne>`__
+`DeleteMany() <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.0/mongo#Collection.DeleteMany>`__
