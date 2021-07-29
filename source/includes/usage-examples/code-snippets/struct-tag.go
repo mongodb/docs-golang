@@ -13,6 +13,7 @@ import (
 // Replace the uri string with your MongoDB deployment's connection string.
 const uri = "mongodb+srv://<username>:<password>@<cluster-address>/test?w=majority"
 
+// begin struct
 type BlogPost struct {
 	ID        primitive.ObjectID `bson:"_id,omitempty"`
 	Title     string             `bson:"title,omitempty"`
@@ -20,6 +21,8 @@ type BlogPost struct {
 	WordCount int                `bson:"word_count,omitempty"`
 	Tags      []string           `bson:"tags,omitempty"`
 }
+
+// end struct
 
 func main() {
 	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
