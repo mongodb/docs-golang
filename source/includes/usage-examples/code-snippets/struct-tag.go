@@ -42,14 +42,14 @@ func main() {
 	post1 := BlogPost{
 		Title:     "Caring for your Monstera plant",
 		WordCount: 478,
-		Tags:      []string{"plant care", "gardening", "housekeeping"},
+		Tags:      []string{"plant care", "gardening", "monstera"},
 	}
 
 	post2 := BlogPost{
 		Title:     "Annuals vs. Perennials?",
 		Author:    "Sam Lee",
 		WordCount: 682,
-		Tags:      []string{"flowering plants", "gardening"},
+		Tags:      []string{"flowering plant", "gardening"},
 	}
 
 	docs := []interface{}{post1, post2}

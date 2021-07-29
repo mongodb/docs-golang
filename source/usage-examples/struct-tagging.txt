@@ -48,14 +48,14 @@ documents in the collection and see that the documents look like these:
        "_id" : ObjectId("6102f74da483cb28c9bf4583"),
        "title" : "Caring for your Monstera plant",
        "word_count" : 478,
-       "tags" : ["plant care", "gardening", "housekeeping"]
+       "tags" : ["plant care", "gardening", "monstera"]
    }
    {
        "_id" : ObjectId("6102f74da483cb28c9bf4584"),
        "title" : "Annuals vs. Perennials?",
-       "author" : "Jamie Clarke",
-       "word_count" : 670,
-       "tags" : ["flowering plants", "gardening"]
+       "author" : "Sam Lee",
+       "word_count" : 682,
+       "tags" : ["flowering plant", "gardening"]
    }
 
 Because the ``Author`` field in the struct had an ``omitempty`` struct
