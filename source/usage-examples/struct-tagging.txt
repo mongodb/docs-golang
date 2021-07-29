@@ -1,0 +1,79 @@
+===============
+Use Struct Tags
+===============
+
+.. default-domain:: mongodb
+
+You can adjust the default marshalling behavior of the Go Driver by
+using **struct tags**, which are optional pieces of metadata attached to
+struct fields.
+
+The following code creates a ``BlogPost`` struct that includes fields
+such as ``Title``, ``Author``, ``WordCount``, and ``Tags``. Each field
+also corresponds to a struct tag that sets a custom BSON field name and
+includes an ``omitempty`` instruction:
+
+.. include:: /includes/usage-examples/run-example-tip.rst
+
+.. literalinclude:: /includes/usage-examples/code-snippets/struct-tag.go
+   :start-after: begin create struct
+   :end-before: end create struct
+   :language: go
+   :dedent:
+
+You can create instances of the ``BlogPost`` struct and insert them into
+a collection to see how the struct tags influence the
+driver's marshalling behavior. The following code creates two
+``BlogPost`` instances and inserts them into the ``blogPosts``
+collection:
+
+.. literalinclude:: /includes/usage-examples/code-snippets/struct-tag.go
+   :start-after: begin create and insert
+   :end-before: end create and insert
+   :language: go
+   :dedent:
+
+Click here **<TODO: github link to file>** to see a fully runnable example.
+
+Expected Result
+---------------
+
+After you run the code example, you can run a ``Find()`` query for all
+documents in the collection and see that the documents look like these:
+
+.. code-block:: json
+   :copyable: false
+
+   {
+       "_id" : ObjectId("6102f74da483cb28c9bf4583"),
+       "title" : "Caring for your Monstera plant",
+       "word_count" : 478,
+       "tags" : ["plant care", "gardening", "housekeeping"]
+   }
+   {
+       "_id" : ObjectId("6102f74da483cb28c9bf4584"),
+       "title" : "Annuals vs. Perennials?",
+       "author" : "Jamie Clarke",
+       "word_count" : 670,
+       "tags" : ["flowering plants", "gardening"]
+   }
+
+Because the ``Author`` field in the struct had an ``omitempty`` struct
+tag, it is not included in the BSON document corresponding to the instance that
+lacked an ``Author`` declaration. The driver also marshalled the
+``WordCount`` struct field into the ``word_count`` BSON field because of
+the custom field name struct tag.
+
+Additional Information
+----------------------
+
+For more information on using struct tags, converting to/from BSON, and
+handling potential errors, see our guide on **<TODO: working with BSON
+fundamental page>**.
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+- `Structs and Struct Tags <https://pkg.go.dev/go.mongodb.org/mongo-driver/bson#hdr-Structs>`_
+- `InsertMany() <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Collection.InsertMany>`_
+- `Find() <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Collection.Find>`_
