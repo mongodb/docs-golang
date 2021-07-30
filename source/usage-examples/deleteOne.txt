@@ -29,12 +29,15 @@ After running the preceding code snippet, you should not be able to find
 the following document in the ``movies`` collection:
 
 .. code-block:: json
+   :copyable: false
 
-    { "_id": { "$oid": "573a13bff29313caabd5e06b" }, 
+   // result truncated
+   { 
+      "_id": { "$oid": "573a13bff29313caabd5e06b" }, 
       ...
       "title": "Twilight",
       ...
-    }
+   }
 
 For an example on how to find a document, see our :doc:`Find
 One Usage Example </usage-examples/findOne>`.
