@@ -14,8 +14,8 @@ import (
 const uri = "mongodb+srv://<username>:<password>@<cluster-address>/test?w=majority"
 
 func main() {
-
 	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
+	
 	if err != nil {
 		panic(err)
 	}
