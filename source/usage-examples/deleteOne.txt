@@ -7,9 +7,10 @@ Delete a Document
 You can delete a document in a collection using the ``DeleteOne()``
 method. 
 
-The following example specifies a query filter that matches documents in
-the ``movies`` collection with the value "Twilight" in the ``title`` field, and
-deletes the first document that matches. 
+The following example specifies a query filter to the ``DeleteOne()``
+method, which matches documents in the ``movies`` collection where the
+``title`` field is "Twilight", and deletes the first document that
+matches. 
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
@@ -32,12 +33,7 @@ the following document in the ``movies`` collection:
    :copyable: false
 
    // result truncated
-   { 
-      "_id": { "$oid": "573a13bff29313caabd5e06b" }, 
-      ...
-      "title": "Twilight",
-      ...
-   }
+   { "_id": ObjectId("573a13bff29313caabd5e06b"), ..., "title": "Twilight", ... }
 
 For an example on how to find a document, see our :doc:`Find
 One Usage Example </usage-examples/findOne>`.
