@@ -13,135 +13,96 @@ Context
 Overview
 --------
 
-In this guide, you can learn how to use the **context package**.
+In this guide, you can learn how the MongoDB Go Driver uses the
+**context package** from Go's standard library. 
 
-The context package simplifies the process for carrying deadlines,
-cancellation signals, and request-scoped values across API boundaries
-and between processes. 
+The context package consists of the ``Context`` and ``CancelFunc``
+types. The Go Driver primarily uses the ``Context`` type to simplify the
+process of creating timeout and cancellation tokens for an operation. 
 
-The package consists of the ``Context`` and ``CancelFunc`` types. 
-
-Context
--------
-
-The ``Context`` type implements the following functions:
-
-- ``Deadline()`` which returns the time that the function should cancel the work completed
-- ``Done()`` which returns a closed channel and when the function should cancel the work completed
-- ``Err()`` which returns an explanation of the error if any exist
-- ``Value()`` which returns the value associated with the ``Context`` key
-
-The following sections show the ways to create a new ``Context`` type
-and their use cases. Each function returns a copy of the ``Context``
-type and stores it in a variable called ``ctx``.
-
-Background
-~~~~~~~~~~
-
-The ``Background()`` function returns a non-nil, empty ``Context``. 
-This function is never canceled, has no values, and has no deadline. 
-
-.. code-block:: go
-
-    ctx := context.Background()
-
-Use Case: The top-level ``Context`` for incoming requests in the main
-function, initialization, and tests.  
-
-TODO
-~~~~
-
-The ``TODO()`` function returns a non-nil, empty ``Context``. 
-This function allows you to use static analysis tools to validate whether
-you're properly passing ``Context``.
-
-.. code-block:: go
-
-    ctx := context.TODO()
-
-Use Case: When you are unclear which ``Context`` to use or it's not yet
-available.
-
-WithValue
-~~~~~~~~~
-
-The ``WithValue()`` function returns a copy of parent ``Context`` with
-the value associated with ``key`` as "val":
-
-.. code-block:: go
-
-    ctx := context.WithValue(context.Background(), key, "val")
-
-Use Case: For request-scoped data that transits processes and APIs. This
-is not for passing optional parameters to functions. 
-
-CancelFunc
+Expiration
 ----------
 
-The ``CancelFunc`` type allows you to perform cancellation operations.
-This type abandons its work without waiting for the work to stop. You
-can call multiple goroutines simultaneously, but after the first call,
-nothing happens for additional ``CancelFunc`` calls.
+We consider a context expired when it exceeds its timeout or
+cancellation. We check context expiration with the ``Done()`` function
+of the ``Context`` type. The ``Done()`` function returns a closed
+channel and when the function should cancel the work completed. If you
+can successfully read from the channel, then the context expired.
 
-The following sections show the ways to create a new ``Context`` type
-from an existing ``Context`` type. Each function returns a copy of a
-``Context`` and ``CancelFunc`` type and stores them in variables called
-``ctx`` and ``cancel`` respectively.
+The following sections show when and how we check for expiration.
 
-WithCancel
-~~~~~~~~~~
+Server Selection
+~~~~~~~~~~~~~~~~
 
-The ``WithCancel()`` function returns a copy of the parent ``Context``
-with a new ``Done()`` channel. 
+When selecting a server for an operation, the driver may block if you
+cannot select a server.
 
-This function closes the ``Done()`` channel for whichever of the following
-happens first:
-
-- The function calls the returned ``WithCancel()`` function
-- The function closes the parent context's ``Done()`` channel
+The driver loops until it finds a server to use for the operation. After
+each iteration, the driver returns a server selection timeout error if
+the context expired or the selection process took longer than the
+``serverSelectionTimeoutMS`` setting. 
 
 .. code-block:: go
 
-    ctx, cancel := context.WithCancel(context.Background())
+    <some code>
 
-Use Case: For canceling redundant requests when using multiple replicas.
+Connection Establishment 
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-WithDeadline
-~~~~~~~~~~~~
-
-The ``WithDeadline()`` function returns a copy of the parent ``Context``
-with the deadline adjusted to be no later than the deadline you provide. 
-
-If the parent's deadline is earlier, the function is semantically
-equivalent to the parent's deadline. 
-
-This function closes the ``Done()`` channel for whichever of the following
-happens first:
-
-- The deadline expires
-- The function calls the returned ``WithCancel()`` function
-- The function closes the parent Context's ``Done()`` channel
+When the driver needs to create a new connection to execute an
+operation, the context contains a timeout for the establishment process.
 
 .. code-block:: go
 
-    ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(<some time>))
+    <some code>
 
-Use Case: For setting a deadline on requests to back-end servers.
+Connection Checkout
+~~~~~~~~~~~~~~~~~~~
 
-WithTimeout
-~~~~~~~~~~~
+After selecting a server, the driver contains a timeout for the
+connection checkout process from the server’s connection pool using
+the context. 
 
-The ``WithTimeout()`` function returns a ``WithDeadline()`` function call. 
+If you cannot retrieve a connection before the context expires, the
+context returns an error.  
 
-.. code-block:: go 
+.. code-block:: go
 
-    ctx, cancel := context.WithTimeout(ctx, <some time>)
+    <some code>
 
-Use Case: For setting a deadline on requests to back-end servers.
+Socket Read and Write
+~~~~~~~~~~~~~~~~~~~~~
+
+When the driver retrieves a connection for the operation, it sets the
+socket’s read or write deadline whichever of the following is less:
+
+.. code-block:: go
+
+    min(time.Now() + contextDeadline, time.Now() + socketTimeoutMS)
+
+If you cancel the context after the execution of the ``Read()`` or
+``Write()`` function but before its deadline, the behavior of the driver
+differs based on version. 
+
+.. code-block:: go
+
+    <some code>
+
+.. important:: 
+
+    For versions prior to 1.5.0, the driver won’t detect the context
+    cancellation and waits for the ``Read()`` or ``Write()`` function to
+    return graceful. 
+
+    In the later versions, the driver generates a separate goroutine to
+    listen for context cancellation when the ``Read()`` or ``Write()``
+    function is in progress. If the goroutine detects a cancellation, it
+    closes the connection. The pending ``Read()`` or ``Write()``
+    function returns with an error that is overwritten to the
+    ``context.Canceled`` property by the driver. 
 
 Additional Information
 ----------------------
 
-For more information about the functions discussed on this page, see the
-`official go documentation on the context package
-<https://pkg.go.dev/context>`__.
+For more information about the context package, see the `official go
+documentation on the context package <https://pkg.go.dev/context>`__.
