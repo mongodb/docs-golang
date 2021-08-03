@@ -5,7 +5,6 @@ import (
 	"fmt"
 
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -15,11 +14,10 @@ const uri = "mongodb+srv://<username>:<password>@<cluster-address>/test?w=majori
 
 // begin struct
 type BlogPost struct {
-	ID        primitive.ObjectID `bson:"_id,omitempty"`
-	Title     string             `bson:"title,omitempty"`
-	Author    string             `bson:"author,omitempty"`
-	WordCount int                `bson:"word_count,omitempty"`
-	Tags      []string           `bson:"tags,omitempty"`
+	Title     string
+	Author    string
+	WordCount int `bson:"word_count"`
+	Tags      []string
 }
 
 // end struct
@@ -31,48 +29,37 @@ func main() {
 		panic(err)
 	}
 	defer func() {
-		if err = client.Disconnect(ctx); err != nil {
+		if err = client.Disconnect(context.TODO()); err != nil {
 			panic(err)
 		}
 	}()
 
 	// begin create and insert
-	myCollection := client.Database("sample_training").Collection("blogPosts")
+	myCollection := client.Database("sample_training").Collection("posts")
 
-	post1 := BlogPost{
-		Title:     "Caring for your Monstera plant",
-		WordCount: 478,
-		Tags:      []string{"plant care", "gardening", "monstera"},
-	}
-
-	post2 := BlogPost{
+	post := BlogPost{
 		Title:     "Annuals vs. Perennials?",
 		Author:    "Sam Lee",
 		WordCount: 682,
-		Tags:      []string{"flowering plant", "gardening"},
+		Tags:      []string{"seasons", "gardening", "flower"},
 	}
 
-	docs := []interface{}{post1, post2}
-
-	insertResult, err := myCollection.InsertMany(context.TODO(), docs)
+	_, err = myCollection.InsertOne(context.TODO(), post)
 	// end create and insert
 
-	_ = insertResult
-
 	if err != nil {
 		panic(err)
 	}
 
-	cursor, err := myCollection.Find(context.TODO(), bson.D{{}})
+	var result bson.D
+	err = myCollection.FindOne(context.TODO(), bson.D{{"author", "Sam Lee"}}).Decode(&result)
+
 	if err != nil {
+		if err == mongo.ErrNoDocuments {
+			return
+		}
 		panic(err)
 	}
 
-	var results []bson.D
-	if err = cursor.All(context.TODO(), &results); err != nil {
-		panic(err)
-	}
-	for _, result := range results {
-		fmt.Println(result)
-	}
+	fmt.Printf("Found document: %v", result)
 }

@@ -1,19 +1,16 @@
-===============
-Use Struct Tags
-===============
+==========================
+Set Custom Driver Behavior
+==========================
 
 .. default-domain:: mongodb
 
-You can adjust the default marshalling behavior of the Go Driver by
-using **struct tags**, which are optional pieces of metadata attached to
-struct fields.
+You can customize the way that the Go Driver converts between Go
+structs and :manual:`BSON </reference/bson-types/>` using 
+**struct tags**, which are optional instructions you can use with struct
+fields.
 
-The following code creates a ``BlogPost`` struct that includes fields
-such as ``Title``, ``Author``, ``WordCount``, and ``Tags``. Each field
-also corresponds to a struct tag that sets a custom BSON field name and
-includes an ``omitempty`` instruction:
-
-.. include:: /includes/usage-examples/run-example-tip.rst
+The following code declares a ``BlogPost`` struct, where the ``WordCount`` field
+has a struct tag that sets a custom BSON field name of ``word_count``:
 
 .. literalinclude:: /includes/usage-examples/code-snippets/struct-tag.go
    :start-after: begin struct
@@ -21,11 +18,11 @@ includes an ``omitempty`` instruction:
    :language: go
    :dedent:
 
-You can create instances of the ``BlogPost`` struct and insert them into
-a collection to see how the struct tags influence the
-driver's marshalling behavior. The following code creates two
-``BlogPost`` instances and inserts them into the ``blogPosts``
-collection:
+The following code creates a ``BlogPost`` instance and inserts it
+into the ``posts`` collection of the ``sample_training`` database,
+converting the struct to BSON in the process:
+
+.. include:: /includes/usage-examples/run-example-tip.rst
 
 .. literalinclude:: /includes/usage-examples/code-snippets/struct-tag.go
    :start-after: begin create and insert
@@ -38,31 +35,22 @@ Click here **<TODO: github link to file>** to see a fully runnable example.
 Expected Result
 ---------------
 
-After you run the code example, you can run a ``Find()`` query for all
-documents in the collection and see that the documents look like these:
+After running the preceding code snippet, you should be able to find
+the following document in the ``posts`` collection:
 
 .. code-block:: json
    :copyable: false
 
    {
-       "_id" : ObjectId("6102f74da483cb28c9bf4583"),
-       "title" : "Caring for your Monstera plant",
-       "word_count" : 478,
-       "tags" : ["plant care", "gardening", "monstera"]
-   }
-   {
-       "_id" : ObjectId("6102f74da483cb28c9bf4584"),
+       ... ,
        "title" : "Annuals vs. Perennials?",
        "author" : "Sam Lee",
        "word_count" : 682,
-       "tags" : ["flowering plant", "gardening"]
+       "tags" : ["seasons", "gardening", "flower"]
    }
 
-Because the ``Author`` field in the struct had an ``omitempty`` struct
-tag, it is not included in the BSON document corresponding to the instance that
-lacked an ``Author`` declaration. The driver also marshalled the
-``WordCount`` struct field into the ``word_count`` BSON field because of
-the custom field name struct tag.
+For an example on how to find a document, see our :doc:`Find
+A Document Usage Example </usage-examples/findOne>`.
 
 Additional Information
 ----------------------
@@ -74,6 +62,6 @@ fundamental page>**.
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-- `Structs and Struct Tags <https://pkg.go.dev/go.mongodb.org/mongo-driver/bson#hdr-Structs>`_
-- `InsertMany() <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Collection.InsertMany>`_
-- `Find() <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Collection.Find>`_
+- `Structs and Struct Tags <https://pkg.go.dev/go.mongodb.org/mongo-driver/bson#hdr-Structs>`__
+- `InsertOne() <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Collection.InsertOne>`__
+- `FindOne() <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Collection.FindOne>`__
