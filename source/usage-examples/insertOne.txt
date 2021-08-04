@@ -10,6 +10,12 @@ method.
 The following example creates a new document containing a ``title`` and ``text``
 field nad inserts it into the ``Haikus`` collection of the ``insertDB`` database:
 
+.. note:: Non-existent Database and Collections
+
+    Databases and/or collections that don't exist will be created automatically
+    when you perform an insert operation against them.
+
+
 .. include:: /includes/usage-examples/run-example-tip.rst
 
 .. literalinclude:: /includes/usage-examples/code-snippets/insertOne.go
