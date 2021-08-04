@@ -17,7 +17,7 @@ You can change documents in a MongoDB collection using **update** and
 **replace** operations. Update operations modify specified fields in one
 or more documents while leaving other fields and values unchanged.
 Replace operations remove all existing fields in one or more
-documents and substitute them with the new fields and values.
+documents and substitute them with new fields and values.
 
 .. _updateDocuments:
 
@@ -74,9 +74,10 @@ and descriptions </reference/operator/update-field/>`.
 Example
 ~~~~~~~
 
-Consider a document describing an employee:
+The following document describes an employee:
 
 .. code-block:: json
+   :copyable: false
 
    {
       "_id" : 2158,
@@ -99,10 +100,11 @@ by 2000:
 
    result, err := collection.UpdateOne(context.TODO(), filter, update)
 
-The updated document should resemble the following document, with updated values in
+The updated document should resemble the following, with updated values in
 the ``role`` and ``bonus`` fields and all other values unchanged:
 
 .. code-block:: json
+   :copyable: false
 
    {
       "_id" : 2158,
@@ -148,9 +150,10 @@ an existing document that matches the query filter.
 Example
 ~~~~~~~
 
-Consider a document describing an kitchen item:
+The following document describes a kitchen item:
 
 .. code-block:: json
+   :copyable: false
 
    {
       "_id" : 2056,
@@ -176,6 +179,7 @@ The replaced document contains the contents of the replacement document
 and the immutable ``_id`` field as follows:
 
 .. code-block:: json
+   :copyable: false
 
    {
       "_id" : 2056,
