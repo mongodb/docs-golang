@@ -13,7 +13,7 @@ field and inserts it into the ``haikus`` collection of the ``insertDB`` database
 .. note:: Non-existent Database and Collections
 
     The driver automatically creates the necessary database and/or collection
-    that don't exist when you perform a write operation against them.
+    when you perform a write operation against them, if they don't exist.
 
 
 .. include:: /includes/usage-examples/run-example-tip.rst
