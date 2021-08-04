@@ -4,16 +4,16 @@ Insert a Document
 
 .. default-domain:: mongodb
 
-You can insert a single document in a collection by using the ``InsertOne()``
+You can insert a document into a collection by using the ``InsertOne()``
 method.
 
 The following example creates a new document containing a ``title`` and ``text``
-field nad inserts it into the ``Haikus`` collection of the ``insertDB`` database:
+field and inserts it into the ``haikus`` collection of the ``insertDB`` database:
 
 .. note:: Non-existent Database and Collections
 
-    Databases and/or collections that don't exist will be created automatically
-    when you perform an insert operation against them.
+    The driver automatically creates the necessary database and/or collection
+    that don't exist when you perform a write operation against them.
 
 
 .. include:: /includes/usage-examples/run-example-tip.rst

@@ -30,7 +30,7 @@ func main() {
 	}()
 
 	// begin insertOne
-	coll := client.Database("insertDB").Collection("Haikus")
+	coll := client.Database("insertDB").Collection("haikus")
 	doc := bson.D{{"title", "An Insert Haiku"}, {"text", "No bytes, no problem. Just insert a document, in MongoDB"}}
 
 	result, err := coll.InsertOne(context.TODO(), doc)
