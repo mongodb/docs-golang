@@ -3,3 +3,54 @@ Insert a Document
 =================
 
 .. default-domain:: mongodb
+
+You can insert a single document in a collection by using the ``InsertOne()``
+method.
+
+The following example creates a new document containing a ``title`` and ``text``
+field nad inserts it into the ``Haikus`` collection of the ``insertDB`` database:
+
+.. include:: /includes/usage-examples/run-example-tip.rst
+
+.. literalinclude:: /includes/usage-examples/code-snippets/insertOne.go
+   :start-after: begin insertOne
+   :end-before: end insertOne
+   :emphasize-lines: 4
+   :language: go
+   :dedent:
+
+Click here `here <https://raw.githubusercontent.com/mongodb/docs-golang/{+branch+}/source/includes/usage-examples/code-snippets/updateOne.txt`__ to see a fully runnable example.
+
+Expected Result
+---------------
+
+After you run the code example, the document will include the
+``avg_rating`` field with the specified value:
+
+.. code-block:: json
+   :copyable: false
+
+   // result truncated
+   {
+      "_id" : ObjectId("5eb3d668b31de5d588f42a7a"),
+      ...
+      "name" : "Green House Cafe",
+      "restaurant_id" : "40372112",
+      "avg_rating" : 4.4
+   }
+
+Additional Information
+----------------------
+
+For more information on updating documents, specifying query filters, and
+handling potential errors, see our guide on **<TODO: change a document
+fundamental page>**.
+
+For more information on update operators,
+see the :manual:`MongoDB update operator reference documentation
+</reference/operator/update/#update-operators>`.
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+`UpdateOne() <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.0/mongo#Collection.UpdateOne>`__
