@@ -45,4 +45,4 @@ For more information on inserting documents, see our guide on
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-`InsertOne() <https://pkg.go.dev/go.mongodb.org/mongo-driver@{+driver-branch}/mongo#Collection.UpdateOne>`__
+`InsertOne() <https://pkg.go.dev/go.mongodb.org/mongo-driver@{+driver-branch+}/mongo#Collection.InsertOne>`__
