@@ -17,16 +17,16 @@ In this guide, you can learn how the MongoDB Go Driver uses the
 **context package** from Go's standard library. 
 
 The context package consists of the ``Context`` and ``CancelFunc``
-types. The Go Driver primarily uses the ``Context`` type to simplify the
+types. The Go Driver uses the ``Context`` type to simplify the
 process of creating timeout or cancellation tokens for an operation in
-a **blocking function**. A blocking function is a function that relies
+a blocking function. A blocking function is a function that relies
 on an event, such as an input or output, to proceed with its task.
 
 Expiration
 ----------
 
-The driver considers a context expired when it exceeds its timeout or
-cancellation. It checks the context expiration with the ``Done()``
+The driver considers a context expired when an operation exceeds its
+timeout or cancellation. It checks the context expiration with the ``Done()``
 function of the ``Context`` type. The ``Done()`` function returns a
 closed channel and when the function should cancel the work completed.
 If you can successfully read from the channel, then the context expired.
@@ -54,7 +54,7 @@ Connection Checkout
 After selecting a server, the driver sets a timeout for the
 connection checkout process from the server’s connection pool using
 the context. If you cannot retrieve a connection before the context
-expires, the context returns an error.  
+expires, the context returns a timeout error.  
 
 The following example sets the connection timeout to *3* seconds: 
 
@@ -69,10 +69,9 @@ Connection Establishment
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 When the driver needs to create a new connection to execute an
-operation, the context sets a timeout for the establishment process.
-
-The driver sets the network connection and the TLS handshake to either
-the context expiration or connection timeout, whichever is shorter.
+operation, the context sets a timeout for the establishment process. The
+driver sets the network connection and the TLS handshake to either the
+context expiration or connection timeout, whichever is shorter.
 
 The following example sets the connection timeout to *1* second and the
 context deadline to *2* seconds. Because the connection timeout is
@@ -104,7 +103,7 @@ differs based on version.
 
     For versions prior to 1.5.0, the driver won’t detect the context
     cancellation and waits for the ``Read()`` or ``Write()`` function to
-    return graceful. 
+    return. 
 
     In versions 1.5.0 and later, the driver generates a separate
     goroutine to listen for context cancellation when the ``Read()`` or
