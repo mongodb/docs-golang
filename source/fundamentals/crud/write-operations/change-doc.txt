@@ -1,0 +1,200 @@
+=================
+Change a Document
+=================
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
+Overview
+--------
+
+You can change documents in a MongoDB collection using **update** and
+**replace** operations. Update operations modify specified fields in one
+or more documents while leaving other fields and values unchanged.
+Replace operations remove all existing fields in one or more
+documents and substitute them with the new fields and values.
+
+.. _updateDocuments:
+
+Update
+------
+
+To update one or more documents, create an **update document** that
+includes an **update operator**, which specifies the type of update to
+perform, and the fields and values describing the change. Update
+documents use the following format:
+
+.. code-block:: go
+
+   bson.D{{"<update operator>", bson.D{{"<field>", "<value>"}, {"<field>", "<value>"}, ... }}, {"<update operator>", ... }, ... }
+   
+
+You can use one or more of the following update operators in your update
+document:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 40 60
+
+   * - Update Operator
+     - Description
+
+   * - ``$set``
+     - replaces the value of a field with a specified value or creates a new
+       field with a specified value
+
+   * - ``$inc``
+     - increments or decrements field values
+
+   * - ``$rename``
+     - renames fields
+
+   * - ``$unset``
+     - removes fields
+     
+   * - ``$mul``
+     - multiplies the value of a field by a specified number
+
+See the MongoDB server manual for a :manual:`complete list of update operators
+and descriptions </reference/operator/update-field/>`.
+
+.. note:: Aggregation Pipelines in Update Operations
+
+   If you are using MongoDB Version 4.2 or later, you can use aggregation
+   pipelines made up of a subset of aggregation stages in update operations. For
+   more information on the aggregation stages MongoDB supports in
+   aggregation pipelines, see our tutorial on performing
+   :manual:`updates with aggregation pipelines </tutorial/update-documents-with-aggregation-pipeline/>`.
+
+Example
+~~~~~~~
+
+Consider a document describing an employee:
+
+.. code-block:: json
+
+   {
+      "_id" : 2158,
+      "name" : "Mary Shelley",
+      "department" : "Marketing",
+      "role" : "Marketing Analyst",
+      "bonus" : 2500,
+      ...
+   }
+
+The following code shows how you can use the ``$set`` update operator to
+change the value of the ``role`` field to "Marketing Director" and the
+``$inc`` update operator to increment the value of the ``bonus`` field
+by 2000:
+
+.. code-block:: go
+
+   filter := bson.D{{"_id", 2158}}
+   update := bson.D{{"$set", bson.D{{"role", "Marketing Director"}}}, {"$inc", bson.D{{"bonus", 2000}}}}
+
+   result, err := collection.UpdateOne(context.TODO(), filter, update)
+
+The updated document should resemble the following document, with updated values in
+the ``role`` and ``bonus`` fields and all other values unchanged:
+
+.. code-block:: json
+
+   {
+      "_id" : 2158,
+      "name" : "Mary Shelley",
+      "department" : "Marketing",
+      "role" : "Marketing Director",
+      "bonus" : 4500,
+      ...
+   }
+
+If the query filter fails to match any documents in a collection, the
+update operation does not make any changes. You can configure an update
+operation to perform an :doc:`upsert </fundamentals/crud/write-operations/upsert>`, 
+in which the operation attempts to perform an update but inserts
+a new document if no documents are matched:
+
+.. code-block:: go
+
+   opts := options.Update().SetUpsert(true)
+   ...
+   result, err := collection.UpdateOne(context.TODO(), filter, update, opts)
+
+You cannot modify the ``_id`` field of a document nor change a field to
+a value that violates a unique index constraint. See the MongoDB server manual 
+for more information on :manual:`unique indexes </core/index-unique/>`.
+
+.. _replacementDocument:
+
+Replace
+-------
+
+To perform a replacement operation, create a **replacement document** that
+consists of the fields and values that you would like to insert in your
+**replace** operation. Replacement documents use the following format:
+
+.. code-block:: go
+
+   bson.D{{"<field>", "<value>"}, {"<field>", "<value>"}, ... }
+
+A replacement documents is the document that you want to take the place of
+an existing document that matches the query filter.
+
+Example
+~~~~~~~
+
+Consider a document describing an kitchen item:
+
+.. code-block:: json
+
+   {
+      "_id" : 2056,
+      "item" : "Mug",
+      "brand" : "Simply Ceramics",
+      "price" : 2.99,
+      "material" : "Glass"
+   }
+
+
+The following code shows how you can use a replace operation to replace
+this document with one that contains only the fields ``item`` with a
+value of "Cup" and ``quantity`` with a value of 107:
+
+.. code-block:: go
+
+   filter := bson.D{{"_id", 2056}}
+   replacement := bson.D{{"item", "Cup"}, {"quantity", 107}}
+
+   result, err := collection.ReplaceOne(context.TODO(), filter, replacement)
+
+The replaced document contains the contents of the replacement document
+and the immutable ``_id`` field as follows:
+
+.. code-block:: json
+
+   {
+      "_id" : 2056,
+      "item" : "Cup",
+      "quantity" : 107
+   }
+
+If the query filter fails to match any documents in a collection, the
+replace operation does not make any changes. You can configure a replace
+operation to perform an :doc:`upsert </fundamentals/crud/write-operations/upsert>`, 
+in which the operation attempts to perform an update but inserts
+a new document if no documents are matched:
+
+.. code-block:: go
+
+   options.Replace().SetUpsert(true)
+   ...
+   result, err := collection.ReplaceOne(context.TODO(), filter, replacement, opts)
+
+You cannot modify the ``_id`` field of a document nor change a field to
+a value that violates a unique index constraint. See the MongoDB server manual 
+for more information on :manual:`unique indexes </core/index-unique/>`.
