@@ -1,4 +1,4 @@
-module usage-examples
+module includes
 
 go 1.16
 
