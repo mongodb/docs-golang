@@ -19,7 +19,7 @@ field nad inserts it into the ``Haikus`` collection of the ``insertDB`` database
    :language: go
    :dedent:
 
-Click here `here <https://raw.githubusercontent.com/mongodb/docs-golang/{+branch+}/source/includes/usage-examples/code-snippets/updateOne.txt>`__ to see a fully runnable example.
+Click `here <https://raw.githubusercontent.com/mongodb/docs-golang/{+branch+}/source/includes/usage-examples/code-snippets/insertOne.go>`__ to see a fully runnable example.
 
 Expected Result
 ---------------
