@@ -25,7 +25,7 @@ field nad inserts it into the ``Haikus`` collection of the ``insertDB`` database
    :language: go
    :dedent:
 
-Click `here <{+raw-github+}insertOne.go>`__ to see a fully runnable example.
+Click `here <{+example+}/insertOne.go>`__ to see a fully runnable example.
 
 Expected Result
 ---------------
@@ -51,4 +51,4 @@ For more information on inserting documents, see our guide on
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-`InsertOne() <{+godoc+}mongo#Collection.InsertOne>`__
+`InsertOne() <{+godocs+}mongo#Collection.InsertOne>`__
