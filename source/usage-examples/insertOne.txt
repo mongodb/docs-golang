@@ -13,7 +13,7 @@ field and inserts it into the ``haikus`` collection of the ``insertDB`` database
 .. note:: Non-existent Database and Collections
 
     The driver automatically creates the necessary database and/or collection
-    when you perform a write operation against them, if they don't exist.
+    when you perform a write operation against them if they don't already exist.
 
 
 .. include:: /includes/usage-examples/run-example-tip.rst
@@ -30,16 +30,16 @@ Click `here <{+example+}/insertOne.go>`__ to see a fully runnable example.
 Expected Result
 ---------------
 
-After you run the code example, a new document with an ``_id`` that matches
-the output will be present:
+After you run the code example, a new document will be present in the
+collection with an ``_id`` field that matches the previous output:
 
 .. code-block:: json
    :copyable: false
 
    {
-     _id: ObjectId("..."),
-     title: 'An Insert Haiku',
-     text: 'No bytes, no problem. Inserting a document. In MongoDB'
+     "_id": ObjectId("..."),
+     "title": "An Insert Haiku",
+     "text": "No bytes, no problem. Inserting a document. In MongoDB"
    }
 
 Additional Information
