@@ -20,20 +20,17 @@ Introduction
 ------------
 
 The official MongoDB Go Driver enables Go applications to connect to and
-work with data in MongoDB. On this page, you can find descriptions of
-each section of the driver documentation.
+work with data in MongoDB. This page describes each section of the
+driver documentation. 
 
 Learn
 -----
 
 Visit the Developer Hub for content, resources, community, and social
-engagement for developers related to the Go driver.
+engagement for developers related to the Go driver:
 
-To view articles on Go, see the `How To's and Articles page
-<https://www.mongodb.com/developer/learn/?content=Articles&text=Go>`_.
-
-To view the forum on Go, see the `forums page
-<https://www.mongodb.com/community/forums/tag/golang>`_.
+- To view articles on Go, see the `How To's and Articles page <https://www.mongodb.com/developer/learn/?content=Articles&text=Go>`__.
+- To view the forum on Go, see the `forums page <https://www.mongodb.com/community/forums/tag/golang>`__.
 
 Quick Start
 -----------
@@ -53,8 +50,8 @@ Fundamentals
 ------------
 
 Whether you are new to MongoDB or you just want to brush up on the core
-concepts, you can check out the **Fundamentals** section which contains
-learning material on using the Go driver for the following:
+concepts, you can check out the **Fundamentals** section which covers
+the following material in the Go driver:
 
 - :doc:`Connect to MongoDB </fundamentals/connection>`
 - :doc:`Context Usage in MongoDB </fundamentals/context>`
@@ -94,8 +91,8 @@ questions and receiving help.
 Compatibility
 -------------
 
-The :doc:`Compatibility </compatibility>` section shows compatibility charts
-with Go and MongoDB server versions.
+The :doc:`Compatibility </compatibility>` sections compatibility charts
+show the recommended Go driver version for each MongoDB server version. 
 
 .. What's New
 .. ----------
