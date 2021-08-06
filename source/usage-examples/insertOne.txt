@@ -38,7 +38,7 @@ collection with an ``_id`` field that matches the previous output:
 
    {
      "_id": ObjectId("..."),
-     "title": "An Insert Haiku",
+     "title": "Record of a Shriveled Datum",
      "text": "No bytes, no problem. Inserting a document. In MongoDB"
    }
 
