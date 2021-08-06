@@ -195,7 +195,7 @@ a new document if no documents are matched:
 
 .. code-block:: go
 
-   options.Replace().SetUpsert(true)
+   opts := options.Replace().SetUpsert(true)
    ...
    result, err := collection.ReplaceOne(context.TODO(), filter, replacement, opts)
 
