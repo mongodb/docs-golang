@@ -5,7 +5,7 @@ Set Custom BSON Field Names
 .. default-domain:: mongodb
 
 You can customize the way that the Go Driver converts Go
-structs tp :manual:`BSON </reference/bson-types/>` using 
+structs to :manual:`BSON </reference/bson-types/>` using 
 **struct tags**, which are optional instructions you can use with struct
 fields.
 
