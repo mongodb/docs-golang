@@ -1,16 +1,18 @@
-==========================
-Set Custom Driver Behavior
-==========================
+===========================
+Set Custom BSON Field Names
+===========================
 
 .. default-domain:: mongodb
 
-You can customize the way that the Go Driver converts between Go
-structs and :manual:`BSON </reference/bson-types/>` using 
+You can customize the way that the Go Driver converts Go
+structs tp :manual:`BSON </reference/bson-types/>` using 
 **struct tags**, which are optional instructions you can use with struct
 fields.
 
 The following code declares a ``BlogPost`` struct, where the ``WordCount`` field
-has a struct tag that sets a custom BSON field name of ``word_count``:
+has a struct tag that sets a custom BSON field name of ``word_count``.
+The driver marshals the other fields as the lowercase of the struct
+field name by default:
 
 .. literalinclude:: /includes/usage-examples/code-snippets/struct-tag.go
    :start-after: begin struct
@@ -42,7 +44,7 @@ the following document in the ``posts`` collection:
    :copyable: false
 
    {
-       ... ,
+       "_id" : ObjectId("..."),
        "title" : "Annuals vs. Perennials?",
        "author" : "Sam Lee",
        "word_count" : 682,
