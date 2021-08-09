@@ -34,11 +34,14 @@ read our :doc:`Connection Guide </fundamentals/connection>`.
 Mechanisms
 ----------
 
-You can authenticate with each mechanism by providing authentication
-options when configuring a Client to a ``Credential`` type.
+You can authenticate with a mechanism by providing authentication
+options through an ``Credential`` type. Then, you can pass the
+credential to a ``ClientOptions`` type, which contains the options
+related to your ``Client``. Lastly, you pass the ``ClientOptions`` to a
+``Client`` type to establish a connection.
 
 In the following authentication mechanism sections, each specification
-uses the following placeholders: 
+uses the following authentication options: 
 
 * ``username`` - your MongoDB username
 * ``password`` - your MongoDB user's password
@@ -47,6 +50,13 @@ uses the following placeholders:
 * ``authenticationDb`` - MongoDB database that contains your user's
   authentication data. If you omit this parameter, the driver uses the
   default value ``admin``.
+
+For more information on the types mentioned, see the following API
+Documentation:
+
+`Credential <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo/options#Credential>`__
+`ClientOptions <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo/options#ClientOptions>`__
+`Client <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo#Client>`__
 
 .. _default-auth-mechanism:
 
@@ -64,18 +74,20 @@ Server versions 3.6 and earlier use ``MONGODB-CR`` as the default
 mechanism. Newer versions of the server use one of the mechanisms for
 which they advertise support.
 
-To specify the default authentication mechanism, omit the ``AuthMechanism``:
+To specify the default authentication mechanism, omit the
+``AuthMechanism`` parameter:
 
 .. code-block:: go
 
    credential := options.Credential{
       AuthSource: "<authenticationDb>",
-		Username: "<username>",
-		Password: "<password>",
-	}
-	clientOpts := options.Client().ApplyURI("mongodb://<hostname>:<port>").
-		SetAuth(credential)
-	client, err := mongo.Connect(context.TODO(), clientOpts)
+      Username: "<username>",
+      Password: "<password>",
+   }
+   clientOpts := options.Client().ApplyURI("mongodb://<hostname>:<port>").
+      SetAuth(credential)
+
+   client, err := mongo.Connect(context.TODO(), clientOpts)
 
 For more information on the challenge-response (CR) and salted
 challenge-response authentication mechanisms (SCRAM) that MongoDB supports,
@@ -99,18 +111,18 @@ To specify the ``SCRAM-SHA-256`` authentication mechanism, assign the
 ``AuthMechanism`` parameter the value ``SCRAM-SHA-256``:  
 
 .. code-block:: go
-   :emphasize-lines: 3
+   :emphasize-lines: 2
 
    credential := options.Credential{
-		AuthMechanism: "SCRAM-SHA-256",
+      AuthMechanism: "SCRAM-SHA-256",
       AuthSource: "<authenticationDb>",
-		Username: "<username>",
-		Password: "<password>",
-	}
-	clientOpts := options.Client().ApplyURI("mongodb://<hostname>:<port>").
-		SetAuth(credential)
-
-	client, err := mongo.Connect(context.TODO(), clientOpts)
+      Username: "<username>",
+      Password: "<password>",
+   }
+   clientOpts := options.Client().ApplyURI("mongodb://<hostname>:<port>").
+      SetAuth(credential)
+   
+   client, err := mongo.Connect(context.TODO(), clientOpts)
 
 .. _scram-sha-1-auth-mechanism:
 
@@ -130,18 +142,18 @@ To specify the ``SCRAM-SHA-1`` authentication mechanism, assign the
 ``AuthMechanism`` parameter the value ``SCRAM-SHA-1``:  
 
 .. code-block:: go
-   :emphasize-lines: 3
+   :emphasize-lines: 2
 
    credential := options.Credential{
-		AuthMechanism: "SCRAM-SHA-1",
+      AuthMechanism: "SCRAM-SHA-1",
       AuthSource: "<authenticationDb>",
-		Username:      "<username>",
-		Password:      "<password>",
-	}
-	clientOpts := options.Client().ApplyURI("mongodb://<hostname>:<port>").
-		SetAuth(credential)
+      Username:      "<username>",
+      Password:      "<password>",
+   }
+   clientOpts := options.Client().ApplyURI("mongodb://<hostname>:<port>").
+      SetAuth(credential)
 
-	client, err := mongo.Connect(context.TODO(), clientOpts)
+   client, err := mongo.Connect(context.TODO(), clientOpts)
 
 .. _mongodb-cr-auth-mechanism:
 
@@ -171,10 +183,6 @@ The ``MONGODB-AWS`` authentication mechanism uses your Amazon Web Services
 Identity and Access Management (AWS IAM) credentials to authenticate your
 user.
 
-The following snippet uses AWS IAM to authenticate an application by
-providing an access key ID and secret access key pair as the username and
-password, respectively:
-
 To specify the ``MONGODB-AWS`` authentication mechanism, perform the
 following:
 
@@ -183,22 +191,22 @@ following:
 - Assign the ``Password`` parameter the value of your ``secretAccessKey``
 
 .. code-block:: go
-   :emphasize-lines: 4, 6-7
+   :emphasize-lines: 3, 5-6
 
-	var accessKeyID, secretAccessKey string
-	awsCredential := options.Credential{
-		AuthMechanism: "MONGODB-AWS",
+   var accessKeyID, secretAccessKey string
+   awsCredential := options.Credential{
+      AuthMechanism: "MONGODB-AWS",
       AuthSource: "<authenticationDb>",
-		Username:      accessKeyID,
-		Password:      secretAccessKey,
+      Username:      accessKeyID,
+      Password:      secretAccessKey,
 	}
-	awsIAMClient, err := mongo.Connect(
-		context.TODO(),
-		options.Client().SetAuth(awsCredential))
-	if err != nil {
-		panic(err)
-	}
-	_ = awsIAMClient
+   awsIAMClient, err := mongo.Connect(
+      context.TODO(),
+      options.Client().SetAuth(awsCredential))
+   if err != nil {
+      panic(err)
+   }
+   _ = awsIAMClient
 
 If you need to specify an AWS session token, use the temporary
 credentials returned from an assume role request. 
@@ -207,21 +215,20 @@ To use temporary credentials, assign the ``AuthMechanismProperties``
 parameter the value of your ``sessionToken``:
 
 .. code-block:: go
-   :emphasize-lines: 8-10
+   :emphasize-lines: 7-9
 
-	var sessionToken string
-	assumeRoleCredential := options.Credential{
-		AuthMechanism: "MONGODB-AWS",
+   var sessionToken string
+   assumeRoleCredential := options.Credential{
+      AuthMechanism: "MONGODB-AWS",
       AuthSource: "<authenticationDb>",
-		Username:      accessKeyID,
-		Password:      secretAccessKey,
-		AuthMechanismProperties: map[string]string{
-			"AWS_SESSION_TOKEN": sessionToken,
-		},
-	}
-	assumeRoleClient, err := mongo.Connect(
-		context.TODO(),
-		options.Client().SetAuth(assumeRoleCredential))
+      Username:      accessKeyID,
+      Password:      secretAccessKey,
+      AuthMechanismProperties: map[string]string{
+         "AWS_SESSION_TOKEN": sessionToken,
+      },
+   }
+   assumeRoleClient, err := mongo.Connect(context.TODO(),
+      options.Client().SetAuth(assumeRoleCredential))
 
 .. _x509-auth-mechanism:
 
@@ -235,7 +242,7 @@ authenticate your user, identified by the relative distinguished names
 authentication mechanism, the server authenticates the connection using
 the paths of the following files:
 
-- ``tlsCAFile`` which contains either a single or bundle of certificate authorities to trust when making a TLS connection
+- ``tlsCAFile`` which contains either a single or a bundle of certificate authorities to trust when making a TLS connection
 - ``tlsCertificateKeyFile`` which references the path to the client certificate file or the client private key file
 
 To specify the ``X.509`` authentication mechanism, perform the
@@ -246,17 +253,18 @@ following:
 - Assign the ``AuthMechanism`` parameter the value ``X.509``
 
 .. code-block:: go
-   :emphasize-lines: 8
+   :emphasize-lines: 4-5, 7
 
    caFilePath := "<cafile_path>"
-	certificateKeyFilePath := "<client_certificate_path>"
+   certificateKeyFilePath := "<client_certificate_path>"
 
-	uri := "mongodb://<hostname>:<port>/?tlsCAFile=%s&tlsCertificateKeyFile=%s"
-	uri = fmt.Sprintf(uri, caFilePath, certificateKeyFilePath)
-	credential := options.Credential{
-		AuthMechanism: "MONGODB-X509",
-	}
-	clientOpts := options.Client().ApplyURI(uri).SetAuth(credential)
+   uri := "mongodb://<hostname>:<port>/?tlsCAFile=%s&tlsCertificateKeyFile=%s"
+   uri = fmt.Sprintf(uri, caFilePath, certificateKeyFilePath)
+   credential := options.Credential{
+      AuthMechanism: "MONGODB-X509",
+   }
+
+   clientOpts := options.Client().ApplyURI(uri).SetAuth(credential)
 
 For additional information on configuring your application to use
 certificates as well as TLS/SSL options, see our
