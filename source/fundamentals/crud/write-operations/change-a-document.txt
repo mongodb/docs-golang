@@ -27,7 +27,7 @@ Update
 
 To update one or more documents, create an **update document** that
 includes an **update operator**, which specifies the type of update to
-perform, and the fields and values that describe the change. Update
+perform and the fields and values that describe the change. Update
 documents use the following format:
 
 .. code-block:: go
