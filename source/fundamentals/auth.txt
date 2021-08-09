@@ -34,14 +34,14 @@ read our :doc:`Connection Guide </fundamentals/connection>`.
 Mechanisms
 ----------
 
-You can authenticate with a mechanism by providing authentication
-options through an ``Credential`` type. Then, you can pass the
-credential to a ``ClientOptions`` type, which contains the options
-related to your ``Client``. Lastly, you pass the ``ClientOptions`` to a
-``Client`` type to establish a connection.
+Authenticate a mechanism by specifying the authentication options
+through an ``Credential`` type. The ``Credential`` gets passed  to
+a ``ClientOptions`` type, which contains the options related to the
+``Client``. The ``ClientOptions`` gets passed to a ``Client`` type to
+establish a connection. 
 
-In the following authentication mechanism sections, each specification
-uses the following authentication options: 
+In the following sections, each ``ClientOptions`` contains the following
+authentication options: 
 
 * ``username`` - your MongoDB username
 * ``password`` - your MongoDB user's password
@@ -54,9 +54,9 @@ uses the following authentication options:
 For more information on the types mentioned, see the following API
 Documentation:
 
-`Credential <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo/options#Credential>`__
-`ClientOptions <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo/options#ClientOptions>`__
-`Client <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo#Client>`__
+- `Credential <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo/options#Credential>`__
+- `ClientOptions <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo/options#ClientOptions>`__
+- `Client <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo#Client>`__
 
 .. _default-auth-mechanism:
 
@@ -199,7 +199,7 @@ following:
       AuthSource: "<authenticationDb>",
       Username:      accessKeyID,
       Password:      secretAccessKey,
-	}
+   }
    awsIAMClient, err := mongo.Connect(
       context.TODO(),
       options.Client().SetAuth(awsCredential))
@@ -221,7 +221,7 @@ parameter the value of your ``sessionToken``:
    assumeRoleCredential := options.Credential{
       AuthMechanism: "MONGODB-AWS",
       AuthSource: "<authenticationDb>",
-      Username:      accessKeyID,
+      Username:      accessgKeyID,
       Password:      secretAccessKey,
       AuthMechanismProperties: map[string]string{
          "AWS_SESSION_TOKEN": sessionToken,
