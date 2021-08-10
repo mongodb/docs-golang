@@ -4,9 +4,187 @@ Insert a Document
 
 .. default-domain:: mongodb
 
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+   
 Overview
 --------
 
-In this section, we show you how to call the write operations to **insert**
-documents from a collection in your MongoDB database.
+Before you can retrieve, update, or delete information in MongoDB, you
+first need to perform an **insert operation** to load data. An insert
+operation inserts one or more documents into a MongoDB collection
+using one of the following methods: ``insertOne()``, ``insertMany()`` and ``bulkWrite()``.
 
+The following sections focus on ``insertOne()`` and ``insertMany()``. For an
+example on how to use the ``bulkWrite()`` method, see the :doc:`Bulk
+Operations Usage Example </usage-examples/bulkWrite>`.
+
+A Note About ``_id``
+--------------------
+
+When inserting a document, MongoDB enforces one constraint on your
+documents by default, which is that each document *must* contain a unique ``_id``
+field.
+
+There are two ways to manage this field:
+
+- You can manage this field yourself, ensuring each value you use is unique.
+- You can let the driver automatically generate unique ``ObjectId`` values.
+
+Unless you provide strong guarantees for uniqueness, we recommend
+you let the driver automatically generate ``_id`` values.
+
+.. note::
+
+   Duplicate ``_id`` values violate unique index constraints, which
+   causes the driver to throw a ``WriteError``.
+ 
+For more information about the ``_id`` field, see the Server Manual Entry on
+:manual:`Unique Indexes </core/index-unique/>`.
+
+Insert a Single Document
+------------------------
+
+Use the ``insertOne()`` method to insert a single document into a collection.
+
+Upon successful insertion, the method returns an
+``InsertOneResult`` instance that contains the ``_id`` of
+the new document.
+
+Example
+~~~~~~~
+
+The following example creates and inserts a document into the
+``favorite_books`` collection using the
+``insertOne()`` method:
+
+.. code-block:: go
+
+   coll := client.Database("myDB").Collection("favorite_books")
+   doc := bson.D{{"title", "Invisible Cities"}, {"author", "Italo Calvino"}, {"year_published", 1974}}
+
+   result, err := coll.InsertOne(context.TODO(), doc)
+
+   fmt.Printf("Inserted document with _id: %v\n", result.InsertedID)
+
+Your output should look something like this:
+
+.. code-block::
+   :copyable: false
+
+   Inserted document with _id: ObjectID("6112c7cacf7fb532a9c0077f")
+
+For more information on the types and functions mentioned in this
+section, see the following resources:
+
+- `insertOne() API documentation <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo@v1.7.0#Collection.InsertOne>`__
+- `InsertOneResult API documentation <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo@v1.7.0#InsertOneResult>`__
+- Server Manual Entry on :manual:`insertOne() </reference/method/db.collection.insertOne/>`
+- Runnable :doc:`Insert a Document Usage Example </usage-examples/insertOne>`
+
+Insert Multiple Documents
+-------------------------
+
+Use the ``insertMany()`` method to insert multiple documents into a
+collection. This method inserts documents in the order specified unless
+an exception occurs.
+
+For example, assume you want to insert the following documents:
+
+.. code-block:: json
+   :copyable: false
+
+   { "_id": 1, "country": "Tanzania" }
+   { "_id": 2, "country": "Lithuania" }
+   { "_id": 1, "country": "Vietnam" }
+   { "_id": 3, "country": "Argentina" }
+
+If you attempt to insert these documents, a ``WriteError`` occurs at the
+third document because of the repeated ``_id`` value, but the documents
+before the error-producing document still get inserted into your collection.
+
+.. note::
+
+   You can get an acknowledgement of successful document insertion even
+   if a WriteError occurs:
+
+   .. code-block:: go
+      
+      docs := []interface{}{
+	      bson.D{{"_id", 1}, {"country", "Tanzania"}},
+	      bson.D{{"_id", 2}, {"country", "Lithuania"}},
+	      bson.D{{"_id", 1}, {"country", "Vietnam"}},
+	      bson.D{{"_id", 3}, {"country", "Argentina"}},
+	  }
+
+	  result, err := coll.InsertMany(context.TODO(), docs)
+	  list_ids := result.InsertedIDs
+	  if err != nil {
+	      fmt.Printf("A bulk write error occurred, but %v documents were still inserted.\n", len(list_ids))
+	  }
+
+	  for _, id := range list_ids {
+	      fmt.Printf("Inserted document with _id: %v\n", id)
+	  }
+   
+   The output should look like this:
+
+   .. code-block:: 
+      :copyable: false
+      
+      A bulk write error occurred. 2 documents were inserted.
+      Inserted document with _id: 1
+      Inserted document with _id: 2
+   
+   If you look inside your collection, you should be able to see the following documents:
+   
+   .. code-block:: json
+      :copyable: false
+
+      { "_id": 1, "country": "Tanzania" }
+      { "_id": 2, "country": "Lithuania" }
+
+Example
+~~~~~~~
+
+The following example creates and inserts three document into the
+``favorite_books`` collection using the
+``insertMany()`` method:
+
+.. code-block:: javascript
+
+   coll := client.Database("myDB").Collection("favorite_books")
+   docs := []interface{}{
+       bson.D{{"title", "My Brilliant Friend"}, {"author", "Elena Ferrante"}, {"year_published", 2012}},
+       bson.D{{"title", "Lucy"}, {"author", "Jamaica Kincaid"}, {"year_published", 2002}},
+       bson.D{{"title", "Cat's Cradle"}, {"author", "Kurt Vonnegut Jr."}, {"year_published", 1998}},
+   }
+
+	result, err := coll.InsertMany(context.TODO(), docs)
+    list_ids := result.InsertedIDs
+	fmt.Printf("Documents inserted: %v\n", len(list_ids))
+
+	for _, id := range list_ids {
+		fmt.Printf("Inserted document with _id: %v\n", id)
+	}
+
+Your output should look something like this:
+
+.. code-block::
+   :copyable: false
+
+   Documents inserted: 3
+   Inserted document with _id: ObjectID("6112d6a0acf85446f904eb91")
+   Inserted document with _id: ObjectID("6112d6a0acf85446f904eb92")
+   Inserted document with _id: ObjectID("6112d6a0acf85446f904eb93")
+
+For more information on the types and functions mentioned in this
+section, see the following resources: 
+
+- `insertMany() API documentation <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo@v1.7.0#Collection.InsertMany>`__
+- `InsertOneResult API documentation <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo@v1.7.0#InsertManyResult>`__
+- Server Manual Entry on :manual:`insertMany() </reference/method/db.collection.insertMany/>`
+- Runnable :doc:`Insert Multiple Documents Example </usage-examples/insertMany>`
