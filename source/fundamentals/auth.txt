@@ -13,7 +13,7 @@ Authentication Mechanisms
 Overview
 --------
 
-In this guide, we show you how to authenticate with MongoDB using each
+In this guide, you can learn how to authenticate with MongoDB using each
 **authentication mechanism** available in the MongoDB Community Edition.
 Authentication mechanisms are processes by which the driver and server
 confirm identity and establish trust to ensure security.
@@ -31,25 +31,14 @@ Edition are as follows:
 For more information on establishing a connection to your MongoDB cluster,
 read our :doc:`Connection Guide </fundamentals/connection>`.
 
-Mechanisms
-----------
+Specify an Authentication Mechanism
+-----------------------------------
 
-Authenticate a mechanism by specifying the authentication options
-through an ``Credential`` type. The ``Credential`` gets passed  to
-a ``ClientOptions`` type, which contains the options related to the
-``Client``. The ``ClientOptions`` gets passed to a ``Client`` type to
-establish a connection. 
+You can specify your authentication mechanism and credentials when
+connecting to MongoDB using a ``Credential`` type. 
 
-In the following sections, each ``ClientOptions`` contains the following
-authentication options: 
-
-* ``username`` - your MongoDB username
-* ``password`` - your MongoDB user's password
-* ``hostname`` - network address of your MongoDB server, accessible by your client
-* ``port`` - port number of your MongoDB server
-* ``authenticationDb`` - MongoDB database that contains your user's
-  authentication data. If you omit this parameter, the driver uses the
-  default value ``admin``.
+The ``Credential``type gets passed to the to a ``ClientOptions`` type to
+configure your connection options when constructing your ``Client``.
 
 For more information on the types mentioned, see the following API
 Documentation:
@@ -57,6 +46,21 @@ Documentation:
 - `Credential <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo/options#Credential>`__
 - `ClientOptions <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo/options#ClientOptions>`__
 - `Client <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo#Client>`__
+
+Mechanisms
+----------
+
+In the following sections, each authentication mechanism contains the
+following placeholders: 
+
+* ``username`` - Your MongoDB username
+* ``password`` - Your MongoDB user's password
+* ``hostname`` - Your MongoDB servers network address, accessible by
+  your client 
+* ``port`` - Your MongoDB servers port number
+* ``authenticationDb`` - Your MongoDB database that contains your user's
+  authentication data. If you omit this parameter, the driver uses the
+  default value ``admin``.
 
 .. _default-auth-mechanism:
 
@@ -266,6 +270,6 @@ following:
 
    clientOpts := options.Client().ApplyURI(uri).SetAuth(credential)
 
-For additional information on configuring your application to use
+For more information on configuring your application to use
 certificates as well as TLS/SSL options, see our
 :doc:`TLS/SSL guide </fundamentals/connection/tls>`.
