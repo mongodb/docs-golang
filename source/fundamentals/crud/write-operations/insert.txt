@@ -23,7 +23,7 @@ example on how to use the ``bulkWrite()`` method, see the :doc:`Bulk
 Operations Usage Example </usage-examples/bulkWrite>`.
 
 A Note About ``_id``
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 When inserting a document, MongoDB enforces one constraint on your
 documents by default, which is that each document *must* contain a unique ``_id``
@@ -120,15 +120,15 @@ before the error-producing document still get inserted into your collection.
 	      bson.D{{"_id", 3}, {"country", "Argentina"}},
 	  }
 
-	  result, err := coll.InsertMany(context.TODO(), docs)
-	  list_ids := result.InsertedIDs
-	  if err != nil {
+      result, err := coll.InsertMany(context.TODO(), docs)
+      list_ids := result.InsertedIDs
+      if err != nil {
 	      fmt.Printf("A bulk write error occurred, but %v documents were still inserted.\n", len(list_ids))
-	  }
+      }
 
-	  for _, id := range list_ids {
+      for _, id := range list_ids {
 	      fmt.Printf("Inserted document with _id: %v\n", id)
-	  }
+      }
    
    The output should look like this:
 
@@ -163,13 +163,13 @@ The following example creates and inserts three document into the
        bson.D{{"title", "Cat's Cradle"}, {"author", "Kurt Vonnegut Jr."}, {"year_published", 1998}},
    }
 
-	result, err := coll.InsertMany(context.TODO(), docs)
-    list_ids := result.InsertedIDs
-	fmt.Printf("Documents inserted: %v\n", len(list_ids))
+   result, err := coll.InsertMany(context.TODO(), docs)
+   list_ids := result.InsertedIDs
+   fmt.Printf("Documents inserted: %v\n", len(list_ids))
 
-	for _, id := range list_ids {
-		fmt.Printf("Inserted document with _id: %v\n", id)
-	}
+   for _, id := range list_ids {
+	   fmt.Printf("Inserted document with _id: %v\n", id)
+   }
 
 Your output should look something like this:
 
