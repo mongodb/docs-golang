@@ -21,7 +21,7 @@ field and inserts it into the ``haikus`` collection of the ``insertDB`` database
 .. literalinclude:: /includes/usage-examples/code-snippets/insertMany.go
    :start-after: begin insertMany
    :end-before: end insertMany
-   :emphasize-lines: 4
+   :emphasize-lines: 7
    :language: go
    :dedent:
 
