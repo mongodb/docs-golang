@@ -18,21 +18,17 @@ mechanism** available in the MongoDB Community Edition. MongoDB uses
 authentication mechanisms to confirm an identity and establish trust to
 ensure security in the driver and server before connecting.
 
-To connect to MongoDB with the Go Driver, specify the mechanism and
-credentials to use as connection options in a `Credential 
-<https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo/options#Credential>`__
-type.
-
-For more information on establishing a connection to your MongoDB cluster,
-read our :doc:`Connection Guide </fundamentals/connection>`.
+If you want to establish a connection to your MongoDB cluster without an
+authentication mechanism, see our :doc:`Connection Guide </fundamentals/connection>`.
 
 Supported Mechanisms
 --------------------
 
 The Go Driver establishes a connection with an authentication mechanism
 through a `Client <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo#Client>`__
-type. The ``Client`` type contains  your connection options. To
-configure these options, pass a ``Credential`` type to a  `ClientOptions
+type. The ``Client`` type specifies the mechanism and credentials to use
+as connection options in a `Credential <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo/options#Credential>`__
+type . To configure these options, pass a ``Credential`` type to a  `ClientOptions
 <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo/options#ClientOptions>`__
 type. 
 
