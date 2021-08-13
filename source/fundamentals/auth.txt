@@ -28,8 +28,9 @@ The Go Driver establishes a connection with an authentication mechanism
 through a `Client <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo#Client>`__
 type. The ``Client`` type specifies the mechanism and credentials to use
 as connection options in a `Credential <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo/options#Credential>`__
-type . To configure these options, pass a ``Credential`` type to a  `ClientOptions
-<https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo/options#ClientOptions>`__
+type . To configure these options, pass a ``Credential`` type to the
+`SetAuth() <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo/options#ClientOptions.SetAuth>`__ 
+function of the `ClientOptions <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo/options#ClientOptions>`__
 type. 
 
 The following sections demonstrate this process with the five
@@ -72,7 +73,7 @@ mechanisms depending on what MongoDB versions your server supports:
      - MongoDB 3.0, 3.2, 3.4, and 3.6
 
    * - ``MONGODB-CR``
-     - MongoDB 3.6 and earlier
+     - MongoDB 3.6 and earlier if the server doesn't support``SCRAM-SHA-1``
 
 To specify the default authentication mechanism, omit the
 ``AuthMechanism`` option:
@@ -106,7 +107,7 @@ see the :manual:`SCRAM </core/security-scram/>` section of the server manual.
 algorithm, to authenticate your user.
 
 To specify the ``SCRAM-SHA-256`` authentication mechanism, assign the
-``AuthMechanism`` option the value ``SCRAM-SHA-256``:  
+``AuthMechanism`` option the value ``"SCRAM-SHA-256"``:  
 
 .. code-block:: go
    :emphasize-lines: 2
@@ -137,7 +138,7 @@ username and password, encrypted with the ``SHA-1`` algorithm, to authenticate
 your user.
 
 To specify the ``SCRAM-SHA-1`` authentication mechanism, assign the
-``AuthMechanism`` option the value ``SCRAM-SHA-1``:  
+``AuthMechanism`` option the value ``"SCRAM-SHA-1"``:  
 
 .. code-block:: go
    :emphasize-lines: 2
@@ -145,8 +146,8 @@ To specify the ``SCRAM-SHA-1`` authentication mechanism, assign the
    credential := options.Credential{
       AuthMechanism: "SCRAM-SHA-1",
       AuthSource: "<authenticationDb>",
-      Username:      "<username>",
-      Password:      "<password>",
+      Username: "<username>",
+      Password: "<password>",
    }
    clientOpts := options.Client().ApplyURI("mongodb://<hostname>:<port>").
       SetAuth(credential)
@@ -191,8 +192,8 @@ following:
    awsCredential := options.Credential{
       AuthMechanism: "MONGODB-AWS",
       AuthSource: "<authenticationDb>",
-      Username:      accessKeyID,
-      Password:      secretAccessKey,
+      Username: "<accessKeyID>",
+      Password: "<secretAccessKey>",
    }
    awsIAMClient, err := mongo.Connect(
       context.TODO(),
@@ -215,10 +216,10 @@ option the value of your ``sessionToken``:
    assumeRoleCredential := options.Credential{
       AuthMechanism: "MONGODB-AWS",
       AuthSource: "<authenticationDb>",
-      Username:      accessgKeyID,
-      Password:      secretAccessKey,
+      Username: "<accessKeyID>",
+      Password: "<secretAccessKey>",
       AuthMechanismProperties: map[string]string{
-         "AWS_SESSION_TOKEN": sessionToken,
+         "AWS_SESSION_TOKEN": "<sessionToken>",
       },
    }
    assumeRoleClient, err := mongo.Connect(context.TODO(),
@@ -242,7 +243,7 @@ following:
 
 - Assign the ``tlsCAFile`` the path to its file in the connection string
 - Assign the ``tlsCertificateKeyFile`` the path to its file in the connection string
-- Assign the ``AuthMechanism`` option the value ``X.509``
+- Assign the ``AuthMechanism`` option the value ``"MONGODB-X509"``
 
 .. code-block:: go
    :emphasize-lines: 4-5, 7
