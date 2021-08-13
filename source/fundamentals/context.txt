@@ -42,7 +42,7 @@ Server Selection
 
 The driver might block you if it can't select a server for an operation.
 
-In this case, the driver loops until it finds a server to use for the
+In this scenario, the driver loops until it finds a server to use for the
 operation. After each iteration, the driver returns a server selection
 timeout error if the context expired or the selection process took
 longer than the ``serverSelectionTimeoutMS`` setting. 
@@ -56,8 +56,8 @@ Connection Checkout
 
 After selecting a server, the driver sets a timeout for the
 connection checkout process from the server’s connection pool using
-the context. If you cannot retrieve a connection before the context
-expires, the context returns a timeout error.  
+context. The context returns a timeout error if you cannot retrieve a
+connection before it expires.  
 
 The following example sets the connection timeout to *3* seconds: 
 
@@ -93,7 +93,7 @@ shorter, the establishment process expires after *1* second.
 Socket Read and Write
 ~~~~~~~~~~~~~~~~~~~~~
 
-When the driver retrieves a connection for the operation, it sets the
+When the driver retrieves a connection for an operation, it sets the
 socket’s read or write deadline to either the context deadline or socket
 timeout, whichever is shorter.
 
@@ -111,7 +111,7 @@ In versions 1.5.0 and later, the driver generates a separate
 goroutine to listen for context cancellation when the ``Read()`` or
 ``Write()`` function is in progress. If the goroutine detects a
 cancellation, it closes the connection. The pending ``Read()`` or
-``Write()`` function returns with an error the driver overwrites to
+``Write()`` function returns an error the driver overwrites to
 the ``context.Canceled`` property. 
 
 Additional Information
