@@ -13,40 +13,43 @@ Context
 Overview
 --------
 
-In this guide, you can learn how the MongoDB Go Driver uses the
-**context package** from Go's standard library. 
+The MongoDB Go Driver uses the **context package** from Go's standard
+library. 
 
 The context package consists of the ``Context`` and ``CancelFunc``
-types. The Go Driver uses the ``Context`` type to simplify the
-process of creating timeout or cancellation tokens for an operation in
-a blocking function. A blocking function is a function that relies
-on an event, such as an input or output, to proceed with its task.
+types. The Go Driver uses the both types to simplify the process of
+creating timeout or cancellation tokens for an operation in a blocking
+function. A blocking function is a function that relies on an event,
+such as an input or output, to proceed with its task.
 
 Expiration
 ----------
 
 The driver considers a context expired when an operation exceeds its
-timeout or cancellation. It checks the context expiration with the ``Done()``
-function of the ``Context`` type. The ``Done()`` function returns a
-closed channel and when the function should cancel the work completed.
-If you can successfully read from the channel, then the context expired.
+timeout or is canceled. The driver checks the context expiration with
+the ``Done()`` function of the ``Context`` type. 
 
-The following sections show when and how the driver checks for
+The context is not expired if the function returns a closed channel and
+a timestamp that indicates when the function will cancel the completed
+work. The context is expired if the function returns an open channel
+that you can read from. 
+
+The following sections describe when and how the driver checks for
 expiration. 
 
 Server Selection
 ~~~~~~~~~~~~~~~~
 
-When selecting a server for an operation, the driver may block if you
-cannot select a server. 
+The driver might block you if it can't select a server for an operation.
 
-The driver loops until it finds a server to use for the operation. After
-each iteration, the driver returns a server selection timeout error if
-the context expired or the selection process took longer than the
-``serverSelectionTimeoutMS`` setting. 
+In this case, the driver loops until it finds a server to use for the
+operation. After each iteration, the driver returns a server selection
+timeout error if the context expired or the selection process took
+longer than the ``serverSelectionTimeoutMS`` setting. 
 
 For more information on how the driver selects a server, see the
-:manual:`Server Selection Algorithm Server Manual Page </core/read-preference-mechanics/>`.
+:ref:`Server Selection Algorithm Server Manual Page
+<replica-set-read-preference-behavior>`. 
 
 Connection Checkout
 ~~~~~~~~~~~~~~~~~~~
@@ -70,13 +73,12 @@ Connection Establishment
 
 When the driver needs to create a new connection to execute an
 operation, the context sets a timeout for the establishment process. The
-driver sets the network connection and the TLS handshake to either the
-context expiration or connection timeout, whichever is shorter.
+driver sets the timeout to either the context expiration or connection
+timeout, whichever is shorter. 
 
 The following example sets the connection timeout to *1* second and the
 context deadline to *2* seconds. Because the connection timeout is
-shorter, the driver expires after *1* second when establishing a
-connection to perform the insert operation.
+shorter, the establishment process expires after *1* second.
 
 .. code-block:: go
    :emphasize-lines: 2, 4
@@ -95,25 +97,25 @@ When the driver retrieves a connection for the operation, it sets the
 socket’s read or write deadline to either the context deadline or socket
 timeout, whichever is shorter.
 
-If you cancel the context after the execution of the ``Read()`` or
-``Write()`` function but before its deadline, the behavior of the driver
-differs based on version. 
-
 .. important:: 
 
-    For versions prior to 1.5.0, the driver won’t detect the context
-    cancellation and waits for the ``Read()`` or ``Write()`` function to
-    return. 
+    If you cancel the context after the execution of the ``Read()`` or
+    ``Write()`` function but before its deadline, the behavior of the driver
+    differs based on version. 
 
-    In versions 1.5.0 and later, the driver generates a separate
-    goroutine to listen for context cancellation when the ``Read()`` or
-    ``Write()`` function is in progress. If the goroutine detects a
-    cancellation, it closes the connection. The pending ``Read()`` or
-    ``Write()`` function returns with an error that is overwritten to
-    the ``context.Canceled`` property by the driver. 
+For versions prior to 1.5.0, the driver doesn't detect the context
+cancellation and waits for the ``Read()`` or ``Write()`` function to
+return. 
+
+In versions 1.5.0 and later, the driver generates a separate
+goroutine to listen for context cancellation when the ``Read()`` or
+``Write()`` function is in progress. If the goroutine detects a
+cancellation, it closes the connection. The pending ``Read()`` or
+``Write()`` function returns with an error the driver overwrites to
+the ``context.Canceled`` property. 
 
 Additional Information
 ----------------------
 
-For more information about the context package, see the `official go
-documentation on the context package <https://pkg.go.dev/context>`__.
+For more information about the context package, see the `Go
+documentation <https://pkg.go.dev/context>`__.
