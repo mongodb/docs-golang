@@ -3,3 +3,47 @@ Count Documents
 ===============
 
 .. default-domain:: mongodb
+
+You can count the number of documents in a collection using the
+``EstimatedDocumentCount()`` and ``CountDocuments()`` method. 
+
+The following example counts the number of documents in the ``movies``
+collection using the ``EstimatedDocumentCount()`` method. Then, the
+example counts the number of documents in the ``movies`` collection
+where the ``countires`` field is "China" using the ``CountDocuments()``
+method.  
+
+.. include:: /includes/usage-examples/run-example-tip.rst
+
+.. literalinclude:: /includes/usage-examples/code-snippets/count.go
+   :start-after: begin countDocuments
+   :end-before: end countDocuments
+   :emphasize-lines: 4-5
+   :language: go
+   :dedent:
+
+Click here <TODO> to see a fully runnable example.
+
+Expected Result
+---------------
+
+After running the preceding code snippet, you should see the following:
+
+- There are about ``23541`` documents in the ``movies`` collection  
+- There are ``755`` documents in the ``movies`` collection from "China"
+
+.. note::
+
+    The exact number of documents may vary depending on your data set.
+
+Additional Information
+----------------------
+
+For more information on counting documents, see our guide on
+<TODO:Counting Documents>. 
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+- `CountDocuments() <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo#Collection.CountDocuments>`__
+- `EstimatedDocumentCount() <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo#Collection.EstimatedDocumentCount>`__
