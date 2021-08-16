@@ -30,9 +30,9 @@ Update
 To update one document, use the ``UpdateOne()`` method, and to update
 multiple documents, use the ``UpdateMany()`` method. Each method takes
 an **update document** that includes at least one **update operator**.
-The update operator specifies the type of update to perform and the
-fields and values that describe the change. Update documents use the
-following format:
+The update operator specifies the type of update to perform. The update
+document also includes the fields and values that describe the change.
+Update documents use the following format:
 
 .. code-block:: go
 
@@ -70,17 +70,18 @@ The following document describes an employee:
 
 The following code shows how you can use ``UpdateOne()`` to:
 
-- Locate the document with ``_id`` value ``2158``.
-- Use the ``$set`` update operator to change the value of the ``name`` field to "Mary Wollstonecraft Shelley" and 
-  the ``role`` field to "Marketing Director".
+- Locate the document with ``_id`` value 2158.
+- Use the ``$set`` update operator to change the value of the ``name``
+  field to "Mary Wollstonecraft Shelley" and the ``role`` field to
+  "Marketing Director".
 - Use the ``$inc`` update operator to increment the value of the
   ``bonus`` field by 2000.
 
 .. code-block:: go
 
    filter := bson.D{{"_id", 2158}}
-   update := bson.D{{"$set", bson.D{{"name", "Mary Wollstonecraft Shelley"}, {"role", "Marketing Director"}}, 
-       {"$inc", bson.D{{"bonus", 2000}}}}
+   update := bson.D{{"$set", bson.D{{"name", "Mary Wollstonecraft Shelley"}, 
+       {"role", "Marketing Director"}}, {"$inc", bson.D{{"bonus", 2000}}}}
 
    result, err := collection.UpdateOne(context.TODO(), filter, update)
 
@@ -109,8 +110,8 @@ Replace
 -------
 
 To perform a replace operation, create a **replacement document**, which is the
-document that you want to take the place of an existing document in your
-**replace** operation. Replacement documents use the following format:
+document that you want to take the place of an existing document.
+Replacement documents use the following format:
 
 .. code-block:: go
 
