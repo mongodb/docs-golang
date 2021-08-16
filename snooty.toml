@@ -1,10 +1,15 @@
 name = "golang"
 title = "Go"
 toc_landing_pages = [
-    "/fundamentals/authentication",
     "/fundamentals/connection",
     "/fundamentals/crud",
     "/fundamentals/builders"
+]
+
+intersphinx = [
+  "https://docs.mongodb.com/manual/objects.inv",
+  "https://docs.atlas.mongodb.com/objects.inv",
+  "https://docs.python.org/2/python2.inv"
 ]
 
 [constants]
