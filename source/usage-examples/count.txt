@@ -5,13 +5,13 @@ Count Documents
 .. default-domain:: mongodb
 
 You can count the number of documents in a collection using the
-``EstimatedDocumentCount()`` and ``CountDocuments()`` method. 
+``EstimatedDocumentCount()`` and ``CountDocuments()`` methods. 
 
-The following example counts the number of documents in the ``movies``
-collection using the ``EstimatedDocumentCount()`` method. Then, the
-example counts the number of documents in the ``movies`` collection
-where the ``countires`` field is "China" using the ``CountDocuments()``
-method.  
+The following example uses the ``EstimatedDocumentCount()`` method to
+count the number of documents in the ``movies``collection. Then, the
+example used the ``CountDocuments()`` method to count the number of
+documents in the ``movies`` collection where the ``countries`` field is
+"China".
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
@@ -40,7 +40,7 @@ Additional Information
 ----------------------
 
 For more information on counting documents, see our guide on
-<TODO:Counting Documents>. 
+<TODO: Counting Documents>. 
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
