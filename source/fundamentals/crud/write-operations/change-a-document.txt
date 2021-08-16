@@ -13,53 +13,32 @@ Change a Document
 Overview
 --------
 
-You can change documents in a MongoDB collection using **update** and
-**replace** operations. Update operations modify only the fields that
-you specify in one or more documents while leaving other fields and
-values unchanged. Replace operations remove all existing fields in one
-or more documents and substitute the deleted fields with new fields and
-values.
+In this guide, you can learn how to change documents in a MongoDB
+collection using **update** and **replace** operations.
+
+Update operations modify the fields that you specify in one or more
+documents while leaving other fields and values unchanged. Replace
+operations remove all existing fields except for ``_id`` in
+one or more documents and substitute the deleted fields with new fields
+and values.
 
 .. _updateDocuments:
 
 Update
 ------
 
-To update one or more documents, create an **update document** that
-includes an **update operator**, which specifies the type of update to
-perform and the fields and values that describe the change. Update
-documents use the following format:
+To update one document, use the ``UpdateOne()`` method, and to update
+multiple documents, use the ``UpdateMany()`` method. Each method takes
+an **update document** that includes at least one **update operator**.
+The update operator specifies the type of update to perform and the
+fields and values that describe the change. Update documents use the
+following format:
 
 .. code-block:: go
 
-   bson.D{{"<update operator>", bson.D{{"<field>", "<value>"}, {"<field>", "<value>"}, ... }}, {"<update operator>", ... }, ... }
-   
-
-You can use one or more of the following update operators in your update
-document:
-
-.. list-table::
-   :header-rows: 1
-   :widths: 40 60
-
-   * - Update Operator
-     - Description
-
-   * - ``$set``
-     - replaces the value of a field with a specified value or creates a new
-       field with a specified value
-
-   * - ``$inc``
-     - increments or decrements field values
-
-   * - ``$rename``
-     - renames fields
-
-   * - ``$unset``
-     - removes fields
-     
-   * - ``$mul``
-     - multiplies the value of a field by a specified number
+   bson.D{{"<update operator>", bson.D{{"<field>", "<value>"}, 
+                                       {"<field>", "<value>"}, ... }}, 
+          {"<update operator>", ... }, ... }
 
 See the MongoDB server manual for a :manual:`complete list of update operators
 and descriptions </reference/operator/update-field/>`.
@@ -89,48 +68,40 @@ The following document describes an employee:
       ...
    }
 
-The following code shows how you can use the ``$set`` update operator to
-change the value of the ``role`` field to "Marketing Director" and the
-``$inc`` update operator to increment the value of the ``bonus`` field
-by 2000:
+The following code shows how you can use ``UpdateOne()`` to:
+
+- Locate the document with ``_id`` value ``2158``.
+- Use the ``$set`` update operator to change the value of the ``name`` field to "Mary Wollstonecraft Shelley" and 
+  the ``role`` field to "Marketing Director".
+- Use the ``$inc`` update operator to increment the value of the
+  ``bonus`` field by 2000.
 
 .. code-block:: go
 
    filter := bson.D{{"_id", 2158}}
-   update := bson.D{{"$set", bson.D{{"role", "Marketing Director"}}}, {"$inc", bson.D{{"bonus", 2000}}}}
+   update := bson.D{{"$set", bson.D{{"name", "Mary Wollstonecraft Shelley"}, {"role", "Marketing Director"}}, 
+       {"$inc", bson.D{{"bonus", 2000}}}}
 
    result, err := collection.UpdateOne(context.TODO(), filter, update)
 
-The updated document should resemble the following, with updated values in
-the ``role`` and ``bonus`` fields and all other values unchanged:
+The following shows the updated document:
 
 .. code-block:: json
    :copyable: false
 
    {
       "_id" : 2158,
-      "name" : "Mary Shelley",
+      "name" : "Mary Wollstonecraft Shelley",
       "department" : "Marketing",
       "role" : "Marketing Director",
       "bonus" : 4500,
       ...
    }
 
-If the query filter fails to match any documents in a collection, the
-update operation doesn't make any changes. You can configure an update
-operation to perform an :doc:`upsert </fundamentals/crud/write-operations/upsert>`, 
-in which the operation attempts to perform an update but inserts
-a new document if no documents are matched:
-
-.. code-block:: go
-
-   opts := options.Update().SetUpsert(true)
-   ...
-   result, err := collection.UpdateOne(context.TODO(), filter, update, opts)
-
-You can't modify the ``_id`` field of a document nor change a field to
-a value that violates a unique index constraint. For more information
-about unique index constraints, see the MongoDB server manual entry on :manual:`unique indexes </core/index-unique/>`.
+If no documents match the query filter in the update operation,
+``UpdateOne()`` makes no changes to the document. See our **<TODO:
+link>** upsert guide to learn how to insert a new document if no
+documents match the query filter.
 
 .. _replacementDocument:
 
@@ -185,18 +156,7 @@ and the immutable ``_id`` field as follows:
       "quantity" : 107
    }
 
-If the query filter fails to match any documents in a collection, the
-replace operation doesn't make any changes. You can configure a replace
-operation to perform an :doc:`upsert </fundamentals/crud/write-operations/upsert>`, 
-in which the operation attempts to perform an update but inserts
-a new document if no documents are matched:
-
-.. code-block:: go
-
-   opts := options.Replace().SetUpsert(true)
-   ...
-   result, err := collection.ReplaceOne(context.TODO(), filter, replacement, opts)
-
-You can't modify the ``_id`` field of a document nor change a field to
-a value that violates a unique index constraint. For more information
-about unique index constraints, see the MongoDB server manual entry on :manual:`unique indexes </core/index-unique/>`.
+If no documents match the query filter in the update operation,
+``ReplaceOne()`` makes no changes to the document. See our **<TODO:
+link>** upsert guide to learn how to insert a new document if no
+documents match the query filter.
