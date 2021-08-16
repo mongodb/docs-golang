@@ -165,10 +165,6 @@ username and password to authenticate your user.
    This authentication mechanism was deprecated starting in MongoDB 3.6
    and is no longer supported as of MongoDB 4.0.
 
-You cannot specify this method explicitly; refer to the fallback provided
-by the :ref:`default authentication mechanism <default-auth-mechanism>` to
-connect using ``MONGODB-CR``.
-
 ``MONGODB-AWS``
 ~~~~~~~~~~~~~~~
 
