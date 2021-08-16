@@ -8,7 +8,7 @@ You can count the number of documents in a collection using the
 ``EstimatedDocumentCount()`` and ``CountDocuments()`` methods. 
 
 The following example uses the ``EstimatedDocumentCount()`` method to
-count the number of documents in the ``movies``collection. Then, the
+count the number of documents in the ``movies`` collection. Then, the
 example used the ``CountDocuments()`` method to count the number of
 documents in the ``movies`` collection where the ``countries`` field is
 "China".
