@@ -73,7 +73,7 @@ mechanisms depending on what MongoDB versions your server supports:
      - MongoDB 3.0, 3.2, 3.4, and 3.6
 
    * - ``MONGODB-CR``
-     - MongoDB 3.6 and earlier if the server doesn't support``SCRAM-SHA-1``
+     - MongoDB 2.6 and earlier
 
 To specify the default authentication mechanism, omit the
 ``AuthMechanism`` option:
@@ -158,9 +158,12 @@ To specify the ``SCRAM-SHA-1`` authentication mechanism, assign the
 ~~~~~~~~~~~~~~
 
 ``MONGODB-CR`` is a challenge-response authentication mechanism that uses your
-username and password to authenticate your user. This authentication
-mechanism was deprecated starting in MongoDB 3.6 and is no longer
-supported as of MongoDB 4.0.
+username and password to authenticate your user.
+
+.. important::
+
+   This authentication mechanism was deprecated starting in MongoDB 3.6
+   and is no longer supported as of MongoDB 4.0.
 
 You cannot specify this method explicitly; refer to the fallback provided
 by the :ref:`default authentication mechanism <default-auth-mechanism>` to
