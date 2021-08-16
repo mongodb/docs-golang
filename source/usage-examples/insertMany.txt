@@ -1,6 +1,6 @@
-========================
-Insert Multiple Document
-========================
+=========================
+Insert Multiple Documents
+=========================
 
 .. default-domain:: mongodb
 
@@ -30,7 +30,7 @@ Click `here <{+example+}/insertMany.go>`__ to see a fully runnable example.
 Expected Result
 ---------------
 
-After you run the code example, a two new documents will be present in the
+After you run the code example, two new documents will be present in the
 collection with an ``_id`` field that matches the previous output:
 
 .. code-block:: json
