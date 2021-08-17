@@ -7,11 +7,11 @@ Replace a Document
 You can replace a document in a collection by using the ``ReplaceOne()``
 method. 
 
-The following example specifies the following to the ``ReplaceOne()``
-method: 
-
-- A query filter matches documents in the ``movies`` collection where the ``title`` field is "Shrek" and replaces the first document that matches with the replacement document. 
-- A replacement document contains a ``title``and ``plot`` field about the movie.
+The following example specifies a query filter and replacement document
+to the ``ReplaceOne()`` method, which matches a document in the
+``movies`` collection where the ``title`` field is "Shrek" and replaces
+it with a document that contains a ``title`` and ``plot`` field about
+the movie: 
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
@@ -38,6 +38,9 @@ replacement document in the ``movies`` collection:
       "title" : "Shrek",
       "plot" : "After his swamp is filled with magical creatures, an ogre agrees to rescue a princess for a villainous lord in order to get his land back."
    }
+
+For an example on how to find a document, see our :doc:`Find
+One Usage Example </usage-examples/findOne>`.
 
 Additional Information
 ----------------------
