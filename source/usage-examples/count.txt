@@ -22,7 +22,7 @@ contains "China".
    :language: go
    :dedent:
 
-Click `here <{+example+}/count.go>` to see a fully runnable example.
+Click `here <{+example+}/count.go>`__ to see a fully runnable example.
 
 Expected Result
 ---------------
