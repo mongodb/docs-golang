@@ -51,12 +51,12 @@ example into your development environment of choice. You can follow the
 started with the MongoDB Go Driver. 
 
 Once you've copied a usage example, you'll need to edit and place your
-connection string in your environment variables to get the example
+connection string in your environment variable to get the example
 connected to your instance of MongoDB. 
 
 .. code-block:: go
    
-   os.Getenv("MONGODB_URI")
+   uri := os.Getenv("MONGODB_URI")
 
 Environment Variable
 ~~~~~~~~~~~~~~~~~~~~
@@ -64,17 +64,17 @@ Environment Variable
 You can use `GoDotEnv <https://github.com/joho/godotenv>`__ to set up
 your environment variable. 
 
-In your ``.env`` file at the root of your project, assure you have the
-following:
+In your ``.env`` file at the root of your project, add the following
+application configuration: 
+
+.. code-block::
+
+   MONGODB_URI=mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority
 
 .. note::
 
    Replace the following with your MongoDB deployment's connection string.
 
-.. code-block::
-
-   MONGODB_URI=mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority
-   
 Connection String
 ~~~~~~~~~~~~~~~~~
 
