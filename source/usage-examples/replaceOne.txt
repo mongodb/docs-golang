@@ -3,3 +3,51 @@ Replace a Document
 ==================
 
 .. default-domain:: mongodb
+
+You can replace a document in a collection by using the ``ReplaceOne()``
+method. 
+
+The following example specifies a query filter and a replacement
+document to the ``ReplaceOne()`` method. The query filter matches
+documents in the ``movies`` collection where the ``title`` field is
+"Shrek" and replaces the first document that matches with the
+replacement document. The replacement document only contains a ``title``
+and ``plot`` field about the movie.
+
+.. include:: /includes/usage-examples/run-example-tip.rst
+
+.. literalinclude:: /includes/usage-examples/code-snippets/replace.go
+   :start-after: begin replace
+   :end-before: end replace
+   :emphasize-lines: 3, 5
+   :language: go
+   :dedent:
+
+Click `here <{+example+}/replace.go>`__  to see a fully runnable example.
+
+Expected Result
+---------------
+
+After you run the preceding code snippet, MongoDB replaces the existing
+document with the replacement document:
+
+.. code-block:: json
+   :copyable: false
+
+   { 
+      "_id" : ObjectId("573a139af29313caabcf224e"),
+      "title" : "Shrek",
+      "plot" : "After his swamp is filled with magical creatures, an ogre agrees to rescue a princess for a villainous lord in order to get his land back."
+   }
+
+Additional Information
+----------------------
+
+For more information on replacing documents, specifying query filters, and
+handling potential errors, see our guide on **<TODO: change a document
+fundamental page>**.
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+`ReplaceOne() <{+godocs+}/mongo#Collection.ReplaceOne>`__
