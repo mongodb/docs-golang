@@ -26,18 +26,21 @@ func main() {
 
 	// begin countDocuments
 	coll := client.Database("sample_mflix").Collection("movies")
-	filter := bson.D{{"countries", "Spain"}}
+	filter := bson.D{{"countries", "China"}}
 
-	collCount, err := coll.EstimatedDocumentCount(context.TODO())
-	count, err := coll.CountDocuments(context.TODO(), filter)
+	collCount, collCountErr := coll.EstimatedDocumentCount(context.TODO())
+	count, countErr := coll.CountDocuments(context.TODO(), filter)
 	// end countDocuments
 
-	if err != nil {
-		panic(err)
+	if collCountErr != nil {
+		panic(collCountErr)
+	}
+	if countErr != nil {
+		panic(countErr)
 	}
 
 	// When you run this file, it should print:
-	// Estimated number of documents in the movies collection:: 23526
+	// Estimated number of documents in the movies collection:: 23541
 	// Number of movies from China: 303
 	
 	fmt.Printf("Estimated number of documents in the movies collection:: %d\n", collCount)

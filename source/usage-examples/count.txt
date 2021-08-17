@@ -9,9 +9,9 @@ You can count the number of documents in a collection using the
 
 The following example uses the ``EstimatedDocumentCount()`` method to
 count the number of documents in the ``movies`` collection. Then, the
-example used the ``CountDocuments()`` method to count the number of
-documents in the ``movies`` collection where the ``countries`` field is
-"China".
+example uses the ``CountDocuments()`` method to count the number of
+documents in the ``movies`` collection where the ``countries`` field
+contains "China".
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
@@ -22,7 +22,7 @@ documents in the ``movies`` collection where the ``countries`` field is
    :language: go
    :dedent:
 
-Click here <TODO> to see a fully runnable example.
+Click `here <{+example+}/count.go>` to see a fully runnable example.
 
 Expected Result
 ---------------
@@ -30,7 +30,7 @@ Expected Result
 After running the preceding code snippet, you should see the following:
 
 - There are about ``23541`` documents in the ``movies`` collection  
-- There are ``755`` documents in the ``movies`` collection from "China"
+- There are ``303`` documents in the ``movies`` collection from "China"
 
 .. note::
 
@@ -45,5 +45,5 @@ For more information on counting documents, see our guide on
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-- `CountDocuments() <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo#Collection.CountDocuments>`__
-- `EstimatedDocumentCount() <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.1/mongo#Collection.EstimatedDocumentCount>`__
+- `CountDocuments() <{+godocs+}/mongo#Collection.CountDocuments>`__
+- `EstimatedDocumentCount() <{+godocs+}/mongo#Collection.EstimatedDocumentCount>`__
