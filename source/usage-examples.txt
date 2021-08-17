@@ -50,13 +50,16 @@ example into your development environment of choice. You can follow the
 :doc:`quick start guide </quick-start>` to learn more about getting
 started with the MongoDB Go Driver. 
 
-Once you've copied a usage example, you'll need to edit and place your
-connection string in your environment variable to get the example
-connected to your instance of MongoDB. 
+Once you've copied a usage example, you'll need to edit and place
+:ref:`your connection string <usage-examples-connection-string>` in
+:ref:`your environment variable <usage-examples-env-variable>` to get
+the example connected to your instance of MongoDB. 
 
 .. code-block:: go
    
    uri := os.Getenv("MONGODB_URI")
+
+.. _usage-examples-env-variable:
 
 Environment Variable
 ~~~~~~~~~~~~~~~~~~~~
@@ -64,8 +67,8 @@ Environment Variable
 You can use `GoDotEnv <https://github.com/joho/godotenv>`__ to set up
 your environment variable. 
 
-In your ``.env`` file at the root of your project, add the following
-application configuration: 
+When you get to the "Usage" section, add the following application
+configuration in your ``.env`` file at the root of your project: 
 
 .. code-block::
 
@@ -74,6 +77,8 @@ application configuration:
 .. note::
 
    Replace the following with your MongoDB deployment's connection string.
+
+.. _usage-examples-connection-string:
 
 Connection String
 ~~~~~~~~~~~~~~~~~
