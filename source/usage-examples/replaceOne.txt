@@ -7,19 +7,18 @@ Replace a Document
 You can replace a document in a collection by using the ``ReplaceOne()``
 method. 
 
-The following example specifies a query filter and a replacement
-document to the ``ReplaceOne()`` method. The query filter matches
-documents in the ``movies`` collection where the ``title`` field is
-"Shrek" and replaces the first document that matches with the
-replacement document. The replacement document only contains a ``title``
-and ``plot`` field about the movie.
+The following example specifies the following to the ``ReplaceOne()``
+method: 
+
+- A query filter matches documents in the ``movies`` collection where the ``title`` field is "Shrek" and replaces the first document that matches with the replacement document. 
+- A replacement document contains a ``title``and ``plot`` field about the movie.
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
 .. literalinclude:: /includes/usage-examples/code-snippets/replace.go
    :start-after: begin replace
    :end-before: end replace
-   :emphasize-lines: 3, 5
+   :emphasize-lines: 5
    :language: go
    :dedent:
 
@@ -28,8 +27,8 @@ Click `here <{+example+}/replace.go>`__  to see a fully runnable example.
 Expected Result
 ---------------
 
-After you run the preceding code snippet, MongoDB replaces the existing
-document with the replacement document:
+After you run the preceding code snippet, you should be able to find the
+replacement document in the ``movies`` collection: 
 
 .. code-block:: json
    :copyable: false
