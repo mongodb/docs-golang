@@ -7,7 +7,7 @@ Run a Command
 You can run commands directly on the MongoDB server CLI using the
 ``RunCommand()`` method. 
 
-The following example passes a document containing the ``dbStats``
+The following example passes a document containing the ``"dbStats"``
 command to the ``RunCommand()`` method, which requests for statistics
 about the ``sample_restaurants`` database: 
 
@@ -16,7 +16,7 @@ about the ``sample_restaurants`` database:
 .. literalinclude:: /includes/usage-examples/code-snippets/command.go
    :start-after: begin runCommand
    :end-before: end runCommand
-   :emphasize-lines: 4
+   :emphasize-lines: 5
    :language: go
    :dedent:
 
