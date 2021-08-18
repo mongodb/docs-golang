@@ -22,6 +22,14 @@ operations remove all existing fields except for ``_id`` in
 one or more documents and substitute the deleted fields with new fields
 and values.
 
+A Note About ``_id``
+~~~~~~~~~~~~~~~~~~~~
+
+Each document in a MongoDB collection has a unique and immutable ``_id``
+field. You cannot use update and replace operations to modify the
+``_id`` values. If you attempt to change this field, the update and
+replace methods return a ``WriteError``.
+
 .. _updateDocuments:
 
 Update
@@ -85,7 +93,21 @@ The following code shows how you can use ``UpdateOne()`` to:
 
    result, err := collection.UpdateOne(context.TODO(), filter, update)
 
-The following shows the updated document:
+``UpdateOne()`` and ``UpdateMany`` return an ``UpdateResult`` type that
+contains information about the update operation such as
+``MatchedCount``, ``ModifiedCount``, ``UpsertedCount``, ``UpsertedID``.
+
+The following shows how to access the information in the
+``UpdateResult`` type:
+
+.. code-block:: go
+
+   fmt.Printf("Documents matched: %v\n", result.MatchedCount)
+   fmt.Printf("Documents modified: %v\n", result.ModifiedCount)
+   fmt.Printf("Documents upserted: %v\n", result.UpsertedCount)
+   fmt.Printf("_id of upserted document: %v\n", result.UpsertedID)
+
+The following shows the updated document resulting from the preceding update operation:
 
 .. code-block:: json
    :copyable: false
@@ -99,7 +121,9 @@ The following shows the updated document:
       ...
    }
 
-If no documents match the query filter in the update operation,
+If multiple documents match the query filter passed to ``UpdateOne()``,
+the method selects and updates the first matched document. If no
+documents match the query filter in the update operation,
 ``UpdateOne()`` makes no changes to the document. See our **<TODO:
 link>** upsert guide to learn how to insert a new document if no
 documents match the query filter.
@@ -144,6 +168,20 @@ value of "Cup" and ``quantity`` with a value of 107:
    replacement := bson.D{{"item", "Cup"}, {"quantity", 107}}
 
    result, err := collection.ReplaceOne(context.TODO(), filter, replacement)
+   
+``ReplaceOne()`` returns an ``UpdateResult`` type that
+contains information about the replace operation such as
+``MatchedCount``, ``ModifiedCount``, ``UpsertedCount``, ``UpsertedID``.
+
+The following shows how to access the information in the
+``UpdateResult`` type:
+
+.. code-block:: go
+
+   fmt.Printf("Documents matched: %v\n", result.MatchedCount)
+   fmt.Printf("Documents modified: %v\n", result.ModifiedCount)
+   fmt.Printf("Documents upserted: %v\n", result.UpsertedCount)
+   fmt.Printf("_id of upserted document: %v\n", result.UpsertedID)
 
 The replaced document contains the contents of the replacement document
 and the immutable ``_id`` field as follows:
@@ -157,7 +195,9 @@ and the immutable ``_id`` field as follows:
       "quantity" : 107
    }
 
-If no documents match the query filter in the update operation,
+If multiple documents match the query filter passed to ``ReplaceOne()``,
+the method selects and replaces the first matched document. If no
+documents match the query filter in the update operation,
 ``ReplaceOne()`` makes no changes to the document. See our **<TODO:
 link>** upsert guide to learn how to insert a new document if no
 documents match the query filter.
