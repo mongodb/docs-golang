@@ -4,16 +4,51 @@ Run a Command
 
 .. default-domain:: mongodb
 
-You can run all raw database operations using the
-``MongoDatabase.runCommand()`` method. A raw database operation is a
-command you can execute directly on the MongoDB server CLI. These
-commands include administrative and diagnostic tasks, such as fetching
-server stats or initializing a replica set. Call the ``runCommand()``
-method with a Bson command object on an instance of a ``MongoDatabase``
-to run your raw database operation.
+You can run commands directly on the MongoDB server CLI using the
+``RunCommand()`` method. 
+
+The following example uses the ``RunCommand()`` method to request
+statistics about the ``sample_restaurants`` database:
+
+.. include:: /includes/usage-examples/run-example-tip.rst
+
+.. literalinclude:: /includes/usage-examples/code-snippets/command.go
+   :start-after: begin countDocuments
+   :end-before: end countDocuments
+   :emphasize-lines: 4
+   :language: go
+   :dedent:
+
+Click `here <{+example+}/command.go>`__ to see a fully runnable example.
+
+Expected Result
+---------------
+
+After running the preceding code snippet, the ``result`` variable should
+contain the following: 
+
+.. code-block:: json
+
+    // results truncated
+    [{db sample_restaurants} 
+    {collections 2} 
+    {views 0} 
+    {objects 25554} 
+    {avgObjSize 548.4101901854896} 
+    {dataSize 14014074} {storageSize 8257536} 
+    ... ]
 
 .. note::
-    Use the :manual:`mongo shell </reference/mongo-shell>` for
-    administrative tasks instead of the Go driver whenever possible,
-    since these tasks are often quicker and easier to implement with the
-    shell than in a Go application.
+
+    The ``result`` variable may vary depending on your data set.
+
+Additional Information
+----------------------
+
+For more information on running a command, see our guide on
+<TODO: Run a Command>. 
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+- `RunCommand() <{+godocs+}/mongo#Database.RunCommand>`__
