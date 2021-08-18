@@ -31,7 +31,7 @@ func main() {
 	// begin replace
 	coll := client.Database("insertDB").Collection("haikus")
 	filter := bson.D{{"title", "Record of a Shriveled Datum"}}
-	replacement := bson.D{{"title", "Dodging Greys"}, {"text", "You can use upsert. No longer need to panic, when there're no matches."}}
+	replacement := bson.D{{"title", "Dodging Greys"}, {"text", "When there're no matches, no longer need to panic. You can use upsert"}}
 
 	result, err := coll.ReplaceOne(context.TODO(), filter, replacement)
 	// end replace
