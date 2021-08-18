@@ -7,14 +7,15 @@ Run a Command
 You can run commands directly on the MongoDB server CLI using the
 ``RunCommand()`` method. 
 
-The following example uses the ``RunCommand()`` method to request
-statistics about the ``sample_restaurants`` database:
+The following example passes a document containing the ``dbStats``
+command to the ``RunCommand()`` method, which requests for statistics
+about the ``sample_restaurants`` database: 
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
 .. literalinclude:: /includes/usage-examples/code-snippets/command.go
-   :start-after: begin countDocuments
-   :end-before: end countDocuments
+   :start-after: begin runCommand
+   :end-before: end runCommand
    :emphasize-lines: 4
    :language: go
    :dedent:
@@ -30,13 +31,13 @@ contain the following:
 .. code-block:: json
 
     // results truncated
-    [{db sample_restaurants} 
-    {collections 2} 
-    {views 0} 
-    {objects 25554} 
-    {avgObjSize 548.4101901854896} 
-    {dataSize 14014074} {storageSize 8257536} 
-    ... ]
+    [ {db sample_restaurants} 
+      {collections 2} 
+      {views 0} 
+      {objects 25554} 
+      {avgObjSize 548.4101901854896} 
+      {dataSize 14014074} {storageSize 8257536} 
+      ... ]
 
 .. note::
 
@@ -51,4 +52,4 @@ For more information on running a command, see our guide on
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-- `RunCommand() <{+godocs+}/mongo#Database.RunCommand>`__
+`RunCommand() <{+godocs+}/mongo#Database.RunCommand>`__
