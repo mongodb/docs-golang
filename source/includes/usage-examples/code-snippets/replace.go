@@ -29,9 +29,9 @@ func main() {
 	}()
 
 	// begin replace
-	coll := client.Database("sample_mflix").Collection("movies")
-	filter := bson.D{{"title", "Shrek"}}
-	replacement := bson.D{{"title", "Shrek"}, {"plot", "After his swamp is filled with magical creatures, an ogre agrees to rescue a princess for a villainous lord in order to get his land back."}}
+	coll := client.Database("insertDB").Collection("haikus")
+	filter := bson.D{{"title", "Record of a Shriveled Datum"}}
+	replacement := bson.D{{"title", "Dodging Greys"}, {"text", "You can use upsert. No longer need to panic, when there're no matches."}}
 
 	result, err := coll.ReplaceOne(context.TODO(), filter, replacement)
 	// end replace
@@ -40,10 +40,10 @@ func main() {
 		panic(err)
 	}
 
-	// When you run this file for the first time, it should print: "Matched and replaced an existing document."
+	// When you run this file for the first time, it should print: "Number of documents replaced: 1"
 
 	if result.MatchedCount != 0 {
-		fmt.Println("Matched and replaced an existing document.")
+		fmt.Println("Number of documents replaced: %d\n", result.ModifiedCount)
 		return
 	}
 }
