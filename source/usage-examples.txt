@@ -62,7 +62,7 @@ an environment variable <usage-examples-env-variable>` with
 Environment Variable
 ~~~~~~~~~~~~~~~~~~~~
 
-You can use `GoDotEnv <https://github.com/joho/godotenv>`__ to set up
+You can use `GoDotEnv <https://github.com/joho/godotenv>`__ to define
 your environment variable. 
 
 Add the following application configuration in your ``.env`` file at the
@@ -75,7 +75,7 @@ root of your project. For more information, see the
 
 .. note::
 
-   Replace the preceding with your MongoDB deployment's connection string.
+   Replace the preceding connection string with :ref:`your MongoDB deployment's connection string <usage-examples-connection-string>`.
 
 .. _usage-examples-connection-string:
 
@@ -83,13 +83,13 @@ Connection String
 ~~~~~~~~~~~~~~~~~
 
 You can use the :guides:`Atlas Connectivity Guide </cloud/connectionstring/>`
-to enable connectivity to your instance of Atlas and find the
-:manual:`connection string </reference/connection-string/>` to set the
-``MONGODB_URI`` environment variable in the usage example. If your instance uses
-:manual:`SCRAM authentication </core/security-scram/>`, you can replace
-``<user>`` with your username, ``<password>`` with your password, and
-``<cluster-url>`` with the IP address or URL of your instance.
+to enable connectivity to your Atlas instance and find the
+:manual:`connection string </reference/connection-string/>` to define your
+``MONGODB_URI`` environment variable to run our usage examples. If your
+instance uses :manual:`SCRAM authentication </core/security-scram/>`,
+you can replace ``<user>`` with your username, ``<password>`` with your
+password, and ``<cluster-url>`` with the IP address or URL of your instance. 
 
-For more information about connecting to your MongoDB instance, see the
+For more information about connecting to your MongoDB instance, see our
 <TODO: Connection Guide>.
 
