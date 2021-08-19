@@ -9,7 +9,7 @@ collection by using the ``Distinct()`` method.
 
 The following example specifies a query filter and a field name to the
 ``Distinct()`` method, which matches documents in the ``movies``
-collection where the ``directors`` field contains "Natalie Portman", and
+collection where the ``directors`` field contains "Natalie Portman" and
 returns distinct values of the ``title`` field from the matched documents. 
 
 .. include:: /includes/usage-examples/run-example-tip.rst
@@ -26,10 +26,10 @@ Click `here <{+example+}/distinct.go>`__ to see a fully runnable example.
 Expected Result
 ---------------
 
-After running the preceding code snippet, the ``results`` variable
-should contain the following: 
+The example returns an ``interface`` type that contains the following
+values: 
 
-.. code-block:: json
+.. code-block:: none
    :copyable: false
 
     A Tale of Love and Darkness
@@ -38,7 +38,7 @@ should contain the following:
 Additional Information
 ----------------------
 
-For more information on retriving distinct values, see our guide on
+For more information on retrieving distinct values, see our guide on
 <TODO: Distinct Fundamentals>. 
 
 API Documentation
