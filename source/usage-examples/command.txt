@@ -4,11 +4,11 @@ Run a Command
 
 .. default-domain:: mongodb
 
-You can run commands directly on the MongoDB server CLI using the
-``RunCommand()`` method. 
+You can run commands in the context of the current database using the
+``RunCommand()`` method.
 
 The following example passes a document containing the ``"dbStats"``
-command to the ``RunCommand()`` method, which requests for statistics
+command to the ``RunCommand()`` method, which retrieves statistics
 about the ``sample_restaurants`` database: 
 
 .. include:: /includes/usage-examples/run-example-tip.rst
@@ -25,8 +25,8 @@ Click `here <{+example+}/command.go>`__ to see a fully runnable example.
 Expected Result
 ---------------
 
-After running the preceding code snippet, the ``result`` variable should
-contain the following: 
+The example returns a ``SingleResult`` type that contains the following
+values:
 
 .. code-block:: json
 
@@ -41,7 +41,8 @@ contain the following:
 
 .. note::
 
-    The ``result`` variable may vary depending on your data set.
+    The ``result`` variable may vary depending on the contents of your
+    collection.
 
 Additional Information
 ----------------------
