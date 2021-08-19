@@ -26,8 +26,8 @@ Click `here <{+example+}/distinct.go>`__ to see a fully runnable example.
 Expected Result
 ---------------
 
-The example returns an ``interface`` type that contains the following
-values: 
+The example returns a slice of an empty ``interface`` type that contains
+the following values: 
 
 .. code-block:: none
    :copyable: false
