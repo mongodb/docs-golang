@@ -43,7 +43,7 @@ func main() {
 		panic(err)
 	}
 
-	// When you run this file it should print "Two documents inserted with Ids: ...
+	// When you run this file it should print "2 documents inserted with IDs: ...
 	fmt.Printf("%d documents inserted with IDs:\n", len(result.InsertedIDs))
 	for _, id := range result.InsertedIDs {
 		fmt.Printf("\t%s\n", id)
