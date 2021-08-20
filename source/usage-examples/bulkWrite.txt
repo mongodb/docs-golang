@@ -10,8 +10,8 @@ You can perform batch write operations on a collection using the
 The following example specifies a slice of ``WriteModels`` and an option
 to the ``BulkWrite()`` method, which performs the following in order:
 
-- matches a document where the ``title`` field is "Record of a Shriveled Datum" and replaces it with a document that contains a different ``title`` and ``text`` field
-- matches a document where the ``title`` field is "Dodging Greys" and updates that field to "Dodge The Greys"
+- Match a document where the ``title`` is "Record of a Shriveled Datum" and replace it with a new document
+- Match a document where the ``title`` is "Dodging Greys" and update that field to "Dodge The Greys"
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
@@ -48,6 +48,10 @@ Additional Information
 For more information performing batch write operations on a collection
 and handling potential errors, see our guide on <TODO: Bulk Write
 Fundamentals>. 
+
+For more information on bulk operations,
+see the :manual:`MongoDB update operator reference documentation
+</core/bulk-write-operations/>`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
