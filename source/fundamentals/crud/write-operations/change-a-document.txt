@@ -7,7 +7,7 @@ Change a Document
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 Overview
@@ -19,25 +19,29 @@ collection using **update** and **replace** operations.
 Update operations modify the fields that you specify in one or more
 documents while leaving other fields and values unchanged. Replace
 operations remove all existing fields except for ``_id`` in
-one or more documents and substitute the deleted fields with new fields
-and values.
+a document and substitute the deleted fields with the new fields
+and values you specify.
 
 A Note About ``_id``
 ~~~~~~~~~~~~~~~~~~~~
 
 Each document in a MongoDB collection has a unique and immutable ``_id``
 field. You cannot use update and replace operations to modify the
-``_id`` values. If you attempt to change this field, the update and
-replace methods return a `WriteError <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#WriteError>`__.
+``_id`` field. If you attempt to change this field, the update and
+replace methods return a `WriteError <{+godocs+}/mongo#WriteError>`__.
 
 .. _updateDocuments:
 
 Update
 ------
 
-To update one document, use the `UpdateOne() <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Collection.UpdateOne>`__ method, and to update
-multiple documents, use the `UpdateMany() <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Collection.UpdateMany>`__ method. Each method takes
-an **update document** that includes at least one **update operator**.
+To update one document, use the `UpdateOne() <{+godocs+}/mongo#Collection.UpdateOne>`__ method, and to update
+multiple documents, use the `UpdateMany() <{+godocs+}/mongo#Collection.UpdateMany>`__ method. 
+
+Parameters
+~~~~~~~~~~
+
+Each method takes an **update document** that includes at least one **update operator**.
 The update operator specifies the type of update to perform. The update
 document also includes the fields and values that describe the change.
 Update documents use the following format:
@@ -63,7 +67,7 @@ and descriptions </reference/operator/update-field/>`.
 Return Values
 ~~~~~~~~~~~~~
 
-The ``UpdateOne()`` and ``UpdateMany()`` methods return an `UpdateResult <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#UpdateResult>`__ type that
+The ``UpdateOne()`` and ``UpdateMany()`` methods return an `UpdateResult <{+godocs+}/mongo#UpdateResult>`__ type that
 contains information about the update operation if the operation is
 successful. The ``UpdateResult`` type contains the following properties:
 
@@ -74,10 +78,10 @@ successful. The ``UpdateResult`` type contains the following properties:
   no upsert was performed
 
 If multiple documents match the query filter passed to ``UpdateOne()``,
-the method selects and updates the first matched document. Your update
-operation will fail if no documents match the query filter. See our **<TODO:
-link>** upsert guide to learn how to insert a new document if no
-documents match the query filter.
+the method selects and updates the first matched document. If no
+documents match the query filter, the update operation will make no
+changes. See our **<TODO: link>** upsert guide to learn how to insert a
+new document if no documents match the query filter.
 
 Example
 ~~~~~~~
@@ -140,7 +144,7 @@ The following shows the updated document resulting from the preceding update ope
 Replace
 -------
 
-To perform a replace operation, use the `ReplaceOne() <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Collection.ReplaceOne>`__ method and
+To perform a replace operation, use the `ReplaceOne() <{+godocs+}/mongo#Collection.ReplaceOne>`__ method and
 specify a **replacement document**, which is the document that you want
 to take the place of an existing document. Replacement documents use the
 following format:
@@ -152,7 +156,7 @@ following format:
 Return Values
 ~~~~~~~~~~~~~
 
-``ReplaceOne()`` returns an ``UpdateResult`` type that
+``ReplaceOne()`` returns an `UpdateResult <{+godocs+}/mongo#UpdateResult>`__ type that
 contains information about the replace operation if the operation is
 successful. The ``UpdateResult`` type contains the following properties:
 
@@ -184,9 +188,9 @@ The following document describes a kitchen item:
       "material" : "Glass"
    }
 
-The following code shows how you can use a replace operation to substitute
-this document with one that contains only the fields ``item`` with a
-value of "Cup" and ``quantity`` with a value of 107:
+The following example uses the ``ReplaceOne()`` method to substitute
+this document with one that contains an ``item`` field with a
+value of "Cup" and a ``quantity`` field with a value of 107:
 
 .. code-block:: go
 
