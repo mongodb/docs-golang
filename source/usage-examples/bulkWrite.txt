@@ -49,9 +49,8 @@ For more information performing batch write operations on a collection
 and handling potential errors, see our guide on <TODO: Bulk Write
 Fundamentals>. 
 
-For more information on bulk operations,
-see the :manual:`MongoDB update operator reference documentation
-</core/bulk-write-operations/>`.
+For more information, see our :manual:`Bulk Write Operations
+</core/bulk-write-operations/>` page.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
