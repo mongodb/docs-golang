@@ -20,12 +20,13 @@ call. A blocking function relies on an external event, such as a network
 input or output, to proceed with its task. 
 
 An example of a blocking function in the Go Driver is the ``Insert()``
-function. If you want to execute an insert operation on a ``Collection``
+function. If you want to perform an insert operation on a ``Collection``
 within 10 seconds, you can use a ``Context`` with a timeout. If the
 operation doesn't complete within the timeout, the function returns
 an error.
 
 .. code-block:: go
+   :emphasize-lines: 3
 
     client := mongo.Connect(context.TODO())
 
@@ -38,7 +39,7 @@ Expiration
 
 The driver considers a Context expired when an operation exceeds its
 timeout or is canceled. The driver checks the Context expiration with
-the ``Done()`` function of the ``Context`` type. 
+the ``Done()`` function. 
 
 The following sections describe when and how the driver checks for
 expiration. 
@@ -65,7 +66,7 @@ connections to check out.
 
 After selecting a server, the driver tries to check out a connection
 from the server’s connection pool. If the Context expires while checking
-out a connection, the function call returns a timeout error. 
+out a connection, the function returns a timeout error. 
 
 Connection Establishment 
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -86,7 +87,7 @@ shorter, the establishment process expires after *1* second.
    :emphasize-lines: 2, 5
 
     opts := options.Client()
-    opts.SetConnectTimeout(1 * time.Second)
+    opts.SetConnectTimeout(1*time.Second)
     client := mongo.Connect(context.TODO(), opts)
 
     ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
