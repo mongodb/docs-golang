@@ -8,12 +8,12 @@ Fundamentals
    :titlesonly:
    :maxdepth: 1
 
-  /fundamentals/context
-  /fundamentals/auth
-
-
+   /fundamentals/connection
+   /fundamentals/context
+   /fundamentals/auth
+   /fundamentals/bson
+   
 ..
-  /fundamentals/connection
   /fundamentals/enterprise-auth
   /fundamentals/databases-collections
   /fundamentals/data-formats

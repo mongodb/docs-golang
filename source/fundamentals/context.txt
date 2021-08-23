@@ -13,26 +13,32 @@ Context
 Overview
 --------
 
-The MongoDB Go Driver uses the **context package** from Go's standard
-library. 
+The MongoDB Go Driver uses the `context package
+<https://pkg.go.dev/context>`__ from Go's standard library to allow
+applications to signal timeouts and cancellations for any **blocking function** 
+call. A blocking function relies on an external event, such as a network
+input or output, to proceed with its task. 
 
-The context package consists of the ``Context`` and ``CancelFunc``
-types. The Go Driver uses both types to simplify the process of
-creating timeout or cancellation tokens for an operation in a blocking
-function. A blocking function is a function that relies on an event,
-such as an input or output, to proceed with its task.
+An example of a blocking function in the Go Driver is the ``Insert()``
+function. If you want to execute an insert operation on a ``Collection``
+within 10 seconds, you can use a ``Context`` with a timeout. If the
+operation doesn't complete within the timeout, the function returns
+an error.
+
+.. code-block:: go
+
+    client := mongo.Connect(context.TODO())
+
+    ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+    defer cancel()
+    client.Database("<db>").Collection("<collection>").Insert(ctx, bson.D{{"x",1}})
 
 Expiration
 ----------
 
-The driver considers a context expired when an operation exceeds its
-timeout or is canceled. The driver checks the context expiration with
+The driver considers a Context expired when an operation exceeds its
+timeout or is canceled. The driver checks the Context expiration with
 the ``Done()`` function of the ``Context`` type. 
-
-The context is not expired if the function returns a closed channel and
-a timestamp that indicates when the function will cancel the completed
-work. The context is expired if the function returns an open channel
-that you can read from. 
 
 The following sections describe when and how the driver checks for
 expiration. 
@@ -40,11 +46,12 @@ expiration.
 Server Selection
 ~~~~~~~~~~~~~~~~
 
-The driver might block you if it can't select a server for an operation.
+The driver might block a function call if it can't select a server for
+an operation. 
 
 In this scenario, the driver loops until it finds a server to use for the
 operation. After each iteration, the driver returns a server selection
-timeout error if the context expired or the selection process took
+timeout error if the Context expired or the selection process took
 longer than the ``serverSelectionTimeoutMS`` setting. 
 
 For more information on how the driver selects a server, see the
@@ -53,68 +60,59 @@ For more information on how the driver selects a server, see the
 Connection Checkout
 ~~~~~~~~~~~~~~~~~~~
 
-After selecting a server, the driver sets a timeout for the
-connection checkout process from the server’s connection pool using
-the context. The context returns a timeout error if you cannot retrieve
-a connection before it expires.  
+The driver might block a function call if there are no available
+connections to check out. 
 
-The following example sets the connection timeout to *3* seconds: 
-
-.. code-block:: go
-   :emphasize-lines: 2
-
-    opts := options.Client()
-    opts.SetConnectTimeout(3 * time.Second)
-    client := mongo.Connect(context.TODO(), opts)
+After selecting a server, the driver tries to check out a connection
+from the server’s connection pool. If the Context expires while checking
+out a connection, the function call returns a timeout error. 
 
 Connection Establishment 
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
+The driver might block an function call if it needs to create a new
+connection.
+
 When the driver needs to create a new connection to execute an
-operation, the context sets a timeout for the establishment process. The
-driver sets the timeout to either the context expiration or connection
+operation, the Context sets a timeout for the establishment process. The
+driver sets the timeout to either the Context expiration or connection
 timeout, whichever is shorter. 
 
 The following example sets the connection timeout to *1* second and the
-context deadline to *2* seconds. Because the connection timeout is
+Context deadline to *2* seconds. Because the connection timeout is
 shorter, the establishment process expires after *1* second.
 
 .. code-block:: go
-   :emphasize-lines: 2, 4
+   :emphasize-lines: 2, 5
 
     opts := options.Client()
     opts.SetConnectTimeout(1 * time.Second)
     client := mongo.Connect(context.TODO(), opts)
-    ctx := context.WithDeadline(2 * time.Second)
 
+    ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+    defer cancel()
     client.Database("<db>").Collection("<collection>").InsertOne(ctx, bson.D{{"x",1}})
     
 Socket Read and Write
 ~~~~~~~~~~~~~~~~~~~~~
 
 When the driver retrieves a connection for an operation, it sets the
-socket’s read or write deadline to either the context deadline or socket
+socket’s read or write deadline to either the Context deadline or socket
 timeout, whichever is shorter.
 
 .. important:: 
 
-    If you cancel the context after the execution of the ``Read()`` or
+    If you cancel the Context after the execution of the ``Read()`` or
     ``Write()`` function but before its deadline, the behavior of the driver
     differs based on version. 
 
-In versions prior to 1.5.0, the driver doesn't detect the context
+In versions prior to 1.5.0, the driver doesn't detect the Context
 cancellation and waits for the ``Read()`` or ``Write()`` function to
 return. 
 
 In versions 1.5.0 and later, the driver generates a separate
-goroutine to listen for context cancellation when the ``Read()`` or
+goroutine to listen for Context cancellation when the ``Read()`` or
 ``Write()`` function is in progress. If the goroutine detects a
 cancellation, it closes the connection. The pending ``Read()`` or
-``Write()`` function returns an error which the driver overwrites to
-the ``context.Canceled`` property. 
-
-Additional Information
-----------------------
-
-For more information about the context package, see the `Go
-documentation <https://pkg.go.dev/context>`__.
+``Write()`` function returns an error which the driver overwrites with
+the ``context.Canceled`` error. 
