@@ -1,6 +1,6 @@
-===========================
-Set Custom BSON Field Names
-===========================
+===============
+Use Struct Tags
+===============
 
 .. default-domain:: mongodb
 
@@ -31,7 +31,7 @@ struct field as ``word_count``:
    :language: go
    :dedent:
 
-Click here **<TODO: github link to file>** to see a fully runnable example.
+Click `here {+example+}/struct-tag.go`__ to see a fully runnable example.
 
 Expected Result
 ---------------
