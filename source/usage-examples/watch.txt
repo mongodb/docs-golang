@@ -9,8 +9,7 @@ You can open a change stream on a ``MongoCollection``,
 
 The following example passes an aggregation pipeline to the ``Watch()``
 method, which opens a change stream on the ``haikus`` collection and
-returns the most current majority-committed version of the updated
-document for replace operations:
+prints inserted documents:
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
@@ -26,30 +25,30 @@ Click `here <{+example+}/watch.go>`__ to see a fully runnable example.
 Expected Result
 ---------------
 
-After you run the preceding example, then run the :doc:`Replace a
-Document usage example </usage-examples/replaceOne>`, you should see
-output similar to the following: 
+After you run the preceding example, run the :doc:`Insert a
+Document usage example </usage-examples/insertOne>` in a different
+shell. After the insert operation completes, you should see output
+similar to the following:  
 
 .. code-block:: json
    :copyable: false
 
-    // results truncated
-    [{_id [{_data 8261...}]} 
-    {operationType replace} 
-    {clusterTime {1629816601 1}} 
-    {fullDocument [{_id ObjectID("...")} {title Dodge ...} {text When there're no matches...}]} 
-    {ns [{db insertDB} {coll haikus}]} 
-    {documentKey [{_id ObjectID("...")}]}] 
+   // results truncated 
+   Waiting For Change Events. Insert something in MongoDB!
+   {fullDocument [{_id ObjectID("...")} {title Record of ...} {text No bytes, no problem....}]}
+
+.. note::
+
+   The shell will continue to run until terminate it.
 
 Additional Information
 ----------------------
 
-For more information on opening a change stream documents and handling
-potential errors, see our guide on <TODO: Retrieve Data > ChangeStream
-section>. 
+For more information on opening a change stream and handling
+potential errors, see our following guides: 
 
-For more information on change streams, see the
-:manual:`change streams documentation </changeStreams>`.
+- Go Driver <TODO: Change Stream Guide>
+- MongoDB Server Manual :manual:`Change Streams Documentation </changeStreams>`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

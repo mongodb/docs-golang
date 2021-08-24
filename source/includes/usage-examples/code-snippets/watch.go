@@ -13,7 +13,7 @@ import (
 
 func main() {
 	var uri string
-	if uri = os.Getenv("DRIVER_REF_URI"); uri == "" {
+	if uri = os.Getenv("MONGODB_URI"); uri == "" {
 		log.Fatal("You must set your 'MONGODB_URI' environmental variable. See\n\t https://docs.mongodb.com/drivers/go/current/usage-examples/")
 	}
 
@@ -29,20 +29,22 @@ func main() {
 
 	// begin watch
     coll := client.Database("insertDB").Collection("haikus")
-    pipeline := mongo.Pipeline{bson.D{{"$match", bson.D{{"operationType", "replace"}}}}}
-    cs, err := coll.Watch(context.TODO(), pipeline, options.ChangeStream().SetFullDocument(options.UpdateLookup))
+    pipeline := mongo.Pipeline{bson.D{{"$match", bson.D{{"operationType", "insert"}}}}}
+    cs, err := coll.Watch(context.TODO(), pipeline)
     defer cs.Close(context.TODO())
 
     if err := cs.Err(); err != nil {
         panic(err)
     }
 
+	fmt.Println("Waiting For Change Events. Insert something in MongoDB!")
+	
     for cs.Next(context.TODO()) {
         var event bson.D
         if err := cs.Decode(&event); err != nil {
             panic(err)
         }
-        fmt.Println(event)
+        fmt.Println(event[3])
     }
 	// end watch
 }
