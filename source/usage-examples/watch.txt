@@ -4,7 +4,53 @@ Watch for Changes
 
 .. default-domain:: mongodb
 
-You can keep track of changes to data in MongoDB, such as changes to a
-collection, database, or deployment, by opening a **change stream**. A change
-stream allows applications to watch for changes to data and react to them.
-The change stream returns **change event** documents when changes occur.
+You can open a change stream on a ``MongoCollection``,
+``MongoDatabase``, or ``MongoClient`` by using the ``Watch()`` method.
+
+The following example passes an aggregation pipeline to the ``Watch()``
+method, which opens a change stream on the ``haikus`` collection and
+returns the most current majority-committed version of the updated
+document for replace operations:
+
+.. include:: /includes/usage-examples/run-example-tip.rst
+
+.. literalinclude:: /includes/usage-examples/code-snippets/watch.go
+   :start-after: begin watch
+   :end-before: end watch
+   :emphasize-lines: 3
+   :language: go
+   :dedent:
+
+Click `here <{+example+}/watch.go>`__ to see a fully runnable example.
+
+Expected Result
+---------------
+
+When you run the preceding example, then the :doc:`ReplaceOne usage
+example </usage-examples/replaceOne>`, you should see output similar to
+the following: 
+
+.. code-block:: json
+
+    // results truncated
+    [{_id [{_data 8261...}]} 
+    {operationType replace} 
+    {clusterTime {1629816601 1}} 
+    {fullDocument [{_id ObjectID("...")} {title Dodge The Greys} {text When there're no matches...}]} 
+    {ns [{db insertDB} {coll haikus}]} 
+    {documentKey [{_id ObjectID("...")}]}] 
+
+Additional Information
+----------------------
+
+For more information on opening a change stream documents and handling
+potential errors, see our guide on <TODO: Retrieve Data > ChangeStream
+section>. 
+
+For more information on change streams, see our server manual entry on
+:manual:`Change Streams </changeStreams>`.
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+`Watch() <{+godocs+}/mongo#Collection.Watch`__
