@@ -26,17 +26,18 @@ Click `here <{+example+}/watch.go>`__ to see a fully runnable example.
 Expected Result
 ---------------
 
-When you run the preceding example, then the :doc:`ReplaceOne usage
-example </usage-examples/replaceOne>`, you should see output similar to
-the following: 
+After you run the preceding example, then run the :doc:`Replace a
+Document usage example </usage-examples/replaceOne>`, you should see
+output similar to the following: 
 
 .. code-block:: json
+   :copyable: false
 
     // results truncated
     [{_id [{_data 8261...}]} 
     {operationType replace} 
     {clusterTime {1629816601 1}} 
-    {fullDocument [{_id ObjectID("...")} {title Dodge The Greys} {text When there're no matches...}]} 
+    {fullDocument [{_id ObjectID("...")} {title Dodge ...} {text When there're no matches...}]} 
     {ns [{db insertDB} {coll haikus}]} 
     {documentKey [{_id ObjectID("...")}]}] 
 
@@ -47,10 +48,10 @@ For more information on opening a change stream documents and handling
 potential errors, see our guide on <TODO: Retrieve Data > ChangeStream
 section>. 
 
-For more information on change streams, see our server manual entry on
-:manual:`Change Streams </changeStreams>`.
+For more information on change streams, see the
+:manual:`change streams documentation </changeStreams>`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-`Watch() <{+godocs+}/mongo#Collection.Watch`__
+`Watch() <{+godocs+}/mongo#Collection.Watch>`__

@@ -28,21 +28,21 @@ func main() {
 	}()
 
 	// begin watch
-	coll := client.Database("insertDB").Collection("haikus")
-	pipeline := mongo.Pipeline{bson.D{{"$match", bson.D{{"operationType", "replace"}}}}}
+    coll := client.Database("insertDB").Collection("haikus")
+    pipeline := mongo.Pipeline{bson.D{{"$match", bson.D{{"operationType", "replace"}}}}}
     cs, err := coll.Watch(context.TODO(), pipeline, options.ChangeStream().SetFullDocument(options.UpdateLookup))
     defer cs.Close(context.TODO())
 
-	if err := cs.Err(); err != nil {
-		panic(err)
-	}
+    if err := cs.Err(); err != nil {
+        panic(err)
+    }
 
-	for cs.Next(context.TODO()) {
-		var event bson.D
-		if err := cs.Decode(&event); err != nil {
-			panic(err)
-		}
-		fmt.Println(event)
-	}
+    for cs.Next(context.TODO()) {
+        var event bson.D
+        if err := cs.Decode(&event); err != nil {
+            panic(err)
+        }
+        fmt.Println(event)
+    }
 	// end watch
 }
