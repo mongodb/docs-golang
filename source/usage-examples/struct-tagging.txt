@@ -31,7 +31,7 @@ struct field as ``word_count``:
    :language: go
    :dedent:
 
-Click `here {+example+}/struct-tag.go`__ to see a fully runnable example.
+Click `here <{+example+}/struct-tag.go>`__ to see a fully runnable example.
 
 Expected Result
 ---------------
