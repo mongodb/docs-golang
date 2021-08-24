@@ -37,7 +37,7 @@ func main() {
         panic(err)
     }
 
-	fmt.Println("Waiting For Change Events. Insert something in MongoDB!")
+    fmt.Println("Waiting For Change Events. Insert something in MongoDB!")
 	
     for cs.Next(context.TODO()) {
         var event bson.D

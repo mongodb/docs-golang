@@ -27,8 +27,8 @@ Expected Result
 
 After you run the preceding example, run the :doc:`Insert a
 Document usage example </usage-examples/insertOne>` in a different
-shell. After the insert operation completes, you should see output
-similar to the following:  
+shell. When MongoDB completes the insert operation, you should see
+output similar to the following:  
 
 .. code-block:: json
    :copyable: false
