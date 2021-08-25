@@ -26,6 +26,8 @@ The driver provides five methods to change documents:
 * ``ReplaceOne()``
 * ``BulkWrite()``, *(not discussed in this guide)*
 
+.. end driver specific
+
 In MongoDB, all change methods follow the same pattern:
 
 .. figure:: /includes/figures/change_diagram.png
