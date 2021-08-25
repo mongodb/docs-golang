@@ -13,20 +13,26 @@ Change a Document
 Overview
 --------
 
-In this guide, you can learn how to change documents in a MongoDB
-collection using **update** and **replace** operations.
+In this guide, you can learn how to change documents in MongoDB using
+**update** and **replace** operations.
 
-Update operations modify the fields that you specify in one or more
-documents while leaving other fields and values unchanged. Replace
-operations remove all existing fields except for ``_id`` in
-a document and substitute the deleted fields with the new fields
-and values you specify.
+Update operations change the fields that you specify while leaving other
+fields and values unchanged. Replace operations remove all existing fields
+except for ``_id`` in a document and substitute the deleted fields with
+the new fields and values you specify.
+
+All update and change methods follow the same pattern:
+
+.. figure:: /figures/change_diagram.png
+   :alt: Change method signature
+
+
 
 A Note About ``_id``
 ~~~~~~~~~~~~~~~~~~~~
 
 Each document in a MongoDB collection has a unique and immutable ``_id``
-field. You cannot use update and replace operations to modify the
+field. You cannot use update and replace operations to change the
 ``_id`` field. If you attempt to change this field, the update and
 replace methods return a `WriteError <{+godocs+}/mongo#WriteError>`__.
 
@@ -35,8 +41,16 @@ replace methods return a `WriteError <{+godocs+}/mongo#WriteError>`__.
 Update
 ------
 
-To update one document, use the `UpdateOne() <{+godocs+}/mongo#Collection.UpdateOne>`__ method, and to update
-multiple documents, use the `UpdateMany() <{+godocs+}/mongo#Collection.UpdateMany>`__ method. 
+To update one document, use the `UpdateOne() <{+godocs+}/mongo#Collection.UpdateOne>`__
+method, and to update multiple documents, use the `UpdateMany() <{+godocs+}/mongo#Collection.UpdateMany>`__
+method.
+
+.. note:: ``UpdateOne`` vs. ``UpdateMany``
+
+   ``UpdateOne()`` updates the _first_ document that matches the query
+   filter supplied. To update all documents that match the query filter, use
+   ``UpdateMany()``.
+
 
 Parameters
 ~~~~~~~~~~
@@ -48,8 +62,8 @@ Update documents use the following format:
 
 .. code-block:: go
 
-   bson.D{{"<update operator>", bson.D{{"<field>", "<value>"}, 
-                                       {"<field>", "<value>"}, ... }}, 
+   bson.D{{"<update operator>", bson.D{{"<field>", "<value>"},
+                                       {"<field>", "<value>"}, ... }},
           {"<update operator>", ... }, ... }
 
 See the MongoDB server manual for a :manual:`complete list of update operators
@@ -63,7 +77,7 @@ and descriptions </reference/operator/update-field/>`.
    aggregation pipelines, see our tutorial on performing
    :manual:`updates with aggregation pipelines
    </tutorial/update-documents-with-aggregation-pipeline/>`.
-   
+
 Return Values
 ~~~~~~~~~~~~~
 
@@ -110,7 +124,7 @@ The following example uses the ``UpdateOne()`` method to:
 .. code-block:: go
 
    filter := bson.D{{"_id", 2158}}
-   update := bson.D{{"$set", bson.D{{"name", "Mary Wollstonecraft Shelley"}, 
+   update := bson.D{{"$set", bson.D{{"name", "Mary Wollstonecraft Shelley"},
        {"role", "Marketing Director"}}, {"$inc", bson.D{{"bonus", 2000}}}}
 
    result, err := collection.UpdateOne(context.TODO(), filter, update)
