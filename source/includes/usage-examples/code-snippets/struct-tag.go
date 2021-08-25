@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -13,17 +14,18 @@ import (
 
 // begin struct
 type BlogPost struct {
-	Title     string
-	Author    string
-	WordCount int `bson:"word_count"`
-	Tags      []string
+	Title       string
+	Author      string
+	WordCount   int `bson:"word_count"`
+	LastUpdated time.Time
+	Tags        []string
 }
 
 // end struct
 
 func main() {
 	var uri string
-	if uri = os.Getenv("MONGODB_uri"); uri == "" {
+	if uri = os.Getenv("MONGODB_URI"); uri == "" {
 		log.Fatal("You must set your `MONGODB_URI' environmental variable. See\n\t https://docs.mongodb.com/drivers/go/current/usage-examples/")
 	}
 
@@ -42,10 +44,11 @@ func main() {
 	myCollection := client.Database("sample_training").Collection("posts")
 
 	post := BlogPost{
-		Title:     "Annuals vs. Perennials?",
-		Author:    "Sam Lee",
-		WordCount: 682,
-		Tags:      []string{"seasons", "gardening", "flower"},
+		Title:       "Annuals vs. Perennials?",
+		Author:      "Sam Lee",
+		WordCount:   682,
+		LastUpdated: time.Now(),
+		Tags:        []string{"seasons", "gardening", "flower"},
 	}
 
 	_, err = myCollection.InsertOne(context.TODO(), post)

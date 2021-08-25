@@ -47,6 +47,7 @@ the following document in the ``posts`` collection:
        "title" : "Annuals vs. Perennials?",
        "author" : "Sam Lee",
        "word_count" : 682,
+       "lastupdated": ...,
        "tags" : ["seasons", "gardening", "flower"]
    }
 
