@@ -16,20 +16,31 @@ Overview
 In this guide, you can learn how to change documents in MongoDB using
 **update** and **replace** operations.
 
-Update operations change the fields that you specify while leaving other
-fields and values unchanged. Replace operations remove all existing fields
-except for ``_id`` in a document and substitute the deleted fields with
-the new fields and values you specify.
-
-All change methods follow the same pattern:
+In MongoDB, all change methods follow the same pattern:
 
 .. figure:: /includes/figures/change_diagram.png
    :alt: Change method signature
 
-* You supply a query filter to match the document, or documents, you want to change.
-* You specify the fields and values you want to change.
-* You specify any options you want to use to modify the default behavior.
+* Specify a query filter to match the document, or documents, to change.
+* Specify the fields and value changes.
+* Specify options to modify behavior, if needed.
 
+
+.. driver specific
+
+The driver provides five methods to change documents:
+
+* ``UpdateByID()``
+* ``UpdateOne()``
+* ``UpdateMany()``
+* ``ReplaceOne()``
+* ``BulkWrite()``, (not discussed in this guide)
+
+
+Update operations change the fields that you specify while leaving other
+fields and values unchanged. Replace operations remove all existing fields
+except for ``_id`` in a document and substitute the deleted fields with
+the new fields and values you specify.
 
 A Note About ``_id``
 ~~~~~~~~~~~~~~~~~~~~
@@ -44,11 +55,14 @@ replace methods return a `WriteError <{+godocs+}/mongo#WriteError>`__.
 Update
 ------
 
-To update one document, use the `UpdateOne() <{+godocs+}/mongo#Collection.UpdateOne>`__
-method, and to update multiple documents, use the `UpdateMany() <{+godocs+}/mongo#Collection.UpdateMany>`__
-method.
+To update one document, use the one of the following methods:
+* `UpdateOne() <{+godocs+}/mongo#Collection.UpdateOne>`__
+* `UpdateByID() <{+godocs+}/mongo#Collection.UpdateByID>`__
 
-.. note:: ``UpdateOne`` vs. ``UpdateMany``
+Use `UpdateMany() <{+godocs+}/mongo#Collection.UpdateMany>`__ to update
+multiple documents.
+
+.. tip:: ``UpdateOne`` vs. ``UpdateMany``
 
    ``UpdateOne()`` updates the _first_ document that matches the query
    filter supplied. To update all documents that match the query filter, use
@@ -84,7 +98,8 @@ and descriptions </reference/operator/update-field/>`.
 Return Values
 ~~~~~~~~~~~~~
 
-The ``UpdateOne()`` and ``UpdateMany()`` methods return an `UpdateResult <{+godocs+}/mongo#UpdateResult>`__ type that
+``UpdateOne()``, ``UpdateByID()``, and ``UpdateMany()`` return an
+`UpdateResult <{+godocs+}/mongo#UpdateResult>`__ type that
 contains information about the update operation if the operation is
 successful. The ``UpdateResult`` type contains the following properties:
 
@@ -97,8 +112,8 @@ successful. The ``UpdateResult`` type contains the following properties:
 If multiple documents match the query filter passed to ``UpdateOne()``,
 the method selects and updates the first matched document. If no
 documents match the query filter, the update operation will make no
-changes. See our **<TODO: link>** upsert guide to learn how to insert a
-new document if no documents match the query filter.
+changes. See our :doc:`upsert guide </fundamentals/crud/write-operations/upsert>`
+to learn how to insert a new document if no documents match the query filter.
 
 Example
 ~~~~~~~
@@ -117,7 +132,7 @@ The following document describes an employee:
       ...
    }
 
-The following example uses the ``UpdateOne()`` method to:
+The following example uses the ``UpdateByID()`` method to:
 
 - Match the document where the ``_id`` value is 2158.
 - Set the ``name`` field to "Mary Wollstonecraft Shelley" and the
