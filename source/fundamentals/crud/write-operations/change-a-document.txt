@@ -21,11 +21,14 @@ fields and values unchanged. Replace operations remove all existing fields
 except for ``_id`` in a document and substitute the deleted fields with
 the new fields and values you specify.
 
-All update and change methods follow the same pattern:
+All change methods follow the same pattern:
 
-.. figure:: /figures/change_diagram.png
+.. figure:: /includes/figures/change_diagram.png
    :alt: Change method signature
 
+* You supply a query filter to match the document, or documents, you want to change.
+* You specify the fields and values you want to change.
+* You specify any options you want to use to modify the default behavior.
 
 
 A Note About ``_id``
