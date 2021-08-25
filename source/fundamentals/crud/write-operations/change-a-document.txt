@@ -16,16 +16,6 @@ Overview
 In this guide, you can learn how to change documents in MongoDB using
 **update** and **replace** operations.
 
-In MongoDB, all change methods follow the same pattern:
-
-.. figure:: /includes/figures/change_diagram.png
-   :alt: Change method signature
-
-* Specify a query filter to match the document, or documents, to change.
-* Specify the fields and value changes.
-* Specify options to modify behavior, if needed.
-
-
 .. driver specific
 
 The driver provides five methods to change documents:
@@ -34,7 +24,18 @@ The driver provides five methods to change documents:
 * ``UpdateOne()``
 * ``UpdateMany()``
 * ``ReplaceOne()``
-* ``BulkWrite()``, (not discussed in this guide)
+* ``BulkWrite()``, *(not discussed in this guide)*
+
+In MongoDB, all change methods follow the same pattern:
+
+.. figure:: /includes/figures/change_diagram.png
+   :alt: Change method signature
+
+The methods expect you to:
+
+* Specify a query filter to match one or more documents to change.
+* Specify the field and value changes.
+* Specify options to modify behavior, if needed.
 
 
 Update operations change the fields that you specify while leaving other
