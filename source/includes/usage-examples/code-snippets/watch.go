@@ -44,7 +44,7 @@ func main() {
         if err := cs.Decode(&event); err != nil {
             panic(err)
         }
-        fmt.Println(event[3])
+        fmt.Println(event[3].Value)
     }
 	// end watch
 }
