@@ -56,17 +56,12 @@ Update
 ------
 
 To update one document, use the one of the following methods:
+
 * `UpdateOne() <{+godocs+}/mongo#Collection.UpdateOne>`__
 * `UpdateByID() <{+godocs+}/mongo#Collection.UpdateByID>`__
 
 Use `UpdateMany() <{+godocs+}/mongo#Collection.UpdateMany>`__ to update
 multiple documents.
-
-.. tip:: ``UpdateOne`` vs. ``UpdateMany``
-
-   ``UpdateOne()`` updates the _first_ document that matches the query
-   filter supplied. To update all documents that match the query filter, use
-   ``UpdateMany()``.
 
 
 Parameters
