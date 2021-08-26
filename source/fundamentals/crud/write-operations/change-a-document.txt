@@ -16,34 +16,33 @@ Overview
 In this guide, you can learn how to change documents in MongoDB using
 **update** and **replace** operations.
 
-.. driver specific
-
-The driver provides five methods to change documents:
-
-* ``UpdateByID()``
-* ``UpdateOne()``
-* ``UpdateMany()``
-* ``ReplaceOne()``
-* ``BulkWrite()``, *(not discussed in this guide)*
-
-.. end driver specific
+Update operations change the fields that you specify while leaving other
+fields and values unchanged. Replace operations remove all existing fields
+except for ``_id`` in a document and substitute the deleted fields with
+the new fields and values you specify.
 
 In MongoDB, all change methods follow the same pattern:
 
 .. figure:: /includes/figures/change_diagram.png
    :alt: Change method signature
 
-The methods expect you to:
+The pattern expects you to:
 
 * Specify a query filter to match one or more documents to change.
 * Specify the field and value changes.
 * Specify options to modify behavior, if needed.
 
+.. driver specific
 
-Update operations change the fields that you specify while leaving other
-fields and values unchanged. Replace operations remove all existing fields
-except for ``_id`` in a document and substitute the deleted fields with
-the new fields and values you specify.
+The driver provides the following methods to change documents:
+
+* ``UpdateByID()``
+* ``UpdateOne()``
+* ``UpdateMany()``
+* ``ReplaceOne()``
+* ``BulkWrite()`` *(not discussed in this guide)*
+
+.. end driver specific
 
 A Note About ``_id``
 ~~~~~~~~~~~~~~~~~~~~
@@ -58,10 +57,9 @@ replace methods return a `WriteError <{+godocs+}/mongo#WriteError>`__.
 Update
 ------
 
-To update one document, use the one of the following methods:
-
-* `UpdateOne() <{+godocs+}/mongo#Collection.UpdateOne>`__
-* `UpdateByID() <{+godocs+}/mongo#Collection.UpdateByID>`__
+Use either `UpdateOne() <{+godocs+}/mongo#Collection.UpdateOne>`__ or
+`UpdateByID() <{+godocs+}/mongo#Collection.UpdateByID>`__ to update a
+single document.
 
 Use `UpdateMany() <{+godocs+}/mongo#Collection.UpdateMany>`__ to update
 multiple documents.
