@@ -27,17 +27,20 @@ func main() {
 		}
 	}()
 
-	// begin insertOne
+	// begin replace
 	coll := client.Database("insertDB").Collection("haikus")
-	doc := bson.D{{"title", "Record of a Shriveled Datum"}, {"text", "No bytes, no problem. Just insert a document, in MongoDB"}}
+	filter := bson.D{{"title", "Record of a Shriveled Datum"}}
+	replacement := bson.D{{"title", "Dodging Greys"}, {"text", "When there're no matches, no longer need to panic. You can use upsert"}}
 
-	result, err := coll.InsertOne(context.TODO(), doc)
-	// end insertOne
+	result, err := coll.ReplaceOne(context.TODO(), filter, replacement)
+	// end replace
 
 	if err != nil {
 		panic(err)
 	}
 
-	// When you run this file it should print "Document inserted with ID: ObjectID("...")
-	fmt.Printf("Document inserted with ID: %s\n", result.InsertedID)
+	// When you run this file for the first time, it should print: "Number of documents replaced: 1"
+	if result.MatchedCount != 0 {
+		fmt.Println("Number of documents replaced: %d\n", result.ModifiedCount)
+	}
 }

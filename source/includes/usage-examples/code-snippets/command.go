@@ -7,7 +7,6 @@ import (
 	"os"
 
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -28,18 +27,18 @@ func main() {
 		}
 	}()
 
-	// begin updateone
-	myCollection := client.Database("sample_restaurants").Collection("restaurants")
-	id, _ := primitive.ObjectIDFromHex("5eb3d668b31de5d588f42a7a")
-	filter := bson.D{{"_id", id}}
-	update := bson.D{{"$set", bson.D{{"avg_rating", 4.4}}}}
+	// begin runCommand
+	db := client.Database("sample_restaurants")
+	command := bson.D{{"dbStats", 1}}
 
-	result, err := myCollection.UpdateOne(context.TODO(), filter, update)
-	// end updateone
+	var result bson.D
+	commandErr := db.RunCommand(context.TODO(), command).Decode(&result)
+	// end runCommand
 
-	if err != nil {
-		panic(err)
+	if commandErr != nil {
+		panic(commandErr)
 	}
 
-	fmt.Printf("Documents updated: %v\n", result.ModifiedCount)
+	// When you run this file, it should print: [{db sample_restaurants} {collections 2} {views 0} {objects 25554} {avgObjSize 548.4101901854896} {dataSize 14014074} {storageSize 8257536} {totalFreeStorageSize 0} {numExtents 0} {indexes 2} {indexSize 286720} {fileSize 0} {nsSizeMB 0} {ok 1}]
+	fmt.Println(result)
 }
