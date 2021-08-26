@@ -19,7 +19,7 @@ Usage Examples
    /usage-examples/command
    /usage-examples/struct-tagging
    /usage-examples/distinct
-   /usage-examples/bulk
+   /usage-examples/bulkWrite
 
 ..
    /usage-examples/insert-operations
