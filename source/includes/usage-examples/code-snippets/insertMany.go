@@ -27,17 +27,23 @@ func main() {
 		}
 	}()
 
-	// begin insertOne
+	// begin insertMany
 	coll := client.Database("insertDB").Collection("haikus")
-	doc := bson.D{{"title", "Record of a Shriveled Datum"}, {"text", "No bytes, no problem. Just insert a document, in MongoDB"}}
+	docs := []interface{}{
+		bson.D{{"title", "Record of a Shriveled Datum"}, {"text", "No bytes, no problem. Just insert a document, in MongoDB"}},
+		bson.D{{"title", "Showcasing a Blossoming Binary"}, {"text", "Binary data, safely stored with GridFS. Bucket the data"}},
+	}
 
-	result, err := coll.InsertOne(context.TODO(), doc)
-	// end insertOne
+	result, err := coll.InsertMany(context.TODO(), docs)
+	// end insertMany
 
 	if err != nil {
 		panic(err)
 	}
 
-	// When you run this file it should print "Document inserted with ID: ObjectID("...")
-	fmt.Printf("Document inserted with ID: %s\n", result.InsertedID)
+	// When you run this file it should print "2 documents inserted with IDs: ...
+	fmt.Printf("%d documents inserted with IDs:\n", len(result.InsertedIDs))
+	for _, id := range result.InsertedIDs {
+		fmt.Printf("\t%s\n", id)
+	}
 }
