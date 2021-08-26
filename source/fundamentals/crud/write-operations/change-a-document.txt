@@ -21,7 +21,7 @@ fields and values unchanged. Replace operations remove all existing fields
 except for ``_id`` in a document and substitute the deleted fields with
 the new fields and values you specify.
 
-In MongoDB, all change methods follow the same pattern:
+In MongoDB, all methods to change documents follow the same pattern:
 
 .. figure:: /includes/figures/change_diagram.png
    :alt: Change method signature
@@ -172,10 +172,15 @@ The following shows the updated document resulting from the preceding update ope
 Replace
 -------
 
-To perform a replace operation, use the `ReplaceOne() <{+godocs+}/mongo#Collection.ReplaceOne>`__ method and
-specify a **replacement document**, which is the document that you want
-to take the place of an existing document. Replacement documents use the
-following format:
+Use the `ReplaceOne() <{+godocs+}/mongo#Collection.ReplaceOne>`__ method
+to replace a single document.
+
+Parameters
+~~~~~~~~~~
+
+``ReplaceOne()`` expects a **replacement document**, which is the document
+that you want to take the place of an existing document. Replacement
+documents use the following format:
 
 .. code-block:: go
 
