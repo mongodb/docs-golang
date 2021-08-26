@@ -86,8 +86,8 @@ The output should look like this:
 For more information on the types and functions mentioned in this
 section, see the following resources:
 
-- `InsertOne() <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo@v1.7.0#Collection.InsertOne>`__  API documentation
-- `InsertOneResult <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo@v1.7.0#InsertOneResult>`__ API documentation
+- `InsertOne() <{+godocs+}/mongo#Collection.InsertOne>`__  API documentation
+- `InsertOneResult <{+godocs+}/mongo#InsertOneResult>`__ API documentation
 - Server Manual Entry on :manual:`insertOne() </reference/method/db.collection.insertOne/>`
 - Runnable :doc:`Insert a Document Usage Example </usage-examples/insertOne>`
 
