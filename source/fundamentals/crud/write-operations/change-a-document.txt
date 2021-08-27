@@ -41,6 +41,8 @@ The driver provides the following methods to change documents:
 * ``UpdateMany()``
 * ``ReplaceOne()``
 * ``BulkWrite()`` *(not discussed in this guide)*
+* ``FindOneAndUpdate()`` *(not discussed in this guide)*
+* ``FindOneAndReplace()`` *(not discussed in this guide)*
 
 .. end driver specific
 
@@ -75,7 +77,7 @@ Update documents use the following format:
 
 .. code-block:: go
 
-   bson.D{{"<update operator>", bson.D{{"<field>", "<value>"},
+   bson.D{{"<update operator>", bson.D{{"<field>", <value>},
                                        {"<field>", "<value>"}, ... }},
           {"<update operator>", ... }, ... }
 
@@ -84,7 +86,7 @@ and descriptions </reference/operator/update-field/>`.
 
 .. note:: Aggregation Pipelines in Update Operations
 
-   If you are using MongoDB Version 4.2 or later, you can use aggregation
+   If you are using MongoDB Server version 4.2 or later, you can use aggregation
    pipelines made up of a subset of aggregation stages in update operations. For
    more information on the aggregation stages MongoDB supports in
    aggregation pipelines, see our tutorial on performing
