@@ -17,7 +17,7 @@ In this guide, you can learn how to **insert** documents into a MongoDB
 collection.
 
 Before you can find, update, and delete documents in MongoDB, you need
-to insert those documents. Insert operation insert one or more
+to insert those documents. Insert operations insert one or more
 documents into a MongoDB collection using one of the following methods:
 ``InsertOne()``, ``InsertMany()``, or ``BulkWrite()``.
 
@@ -35,7 +35,9 @@ In MongoDB, each document *must* contain a unique ``_id`` field.
 The two options for managing this field are:
 
 - You can manage this field yourself, ensuring each value you use is unique.
-- You can let the driver automatically generate unique ``ObjectId`` values.
+- You can let the driver automatically generate unique ``ObjectId`` values. The
+  driver generates unique ``ObjectId`` values for documents that you do
+  not explicitly specify an ``_id``.
 
 Unless you provide strong guarantees for uniqueness, we recommend
 you let the driver automatically generate ``_id`` values.
@@ -43,7 +45,7 @@ you let the driver automatically generate ``_id`` values.
 .. note::
 
    Duplicate ``_id`` values violate unique index constraints, which
-   causes the driver to throw a ``WriteError``.
+   causes the driver to return a ``WriteError``.
 
 For more information about the ``_id`` field, see the Server Manual Entry on
 :manual:`Unique Indexes </core/index-unique/>`.
@@ -112,14 +114,14 @@ For example, assume you want to insert the following documents:
    { "_id": 1, "country": "Vietnam" }
    { "_id": 3, "country": "Argentina" }
 
-If you attempt to insert these documents, a ``WriteError`` occurs at the
+If you attempt to insert these documents, a ``BulkWriteException`` occurs at the
 third document because of the repeated ``_id`` value, but the documents
 before the error-producing document still get inserted into your collection.
 
 .. note::
 
    You can get an acknowledgement of successful document insertion even
-   if a WriteError occurs:
+   if a BulkWriteException occurs:
 
    .. code-block:: go
 
@@ -193,7 +195,7 @@ Your output should look like this:
 For more information on the types and functions mentioned in this
 section, see the following resources:
 
-- `InsertMany() <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo@v1.7.0#Collection.InsertMany>`__ API documentation
-- `InsertManyResult <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo@v1.7.0#InsertManyResult>`__ API documentation
+- `InsertMany() <{+godocs+}/mongo#Collection.InsertMany>`__ API documentation
+- `InsertManyResult <{+godocs+}/mongo#InsertManyResult>`__ API documentation
 - Server Manual Entry on :manual:`insertMany() </reference/method/db.collection.insertMany/>`
 - Runnable :doc:`Insert Multiple Documents Example </usage-examples/insertMany>`
