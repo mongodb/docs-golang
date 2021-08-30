@@ -4,7 +4,7 @@ Find a Document
 
 .. default-domain:: mongodb
 
-You can retrieve a single document from a collection with the
+You can retrieve a single document from a collection by using the
 ``FindOne()`` method.
 
 The following example passes a query filter to the ``FindOne()`` method,
