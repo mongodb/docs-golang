@@ -27,6 +27,16 @@ Expected Result
 
 After you run the code example, you will see output similar to:
 
+.. code-block:: json
+   :copyable: False
+
+   {
+     ...
+     "title": "The Room",
+     "year": 2003,
+     ...
+   }
+
 
 
 For more information on the methods, interfaces, structs, and functions
