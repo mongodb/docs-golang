@@ -26,6 +26,10 @@ In MongoDB, all methods to change documents follow the same pattern:
 .. figure:: /includes/figures/change_diagram.png
    :alt: Change method signature
 
+.. note:: Placeholder
+
+   ``changeX`` is a placeholder and not a real method.
+
 The pattern expects you to:
 
 * Specify a query filter to match one or more documents to change.
@@ -78,7 +82,7 @@ Update documents use the following format:
 .. code-block:: go
 
    bson.D{{"<update operator>", bson.D{{"<field>", <value>},
-                                       {"<field>", "<value>"}, ... }},
+                                       {"<field>", <value>}, ... }},
           {"<update operator>", ... }, ... }
 
 See the MongoDB server manual for a :manual:`complete list of update operators
@@ -141,7 +145,7 @@ The following example uses the ``UpdateByID()`` method to:
 
    filter := bson.D{{"_id", 2158}}
    update := bson.D{{"$set", bson.D{{"name", "Mary Wollstonecraft Shelley"},
-       {"role", "Marketing Director"}}, {"$inc", bson.D{{"bonus", 2000}}}}
+       {"role", "Marketing Director"}}}, {"$inc", bson.D{{"bonus", 2000}}}}
 
    result, err := collection.UpdateOne(context.TODO(), filter, update)
    fmt.Printf("Documents matched: %v\n", result.MatchedCount)
