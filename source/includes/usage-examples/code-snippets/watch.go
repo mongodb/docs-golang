@@ -34,7 +34,7 @@ func main() {
     if err != nil {
         panic(err)
     }
-	defer cs.Close(context.TODO())
+    defer cs.Close(context.TODO())
 
     fmt.Println("Waiting For Change Events. Insert something in MongoDB!")
 	
