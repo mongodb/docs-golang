@@ -28,25 +28,25 @@ func main() {
 	}()
 
 	// begin watch
-    coll := client.Database("insertDB").Collection("haikus")
-    pipeline := mongo.Pipeline{bson.D{{"$match", bson.D{{"operationType", "insert"}}}}}
-    cs, err := coll.Watch(context.TODO(), pipeline)
-    if err != nil {
-        panic(err)
-    }
-    defer cs.Close(context.TODO())
+	coll := client.Database("insertDB").Collection("haikus")
+	pipeline := mongo.Pipeline{bson.D{{"$match", bson.D{{"operationType", "insert"}}}}}
+	cs, err := coll.Watch(context.TODO(), pipeline)
+	if err != nil {
+		panic(err)
+	}
+	defer cs.Close(context.TODO())
 
-    fmt.Println("Waiting For Change Events. Insert something in MongoDB!")
-	
-    for cs.Next(context.TODO()) {
-        var event bson.D
-        if err := cs.Decode(&event); err != nil {
-            panic(err)
-        }
-        fmt.Println(event[3].Value)
-    }
-    if err := cs.Err(); err != nil {
-        panic(err)
-    }
+	fmt.Println("Waiting For Change Events. Insert something in MongoDB!")
+
+	for cs.Next(context.TODO()) {
+		var event bson.D
+		if err := cs.Decode(&event); err != nil {
+			panic(err)
+		}
+		fmt.Println(event[3].Value)
+	}
+	if err := cs.Err(); err != nil {
+		panic(err)
+	}
 	// end watch
 }
