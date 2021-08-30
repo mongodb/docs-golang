@@ -7,7 +7,6 @@ import (
 	"os"
 
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -28,18 +27,21 @@ func main() {
 		}
 	}()
 
-	// begin updateone
-	myCollection := client.Database("sample_restaurants").Collection("restaurants")
-	id, _ := primitive.ObjectIDFromHex("5eb3d668b31de5d588f42a7a")
-	filter := bson.D{{"_id", id}}
-	update := bson.D{{"$set", bson.D{{"avg_rating", 4.4}}}}
+	// begin distinct
+	coll := client.Database("sample_mflix").Collection("movies")
+	filter := bson.D{{"directors", "Natalie Portman"}}
 
-	result, err := myCollection.UpdateOne(context.TODO(), filter, update)
-	// end updateone
+	results, err := coll.Distinct(context.TODO(), "title", filter)
+	// end distinct
 
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Printf("Documents updated: %v\n", result.ModifiedCount)
+	// When you run this file, it should print: 
+	// A Tale of Love and Darkness
+	// New York, I Love You
+	for _, result := range results {
+		fmt.Println(result)
+	}
 }

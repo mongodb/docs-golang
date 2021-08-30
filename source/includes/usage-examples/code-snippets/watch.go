@@ -31,11 +31,10 @@ func main() {
     coll := client.Database("insertDB").Collection("haikus")
     pipeline := mongo.Pipeline{bson.D{{"$match", bson.D{{"operationType", "insert"}}}}}
     cs, err := coll.Watch(context.TODO(), pipeline)
-    defer cs.Close(context.TODO())
-
-    if err := cs.Err(); err != nil {
-        panic(err)
-    }
+	if err != nil {
+		panic(err)
+	}
+	defer cs.Close(context.TODO())
 
     fmt.Println("Waiting For Change Events. Insert something in MongoDB!")
 	
@@ -47,4 +46,8 @@ func main() {
         fmt.Println(event[3].Value)
     }
 	// end watch
+	
+	if err := cs.Err(); err != nil {
+        panic(err)
+    }
 }
