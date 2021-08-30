@@ -25,7 +25,7 @@ Click `here <{+example+}/findOne.go>`__ to see a fully runnable example.
 Expected Result
 ---------------
 
-After you run the code example, you will see output similar to:
+After you run the code example, you should see output similar to:
 
 .. code-block:: json
    :copyable: False
@@ -51,4 +51,4 @@ see the :manual:`MongoDB query operator reference documentation
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-- `FindOne() <{+godocs+}/mongo#Collection.FindOne>`__
+`FindOne() <{+godocs+}/mongo#Collection.FindOne>`__
