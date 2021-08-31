@@ -1,0 +1,146 @@
+==============
+Retrieve Data
+==============
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to retrieve data from your MongoDB
+collection.
+
+You can retrieve a subset of documents from your collection by using a
+:ref:`find operation <retrieve-find>` or by performing transformations
+on retrieved documents from your collection using the :ref:`aggregate
+operation <retrieve-aggregate>`. 
+
+Sample Data for Examples
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following sections use documents from the ``ratings`` collection.
+Each document contains the tea a person tried and their rating, which
+corresponds to the ``name`` and ``rating`` fields.
+
+Run this snippet to load the documents used in the following examples:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
+   :language: go
+   :dedent:
+   :start-after: begin insert docs
+   :end-before: end insert docs
+
+.. _retrieve-find:
+
+Find Operation
+--------------
+
+Use a **find operation** to retrieve a subset of your existing data in
+MongoDB. Find operations consist of the ``Find()`` and ``FindOne()``
+functions.  
+
+Find All Documents
+~~~~~~~~~~~~~~~~~~
+
+The ``Find()`` function expects you to pass a ``Context`` type and a
+query filter. It returns all documents that match the query filter as a
+``Cursor`` type. If you pass an empty filter, the function returns all
+documents in the collection. 
+
+.. See our :doc:`Cursor </fundamentals/crud/read-operations/cursor>`
+.. guide to learn how to access data in a cursor. 
+
+Find One Document
+~~~~~~~~~~~~~~~~~
+
+The ``FindOne()`` function expects you to pass a ``Context`` type and a
+query filter. It returns the first document that matches the query
+filter as a ``SingleResult`` type. If you pass an empty filter, the
+function returns a random document in the collection. 
+
+See our :ref:`Bson <unmarshalling>` guide to learn how to access data in
+a ``SingleResult``.  
+
+.. For more information on how to specify a query, see our :doc:`Specify a Query
+.. </fundamentals/crud/query-document>` guide. 
+
+Example
+```````
+
+The following example passes a context and a query to the ``Find()``
+function, which matches documents where their ``ratings`` field is
+greater than ``5`` but less than ``10``:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
+   :language: go
+   :dedent:
+   :start-after: begin find docs
+   :end-before: end find docs
+
+After running the preceding example, you should see the following
+output:
+
+.. code-block:: none
+   :copyable: false
+
+    //results truncated
+   [{_id ObjectID("...")} {name Chai} {rating 7}]
+   [{_id ObjectID("...")} {name Earl Grey} {rating 9}]
+
+For a runnable ``find()`` example, see our :doc:`Find Multiple
+Documents </usage-examples/find>` page. 
+
+.. _retrieve-aggregate:
+
+Aggregate Operation
+-------------------
+
+Use the **aggregate operation** to perform the stages in an aggregation
+pipeline.  The aggregate operation consists of the ``Aggregate()``
+function.  
+
+Aggregation
+~~~~~~~~~~~
+
+The ``Aggregate()`` function expects you to pass a ``Context`` type and
+an aggregation pipeline. It returns the resulting documents in a
+``Cursor`` type. The pipeline defines the aggregation stages such as
+specifying how to match documents, renaming fields, and grouping values. 
+
+.. See our :doc:`Cursor </fundamentals/crud/read-operations/cursor>`
+.. guide to learn how to access data in a cursor. 
+
+.. For more information, see our
+.. :doc:`Aggregation </fundamentals/aggregation>` guide.
+
+Example
+```````
+
+The following example passes a context and an aggregation pipeline that:
+
+- Omits the match stage, which matches all the documents in the ``ratings`` collection
+- Groups orders by names
+- Calculates the average rating of each name
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
+   :language: go
+   :dedent:
+   :start-after: begin aggregate docs
+   :end-before: end aggregate docs
+
+The following shows the output of the preceding aggregation:
+
+.. code-block:: none
+   :copyable: false
+
+   Chai has an average rating of 8.5
+   Earl Grey has an average rating of 7
+
+For more information on how to construct an aggregation pipeline, see
+the MongoDB server manual page on :manual:`Aggregation </aggregation>`.
