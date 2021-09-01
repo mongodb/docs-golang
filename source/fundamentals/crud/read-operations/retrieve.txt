@@ -14,19 +14,20 @@ Overview
 --------
 
 In this guide, you can learn how to retrieve data from your MongoDB
-collection.
+collection using **read operations**.
 
-You can retrieve a subset of documents from your collection by using a
-:ref:`find operation <retrieve-find>` or by performing transformations
-on retrieved documents from your collection using the :ref:`aggregate
-operation <retrieve-aggregate>`. 
+Read operations allow you to do the following: 
 
-Sample Data for Examples
-~~~~~~~~~~~~~~~~~~~~~~~~
+- Retrieve a subset of documents from your collection by using a :ref:`find operation <retrieve-find>` 
+- Perform transformations on retrieved documents from your collection using the :ref:`aggregate operation <retrieve-aggregate>`. 
 
-The following sections use documents from the ``ratings`` collection.
-Each document contains the tea a person tried and their rating, which
-corresponds to the ``name`` and ``rating`` fields.
+Sample Data
+~~~~~~~~~~~
+
+The following sections use documents from the ``ratings`` collection
+in the ``tea`` database. Each document contains the tea a person tried
+and their rating on a scale of 10, which corresponds to the ``name`` and
+``rating`` fields. 
 
 Run this snippet to load the documents used in the following examples:
 
@@ -64,8 +65,8 @@ query filter. It returns the first document that matches the query
 filter as a ``SingleResult`` type. If you pass an empty filter, the
 function returns a random document in the collection. 
 
-See our :ref:`Bson <unmarshalling>` guide to learn how to access data in
-a ``SingleResult``.  
+See our :ref:`Bson <bson-unmarshalling>` guide to learn how to access
+data in a ``SingleResult``.  
 
 .. For more information on how to specify a query, see our :doc:`Specify a Query
 .. </fundamentals/crud/query-document>` guide. 
@@ -111,7 +112,9 @@ Aggregation
 The ``Aggregate()`` function expects you to pass a ``Context`` type and
 an aggregation pipeline. It returns the resulting documents in a
 ``Cursor`` type. The pipeline defines the aggregation stages such as
-specifying how to match documents, renaming fields, and grouping values. 
+specifying how to match documents, renaming fields, and grouping values.
+If you omit the match stage, the pipeline proceeds using all documents
+in the collection. 
 
 .. See our :doc:`Cursor </fundamentals/crud/read-operations/cursor>`
 .. guide to learn how to access data in a cursor. 
@@ -124,7 +127,7 @@ Example
 
 The following example passes a context and an aggregation pipeline that:
 
-- Omits the match stage, which matches all the documents in the ``ratings`` collection
+- Omits the match stage
 - Groups orders by names
 - Calculates the average rating of each name
 
