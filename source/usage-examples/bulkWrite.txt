@@ -7,13 +7,16 @@ Perform Bulk Operations
 You can perform bulk write operations on a collection by using the
 ``BulkWrite()`` method.
 
-The following example specifies a slice of ``WriteModels`` and an option
+Example
+-------
+
+.. include:: /includes/usage-examples/run-example-tip.rst
+
+The following example passes a slice of ``WriteModels`` and an option
 to the ``BulkWrite()`` method, which performs the following in order:
 
 - Match a document where the ``title`` is "Record of a Shriveled Datum" and replace it with a new document
 - Match a document where the ``title`` is "Dodging Greys" and update that field to "Dodge The Greys"
-
-.. include:: /includes/usage-examples/run-example-tip.rst
 
 .. literalinclude:: /includes/usage-examples/code-snippets/bulk.go
    :start-after: begin bulk

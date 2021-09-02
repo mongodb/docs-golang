@@ -7,12 +7,15 @@ Delete a Document
 You can delete a document in a collection by using the ``DeleteOne()``
 method. 
 
-The following example specifies a query filter to the ``DeleteOne()``
-method, which matches documents in the ``movies`` collection where the
-``title`` field is "Twilight", and deletes the first document that
-matches. 
+Example
+-------
 
 .. include:: /includes/usage-examples/run-example-tip.rst
+
+The following example passes a query filter to the ``DeleteOne()``
+method, which matches documents in the ``movies`` collection where the
+``title`` field is "Twilight", and deletes the first document that
+matches:
 
 .. literalinclude:: /includes/usage-examples/code-snippets/deleteOne.go
    :start-after: begin deleteOne

@@ -7,13 +7,16 @@ Update Multiple Documents
 You can update multiple documents in a collection by using the ``UpdateMany()``
 method.
 
+Example
+-------
+
+.. include:: /includes/usage-examples/run-example-tip.rst
+
 The following example passes a query filter and an update parameter to the
 ``UpdateMany()`` method, which matches documents in the
 ``listingsAndReviews`` collection where the value of the ``address.market``
 field is "Sydney" and multiplies the ``price`` field in the matching
-documents by a factor of *1.15*:
-
-.. include:: /includes/usage-examples/run-example-tip.rst
+documents by a factor of 1.15:
 
 .. literalinclude:: /includes/usage-examples/code-snippets/updateMany.go
    :start-after: begin updatemany

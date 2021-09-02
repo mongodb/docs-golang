@@ -7,11 +7,14 @@ Run a Command
 You can run commands directly on your MongoDB server by using the
 ``RunCommand()`` method.
 
+Example
+-------
+
+.. include:: /includes/usage-examples/run-example-tip.rst
+
 The following example passes a document containing the ``"dbStats"``
 command to the ``RunCommand()`` method, which retrieves statistics
 about the ``sample_restaurants`` database:
-
-.. include:: /includes/usage-examples/run-example-tip.rst
 
 .. literalinclude:: /includes/usage-examples/code-snippets/command.go
    :start-after: begin runCommand
