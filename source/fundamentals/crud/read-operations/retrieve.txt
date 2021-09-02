@@ -39,9 +39,8 @@ scale of 10, which corresponds to the ``name`` and ``rating`` fields.
 
 .. note::
 
-   Each example truncates the ``ObjectID`` value since its value may
-   vary. 
-   .. maybe link to insert page?
+   Each example truncates the ``ObjectID`` value since the driver
+   generates them uniquely. 
 
 .. _retrieve-find:
 
@@ -77,8 +76,8 @@ Example
 ```````
 
 The following example passes a context and a filter to the ``Find()``
-function, which matches documents where the value of their ``ratings``
-field falls between ``5`` and ``10``:
+function, which matches documents where the ``ratings`` field falls
+between ``5`` and ``10``:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
    :language: go
@@ -103,21 +102,21 @@ Documents </usage-examples/find>` page.
 Aggregate Operation
 -------------------
 
-Use the **aggregate operation** to retrieve data from an aggregation
-pipeline. The aggregate operation consists of the ``Aggregate()``
-function.
-
-An aggregation pipeline defines how to transform data through stages
-such as specifying how to match documents, rename fields, and group
-values. 
+Use the **aggregate operation** to retrieve and transform a subset of
+your existing data. The aggregate operation consists of the
+``Aggregate()`` function.
 
 Aggregation
 ~~~~~~~~~~~
 
 The ``Aggregate()`` function expects you to pass a ``Context`` type and
-an aggregation pipeline. The function returns the resulting documents in a
-``Cursor`` type. If you omit the ``match`` stage, the pipeline proceeds
-using all documents in the collection. 
+an **aggregation pipeline**. An aggregation pipeline defines how to
+transform data through stages such as specifying how to match documents,
+rename fields, and group values. 
+
+The function returns the resulting documents in a ``Cursor`` type. If
+you omit the ``match`` stage, the pipeline proceeds using all documents
+in the collection.
 
 .. To learn how to access data in a cursor, see the :doc:`Cursor
 .. </fundamentals/crud/read-operations/cursor>` guide. 
@@ -155,8 +154,8 @@ For runnable examples of the find operations, see the :doc:`Find()
 </usage-examples/find>` and :doc:`FindOne() </usage-examples/findOne>`
 usage examples.
 
-.. For more information on how to specify a query, see the :doc:`Specify a Query
-.. </fundamentals/crud/query-document>` guide. 
+.. For more information on how to specify a query, see the :doc:`Specify
+.. a Query </fundamentals/crud/query-document>` guide. 
 
 .. For more information on aggregation, see the
 .. :doc:`Aggregation </fundamentals/aggregation>` guide.
