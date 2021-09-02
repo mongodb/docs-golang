@@ -4,7 +4,7 @@ Read Operations
 
 .. default-domain:: mongodb
 
-  - :doc:`/fundamentals/crud/read-operations/retrieve`
+- :doc:`/fundamentals/crud/read-operations/retrieve`
 
 ..
   - :doc:`/fundamentals/crud/read-operations/cursor`
