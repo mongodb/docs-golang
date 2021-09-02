@@ -26,7 +26,7 @@ Click here **<TODO: github link to file>** to see a fully runnable example.
 Expected Result
 ---------------
 
-After you run the code example, the document will include the
+After you run the preceding example, the document will include the
 ``avg_rating`` field with the specified value:
 
 .. code-block:: json
@@ -40,6 +40,9 @@ After you run the code example, the document will include the
       "restaurant_id" : "40372112",
       "avg_rating" : 4.4
    }
+
+For an example on how to find a document, see our :doc:`Find
+One Usage Example </usage-examples/findOne>`.
 
 Additional Information
 ----------------------

@@ -27,7 +27,7 @@ Click `here <{+example+}/bulk.go>`__ to see a fully runnable example.
 Expected Result
 ---------------
 
-After you run the preceding code snippet, you should be able to find the
+After you run the preceding example, you should be able to find the
 document in the ``haikus`` collection:
 
 .. code-block:: json
