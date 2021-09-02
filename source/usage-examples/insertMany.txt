@@ -12,8 +12,9 @@ Example
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
-The following example creates two new documents containing a ``title`` and ``text``
-field and inserts them into the ``haikus`` collection of the ``insertDB`` database:
+The following example passes two documents to the ``InsertMany()``
+method, which inserts them into the ``haikus`` collection of the
+``insertDB`` database: 
 
 .. note:: Non-existent Database and Collections
 
