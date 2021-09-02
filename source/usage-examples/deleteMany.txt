@@ -39,7 +39,7 @@ the following documents in the ``movies`` collection:
    { "_id": ObjectId("573a13a6f29313caabd18ae0"), ... , "runtime": 877, ... }
 
 For an example on how to find multiple documents, see our :doc:`Find
-Usage Example </usage-examples/find>`.
+Multiple Documents Usage Example </usage-examples/find>`.
 
 Additional Information
 ----------------------

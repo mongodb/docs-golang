@@ -48,7 +48,7 @@ collection with an ``_id`` field that matches the previous output:
    }
 
 For an example on how to find multiple documents, see our :doc:`Find
-Usage Example </usage-examples/find>`.
+Multiple Documents Usage Example </usage-examples/find>`.
 
 Additional Information
 ----------------------

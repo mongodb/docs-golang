@@ -42,7 +42,7 @@ appear similar to these:
    ...
 
 For an example on how to find multiple documents, see our :doc:`Find
-Usage Example </usage-examples/find>`.
+Multiple Documents Usage Example </usage-examples/find>`.
 
 Additional Information
 ----------------------
