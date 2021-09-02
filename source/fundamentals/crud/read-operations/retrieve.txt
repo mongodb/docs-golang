@@ -24,12 +24,9 @@ Read operations allow you to do the following:
 Sample Data
 ~~~~~~~~~~~
 
-The following sections use documents from the ``ratings`` collection
-in the ``tea`` database. Each document contains the tea a person tried
-and their rating on a scale of 10, which corresponds to the ``name`` and
-``rating`` fields. 
-
-Run this snippet to load the documents used in the following examples:
+To follow along with the examples on this page, run the following
+snippet to load the documents into the ``ratings`` collection in the
+``tea`` database:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
    :language: go
@@ -37,46 +34,51 @@ Run this snippet to load the documents used in the following examples:
    :start-after: begin insert docs
    :end-before: end insert docs
 
+Each document contains the tea a person tried and their rating on a
+scale of 10, which corresponds to the ``name`` and ``rating`` fields.
+
+.. note::
+
+   Each example truncates the ``ObjectID`` value since its value may
+   vary. 
+   .. maybe link to insert page?
+
 .. _retrieve-find:
 
-Find Operation
---------------
+Find operations
+---------------
 
-Use a **find operation** to retrieve a subset of your existing data in
-MongoDB. Find operations consist of the ``Find()`` and ``FindOne()``
-functions.  
+Use a **find operation** to retrieve a subset of your existing data.
+Find operations consist of the ``Find()`` and ``FindOne()`` functions.
 
 Find All Documents
 ~~~~~~~~~~~~~~~~~~
 
 The ``Find()`` function expects you to pass a ``Context`` type and a
-query filter. It returns all documents that match the query filter as a
-``Cursor`` type. If you pass an empty filter, the function returns all
+filter. The function returns *all* documents that match the filter as a
+``Cursor`` type. If you pass an empty filter, the function returns *all*
 documents in the collection. 
 
-.. See our :doc:`Cursor </fundamentals/crud/read-operations/cursor>`
-.. guide to learn how to access data in a cursor. 
+.. To learn how to access data in a cursor, see the :doc:`Cursor
+.. </fundamentals/crud/read-operations/cursor>` guide. 
 
 Find One Document
 ~~~~~~~~~~~~~~~~~
 
 The ``FindOne()`` function expects you to pass a ``Context`` type and a
-query filter. It returns the first document that matches the query
+filter. The function returns *the first document* that matches the
 filter as a ``SingleResult`` type. If you pass an empty filter, the
-function returns a random document in the collection. 
+function returns *a random document* in the collection.
 
-See our :ref:`Bson <bson-unmarshalling>` guide to learn how to access
-data in a ``SingleResult``.  
-
-.. For more information on how to specify a query, see our :doc:`Specify a Query
-.. </fundamentals/crud/query-document>` guide. 
+To learn how to access data in a ``SingleResult`` see the :ref:`BSON
+<bson-unmarshalling>` guide.
 
 Example
 ```````
 
-The following example passes a context and a query to the ``Find()``
-function, which matches documents where their ``ratings`` field is
-greater than ``5`` but less than ``10``:
+The following example passes a context and a filter to the ``Find()``
+function, which matches documents where the value of their ``ratings``
+field falls between ``5`` and ``10``:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
    :language: go
@@ -84,8 +86,7 @@ greater than ``5`` but less than ``10``:
    :start-after: begin find docs
    :end-before: end find docs
 
-After running the preceding example, you should see the following
-output:
+After running the preceding example, the output resembles the following:
 
 .. code-block:: none
    :copyable: false
@@ -94,7 +95,7 @@ output:
    [{_id ObjectID("...")} {name Chai} {rating 7}]
    [{_id ObjectID("...")} {name Earl Grey} {rating 9}]
 
-For a runnable ``find()`` example, see our :doc:`Find Multiple
+For a runnable ``find()`` example, see the :doc:`Find Multiple
 Documents </usage-examples/find>` page. 
 
 .. _retrieve-aggregate:
@@ -102,32 +103,30 @@ Documents </usage-examples/find>` page.
 Aggregate Operation
 -------------------
 
-Use the **aggregate operation** to perform the stages in an aggregation
-pipeline.  The aggregate operation consists of the ``Aggregate()``
-function.  
+Use the **aggregate operation** to retrieve data from an aggregation
+pipeline. The aggregate operation consists of the ``Aggregate()``
+function.
+
+An aggregation pipeline defines how to transform data through stages
+such as specifying how to match documents, rename fields, and group
+values. 
 
 Aggregation
 ~~~~~~~~~~~
 
 The ``Aggregate()`` function expects you to pass a ``Context`` type and
-an aggregation pipeline. It returns the resulting documents in a
-``Cursor`` type. The pipeline defines the aggregation stages such as
-specifying how to match documents, renaming fields, and grouping values.
-If you omit the match stage, the pipeline proceeds using all documents
-in the collection. 
+an aggregation pipeline. The function returns the resulting documents in a
+``Cursor`` type. If you omit the ``match`` stage, the pipeline proceeds
+using all documents in the collection. 
 
-.. See our :doc:`Cursor </fundamentals/crud/read-operations/cursor>`
-.. guide to learn how to access data in a cursor. 
-
-.. For more information, see our
-.. :doc:`Aggregation </fundamentals/aggregation>` guide.
+.. To learn how to access data in a cursor, see the :doc:`Cursor
+.. </fundamentals/crud/read-operations/cursor>` guide. 
 
 Example
 ```````
 
 The following example passes a context and an aggregation pipeline that:
 
-- Omits the match stage
 - Groups orders by names
 - Calculates the average rating of each name
 
@@ -137,7 +136,7 @@ The following example passes a context and an aggregation pipeline that:
    :start-after: begin aggregate docs
    :end-before: end aggregate docs
 
-The following shows the output of the preceding aggregation:
+After running the preceding example, the output resembles the following:
 
 .. code-block:: none
    :copyable: false
@@ -146,4 +145,27 @@ The following shows the output of the preceding aggregation:
    Earl Grey has an average rating of 7
 
 For more information on how to construct an aggregation pipeline, see
-the MongoDB server manual page on :manual:`Aggregation </aggregation>`.
+the MongoDB server manual page on :manual:`Aggregation
+</core/aggregation-pipeline/>`. 
+
+Additional Information
+----------------------
+
+For runnable examples of the find operations, see the :doc:`Find()
+</usage-examples/find>` and :doc:`FindOne() </usage-examples/findOne>`
+usage examples.
+
+.. For more information on how to specify a query, see the :doc:`Specify a Query
+.. </fundamentals/crud/query-document>` guide. 
+
+.. For more information on aggregation, see the
+.. :doc:`Aggregation </fundamentals/aggregation>` guide.
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+- `Find() <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.0/mongo#Collection.Find>`__
+- `Cursor <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.0/mongo#Cursor>`__
+- `FindOne() <{+api+}/mongo#Collection.FindOne>`__
+- `SingleResult <{+api+}/mongo#SingleResult>`__
+- `Aggregate() <{+api+}/mongo#Collection.Aggregate>`__

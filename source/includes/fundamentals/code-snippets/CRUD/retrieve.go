@@ -28,9 +28,9 @@ func main() {
 		}
 	}()
 
+	// begin insert docs
 	coll := client.Database("tea").Collection("ratings")
 
-	// begin insert docs
 	docs := []interface{}{
 		bson.D{{"name", "Chai"}, {"rating", 10}},
 		bson.D{{"name", "Earl Grey"}, {"rating", 5}},
