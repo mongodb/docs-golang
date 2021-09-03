@@ -12,8 +12,7 @@ Example
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
-The following example inserts two documents in the ``haikus`` collection
-of the ``insertDB`` database: 
+The following example inserts two documents in the ``haikus`` collection: 
 
 .. note:: Non-existent Database and Collections
 

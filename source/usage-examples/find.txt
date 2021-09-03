@@ -13,7 +13,8 @@ Example
 .. include:: /includes/usage-examples/run-example-tip.rst
 
 The following example matches documents in the ``zips`` collection
-where the ``pop`` field is less than or equal to 500:
+where the ``pop`` field is less than or equal to 500, returning all
+documents matched:
 
 .. literalinclude:: /includes/usage-examples/code-snippets/find.go
    :start-after: begin find

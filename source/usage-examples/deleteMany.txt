@@ -14,7 +14,7 @@ Example
 
 The following example matches documents in the ``movies`` collection
 where the ``runtime`` field is greater than 800, deleting all 
-documents that matched:
+documents matched:
 
 .. literalinclude:: /includes/usage-examples/code-snippets/deleteMany.go
    :start-after: begin deleteMany
