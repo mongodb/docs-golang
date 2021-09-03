@@ -14,19 +14,18 @@ Overview
 --------
 
 In this guide, you can learn how to retrieve data from your MongoDB
-collection using **read operations**.
+collections using **read operations**.
 
 Read operations allow you to do the following: 
 
-- Retrieve a subset of documents from your collection by using a :ref:`find operation <retrieve-find>` 
-- Perform transformations on retrieved documents from your collection using the :ref:`aggregate operation <retrieve-aggregate>`. 
+- Retrieve documents from your collections by using :ref:`find operations <retrieve-find>` 
+- Perform transformations on documents in your collections by using :ref:`aggregation operations <retrieve-aggregation>`. 
 
 Sample Data
 ~~~~~~~~~~~
 
-To follow along with the examples on this page, run the following
-snippet to load the documents into the ``ratings`` collection in the
-``tea`` database:
+Run the following snippet to load the documents into the ``ratings``
+collection in the ``tea`` database:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
    :language: go
@@ -34,8 +33,8 @@ snippet to load the documents into the ``ratings`` collection in the
    :start-after: begin insert docs
    :end-before: end insert docs
 
-Each document contains the tea a person tried and their rating on a
-scale of 10, which corresponds to the ``name`` and ``rating`` fields.
+Each document contains a rating for a type of tea, which corresponds to
+the ``name`` and ``rating`` fields.
 
 .. note::
 
@@ -44,17 +43,17 @@ scale of 10, which corresponds to the ``name`` and ``rating`` fields.
 
 .. _retrieve-find:
 
-Find operations
+Find Operations
 ---------------
 
-Use a **find operation** to retrieve a subset of your existing data.
-Find operations consist of the ``Find()`` and ``FindOne()`` functions.
+Use **find operations** to retrieve data from MongoDB. Find operations
+consist of the ``Find()`` and ``FindOne()`` functions.
 
 Find All Documents
 ~~~~~~~~~~~~~~~~~~
 
 The ``Find()`` function expects you to pass a ``Context`` type and a
-filter. The function returns *all* documents that match the filter as a
+query filter. The function returns *all* documents that match the filter as a
 ``Cursor`` type. If you pass an empty filter, the function returns *all*
 documents in the collection. 
 
@@ -65,7 +64,7 @@ Find One Document
 ~~~~~~~~~~~~~~~~~
 
 The ``FindOne()`` function expects you to pass a ``Context`` type and a
-filter. The function returns *the first document* that matches the
+query filter. The function returns *the first document* that matches the
 filter as a ``SingleResult`` type. If you pass an empty filter, the
 function returns *a random document* in the collection.
 
@@ -94,17 +93,14 @@ After running the preceding example, the output resembles the following:
    [{_id ObjectID("...")} {name Chai} {rating 7}]
    [{_id ObjectID("...")} {name Earl Grey} {rating 9}]
 
-For a runnable ``find()`` example, see the :doc:`Find Multiple
-Documents </usage-examples/find>` page. 
+.. _retrieve-aggregation:
 
-.. _retrieve-aggregate:
+Aggregation Operations
+----------------------
 
-Aggregate Operation
--------------------
-
-Use the **aggregate operation** to retrieve and transform a subset of
-your existing data. The aggregate operation consists of the
-``Aggregate()`` function.
+Use **aggregation operations** to retrieve and transform data from
+MongoDB. Perform aggregation operations using the ``Aggregate()``
+function.
 
 Aggregation
 ~~~~~~~~~~~
@@ -115,8 +111,8 @@ transform data through stages such as specifying how to match documents,
 rename fields, and group values. 
 
 The function returns the resulting documents in a ``Cursor`` type. If
-you omit the ``match`` stage, the pipeline proceeds using all documents
-in the collection.
+you omit the :manual:`$match </reference/operator/aggregation/match/#mongodb-pipeline-pipe.-match>`
+stage, the pipeline proceeds using all documents in the collection.
 
 .. To learn how to access data in a cursor, see the :doc:`Cursor
 .. </fundamentals/crud/read-operations/cursor>` guide. 
@@ -126,7 +122,7 @@ Example
 
 The following example passes a context and an aggregation pipeline that:
 
-- Groups orders by names
+- Groups reviews by names
 - Calculates the average rating of each name
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go

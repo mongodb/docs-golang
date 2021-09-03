@@ -30,18 +30,18 @@ func main() {
 
 	// begin insert docs
 	coll := client.Database("tea").Collection("ratings")
-
 	docs := []interface{}{
 		bson.D{{"name", "Chai"}, {"rating", 10}},
 		bson.D{{"name", "Earl Grey"}, {"rating", 5}},
 		bson.D{{"name", "Chai"}, {"rating", 7}},
 		bson.D{{"name", "Earl Grey"}, {"rating", 9}},
 	}
-	// end insert docs
+
 	result, err := coll.InsertMany(context.TODO(), docs)
 	if err != nil {
 		panic(err)
 	}
+	// end insert docs
 
 	fmt.Printf("%d documents inserted with IDs:\n", len(result.InsertedIDs))
 	for _, id := range result.InsertedIDs {
