@@ -26,8 +26,8 @@ Click here <TODO> to see a fully runnable example.
 Expected Result
 ---------------
 
-After you run the preceding example, you should not be able to find
-the following documents in the ``movies`` collection:
+After you run the preceding example, you cannot find the following
+documents in the ``movies`` collection:
 
 .. code-block:: json
    :copyable: false

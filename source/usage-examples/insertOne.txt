@@ -30,8 +30,8 @@ Click `here <{+example+}/insertOne.go>`__ to see a fully runnable example.
 Expected Result
 ---------------
 
-After you run the preceding example, a new document will be present in the
-collection with an ``_id`` field that matches the previous output:
+After you run the preceding example, you can find the inserted document
+in the ``haikus`` collection:
 
 .. code-block:: json
    :copyable: false

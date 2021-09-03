@@ -26,8 +26,8 @@ Click here **<TODO: github link to file>** to see a fully runnable example.
 Expected Result
 ---------------
 
-After you run the preceding example, the document will include the
-``avg_rating`` field with the specified value:
+After you run the preceding example, you can find the updated document
+in the ``restaurants`` collection: 
 
 .. code-block:: json
    :copyable: false

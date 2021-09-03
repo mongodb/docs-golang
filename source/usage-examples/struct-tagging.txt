@@ -36,8 +36,8 @@ Click `here <{+example+}/struct-tag.go>`__ to see a fully runnable example.
 Expected Result
 ---------------
 
-After you run the preceding example, you should be able to find
-the following document in the ``posts`` collection:
+After you run the preceding example, you can find the following document
+in the ``posts`` collection:
 
 .. code-block:: json
    :copyable: false

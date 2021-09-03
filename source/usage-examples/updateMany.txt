@@ -27,9 +27,8 @@ Click here **<TODO: github link to file>** to see a fully runnable example.
 Expected Result
 ---------------
 
-After you run the preceding example, the ``price`` field of the matched
-documents will reflect the multiplication. The updated documents will
-appear similar to these:
+After you run the preceding example, you can find the updated documents
+in the ``listingsAndReviews`` collection: 
 
 .. code-block:: json
    :copyable: false
