@@ -27,8 +27,8 @@ Click here **<TODO: github link to file>** to see a fully runnable example.
 Expected Result
 ---------------
 
-After you run the preceding example, you can find the updated documents
-in the ``listingsAndReviews`` collection: 
+After you run the preceding example, you can find the following updated
+documents in the ``listingsAndReviews`` collection: 
 
 .. code-block:: json
    :copyable: false

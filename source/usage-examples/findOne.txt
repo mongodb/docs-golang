@@ -26,7 +26,7 @@ Expected Result
 ---------------
 
 After you run the preceding example, it returns a ``SingleResult``
-object with the following document:
+object that contains the following document:
 
 .. code-block:: json
    :copyable: False
