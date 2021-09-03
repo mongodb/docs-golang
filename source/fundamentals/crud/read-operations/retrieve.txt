@@ -16,16 +16,16 @@ Overview
 In this guide, you can learn how to retrieve data from your MongoDB
 collections using **read operations**.
 
-Read operations allow you to do the following: 
+Read operations allow you to do the following:
 
-- Retrieve documents from your collections by using :ref:`find operations <retrieve-find>` 
-- Perform transformations on documents in your collections by using :ref:`aggregation operations <retrieve-aggregation>`. 
+- Retrieve documents from your collections by using :ref:`find operations <retrieve-find>`
+- Perform transformations on documents in your collections by using :ref:`aggregation operations <retrieve-aggregation>`
 
 Sample Data
 ~~~~~~~~~~~
 
 Run the following snippet to load the documents into the ``ratings``
-collection in the ``tea`` database:
+collection of the ``tea`` database:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
    :language: go
@@ -39,7 +39,7 @@ the ``name`` and ``rating`` fields.
 .. note::
 
    Each example truncates the ``ObjectID`` value since the driver
-   generates them uniquely. 
+   generates them uniquely.
 
 .. _retrieve-find:
 
@@ -55,10 +55,10 @@ Find All Documents
 The ``Find()`` function expects you to pass a ``Context`` type and a
 query filter. The function returns *all* documents that match the filter as a
 ``Cursor`` type. If you pass an empty filter, the function returns *all*
-documents in the collection. 
+documents in the collection.
 
 .. To learn how to access data in a cursor, see the :doc:`Cursor
-.. </fundamentals/crud/read-operations/cursor>` guide. 
+.. </fundamentals/crud/read-operations/cursor>` guide.
 
 Find One Document
 ~~~~~~~~~~~~~~~~~
@@ -108,14 +108,14 @@ Aggregation
 The ``Aggregate()`` function expects you to pass a ``Context`` type and
 an **aggregation pipeline**. An aggregation pipeline defines how to
 transform data through stages such as specifying how to match documents,
-rename fields, and group values. 
+rename fields, and group values.
 
 The function returns the resulting documents in a ``Cursor`` type. If
 you omit the :manual:`$match </reference/operator/aggregation/match/#mongodb-pipeline-pipe.-match>`
 stage, the pipeline proceeds using all documents in the collection.
 
 .. To learn how to access data in a cursor, see the :doc:`Cursor
-.. </fundamentals/crud/read-operations/cursor>` guide. 
+.. </fundamentals/crud/read-operations/cursor>` guide.
 
 Example
 ```````
@@ -141,7 +141,7 @@ After running the preceding example, the output resembles the following:
 
 For more information on how to construct an aggregation pipeline, see
 the MongoDB server manual page on :manual:`Aggregation
-</core/aggregation-pipeline/>`. 
+</core/aggregation-pipeline/>`.
 
 Additional Information
 ----------------------
@@ -151,7 +151,7 @@ For runnable examples of the find operations, see the :doc:`Find()
 usage examples.
 
 .. For more information on how to specify a query, see the :doc:`Specify
-.. a Query </fundamentals/crud/query-document>` guide. 
+.. a Query </fundamentals/crud/query-document>` guide.
 
 .. For more information on aggregation, see the
 .. :doc:`Aggregation </fundamentals/aggregation>` guide.
