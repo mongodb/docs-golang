@@ -12,10 +12,11 @@ Example
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
-The following example passes a query filter and a field name to the
-``Distinct()`` method, which matches documents in the ``movies``
-collection where the ``directors`` field contains "Natalie Portman" and
-returns distinct values of the ``title`` field from the matched documents:
+The following example performs the following on the ``movies``
+collection:
+
+- Match documents where the ``directors`` field contains "Natalie Portman" 
+- Return distinct values of the ``title`` field from the matched documents
 
 .. literalinclude:: /includes/usage-examples/code-snippets/distinct.go
    :start-after: begin distinct

@@ -12,9 +12,8 @@ Example
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
-The following example passes two documents to the ``InsertMany()``
-method, which inserts them into the ``haikus`` collection of the
-``insertDB`` database: 
+The following example inserts two documents in the ``haikus`` collection
+of the ``insertDB`` database: 
 
 .. note:: Non-existent Database and Collections
 

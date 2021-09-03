@@ -12,11 +12,11 @@ Example
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
-The following example passes a query filter and replacement document
-to the ``ReplaceOne()`` method, which matches a document in the
-``haikus`` collection where the ``title`` field is "Record of a
-Shriveled Datum" and replaces it with a document that contains a
-``title`` and ``text`` field about a haiku:
+The following example performs the following on the ``haikus``
+collection:
+
+- Match a document in the where the ``title`` field is "Record of a Shriveled Datum"
+- Replace the matched document with a new document
 
 .. literalinclude:: /includes/usage-examples/code-snippets/replace.go
    :start-after: begin replace

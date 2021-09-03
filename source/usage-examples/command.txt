@@ -12,9 +12,8 @@ Example
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
-The following example passes a document containing the ``"dbStats"``
-command to the ``RunCommand()`` method, which retrieves statistics
-about the ``sample_restaurants`` database:
+The following example retrieves statistics about the
+``sample_restaurants`` database: 
 
 .. literalinclude:: /includes/usage-examples/code-snippets/command.go
    :start-after: begin runCommand

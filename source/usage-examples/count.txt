@@ -14,11 +14,11 @@ Example
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
-The following example uses the ``EstimatedDocumentCount()`` method to
-count the number of documents in the ``movies`` collection. Then, the
-example passes a query filter to the ``CountDocuments()`` method, which
-counts the number of documents in the ``movies`` collection where the
-``countries`` field contains "China".
+The following example performs the following on the ``movies``
+collection:
+
+- Approximately count the number of documents in the collection
+- Count the number of documents where the ``countries`` field contains "China"
 
 .. literalinclude:: /includes/usage-examples/code-snippets/count.go
    :start-after: begin countDocuments

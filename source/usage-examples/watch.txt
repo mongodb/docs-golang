@@ -12,9 +12,8 @@ Example
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
-The following example passes in a pipeline to the ``Watch()`` method,
-which opens a change stream on the ``haikus`` collection and prints
-inserted documents: 
+The following example opens a change stream on the ``haikus`` collection
+and print inserted documents:
 
 .. literalinclude:: /includes/usage-examples/code-snippets/watch.go
    :start-after: begin watch

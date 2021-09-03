@@ -12,9 +12,8 @@ Example
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
-The following example passes a query filter to the ``Find()`` method,
-which matches documents in the ``zips`` collection where the value of the
-``pop`` field is less than or equal to 500:
+The following example matches documents in the ``zips`` collection
+where the ``pop`` field is less than or equal to 500:
 
 .. literalinclude:: /includes/usage-examples/code-snippets/find.go
    :start-after: begin find
