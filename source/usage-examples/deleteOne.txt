@@ -13,7 +13,7 @@ Example
 .. include:: /includes/usage-examples/run-example-tip.rst
 
 The following example matches documents in the ``movies`` collection
-where the ``title`` field is "Twilight", deleting the first document
+in which the ``title`` field is "Twilight", deleting the first document
 matched:
 
 .. literalinclude:: /includes/usage-examples/code-snippets/deleteOne.go

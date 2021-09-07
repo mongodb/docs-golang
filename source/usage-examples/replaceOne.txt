@@ -15,8 +15,8 @@ Example
 The following example performs the following on the ``haikus``
 collection:
 
-- Match a document in the where the ``title`` field is "Record of a Shriveled Datum"
-- Replace the matched document with a new document
+- Matches a document in which the ``title`` field is "Record of a Shriveled Datum"
+- Replaces the matched document with a new document
 
 .. literalinclude:: /includes/usage-examples/code-snippets/replace.go
    :start-after: begin replace
