@@ -18,7 +18,7 @@ The following example performs the following on the ``movies``
 collection:
 
 - Approximates the number of documents in the collection
-- Counts the number of documents in which the ``countries`` field contains "China"
+- Counts the number of documents in which the ``countries`` contains "China"
 
 .. literalinclude:: /includes/usage-examples/code-snippets/count.go
    :start-after: begin countDocuments
