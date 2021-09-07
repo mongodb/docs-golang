@@ -31,9 +31,9 @@ func main() {
 	// begin insert docs
 	coll := client.Database("tea").Collection("ratings")
 	docs := []interface{}{
-		bson.D{{"name", "Chai"}, {"rating", 10}},
+		bson.D{{"name", "Masala"}, {"rating", 10}},
 		bson.D{{"name", "Earl Grey"}, {"rating", 5}},
-		bson.D{{"name", "Chai"}, {"rating", 7}},
+		bson.D{{"name", "Masala"}, {"rating", 7}},
 		bson.D{{"name", "Earl Grey"}, {"rating", 9}},
 	}
 

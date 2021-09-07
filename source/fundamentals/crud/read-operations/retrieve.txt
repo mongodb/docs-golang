@@ -90,7 +90,7 @@ After running the preceding example, the output resembles the following:
    :copyable: false
 
     //results truncated
-   [{_id ObjectID("...")} {name Chai} {rating 7}]
+   [{_id ObjectID("...")} {name Masala} {rating 7}]
    [{_id ObjectID("...")} {name Earl Grey} {rating 9}]
 
 .. _retrieve-aggregation:
@@ -136,7 +136,7 @@ After running the preceding example, the output resembles the following:
 .. code-block:: none
    :copyable: false
 
-   Chai has an average rating of 8.5
+   Masala has an average rating of 8.5
    Earl Grey has an average rating of 7
 
 For more information on how to construct an aggregation pipeline, see
