@@ -105,8 +105,8 @@ Aggregation
 
 The ``Aggregate()`` function expects you to pass a ``Context`` type and
 an **aggregation pipeline**. An aggregation pipeline defines how to
-transform data through stages. The stages consist of specifying how to
-match documents, rename fields, and group values.
+transform data through stages. Some of the stages are matching
+documents, renaming fields, and grouping values.
 
 The function returns the resulting documents in a ``Cursor`` type. If
 you omit the :manual:`$match </reference/operator/aggregation/match/#mongodb-pipeline-pipe.-match>`
@@ -156,6 +156,9 @@ usage examples.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
+
+For more information on any of the functions or types discussed in this
+guide, see the following API Documentation:
 
 - `Find() <{+api+}/mongo#Collection.Find>`__
 - `Cursor <{+api+}/mongo#Cursor>`__
