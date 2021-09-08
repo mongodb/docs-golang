@@ -31,10 +31,10 @@ func main() {
 	// begin insert docs
 	coll := client.Database("tea").Collection("ratings")
 	docs := []interface{}{
-		bson.D{{"name", "Masala"}, {"rating", 10}},
-		bson.D{{"name", "Earl Grey"}, {"rating", 5}},
-		bson.D{{"name", "Masala"}, {"rating", 7}},
-		bson.D{{"name", "Earl Grey"}, {"rating", 9}},
+		bson.D{{"type", "Masala"}, {"rating", 10}},
+		bson.D{{"type", "Earl Grey"}, {"rating", 5}},
+		bson.D{{"type", "Masala"}, {"rating", 7}},
+		bson.D{{"type", "Earl Grey"}, {"rating", 9}},
 	}
 
 	result, err := coll.InsertMany(context.TODO(), docs)
@@ -62,7 +62,7 @@ func main() {
 		panic(findErr)
 	}
 
-	var findResults []bson.D
+	var findResults []bson.M
 	if findErr = findCursor.All(context.TODO(), &findResults); findErr != nil {
 		panic(findErr)
 	}
@@ -74,7 +74,7 @@ func main() {
 	// begin aggregate docs
 	groupStage := bson.D{
 		{"$group", bson.D{
-			{"_id", "$name"},
+			{"_id", "$type"},
 			{"average", bson.D{
 				{"$avg", "$rating"},
 			}},

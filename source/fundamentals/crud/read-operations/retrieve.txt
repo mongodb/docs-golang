@@ -34,7 +34,7 @@ collection of the ``tea`` database:
    :end-before: end insert docs
 
 Each document contains a rating for a type of tea, which corresponds to
-the ``name`` and ``rating`` fields.
+the ``type`` and ``rating`` fields.
 
 .. note::
 
@@ -53,9 +53,8 @@ Find All Documents
 ~~~~~~~~~~~~~~~~~~
 
 The ``Find()`` function expects you to pass a ``Context`` type and a
-query filter. The function returns *all* documents that match the filter as a
-``Cursor`` type. If you pass an empty filter, the function returns *all*
-documents in the collection.
+query filter. The function returns *all* documents that match the filter
+as a ``Cursor`` type.
 
 .. To learn how to access data in a cursor, see the :doc:`Cursor
 .. </fundamentals/crud/read-operations/cursor>` guide.
@@ -65,8 +64,7 @@ Find One Document
 
 The ``FindOne()`` function expects you to pass a ``Context`` type and a
 query filter. The function returns *the first document* that matches the
-filter as a ``SingleResult`` type. If you pass an empty filter, the
-function returns *a random document* in the collection.
+filter as a ``SingleResult`` type.
 
 To learn how to access data in a ``SingleResult`` see the :ref:`BSON
 <bson-unmarshalling>` guide.
@@ -90,8 +88,8 @@ After running the preceding example, the output resembles the following:
    :copyable: false
 
     //results truncated
-   [{_id ObjectID("...")} {name Masala} {rating 7}]
-   [{_id ObjectID("...")} {name Earl Grey} {rating 9}]
+   [_id:ObjectID("...") type:Masala rating:7 ]
+   [_id:ObjectID("...") type:Earl Grey rating:9 ]
 
 .. _retrieve-aggregation:
 
@@ -107,8 +105,8 @@ Aggregation
 
 The ``Aggregate()`` function expects you to pass a ``Context`` type and
 an **aggregation pipeline**. An aggregation pipeline defines how to
-transform data through stages such as specifying how to match documents,
-rename fields, and group values.
+transform data through stages. The stages consist of specifying how to
+match documents, rename fields, and group values.
 
 The function returns the resulting documents in a ``Cursor`` type. If
 you omit the :manual:`$match </reference/operator/aggregation/match/#mongodb-pipeline-pipe.-match>`
@@ -122,8 +120,8 @@ Example
 
 The following example passes a context and an aggregation pipeline that:
 
-- Groups reviews by names
-- Calculates the average rating of each name
+- Groups reviews by types
+- Calculates the average rating of each type
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
    :language: go
@@ -159,8 +157,8 @@ usage examples.
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-- `Find() <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.0/mongo#Collection.Find>`__
-- `Cursor <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.0/mongo#Cursor>`__
+- `Find() <{+api+}/mongo#Collection.Find>`__
+- `Cursor <{+api+}/mongo#Cursor>`__
 - `FindOne() <{+api+}/mongo#Collection.FindOne>`__
 - `SingleResult <{+api+}/mongo#SingleResult>`__
 - `Aggregate() <{+api+}/mongo#Collection.Aggregate>`__
