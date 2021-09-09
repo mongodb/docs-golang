@@ -49,7 +49,7 @@ Additional Information
 ----------------------
 
 For more information on replacing documents, specifying query filters, and
-handling potential errors, see our guide on :ref:`changing a document <golang_change_document>`.
+handling potential errors, see our guide on :ref:`changing a document <change_document_golang>`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

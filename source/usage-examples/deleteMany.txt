@@ -23,7 +23,7 @@ documents matched:
    :language: go
    :dedent:
 
-`Click here <{+example+}/command.go>`__ to see a fully runnable example.
+`Click here <{+example+}/deleteMany.go>`__ to see a fully runnable example.
 
 Expected Result
 ---------------
