@@ -49,8 +49,9 @@ a Document Usage Example </usage-examples/findOne>`.
 Additional Information
 ----------------------
 
-For more information on inserting documents, see our guide on
-**<TODO: inserting documents fundamental page>**.
+..
+  For more information on inserting documents, see our guide on
+  **<TODO: inserting documents fundamental page>**.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

@@ -12,7 +12,7 @@ Example
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
-The following example inserts two documents in the ``haikus`` collection: 
+The following example inserts two documents in the ``haikus`` collection:
 
 .. note:: Non-existent Database and Collections
 
@@ -54,8 +54,9 @@ Multiple Documents Usage Example </usage-examples/find>`.
 Additional Information
 ----------------------
 
-For more information on inserting documents, see our guide on
-**<TODO: inserting documents fundamental page>**.
+..
+  For more information on inserting documents, see our guide on
+  **<TODO: inserting documents fundamental page>**.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
