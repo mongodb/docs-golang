@@ -10,6 +10,8 @@ Insert a Document
    :depth: 1
    :class: singlecol
 
+.. _insert_guide_golang:
+
 Overview
 --------
 
