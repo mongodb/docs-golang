@@ -16,7 +16,7 @@ Overview
 --------
 
 In this guide, you can learn how to change documents in MongoDB using
-**update** and **replace** operations.
+:term:`update` and term:`replace` operations.
 
 Update operations change the fields that you specify while leaving other
 fields and values unchanged. Replace operations remove all existing fields
