@@ -14,23 +14,13 @@ MongoDB Go Driver
    API Documentation <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo>
    /issues-and-help
    /compatibility
-   /whats-new
 
 Introduction
 ------------
 
 The official MongoDB Go Driver enables Go applications to connect to and
 work with data in MongoDB. This page describes each section of the
-driver documentation. 
-
-Developer Hub
-~~~~~~~~~~~~~
-
-Visit the Developer Hub for content, resources, community, and social
-engagement for developers related to the Go driver:
-
-- To view articles on Go, see the `How To's and Articles page <https://www.mongodb.com/developer/learn/?content=Articles&text=Go>`__.
-- To view the Go forum, see the `forums page <https://www.mongodb.com/community/forums/tag/golang>`__.
+driver documentation.
 
 Quick Start
 -----------
@@ -51,15 +41,16 @@ Fundamentals
 
 Whether you are new to MongoDB or want to brush up on core concepts, you
 can check out the **Fundamentals** section which covers the following
-material in the Go driver: 
+material in the Go driver:
 
 - :doc:`Connect to MongoDB </fundamentals/connection>`
-- :doc:`Context Usage in MongoDB </fundamentals/context>`
-- :doc:`Authenticate with MongoDB </fundamentals/auth>`
+- :doc:`Use Context </fundamentals/context>`
+- :doc:`Authenticate </fundamentals/auth>`
+- :doc:`Perform CRUD Operations </fundamentals/crud>`
+- :doc:`Work with BSON </fundamentals/bson>`
 
 .. - :doc:`Specify an API Version </fundamentals/versioned-api>`
 .. - :doc:`Use the Driver's Data Formats </fundamentals/data-formats>`
-.. - :doc:`Perform CRUD Operations </fundamentals/crud>`
 .. - :doc:`Perform Aggregations </fundamentals/aggregation>`
 .. - :doc:`Construct Indexes </fundamentals/indexes>`
 .. - :doc:`Specify Collations </fundamentals/collations>`
@@ -94,6 +85,15 @@ Compatibility
 The :doc:`Compatibility </compatibility>` section contains compatibility
 charts that show the recommended Go Driver version for each MongoDB
 Server version.
+
+Developer Hub
+~~~~~~~~~~~~~
+
+Visit the Developer Hub for content, resources, community, and social
+engagement for developers related to the Go driver:
+
+- To view articles on Go, see the `How To's and Articles page <https://www.mongodb.com/developer/learn/?content=Articles&text=Go>`__.
+- To view the Go forum, see the `forums page <https://www.mongodb.com/community/forums/tag/golang>`__.
 
 .. What's New
 .. ----------
