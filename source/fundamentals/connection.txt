@@ -116,7 +116,7 @@ connections:
 
 - Don't support SRV strings.
 - Fail on writes when the specified host is not the **primary**.
-- Require you to :manual:`enable secondary reads </reference/method/rs.secondaryOk/>`
+- Require you to :manual:`specify a secondary read preference </core/read-preference/#mongodb-readmode-secondary>`
   when the specified host isn't the **primary**.
 
 .. _connection-options:
