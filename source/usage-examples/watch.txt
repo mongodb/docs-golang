@@ -37,9 +37,9 @@ output:
 
    // results truncated
    {
-       "_id": ...,
-       "text": "Binary data, best to store with GridFS. Bucket that data",
-       "title": "Showcasing a Blossoming Binary"
+     "_id": ...,
+     "title": "Record of a Shriveled Datum",
+     "text": "No bytes, no problem. Inserting a document. In MongoDB"
    }
 
 .. important::
