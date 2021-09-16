@@ -43,15 +43,14 @@ than 100:
    filter := bson.D{{"quantity", bson.D{{"$gt", 100}}}}
 
 For more information on how the Go Driver handles BSON data, see the
-`bson package API documentation
-<https://pkg.go.dev/go.mongodb.org/mongo-driver/bson>`_.
+`bson package API documentation <{+api+}/bson>`__.
 
 Struct Tags
 -----------
 
 In Go, a **struct** is a collection of data fields with declared data
 types. The Go Driver can marshal/unmarshal structs and other native Go
-types to/from BSON using a `configurable codec system <https://pkg.go.dev/go.mongodb.org/mongo-driver/bson/bsoncodec>`_.
+types to/from BSON using a `configurable codec system <{+api+}/bson/bsoncodec>`_.
 
 You can modify the default marshalling and unmarshalling behavior of the Go Driver using
 **struct tags**, which are optional pieces of metadata attached to
@@ -100,8 +99,8 @@ Driver will marshal structs using the following rules:
    pointer is non-nil. If the pointer is nil, the driver marshals it as a BSON null
    value.
 
-#. When unmarshalling, the Go Driver follows `these D/M type mappings
-   <https://pkg.go.dev/go.mongodb.org/mongo-driver/bson#hdr-Native_Go_Types>`_
+#. When unmarshalling, the Go Djiver follows `these D/M type mappings
+   <{+api+}/bson#hdr-Native_Go_Types>`_
    for fields of type ``interface{}``. The driver unmarshals BSON documents
    unmarshalled into an ``interface{}`` field as a ``D`` type.
 
@@ -291,9 +290,8 @@ The output of the preceding code should look like this:
    unmarshalling the entire BSON document.
 
 For more information on the marshalling and unmarshalling methods used with the
-``Cursor`` type, see the `Cursor API documentation
-<https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.0/mongo#Cursor>`_
+``Cursor`` type, see the `Cursor API documentation <{+api+}/mongo#Cursor>`__
 
 For more information on the marshalling and unmarshalling methods in the
 ``bson`` package, see the `bson API documentation
-<https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.0/bson#hdr-Marshalling_and_Unmarshalling>`_
+<{+api+}/bson#hdr-Marshalling_and_Unmarshalling>`_
