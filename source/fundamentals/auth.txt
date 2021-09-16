@@ -24,6 +24,20 @@ authentication mechanism, see our :doc:`Connection Guide </fundamentals/connecti
 Supported Mechanisms
 --------------------
 
+The Go driver supports the following authentication mechanisms:
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - :ref:`SCRAM-SHA-256 <go_sha_256>`
+   * - :ref:`SCRAM-SHA-1 <go_sha_1>`
+   * - :ref:`MONGODB-CR <go_mongodb_cr>`
+   * - :ref:`MongoDB-AWS <go_mongodb_aws>`
+   * - :ref:`X.509 <go_x509>
+
+
+
 The Go Driver establishes a connection with an authentication mechanism
 through a `Client <{+api+}/mongo#Client>`__
 type. The ``Client`` type specifies the mechanism and credentials to use
@@ -94,6 +108,8 @@ For more information on the challenge-response (CR) and salted
 challenge-response authentication mechanisms (SCRAM) that MongoDB supports,
 see the :manual:`SCRAM </core/security-scram/>` section of the server manual.
 
+.. _go_sha_256:
+
 ``SCRAM-SHA-256``
 ~~~~~~~~~~~~~~~~~
 
@@ -124,6 +140,7 @@ To specify the ``SCRAM-SHA-256`` authentication mechanism, assign the
    client, err := mongo.Connect(context.TODO(), clientOpts)
 
 .. _scram-sha-1-auth-mechanism:
+.. _go_sha_1:
 
 ``SCRAM-SHA-1``
 ~~~~~~~~~~~~~~~
@@ -154,6 +171,8 @@ To specify the ``SCRAM-SHA-1`` authentication mechanism, assign the
 
    client, err := mongo.Connect(context.TODO(), clientOpts)
 
+.. _go_mongodb_cr:
+
 ``MONGODB-CR``
 ~~~~~~~~~~~~~~
 
@@ -164,6 +183,8 @@ username and password to authenticate your user.
 
    This authentication mechanism was deprecated starting in MongoDB 3.6
    and is no longer supported as of MongoDB 4.0.
+
+.. _go_mongodb_aws:
 
 ``MONGODB-AWS``
 ~~~~~~~~~~~~~~~
@@ -223,6 +244,8 @@ option the value of your ``sessionToken``:
    }
    assumeRoleClient, err := mongo.Connect(context.TODO(),
       options.Client().SetAuth(assumeRoleCredential))
+
+.. _go_x509:
 
 ``X.509``
 ~~~~~~~~~
