@@ -26,17 +26,11 @@ Supported Mechanisms
 
 The Go driver supports the following authentication mechanisms:
 
-.. list-table::
-   :header-rows: 1
-   :stub-columns: 1
-
-   * - :ref:`SCRAM-SHA-256 <go_sha_256>`
-   * - :ref:`SCRAM-SHA-1 <go_sha_1>`
-   * - :ref:`MONGODB-CR <go_mongodb_cr>`
-   * - :ref:`MongoDB-AWS <go_mongodb_aws>`
-   * - :ref:`X.509 <go_x509>
-
-
+* :ref:`SCRAM-SHA-256 <go_sha_256>`
+* :ref:`SCRAM-SHA-1 <go_sha_1>`
+* :ref:`MONGODB-CR <go_mongodb_cr>`
+* :ref:`MongoDB-AWS <go_mongodb_aws>`
+* :ref:`X.509 <go_x509>`
 
 The Go Driver establishes a connection with an authentication mechanism
 through a `Client <{+api+}/mongo#Client>`__
