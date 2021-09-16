@@ -22,12 +22,12 @@ The following example retrieves statistics about the
    :language: go
    :dedent:
 
-Click `here <{+example+}/command.go>`__ to see a fully runnable example.
+View a `fully runnable example <{+example+}/command.go>`__
 
 Expected Result
 ---------------
 
-After you run the preceding example, it returns a ``SingleResult`` type
+After you run the full example, it returns a ``SingleResult`` type
 that contains the following values:
 
 .. code-block:: json

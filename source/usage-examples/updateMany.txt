@@ -25,12 +25,12 @@ The following example performs the following on the
    :language: go
    :dedent:
 
-`Click here <{+example+}/updateMany.go>`__ to see a fully runnable example.
+View a `fully runnable example. <{+example+}/updateMany.go>`__
 
 Expected Result
 ---------------
 
-After you run the preceding example, you can find the following updated
+After you run the full example, you can find the following updated
 documents in the ``listingsAndReviews`` collection:
 
 .. code-block:: json

@@ -25,12 +25,12 @@ collection:
    :language: go
    :dedent:
 
-`Click here <{+example+}/updateOne.go>`__ to see a fully runnable example.
+View a `fully runnable example. <{+example+}/updateOne.go>`__
 
 Expected Result
 ---------------
 
-After you run the preceding example, you can find the following updated
+After you run the full example, you can find the following updated
 document in the ``restaurants`` collection:
 
 .. code-block:: json
