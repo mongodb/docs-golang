@@ -29,8 +29,8 @@ The following sections focus on ``InsertOne()`` and ``InsertMany()``.
   For an example on how to use the ``BulkWrite()`` function, see the :doc:`Bulk
   Operations Usage Example </usage-examples/bulkWrite>`.
 
-A Note About ``_id``
-~~~~~~~~~~~~~~~~~~~~
+Use ``_id`` as a Unique Index
+-----------------------------
 
 In MongoDB, each document *must* contain a unique ``_id`` field.
 
