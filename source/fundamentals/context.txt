@@ -93,7 +93,7 @@ shorter, the establishment process expires after *1* second.
     ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
     defer cancel()
     client.Database("<db>").Collection("<collection>").InsertOne(ctx, bson.D{{"x",1}})
-    
+
 Socket Read and Write
 ~~~~~~~~~~~~~~~~~~~~~
 

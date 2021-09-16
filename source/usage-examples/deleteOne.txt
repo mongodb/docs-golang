@@ -51,4 +51,4 @@ Additional Information
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-`DeleteOne() <https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.7.0/mongo#Collection.DeleteOne>`__
+`DeleteOne() <{+api+}/mongo#Collection.DeleteOne>`__
