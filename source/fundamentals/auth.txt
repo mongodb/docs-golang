@@ -258,6 +258,7 @@ following:
 
    clientOpts := options.Client().ApplyURI(uri).SetAuth(credential)
 
-For more information on configuring your application to use
-certificates as well as TLS/SSL options, see our
-:doc:`TLS/SSL guide </fundamentals/connection/tls>`.
+..
+  For more information on configuring your application to use
+  certificates as well as TLS/SSL options, see our
+  :doc:`TLS/SSL guide </fundamentals/connection/tls>`.
