@@ -11,7 +11,7 @@ MongoDB Go Driver
    /quick-start
    /usage-examples
    /fundamentals
-   API Documentation <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo>
+   API Documentation <{+api+}/mongo>
    /issues-and-help
    /compatibility
 
@@ -62,7 +62,7 @@ API
 ---
 
 See the `API Documentation
-<https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo>`__ if you are
+<{+api+}/mongo>`__ if you are
 looking for technical information about types, functions, and
 configuration objects within the MongoDB Go Driver.
 
