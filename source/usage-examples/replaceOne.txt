@@ -25,7 +25,7 @@ collection:
    :language: go
    :dedent:
 
-Click `here <{+example+}/replace.go>`__  to see a fully runnable example.
+View a `fully runnable example <{+example+}/replace.go>`__
 
 Expected Result
 ---------------
