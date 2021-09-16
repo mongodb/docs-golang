@@ -61,7 +61,7 @@ replace functions return a ``WriteError``.
 Update
 ------
 
-Use the ``UpdateOne()` or ``UpdateByID()`` function to update a single
+Use the ``UpdateOne()`` or ``UpdateByID()`` function to update a single
 document.
 
 Use the ``UpdateMany()`` function to update multiple documents.
@@ -117,7 +117,7 @@ contains the following properties:
      - The number of documents upserted by the operation
 
    * - ``UpsertedID`` 
-     - the ``_id`` of the upserted document, or ``nil`` if there is none
+     - The ``_id`` of the upserted document, or ``nil`` if there is none
 
 If multiple documents match the query filter passed to ``UpdateOne()``,
 the function selects and updates the first matched document. If no
