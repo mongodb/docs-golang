@@ -48,7 +48,7 @@ started with the MongoDB Go Driver.
 Connection String
 ~~~~~~~~~~~~~~~~~
 
-Follow the :doc:`"Connect to your Cluster" </quick-start/#connect-to-your-cluster>`
+Follow the :ref:`"Connect to your Cluster" <connect-to-your-cluster>`
 step to find the
 :manual:`connection string </reference/connection-string/>` to define your
 ``MONGODB_URI`` environment variable to run our usage examples. If your

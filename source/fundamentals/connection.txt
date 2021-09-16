@@ -57,8 +57,8 @@ options. In the example, we set two connection options:
 ``maxPoolSize=20`` and ``w=majority``. For more information on connection
 options, read the :ref:`connection-options` section of this guide.
 
-The following code shows how you can use the sample connection URI in a client to
-connect to MongoDB.
+The following code shows how you can use the sample connection URI in a
+client to connect to MongoDB.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/srv.go
    :language: go
@@ -70,17 +70,24 @@ connect to MongoDB.
    <https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/#minimum-driver-versions-for-serverless-instances>`__
    to identify the minimum driver version you need.
 
+--------------------------------
+Other Ways to Connect to MongoDB
+--------------------------------
+
+If you are connecting to a single MongoDB server instance or replica set
+that is not hosted on Atlas, see the following sections to find out how to
+connect.
+
 Connect to a MongoDB Server on Your Local Machine
-+++++++++++++++++++++++++++++++++++++++++++++++++
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /includes/localhost-connection.rst
 
 To test whether you can connect to your server, replace the connection
 string with your localhost connection string in the preceding code example.
 
-------------------------
 Connect to a Replica Set
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 A MongoDB replica set deployment is a group of connected instances that
 store the same set of data. This configuration provides data
@@ -109,7 +116,7 @@ When connecting to a replica set, the driver takes the following actions by defa
    is unavailable, you should provide the full list of hosts.
 
 Direct Connection
-+++++++++++++++++
+`````````````````
 
 To force operations on the host designated in the connection URI, specify the ``directConnection`` option. Direct
 connections:
@@ -131,7 +138,7 @@ URI to specify the behavior of the client.
 
 .. list-table::
    :header-rows: 1
-   :widths: 25 10 15 40
+   :widths: 34 10 12 44
 
    * - Option Name
      - Type
