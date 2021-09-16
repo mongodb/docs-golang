@@ -21,7 +21,7 @@ input or output, to proceed with its task.
 
 An example of a blocking function in the Go Driver is the ``Insert()``
 function. If you want to perform an insert operation on a ``Collection``
-within 10 seconds, you can use a ``Context`` with a timeout. If the
+within 10 seconds, you can use a Context with a timeout. If the
 operation doesn't complete within the timeout, the function returns
 an error.
 
@@ -101,19 +101,18 @@ When the driver retrieves a connection for an operation, it sets the
 socket’s read or write deadline to either the Context deadline or socket
 timeout, whichever is shorter.
 
+If you cancel the Context after the execution of the ``Read()`` or
+``Write()`` function but before its deadline, the behavior of the driver
+differs based on version.
+
+The driver generates a separate goroutine to listen for Context
+cancellation when the ``Read()`` or ``Write()`` function is in progress.
+If the goroutine detects a cancellation, it closes the connection. The
+pending ``Read()`` or ``Write()`` function returns an error which the
+driver overwrites with the ``context.Canceled`` error.
+
 .. important::
 
-    If you cancel the Context after the execution of the ``Read()`` or
-    ``Write()`` function but before its deadline, the behavior of the driver
-    differs based on version.
-
-In versions prior to 1.5.0, the driver doesn't detect the Context
-cancellation and waits for the ``Read()`` or ``Write()`` function to
-return.
-
-In versions 1.5.0 and later, the driver generates a separate
-goroutine to listen for Context cancellation when the ``Read()`` or
-``Write()`` function is in progress. If the goroutine detects a
-cancellation, it closes the connection. The pending ``Read()`` or
-``Write()`` function returns an error which the driver overwrites with
-the ``context.Canceled`` error.
+    In versions prior to 1.5.0, the driver doesn't detect the Context
+    cancellation and waits for the ``Read()`` or ``Write()`` function to
+    return.
