@@ -36,7 +36,11 @@ output:
    :copyable: false
 
    // results truncated
-   [{_id ObjectID("...")} {title Record of ...} {text No bytes, no problem....}]
+   {
+       "_id": ...,
+       "text": "Binary data, best to store with GridFS. Bucket that data",
+       "title": "Showcasing a Blossoming Binary"
+   }
 
 .. important::
 
