@@ -1,6 +1,6 @@
-=================
-Working with BSON
-=================
+==============
+Work with BSON
+==============
 
 .. default-domain:: mongodb
 
@@ -15,7 +15,7 @@ Overview
 
 In this guide, you can learn about how the Go Driver handles conversions
 between BSON and Go values. The process of converting a Go value to
-BSON is called **marshalling**, while the reverse process is called **unmarshalling**. 
+BSON is called **marshalling**, while the reverse process is called **unmarshalling**.
 
 You should read this guide if you want to learn more about how the Go Driver
 represents BSON data or need to adjust default marshalling
@@ -39,7 +39,7 @@ The following example demonstrates how to construct a query filter using the
 than 100:
 
 .. code-block:: go
-   
+
    filter := bson.D{{"quantity", bson.D{{"$gt", 100}}}}
 
 For more information on how the Go Driver handles BSON data, see the
@@ -79,11 +79,11 @@ use with the Go Driver:
 
    * - ``truncate``
      - If the field type is a non-float numeric type, BSON doubles
-       unmarshalled into that field will be trucated at the decimal point.
+       unmarshalled into that field will be truncated at the decimal point.
 
    * - ``inline``
      - If the field type is a struct or map field, the field will be
-       "flattened" when marshalling and "un-flattened" when unmarshalling.
+       flattened when marshalling and unflattened when unmarshalling.
 
 Without additional instruction from struct tags, the Go
 Driver will marshal structs using the following rules:
@@ -120,7 +120,7 @@ Driver will marshal structs using the following rules:
          	City   string
          	State  string
          }
-                  
+
          type Student struct {
          	FirstName string  `bson:"first_name,omitempty"`
          	LastName  string  `bson:"last_name,omitempty"`
@@ -138,8 +138,8 @@ Driver will marshal structs using the following rules:
 
       .. code-block:: json
          :copyable: false
-      
-         { 
+
+         {
            "_id" : ObjectId("..."),
            "first_name" : "Arthur",
            "street" : "1 Lakewood Way",
@@ -149,7 +149,7 @@ Driver will marshal structs using the following rules:
          }
 
       In this example, struct tags make the driver:
-      
+
       - Set custom BSON field names such as ``first_name``
       - Omit the empty ``LastName`` field
       - Flatten the nested struct and bring all fields up to the top
@@ -170,7 +170,7 @@ Driver will marshal structs using the following rules:
          	City   string
          	State  string
          }
-                  
+
          type Student struct {
          	FirstName string
          	LastName  string
@@ -188,8 +188,8 @@ Driver will marshal structs using the following rules:
 
       .. code-block:: json
          :copyable: false
-      
-         { 
+
+         {
            "_id" : ObjectId("..."),
            "firstname" : "Arthur",
            "lastname" : "",
@@ -200,9 +200,9 @@ Driver will marshal structs using the following rules:
                       },
            "age" : 8
          }
-         
+
       Without struct tags, the driver:
-      
+
       - Sets the lowercase of the struct fields as the BSON field names
       - Includes an empty ``lastname`` field
       - Stores the ``Address`` field as a nested value
@@ -219,12 +219,12 @@ The ``Decode()`` method returns an ``error`` type which
 contains one of the following values:
 
 - ``nil`` if a document matched your query, and there were no errors
-  retrieving and unmarshalling the document. 
+  retrieving and unmarshalling the document.
 - If the driver retrieved your document but could not unmarshal your result, the
   ``Decode()`` method returns the unmarshalling error.
 - If there was an error retrieving your document during execution of the
   ``FindOne()`` method, the error propagates to the ``Decode()`` method and
-  the ``Decode()`` method returns the error. 
+  the ``Decode()`` method returns the error.
 
 When used on the ``SingleResult`` type returned by the ``FindOne()``
 method, ``Decode()`` can also return the ``ErrNoDocuments`` error if no
@@ -235,7 +235,7 @@ method to unmarshal and read the result of a simple ``FindOne()``
 operation:
 
 .. code-block:: go
-   
+
    coll := client.Database("school").Collection("students")
    filter := bson.D{{"age", 8}}
 
@@ -248,7 +248,7 @@ operation:
 The output of the preceding code should look like this:
 
 .. code-block:: none
-   
+
    [{_id ObjectID("...")} {first_name Arthur} {street 1 Fern Way} {city Elwood City} {state PA} {age 8}]
 
 The ``Cursor`` type also uses the ``All()`` method, which unmarshals all
@@ -256,13 +256,13 @@ documents stored in the cursor into an array at the same time.
 
 The ``bson`` package includes a family of
 ``Marshal()`` and ``Unmarshal()`` methods that work with BSON-encoded data
-of ``[]byte`` type. 
+of ``[]byte`` type.
 
 The following code demonstrates how you can unmarshal BSON back into a
 user-defined struct by using methods from the ``bson`` package:
 
 .. code-block:: go
-   
+
    type Item struct {
       Category string
       Quantity int32
@@ -279,12 +279,12 @@ user-defined struct by using methods from the ``bson`` package:
 The output of the preceding code should look like this:
 
 .. code-block:: none
-   
+
    Unmarshalled Struct:
    {Category:plate Quantity:6}
 
 .. note::
-   
+
    You can use the ``Raw`` type to retrieve elements from a BSON
    document byte slice without unmarshalling it to a Go value. This can
    be useful if you need to look up individual elements without
