@@ -70,6 +70,7 @@ client to connect to MongoDB.
    <https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/#minimum-driver-versions-for-serverless-instances>`__
    to identify the minimum driver version you need.
 
+--------------------------------
 Other Ways to Connect to MongoDB
 --------------------------------
 
@@ -137,7 +138,7 @@ URI to specify the behavior of the client.
 
 .. list-table::
    :header-rows: 1
-   :widths: 25 10 15 40
+   :widths: 34 10 12 44
 
    * - Option Name
      - Type

@@ -11,6 +11,8 @@ After completing the steps in the Atlas guide, you should have a new MongoDB
 cluster deployed in Atlas, a new database user, and
 :atlas:`sample datasets loaded </sample-data/>` into your cluster.
 
+.. _connect-to-your-cluster:
+
 Connect to your Cluster
 -----------------------
 
