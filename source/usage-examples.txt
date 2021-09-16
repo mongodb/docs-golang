@@ -78,8 +78,8 @@ root of your project. For more information, see the
 Connection String
 ~~~~~~~~~~~~~~~~~
 
-You can use the :guides:`Atlas Connectivity Guide </cloud/connectionstring/>`
-to enable connectivity to your Atlas instance and find the
+Follow the :doc:`"Connect to your Cluster" </quick-start/#connect-to-your-cluster>`
+step to find the
 :manual:`connection string </reference/connection-string/>` to define your
 ``MONGODB_URI`` environment variable to run our usage examples. If your
 instance uses :manual:`SCRAM authentication </core/security-scram/>`,
