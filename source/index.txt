@@ -22,7 +22,7 @@ Introduction
 
 Welcome to the MongoDB Go driver documentation. 
 
-The official MongoDB Go driver lets you connect your Java applications
+The official MongoDB Go driver lets you connect your Go applications
 to MongoDB and work with your data. On this page, you can find descriptions of
 each section of the driver documentation and where to go to learn more
 about the Go driver.
@@ -97,7 +97,7 @@ Learn
 ------
 
 Visit the Developer Hub and MongoDB University to learn more about the
-MongoDB Java driver.
+MongoDB Go driver.
 
 Developer Hub
 ~~~~~~~~~~~~~
