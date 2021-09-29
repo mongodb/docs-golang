@@ -21,8 +21,9 @@ collections.
 Sample Data
 ~~~~~~~~~~~
 
-To perform the examples in this guide, run the following snippet to load
-the documents into the ``ratings`` collection of the ``tea`` database:
+To run the example in this guide, load these documents into the
+``ratings`` collection of the ``tea`` database with the following
+snippet:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/delete.go
    :language: go
@@ -56,8 +57,8 @@ filter.
 
 .. tip::
 
-    If one document matches your filter, the ``DeleteMany()`` function
-    is equivalent to the ``DeleteOne`` function.
+   If one document matches your filter, the ``DeleteMany()`` function
+   is equivalent to the ``DeleteOne`` function.
 
 Both functions optionally take a ``DeleteOptions`` type, which
 represents options you can use to configure the function. 
@@ -72,8 +73,8 @@ Example
 The following example passes a context and a filter to the ``DeleteMany()``
 function, which performs the following: 
 
-- Matches documents where the ``ratings`` is greater than ``8``
-- Specifies for the function to not send a hint and to use the default collation
+- Match documents where the ``rating`` is greater than ``8``
+- Specify the function to not send a hint and to use the default collation
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/delete.go
    :language: go
@@ -86,12 +87,12 @@ After running the preceding example, the output resembles the following:
 .. code-block:: none
    :copyable: false
 
-    Number of documents deleted: 2
+   Number of documents deleted: 2
 
 .. tip::
 
-    If the preceding example used the ``DeleteOne()`` function, the
-    driver deletes the first document matched of the two.
+   If the preceding example used the ``DeleteOne()`` function, the
+   driver deletes the first document matched of the two.
 
 Additional Information
 ----------------------
