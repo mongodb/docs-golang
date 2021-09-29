@@ -1,0 +1,116 @@
+=================
+Delete a Document
+=================
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. _delete_guide_golang:
+
+Overview
+--------
+
+In this guide, you can learn how to remove documents from your MongoDB
+collections.
+
+Sample Data
+~~~~~~~~~~~
+
+To perform the examples in this guide, run the following snippet to load
+the documents into the ``ratings`` collection of the ``tea`` database:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/delete.go
+   :language: go
+   :dedent:
+   :start-after: begin insertDocs
+   :end-before: end insertDocs
+
+Each document contains a rating for a type of tea, which corresponds to
+the ``type`` and ``rating`` fields.
+
+Delete Operations
+-----------------
+
+Use **delete operations** to remove data from MongoDB. Delete operations
+consist of the ``DeleteOne()`` and ``DeleteMany()`` functions.
+
+Delete One Document
+~~~~~~~~~~~~~~~~~~~
+
+The ``DeleteOne()`` function expects you to pass a ``Context`` type and a
+query filter. The function deletes *the first document* that matches the
+filter. 
+
+
+Delete All Documents
+~~~~~~~~~~~~~~~~~~~~
+
+The ``DeleteMany()`` function expects you to pass a ``Context`` type and a
+query filter. The function deletes *all* documents that match the
+filter.
+
+.. tip::
+
+    If one document matches your filter, the ``DeleteMany()`` function
+    is equivalent to the ``DeleteOne`` function.
+
+Both functions optionally take a ``DeleteOptions`` type, which
+represents options you can use to configure the function. 
+
+Both functions also return a ``DeleteResult`` type, which contains the
+number of documents deleted. If there are no matches to your filter, no
+document gets deleted and ``DeleteResult`` returns ``0``.
+
+Example
+```````
+
+The following example passes a context and a filter to the ``DeleteMany()``
+function, which performs the following: 
+
+- Matches documents where the ``ratings`` is greater than ``8``
+- Specifies for the function to not send a hint and to use the default collation
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/delete.go
+   :language: go
+   :dedent:
+   :start-after: begin deleteMany
+   :end-before: end deleteMany
+
+After running the preceding example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+    Number of documents deleted: 2
+
+.. tip::
+
+    If the preceding example used the ``DeleteOne()`` function, the
+    driver deletes the first document matched of the two.
+
+Additional Information
+----------------------
+
+For runnable examples of the delete operations, see the following usage
+examples:
+
+- :doc:`Delete a Document </usage-examples/deleteOne>`
+- :doc:`Delete Multiple Documents </usage-examples/deleteMany>`
+
+.. For more information about collations, see our guide on <TODO: Collations>.
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+For more information on any of the functions or types discussed in this
+guide, see the following API Documentation:
+
+- `DeleteOne() <{+api+}/mongo#Collection.DeleteOne>`__
+- `DeleteMany() <{+api+}/mongo#Collection.DeleteMany>`__
+- `DeleteOptions <{+api+}/options#DeleteOptions>`__
+- `DeleteResult <{+api+}/mongo#DeleteResult>`__
