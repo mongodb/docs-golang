@@ -19,9 +19,9 @@ In this guide, you can learn how to **insert** documents into a MongoDB
 collection.
 
 Before you can find, update, and delete documents in MongoDB, you need
-to insert those documents. Insert operations insert one document using
-the ``InsertOne()`` function, or insert multiple documents using one of
-the ``InsertMany()`` or ``BulkWrite()`` function.
+to insert those documents. You can insert one document using
+the ``InsertOne()`` function, or insert multiple documents using either
+the ``InsertMany()`` or ``BulkWrite()`` functions.
 
 The following sections focus on ``InsertOne()`` and ``InsertMany()``.
 
@@ -41,7 +41,7 @@ The two options for managing this field are:
   driver generates unique ``ObjectId`` values for documents that you do
   not explicitly specify an ``_id``.
 
-Unless you provide strong guarantees for uniqueness, we recommend
+Unless you provide strong guarantees for uniqueness, MongoDB recommends
 you let the driver automatically generate ``_id`` values.
 
 .. note::
@@ -59,6 +59,23 @@ Insert a Document
 -----------------
 
 Use the ``InsertOne()`` function to insert a single document into a collection.
+You can modify the behavior of ``InsertOne()`` by constructing and passing
+an optional ``InsertOneOptions`` struct.
+
+The available options to tune with ``InsertOneOptions`` are:
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+   :class: compatibility-large
+
+   * - Option
+     - Default
+     - Description
+
+   * - ``BypassDocumentValidation``
+     - ``false``
+     - If ``true``, allows the write to opt-out of :manual:`document level validation </core/schema-validation>`.
 
 Upon successful insertion, the function returns an
 ``InsertOneResult`` instance that contains the ``_id`` of
