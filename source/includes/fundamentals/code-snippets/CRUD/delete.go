@@ -47,10 +47,9 @@ func main() {
 	fmt.Printf("Number of documents inserted: %d\n", len(result.InsertedIDs))
 
 	// begin deleteMany
-	deleteManyFilter := bson.D{{"rating", bson.D{{"$gt", 8},}},}
-	deleteOptions := options.Delete().SetHint(nil).SetCollation(nil)
+	deleteManyFilter := bson.D{{"rating", bson.D{{"$gt", 8}}}}
 
-	deleteManyResult, deleteManyErr := coll.DeleteMany(context.TODO(), deleteManyFilter, deleteOptions,)
+	deleteManyResult, deleteManyErr := coll.DeleteMany(context.TODO(), deleteManyFilter)
 	fmt.Printf("Number of documents deleted: %d\n", deleteManyResult.DeletedCount)
 	// end deleteMany
 	if deleteManyErr != nil {

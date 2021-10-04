@@ -16,7 +16,7 @@ Overview
 --------
 
 In this guide, you can learn how to remove documents from your MongoDB
-collections.
+collections using delete operations.
 
 Sample Data
 ~~~~~~~~~~~
@@ -31,6 +31,12 @@ snippet:
    :start-after: begin insertDocs
    :end-before: end insertDocs
 
+.. tip:: Non-existent Database and Collections
+
+   The driver automatically creates the necessary database and/or collection
+   when you perform a write operation against them if they don't already
+   exist.
+   
 Each document contains a rating for a type of tea, which corresponds to
 the ``type`` and ``rating`` fields.
 
@@ -40,41 +46,60 @@ Delete Operations
 Use **delete operations** to remove data from MongoDB. Delete operations
 consist of the ``DeleteOne()`` and ``DeleteMany()`` functions.
 
-Delete One Document
-~~~~~~~~~~~~~~~~~~~
-
-The ``DeleteOne()`` function expects you to pass a ``Context`` type and a
-query filter. The function deletes *the first document* that matches the
-filter. 
-
-
-Delete All Documents
-~~~~~~~~~~~~~~~~~~~~
-
-The ``DeleteMany()`` function expects you to pass a ``Context`` type and a
-query filter. The function deletes *all* documents that match the
-filter.
+The ``DeleteOne()`` function deletes *the first document* that
+matches the filter. The ``DeleteMany()`` function deletes *all*
+documents that match the filter.
 
 .. tip::
 
    If one document matches your filter, the ``DeleteMany()`` function
    is equivalent to the ``DeleteOne`` function.
 
-Both functions optionally take a ``DeleteOptions`` type, which
-represents options you can use to configure the function. 
+Request
+~~~~~~~
 
-Both functions also return a ``DeleteResult`` type, which contains the
-number of documents deleted. If there are no matches to your filter, no
+Both functions expect you to pass a ``Context`` type and a non-nil query
+filter. They both optionally take a ``DeleteOptions`` type as a third
+parameter, which represents options you can use to configure the
+delete operation.
+
+The ``DeleteOptions`` type consists of the following functions:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Function
+     - Description
+
+   * - ``SetHint()`` 
+     - | The index to use to scan for documents to delete. 
+       | Default: ``Nil``
+
+   * - ``SetCollation()``
+     - | The type of language collation to use when sorting results.  
+       | Default: ``Nil``
+
+The following snippet specifies the delete operation to use the default
+hint and to use the default collation: 
+
+.. code-block:: go
+
+   deleteOptions := options.Delete().SetHint(nil).SetCollation(nil)
+
+Response
+~~~~~~~~
+
+Both functions return a ``DeleteResult`` type, which contains the number
+of documents deleted. If there are no matches to your filter, no
 document gets deleted and ``DeleteResult`` returns ``0``.
 
 Example
 ```````
 
-The following example passes a context and a filter to the ``DeleteMany()``
-function, which performs the following: 
-
-- Match documents where the ``rating`` is greater than ``8``
-- Specify the function to not send a hint and to use the default collation
+The following example passes a context and a filter to the
+``DeleteMany()`` function, which matches documents where the ``rating``
+is greater than ``8``:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/delete.go
    :language: go
@@ -103,6 +128,10 @@ examples:
 - :doc:`Delete a Document </usage-examples/deleteOne>`
 - :doc:`Delete Multiple Documents </usage-examples/deleteMany>`
 
+For more information about how the driver uses Context, see our guide on
+:doc:`Context </fundamentals/context>`.
+
+.. For more information about specifying hints, see our guide on <TODO: Indexes>.
 .. For more information about collations, see our guide on <TODO: Collations>.
 
 API Documentation
