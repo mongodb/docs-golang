@@ -29,7 +29,7 @@ snippet:
    :start-after: begin insertDocs
    :end-before: end insertDocs
 
-.. note:: Non-existent Database and Collections
+.. tip:: Non-existent Database and Collections
 
    The driver automatically creates the necessary database and/or collection
    when you perform a write operation against them if they don't already exist.
@@ -46,10 +46,10 @@ Sort Direction
 --------------
 
 To specify the order your results, pass an interface containing the
-field and direction to sort in to the ``FindOptions.SetSort()`` function
+field and sort direction in to the ``FindOptions.SetSort()`` function
 as the third parameter to the ``Find()`` function.
 
-The direction of your sort can be **ascending** or **descending**.
+The sort direction can be **ascending** or **descending**.
 
 Ascending
 ~~~~~~~~~
@@ -60,9 +60,9 @@ specify this sort, pass the field you want to sort by and a ``1`` to the
 
 .. tip::
 
-   A ``Boolean`` orders ``false`` then ``true``, a ``String``
-   orders from **a to z** and numeric types order from **negative
-   infinity to infinity**.
+   With an ascending sort, a ``Boolean`` orders ``false`` **then**
+   ``true``, a ``String`` orders from **a to z** and numeric types order
+   from **negative infinity to positive infinity**.
 
 Example 
 ```````
@@ -74,10 +74,11 @@ The following example specifies an ascending sort on ``rating`` field:
    :dedent:
    :start-after: begin ascending sort
    :end-before: end ascending sort
+   :emphasize-lines: 2-3, 5
 
 After running the preceding example, the output resembles the following:
 
-.. code-block:: go
+.. code-block:: none
    :copyable: false
 
     //results truncated
@@ -96,9 +97,9 @@ specify this sort, pass the field you want to sort by and a ``-1`` to the
 
 .. tip::
 
-   A ``Boolean`` orders ``true`` then ``false``, a ``String``
-   orders from **z to a** and numeric types orders from **infinity to
-   negative infinity**.
+   With a descending sort, a ``Boolean`` orders ``true`` **then**
+   ``false``, a ``String`` orders from **z to a** and numeric types
+   orders from **positive infinity to negative infinity**.
 
 Example
 ```````
@@ -110,10 +111,11 @@ The following example specifies a descending sort on ``rating`` field:
    :dedent:
    :start-after: begin descending sort
    :end-before: end descending sort
+   :emphasize-lines: 2-3, 5
 
 After running the preceding example, the output resembles the following:
 
-.. code-block:: go
+.. code-block:: none
    :copyable: false
 
     [_id:ObjectID("...") rating:10 type:Masala]
@@ -127,21 +129,20 @@ Handling Ties
 
 A tie occurs when two or more documents have identical values in the
 field you are using to order your results. MongoDB does not guarantee
-sort order in the event of ties. 
+order in the event of ties. 
 
-For example, we encounter a tie for the ``rating`` for the following
-documents:
+For example, in the preceding examples, we encounter a tie for the
+``rating`` in the following documents:
 
-.. code-block:: go
+.. code-block:: none
    :copyable: false
-
 
    [_id:ObjectID("...") rating:5 type:Assam]
    [_id:ObjectID("...") rating:5 type:English Breakfast]
 
-To guarantee a specific sort order for documents that have fields with
-identical values, specify additional fields to sort on in the
-event of a tie.
+To guarantee a specific order for documents that have fields with
+identical values, specify additional fields to sort by in the event of a
+tie.
 
 Example
 ```````
@@ -154,10 +155,11 @@ then a descending sort on the ``type`` field:
    :dedent:
    :start-after: begin multi sort
    :end-before: end multi sort
+   :emphasize-lines: 2-3, 5
 
 After running the preceding example, the output resembles the following:
 
-.. code-block:: go
+.. code-block:: none
    :copyable: false
 
    [_id:ObjectID("...") rating:5 type:English Breakfast]
@@ -166,10 +168,10 @@ After running the preceding example, the output resembles the following:
    [_id:ObjectID("...") rating:8 type:Earl Grey]
    [_id:ObjectID("...") rating:10 type:Masala]
 
-.. tip::
+.. tip:: Using Aggregation 
 
-   You can also specify a sort in an aggregation pipeline, include
-   :manual:`$sort </reference/operator/aggregation/sort/>` stage. 
+   You can also specify a sort in an aggregation pipeline by including
+   the :manual:`$sort </reference/operator/aggregation/sort/>` stage.
 
    The following example specifies the same sort from the preceding
    example in an aggregation pipeline:
