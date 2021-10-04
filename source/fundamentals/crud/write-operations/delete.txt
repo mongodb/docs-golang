@@ -55,13 +55,13 @@ documents that match the filter.
    If one document matches your filter, the ``DeleteMany()`` function
    is equivalent to the ``DeleteOne`` function.
 
-Request
-~~~~~~~
+Parameters
+~~~~~~~~~~
 
 Both functions expect you to pass a ``Context`` type and a non-nil query
-filter. They both optionally take a ``DeleteOptions`` type as a third
-parameter, which represents options you can use to configure the
-delete operation.
+filter specifying which documents to match. They both optionally take a
+``DeleteOptions`` type as a third parameter, which represents options
+you can use to configure the delete operation.
 
 The ``DeleteOptions`` type consists of the following functions:
 
@@ -74,32 +74,36 @@ The ``DeleteOptions`` type consists of the following functions:
 
    * - ``SetHint()`` 
      - | The index to use to scan for documents to delete. 
-       | Default: ``Nil``
+       | Default: ``nil``
 
    * - ``SetCollation()``
      - | The type of language collation to use when sorting results.  
-       | Default: ``Nil``
+       | Default: ``nil``
 
-The following snippet specifies the delete operation to use the default
-hint and to use the default collation: 
+Example
+```````
+
+The following snippet specifies the delete operation to use the ``_id``
+as the index:
 
 .. code-block:: go
 
-   deleteOptions := options.Delete().SetHint(nil).SetCollation(nil)
+   deleteOptions := options.Delete().SetHint(bson.D{{"_id", 1}})
 
-Response
-~~~~~~~~
+Return Value
+~~~~~~~~~~~~
 
-Both functions return a ``DeleteResult`` type, which contains the number
-of documents deleted. If there are no matches to your filter, no
-document gets deleted and ``DeleteResult`` returns ``0``.
+Both functions return a ``DeleteResult`` type. This type contains the
+``DeletedCount`` property, which states number of documents
+deleted. If there are no matches to your filter, no document gets
+deleted and ``DeletedCount`` is ``0``.
 
 Example
 ```````
 
 The following example passes a context and a filter to the
-``DeleteMany()`` function, which matches documents where the ``rating``
-is greater than ``8``:
+``DeleteMany()`` function, which matches and deletes documents where the
+``rating`` is greater than ``8``:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/delete.go
    :language: go
