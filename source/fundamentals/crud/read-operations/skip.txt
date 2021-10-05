@@ -72,6 +72,16 @@ The following example performs the following actions in order with the
    :start-after: begin skip
    :end-before: end skip
 
+After running the preceding example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   //results truncated
+   [{_id ObjectID("...")} {type Oolong} {rating 7}]
+   [{_id ObjectID("...")} {type Earl Grey} {rating 8}]
+   [{_id ObjectID("...")} {type Masala} {rating 10}]
+
 .. tip:: Using Aggregation 
 
    You can also include the :manual:`$skip </reference/operator/aggregation/skip/>`

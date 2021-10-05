@@ -13,8 +13,8 @@ import (
 
 func main() {
 	var uri string
-	if uri = os.Getenv("DRIVER_REF_URI"); uri == "" {
-		log.Fatal("You must set your `MONGODB_URI' environmental variable. See\n\t https://docs.mongodb.com/drivers/go/current/usage-examples/")
+	if uri = os.Getenv("MONGODB_URI"); uri == "" {
+		log.Fatal("You must set your 'MONGODB_URI' environmental variable. See\n\t https://docs.mongodb.com/drivers/go/current/usage-examples/")
 	}
 
 	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
@@ -49,12 +49,12 @@ func main() {
 
 	fmt.Println("Skip:")
 	//begin skip
-	skipFilter := bson.D{{}}
+	skipFilter := bson.D{}
 	skipOptions := options.Find().SetSort(bson.D{{"rating", 1}}).SetSkip(2)
 
 	skipCursor, skipErr := coll.Find(context.TODO(), skipFilter, skipOptions)
 
-	var skipResults []bson.M
+	var skipResults []bson.D
 	if skipErr = skipCursor.All(context.TODO(), &skipResults); skipErr != nil {
 		panic(skipErr)
 	}
@@ -73,7 +73,7 @@ func main() {
 		panic(aggErr)
 	}
 
-	var aggResults []bson.M
+	var aggResults []bson.D
 	if aggErr = aggCursor.All(context.TODO(), &aggResults); aggErr != nil {
 		panic(aggErr)
 	}
