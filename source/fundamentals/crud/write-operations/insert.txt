@@ -185,8 +185,7 @@ to tune with ``InsertOneOptions`` are:
 
        | Default: ``false``
 
-
- Construct an ``InsertManyOptions`` as follows:
+Construct an ``InsertManyOptions`` as follows:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/insertOptions.go
    :start-after: // begin insertManyOpts
