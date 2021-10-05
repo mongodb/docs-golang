@@ -215,4 +215,4 @@ guide, see the following API Documentation:
 - `FindOneAndDelete() <{+api+}/mongo#Collection.FindOneAndDelete>`__
 - `FindOneAndUpdate() <{+api+}/mongo#Collection.FindOneAndUpdate>`__
 - `FindOneAndReplace() <{+api+}/mongo#Collection.FindOneAndReplace>`__
-- `gridfs.Bucket.Find() <{+api+}/mongo/gridfs#Bucket.Find`__
+- `gridfs.Bucket.Find() <{+api+}/mongo/gridfs#Bucket.Find>`__
