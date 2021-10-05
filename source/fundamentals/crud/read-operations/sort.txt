@@ -46,8 +46,18 @@ Sort Direction
 --------------
 
 To specify the order of your results, pass an interface specifying the
-field and sort direction to the ``FindOptions.SetSort()`` function
-as the third parameter to the ``Find()`` function.
+field and sort direction to the ``SetSort()`` function of a read
+operations' options.
+
+The options you specify are the last parameter to the following read
+operation functions:
+
+- ``Find()``
+- ``FindOne()``
+- ``FindOneAndDelete()``
+- ``FindOneAndUpdate()``
+- ``FindOneAndReplace()``
+- ``gridfs.Bucket.Find()``
 
 The sort direction can be **ascending** or **descending**.
 
@@ -56,7 +66,7 @@ Ascending
 
 An ascending sort orders your results from smallest to largest. To
 specify this sort, pass the field you want to sort by and ``1`` to the
-``FindOptions.SetSort()`` function.
+``SetSort()`` function.
 
 .. tip::
 
@@ -94,7 +104,7 @@ Descending
 
 A descending sort orders your results from largest to smallest. To
 specify this sort, pass the field you want to sort by and ``-1`` to the
-``FindOptions.SetSort()`` function.
+``SetSort()`` function.
 
 .. tip::
 
@@ -201,3 +211,8 @@ guide, see the following API Documentation:
 - `Find() <{+api+}/mongo#Collection.Find>`__
 - `FindOptions.SetSort() <{+api+}/mongo/options#FindOptions.SetSort>`__
 - `Aggregate() <{+api+}/mongo#Collection.Aggregate>`__
+- `FindOne() <{+api+}/mongo#Collection.FindOne>`__
+- `FindOneAndDelete() <{+api+}/mongo#Collection.FindOneAndDelete>`__
+- `FindOneAndUpdate() <{+api+}/mongo#Collection.FindOneAndUpdate>`__
+- `FindOneAndReplace() <{+api+}/mongo#Collection.FindOneAndReplace>`__
+- `gridfs.Bucket.Find() <{+api+}/mongo/gridfs#Bucket.Find`__
