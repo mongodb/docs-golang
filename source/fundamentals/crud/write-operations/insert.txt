@@ -74,7 +74,8 @@ The available options to tune with ``InsertOneOptions`` are:
 
    * - ``BypassDocumentValidation``
      - | If ``true``, allows the write to opt-out of :manual:`document level validation </core/schema-validation>`.
-       Default: ``false``
+
+       | Default: ``false``
 
 Upon successful insertion, the function returns an
 ``InsertOneResult`` instance that contains the ``_id`` of
@@ -122,13 +123,15 @@ The available options to tune with ``InsertOneOptions`` are:
 
    * - ``BypassDocumentValidation``
      - | If ``true``, allows the write to opt-out of :manual:`document level validation </core/schema-validation>`.
-       Default: ``false``
+
+       | Default: ``false``
 
    * - ``Ordered``
      - | If ``true``, the driver sends documents to the server in the order provided.
          If an error occurs, the driver and server abort all remaining insert operations.
          See the section on :ref:`ordered behavior <ordered_behavior_go>` for more information.
-       Default: ``false``
+
+       | Default: ``false``
 
 Upon successful insertion, the ``InsertMany()`` function returns an ``InsertManyResult``
 instance that contains the ``_id`` fields of the inserted documents.
