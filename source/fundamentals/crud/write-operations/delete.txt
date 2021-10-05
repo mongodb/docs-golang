@@ -44,15 +44,15 @@ Delete Operations
 -----------------
 
 Use **delete operations** to remove data from MongoDB. Delete operations
-consist of the ``DeleteOne()`` and ``DeleteMany()`` functions:
+consist of the following functions:
 
-- ``DeleteOne()`` deletes *the first document* that matches the filter
-- ``DeleteMany()`` deletes *all* documents that match the filter
+- ``DeleteOne()``, which deletes *the first document* that matches the filter
+- ``DeleteMany()``, which deletes *all* documents that match the filter
 
 .. tip::
 
-   If one document matches your filter, running the ``DeleteMany()``
-   function is equivalent to running the ``DeleteOne()`` function.
+   If one document matches your filter when running the ``DeleteMany()``
+   function, it's equivalent to running the ``DeleteOne()`` function.
 
 Parameters
 ~~~~~~~~~~
@@ -66,7 +66,8 @@ which represents options you can use to configure the delete operation.
 If you don't specify a ``DeleteOptions``, the driver uses the default
 values for each option.
 
-The ``DeleteOptions`` type consists of the following functions:
+The ``DeleteOptions`` type allows you to configure options with the
+following functions:
 
 .. list-table::
    :widths: 30 70
