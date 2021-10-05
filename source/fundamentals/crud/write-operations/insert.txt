@@ -85,7 +85,7 @@ The output should look like this:
 .. code-block:: none
    :copyable: false
 
-   Inserted document with _id: ObjectID("6112c7cacf7fb532a9c0077f")
+   Inserted document with _id: ObjectID("...")
 
 Modify ``InsertOne`` Behavior
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -184,6 +184,7 @@ to tune with ``InsertOneOptions`` are:
          See the section on :ref:`ordered behavior <ordered_behavior_go>` for more information.
 
        | Default: ``false``
+
 
  Construct an ``InsertManyOptions`` as follows:
 
