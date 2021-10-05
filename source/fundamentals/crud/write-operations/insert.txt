@@ -7,7 +7,7 @@ Insert a Document
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 .. _insert_guide_golang:
@@ -125,8 +125,8 @@ The available options to tune with ``InsertOneOptions`` are:
        | Default: ``false``
 
    * - ``Ordered``
-     - | If ``true``, the documents are inserted on the server serially in
-       the order provided. If an error occurs, all remaining inserts are aborted.
+     - | If ``true``, the driver sends documents to the server in the order provided.
+       If an error occurs, the driver and server abort all remaining insert operations.
        See the section on :ref:`ordered behavior <ordered_behavior_go>` for more information.
        | Default: ``false``
 
