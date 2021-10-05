@@ -83,8 +83,8 @@ The available options to tune with ``InsertOneOptions`` are:
    :language: go
    :copyable:
    :dedent:
-   :emphasize-lines: 1
 
+Construct an ``InsertOneOptions`` as follows:
 
 Upon successful insertion, the function returns an
 ``InsertOneResult`` instance that contains the ``_id`` of
@@ -142,13 +142,14 @@ The available options to tune with ``InsertOneOptions`` are:
 
        | Default: ``false``
 
+Construct an ``InsertManyOptions`` as follows:
+
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/insertOptions.go
    :start-after: // begin insertManyOpts
    :end-before: // end insertManyOpts
    :language: go
    :copyable:
    :dedent:
-   :emphasize-lines: 1
 
 
 Upon successful insertion, the ``InsertMany()`` function returns an ``InsertManyResult``
