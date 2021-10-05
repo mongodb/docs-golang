@@ -13,8 +13,8 @@ import (
 
 func main() {
 	var uri string
-	if uri = os.Getenv("DRIVER_REF_URI"); uri == "" {
-		log.Fatal("You must set your `MONGODB_URI' environmental variable. See\n\t https://docs.mongodb.com/drivers/go/current/usage-examples/")
+	if uri = os.Getenv("MONGODB_URI"); uri == "" {
+		log.Fatal("You must set your 'MONGODB_URI' environmental variable. See\n\t https://docs.mongodb.com/drivers/go/current/usage-examples/")
 	}
 
 	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
@@ -49,13 +49,13 @@ func main() {
 
 	fmt.Println("Ascending Sort:")
 	//begin ascending sort
-	ascendingFilter := bson.D{{}}
+	ascendingFilter := bson.D{}
 	acendingSort := bson.D{{"rating", 1}}
 	ascendingOptions := options.Find().SetSort(acendingSort)
 
 	ascendingCursor, ascendingErr := coll.Find(context.TODO(), ascendingFilter, ascendingOptions)
 
-	var ascendingResults []bson.M
+	var ascendingResults []bson.D
 	if ascendingErr = ascendingCursor.All(context.TODO(), &ascendingResults); ascendingErr != nil {
 		panic(ascendingErr)
 	}
@@ -66,13 +66,13 @@ func main() {
 
 	fmt.Println("Descending Sort:")
 	//begin descending sort
-	descendingFilter := bson.D{{}}
+	descendingFilter := bson.D{}
 	descendingSort := bson.D{{"rating", -1}}
 	descendingOptions := options.Find().SetSort(descendingSort)
 
 	descendingCursor, descendingErr := coll.Find(context.TODO(), descendingFilter, descendingOptions)
 
-	var descendingResults []bson.M
+	var descendingResults []bson.D
 	if descendingErr = descendingCursor.All(context.TODO(), &descendingResults); descendingErr != nil {
 		panic(descendingErr)
 	}
@@ -83,13 +83,13 @@ func main() {
 
 	fmt.Println("Multi Sort:")
 	//begin multi sort
-	findFilter := bson.D{{}}
+	findFilter := bson.D{}
 	sort := bson.D{{"rating", 1}, {"type", -1}}
 	findOptions := options.Find().SetSort(sort)
 
 	findCursor, findErr := coll.Find(context.TODO(), findFilter, findOptions)
 
-	var findResults []bson.M
+	var findResults []bson.D
 	if findErr = findCursor.All(context.TODO(), &findResults); findErr != nil {
 		panic(findErr)
 	}
@@ -98,7 +98,7 @@ func main() {
 	}
 	//end multi sort
 
-	fmt.Println("Aggegation Sort:")
+	fmt.Println("Aggregation Sort:")
 	// begin aggregate sort
 	sortStage := bson.D{{"$sort", bson.D{{"rating", 1}, {"type", -1}}}}
 
@@ -107,7 +107,7 @@ func main() {
 		panic(aggErr)
 	}
 
-	var aggResults []bson.M
+	var aggResults []bson.D
 	if aggErr = aggCursor.All(context.TODO(), &aggResults); aggErr != nil {
 		panic(aggErr)
 	}

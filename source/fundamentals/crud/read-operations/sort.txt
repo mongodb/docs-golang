@@ -46,7 +46,7 @@ Sort Direction
 --------------
 
 To specify the order of your results, pass an interface specifying the
-field and sort direction to the ``SetSort()`` function of a read
+sort fields and directions to the ``SetSort()`` function of a read
 operations' options.
 
 The options you specify are the last parameter to the following read
@@ -93,11 +93,11 @@ After running the preceding example, the output resembles the following:
    :copyable: false
 
     //results truncated
-    [_id:ObjectID("...") rating:5 type:Assam]
-    [_id:ObjectID("...") rating:5 type:English Breakfast]
-    [_id:ObjectID("...") rating:7 type:Oolong]
-    [_id:ObjectID("...") rating:8 type:Earl Grey]
-    [_id:ObjectID("...") rating:10 type:Masala]
+   [{_id ObjectID("...")} {type Assam} {rating 5}]
+   [{_id ObjectID("...")} {type English Breakfast} {rating 5}]
+   [{_id ObjectID("...")} {type Oolong} {rating 7}]
+   [{_id ObjectID("...")} {type Earl Grey} {rating 8}]
+   [{_id ObjectID("...")} {type Masala} {rating 10}]
 
 Descending
 ~~~~~~~~~~
@@ -130,11 +130,11 @@ After running the preceding example, the output resembles the following:
 .. code-block:: none
    :copyable: false
 
-    [_id:ObjectID("...") rating:10 type:Masala]
-    [_id:ObjectID("...") rating:8 type:Earl Grey]
-    [_id:ObjectID("...") rating:7 type:Oolong]
-    [_id:ObjectID("...") rating:5 type:Assam]
-    [_id:ObjectID("...") rating:5 type:English Breakfast]
+   [{_id ObjectID("...")} {type Masala} {rating 10}]
+   [{_id ObjectID("...")} {type Earl Grey} {rating 8}]
+   [{_id ObjectID("...")} {type Oolong} {rating 7}]
+   [{_id ObjectID("...")} {type Assam} {rating 5}]
+   [{_id ObjectID("...")} {type English Breakfast} {rating 5}]
 
 Handling Ties
 ~~~~~~~~~~~~~
@@ -149,8 +149,8 @@ the following documents:
 .. code-block:: none
    :copyable: false
 
-   [_id:ObjectID("...") rating:5 type:Assam]
-   [_id:ObjectID("...") rating:5 type:English Breakfast]
+   [{_id ObjectID("...")} {type Assam} {rating 5}]
+   [{_id ObjectID("...")} {type English Breakfast} {rating 5}]
 
 To guarantee a specific order for documents when ties occur, specify
 additional fields to sort by.
@@ -173,11 +173,11 @@ After running the preceding example, the output resembles the following:
 .. code-block:: none
    :copyable: false
 
-   [_id:ObjectID("...") rating:5 type:English Breakfast]
-   [_id:ObjectID("...") rating:5 type:Assam]
-   [_id:ObjectID("...") rating:7 type:Oolong]
-   [_id:ObjectID("...") rating:8 type:Earl Grey]
-   [_id:ObjectID("...") rating:10 type:Masala]
+   [{_id ObjectID("...")} {type English Breakfast} {rating 5}]
+   [{_id ObjectID("...")} {type Assam} {rating 5}]
+   [{_id ObjectID("...")} {type Oolong} {rating 7}]
+   [{_id ObjectID("...")} {type Earl Grey} {rating 8}]
+   [{_id ObjectID("...")} {type Masala} {rating 10}]
 
 .. tip:: Using Aggregation 
 
@@ -199,7 +199,7 @@ Additional Information
 For more information on performing read operations, see our guide on
 :doc:`retrieving data </fundamentals/crud/read-operations/retrieve>`.
 
-.. For information about sorting in an aggregation pipeline, see our
+.. For information about sorting text, see our
 .. guide on :doc:`Text Search </fundamentals/crud/write-operations/text>`.
 
 API Documentation
