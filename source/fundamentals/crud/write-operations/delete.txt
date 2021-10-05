@@ -44,24 +44,27 @@ Delete Operations
 -----------------
 
 Use **delete operations** to remove data from MongoDB. Delete operations
-consist of the ``DeleteOne()`` and ``DeleteMany()`` functions.
+consist of the ``DeleteOne()`` and ``DeleteMany()`` functions:
 
-The ``DeleteOne()`` function deletes *the first document* that
-matches the filter. The ``DeleteMany()`` function deletes *all*
-documents that match the filter.
+- ``DeleteOne()`` deletes *the first document* that matches the filter
+- ``DeleteMany()`` deletes *all* documents that match the filter
 
 .. tip::
 
-   If one document matches your filter, the ``DeleteMany()`` function
-   is equivalent to the ``DeleteOne`` function.
+   If one document matches your filter, running the ``DeleteMany()``
+   function is equivalent to running the ``DeleteOne()`` function.
 
 Parameters
 ~~~~~~~~~~
 
-Both functions expect you to pass a ``Context`` type and a non-nil query
-filter specifying which documents to match. They both optionally take a
-``DeleteOptions`` type as a third parameter, which represents options
-you can use to configure the delete operation.
+The ``DeleteOne()`` and ``DeleteMany()`` functions expect you to pass a
+``Context`` type and a ``non-nil`` query filter specifying which
+documents to match. 
+
+They both optionally take a ``DeleteOptions`` type as a third parameter,
+which represents options you can use to configure the delete operation.
+If you don't specify a ``DeleteOptions``, the driver uses the default
+values for each option.
 
 The ``DeleteOptions`` type consists of the following functions:
 
@@ -80,30 +83,22 @@ The ``DeleteOptions`` type consists of the following functions:
      - | The type of language collation to use when sorting results.  
        | Default: ``nil``
 
-Example
-```````
-
-The following snippet specifies the delete operation to use the ``_id``
-as the index:
-
-.. code-block:: go
-
-   deleteOptions := options.Delete().SetHint(bson.D{{"_id", 1}})
-
 Return Value
 ~~~~~~~~~~~~
 
-Both functions return a ``DeleteResult`` type. This type contains the
-``DeletedCount`` property, which states number of documents
-deleted. If there are no matches to your filter, no document gets
-deleted and ``DeletedCount`` is ``0``.
+The ``DeleteOne()`` and ``DeleteMany()`` functions return a
+``DeleteResult`` type. This type contains the ``DeletedCount`` property,
+which states the number of documents deleted. If there are no matches to
+your filter, no document gets deleted and ``DeletedCount`` is ``0``.
 
 Example
 ```````
 
-The following example passes a context and a filter to the
-``DeleteMany()`` function, which matches and deletes documents where the
-``rating`` is greater than ``8``:
+The following example performs the following with the ``DeleteMany()``
+function: 
+
+- Matches and deletes documents where the ``rating`` is greater than ``8``
+- Specifies the function to use the ``_id`` as the index
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/delete.go
    :language: go
@@ -120,8 +115,9 @@ After running the preceding example, the output resembles the following:
 
 .. tip::
 
-   If the preceding example used the ``DeleteOne()`` function, the
-   driver deletes the first document matched of the two.
+   If the preceding example used the ``DeleteOne()`` function instead of
+   ``DeleteMany()``, the driver would delete the first of the two
+   matched documents.
 
 Additional Information
 ----------------------
