@@ -70,12 +70,11 @@ The available options to tune with ``InsertOneOptions`` are:
    :class: compatibility-large
 
    * - Option
-     - Default
      - Description
 
    * - ``BypassDocumentValidation``
-     - ``false``
-     - If ``true``, allows the write to opt-out of :manual:`document level validation </core/schema-validation>`.
+     - | If ``true``, allows the write to opt-out of :manual:`document level validation </core/schema-validation>`.
+       | Default: ``false``
 
 Upon successful insertion, the function returns an
 ``InsertOneResult`` instance that contains the ``_id`` of
@@ -119,18 +118,17 @@ The available options to tune with ``InsertOneOptions`` are:
    :class: compatibility-large
 
    * - Option
-     - Default
      - Description
 
    * - ``BypassDocumentValidation``
-     - ``false``
-     - If ``true``, allows the write to opt-out of :manual:`document level validation </core/schema-validation>`.
+     - | If ``true``, allows the write to opt-out of :manual:`document level validation </core/schema-validation>`.
+       | Default: ``false``
 
    * - ``Ordered``
-     - ``true``
-     - If ``true``, the documents are inserted on the server serially in
+     - | If ``true``, the documents are inserted on the server serially in
        the order provided. If an error occurs, all remaining inserts are aborted.
        See the section on :ref:`ordered behavior <ordered_behavior_go>` for more information.
+       | Default: ``false``
 
 Upon successful insertion, the ``InsertMany()`` function returns an ``InsertManyResult``
 instance that contains the ``_id`` fields of the inserted documents.
