@@ -28,7 +28,7 @@ collection of the ``tea`` database:
    :start-after: begin insertDocs
    :end-before: end insertDocs
 
-..include:: /includes/fundamentals/tea-sample-data-ending.rst
+.. include:: /includes/fundamentals/tea-sample-data-ending.rst
 
 Skip
 ----
