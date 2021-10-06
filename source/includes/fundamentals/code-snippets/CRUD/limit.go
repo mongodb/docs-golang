@@ -13,7 +13,7 @@ import (
 
 func main() {
 	var uri string
-	if uri = os.Getenv("DRIVER_REF_URI"); uri == "" {
+	if uri = os.Getenv("MONGODB_URI"); uri == "" {
 		log.Fatal("You must set your 'MONGODB_URI' environmental variable. See\n\t https://docs.mongodb.com/drivers/go/current/usage-examples/")
 	}
 
@@ -50,7 +50,7 @@ func main() {
 	fmt.Println("Limit:")
 	//begin limit
 	limitFilter := bson.D{}
-	limitOptions := options.Find().SetLimit(-3)
+	limitOptions := options.Find().SetLimit(2)
 
 	limitCursor, limitErr := coll.Find(context.TODO(), limitFilter, limitOptions)
 
@@ -62,6 +62,22 @@ func main() {
 		fmt.Println(result)
 	}
 	//end limit
+
+	fmt.Println("Limit, Skip and Sort:")
+	//begin multi options
+	multiFilter := bson.D{}
+	multiOptions := options.Find().SetSort(bson.D{{"rating", -1}}).SetLimit(2).SetSkip(1)
+
+	multiCursor, multiErr := coll.Find(context.TODO(), multiFilter, multiOptions)
+
+	var multiResults []bson.D
+	if multiErr = multiCursor.All(context.TODO(), &multiResults); multiErr != nil {
+		panic(multiErr)
+	}
+	for _, result := range multiResults {
+		fmt.Println(result)
+	}
+	//end multi options
 
 	fmt.Println("Aggregation Limit:")
 	// begin aggregate limit
