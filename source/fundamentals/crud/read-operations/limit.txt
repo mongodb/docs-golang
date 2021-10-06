@@ -4,10 +4,166 @@ Limit the Number of Returned Results
 
 .. default-domain:: mongodb
 
-Use ``limit()`` to cap the number of documents that a read operation returns.
-This instance method designates the maximum number of
-documents that a read operation can return. If there are not enough documents
-to reach the specified limit, it can return a smaller number.
-If you use ``limit()`` with the ``skip()`` (TODO: link) instance method, the skip applies
-first and the limit only applies to the documents left over after
-the skip.
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to limit the number of documents
+returned from a read operation.
+
+Sample Data
+~~~~~~~~~~~
+
+Run the following snippet to load the documents into the ``ratings``
+collection of the ``tea`` database:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/limit.go
+   :language: go
+   :dedent:
+   :start-after: begin insertDocs
+   :end-before: end insertDocs
+
+.. tip:: Non-existent Database and Collections
+
+   The driver automatically creates the necessary database, collection,
+   or both when you perform a write operation against them if they don't
+   already exist.
+
+Each document contains a rating for a type of tea that corresponds to
+the ``type`` and ``rating`` fields.
+
+.. note::
+
+   Each example truncates the ``ObjectID`` value because the driver
+   generates them uniquely.
+
+Limit
+-----
+
+To limit the number of documents returned from a query, pass the
+number of documents you want returned to the ``SetLimit()`` function of
+the read operations' options.
+
+Specify the options as the last parameter to the following read
+operation functions:
+
+- ``Find()``
+- ``CountDocuments()``
+- ``gridfs.Bucket.Find()``
+
+If the number of documents is ``0`` or exceeds the number of matched
+documents, the query returns all the documents documents. 
+
+.. tip::
+
+    Passing in a negative number to the ``SetLimit()`` function is
+    equivalent to passing in the absolute value of the negative number.
+
+Example
+~~~~~~~
+
+The following example specifies to return two documents:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/limit.go
+   :language: go
+   :dedent:
+   :start-after: begin limit
+   :end-before: end limit
+
+After running the preceding example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   //results truncated
+   [{_id ObjectID("...")} {type Masala} {rating 10}]
+   [{_id ObjectID("...")} {type Assam} {rating 5}]
+
+.. tip:: Using Aggregation 
+
+   You can also include the :manual:`$limit </reference/operator/aggregation/limit/>`
+   stage to specify a skip in an aggregation pipeline.
+
+   The following example specifies the same sort and skip from the
+   preceding example in an aggregation pipeline:
+
+   .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/limit.go
+      :language: go
+      :dedent:
+      :start-after: begin aggregate limit
+      :end-before: end aggregate limit
+
+Multiple Options
+~~~~~~~~~~~~~~~~
+
+If you configure other options alongside the ``SetLimit()`` function,
+the driver limits the documents returned last regardless of the order
+you list them.
+
+Example
+~~~~~~~
+
+The following example performs the following actions in order using the
+``Find()`` function:
+
+- Sort the ``rating`` field in descending order
+- Skip the first document
+- Return the first two documents
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/limit.go
+   :language: go
+   :dedent:
+   :start-after: begin limit
+   :end-before: end limit
+
+After running the preceding example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   //results truncated
+   [{_id ObjectID("...")} {type Earl Grey} {rating 8}]
+   [{_id ObjectID("...")} {type Oolong} {rating 7}]
+
+.. tip::
+
+   The following option declarations also produce the same result:
+
+   .. code-block:: go
+
+   multiOptions := options.Find().SetSort(bson.D{{"rating", -1}}).SetSkip(1).SetLimit(2)
+   multiOptions := options.Find().SetLimit(2).SetSort(bson.D{{"rating", -1}}).SetSkip(1)
+   multiOptions := options.Find().SetLimit(2).SetSkip(1).SetSort(bson.D{{"rating", -1}})
+   multiOptions := options.Find().SetSkip(1).SetSort(bson.D{{"rating", -1}}).SetLimit(2)
+   multiOptions := options.Find().SetSkip(1).SetLimit(2).SetSort(bson.D{{"rating", -1}})
+
+Additional Information
+----------------------
+
+For more information on performing read operations, see our guide on
+:doc:`retrieving data </fundamentals/crud/read-operations/retrieve>`.
+
+For information on specifying a sort, see our guide on :doc:`sorting
+results </fundamentals/crud/read-operations/sort>`. 
+
+.. For information on skipping results, see our guide on :doc:`skipping
+.. returned results </fundamentals/crud/read-operations/skip>`. 
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+For more information on any of the functions or types discussed in this
+guide, see the following API Documentation:
+This conversation was marked as resolved by kyuan-mongodb
+
+- `FindOptions.SetLimit() <{+api+}/mongo/options#FindOptions.SetLimit>`__
+- `FindOptions.SetSort() <{+api+}/mongo/options#FindOptions.SetSort>`__
+- `FindOptions.SetSkip() <{+api+}/mongo/options#FindOptions.SetSkip>`__
+- `Aggregate() <{+api+}/mongo#Collection.Aggregate>`__
+- `CountDocuments() <{+api+}/mongo#Collection.CountDocuments>`__
+- `gridfs.Bucket.Find() <{+api+}/mongo/gridfs#Bucket.Find>`__
