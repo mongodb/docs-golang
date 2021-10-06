@@ -57,7 +57,7 @@ operation functions:
 - ``gridfs.Bucket.Find()``
 
 If the number of documents is ``0`` or exceeds the number of matched
-documents, the query returns all the documents from a query. 
+documents, the query returns all the documents. 
 
 .. tip::
 
@@ -87,7 +87,7 @@ After running the preceding example, the output resembles the following:
 .. tip:: Using Aggregation 
 
    You can also include the :manual:`$limit </reference/operator/aggregation/limit/>`
-   stage to specify a skip in an aggregation pipeline.
+   stage to specify a limit in an aggregation pipeline.
 
    The following example specifies the same limit from the
    preceding example in an aggregation pipeline:
