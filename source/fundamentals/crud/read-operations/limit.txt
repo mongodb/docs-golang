@@ -57,18 +57,14 @@ operation functions:
 - ``gridfs.Bucket.Find()``
 
 If the limit is ``0`` or exceeds the number of matched
-documents, the function returns all the documents. 
-
-.. tip::
-
-   If the limit is a negative number, the function behaves as the
-   absolute value of the negative number and closes the cursor after
-   retrieving documents.
+documents, the function returns all the documents.  If the limit is a
+negative number, the function behaves as the absolute value of the
+negative number and closes the cursor after retrieving documents.
 
 Example
 ~~~~~~~
 
-The following example specifies how to return two documents:
+The following example shows how to return two documents:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/limit.go
    :language: go
