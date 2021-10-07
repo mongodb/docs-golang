@@ -36,7 +36,7 @@ Sort Direction
 
 To specify the order of your results, pass an interface specifying the
 sort fields and directions to the ``SetSort()`` function of a read
-operations' options.
+operation's options.
 
 Specify the options as the last parameter to the following read
 operation functions:
