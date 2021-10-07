@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"log"
 	"os"
@@ -57,11 +56,8 @@ func main() {
 	if deleteErr != nil {
 		panic(deleteErr)
 	}
-	deleteOutput, deleteOutputErr := json.MarshalIndent(deleteResult, "", "    ")
-	if deleteOutputErr != nil {
-		panic(deleteOutputErr)
-	}
-	fmt.Printf("%s\n", deleteOutput)
+	
+	fmt.Println(deleteResult)
 	//end FindOneAndDelete
 
 	fmt.Println("FindOneAndReplace:")
@@ -75,11 +71,8 @@ func main() {
 	if replaceErr != nil {
 		panic(replaceErr)
 	}
-	replaceOutput, replaceOutputErr := json.MarshalIndent(replaceResult, "", "    ")
-	if replaceOutputErr != nil {
-		panic(replaceOutputErr)
-	}
-	fmt.Printf("%s\n", replaceOutput)
+	
+	fmt.Println(replaceResult)
 	//end FindOneAndReplace
 
 	fmt.Println("FindOneAndUpdate:")
@@ -93,10 +86,7 @@ func main() {
 	if updateErr != nil {
 		panic(updateErr)
 	}
-	updateOutput, updateOutputErr := json.MarshalIndent(updateResult, "", "    ")
-	if updateOutputErr != nil {
-		panic(updateOutputErr)
-	}
-	fmt.Printf("%s\n", updateOutput)
+	
+	fmt.Println(updateResult)
 	//end FindOneAndUpdate
 }
