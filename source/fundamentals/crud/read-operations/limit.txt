@@ -28,26 +28,14 @@ collection of the ``tea`` database:
    :start-after: begin insertDocs
    :end-before: end insertDocs
 
-.. tip:: Non-existent Databases and Collections
-
-   The driver automatically creates the necessary database and
-   collection when you perform a write operation against them if they
-   don't already exist.
-
-Each document contains a rating for a type of tea that corresponds to
-the ``type`` and ``rating`` fields.
-
-.. note::
-
-   Each example truncates the ``ObjectID`` value because the driver
-   generates them uniquely.
+.. include:: /includes/fundamentals/tea-sample-data-ending.rst
 
 Limit
 -----
 
 To limit the number of documents returned from a query, pass the
 number of documents you want returned to the ``SetLimit()`` function of
-the read operations' options.
+the read operation's options.
 
 Specify the options as the last parameter to the following read
 operation functions:
@@ -58,8 +46,9 @@ operation functions:
 
 If the limit is ``0`` or exceeds the number of matched
 documents, the function returns all the documents.  If the limit is a
-negative number, the function behaves as the absolute value of the
-negative number and closes the cursor after retrieving documents.
+negative number, the function behaves as if the limit was the absolute
+value of the negative number and closes the cursor after retrieving
+documents.
 
 Example
 ~~~~~~~
