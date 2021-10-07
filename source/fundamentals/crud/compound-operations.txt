@@ -1,0 +1,344 @@
+===================
+Compound Operations
+===================
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to perform compound operations.
+
+Sample Data
+~~~~~~~~~~~
+
+Run the following snippet to load the documents into the ``ratings``
+collection of the ``tea`` database:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/compoundOperations.go
+   :language: go
+   :dedent:
+   :start-after: begin insertDocs
+   :end-before: end insertDocs
+
+.. include:: /includes/fundamentals/tea-sample-data-ending.rst
+
+Compound Operations
+-------------------
+
+Compound operations consist of a read and write operation performed as
+a single operation.  If you performed the read and write operation
+separately, there's a chance someone else may alter the document between
+both operations. MongoDB prevents this by placing a write lock on the
+document you are modifying for the duration of your compound operation.
+
+MongoDB supports the following compound operations:
+
+- Find and delete one document
+- Find and update one document
+- Find and replace one document
+
+.. tip::
+    
+   If you need to read and write to more than one document, use
+   :manual:`transactions </core/transactions/>`.
+
+Find and Delete
+~~~~~~~~~~~~~~~
+
+To find and delete one document, pass a ``Context`` type and a
+``non-nil`` query filter specifying which documents to match to the
+``FindOneAndDelete()`` function. 
+
+The function optionally takes a ``FineOneAndDeleteOptions`` type as a
+third parameter, which represents options you can use to configure the
+compound operation. If you don't specify a ``FineOneAndDeleteOptions``,
+the driver uses the default values for each option.
+
+The ``FineOneAndDeleteOptions`` type allows you to configure options
+with the following functions:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Function
+     - Description
+
+   * - ``SetCollation()``
+     - | The type of language collation to use when sorting results.
+       | Default: ``nil``
+
+   * - ``SetMaxTime()``
+     - | The maximum amount of time that the query can run on the server.
+       | Default: ``nil``
+
+   * - ``SetProjection()``
+     - | The fields to include in the document returned.
+       | Default: ``nil``
+
+   * - ``SetSort()``
+     - | The sort fields and directions to order the documents matched. 
+       | Default: ``nil``
+
+   * - ``SetHint()``
+     - | The index to use to scan for documents.
+       | Default: ``nil``
+
+The ``FindOneAndDelete()`` function returns a ``SingleResult``
+containing the document that got deleted.
+
+Example
+```````
+
+The following example matches and deletes a document where the ``type``
+is ``"Assam"`` with the ``FindOneAndDelete()`` function:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/compoundOperations.go
+   :language: go
+   :dedent:
+   :start-after: begin FindOneAndDelete
+   :end-before: end FindOneAndDelete
+
+After running the preceding example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [
+        {
+            "Key": "_id",
+            "Value": "<your documents _id value>"
+        },
+        {
+            "Key": "type",
+            "Value": "Assam"
+        },
+        {
+            "Key": "rating",
+            "Value": 5
+        }
+    ]
+
+Find and Update
+~~~~~~~~~~~~~~~
+
+To find and update one document, pass the following parameters in order
+to the ``FindOneAndUpdate()`` function:
+
+- A ``Context`` type 
+- A ``non-nil`` query filter specifying which documents to match
+- An update document specifying at least one update operator with fields and values that describe the change
+
+The function optionally takes a ``FineOneAndUpdateOptions`` type as a
+third parameter, which represents options you can use to configure the
+compound operation. If you don't specify a ``FineOneAndUpdateOptions``,
+the driver uses the default values for each option.
+
+The ``FineOneAndUpdateOptions`` type allows you to configure options
+with the following functions:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Function
+     - Description
+
+   * - ``SetArrayFilters()``
+     - | The array elements the update applies to.
+       | Default: ``nil``
+
+   * - ``SetBypassDocumentValidation()``
+     - | Whether to allow the write operation to opt-out of :manual:`document level validation </core/schema-validation>`.
+       | Default: ``false``
+
+   * - ``SetCollation()``
+     - | The type of language collation to use when sorting results.
+       | Default: ``nil``
+       
+   * - ``SetMaxTime()``
+     - | The maximum amount of time that the query can run on the server.
+       | Default: ``nil``
+
+   * - ``SetProjection()``
+     - | The fields to include in the document returned.
+       | Default: ``nil``
+
+   * - ``SetReturnDocument()``
+     - | Whether to return the original or updated document in the ``SingleResult``. 
+       | Default: ``options.Before``
+
+   * - ``SetSort()``
+     - | The sort fields and directions to order the documents matched. 
+       | Default: ``nil``
+
+   * - ``SetUpsert()``
+     - | Whether to insert a new document if the query filter doesn't match any documents. 
+       | Default: ``false``
+
+   * - ``SetHint()``
+     - | The index to use to scan for documents.
+       | Default: ``nil``
+
+By default, the ``FindOneAndUpdate()`` function returns a ``SingleResult`` 
+containing original document. If you set the ``SetReturnDocument()``
+function to ``options.After``, the function returns the updated document.
+
+Example
+```````
+
+The following example performs the following actions in order with the
+``FindOneAndUpdate()`` function:
+
+- Matches a document where the ``type`` is ``"Oolong"``
+- Updates the matched document's ``rating`` to ``9``
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/compoundOperations.go
+   :language: go
+   :dedent:
+   :start-after: begin FindOneAndUpdate
+   :end-before: end FindOneAndUpdate
+
+After running the preceding example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [
+        {
+            "Key": "_id",
+            "Value": "<your documents _id value>"
+        },
+        {
+            "Key": "type",
+            Value": "Oolong"
+        },
+        {
+            "Key": "rating",
+            "Value": 9
+        }
+    ]
+
+Find and Replace
+~~~~~~~~~~~~~~~~
+
+To find and update one document, pass the following parameters in order
+to the ``FindOneAndReplace()`` function:
+
+- A ``Context`` type 
+- A ``non-nil`` query filter specifying which documents to match
+- A replacement document to take place of the matched document
+
+The function optionally takes a ``FineOneAndReplaceOptions`` type as a
+third parameter, which represents options you can use to configure the
+compound operation. If you don't specify a ``FineOneAndReplaceOptions``,
+the driver uses the default values for each option.
+
+The ``FineOneAndReplaceOptions`` type allows you to configure options
+with the following functions:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Function
+     - Description
+
+   * - ``SetBypassDocumentValidation()``
+     - | Whether to allow the write operation to opt-out of :manual:`document level validation </core/schema-validation>`.
+       | Default: ``false``
+
+   * - ``SetCollation()``
+     - | The type of language collation to use when sorting results.
+       | Default: ``nil``
+       
+   * - ``SetMaxTime()``
+     - | The maximum amount of time that the query can run on the server.
+       | Default: ``nil``
+
+   * - ``SetProjection()``
+     - | The fields to include in the document returned.
+       | Default: ``nil``
+
+   * - ``SetReturnDocument()``
+     - | Whether to return the original or replaced document in the ``SingleResult``. 
+       | Default: ``nil``
+
+   * - ``SetSort()``
+     - | The sort fields and directions to order the documents matched. 
+       | Default: ``nil``
+
+   * - ``SetUpsert()``
+     - | Whether to insert a new document if the query filter doesn't match any documents. 
+       | Default: ``false``
+
+   * - ``SetHint()``
+     - | The index to use to scan for documents.
+       | Default: ``nil``
+
+By default, the ``FindOneAndReplace()`` function returns a ``SingleResult`` 
+containing original document. If you set the ``SetReturnDocument()``
+function to ``options.After``, the function returns the replaced document.
+
+Example
+```````
+
+The following example performs the following actions in order with the
+``FindOneAndReplace()`` function:
+
+- Matches a document where the ``type`` is ``"English Breakfast"``
+- Replaces the matched document with a new document where the ``type`` is ``"Ceylon"`` and  ``rating`` is ``6``
+- Returns the state of the document after the replacement
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/compoundOperations.go
+   :language: go
+   :dedent:
+   :start-after: begin FindOneAndReplace
+   :end-before: end FindOneAndReplace
+
+After running the preceding example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [
+        {
+            "Key": "_id",
+            "Value": "<your documents _id value>"
+        },
+        {
+            "Key": "type",
+            "Value": "Ceylon"
+        },
+        {
+            "Key": "rating",
+            "Value": 6
+        }
+    ]
+
+Additional Information
+----------------------
+
+For more information on performing the read or write operations
+mentioned in this guide, see the following CRUD guides:
+
+- :doc:`Retrieve documents </fundamentals/crud/read-operations/retrieve>`
+- :doc:`Delete a document </fundamentals/crud/write-operations/delete>`
+- :doc:`Update or Replace a document </fundamentals/crud/write-operations/change-a-document>`
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+- `FindOneAndDelete() <{+api+}/mongo#Collection.FindOneAndDelete>`__
+- `FindOneAndDeleteOptions <{+api+}/mongo/options#FindOneAndDeleteOptions>`__
+- `FindOneAndUpdate() <{+api+}/mongo#Collection.FindOneAndUpdate>`__
+- `FindOneAndUpdateOptions <{+api+}/mongo/options#FindOneAndUpdateOptions>`__
+- `FindOneAndReplace() <{+api+}/mongo#Collection.FindOneAndReplace>`__
+- `FindOneAndReplaceOptions <{+api+}/mongo/options#FindOneAndReplaceOptions>`__
