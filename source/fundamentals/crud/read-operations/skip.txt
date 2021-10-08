@@ -99,11 +99,11 @@ After running the preceding example, the output resembles the following:
 Additional Information
 ----------------------
 
-For more information on performing read operations, see our guide on
-:doc:`retrieving data </fundamentals/crud/read-operations/retrieve>`.
+For more information on the read operations used in this guide, see the
+following guides:
 
-For information on specifying a sort, see our guide on :doc:`sorting
-results </fundamentals/crud/read-operations/sort>`. 
+- :doc:`Retrieve Data </fundamentals/crud/read-operations/retrieve>`.
+- :doc:`Sort Results </fundamentals/crud/read-operations/sort>`. 
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
