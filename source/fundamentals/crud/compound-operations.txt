@@ -15,7 +15,7 @@ Overview
 
 In this guide, you can learn how to perform **compound operations**.
 
-Compound operations consist of a read and write operation performed as
+Compound operations combine a read and write operation into
 a single operation.  If you perform a read and write operation
 separately, there's a chance someone else may alter the document between
 both operations. MongoDB prevents this by placing a write lock on the
@@ -105,7 +105,7 @@ is ``"Assam"`` with the ``FindOneAndDelete()`` function:
    :start-after: begin FindOneAndDelete
    :end-before: end FindOneAndDelete
 
-After running the preceding example, the output resembles the following:
+After running this example, the output resembles the following:
 
 .. code-block:: none
    :copyable: false
@@ -122,7 +122,7 @@ to the ``FindOneAndUpdate()`` function:
 
 - A ``Context`` type 
 - A ``non-nil`` query filter specifying which documents to match
-- An update document specifying at least one update operator with fields and values that describe the change
+- An update document specifying at least one update operator with fields and values that describe the change 
 
 The function optionally takes a ``FineOneAndUpdateOptions`` type as a
 fourth parameter, which represents options you can use to configure the
@@ -195,7 +195,7 @@ The following example performs the following actions in order with the
    :start-after: begin FindOneAndUpdate
    :end-before: end FindOneAndUpdate
 
-After running the preceding example, the output resembles the following:
+After running this example, the output resembles the following:
 
 .. code-block:: none
    :copyable: false
@@ -281,7 +281,7 @@ The following example performs the following actions in order with the
    :start-after: begin FindOneAndReplace
    :end-before: end FindOneAndReplace
 
-After running the preceding example, the output resembles the following:
+After running this example, the output resembles the following:
 
 .. code-block:: none
    :copyable: false
