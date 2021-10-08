@@ -46,11 +46,17 @@ operation functions:
 - ``FindOneAndReplace()``
 - ``FindOneAndUpdate()``
 
-When using a projection, you can only specify to either include or
+Exception
+~~~~~~~~~
+
+When specifying a projection, you can only specify to either include or
 exclude fields. This rule **does not** apply to the ``_id`` field. You
-must explicitly exclude the ``_id`` field if you do not want it
-returned. For an example of this scenario, see the section about
-:ref:`including a field <go-include-projection>`.
+can exclude the ``_id`` field even if you specified to include certain
+fields.
+
+By default, the driver includes the ``_id`` field. You must explicitly
+exclude the ``_id`` field if you do not want it returned. For an example
+of this scenario, see the :ref:`include a field section <go-include-projection>`.
 
 .. tip::
 
@@ -65,10 +71,10 @@ function to exclude a field. For all fields you don't explicitly list
 in the interface, the driver includes them.
 
 Example
-~~~~~~~
+```````
 
-The following example excludes the ``rating`` from the documents matched
-in the ``Find()`` function:
+The following example excludes the ``rating`` from the matched documents
+from the ``Find()`` function:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/projection.go
    :language: go
@@ -97,16 +103,16 @@ in the interface, the driver excludes them.
 
 .. important::
 
-   You can exclude the ``_id`` field even if you have specified certain
-   fields to include.
+    You can exclude the ``_id`` field even if you specified to include
+    certain fields.
 
 .. _go-include-projection:
 
 Example
-~~~~~~~
+```````
 
-The following example performs the following projection on the documents
-matched from the ``Find()`` function:
+The following example performs the following projection on the matched
+documents from the ``Find()`` function:
 
 - Include the ``type`` and ``rating`` field
 - Exclude the ``_id`` field
@@ -130,11 +136,11 @@ After running this example, the output resembles the following:
 
 .. tip:: Using Aggregation 
 
-   You can also include the :manual:`$project </reference/operator/aggregation/skip/>`
+   You can also include the :manual:`$project </reference/operator/aggregation/project/>`
    stage to specify a projection in an aggregation pipeline.
 
-   The following example specifies the same projection from the
-   preceding example in an aggregation pipeline:
+   This example specifies the same projection from the preceding example
+   in an aggregation pipeline:
 
    .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/projection.go
       :language: go
