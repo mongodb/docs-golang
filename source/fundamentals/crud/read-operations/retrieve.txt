@@ -63,6 +63,54 @@ filter as a ``SingleResult`` type.
 To learn how to access data in a ``SingleResult`` see the :ref:`BSON
 <bson-unmarshalling>` guide.
 
+Modify Behavior
+~~~~~~~~~~~~~~~
+
+The ``Find()`` and ``FindOne()`` functions optionally take a
+``FindOptions`` and ``FindOneOptions`` type, which represents options
+you can use to modify their Behavior. If you don't specify any options,
+the driver uses the default values for each option.
+
+The following table lists commonly used options in both types:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Function
+     - Description
+
+   * - ``SetCollation()`` 
+     - | The type of language collation to use when sorting results.  
+       | Default: ``nil``
+
+   * - ``SetLimit()`` 
+     - | The maximum number of documents to return. 
+       | Default: ``0`` 
+
+       .. note::
+     
+          This option is not available for ``FindOneOptions``. The
+          ``FindOne()`` internally uses ``SetLimit(-1).
+
+   * - ``SetProjection()`` 
+     - | The fields to include in the returned documents. 
+       | Default: ``nil``
+
+   * - ``SetSkip()`` 
+     - | The number of documents to skip.
+       | Default: ``0``
+
+   * - ``SetSort()`` 
+     - | The order in which to return matching documents
+       | Default: to not specify a sort
+
+For a full list of ``FindOptions`` and ``FindOneOptions``, see the
+following API documentation:
+
+- `FindOptions <{+api+}/mongo/options#FindOptions>`__
+- `FindOneOptions <{+api+}/mongo/options#FindOneOptions>`__
+
 Example
 ```````
 
@@ -144,11 +192,17 @@ examples:
 - :doc:`Find a Document </usage-examples/findOne>`
 - :doc:`Find Multiple Documents </usage-examples/find>`
 
-.. For more information on how to specify a query, see the :doc:`Specify
-.. a Query </fundamentals/crud/query-document>` guide.
+For more infomration about the mentioned read operations, see the
+following guides:
 
-.. For more information on aggregation, see the
-.. :doc:`Aggregation </fundamentals/aggregation>` guide.
+- :doc:`Skip Returned Results </fundamentals/crud/read-operations/skip>`
+- :doc:`Sort Results </fundamentals/crud/read-operations/sort>`
+- :doc:`Limit the Number of Returned Results </fundamentals/crud/read-operations/limit>`
+
+.. - :doc:`Specify Which Fields to Return </fundamentals/crud/read-operations/project>`
+.. - :doc:`Collations </fundamentals/collations>`
+.. - :doc:`Specify a Query </fundamentals/crud/query-document>` guide.
+.. - :doc:`Aggregation </fundamentals/aggregation>` guide.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
