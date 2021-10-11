@@ -71,8 +71,8 @@ The ``Find()`` and ``FindOne()`` functions optionally take a
 you can use to modify their behavior. If you don't specify any options,
 the driver uses the default values for each option.
 
-The following table lists the functions to configure the commonly used
-options in both types:
+You can configure the commonly used options in both types with the
+following functions:
 
 .. list-table::
    :widths: 30 70
@@ -160,8 +160,8 @@ type, which represents options you can use to modify its behavior. If
 you don't specify any options, the driver uses the default values for
 each option.
 
-The following table lists the functions to configure the commonly used
-options in both types:
+The ``AggregateOptions`` type allows you to configure options with the
+following functions:
 
 .. list-table::
    :widths: 30 70
@@ -241,7 +241,7 @@ examples:
 - :doc:`Find a Document </usage-examples/findOne>`
 - :doc:`Find Multiple Documents </usage-examples/find>`
 
-For more infomration about the mentioned read operations, see the
+For more infomration about the read operations mentioned, see the
 following guides:
 
 - :doc:`Skip Returned Results </fundamentals/crud/read-operations/skip>`
