@@ -176,8 +176,8 @@ stage to specify a  sort in an aggregation pipeline.
 Example
 ```````
 
-The following example specifies an ascending sort on the ``type`` field,
-then a descending sort on the ``rating`` field:
+The following example specifies a descending sort on the ``rating``
+field, then an ascending sort on the ``type`` field:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/sort.go
    :language: go
