@@ -133,8 +133,7 @@ After running the preceding example, the output resembles the following:
 Additional Information
 ----------------------
 
-For more information on the read operations used in this guide, see the
-following guides:
+For more information on the read operations used, see the following guides:
 
 - :doc:`Retrieve Data </fundamentals/crud/read-operations/retrieve>`
 - :doc:`Sort Results </fundamentals/crud/read-operations/sort>`

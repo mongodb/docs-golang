@@ -49,6 +49,8 @@ operation functions:
 - ``FindOneAndReplace()``
 - ``FindOneAndUpdate()``
 
+.. _go-projection-exception:
+
 Exception
 ~~~~~~~~~
 
@@ -69,8 +71,8 @@ of this scenario, see the :ref:`include a field section <go-include-projection>`
 Exclude a Field
 ~~~~~~~~~~~~~~~
 
-Specify a ``0`` in the interface passed to the ``SetProjection()``
-function to exclude a field. For all fields you don't explicitly list
+To exclude a field, specify a ``0`` in the interface passed to the
+``SetProjection()`` function. For all fields you don't explicitly list
 in the interface, the driver includes them.
 
 Example
@@ -100,14 +102,15 @@ After running this example, the output resembles the following:
 Include a Field
 ~~~~~~~~~~~~~~~
 
-Specify a ``1`` in the interface passed to the ``SetProjection()``
-function to include a field. For all fields you don't explicitly list
+To include a field, specify a ``1`` in the interface passed to the
+``SetProjection()`` function. For all fields you don't explicitly list
 in the interface, the driver excludes them.
 
 .. important::
 
     You can exclude the ``_id`` field even if you specified to include
-    certain fields.
+    certain fields. For more information, see the :ref:`exception
+    section <go-projection-exception>`.
 
 .. _go-include-projection:
 
@@ -137,25 +140,46 @@ After running this example, the output resembles the following:
    [{type Earl Grey} {rating 8}]
    [{type English Breakfast} {rating 5}]
 
-.. tip:: Using Aggregation 
+Aggregation
+~~~~~~~~~~~
 
-   You can also include the :manual:`$project </reference/operator/aggregation/project/>`
-   stage to specify a projection in an aggregation pipeline.
+You can also include the :manual:`$project </reference/operator/aggregation/project/>`
+stage to specify a projection in an aggregation pipeline.
 
-   This example specifies the same projection from the preceding example
-   in an aggregation pipeline:
+Example
+```````
 
-   .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/projection.go
-      :language: go
-      :dedent:
-      :start-after: begin aggregate projection
-      :end-before: end aggregate projection
+The following example performs the following projection on the matched
+documents from the ``Aggregate()`` function:
+
+- Include the ``type`` and ``rating`` field
+- Exclude the ``_id`` field
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/projection.go
+   :language: go
+   :dedent:
+   :start-after: begin aggregate projection
+   :end-before: end aggregate projection
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{type Masala} {rating 10}]
+   [{type Assam} {rating 5}]
+   [{type Oolong} {rating 7}]
+   [{type Earl Grey} {rating 8}]
+   [{type English Breakfast} {rating 5}]
 
 Additional Information
 ----------------------
 
 For more information on performing read operations, see our guide on
 :doc:`retrieving data </fundamentals/crud/read-operations/retrieve>`.
+
+.. For more information on aggregation, see the
+.. :doc:`Aggregation </fundamentals/aggregation>` guide.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
