@@ -13,14 +13,15 @@ Specify Which Fields to Return
 Overview
 --------
 
-In this guide, you can learn how to specify whether fields in a
-document should return from read operations.
+In this guide, you can learn how to specify which fields to return in a
+document from read operations.
 
 Sample Data
 ~~~~~~~~~~~
 
-Run the following snippet to load the documents into the ``ratings``
-collection of the ``tea`` database:
+To run the examples in this guide, load these documents into the
+``ratings`` collection of the ``tea`` database with the following
+snippet:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/projection.go 
    :language: go
@@ -30,12 +31,14 @@ collection of the ``tea`` database:
 
 .. include:: /includes/fundamentals/tea-sample-data-ending.rst
 
-Project
--------
+Projection
+----------
 
-To specify whether fields in a document should return, pass an interface
-specifying the field and ``0`` or ``1`` to the ``SetProjection()``
-function of a read operation's options.
+A projection specifies which fields to return in a document. To create a
+projection, pass an interface specifying the field and whether to
+indclude that field to the ``SetProjection()`` function of a read
+operation's options. To include the field, specify a ``1`` and to
+exclude a field, specify a ``0``. 
 
 Specify the options as the last parameter to the following read
 operation functions:
