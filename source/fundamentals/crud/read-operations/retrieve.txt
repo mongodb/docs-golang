@@ -68,10 +68,11 @@ Modify Behavior
 
 The ``Find()`` and ``FindOne()`` functions optionally take a
 ``FindOptions`` and ``FindOneOptions`` type, which represents options
-you can use to modify their Behavior. If you don't specify any options,
+you can use to modify their behavior. If you don't specify any options,
 the driver uses the default values for each option.
 
-The following table lists commonly used options in both types:
+The following table lists the functions to configure the commonly used
+options in both types:
 
 .. list-table::
    :widths: 30 70
@@ -89,9 +90,9 @@ The following table lists commonly used options in both types:
        | Default: ``0`` 
 
        .. note::
-     
+
           This option is not available for ``FindOneOptions``. The
-          ``FindOne()`` internally uses ``SetLimit(-1).
+          ``FindOne()`` funciton internally uses ``SetLimit(-1)``.
 
    * - ``SetProjection()`` 
      - | The fields to include in the returned documents. 
@@ -104,12 +105,6 @@ The following table lists commonly used options in both types:
    * - ``SetSort()`` 
      - | The order in which to return matching documents
        | Default: to not specify a sort
-
-For a full list of ``FindOptions`` and ``FindOneOptions``, see the
-following API documentation:
-
-- `FindOptions <{+api+}/mongo/options#FindOptions>`__
-- `FindOneOptions <{+api+}/mongo/options#FindOneOptions>`__
 
 Example
 ```````
@@ -156,6 +151,60 @@ stage, the pipeline proceeds using all documents in the collection.
 
 .. To learn how to access data in a cursor, see the :doc:`Cursor
 .. </fundamentals/crud/read-operations/cursor>` guide.
+
+Modify Behavior
+~~~~~~~~~~~~~~~
+
+The ``Aggregate()`` function optionally takes an ``AggregateOptions``
+type, which represents options you can use to modify its behavior. If
+you don't specify any options, the driver uses the default values for
+each option.
+
+The following table lists the functions to configure the commonly used
+options in both types:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Function
+     - Description
+
+   * - ``SetAllowDiskUse()`` 
+     - | Whether to write to temporary files.
+       | Default: ``false``
+
+   * - ``SetBatchSize()`` 
+     - | The number of documents to return in each batch.  
+       | Default: to not specify a value
+
+   * - ``SetBypassDocumentValidation()`` 
+     - | Whether to allow the write to opt-out of document level validation.
+       | Default: ``false``
+
+   * - ``SetCollation()`` 
+     - | The type of language collation to use when sorting results.  
+       | Default: ``nil``
+
+   * - ``SetMaxTime()`` 
+     - | The maximum amount of time to allow the query to run.
+       | Default: ``nil``
+
+   * - ``SetMaxAwaitTime()`` 
+     - | The maximum amount of time for the server to wait on new documents to satisfy a tailable cursor query.
+       | Default: ``nil``
+
+   * - ``SetComment()`` 
+     - | An arbitrary string to help trace the operation through the database profiler, currentOp and logs.
+       | Default: ``""``
+
+   * - ``SetHint()`` 
+     - | The index to use to scan for documents to retrieve.
+       | Default: ``nil``
+
+   * - ``SetLet()`` 
+     - | Specifies parameters for the aggregate expression, which improves command readability by separating the variables from the query text.
+       | Default: to not specify parameters
 
 Example
 ```````
@@ -211,7 +260,10 @@ For more information on any of the functions or types discussed in this
 guide, see the following API Documentation:
 
 - `Find() <{+api+}/mongo#Collection.Find>`__
+- `FindOptions <{+api+}/mongo/options#FindOptions>`__
+- `FindOneOptions <{+api+}/mongo/options#FindOneOptions>`__
 - `Cursor <{+api+}/mongo#Cursor>`__
 - `FindOne() <{+api+}/mongo#Collection.FindOne>`__
 - `SingleResult <{+api+}/mongo#SingleResult>`__
 - `Aggregate() <{+api+}/mongo#Collection.Aggregate>`__
+- `AggregateOptions <{+api+}/mongo/options#AggregateOptions>`__
