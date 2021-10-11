@@ -105,6 +105,9 @@ For more information on the read operations used, see the following guides:
 - :doc:`Retrieve Data </fundamentals/crud/read-operations/retrieve>`
 - :doc:`Sort Results </fundamentals/crud/read-operations/sort>`
 
+.. For more information on aggregation, see the
+.. :doc:`Aggregation </fundamentals/aggregation>` guide.
+
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
