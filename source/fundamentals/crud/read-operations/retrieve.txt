@@ -121,7 +121,7 @@ the ``Find()`` function, which performs the following actions:
    :start-after: begin find docs
    :end-before: end find docs
 
-After running the preceding example, the output resembles the following:
+After running this example, the output resembles the following:
 
 .. code-block:: none
    :copyable: false
@@ -245,7 +245,7 @@ performs the following actions:
    :start-after: begin aggregate docs
    :end-before: end aggregate docs
 
-After running the preceding example, the output resembles the following:
+After running this example, the output resembles the following:
 
 .. code-block:: none
    :copyable: false
