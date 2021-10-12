@@ -66,10 +66,10 @@ To learn how to access data in a ``SingleResult`` see the :ref:`BSON
 Modify Behavior
 ~~~~~~~~~~~~~~~
 
-The ``Find()`` and ``FindOne()`` functions optionally take a
-``FindOptions`` and ``FindOneOptions`` type, which represents options
-you can use to modify their behavior. If you don't specify any options,
-the driver uses the default values for each option.
+You can modify the behavior of ``Find()`` and ``FindOne()`` by passing
+in a``FindOptions`` and ``FindOneOptions`` type respectively. If you
+don't specify any options, the driver uses the default values for each
+option.
 
 You can configure the commonly used options in both types with the
 following functions:
@@ -92,7 +92,7 @@ following functions:
        .. note::
 
           This option is not available for ``FindOneOptions``. The
-          ``FindOne()`` funciton internally uses ``SetLimit(-1)``.
+          ``FindOne()`` function internally uses ``SetLimit(-1)``.
 
    * - ``SetProjection()`` 
      - | The fields to include in the returned documents. 
@@ -103,15 +103,17 @@ following functions:
        | Default: ``0``
 
    * - ``SetSort()`` 
-     - | The order in which to return matching documents
+     - | The field and type of sort to order the matched documents. You can specify an ascending or descending sort.
        | Default: to not specify a sort
 
 Example
 ```````
 
-The following example passes a context and a filter to the ``Find()``
-function, which matches documents where the ``ratings`` field falls
-between ``5`` and ``10``:
+The following example passes a context, filter, and ``FindOptions`` to
+the ``Find()`` function, which performs the following actions:
+
+- Matches documents where the ``rating`` falls between ``5`` and ``10``
+- Returns the ``type`` and ``rating``, but excludes the ``_id`` 
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
    :language: go
@@ -124,9 +126,31 @@ After running the preceding example, the output resembles the following:
 .. code-block:: none
    :copyable: false
 
-    //results truncated
-   [_id:ObjectID("...") type:Masala rating:7 ]
-   [_id:ObjectID("...") type:Earl Grey rating:9 ]
+   [{type Masala} {rating 7}]
+   [{type Earl Grey} {rating 9}]
+
+Example
+```````
+
+The following example passes a context, filter, and ``FindOneOptions``
+to the ``FindOne()`` function, which performs the following actions:
+
+- Matches all documents
+- A descending sort on the ``rating`` field
+- Returns the ``type`` and ``rating``, but excludes the ``_id`` 
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
+   :language: go
+   :dedent:
+   :start-after: begin find one docs
+   :end-before: end find one docs
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{type Masala} {rating 10}]
 
 .. _retrieve-aggregation:
 
@@ -187,11 +211,11 @@ following functions:
        | Default: ``nil``
 
    * - ``SetMaxTime()`` 
-     - | The maximum amount of time to allow the query to run.
+     - | The maximum amount of time in milliseconds to allow the query to run.
        | Default: ``nil``
 
    * - ``SetMaxAwaitTime()`` 
-     - | The maximum amount of time for the server to wait on new documents to satisfy a tailable cursor query.
+     - | The maximum amount of time in milliseconds for the server to wait on new documents to satisfy a tailable cursor query.
        | Default: ``nil``
 
    * - ``SetComment()`` 
@@ -209,7 +233,8 @@ following functions:
 Example
 ```````
 
-The following example passes a context and an aggregation pipeline that:
+The following example passes a context and an aggregation pipeline that
+performs the following actions:
 
 - Groups reviews by types
 - Calculates the average rating of each type
@@ -241,7 +266,7 @@ examples:
 - :doc:`Find a Document </usage-examples/findOne>`
 - :doc:`Find Multiple Documents </usage-examples/find>`
 
-For more infomration about the read operations mentioned, see the
+For more information about the read operations mentioned, see the
 following guides:
 
 - :doc:`Skip Returned Results </fundamentals/crud/read-operations/skip>`
