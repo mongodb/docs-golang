@@ -67,7 +67,7 @@ Modify Behavior
 ~~~~~~~~~~~~~~~
 
 You can modify the behavior of ``Find()`` and ``FindOne()`` by passing
-in a``FindOptions`` and ``FindOneOptions`` type respectively. If you
+in a ``FindOptions`` and ``FindOneOptions`` type respectively. If you
 don't specify any options, the driver uses the default values for each
 option.
 
@@ -104,7 +104,7 @@ following functions:
 
    * - ``SetSort()`` 
      - | The field and type of sort to order the matched documents. You can specify an ascending or descending sort.
-       | Default: to not specify a sort
+       | Default: none
 
 Example
 ```````
@@ -200,7 +200,7 @@ following functions:
 
    * - ``SetBatchSize()`` 
      - | The number of documents to return in each batch.  
-       | Default: to not specify a value
+       | Default: none
 
    * - ``SetBypassDocumentValidation()`` 
      - | Whether to allow the write to opt-out of document level validation.
@@ -228,7 +228,7 @@ following functions:
 
    * - ``SetLet()`` 
      - | Specifies parameters for the aggregate expression, which improves command readability by separating the variables from the query text.
-       | Default: to not specify parameters
+       | Default: none
 
 Example
 ```````
