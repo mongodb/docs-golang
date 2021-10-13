@@ -1,0 +1,304 @@
+===============
+Specify a Query
+===============
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
+.. _query_document_golang:
+
+Overview
+--------
+
+In this guide, you can learn how to specify a query in CRUD operations.
+
+You to narrow the set of matched documents by specifying the criteria
+you want in a **query filter**. A query filter must contain at least one
+field and value. It determines which documents to include in the
+resulting set.
+
+In a query filter, you can match fields with literal values, or you can
+use **query operators**. Query operators allow you to locate data within a
+database. This guide covers the following query operators and how to use them:
+
+- :ref:`Comparison Operators <go-comparison>`
+- :ref:`Logical Operators <go-logical>`
+- :ref:`Element Operators <go-element>`
+- :ref:`Evaluation Operators <go-evaluation>`
+- :ref:`Array Operators <go-array>`
+- :ref:`Bitwise Operators <go-bitwise>`
+
+Sample Data
+~~~~~~~~~~~
+
+To run the examples in this guide, load these documents into the
+``ratings`` collection of the ``tea`` database with the following
+snippet:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/query.go
+   :language: go
+   :dedent:
+   :start-after: begin insert docs
+   :end-before: end insert docs
+
+.. include:: /includes/fundamentals/automatic-db-coll-creation.rst
+   
+Each document contains a rating for a type of tea and the vendors that
+carry them, which corresponds to the ``rating``, ``type``, and
+``vendor`` fields.
+
+.. include:: /includes/fundamentals/truncated-id.rst
+
+Literal Values
+--------------
+
+A literal value query returns data with an exact match to your query
+filter. The query filter can must contain at least one field and value pair.
+
+Example
+~~~~~~~
+
+The following example matches documents where the ``type`` is ``Oolong``:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/query.go
+   :language: go
+   :dedent:
+   :start-after: begin literal
+   :end-before: end literal
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{_id ObjectID("...")} {type Oolong} {rating 7} {vendor [C]}]
+
+.. tip::
+
+   Literal value queries are equivalent to the ``$eq`` comparison
+   operator. The following query filters produce the same result:
+
+   .. code-block:: go
+   
+      filter := bson.D{{"type", "Oolong"}}
+
+   .. code-block:: go
+
+      filter := bson.D{{"type", bson.D{{"$eq", "Oolong"}}}}
+   
+
+Comparison
+----------
+
+Comparison operators query data by performing comparisons on values in a
+document based on the specified value. Common comparison operators
+include ``$gt`` for "greater than" comparisons, ``$lte`` for "less than
+or equal to" comparisons, and ``$ne`` for "not equal to " comparisons. 
+
+Example
+~~~~~~~
+
+The following example matches documents where the ``rating`` is less
+than ``7``:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/query.go
+   :language: go
+   :dedent:
+   :start-after: begin comparison
+   :end-before: end comparison
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{_id ObjectID("...")} {type English Breakfast} {rating 6}]
+   [{_id ObjectID("...")} {type Assam} {rating 5}]
+
+For a full list of comparison operators, see the :manual:`Comparison
+Query Operators </reference/operator/query-comparison/>` page.
+
+Logical
+-------
+
+Logical operators query data by using logic applied to the results of
+field-level operators. Common logical operators include ``$and`` where all
+operators must be true, and ``$or`` where at least one of the operators
+must be true. 
+
+Example
+~~~~~~~
+
+The following example matches documents where the ``rating`` is greater
+than ``7`` and less than or equal to ``10``:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/query.go
+   :language: go
+   :dedent:
+   :start-after: begin logical
+   :end-before: end logical
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{_id ObjectID("...")} {type Masala} {rating 10} {vendor [A C]}]
+   [{_id ObjectID("...")} {type Earl Grey} {rating 8} {vendor [A B]}]
+
+For a full list of logical operators, see the :manual:`Logical
+Query Operators </reference/operator/query-logical/>` page.
+
+.. tip:: 
+
+   Having multiple elements in a literal query is equivalent to using
+   the ``$and`` logical operator. The following query filters produce
+   the same result:
+
+   .. code-block:: go
+   
+      filter := bson.D{{"type", "Oolong"}, {"rating", 7}}
+
+   .. code-block:: go
+   
+      filter := bson.D{
+	    {"$and",
+		    bson.A{
+				bson.D{{"type", "Oolong"}},
+				bson.D{{"rating", 7}},
+			}},
+      }
+
+Element
+-------
+
+Element operators query data by checking the presence or type of the specified field.
+
+Example
+~~~~~~~
+
+The following example matches documents where the ``vendor`` field does
+not exist:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/query.go
+   :language: go
+   :dedent:
+   :start-after: begin element
+   :end-before: end element
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{_id ObjectID("...")} {type English Breakfast} {rating 6}]
+   [{_id ObjectID("...")} {type Assam} {rating 5}]
+   
+For a full list of comparison element, see the :manual:`Element
+Query Operators </reference/operator/query-element/>` page.
+
+Evaluation
+----------
+
+Evaluation operators query data by performing evaluations on the
+specified field in a document. Common evaluation operators include
+``$regex`` where a field must match the specified regular expression
+and ``$text`` which performs a text search.
+
+Example
+~~~~~~~
+
+The following example matches documents where the ``type`` begins with
+the letter `E`:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/query.go
+   :language: go
+   :dedent:
+   :start-after: begin evaluation
+   :end-before: end evaluation
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{_id ObjectID("...")} {type English Breakfast} {rating 6}]
+   [{_id ObjectID("...")} {type Earl Grey} {rating 8} {vendor [A B]}]
+   
+For a full list of evaluation operators, see the :manual:`Evaluation
+Query Operators </reference/operator/query-evaluation/>` page.
+
+Array
+-----
+
+Array operators query data by checking the value or amount of elements in
+an array field.
+
+Example
+~~~~~~~
+
+The following example matches documents where the ``vendor`` contains ``C``:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/query.go
+   :language: go
+   :dedent:
+   :start-after: begin array
+   :end-before: end array
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{_id ObjectID("...")} {type Masala} {rating 10} {vendor [A C]}]
+   [{_id ObjectID("...")} {type Oolong} {rating 7} {vendor [C]}]
+
+For a full list of array operators, see the :manual:`Array
+Query Operators </reference/operator/query-array/>` page.
+
+Bitwise
+-------
+
+Bitwise operators query data by converting a base 10 number into its
+base 2 (binary) number to evaluate whether the same field in other
+documents have the same bits set.
+
+Example
+~~~~~~~
+
+The following example matches documents where the ``rating`` has all its
+bits set in the same positions as ``6`` (i.e. "00000110"):
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/query.go
+   :language: go
+   :dedent:
+   :start-after: begin bitwise
+   :end-before: end bitwise
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{_id ObjectID("...")} {type English Breakfast} {rating 6}]
+   [{_id ObjectID("...")} {type Oolong} {rating 7} {vendor [C]}]
+
+For a full list of bitwise operators, see the :manual:`Bitwise
+Query Operators </reference/operator/query-bitwise/>` page.
+
+Additional Information
+----------------------
+
+.. For information on specifying a geospatial query, see the guide on
+.. :doc:`Geospatial Data </fundamentals/crud/read-operations/geospatial>`.
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+- `Find() <{+api+}/mongo#Collection.Find>`__
+- `Cursor <{+api+}/mongo#Cursor>`__
