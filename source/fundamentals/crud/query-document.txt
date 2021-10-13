@@ -15,24 +15,22 @@ Specify a Query
 Overview
 --------
 
-In this guide, you can learn how to specify a query in CRUD operations.
+In this guide, you can learn how to specify a query to retrieve a subset
+of documents.
 
-You can narrow the set of matched documents by specifying the criteria,
-fields and values, you want in a **query filter**. The query filter must
-contain at least one set of criteria to determine which documents to
-include in the resulting set.
+To retrieve a subset of documents, specify a **query filter** containing
+your **match criteria**. Match criteria consists of the fields and
+values you want matched. The query filter must contain at least one set
+of match criteria to determine which documents to include in the
+resulting set.
 
-In a query filter, you can match fields with literal values, or you can
-use **query operators**. Query operators allow you to locate data within a
-database. This guide covers the following query operators and how to use
-them with the ``Find()`` function:
+In a query filter, you can match fields with :ref:`literal values
+<go-literal-values>`, or you can use **query operators**. Query
+operators allow you to perform mathematical or logical operations to
+locate documents within a collection.
 
-- :ref:`Comparison Operators <go-comparison>`
-- :ref:`Logical Operators <go-logical>`
-- :ref:`Element Operators <go-element>`
-- :ref:`Evaluation Operators <go-evaluation>`
-- :ref:`Array Operators <go-array>`
-- :ref:`Bitwise Operators <go-bitwise>`
+This guide explains how to use query operators with the ``Find()``
+function.
 
 Sample Data
 ~~~~~~~~~~~
@@ -55,11 +53,13 @@ carry them, which corresponds to the ``rating``, ``type``, and
 
 .. include:: /includes/fundamentals/truncated-id.rst
 
+.. _go-literal-values:
+
 Literal Values
 --------------
 
-A literal value query returns data with an exact match to your query
-filter.
+Literal value query filters return documents with an exact match to your
+match criteria.
 
 .. tip::
 
@@ -69,7 +69,7 @@ filter.
 Example
 ~~~~~~~
 
-The following example matches documents where the ``type`` is ``Oolong``:
+The following example matches documents where the ``type`` is "Oolong":
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/query.go
    :language: go
@@ -86,8 +86,9 @@ After running this example, the output resembles the following:
 
 .. tip::
 
-   Literal value queries are equivalent to the ``$eq`` comparison
-   operator. The following query filters produce the same result:
+   Literal value queries returns the same value as the ``$eq``
+   comparison operator. The following query filters produce the same
+   result:
 
    .. code-block:: go
    
@@ -96,16 +97,14 @@ After running this example, the output resembles the following:
    .. code-block:: go
 
       filter := bson.D{{"type", bson.D{{"$eq", "Oolong"}}}}
-   
-.. _go-comparison:
 
 Comparison
 ----------
 
-Comparison operators query data by performing comparisons on values in a
-document based on the specified value. Common comparison operators
-include ``$gt`` for "greater than" comparisons, ``$lte`` for "less than
-or equal to" comparisons, and ``$ne`` for "not equal to" comparisons. 
+Comparison operators compare the value in a document to the specified
+value in your match criteria. Common comparison operators include
+``$gt`` for "greater than" comparisons, ``$lte`` for "less than or equal
+to" comparisons, and ``$ne`` for "not equal to" comparisons.
 
 Example
 ~~~~~~~
@@ -130,15 +129,13 @@ After running this example, the output resembles the following:
 For a full list of comparison operators, see the :manual:`Comparison
 Query Operators </reference/operator/query-comparison/>` page.
 
-.. _go-logical:
-
 Logical
 -------
 
-Logical operators query data by using logic applied to the results of
-field-level operators. Common logical operators include ``$and`` where all
-criteria must be true, and ``$or`` where at least one of the criteria
-must be true. 
+Logical operators expect at least 2 specified match criteria. They apply
+logic to both, either, or neither of the specified criteria. Common logical
+operators include ``$and`` where all match criteria must be true, and
+``$or`` where at least one of the match criteria must be true. 
 
 Example
 ~~~~~~~
@@ -165,9 +162,9 @@ Query Operators </reference/operator/query-logical/>` page.
 
 .. tip:: 
 
-   Having multiple criteria in a literal query is equivalent to using
-   the ``$and`` logical operator. The following query filters produce
-   the same result:
+   Multiple match criteria for different fields in a literal query
+   returns the same value as the ``$and`` logical operator. The
+   following query filters produce the same result:
 
    .. code-block:: go
    
@@ -183,12 +180,10 @@ Query Operators </reference/operator/query-logical/>` page.
 			}},
       }
 
-.. _go-element:
-
 Element
 -------
 
-Element operators query data by checking the presence or type of the specified field.
+Element operators check for the presence or type of the specified field.
 
 Example
 ~~~~~~~
@@ -213,21 +208,20 @@ After running this example, the output resembles the following:
 For a full list of element operators, see the :manual:`Element
 Query Operators </reference/operator/query-element/>` page.
 
-.. _go-evaluation:
-
 Evaluation
 ----------
 
-Evaluation operators query data by performing evaluations on the
-specified field in a document. Common evaluation operators include
-``$regex`` where a field's value must match the specified regular
-expression and ``$text`` which performs a text search.
+Evaluation operators evaluate values in a document based on the
+specified value in your match criteria. Common evaluation operators
+include ``$regex`` where a field's value must match the specified
+regular expression and ``$text`` where the field's value must contain
+the specified string.
 
 Example
 ~~~~~~~
 
 The following example matches documents where the ``type`` begins with
-the letter ``E``:
+the letter "E":
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/query.go
    :language: go
@@ -246,18 +240,15 @@ After running this example, the output resembles the following:
 For a full list of evaluation operators, see the :manual:`Evaluation
 Query Operators </reference/operator/query-evaluation/>` page.
 
-.. _go-array:
-
 Array
 -----
 
-Array operators query data by checking the values or amount of elements in
-an array field.
+Array operators check the values or amount of elements in an array field.
 
 Example
 ~~~~~~~
 
-The following example matches documents where the ``vendor`` contains ``C``:
+The following example matches documents where the ``vendor`` contains "C":
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/query.go
    :language: go
@@ -276,14 +267,12 @@ After running this example, the output resembles the following:
 For a full list of array operators, see the :manual:`Array
 Query Operators </reference/operator/query-array/>` page.
 
-.. _go-bitwise:
-
 Bitwise
 -------
 
-Bitwise operators query data by converting a base 10 (decimal) number
-into its base 2 (binary) number to evaluate whether the same field's
-value in other documents have the same bits set.
+Bitwise operators convert a numeric field from a base 10 (decimal)
+number into its base 2 (binary) number to evaluate whether the value in
+a document has the same bits set as value in your match criteria.
 
 Example
 ~~~~~~~
