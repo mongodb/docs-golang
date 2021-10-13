@@ -51,19 +51,24 @@ collection of the ``tea`` database:
 Find and Delete
 ---------------
 
-To find and delete one document, pass a ``Context`` type and a
-``non-nil`` query filter specifying which documents to match to the
-``FindOneAndDelete()`` function. 
+The ``FindOneAndDelete()`` function finds the first document that matches
+the specified query filter and deletes it. The function returns a
+``SingleResult`` containing the deleted document.
 
-The function returns a ``SingleResult`` containing the deleted document.
+.. note:: 
+
+   This function differs from the ``DeleteOne()`` function.
+   ``FindOneAndDelete()`` performs a find and delete as a single
+   operation and eliminates the possibility of someone altering a
+   document between both operations.
 
 Modify Behavior
 ~~~~~~~~~~~~~~~
 
-The function optionally takes a ``FineOneAndDeleteOptions`` type as a
-third parameter, which represents options you can use to configure the
-compound operation. If you don't specify a ``FineOneAndDeleteOptions``,
-the driver uses the default values for each option.
+You can modify the behavior of the ``FindOneAndDelete()`` function by
+passing in a ``FineOneAndDeleteOptions``. If you don't specify a
+``FineOneAndDeleteOptions``, the driver uses the default values for each
+option.
 
 The ``FineOneAndDeleteOptions`` type allows you to configure options
 with the following functions:
@@ -119,22 +124,25 @@ After running this example, the output resembles the following:
 Find and Update
 ---------------
 
-To find and update one document, pass the following parameters in order
-to the ``FindOneAndUpdate()`` function:
+The ``FindOneAndUpdate()`` function finds the first document that matches
+the specified query filter and updates it according to the update
+document. The function returns a ``SingleResult`` containing the matched
+document.
 
-- A ``Context`` type 
-- A ``non-nil`` query filter specifying which documents to match
-- An update document specifying at least one update operator with fields and values that describe the change 
+.. note:: 
 
-The function returns a ``SingleResult`` containing the matched document. 
+   This function differs from the ``UpdateOne()`` function.
+   ``FindOneAndUpdate()`` performs a find and update as a single
+   operation and eliminates the possibility of someone altering a
+   document between both operations.
 
 Modify Behavior
 ~~~~~~~~~~~~~~~
 
-The function optionally takes a ``FineOneAndUpdateOptions`` type as a
-fourth parameter, which represents options you can use to configure the
-compound operation. If you don't specify a ``FineOneAndUpdateOptions``,
-the driver uses the default values for each option.
+You can modify the behavior of the ``FindOneAndUpdate()`` function by
+passing in a ``FineOneAndUpdateOptions``. If you don't specify a
+``FineOneAndUpdateOptions``, the driver uses the default values for each
+option.
 
 The ``FineOneAndUpdateOptions`` type allows you to configure options
 with the following functions:
@@ -210,22 +218,25 @@ After running this example, the output resembles the following:
 Find and Replace
 ----------------
 
-To find and replace one document, pass the following parameters in order
-to the ``FindOneAndReplace()`` function:
+The ``FindOneAndReplace()`` function finds the first document that
+matches the specified query filter and replaces it with the replacement
+document. The function returns a ``SingleResult`` containing the matched
+document.
 
-- A ``Context`` type 
-- A ``non-nil`` query filter specifying which documents to match
-- A replacement document to take place of the matched document
+.. note:: 
 
-The function returns a ``SingleResult`` containing the matched document.
+   This function differs from the ``ReplaceOne()`` function.
+   ``FindOneAndReplace()`` performs a find and replace as a single
+   operation and eliminates the possibility of someone altering a
+   document between both operations.
 
 Modify Behavior
 ~~~~~~~~~~~~~~~
 
-The function optionally takes a ``FineOneAndReplaceOptions`` type as a
-fourth parameter, which represents options you can use to configure the
-compound operation. If you don't specify a ``FineOneAndReplaceOptions``,
-the driver uses the default values for each option.
+You can modify the behavior of the ``FindOneAndReplace()`` function by
+passing in a ``FineOneAndReplaceOptions``. If you don't specify a
+``FineOneAndReplaceOptions``, the driver uses the default values for each
+option.
 
 The ``FineOneAndReplaceOptions`` type allows you to configure options
 with the following functions:
@@ -277,7 +288,6 @@ The following example performs the following actions in order with the
 
 - Matches a document where the ``type`` is ``"English Breakfast"``
 - Replaces the matched document with a new document where the ``type`` is ``"Ceylon"`` and  ``rating`` is ``6``
-- Returns the replaced document
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/compoundOperations.go
    :language: go
@@ -290,7 +300,7 @@ After running this example, the output resembles the following:
 .. code-block:: none
    :copyable: false
 
-   [{_id ObjectID("...")} {type Ceylon} {rating 6}]
+   [{_id ObjectID("...")} {type English Breakfast} {rating 5}]
 
 Additional Information
 ----------------------

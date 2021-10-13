@@ -13,7 +13,7 @@ import (
 
 func main() {
 	var uri string
-	if uri = os.Getenv("DRIVER_REF_URI"); uri == "" {
+	if uri = os.Getenv("MONGODB_URI"); uri == "" {
 		log.Fatal("You must set your 'MONGODB_URI' environmental variable. See\n\t https://docs.mongodb.com/drivers/go/current/usage-examples/")
 	}
 
@@ -44,49 +44,54 @@ func main() {
 	if insertErr != nil {
 		panic(insertErr)
 	}
-	//end insertDocs
 	fmt.Printf("Number of documents inserted: %d\n", len(result.InsertedIDs))
+	//end insertDocs
 
 	fmt.Println("FindOneAndDelete:")
-	//begin FindOneAndDelete
-	deleteFilter := bson.D{{"type", "Assam"}}
+	{
+		//begin FindOneAndDelete
+		filter := bson.D{{"type", "Assam"}}
 
-	var deleteResult bson.D
-	deleteErr := coll.FindOneAndDelete(context.TODO(), deleteFilter).Decode(&deleteResult)
-	if deleteErr != nil {
-		panic(deleteErr)
+		var deletedDoc bson.D
+		err := coll.FindOneAndDelete(context.TODO(), filter).Decode(&deletedDoc)
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Println(deletedDoc)
+		//end FindOneAndDelete
 	}
-	
-	fmt.Println(deleteResult)
-	//end FindOneAndDelete
 
 	fmt.Println("FindOneAndReplace:")
-	//begin FindOneAndReplace
-	replaceFilter := bson.D{{"type", "English Breakfast"}}
-	replaceDocument := bson.D{{"type", "Ceylon"}, {"rating", 6}}
-	replaceOptions := options.FindOneAndReplace().SetReturnDocument(options.After)
+	{
+		//begin FindOneAndReplace
+		filter := bson.D{{"type", "English Breakfast"}}
+		replacement := bson.D{{"type", "Ceylon"}, {"rating", 6}}
 
-	var replaceResult bson.D
-	replaceErr := coll.FindOneAndReplace(context.TODO(), replaceFilter, replaceDocument, replaceOptions).Decode(&replaceResult)
-	if replaceErr != nil {
-		panic(replaceErr)
+		var previousDoc bson.D
+		err := coll.FindOneAndReplace(context.TODO(), filter, replacement).Decode(&previousDoc)
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Println(previousDoc)
+		//end FindOneAndReplace
 	}
-	
-	fmt.Println(replaceResult)
-	//end FindOneAndReplace
 
 	fmt.Println("FindOneAndUpdate:")
-	//begin FindOneAndUpdate
-	updateFilter := bson.D{{"type", "Oolong"}}
-	updateDocument := bson.D{{"$set", bson.D{{"rating", 9}}}}
-	updateOptions := options.FindOneAndUpdate().SetReturnDocument(options.After)
+	{
+		//begin FindOneAndUpdate
+		filter := bson.D{{"type", "Oolong"}}
+		update := bson.D{{"$set", bson.D{{"rating", 9}}}}
+		opts := options.FindOneAndUpdate().SetReturnDocument(options.After)
 
-	var updateResult bson.D
-	updateErr := coll.FindOneAndUpdate(context.TODO(), updateFilter, updateDocument, updateOptions).Decode(&updateResult)
-	if updateErr != nil {
-		panic(updateErr)
+		var updatedDoc bson.D
+		err := coll.FindOneAndUpdate(context.TODO(), filter, update, opts).Decode(&updatedDoc)
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Println(updatedDoc)
+		//end FindOneAndUpdate
 	}
-	
-	fmt.Println(updateResult)
-	//end FindOneAndUpdate
 }
