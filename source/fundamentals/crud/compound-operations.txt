@@ -7,7 +7,7 @@ Compound Operations
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 2
+   :depth: 1
    :class: singlecol
 
 Overview
@@ -59,7 +59,7 @@ the specified query filter and deletes it. The function returns a
 
    This function differs from the ``DeleteOne()`` function.
    ``FindOneAndDelete()`` performs a find and delete as a single
-   operation and eliminates the possibility of someone altering a
+   operation, and eliminates the possibility of someone altering a
    document between both operations.
 
 Modify Behavior
@@ -104,7 +104,7 @@ Example
 ```````
 
 The following example matches and deletes a document where the ``type``
-is ``"Assam"`` with the ``FindOneAndDelete()`` function:
+is "Assam" with the ``FindOneAndDelete()`` function:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/compoundOperations.go
    :language: go
@@ -133,7 +133,7 @@ document.
 
    This function differs from the ``UpdateOne()`` function.
    ``FindOneAndUpdate()`` performs a find and update as a single
-   operation and eliminates the possibility of someone altering a
+   operation, and eliminates the possibility of someone altering a
    document between both operations.
 
 Modify Behavior
@@ -196,7 +196,7 @@ Example
 The following example performs the following actions in order with the
 ``FindOneAndUpdate()`` function:
 
-- Matches a document where the ``type`` is ``"Oolong"``
+- Matches a document where the ``type`` is "Oolong"
 - Updates the matched document's ``rating`` to ``9``
 - Returns the updated document
 
@@ -227,7 +227,7 @@ document.
 
    This function differs from the ``ReplaceOne()`` function.
    ``FindOneAndReplace()`` performs a find and replace as a single
-   operation and eliminates the possibility of someone altering a
+   operation, and eliminates the possibility of someone altering a
    document between both operations.
 
 Modify Behavior
@@ -286,8 +286,8 @@ Example
 The following example performs the following actions in order with the
 ``FindOneAndReplace()`` function:
 
-- Matches a document where the ``type`` is ``"English Breakfast"``
-- Replaces the matched document with a new document where the ``type`` is ``"Ceylon"`` and  ``rating`` is ``6``
+- Matches a document where the ``type`` is "English Breakfast"
+- Replaces the matched document with a new document where the ``type`` is "Ceylon" and  ``rating`` is ``6``
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/compoundOperations.go
    :language: go
@@ -311,7 +311,7 @@ mentioned in this guide, see the following guides:
 - :doc:`Retrieve documents </fundamentals/crud/read-operations/retrieve>`
 - :doc:`Delete a document </fundamentals/crud/write-operations/delete>`
 - :doc:`Update or Replace a document </fundamentals/crud/write-operations/change-a-document>`
-- :ref:`Access data in a SingleResult <bson-unmarshalling>`.
+- :ref:`Access data in a SingleResult <bson-unmarshalling>`
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
