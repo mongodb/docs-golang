@@ -308,10 +308,10 @@ Additional Information
 For more information on performing the read or write operations
 mentioned in this guide, see the following guides:
 
-- :doc:`Retrieve documents </fundamentals/crud/read-operations/retrieve>`
-- :doc:`Delete a document </fundamentals/crud/write-operations/delete>`
-- :doc:`Update or Replace a document </fundamentals/crud/write-operations/change-a-document>`
-- :ref:`Access data in a SingleResult <bson-unmarshalling>`
+- :doc:`Retrieve Data </fundamentals/crud/read-operations/retrieve>`
+- :doc:`Delete a Document </fundamentals/crud/write-operations/delete>`
+- :doc:`Update or Replace a Document </fundamentals/crud/write-operations/change-a-document>`
+- :ref:`Access Data in a SingleResult <bson-unmarshalling>`
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
