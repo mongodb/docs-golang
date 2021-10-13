@@ -15,21 +15,36 @@ Specify a Query
 Overview
 --------
 
-In this guide, you can learn how to specify a query to retrieve a subset
+In this guide, you can learn how to specify a query to match a subset
 of documents.
 
-To retrieve a subset of documents, specify a **query filter** containing
+To match a subset of documents, specify a **query filter** containing
 your **match criteria**. Match criteria consists of the fields and
-values you want matched. The query filter must contain at least one set
+values you want matched. A query filter contains at least one set
 of match criteria to determine which documents to include in the
 resulting set.
 
 In a query filter, you can match fields with :ref:`literal values
-<go-literal-values>`, or you can use **query operators**. Query
+<go-literal-values>` or with **query operators**. Query
 operators allow you to perform mathematical or logical operations to
 locate documents within a collection.
 
-This guide explains how to use query operators with the ``Find()``
+The following shows the match criteria format with literal values:
+
+.. code-block:: go
+   :copyable: false
+
+   filter := bson.D{{"<field>", "<value>"}}
+
+The following shows the match criteria format with a query operator:
+
+.. code-block:: go
+   :copyable: false
+   
+   filter := bson.D{{"<field>", bson.D{{"<operator>", "<value>"}}}}
+
+This guide explains how to use :ref:`literal values <go-literal-values>`
+and :ref:`query operators <query-operators-go>` with the ``Find()``
 function.
 
 Sample Data
@@ -98,6 +113,8 @@ After running this example, the output resembles the following:
 
       filter := bson.D{{"type", bson.D{{"$eq", "Oolong"}}}}
 
+.. _query-operators-go:
+
 Comparison
 ----------
 
@@ -132,10 +149,11 @@ Query Operators </reference/operator/query-comparison/>` page.
 Logical
 -------
 
-Logical operators expect at least 2 specified match criteria. They apply
-logic to both, either, or neither of the specified criteria. Common logical
-operators include ``$and`` where all match criteria must be true, and
-``$or`` where at least one of the match criteria must be true. 
+Logical operators expect at least 2 match criteria. They check if
+documents meet all, at lease one, or none of the specified criteria.
+Common logical operators include ``$and`` where all match criteria must
+be true, and ``$or`` where at least one of the match criteria must be
+true.
 
 Example
 ~~~~~~~
@@ -162,9 +180,9 @@ Query Operators </reference/operator/query-logical/>` page.
 
 .. tip:: 
 
-   Multiple match criteria for different fields in a literal query
-   returns the same value as the ``$and`` logical operator. The
-   following query filters produce the same result:
+   Multiple match criteria resembling an ``$eq`` comparison operator in
+   a literal query returns the same value as the ``$and`` logical
+   operator. The following query filters produce the same result:
 
    .. code-block:: go
    
@@ -211,7 +229,7 @@ Query Operators </reference/operator/query-element/>` page.
 Evaluation
 ----------
 
-Evaluation operators evaluate values in a document based on the
+Evaluation operators analyze values in a document based on the
 specified value in your match criteria. Common evaluation operators
 include ``$regex`` where a field's value must match the specified
 regular expression and ``$text`` where the field's value must contain
@@ -271,7 +289,7 @@ Bitwise
 -------
 
 Bitwise operators convert a numeric field from a base 10 (decimal)
-number into its base 2 (binary) number to evaluate whether the value in
+number into its base 2 (binary) number. They check whether the value in
 a document has the same bits set as value in your match criteria.
 
 Example
