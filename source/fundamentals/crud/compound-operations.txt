@@ -7,7 +7,7 @@ Compound Operations
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 Overview
@@ -55,6 +55,11 @@ To find and delete one document, pass a ``Context`` type and a
 ``non-nil`` query filter specifying which documents to match to the
 ``FindOneAndDelete()`` function. 
 
+The function returns a ``SingleResult`` containing the deleted document.
+
+Modify Behavior
+~~~~~~~~~~~~~~~
+
 The function optionally takes a ``FineOneAndDeleteOptions`` type as a
 third parameter, which represents options you can use to configure the
 compound operation. If you don't specify a ``FineOneAndDeleteOptions``,
@@ -90,11 +95,8 @@ with the following functions:
      - | The index to use to scan for documents.
        | Default: ``nil``
 
-The ``FindOneAndDelete()`` function returns a ``SingleResult``
-containing the deleted document.
-
 Example
-~~~~~~~
+```````
 
 The following example matches and deletes a document where the ``type``
 is ``"Assam"`` with the ``FindOneAndDelete()`` function:
@@ -123,6 +125,11 @@ to the ``FindOneAndUpdate()`` function:
 - A ``Context`` type 
 - A ``non-nil`` query filter specifying which documents to match
 - An update document specifying at least one update operator with fields and values that describe the change 
+
+The function returns a ``SingleResult`` containing the matched document. 
+
+Modify Behavior
+~~~~~~~~~~~~~~~
 
 The function optionally takes a ``FineOneAndUpdateOptions`` type as a
 fourth parameter, which represents options you can use to configure the
@@ -175,12 +182,8 @@ with the following functions:
      - | The index to use to scan for documents.
        | Default: ``nil``
 
-By default, the ``FindOneAndUpdate()`` function returns a ``SingleResult`` 
-containing original document. If you configure the ``SetReturnDocument()``
-function to ``options.After``, the function returns the updated document.
-
 Example
-~~~~~~~
+```````
 
 The following example performs the following actions in order with the
 ``FindOneAndUpdate()`` function:
@@ -207,12 +210,17 @@ After running this example, the output resembles the following:
 Find and Replace
 ----------------
 
-To find and update one document, pass the following parameters in order
+To find and replace one document, pass the following parameters in order
 to the ``FindOneAndReplace()`` function:
 
 - A ``Context`` type 
 - A ``non-nil`` query filter specifying which documents to match
 - A replacement document to take place of the matched document
+
+The function returns a ``SingleResult`` containing the matched document.
+
+Modify Behavior
+~~~~~~~~~~~~~~~
 
 The function optionally takes a ``FineOneAndReplaceOptions`` type as a
 fourth parameter, which represents options you can use to configure the
@@ -261,12 +269,8 @@ with the following functions:
      - | The index to use to scan for documents.
        | Default: ``nil``
 
-By default, the ``FindOneAndReplace()`` function returns a ``SingleResult`` 
-containing original document. If you configure the ``SetReturnDocument()``
-function to ``options.After``, the function returns the replaced document.
-
 Example
-~~~~~~~
+```````
 
 The following example performs the following actions in order with the
 ``FindOneAndReplace()`` function:
@@ -292,11 +296,12 @@ Additional Information
 ----------------------
 
 For more information on performing the read or write operations
-mentioned in this guide, see the following CRUD guides:
+mentioned in this guide, see the following guides:
 
 - :doc:`Retrieve documents </fundamentals/crud/read-operations/retrieve>`
 - :doc:`Delete a document </fundamentals/crud/write-operations/delete>`
 - :doc:`Update or Replace a document </fundamentals/crud/write-operations/change-a-document>`
+- :ref:`Access data in a SingleResult <bson-unmarshalling>`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
