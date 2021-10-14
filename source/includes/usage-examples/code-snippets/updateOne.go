@@ -40,11 +40,10 @@ func main() {
 	update := bson.D{{"$set", bson.D{{"avg_rating", 4.4}}}}
 
 	result, err := myCollection.UpdateOne(context.TODO(), filter, update)
-	// end updateone
-
 	if err != nil {
 		panic(err)
 	}
+	// end updateone
 
 	// When you run this file for the first time, it should print:
 	// Number of documents replaced: 1

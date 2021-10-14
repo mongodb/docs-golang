@@ -37,11 +37,10 @@ func main() {
 	filter := bson.D{{"directors", "Natalie Portman"}}
 
 	results, err := coll.Distinct(context.TODO(), "title", filter)
-	// end distinct
-
 	if err != nil {
 		panic(err)
-	}
+	}	
+	// end distinct
 
 	// When you run this file, it should print:
 	// A Tale of Love and Darkness

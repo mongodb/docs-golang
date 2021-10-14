@@ -37,15 +37,14 @@ func main() {
 	filter := bson.D{{"countries", "China"}}
 
 	estCount, estCountErr := coll.EstimatedDocumentCount(context.TODO())
-	count, countErr := coll.CountDocuments(context.TODO(), filter)
-	// end countDocuments
-
 	if estCountErr != nil {
 		panic(estCountErr)
-	}
-	if countErr != nil {
-		panic(countErr)
-	}
+	}	
+	count, err := coll.CountDocuments(context.TODO(), filter)
+	if err != nil {
+		panic(err)
+	}	
+	// end countDocuments
 
 	// When you run this file, it should print:
 	// Estimated number of documents in the movies collection: 23541

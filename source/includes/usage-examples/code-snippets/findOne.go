@@ -35,9 +35,9 @@ func main() {
 
 	// begin findOne
 	coll := client.Database("sample_mflix").Collection("movies")
+	
 	var result bson.M
 	err = coll.FindOne(context.TODO(), bson.D{{"title", "The Room"}}).Decode(&result)
-	// end findOne
 	if err != nil {
 		if err == mongo.ErrNoDocuments {
 			// This error means your query did not match any documents.
@@ -45,6 +45,8 @@ func main() {
 		}
 		panic(err)
 	}
+	// end findOne
+
 	output, err := json.MarshalIndent(result, "", "    ")
 	if err != nil {
 		panic(err)

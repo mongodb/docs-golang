@@ -48,71 +48,76 @@ func main() {
 	//end insertDocs
 
 	fmt.Println("Ascending Sort:")
-	//begin ascending sort
-	ascendingFilter := bson.D{}
-	acendingSort := bson.D{{"rating", 1}}
-	ascendingOptions := options.Find().SetSort(acendingSort)
+	{
+		//begin ascending sort
+		filter := bson.D{}
+		opts := options.Find().SetSort(bson.D{{"rating", 1}})
 
-	ascendingCursor, ascendingErr := coll.Find(context.TODO(), ascendingFilter, ascendingOptions)
+		cursor, err := coll.Find(context.TODO(), filter, opts)
 
-	var ascendingResults []bson.D
-	if ascendingErr = ascendingCursor.All(context.TODO(), &ascendingResults); ascendingErr != nil {
-		panic(ascendingErr)
+		var results []bson.D
+		if err = cursor.All(context.TODO(), &results); err != nil {
+			panic(err)
+		}
+		for _, result := range results {
+			fmt.Println(result)
+		}
+		//end ascending sort
 	}
-	for _, result := range ascendingResults {
-		fmt.Println(result)
-	}
-	//end ascending sort
 
 	fmt.Println("Descending Sort:")
-	//begin descending sort
-	descendingFilter := bson.D{}
-	descendingSort := bson.D{{"rating", -1}}
-	descendingOptions := options.Find().SetSort(descendingSort)
+	{
+		//begin descending sort
+		filter := bson.D{}
+		opts := options.Find().SetSort(bson.D{{"rating", -1}})
 
-	descendingCursor, descendingErr := coll.Find(context.TODO(), descendingFilter, descendingOptions)
+		cursor, err := coll.Find(context.TODO(), filter, opts)
 
-	var descendingResults []bson.D
-	if descendingErr = descendingCursor.All(context.TODO(), &descendingResults); descendingErr != nil {
-		panic(descendingErr)
+		var results []bson.D
+		if err = cursor.All(context.TODO(), &results); err != nil {
+			panic(err)
+		}
+		for _, result := range results {
+			fmt.Println(result)
+		}
+		//end descending sort
 	}
-	for _, result := range descendingResults {
-		fmt.Println(result)
-	}
-	//end descending sort
 
 	fmt.Println("Multi Sort:")
-	//begin multi sort
-	findFilter := bson.D{}
-	sort := bson.D{{"rating", 1}, {"type", -1}}
-	findOptions := options.Find().SetSort(sort)
+	{
+		//begin multi sort
+		filter := bson.D{}
+		opts := options.Find().SetSort(bson.D{{"rating", 1}, {"type", -1}})
 
-	findCursor, findErr := coll.Find(context.TODO(), findFilter, findOptions)
+		cursor, err := coll.Find(context.TODO(), filter, opts)
 
-	var findResults []bson.D
-	if findErr = findCursor.All(context.TODO(), &findResults); findErr != nil {
-		panic(findErr)
+		var results []bson.D
+		if err = cursor.All(context.TODO(), &results); err != nil {
+			panic(err)
+		}
+		for _, result := range results {
+			fmt.Println(result)
+		}
+		//end multi sort
 	}
-	for _, result := range findResults {
-		fmt.Println(result)
-	}
-	//end multi sort
 
 	fmt.Println("Aggregation Sort:")
-	// begin aggregate sort
-	sortStage := bson.D{{"$sort", bson.D{{"rating", -1}, {"type", 1}}}}
+	{
+		// begin aggregate sort
+		sortStage := bson.D{{"$sort", bson.D{{"rating", -1}, {"type", 1}}}}
 
-	aggCursor, aggErr := coll.Aggregate(context.TODO(), mongo.Pipeline{sortStage})
-	if aggErr != nil {
-		panic(aggErr)
-	}
+		cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{sortStage})
+		if err != nil {
+			panic(err)
+		}
 
-	var aggResults []bson.D
-	if aggErr = aggCursor.All(context.TODO(), &aggResults); aggErr != nil {
-		panic(aggErr)
+		var results []bson.D
+		if err = cursor.All(context.TODO(), &results); err != nil {
+			panic(err)
+		}
+		for _, result := range results {
+			fmt.Println(result)
+		}
+		// end aggregate sort
 	}
-	for _, result := range aggResults {
-		fmt.Println(result)
-	}
-	// end aggregate sort
 }

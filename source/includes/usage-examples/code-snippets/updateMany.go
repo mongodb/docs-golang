@@ -38,11 +38,10 @@ func main() {
 	update := bson.D{{"$mul", bson.D{{"price", 1.15}}}}
 
 	result, err := myCollection.UpdateMany(context.TODO(), filter, update)
-	// end updatemany
-
 	if err != nil {
 		panic(err)
 	}
+	// end updatemany
 
 	// When you run this file for the first time, it should print:
 	// Number of documents replaced: 609
