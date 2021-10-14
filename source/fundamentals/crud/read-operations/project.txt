@@ -34,13 +34,12 @@ snippet:
 Projection
 ----------
 
-A projection is a document that specifies which fields to return in
-matched documents. The projection document contains field names followed
-by a ``1`` (to include) or ``0`` (to exclude). Each document can only
-include or exclude fields. 
+A projection specifies which fields to return in matched documents. It
+contains field names followed by a ``1`` (to include) or ``0`` (to
+exclude). Projections can only include or exclude fields.
 
-You can specify a projection by passing a projection document to the
-``SetProjection()`` function to the following read operation functions:
+You can specify a projection by passing one to the ``SetProjection()``
+function in the options of the following read operation functions:
 
 - ``Find()``
 - ``FindOne()``
@@ -56,9 +55,9 @@ You can specify a projection by passing a projection document to the
 Exclude a Field
 ~~~~~~~~~~~~~~~
 
-To exclude a field, specify a ``0`` in the projection document passed to
+To exclude a field, specify a ``0`` in the projection passed to
 the ``SetProjection()`` function. For all fields you don't explicitly
-list in the projection document, the driver includes them.
+list in the projection, the driver includes them.
 
 Example
 ```````
@@ -87,9 +86,9 @@ After running this example, the output resembles the following:
 Include a Field
 ~~~~~~~~~~~~~~~
 
-To include a field, specify a ``1`` in the projection document passed to
+To include a field, specify a ``1`` in the projection passed to
 the ``SetProjection()`` function. For all fields you don't explicitly
-list in the projection document, the driver excludes them.
+list in the projection, the driver excludes them.
 
 .. important::
 
