@@ -55,7 +55,7 @@ function in the options of the following read operation functions:
 Exclude a Field
 ~~~~~~~~~~~~~~~
 
-To exclude a field, specify a ``0`` in the projection passed to
+To exclude a field, pass the field you want to exclude and a ``0`` to
 the ``SetProjection()`` function. For all fields you don't explicitly
 list in the projection, the driver includes them.
 
@@ -86,7 +86,7 @@ After running this example, the output resembles the following:
 Include a Field
 ~~~~~~~~~~~~~~~
 
-To include a field, specify a ``1`` in the projection passed to
+To include a field, pass the field you want to include and a ``1`` to
 the ``SetProjection()`` function. For all fields you don't explicitly
 list in the projection, the driver excludes them.
 
