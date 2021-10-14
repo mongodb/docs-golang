@@ -47,38 +47,51 @@ func main() {
 	fmt.Printf("Number of documents inserted: %d\n", len(result.InsertedIDs))
 	//end insertDocs
 
-	fmt.Println("Skip:")
-	//begin skip
-	skipFilter := bson.D{}
-	skipOptions := options.Find().SetSort(bson.D{{"rating", 1}}).SetSkip(2)
+	fmt.Println("FindOneAndDelete:")
+	{
+		//begin FindOneAndDelete
+		filter := bson.D{{"type", "Assam"}}
 
-	skipCursor, skipErr := coll.Find(context.TODO(), skipFilter, skipOptions)
+		var deletedDoc bson.D
+		err := coll.FindOneAndDelete(context.TODO(), filter).Decode(&deletedDoc)
+		if err != nil {
+			panic(err)
+		}
 
-	var skipResults []bson.D
-	if skipErr = skipCursor.All(context.TODO(), &skipResults); skipErr != nil {
-		panic(skipErr)
-	}
-	for _, result := range skipResults {
-		fmt.Println(result)
-	}
-	//end skip
-
-	fmt.Println("Aggegation Skip:")
-	// begin aggregate skip
-	sortStage := bson.D{{"$sort", bson.D{{"rating", -1}}}}
-	skipStage := bson.D{{"$skip", 3}}
-
-	aggCursor, aggErr := coll.Aggregate(context.TODO(), mongo.Pipeline{sortStage, skipStage})
-	if aggErr != nil {
-		panic(aggErr)
+		fmt.Println(deletedDoc)
+		//end FindOneAndDelete
 	}
 
-	var aggResults []bson.D
-	if aggErr = aggCursor.All(context.TODO(), &aggResults); aggErr != nil {
-		panic(aggErr)
+	fmt.Println("FindOneAndReplace:")
+	{
+		//begin FindOneAndReplace
+		filter := bson.D{{"type", "English Breakfast"}}
+		replacement := bson.D{{"type", "Ceylon"}, {"rating", 6}}
+
+		var previousDoc bson.D
+		err := coll.FindOneAndReplace(context.TODO(), filter, replacement).Decode(&previousDoc)
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Println(previousDoc)
+		//end FindOneAndReplace
 	}
-	for _, result := range aggResults {
-		fmt.Println(result)
+
+	fmt.Println("FindOneAndUpdate:")
+	{
+		//begin FindOneAndUpdate
+		filter := bson.D{{"type", "Oolong"}}
+		update := bson.D{{"$set", bson.D{{"rating", 9}}}}
+		opts := options.FindOneAndUpdate().SetReturnDocument(options.After)
+
+		var updatedDoc bson.D
+		err := coll.FindOneAndUpdate(context.TODO(), filter, update, opts).Decode(&updatedDoc)
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Println(updatedDoc)
+		//end FindOneAndUpdate
 	}
-	// end aggregate skip
 }
