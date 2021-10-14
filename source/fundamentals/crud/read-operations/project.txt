@@ -34,34 +34,22 @@ snippet:
 Projection
 ----------
 
-A projection specifies which fields to return in a document. To create a
-projection, pass an interface specifying the field and whether to
-indclude that field to the ``SetProjection()`` function of a read
-operation's options. To include the field, specify a ``1`` and to
-exclude a field, specify a ``0``. 
+A projection is a document that specifies which fields to return in
+matched documents. The projection document contains field names followed
+by a ``1`` (to include) or ``0`` (to exclude). Each document can only
+include or exclude fields. 
 
-Specify the options as the last parameter to the following read
-operation functions:
+To specify a projection, pass a projection document to the
+``SetProjection()`` function of a read operation's options.
+
+You can specify a projection to the following read operation
+functions:
 
 - ``Find()``
 - ``FindOne()``
 - ``FindOneAndDelete()``
 - ``FindOneAndReplace()``
 - ``FindOneAndUpdate()``
-
-.. _go-projection-exception:
-
-Exception
-~~~~~~~~~
-
-When specifying a projection, you can only specify to either include or
-exclude fields. This rule **does not** apply to the ``_id`` field. You
-can exclude the ``_id`` field even if you specified to include certain
-fields.
-
-By default, the driver includes the ``_id`` field. You must explicitly
-exclude the ``_id`` field if you do not want it returned. For an example
-of this scenario, see the :ref:`include a field section <go-include-projection>`.
 
 .. tip::
 
@@ -71,9 +59,9 @@ of this scenario, see the :ref:`include a field section <go-include-projection>`
 Exclude a Field
 ~~~~~~~~~~~~~~~
 
-To exclude a field, specify a ``0`` in the interface passed to the
-``SetProjection()`` function. For all fields you don't explicitly list
-in the interface, the driver includes them.
+To exclude a field, specify a ``0`` in the projection document passed to
+the ``SetProjection()`` function. For all fields you don't explicitly
+list in the projection document, the driver includes them.
 
 Example
 ```````
@@ -102,15 +90,16 @@ After running this example, the output resembles the following:
 Include a Field
 ~~~~~~~~~~~~~~~
 
-To include a field, specify a ``1`` in the interface passed to the
-``SetProjection()`` function. For all fields you don't explicitly list
-in the interface, the driver excludes them.
+To include a field, specify a ``1`` in the projection document passed to
+the ``SetProjection()`` function. For all fields you don't explicitly
+list in the projection document, the driver excludes them.
 
 .. important::
 
     You can exclude the ``_id`` field even if you specified to include
-    certain fields. For more information, see the :ref:`exception
-    section <go-projection-exception>`.
+    certain fields. By default, the driver includes the ``_id`` field.
+    You must explicitly exclude the ``_id`` field if you do not want it
+    returned.
 
 .. _go-include-projection:
 

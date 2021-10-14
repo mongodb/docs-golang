@@ -40,60 +40,72 @@ func main() {
 		bson.D{{"type", "English Breakfast"}, {"rating", 5}},
 	}
 
-	result, insertErr := coll.InsertMany(context.TODO(), docs)
-	if insertErr != nil {
-		panic(insertErr)
+	result, err := coll.InsertMany(context.TODO(), docs)
+	if err != nil {
+		panic(err)
 	}
 	fmt.Printf("Number of documents inserted: %d\n", len(result.InsertedIDs))
 	//end insertDocs
 
 	fmt.Println("Exclude Projection:")
-	//begin exclude projection
-	excludeProjection := bson.D{{"rating", 0}}
-	excludeOptions := options.Find().SetProjection(excludeProjection)
+	{
+		//begin exclude projection
+		projection := bson.D{{"rating", 0}}
+		opts := options.Find().SetProjection(projection)
 
-	excludeCursor, excludeErr := coll.Find(context.TODO(), bson.D{}, excludeOptions)
+		cursor, err := coll.Find(context.TODO(), bson.D{}, opts)
+		if err != nil {
+			panic(err)
+		}
 
-	var excludeResults []bson.D
-	if excludeErr = excludeCursor.All(context.TODO(), &excludeResults); excludeErr != nil {
-		panic(excludeErr)
+		var results []bson.D
+		if err = cursor.All(context.TODO(), &results); err != nil {
+			panic(err)
+		}
+		for _, result := range results {
+			fmt.Println(result)
+		}
+		//end exclude projection
 	}
-	for _, result := range excludeResults {
-		fmt.Println(result)
-	}
-	//end exclude projection
 
 	fmt.Println("Include Projection:")
-	//begin include projection
-	includeProjection := bson.D{{"type", 1}, {"rating", 1}, {"_id", 0}}
-	includeOptions := options.Find().SetProjection(includeProjection)
+	{
+		//begin include projection
+		projection := bson.D{{"type", 1}, {"rating", 1}, {"_id", 0}}
+		opts := options.Find().SetProjection(projection)
 
-	includeCursor, includeErr := coll.Find(context.TODO(), bson.D{}, includeOptions)
+		cursor, err := coll.Find(context.TODO(), bson.D{}, opts)
+		if err != nil {
+			panic(err)
+		}
 
-	var includeResults []bson.D
-	if includeErr = includeCursor.All(context.TODO(), &includeResults); includeErr != nil {
-		panic(includeErr)
+		var results []bson.D
+		if err = cursor.All(context.TODO(), &results); err != nil {
+			panic(err)
+		}
+		for _, result := range results {
+			fmt.Println(result)
+		}
+		//end include projection
 	}
-	for _, result := range includeResults {
-		fmt.Println(result)
-	}
-	//end include projection
 
 	fmt.Println("Aggregation Projection:")
-	// begin aggregate projection
-	projectStage := bson.D{{"$project", bson.D{{"type", 1}, {"rating", 1}, {"_id", 0}}}}
+	{
+		// begin aggregate projection
+		projectStage := bson.D{{"$project", bson.D{{"type", 1}, {"rating", 1}, {"_id", 0}}}}
 
-	aggCursor, aggErr := coll.Aggregate(context.TODO(), mongo.Pipeline{projectStage})
-	if aggErr != nil {
-		panic(aggErr)
-	}
+		cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{projectStage})
+		if err != nil {
+			panic(err)
+		}
 
-	var aggResults []bson.D
-	if aggErr = aggCursor.All(context.TODO(), &aggResults); aggErr != nil {
-		panic(aggErr)
+		var results []bson.D
+		if err = cursor.All(context.TODO(), &results); err != nil {
+			panic(err)
+		}
+		for _, result := range results {
+			fmt.Println(result)
+		}
+		// end aggregate projection
 	}
-	for _, result := range aggResults {
-		fmt.Println(result)
-	}
-	// end aggregate projection
 }
