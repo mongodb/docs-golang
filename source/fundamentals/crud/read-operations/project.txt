@@ -39,11 +39,8 @@ matched documents. The projection document contains field names followed
 by a ``1`` (to include) or ``0`` (to exclude). Each document can only
 include or exclude fields. 
 
-To specify a projection, pass a projection document to the
-``SetProjection()`` function of a read operation's options.
-
-You can specify a projection to the following read operation
-functions:
+You can specify a projection by passing a projection document to the
+``SetProjection()`` function to the following read operation functions:
 
 - ``Find()``
 - ``FindOne()``

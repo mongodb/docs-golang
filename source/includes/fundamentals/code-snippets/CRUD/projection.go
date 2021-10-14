@@ -50,8 +50,7 @@ func main() {
 	fmt.Println("Exclude Projection:")
 	{
 		//begin exclude projection
-		projection := bson.D{{"rating", 0}}
-		opts := options.Find().SetProjection(projection)
+		opts := options.Find().SetProjection(bson.D{{"rating", 0}})
 
 		cursor, err := coll.Find(context.TODO(), bson.D{}, opts)
 		if err != nil {
@@ -71,8 +70,7 @@ func main() {
 	fmt.Println("Include Projection:")
 	{
 		//begin include projection
-		projection := bson.D{{"type", 1}, {"rating", 1}, {"_id", 0}}
-		opts := options.Find().SetProjection(projection)
+		opts := options.Find().SetProjection(bson.D{{"type", 1}, {"rating", 1}, {"_id", 0}})
 
 		cursor, err := coll.Find(context.TODO(), bson.D{}, opts)
 		if err != nil {
