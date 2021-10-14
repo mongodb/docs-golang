@@ -34,12 +34,12 @@ func main() {
 	}()
 
 	// begin updateone
-	myCollection := client.Database("sample_restaurants").Collection("restaurants")
+	coll := client.Database("sample_restaurants").Collection("restaurants")
 	id, _ := primitive.ObjectIDFromHex("5eb3d668b31de5d588f42a7a")
 	filter := bson.D{{"_id", id}}
 	update := bson.D{{"$set", bson.D{{"avg_rating", 4.4}}}}
 
-	result, err := myCollection.UpdateOne(context.TODO(), filter, update)
+	result, err := coll.UpdateOne(context.TODO(), filter, update)
 	if err != nil {
 		panic(err)
 	}

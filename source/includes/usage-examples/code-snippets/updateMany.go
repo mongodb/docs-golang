@@ -33,11 +33,11 @@ func main() {
 	}()
 
 	// begin updatemany
-	myCollection := client.Database("sample_airbnb").Collection("listingsAndReviews")
+	coll := client.Database("sample_airbnb").Collection("listingsAndReviews")
 	filter := bson.D{{"address.market", "Sydney"}}
 	update := bson.D{{"$mul", bson.D{{"price", 1.15}}}}
 
-	result, err := myCollection.UpdateMany(context.TODO(), filter, update)
+	result, err := coll.UpdateMany(context.TODO(), filter, update)
 	if err != nil {
 		panic(err)
 	}
