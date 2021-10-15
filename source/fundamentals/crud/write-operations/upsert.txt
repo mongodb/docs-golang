@@ -40,7 +40,7 @@ Sometimes, you need to choose between an insert and update depending on
 whether the document exists. MongoDB simplifies this decision for us
 with an **upsert** option.
 
-An upsert can perform one of the following actions:
+An upsert performs one of the following actions:
 
 - Update documents that match your query filter
 - Insert a document if there are no matches to your query filter
