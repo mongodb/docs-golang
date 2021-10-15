@@ -20,7 +20,7 @@ In this guide, you can learn how to specify an upsert.
 Sample Data
 ~~~~~~~~~~~
 
-To run the examples in this guide, load the sample data into the
+To run the example in this guide, load the sample data into the
 ``ratings`` collection of the ``tea`` database with the following
 snippet:
 
@@ -30,7 +30,10 @@ snippet:
    :start-after: begin insert docs
    :end-before: end insert docs
 
-.. include:: /includes/fundamentals/tea-sample-data-ending.rst
+.. include:: /includes/fundamentals/automatic-db-coll-creation.rst
+
+Each document contains a rating for a type of tea that corresponds to
+the ``type`` and ``rating`` fields.
 
 Upsert
 ------
@@ -81,6 +84,7 @@ The expected output of this example is as follows:
 .. code-block:: none
    :copyable: false
 
+   Number of documents updated: 0
    Number of documents upserted: 1
 
 Additional Information
