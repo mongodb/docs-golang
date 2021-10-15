@@ -118,7 +118,7 @@ The expected output of this example is as follows:
 Comparison
 ----------
 
-Comparison operators analyze the value in a document to the specified
+Comparison operators analyze the value in a document against the specified
 value in your match criteria. Common comparison operators include
 ``$gt`` for "greater than" comparisons, ``$lte`` for "less than or equal
 to" comparisons, and ``$ne`` for "not equal to" comparisons.
@@ -289,8 +289,9 @@ Bitwise
 -------
 
 Bitwise operators convert a numeric field from a base-10 (decimal)
-number into the corresponding base-2 (binary) number. They check whether the value in
-a document has the same bits set as value in your match criteria.
+number into the corresponding base-2 (binary) number. They check whether
+the value in a document has the same bits set as the value in your match
+criteria.
 
 Example
 ~~~~~~~
