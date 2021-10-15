@@ -47,42 +47,51 @@ func main() {
 	fmt.Printf("Number of documents inserted: %d\n", len(result.InsertedIDs))
 	//end insertDocs
 
-	fmt.Println("Skip:")
+	fmt.Println("FindOneAndDelete:")
 	{
-		//begin skip
-		filter := bson.D{}
-		opts := options.Find().SetSort(bson.D{{"rating", 1}}).SetSkip(2)
+		//begin FindOneAndDelete
+		filter := bson.D{{"type", "Assam"}}
 
-		cursor, err := coll.Find(context.TODO(), filter, opts)
-
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
-			panic(err)
-		}
-		for _, result := range results {
-			fmt.Println(result)
-		}
-		//end skip
-	}
-
-	fmt.Println("Aggegation Skip:")
-	{
-		// begin aggregate skip
-		sortStage := bson.D{{"$sort", bson.D{{"rating", -1}}}}
-		skipStage := bson.D{{"$skip", 3}}
-
-		cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{sortStage, skipStage})
+		var deletedDoc bson.D
+		err := coll.FindOneAndDelete(context.TODO(), filter).Decode(&deletedDoc)
 		if err != nil {
 			panic(err)
 		}
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
+		fmt.Println(deletedDoc)
+		//end FindOneAndDelete
+	}
+
+	fmt.Println("FindOneAndReplace:")
+	{
+		//begin FindOneAndReplace
+		filter := bson.D{{"type", "English Breakfast"}}
+		replacement := bson.D{{"type", "Ceylon"}, {"rating", 6}}
+
+		var previousDoc bson.D
+		err := coll.FindOneAndReplace(context.TODO(), filter, replacement).Decode(&previousDoc)
+		if err != nil {
 			panic(err)
 		}
-		for _, result := range results {
-			fmt.Println(result)
+
+		fmt.Println(previousDoc)
+		//end FindOneAndReplace
+	}
+
+	fmt.Println("FindOneAndUpdate:")
+	{
+		//begin FindOneAndUpdate
+		filter := bson.D{{"type", "Oolong"}}
+		update := bson.D{{"$set", bson.D{{"rating", 9}}}}
+		opts := options.FindOneAndUpdate().SetReturnDocument(options.After)
+
+		var updatedDoc bson.D
+		err := coll.FindOneAndUpdate(context.TODO(), filter, update, opts).Decode(&updatedDoc)
+		if err != nil {
+			panic(err)
 		}
-		// end aggregate skip
+
+		fmt.Println(updatedDoc)
+		//end FindOneAndUpdate
 	}
 }
