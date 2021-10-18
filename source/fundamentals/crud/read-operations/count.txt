@@ -42,7 +42,7 @@ To count the number of documents that match your query filter, use the
 
 .. tip::
 
-   If you pass an empty query filter, the function returns the total
+   If you pass an empty query filter, this function returns the total
    number of documents in the collection.
 
 Modify Behavior
