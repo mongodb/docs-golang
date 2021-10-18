@@ -63,23 +63,23 @@ following functions:
      - Description
 
    * - ``SetCollation()``
-     - | The type of language collation to use when sorting results.  
+     - | The type of language collation to use when counting results.  
        | Default: ``nil``
 
    * - ``SetHint()`` 
-     - | The index to use to scan for documents to delete. 
+     - | The index to use to scan for documents to count. 
        | Default: ``nil``
 
    * - ``SetLimit()`` 
-     - | The maximum number of documents to return. 
+     - | The maximum number of documents to count. 
        | Default: ``0`` 
 
    * - ``SetMaxTime()``
      - | The maximum amount of time in milliseconds that the query can run on the server.
        | Default: ``nil``
 
-   * - ``SetSort()`` 
-     - | The number of documents to skip.
+   * - ``SetSkip()`` 
+     - | The number of documents to skip before counting.
        | Default: ``0``
 
 Example 
