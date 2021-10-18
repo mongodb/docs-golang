@@ -13,8 +13,9 @@ Count Documents
 Overview
 --------
 
-In this guide, you can learn how to count the number of documents
-in your collection.
+In this guide, you can learn how to get an :ref:`accurate
+<accurate-count-go>` and :ref:`estimated <estimated-count-go>` count of
+the number of documents in your collection.
 
 Sample Data
 ~~~~~~~~~~~
@@ -33,6 +34,8 @@ snippet:
 
 Each document contains a rating for a type of tea that corresponds to
 the ``type`` and ``rating`` fields.
+
+.. _accurate-count-go:
 
 Accurate Count
 --------------
@@ -101,6 +104,8 @@ After running this example, the output resembles the following:
 
    Number of ratings less than six: 4
 
+.. _estimated-count-go:
+
 Estimated Count
 ---------------
 
@@ -167,6 +172,9 @@ guides:
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
+
+For more information on any of the functions or types discussed in this
+guide, see the following API Documentation:
 
 - `CountDocuments() <{+api+}/mongo#Collection.CountDocuments>`__
 - `CountOptions <{+api+}/mongo/options#CountOptions>`__
