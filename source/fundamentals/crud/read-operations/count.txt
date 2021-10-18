@@ -63,7 +63,7 @@ following functions:
      - Description
 
    * - ``SetCollation()``
-     - | The type of language collation to use when counting results.  
+     - | The type of language collation to use when sorting results.  
        | Default: ``nil``
 
    * - ``SetHint()`` 
