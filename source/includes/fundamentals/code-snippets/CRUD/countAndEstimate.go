@@ -71,4 +71,24 @@ func main() {
 		fmt.Printf("Estimated number of documents in the ratings collection: %d\n", count)
 		// end est doc count
 	}
+
+	{
+		// begin aggregate count
+		matchStage := bson.D{{"$match", bson.D{{"rating", bson.D{{"$gt", 5}}}}}}
+		countStage := bson.D{{"$count", "total_documents"}}
+
+		cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{matchStage, countStage})
+		if err != nil {
+			panic(err)
+		}
+
+		var results []bson.D
+		if err = cursor.All(context.TODO(), &results); err != nil {
+			panic(err)
+		}
+		for _, result := range results {
+			fmt.Println(result)
+		}
+		// end aggregate count
+	}
 }
