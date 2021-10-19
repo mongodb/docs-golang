@@ -98,7 +98,8 @@ func main() {
 				bson.A{
 					bson.D{{"rating", bson.D{{"$gt", 7}}}},
 					bson.D{{"rating", bson.D{{"$lte", 10}}}},
-				}},
+				},
+			},
 		}
 
 		cursor, err := coll.Find(context.TODO(), filter)
