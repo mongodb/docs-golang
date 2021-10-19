@@ -1,0 +1,114 @@
+======================
+Retrieve Unique Values
+======================
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to retrieve unique values for a
+specified field across a single collection.
+
+Sample Data
+~~~~~~~~~~~
+
+To run the examples in this guide, load the sample data into the
+``ratings`` collection of the ``tea`` database with the following
+snippet:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/skip.go
+   :language: go
+   :dedent:
+   :start-after: begin insertDocs
+   :end-before: end insertDocs
+
+.. include:: /includes/fundamentals/tea-sample-data-ending.rst
+
+Distinct
+--------
+
+To retrieve unique values for a specified field across a single
+collection, pass the following parameters to the ``Distinct()``
+function:
+
+- The field name you want unique values for 
+- A ``non-nil`` query filter specifying which documents to match
+
+.. tip::
+
+   If you specify an empty query filter, the function matches all the
+   documents in a collection.
+
+Modify Behavior
+~~~~~~~~~~~~~~~
+
+You can modify the behavior of the ``Distinct()`` function by
+passing in a ``DistinctOptions``. If you don't specify a
+``DistinctOptions``, the driver uses the default values for each
+option.
+
+The ``DistinctOptions`` type allows you to configure options
+with the following functions:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Function
+     - Description
+
+   * - ``SetCollation()``
+     - | The type of language collation to use when sorting results.  
+       | Default: ``nil``
+
+   * - ``SetMaxTime()`` 
+     - | The maximum amount of time in milliseconds to allow the query to run.
+       | Default: ``nil``
+
+Example
+```````
+
+The following example matches all documents and prints the unique values
+of the ``type`` field using the ``Distinct()`` function: 
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/skip.go
+   :language: go
+   :dedent:
+   :start-after: begin skip
+   :end-before: end skip
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+   
+   Earl Grey
+   Masala
+   Matcha
+   Oolong
+
+Additional Information
+----------------------
+
+For a runnable example of retrieving unique values, see the
+:doc:`Retrieve Distinct Values of a Field </usage-examples/distinct>`
+usage example.
+
+For information about construting a query filter, see the
+:doc:`Specify a Query </fundamentals/crud/query-document>` guide.
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+For more information on any of the functions or types discussed in this
+guide, see the following API Documentation:
+
+- `Distinct() <{+api+}/mongo#Collection.Distinct>`__
+- `DistinctOptions <{+api+}/mongo/options#DistinctOptions>`__
