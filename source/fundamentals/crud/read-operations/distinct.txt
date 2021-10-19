@@ -1,6 +1,6 @@
-======================
-Retrieve Unique Values
-======================
+========================
+Retrieve Distinct Values
+========================
 
 .. default-domain:: mongodb
 
@@ -13,7 +13,7 @@ Retrieve Unique Values
 Overview
 --------
 
-In this guide, you can learn how to retrieve unique values for a
+In this guide, you can learn how to retrieve distinct values for a
 specified field across a single collection.
 
 Sample Data
@@ -23,22 +23,25 @@ To run the examples in this guide, load the sample data into the
 ``ratings`` collection of the ``tea`` database with the following
 snippet:
 
-.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/skip.go
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/distinctValues.go
    :language: go
    :dedent:
-   :start-after: begin insertDocs
-   :end-before: end insertDocs
+   :start-after: begin insert docs
+   :end-before: end insert docs
 
-.. include:: /includes/fundamentals/tea-sample-data-ending.rst
+.. include:: /includes/fundamentals/automatic-db-coll-creation.rst
+
+Each document contains a rating for a type of tea that corresponds to
+the ``type`` and ``rating`` fields.
 
 Distinct
 --------
 
-To retrieve unique values for a specified field across a single
+To retrieve distinct values for a specified field across a single
 collection, pass the following parameters to the ``Distinct()``
 function:
 
-- The field name you want unique values for 
+- The field name you want distinct values for 
 - A ``non-nil`` query filter specifying which documents to match
 
 .. tip::
@@ -75,14 +78,14 @@ with the following functions:
 Example
 ```````
 
-The following example matches all documents and prints the unique values
+The following example matches all documents and prints the distinct values
 of the ``type`` field using the ``Distinct()`` function: 
 
-.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/skip.go
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/distinctValues.go
    :language: go
    :dedent:
-   :start-after: begin skip
-   :end-before: end skip
+   :start-after: begin distinct
+   :end-before: end distinct
 
 After running this example, the output resembles the following:
 
@@ -97,7 +100,7 @@ After running this example, the output resembles the following:
 Additional Information
 ----------------------
 
-For a runnable example of retrieving unique values, see the
+For a runnable example of retrieving distinct values, see the
 :doc:`Retrieve Distinct Values of a Field </usage-examples/distinct>`
 usage example.
 
