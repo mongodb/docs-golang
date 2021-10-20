@@ -167,7 +167,7 @@ guides:
 - :doc:`Retrieve Data </fundamentals/crud/read-operations/retrieve>`
 - :doc:`Compound Operations </fundamentals/crud/compound-operations>`
 
-For information about projecting a text score in your text search, see
+For information about projecting text scores from your text search, see
 our guide on :doc:`Text Search </fundamentals/crud/read-operations/text>`.
 
 .. For more information on aggregation, see the
