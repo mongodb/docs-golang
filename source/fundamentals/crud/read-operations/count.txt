@@ -78,7 +78,7 @@ following functions:
        | Default: ``0`` 
 
    * - ``SetMaxTime()``
-     - | The maximum amount of time in milliseconds that the query can run on the server.
+     - | The maximum amount of time that the query can run on the server.
        | Default: ``nil``
 
    * - ``SetSkip()`` 
@@ -149,11 +149,11 @@ Modify Behavior
 ~~~~~~~~~~~~~~~
 
 You can modify the behavior of ``EstimatedDocumentCount()`` by passing
-in a ``EstimatedDocumentCountOptions`` type. If you don't specify any
+in an ``EstimatedDocumentCountOptions`` type. If you don't specify any
 options, the driver uses its default values.
 
-The ``CountOptions`` type allows you to configure options with the
-following functions:
+The ``EstimatedDocumentCountOptions`` type allows you to configure
+options with the following functions:
 
 .. list-table::
    :widths: 30 70
@@ -163,13 +163,13 @@ following functions:
      - Description
 
    * - ``SetMaxTime()``
-     - | The maximum amount of time in milliseconds that the query can run on the server.
+     - | The maximum amount of time that the query can run on the server.
        | Default: ``nil``
 
 Example 
 ```````
 
-The following example estimtes the number of documents in the
+The following example estimates the number of documents in the
 ``ratings`` collection:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/countAndEstimate.go
