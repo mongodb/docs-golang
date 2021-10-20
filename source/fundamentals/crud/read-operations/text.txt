@@ -1,0 +1,278 @@
+===========
+Search Text
+===========
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to run a :ref:`text search <text-search-go>`.
+
+Sample Data
+~~~~~~~~~~~
+
+To run the examples in this guide, load the sample data into the
+``movies`` collection of the ``marvel`` database with the following
+snippet:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/textSearch.go
+   :language: go
+   :dedent:
+   :start-after: begin insert docs
+   :end-before: end insert docs
+
+.. include:: /includes/fundamentals/automatic-db-coll-creation.rst
+
+Each document contains the name and release year of the Marvel movie
+that corresponds to the ``title`` and ``year`` fields.
+
+.. include:: /includes/fundamentals/truncated-id.rst
+
+Text Index
+~~~~~~~~~~
+
+You must create a **text index** before running a text search. A text
+index specifies the string or string array field on which to run a text
+search.
+
+The examples in this guide run text searches on the ``title`` field in
+the ``movies`` collection. To enable text searches on the ``title``
+field, create a text index using with the following snippet: 
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/textSearch.go
+   :language: go
+   :dedent:
+   :start-after: begin text index
+   :end-before: end text index
+
+.. _text-search-go:
+
+Text Search
+-----------
+
+A text search retrieves documents that contain a **term** or a
+**phrase** in a specified field. A term is a sequence of characters that
+excludes whitespace characters. A phrase is a sequence of terms with any
+number of whitespace characters.
+
+To perform a text search, use the ``$text`` query operator, followed by
+the ``$search`` field in your query filter. The ``$text`` query operator
+performs a text search on the text indexed fields. The ``$search`` field
+specifies the text to search in the text indexed fields.
+
+Query filters for text searches use the following format:
+
+.. code-block:: go
+
+   filter := bson.D{{"$text", bson.D{{"$search", "<text to search>"}}}}
+
+.. _term-search-go:
+
+Search by a Term
+~~~~~~~~~~~~~~~~
+
+To search for a term, pass the term as a string in your query filter.
+To search for multiple terms, separate each term with spaces in the string.
+
+.. note::
+
+   When searching for multiple terms, the driver returns documents with
+   at least one of the terms in text indexed fields.
+   
+
+Example
+```````
+
+The following example runs a text search for titles that contain the term "War":
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/textSearch.go
+   :language: go
+   :dedent:
+   :start-after: begin term search
+   :end-before: end term search
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{_id ObjectID("...")} {title Avengers: Infinity War} {year 2018}]
+   [{_id ObjectID("...")} {title Captain America: Civil War} {year 2016}]
+
+Search by a Phrase
+~~~~~~~~~~~~~~~~~~
+
+To search for a phrase, pass the phrase with escaped quotes in your
+query filter. If you don't add escaped quotes around the phrase, the
+``Find()`` function runs a :ref:`term search <term-search-go>`.
+
+.. tip::
+
+   Escaped quotes are double quote characters preceded by a backslash
+   character.
+
+Example
+```````
+
+The following example runs a text search for titles that contain the
+phrase "Infinity War":
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/textSearch.go
+   :language: go
+   :dedent:
+   :start-after: begin phrase search
+   :end-before: end phrase search
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{_id ObjectID("...")} {title Avengers: Infinity War} {year 2018}]
+
+Search with Terms Excluded
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For each term you want to exclude from your text search, prefix the term
+with a minus sign in the string in your query filter.
+
+.. important::
+
+   You must have at least one text search term if you want to exclude
+   terms from your search. If there are no text search terms, the driver
+   doesn't return any documents.
+
+Example
+```````
+
+The following example runs a text search for titles that contain the
+terms "Captain" or "America", but does not contain the term "Avenger":
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/textSearch.go
+   :language: go
+   :dedent:
+   :start-after: begin exclude term search
+   :end-before: end exclude term search
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{_id ObjectID("...")} {title Captain America: The Winter Soldier} {year 2014}]
+   [{_id ObjectID("...")} {title Captain America: Civil War} {year 2016}]
+
+Sort by Relevance
+~~~~~~~~~~~~~~~~~
+
+The text search assigns a numerical text score to indicate how closely
+each result matches the string in your query filter. To reveal the text
+score in your output, use a projection to retrieve the "textScore"
+metadata.
+
+You can sort the text score in descending order by specifying a sort on
+the "textScore" metadata.
+
+Example
+```````
+
+The following example performs the following actions:
+
+- Runs a text search for titles that contain the term "Avenger"
+- Sorts the results in descending order based on their text score
+- Includes the ``title`` and ``score`` fields from the results
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/textSearch.go
+   :language: go
+   :dedent:
+   :start-after: begin phrase search
+   :end-before: end phrase search
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{title The Avengers} {score 1}]
+   [{title Avengers: Infinity War} {score 0.6666666666666666}]
+   [{title Captain America: The First Avenger} {score 0.625}]
+
+Aggregation
+-----------
+
+You can also include the :manual:`$text </reference/operator/query/text/>`
+evaluation operator in the :manual:`$match </reference/operator/aggregation/match/>` stage
+to perform a text search in an aggregation pipeline.
+
+Term Search Example
+~~~~~~~~~~~~~~~~~~~
+
+The following example runs a text search for titles that contain the term "Winter":
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/textSearch.go
+   :language: go
+   :dedent:
+   :start-after: begin aggregate text search
+   :end-before: end aggregate text search
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{_id ObjectID("...")} {title Captain America: The Winter Soldier} {year 2014}]
+
+Text Score Example
+~~~~~~~~~~~~~~~~~~
+
+The following example performs the following actions:
+
+- Runs a text search for titles that contain the term "Avenger"
+- Sorts the results in descending order based on their text score
+- Includes the ``title`` and ``score`` fields from the results
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/textSearch.go
+   :language: go
+   :dedent:
+   :start-after: begin aggregate text score
+   :end-before: end aggregate text score
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{title The Avengers} {score 1}]
+   [{title Avengers: Infinity War} {score 0.6666666666666666}]
+   [{title Captain America: The First Avenger} {score 0.625}]
+
+Additional Information
+----------------------
+
+For more information on the operations mentioned, see the following
+guides:
+
+- :doc:`</fundamentals/crud/query-document>`
+- :doc:`</fundamentals/crud/read-operations/sort>`
+- :doc:`</fundamentals/crud/read-operations/project>`
+- :manual:`</reference/operator/aggregation/meta/>`
+
+.. - :doc:`</fundamentals/crud/indexes>`
+.. - :doc:`</fundamentals/aggregation>`
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+For more information on any of the functions or types discussed in this
+guide, see the following API Documentation:
+
+- `Find() <{+api+}/mongo#Collection.Find>`__
+- `FindOptions.SetSort() <{+api+}/mongo/options#FindOptions.SetSort>`__
+- `FindOptions.SetProjection() <{+api+}/mongo/options#FindOptions.SetProjection>`__
