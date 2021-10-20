@@ -83,8 +83,8 @@ To search for multiple terms, separate each term with spaces in the string.
 
 .. note::
 
-   When searching for multiple terms, the function returns documents with
-   at least one of the terms in text indexed fields.
+   When searching for multiple terms, the ``Find()`` function returns
+   documents with at least one of the terms in text indexed fields.
 
 Example
 ```````
@@ -108,9 +108,9 @@ After running this example, the output resembles the following:
 Search by a Phrase
 ~~~~~~~~~~~~~~~~~~
 
-To search for a phrase, specify the phrase with escaped quotes in your
-query filter. If you don't add escaped quotes around the phrase, the
-``Find()`` function runs a :ref:`term search <term-search-go>`.
+To search for a phrase, specify the phrase with escaped quotes as a
+string in your query filter. If you don't add escaped quotes around the
+phrase, the ``Find()`` function runs a :ref:`term search <term-search-go>`.
 
 .. tip::
 
@@ -146,7 +146,7 @@ term prefixed with a minus sign as a string in your query filter.
 
    You must search for at least one term if you want to exclude
    terms from your search. If you don't search for any terms, the
-   function doesn't return any documents.
+   ``Find()`` function doesn't return any documents.
 
 Example
 ```````
@@ -171,12 +171,11 @@ After running this example, the output resembles the following:
 Sort by Relevance
 ~~~~~~~~~~~~~~~~~
 
-The text search assigns a numerical text score to indicate how closely
-each result matches the string in your query filter. 
-
-To reveal the text score in your output, use a projection to retrieve
-the "textScore" metadata. You can sort the text score in descending
-order by specifying a sort on the "textScore" metadata.
+A text search assigns a numerical text score to indicate how closely
+each result matches the string in your query filter. To reveal the text
+score in your output, use a projection to retrieve the "textScore"
+metadata. You can sort the text score in descending order by specifying
+a sort on the "textScore" metadata.
 
 Example
 ```````
@@ -205,9 +204,9 @@ After running this example, the output resembles the following:
 Aggregation
 -----------
 
-You can also include the :manual:`$text </reference/operator/query/text/>`
-evaluation operator in the :manual:`$match </reference/operator/aggregation/match/>` stage
-to perform a text search in an aggregation pipeline.
+You can also include the ``$text`` evaluation query operator in the
+:manual:`$match </reference/operator/aggregation/match/>` stage to
+perform a text search in an aggregation pipeline.
 
 Term Search Example
 ~~~~~~~~~~~~~~~~~~~
@@ -260,6 +259,7 @@ guides:
 - :doc:`Specify a Query </fundamentals/crud/query-document>`
 - :doc:`Sort Results </fundamentals/crud/read-operations/sort>`
 - :doc:`Specify Which Fields to Return </fundamentals/crud/read-operations/project>`
+- :manual:`$text </reference/operator/query/text/>`
 - :manual:`$meta </reference/operator/aggregation/meta/>`
 
 .. - :doc:`Indexes </fundamentals/crud/indexes>`
