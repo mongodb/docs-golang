@@ -39,8 +39,8 @@ Text Index
 ~~~~~~~~~~
 
 You must create a **text index** before running a text search. A text
-index specifies the string or string array field to run a text
-search on.
+index specifies the string or string array field on which to run a text
+search.
 
 The examples in the following sections run text searches on the
 ``title`` field in the ``movies`` collection. To enable text searches on
@@ -139,8 +139,9 @@ After running this example, the output resembles the following:
 Search with Terms Excluded
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For each term you want to exclude from your text search, specify the
-term prefixed with a minus sign as a string in your query filter.
+For each term or phrase you want to exclude from your text search,
+specify the term or phrase prefixed with a minus sign as a string in
+your query filter.
 
 .. important::
 
@@ -152,7 +153,7 @@ Example
 ```````
 
 The following example runs a text search for titles that contain the
-phrase "Captain America", but does not contain the term "Avenger":
+term "Avenger", but does not contain the phrase "Captain America":
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/textSearch.go
    :language: go
@@ -165,8 +166,8 @@ After running this example, the output resembles the following:
 .. code-block:: none
    :copyable: false
 
-   [{_id ObjectID("...")} {title Captain America: The Winter Soldier} {year 2014}]
-   [{_id ObjectID("...")} {title Captain America: Civil War} {year 2016}]
+   [{_id ObjectID("...")} {title The Avengers} {year 2012}]
+   [{_id ObjectID("...")} {title Avengers: Infinity War} {year 2018}]
 
 Sort by Relevance
 ~~~~~~~~~~~~~~~~~

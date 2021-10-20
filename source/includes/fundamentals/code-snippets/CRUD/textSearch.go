@@ -100,7 +100,7 @@ func main() {
 	fmt.Println("Excluded Term Search:")
 	{
 		//begin exclude term search
-		filter := bson.D{{"$text", bson.D{{"$search", "\"Captain America\" -Avenger"}}}}
+		filter := bson.D{{"$text", bson.D{{"$search", "Avenger -\"Captain America\""}}}}
 
 		cursor, err := coll.Find(context.TODO(), filter)
 		if err != nil {
