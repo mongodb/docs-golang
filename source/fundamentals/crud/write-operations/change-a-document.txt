@@ -300,8 +300,8 @@ guides:
 - :doc:`Compound Operations </fundamentals/crud/compound-operations>`
 - :manual:`Update Operators </reference/operator/update/#update-operators>`
 
-For information on updating array elements, see the :doc:`Update Arrays
-in a Document </fundamentals/crud/write-operations/embedded-arrays>` guide.
+For information on updating array elements, see the
+:ref:`<update-arrays-golang>` guide.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
