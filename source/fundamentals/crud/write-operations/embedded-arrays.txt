@@ -1,0 +1,171 @@
+===========================
+Update Arrays in a Document
+===========================
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to update array elements in a document.
+
+Sample Data
+~~~~~~~~~~~
+
+To run the examples in this guide, load the sample data into the
+``tea`` collection of the ``quantity`` database with the following
+snippet:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/updateArray.go
+   :language: go
+   :dedent:
+   :start-after: begin insert docs
+   :end-before: end insert docs
+
+.. include:: /includes/fundamentals/automatic-db-coll-creation.rst
+
+The document contains the number of tea  available
+that corresponds to the ``name`` and ``qty`` fields.
+
+.. include:: /includes/fundamentals/truncated-id.rst
+
+Specify Array Elements
+----------------------
+
+To update elements in an array, perform the following steps:
+
+- Provide an :ref:`update document <update-document>` specifying the update
+- Specify which array elements to update using a **positional operator**
+- Perform the update using an update operation with these specifications
+
+Positional operators can specify the :ref:`first <first-element-go>`,
+:ref:`all <all-elements-go>`, or :ref:`certain <certain-elements-go>`
+array elements to update.
+
+To specify elements in an array with positional operators, use the **dot
+notation**. Dot notation is a property access syntax for navigating
+array elements and fields of an embedded document.
+
+.. _first-element-go:
+
+First Array Element
+~~~~~~~~~~~~~~~~~~~
+
+To update the first array element that matches your query filter, use
+the positional ``$`` operator. The array field must appear as part of
+your query filter to use the positional ``$`` operator. 
+
+Example
+```````
+
+This example performs the following actions:
+
+- Matches the ``qty`` array elements where the value is greater than ``10``
+- Decrements the first array value matched by ``5``
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/updateArray.go
+   :language: go
+   :dedent:
+   :start-after: begin positional
+   :end-before: end positional
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{_id ObjectID(“…”)} {type Masala} {qty [10 12 18]}]
+
+.. _all-elements-go:
+
+All Array Elements
+~~~~~~~~~~~~~~~~~~
+
+To update all the array elements, use the all positional ``$[]`` operator.
+
+.. tip::
+
+   If you specify a filter for the array field, the positional ``$[]``
+   operator ignores the filter and updates all the array elements.
+
+Example
+```````
+
+This example multiplies all the array elements by ``2``:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/updateArray.go
+   :language: go
+   :dedent:
+   :start-after: begin positional all
+   :end-before: end positional all
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{_id ObjectID("...")} {type Masala} {qty [30 24 36]}]
+
+.. _certain-elements-go:
+
+Multiple Array Elements
+~~~~~~~~~~~~~~~~~~~~~~~
+
+To update multiple array elements that match a filter, use the filtered
+positional ``$[<identifier>]`` operator. You must include an array
+filter in your update operation to specify which array elements to
+update.
+
+The ``<identifier>`` is the name you use within your array filter. This
+value must begin with a lowercase letter and only contain alphanumeric
+characters.
+
+Example
+```````
+
+This example performs the following actions:
+
+- Creates an array filter called ``smaller`` to match array elements less than ``18``
+- Increments all matching array elements by ``7``
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/updateArray.go
+   :language: go
+   :dedent:
+   :start-after: begin positional
+   :end-before: end positional
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{_id ObjectID("...")} {type Masala} {qty [22 19 18]}]
+
+Additional Information
+----------------------
+
+For more information on the operations mentioned, see the following
+guides:
+
+- :doc:`Specify a Query </fundamentals/crud/query-document>`
+- :doc:`Compound Operations </fundamentals/crud/compound-operations>`
+- :doc:`Change a Document </fundamentals/crud/write-operations/change-a-document>`
+- :manual:`Positional $ Operator </reference/operator/update/positional/>`
+- :manual:`Positional $[] Operator </reference/operator/update/positional-all/>`
+- :manual:`Positional $[<identifier>] Operator </reference/operator/update/positional-filtered/>`
+- :manual:`Dot Notation </core/document/#std-label-document-dot-notation>`
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+For more information on any of the functions or types discussed in this
+guide, see the following API Documentation:
+
+- `FindOneAndUpdate() <{+api+}/mongo#Collection.FindOneAndUpdate>`__
+- `FindOneAndUpdateOptions <{+api+}/mongo/options#FindOneAndUpdateOptions>`__

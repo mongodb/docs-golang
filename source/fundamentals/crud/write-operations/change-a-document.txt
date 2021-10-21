@@ -66,6 +66,8 @@ document.
 
 Use the ``UpdateMany()`` function to update multiple documents.
 
+.. _update-document:
+
 Parameters
 ~~~~~~~~~~
 
@@ -297,6 +299,9 @@ guides:
 - :doc:`Insert or Update in a Single Operation </fundamentals/crud/write-operations/upsert>`
 - :doc:`Compound Operations </fundamentals/crud/compound-operations>`
 - :manual:`Update Operators </reference/operator/update/#update-operators>`
+
+For information on updating array elements, see the :doc:`Update Arrays
+in a Document </fundamentals/crud/write-operations/embedded-arrays>` guide.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
