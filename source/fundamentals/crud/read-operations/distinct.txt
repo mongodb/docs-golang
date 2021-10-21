@@ -72,7 +72,7 @@ with the following functions:
        | Default: ``nil``
 
    * - ``SetMaxTime()`` 
-     - | The maximum amount of time in milliseconds to allow the query to run.
+     - | The maximum amount of time that the query can run on the server.
        | Default: ``nil``
 
 Example
