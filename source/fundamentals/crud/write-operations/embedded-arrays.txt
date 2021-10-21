@@ -15,6 +15,12 @@ Overview
 
 In this guide, you can learn how to update array elements in a document.
 
+To update elements in an array, perform the following steps:
+
+- Provide an :ref:`update document <update-document>` specifying the update
+- Specify which array elements to update
+- Perform the update using an update operation with these specifications
+
 Sample Data
 ~~~~~~~~~~~
 
@@ -30,22 +36,19 @@ snippet:
 
 .. include:: /includes/fundamentals/automatic-db-coll-creation.rst
 
-The document contains the number of tea  available
-that corresponds to the ``name`` and ``qty`` fields.
+The following examples use the ``FindOneAndUpdate()`` function to
+retrieve and update a document, and to return the state of the document
+after the update occurs. If you want to update multiple documents with
+an array field, use the ``UpdateMany()`` function.
 
 .. include:: /includes/fundamentals/truncated-id.rst
 
 Specify Array Elements
 ----------------------
 
-To update elements in an array, perform the following steps:
-
-- Provide an :ref:`update document <update-document>` specifying the update
-- Specify which array elements to update using a **positional operator**
-- Perform the update using an update operation with these specifications
-
-Positional operators can specify the :ref:`first <first-element-go>`,
-:ref:`all <all-elements-go>`, or :ref:`certain <certain-elements-go>`
+To specify which array elements to update, use a **positional
+operator**. Positional operators can specify the :ref:`first <first-element-go>`,
+:ref:`all <all-elements-go>`, or :ref:`multiple <multiple-elements-go>`
 array elements to update.
 
 To specify elements in an array with positional operators, use the **dot
@@ -58,15 +61,15 @@ First Array Element
 ~~~~~~~~~~~~~~~~~~~
 
 To update the first array element that matches your query filter, use
-the positional ``$`` operator. The array field must appear as part of
-your query filter to use the positional ``$`` operator. 
+the positional ``$`` operator. The query filter must be for the array
+field.
 
 Example
 ```````
 
 This example performs the following actions:
 
-- Matches the ``qty`` array elements where the value is greater than ``10``
+- Matches array elements in ``qty`` where the value is greater than ``10``
 - Decrements the first array value matched by ``5``
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/updateArray.go
@@ -82,6 +85,13 @@ After running this example, the output resembles the following:
 
    [{_id ObjectID(“…”)} {type Masala} {qty [10 12 18]}]
 
+.. note::
+
+   The query filter matched the values ``15`` and ``12``. Since ``15``
+   was the first element matched, it got updated. If you want to update
+   both matched values, see the ::ref:`Multiple Array Elements section
+   <multiple-elements-go>`.
+
 .. _all-elements-go:
 
 All Array Elements
@@ -91,13 +101,14 @@ To update all the array elements, use the all positional ``$[]`` operator.
 
 .. tip::
 
-   If you specify a filter for the array field, the positional ``$[]``
-   operator ignores the filter and updates all the array elements.
+   If you specify a query filter for the array field, the positional
+   ``$[]`` operator ignores the query filter and updates all the array
+   elements.
 
 Example
 ```````
 
-This example multiplies all the array elements by ``2``:
+This example multiplies every array element in ``qty`` by ``2``:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/updateArray.go
    :language: go
@@ -112,7 +123,7 @@ After running this example, the output resembles the following:
 
    [{_id ObjectID("...")} {type Masala} {qty [30 24 36]}]
 
-.. _certain-elements-go:
+.. _multiple-elements-go:
 
 Multiple Array Elements
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -131,14 +142,15 @@ Example
 
 This example performs the following actions:
 
-- Creates an array filter called ``smaller`` to match array elements less than ``18``
-- Increments all matching array elements by ``7``
+- Creates an array filter called ``smaller`` to match elements less than ``18``
+- Applies the array filter using the ``SetArrayFilter()`` function
+- Increments every matched element by ``7``
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/updateArray.go
    :language: go
    :dedent:
-   :start-after: begin positional
-   :end-before: end positional
+   :start-after: begin filtered positional
+   :end-before: end filtered positional
 
 After running this example, the output resembles the following:
 
@@ -169,3 +181,4 @@ guide, see the following API Documentation:
 
 - `FindOneAndUpdate() <{+api+}/mongo#Collection.FindOneAndUpdate>`__
 - `FindOneAndUpdateOptions <{+api+}/mongo/options#FindOneAndUpdateOptions>`__
+- `UpdateMany() <{+api+}/mongo#Collection.UpdateMany>`__

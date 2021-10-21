@@ -64,15 +64,24 @@ func main() {
 		// end positional
 	}
 
+	{
+		update := bson.D{{"$set", bson.D{{"qty", bson.A{15, 12, 18} }}}}
+
+		result, err := coll.UpdateOne(context.TODO(), bson.D{}, update)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Printf("%v document was updated.\n", result.ModifiedCount)
+	}
+
 	fmt.Println("Positional $[] Operator:")
 	{
 		// begin positional all
-		filter := bson.D{}
 		update := bson.D{{"$mul", bson.D{{"qty.$[]", 2}}}}
 		opts := options.FindOneAndUpdate().SetReturnDocument(options.After)
 
 		var updatedDoc bson.D
-		err := coll.FindOneAndUpdate(context.TODO(), filter, update, opts).Decode(&updatedDoc)
+		err := coll.FindOneAndUpdate(context.TODO(), bson.D{}, update, opts).Decode(&updatedDoc)
 		if err != nil {
 			panic(err)
 		}
@@ -81,16 +90,26 @@ func main() {
 		// end positional all
 	}
 
+
+	{
+		update := bson.D{{"$set", bson.D{{"qty", bson.A{15, 12, 18} }}}}
+
+		result, err := coll.UpdateOne(context.TODO(), bson.D{}, update)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Printf("%v document was updated.\n", result.ModifiedCount)
+	}
+
 	fmt.Println("Positional $[<identifier>] Operator:")
 	{
 		// begin filtered positional
-		filter := bson.D{}
 		identifier := []interface{}{bson.D{{"smaller", bson.D{{"$lt", 18}}}}}
 		update := bson.D{{"$inc", bson.D{{"qty.$[smaller]", 7}}}}
 		opts := options.FindOneAndUpdate().SetArrayFilters(options.ArrayFilters{Filters: identifier}).SetReturnDocument(options.After)
 
 		var updatedDoc bson.D
-		err := coll.FindOneAndUpdate(context.TODO(), filter, update, opts).Decode(&updatedDoc)
+		err := coll.FindOneAndUpdate(context.TODO(), bson.D{}, update, opts).Decode(&updatedDoc)
 		if err != nil {
 			panic(err)
 		}
