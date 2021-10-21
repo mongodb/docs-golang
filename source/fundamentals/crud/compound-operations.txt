@@ -10,6 +10,8 @@ Compound Operations
    :depth: 1
    :class: singlecol
 
+.. _compound-operations-golang:
+
 Overview
 --------
 

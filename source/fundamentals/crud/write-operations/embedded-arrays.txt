@@ -10,6 +10,8 @@ Update Arrays in a Document
    :depth: 2
    :class: singlecol
 
+.. _update-arrays-golang:
+
 Overview
 --------
 
@@ -17,9 +19,9 @@ In this guide, you can learn how to update array elements in a document.
 
 To update elements in an array, perform the following actions:
 
-- Provide an :ref:`update document <update-document>` specifying the update *(not discussed in this guide)*
-- Specify which array elements to update
-- Perform the update using an update operation with these specifications
+- Provide an :ref:`update document <update-document>` that specifies the update.
+- Specify which array elements to update.
+- Perform the update using an update operation with these specifications.
 
 Sample Data
 ~~~~~~~~~~~
@@ -37,7 +39,7 @@ snippet:
 .. include:: /includes/fundamentals/automatic-db-coll-creation.rst
 
 The following examples use the ``FindOneAndUpdate()`` function to
-retrieve and update a document, and to return the state of the document
+retrieve and update a document and to return the state of the document
 after the update occurs. If you want to update multiple documents with
 an array field, use the ``UpdateMany()`` function.
 
@@ -48,10 +50,10 @@ Specify Array Elements
 
 To specify which array elements to update, use a **positional
 operator**. Positional operators can specify the :ref:`first <first-element-go>`,
-:ref:`all <all-elements-go>`, or :ref:`multiple <multiple-elements-go>`
+:ref:`multiple <multiple-elements-go>`, or :ref:`all <all-elements-go>`
 array elements to update.
 
-To specify array elements with a positional operator, use the **dot
+To specify array elements with a positional operator, use **dot
 notation**. Dot notation is a property access syntax for navigating
 array elements and fields of an embedded document.
 
@@ -69,8 +71,8 @@ Example
 
 This example performs the following actions:
 
-- Matches array elements in ``qty`` where the value is greater than ``10``
-- Decrements the first array value matched by ``5``
+- Matches array elements in ``qty`` where the value is greater than ``10``.
+- Decrements the first array value matched by ``5``.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/updateArray.go
    :language: go
@@ -87,10 +89,46 @@ After running this example, the output resembles the following:
 
 .. note::
 
-   The query filter matched the values ``15`` and ``12``. Since ``15``
-   was the first element matched, it got updated. If you want to update
+   The query filter matches the values ``15`` and ``12``. Since ``15``
+   is the first element matched, it is updated. If you want to update
    both matched values, see the :ref:`Multiple Array Elements section
    <multiple-elements-go>`.
+
+.. _multiple-elements-go:
+
+Multiple Array Elements
+~~~~~~~~~~~~~~~~~~~~~~~
+
+To update multiple array elements that match your query filter, use the
+filtered positional ``$[<identifier>]`` operator. You must include an
+array filter in your update operation to specify which array elements to
+update.
+
+The ``<identifier>`` is the name you use within your array filter. This
+value must begin with a lowercase letter and only contain alphanumeric
+characters.
+
+Example
+```````
+
+This example performs the following actions:
+
+- Creates an array filter with an identifier called ``smaller`` to match elements less than ``18``.
+- Applies the array filter using the ``SetArrayFilters()`` function.
+- Increments every matched element by ``7``.
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/updateArray.go
+   :language: go
+   :dedent:
+   :start-after: begin filtered positional
+   :end-before: end filtered positional
+
+After running this example, the output resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   [{_id ObjectID("...")} {type Masala} {qty [22 19 18]}]
 
 .. _all-elements-go:
 
@@ -123,51 +161,15 @@ After running this example, the output resembles the following:
 
    [{_id ObjectID("...")} {type Masala} {qty [30 24 36]}]
 
-.. _multiple-elements-go:
-
-Multiple Array Elements
-~~~~~~~~~~~~~~~~~~~~~~~
-
-To update multiple array elements that match your query filter, use the
-filtered positional ``$[<identifier>]`` operator. You must include an
-array filter in your update operation to specify which array elements to
-update.
-
-The ``<identifier>`` is the name you use within your array filter. This
-value must begin with a lowercase letter and only contain alphanumeric
-characters.
-
-Example
-```````
-
-This example performs the following actions:
-
-- Creates an array filter with an identifier called ``smaller`` to match elements less than ``18``
-- Applies the array filter using the ``SetArrayFilters()`` function
-- Increments every matched element by ``7``
-
-.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/updateArray.go
-   :language: go
-   :dedent:
-   :start-after: begin filtered positional
-   :end-before: end filtered positional
-
-After running this example, the output resembles the following:
-
-.. code-block:: none
-   :copyable: false
-
-   [{_id ObjectID("...")} {type Masala} {qty [22 19 18]}]
-
 Additional Information
 ----------------------
 
-For more information on the operations mentioned, see the following
-guides:
+For more information on the operations discussed in this guide, see the
+following guides:
 
-- :doc:`Specify a Query </fundamentals/crud/query-document>`
-- :doc:`Compound Operations </fundamentals/crud/compound-operations>`
-- :doc:`Change a Document </fundamentals/crud/write-operations/change-a-document>`
+- :ref:`<query_document_golang>`
+- :ref:`<compound-operations-golang>`
+- :ref:`<change_document_golang>`
 - :manual:`Positional $ Operator </reference/operator/update/positional/>`
 - :manual:`Positional $[] Operator </reference/operator/update/positional-all/>`
 - :manual:`Positional $[\<identifier\>] Operator </reference/operator/update/positional-filtered/>`
