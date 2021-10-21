@@ -1,3 +1,5 @@
+.. _compound-operations-golang:
+
 ===================
 Compound Operations
 ===================
@@ -9,8 +11,6 @@ Compound Operations
    :backlinks: none
    :depth: 1
    :class: singlecol
-
-.. _compound-operations-golang:
 
 Overview
 --------

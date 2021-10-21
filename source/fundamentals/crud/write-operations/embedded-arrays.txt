@@ -1,3 +1,5 @@
+.. _update-arrays-golang:
+
 ===========================
 Update Arrays in a Document
 ===========================
@@ -9,8 +11,6 @@ Update Arrays in a Document
    :backlinks: none
    :depth: 2
    :class: singlecol
-
-.. _update-arrays-golang:
 
 Overview
 --------

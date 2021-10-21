@@ -1,3 +1,5 @@
+.. _change_document_golang:
+
 =================
 Change a Document
 =================
@@ -9,8 +11,6 @@ Change a Document
    :backlinks: none
    :depth: 2
    :class: singlecol
-
-.. _change_document_golang:
 
 Overview
 --------
