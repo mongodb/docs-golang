@@ -1,3 +1,5 @@
+.. _bulk_golang:
+
 ===============
 Bulk Operations
 ===============
@@ -10,12 +12,14 @@ Bulk Operations
    :depth: 2
    :class: singlecol
 
-.. _bulk_golang:
-
 Overview
 --------
 
-In this guide, you can learn how to use :ref:`bulk operations <bulk-write-go>`.
+In this guide, you can learn how to use **bulk operations**.
+
+Bulk operations perform a large number of write operations. Instead of
+making a call for each operation to the database, bulk operations
+perform multiple operations with one call to the database.
 
 Sample Data
 ~~~~~~~~~~~
@@ -32,20 +36,14 @@ snippet:
 
 .. include:: /includes/fundamentals/tea-sample-data-ending.rst
 
-.. _bulk-write-go:
-
-Write Models
-------------
-
-Bulk operations perform a large number of write operations. Instead of
-making a call for each operation to the database, bulk operations
-perform multiple operations with one call to the database.
+Operations
+----------
 
 To perform a bulk operation, pass a slice of ``WriteModel`` documents to
 the ``BulkWrite()`` function. A ``WriteModel`` represents an insert,
 replace, update or delete operation.
 
-The ``BulkWrite()`` function optionally take a ``BulkWriteOptions`` type
+The ``BulkWrite()`` function optionally takes a ``BulkWriteOptions`` type
 as a third parameter, which represents options you can use to configure
 the bulk operation. If you don't specify a ``BulkWriteOptions``, the
 driver uses the default values for each option.
@@ -104,9 +102,9 @@ Replace Operation
 ~~~~~~~~~~~~~~~~~
 
 To perform a replace operation, create a ``ReplaceOneModel`` specifying
-the document you want to replace and a replacement document. To replace
-multiple documents, you must create an ``ReplaceOneModel`` for each
-document you want to replace.
+the document you want to replace and a :ref:`replacement document
+<replacement-document>`. To replace multiple documents, you must create
+an ``ReplaceOneModel`` for each document you want to replace.
 
 The ``ReplaceOneModel`` allows you to specify its behavior with the
 following functions:
@@ -122,7 +120,7 @@ following functions:
      - | The type of language collation to use when sorting results.
 
    * - ``SetFilter()`` 
-     - | The document to replace.
+     - | The query filter specifying which document to replace.
 
    * - ``SetHint()`` 
      - | The index to use to scan for documents.
@@ -171,7 +169,7 @@ their behavior with the following functions:
      - | The type of language collation to use when sorting results.
 
    * - ``SetFilter()`` 
-     - | The document to update.
+     - | The query filter specifying which document to update.
 
    * - ``SetHint()`` 
      - | The index to use to scan for documents.
@@ -185,8 +183,8 @@ their behavior with the following functions:
 Example
 ```````
 
-The following example creates a ``UpdateOneModel`` to decrement a
-document whose ``type`` is "Masala", ``rating`` by ``2``:
+The following example creates an ``UpdateOneModel`` to decrement a
+documents ``rating`` by ``2`` if their ``type`` is "Masala":
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/bulkOps.go
    :language: go
@@ -194,8 +192,8 @@ document whose ``type`` is "Masala", ``rating`` by ``2``:
    :start-after: begin bulk update model
    :end-before: end bulk update model
 
-Delete
-~~~~~~
+Delete Operation
+~~~~~~~~~~~~~~~~
 
 To perform a delete operation, create a ``DeleteOneModel`` specifying
 the document you want to delete. To delete multiple documents, use the
@@ -215,7 +213,7 @@ their behavior with the following functions:
      - | The type of language collation to use when sorting results.
 
    * - ``SetFilter()`` 
-     - | The document to delete.
+     - | The query filter specifying which document to delete.
 
    * - ``SetHint()`` 
      - | The index to use to scan for documents.
@@ -235,23 +233,33 @@ documents where the ``rating`` is greater than ``7``:
 Execution Order
 ---------------
 
-The ``BulkWrite()`` function accepts an optional ``BulkWriteOptions`` as
-a third parameter to specify if you want to execute the bulk operations
-as ordered or unordered.
+The ``BulkWrite()`` function allows you to specify if you want to
+execute the bulk operations as ordered or unordered in its
+``BulkWriteOptions``. 
 
-Ordered
-~~~~~~~
+Ordered Execution
+~~~~~~~~~~~~~~~~~
 
 By default, the ``BulkWrite()`` function executes bulk operations in
 order. This means that the write operations execute in the order you
-added them until an error occurs, if any.
+added them and stops if an error occurs.
 
-Unordered
-~~~~~~~~~
+.. tip::
+
+   This is equivalent to specifying ``true`` in the ``SetOrdered()``
+   function: 
+
+   .. code-block:: go
+
+      opts := options.BulkWrite().SetOrdered(true)
+
+Unordered Execution
+~~~~~~~~~~~~~~~~~~~
 
 To execute bulk operations in any order, specify "false" to the
 ``SetOrdered()`` function. This means that all the write operations
-execute regardless of errors and reports errors at the end.
+execute and continues if an error occurs. The function reports the
+errors afterwards.
 
 Example
 ```````
@@ -266,8 +274,8 @@ The following example performs the following actions in any order:
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/bulkOps.go
    :language: go
    :dedent:
-   :start-after: begin bulk delete model
-   :end-before: end bulk delete model
+   :start-after: begin bulk unordered
+   :end-before: end bulk unordered
 
 After running this example, the output resembles the following:
 
@@ -310,6 +318,8 @@ For more information on any of the functions or types discussed in this
 guide, see the following API Documentation:
 
 - `BulkWrite() <{+api+}/mongo#Collection.BulkWrite>`__
+- `BulkWriteOptions <{+api+}/mongo/options#BulkWriteOptions>`__
+- `BulkWriteResult <{+api+}/mongo#BulkWriteResult>`__
 - `NewInsertOneModel() <{+api+}/mongo#NewUpdateOneModel>`__
 - `NewReplaceOneModel() <{+api+}/mongo#NewReplaceOneModel>`__
 - `NewReplaceOneModel() <{+api+}/mongo#NewReplaceOneModel>`__
@@ -317,4 +327,3 @@ guide, see the following API Documentation:
 - `NewUpdateManyModel() <{+api+}/mongo#NewReplaceOneModel>`__
 - `NewDeleteOneModel() <{+api+}/mongo#NewReplaceOneModel>`__
 - `NewDeleteManyModel() <{+api+}/mongo#NewReplaceOneModel>`__
-- `BulkWriteResult <{+api+}/mongo#BulkWriteResult>`__
