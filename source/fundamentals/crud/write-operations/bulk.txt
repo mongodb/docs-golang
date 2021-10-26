@@ -86,7 +86,7 @@ contains information about the bulk operation if it's successful. The
      - The number of documents inserted.
 
    * - ``MatchedCount``
-     - The number of documents matched by the filter in update and replace operations.
+     - The number of documents matched by the :ref:`query filter <query-filter-definition-go>` in update and replace operations.
 
    * - ``ModifiedCount``
      - The number of documents modified by update and replace operations.
@@ -95,20 +95,20 @@ contains information about the bulk operation if it's successful. The
      - The number of documents deleted.
    
    * - ``UpsertedCount`` 
-     - The number of documents upserted by update and replace operations.
+     - The number of documents :ref:`upserted <upsert-definition-go>` by update and replace operations.
 
    * - ``UpsertedID`` 
-     - The ``_id`` of the upserted documents.
+     - The ``_id`` of the :ref:`upserted <upsert-definition-go>` documents.
 
 .. _write-model-go:
 
 Operations
 ----------
 
-A ``WriteModel`` represents an insert, replace, update or delete operation.
+A ``WriteModel`` represents an insert, replace, update, or delete operation.
 
-Insert Operation
-~~~~~~~~~~~~~~~~
+Insert
+~~~~~~
 
 To perform an insert operation, create an ``InsertOneModel`` specifying
 the document you want to insert. To insert multiple documents, create an
@@ -139,8 +139,8 @@ insert two documents:
    :start-after: begin bulk insert model
    :end-before: end bulk insert model
 
-Replace Operation
-~~~~~~~~~~~~~~~~~
+Replace
+~~~~~~~
 
 To perform a replace operation, create a ``ReplaceOneModel`` specifying
 the document you want to replace and a :ref:`replacement document
@@ -161,7 +161,7 @@ following functions:
      - | The type of language collation to use when sorting results.
 
    * - ``SetFilter()`` 
-     - | The query filter specifying which document to replace.
+     - | The :ref:`query filter <query-filter-definition-go>` specifying which document to replace.
 
    * - ``SetHint()`` 
      - | The index to use to scan for documents.
@@ -170,7 +170,7 @@ following functions:
      - | The document to replace the matched document with.
 
    * - ``SetUpsert()`` 
-     - | Whether to insert a new document if the query filter doesn't match any documents.
+     - | Whether to insert a new document if the :ref:`query filter <query-filter-definition-go>` doesn't match any documents.
 
 Example
 ```````
@@ -185,8 +185,8 @@ document where the ``type`` is "Earl Grey" with a document where the
    :start-after: begin bulk replace model
    :end-before: end bulk replace model
 
-Update Operation
-~~~~~~~~~~~~~~~~
+Update
+~~~~~~
 
 To perform an update operation, create an ``UpdateOneModel`` specifying
 the document you want to update and an :ref:`update document
@@ -210,7 +210,7 @@ their behavior with the following functions:
      - | The type of language collation to use when sorting results.
 
    * - ``SetFilter()`` 
-     - | The query filter specifying which document to update.
+     - | The :ref:`query filter <query-filter-definition-go>` specifying which document to update.
 
    * - ``SetHint()`` 
      - | The index to use to scan for documents.
@@ -219,7 +219,7 @@ their behavior with the following functions:
      - | The modifications to apply on the matched documents.
 
    * - ``SetUpsert()`` 
-     - | Whether to insert a new document if the query filter doesn't match any documents.
+     - | Whether to insert a new document if the :ref:`query filter <query-filter-definition-go>` doesn't match any documents.
 
 Example
 ```````
@@ -233,8 +233,8 @@ documents ``rating`` by ``2`` if their ``type`` is "Masala":
    :start-after: begin bulk update model
    :end-before: end bulk update model
 
-Delete Operation
-~~~~~~~~~~~~~~~~
+Delete
+~~~~~~
 
 To perform a delete operation, create a ``DeleteOneModel`` specifying
 the document you want to delete. To delete multiple documents, use the
@@ -254,7 +254,7 @@ their behavior with the following functions:
      - | The type of language collation to use when sorting results.
 
    * - ``SetFilter()`` 
-     - | The query filter specifying which document to delete.
+     - | The :ref:`query filter <query-filter-definition-go>` specifying which document to delete.
 
    * - ``SetHint()`` 
      - | The index to use to scan for documents.
@@ -278,8 +278,8 @@ The ``BulkWrite()`` function allows you to specify if you want to
 execute the bulk operations as ordered or unordered in its
 ``BulkWriteOptions``. 
 
-Ordered Execution
-~~~~~~~~~~~~~~~~~
+Ordered
+~~~~~~~
 
 By default, the ``BulkWrite()`` function executes bulk operations in
 order. This means that the write operations execute in the order you
@@ -294,10 +294,10 @@ added them and stops if an error occurs.
 
       opts := options.BulkWrite().SetOrdered(true)
 
-Unordered Execution
-~~~~~~~~~~~~~~~~~~~
+Unordered
+~~~~~~~~~
 
-To execute bulk operations in any order, specify "false" to the
+To execute bulk write operations in any order, specify ``false`` to the
 ``SetOrdered()`` function. This means that all the write operations
 execute and continues if an error occurs. The function reports the
 errors afterwards.
@@ -308,7 +308,7 @@ Example
 The following example performs the following actions in any order: 
 
 - Inserts two documents
-- Replaces a document where the type if "Earl Grey" with a new document
+- Replaces a document where the type is "Earl Grey" with a new document
 - Increments all documents ``rating`` by ``3`` if their current rating is less than ``7``
 - Deletes all documents where the rating is ``9``
 
@@ -342,6 +342,9 @@ Additional Information
 
 For a runnable example on perfomring a bulk operation, see the
 :ref:`<bulk-ops-usage-example-go>` usage example.
+
+Related Operations
+~~~~~~~~~~~~~~~~~~
 
 For more information on performing the operations mentioned, see the
 following guides:
