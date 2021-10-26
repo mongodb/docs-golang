@@ -282,8 +282,7 @@ Ordered
 ~~~~~~~
 
 By default, the ``BulkWrite()`` function executes bulk operations in
-order. This means that the write operations execute in the order you
-added them and stops if an error occurs.
+order you added them and stops if an error occurs.
 
 .. tip::
 
@@ -297,20 +296,19 @@ added them and stops if an error occurs.
 Unordered
 ~~~~~~~~~
 
-To execute bulk write operations in any order, specify ``false`` to the
-``SetOrdered()`` function. This means that all the write operations
-execute and continues if an error occurs. The function reports the
-errors afterwards.
+To execute bulk write operations in any order and continue if an error
+occurs, specify ``false`` to the ``SetOrdered()`` function. The function
+reports the errors afterwards.
 
 Example
 ```````
 
 The following example performs the following actions in any order: 
 
-- Inserts two documents
-- Replaces a document where the type is "Earl Grey" with a new document
-- Increments all documents ``rating`` by ``3`` if their current rating is less than ``7``
-- Deletes all documents where the rating is ``9``
+- Inserts two documents.
+- Replaces a document where the type is "Earl Grey" with a new document.
+- Increments all documents ``rating`` by ``3`` if their current rating is less than ``7``.
+- Deletes all documents where the rating is ``9``.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/bulkOps.go
    :language: go
@@ -327,8 +325,8 @@ After running this example, the output resembles the following:
    Number of documents replaced or updated: 3
    Number of documents deleted: 2
 
-The following documents are in the ``ratings`` collection after the bulk
-operation:
+The following documents are present in the ``ratings`` collection after
+the bulk operation:
 
 .. code-block:: none
    :copyable: false
@@ -340,7 +338,7 @@ operation:
 Additional Information
 ----------------------
 
-For a runnable example on perfomring a bulk operation, see the
+For a runnable example on performing a bulk operation, see the
 :ref:`<bulk-ops-usage-example-go>` usage example.
 
 Related Operations
