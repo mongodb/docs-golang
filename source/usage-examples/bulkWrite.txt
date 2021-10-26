@@ -51,10 +51,7 @@ Additional Information
 ----------------------
 
 For more information on performing bulk write operations on a collection
-and handling potential errors, see the following guides:
-
--  :ref:`<bulk_golang>`
-- :manual:`Bulk Write Operations </core/bulk-write-operations/>`
+and handling potential errors, see the :ref:`<bulk_golang>` guide.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
