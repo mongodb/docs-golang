@@ -204,10 +204,11 @@ After running this example, the output resembles the following:
 
 .. tip::
 
-   Although the search term was "Avenger", titles containing "Avengers"
-   were also matched because a MongoDB text index uses suffix stemming to
-   match similar words. For more information about how MongoDB matches
-   terms, see :manual:`Index Entries </core/index-text/#index-entries>`
+   Although the search term was "Avenger", the function also matches
+   titles containing "Avengers" because a MongoDB text index uses suffix
+   stemming to match similar words. For more information about how
+   MongoDB matches terms, see :manual:`Index Entries
+   </core/index-text/#index-entries>`.
 
 Aggregation
 -----------
@@ -260,10 +261,11 @@ After running this example, the output resembles the following:
 
 .. tip::
 
-   Although the search term was "Avenger", titles containing "Avengers"
-   were also matched because a MongoDB text index uses suffix stemming to
-   match similar words. For more information about how MongoDB matches
-   terms, see :manual:`Index Entries </core/index-text/#index-entries>`
+   Although the search term was "Avenger", the function also matches
+   titles containing "Avengers" because a MongoDB text index uses suffix
+   stemming to match similar words. For more information about how
+   MongoDB matches terms, see :manual:`Index Entries
+   </core/index-text/#index-entries>`.
 
 Additional Information
 ----------------------
