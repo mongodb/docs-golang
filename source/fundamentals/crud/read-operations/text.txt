@@ -251,6 +251,13 @@ After running this example, the output resembles the following:
    [{title Avengers: Infinity War} {score 0.6666666666666666}]
    [{title Captain America: The First Avenger} {score 0.625}]
 
+.. tip::
+
+   Although the search term was "Avenger", titles containing "Avengers"
+   were also matched because a MongoDB text index uses suffix stemming to
+   match similar words. For more information about how MongoDB matches
+   terms, see :manual:`Index Entries </core/index-text/#index-entries>`
+
 Additional Information
 ----------------------
 
@@ -260,6 +267,7 @@ guides:
 - :doc:`Specify a Query </fundamentals/crud/query-document>`
 - :doc:`Sort Results </fundamentals/crud/read-operations/sort>`
 - :doc:`Specify Which Fields to Return </fundamentals/crud/read-operations/project>`
+- :manual:`Text Indexes </core/index-text/>`
 - :manual:`$text </reference/operator/query/text/>`
 - :manual:`$meta </reference/operator/aggregation/meta/>`
 

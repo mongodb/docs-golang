@@ -40,9 +40,9 @@ func main() {
 		bson.D{{"title", "Captain America: The First Avenger"}, {"year", 2011}},
 	}
 
-	result, insertErr := coll.InsertMany(context.TODO(), docs)
-	if insertErr != nil {
-		panic(insertErr)
+	result, err := coll.InsertMany(context.TODO(), docs)
+	if err != nil {
+		panic(err)
 	}
 	fmt.Printf("Number of documents inserted: %d\n", len(result.InsertedIDs))
 	//end insert docs
