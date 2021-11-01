@@ -44,7 +44,7 @@ search.
 
 The examples in the following sections run text searches on the
 ``title`` field in the ``movies`` collection. To enable text searches on
-the ``title`` field, create a text index using the following snippet: 
+the ``title`` field, create a text index with the following snippet: 
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/textSearch.go
    :language: go
@@ -174,9 +174,9 @@ Sort by Relevance
 
 A text search assigns a numerical text score to indicate how closely
 each result matches the string in your query filter. To reveal the text
-score in your output, use a projection to retrieve the "textScore"
+score in your output, use a projection to retrieve the ``textScore``
 metadata. You can sort the text score in descending order by specifying
-a sort on the "textScore" metadata.
+a sort on the ``textScore`` metadata.
 
 Example
 ```````
@@ -201,6 +201,13 @@ After running this example, the output resembles the following:
    [{title The Avengers} {score 1}]
    [{title Avengers: Infinity War} {score 0.6666666666666666}]
    [{title Captain America: The First Avenger} {score 0.625}]
+
+.. tip::
+
+   Although the search term was "Avenger", titles containing "Avengers"
+   were also matched because a MongoDB text index uses suffix stemming to
+   match similar words. For more information about how MongoDB matches
+   terms, see :manual:`Index Entries </core/index-text/#index-entries>`
 
 Aggregation
 -----------
