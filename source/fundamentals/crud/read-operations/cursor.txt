@@ -1,8 +1,239 @@
+.. _cursor-golang:
+
 =========================
 Access Data From a Cursor
 =========================
 
 .. default-domain:: mongodb
 
-Read operations that return multiple documents do not immediately return
-all values matching the query.
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to access data with a **cursor**.
+
+A cursor is a mechanism that allows an application to iterate over
+database results while holding a subset of them in memory at a given
+time. The Go driver uses a cursor in read operations to return matched
+documents in batches as opposed to all at once.
+
+Retrieve Sample Data
+~~~~~~~~~~~~~~~~~~~~
+
+Each section assumes you retrieve all the documents in your collection
+with the following snippet:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
+   :language: go
+   :dedent:
+   :start-after: begin find
+   :end-before: end find
+
+Access Cursor Elements
+----------------------
+
+You can access a cursors elements before it's exhausted. You exhaust a
+cursor when you iterate through its results and reach its last element.
+Afterwards, the cursor won't respond to functions to access its elements.
+
+.. important::
+
+   A cursor is not goroutine safe. You should not use the same cursor in
+   multiple goroutines at the same time. 
+
+Current Document
+~~~~~~~~~~~~~~~~
+
+When :ref:`iterating through your cursors results
+<cursor-iteration-golang>`, you can view each document as a BSON or Go
+type.
+
+BSON
+````
+
+To access the current document as raw ``BSON``, use the ``Current``
+property.
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
+   :language: go
+   :dedent:
+   :start-after: begin current
+   :end-before: end current
+
+Go type
+```````
+
+To access the current document as a Go type, use the ``Decode()``
+function. 
+
+This function unmarshals the current document into the BSON interface
+you specify. It returns any errors from the unmarshalling process
+without any modification.
+
+.. code-block:: go
+
+   var result bson.D
+   if err := cursor.Decode(&result); err != nil {
+      log.Fatal(err)
+   }
+   fmt.Println(result)
+
+Remaining Batch Length
+~~~~~~~~~~~~~~~~~~~~~~
+
+To retrieve the amount of doucments remaining in the current batch, use
+the ``RemainingBatchLength()`` function.
+
+.. note::
+
+   If the amount is ``0``, making a call to ``Next()`` or ``TryNext()``
+   does a network request to fetch the next batch. 
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
+   :language: go
+   :dedent:
+   :start-after: begin remaining batch length
+   :end-before: end remaining batch length
+
+Cursor ID
+~~~~~~~~~
+
+To retrive the ID of the cursor, use the ``ID()`` function. 
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
+   :language: go
+   :dedent:
+   :start-after: begin id
+   :end-before: end id
+
+.. important::
+
+   Include a ``FindOptions.SetBatchSize()`` with a batch size less than or
+   equal to the number of documents you expect to retrieve for a valid
+   cursor ID. If you omit this option, set the batch size to greater than
+   the elements retrieved, or exhaust the cursor, the cursor ID is
+   ``0``.
+   
+   .. code-block:: go
+      
+      opts := options.Find().SetBatchSize(3)
+      cursor, err := coll.Find(context.TODO(), bson.D{}, opts)
+      if err != nil {
+         panic(err)
+      }
+
+Errors
+~~~~~~
+
+To retrieve the last error the cursor encountered, use the ``Err()``
+function. The error is ``nil`` if no errors occured.
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
+   :language: go
+   :dedent:
+   :start-after: begin err
+   :end-before: end err
+
+.. _cursor-iteration-golang:
+
+Iteration
+---------
+
+A cursor allows you to access query results one document at a time,
+abstracting away network and caching logic.
+
+.. note::
+   
+   If you previously used the cursor to iterate some documents, the
+   driver excluses those documents in its results when you iterate
+   again. 
+
+All
+~~~
+
+To unmarshal all documents stored in the cursor into an array at the
+same time, use the ``All()`` function.
+
+This function automatically closes the cursor after retrieving all
+documents.
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
+   :language: go
+   :dedent:
+   :start-after: begin cursor all
+   :end-before: end cursor all
+
+Next
+~~~~
+
+To block until a document is available, an error occurs, or the context
+expires, use the ``Next()`` function.
+
+The function returns ``true`` if no errors occur and you didn't exhaust
+the cursor. Otherwise, the function returns ``false``.
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
+   :language: go
+   :dedent:
+   :start-after: begin cursor next
+   :end-before: end cursor next
+
+Attempt Next
+~~~~~~~~~~~~~
+
+To attempt retriving the next document in a cursor, use the
+``TryNext()`` function. 
+
+The function returns ``false`` if the driver exhausts the cursor, an
+error occurs, the next document isn't available or the context expires.
+Otherwise, the function returns ``true``.
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
+   :language: go
+   :dedent:
+   :start-after: begin cursor try next
+   :end-before: end cursor try next
+
+Cursor Cleanup
+--------------
+
+To free up a cursor's consumption of resources in both the client
+application and the MongoDB server, use the ``Close()`` function. 
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
+   :language: go
+   :dedent:
+   :start-after: begin close
+   :end-before: end close
+
+Additional Information
+----------------------
+
+For more information on the operations discussed in this guide, see the
+following guides:
+
+- :ref:`<retrieve-golang>`
+- :ref:`<bson-unmarshalling>`
+
+.. - Fundamentals > BSON page
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+For more information on any of the functions or types discussed in this
+guide, see the following API Documentation:
+
+- `Cursor <{+api+}/mongo#Cursor>`__
+- `Cursor.Decode() <{+api+}/mongo#Cursor.Decode>`__
+- `Cursor.RemainingBatchLength() <{+api+}/mongo#Cursor.RemainingBatchLength>`__
+- `Cursor.ID() <{+api+}/mongo#Cursor.ID>`__
+- `Cursor.Err() <{+api+}/mongo#Cursor.Err>`__
+- `Cursor.All() <{+api+}/mongo#Cursor.All`__
+- `Cursor.Next() <{+api+}/mongo#Cursor.Next>`__
+- `Cursor.TryNext() <{+api+}/mongo#Cursor.TryNext>`__
+- `Cursor.Close() <{+api+}/mongo#Cursor.Close>`__
