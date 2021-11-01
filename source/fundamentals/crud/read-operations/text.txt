@@ -44,7 +44,7 @@ search.
 
 The examples in the following sections run text searches on the
 ``title`` field in the ``movies`` collection. To enable text searches on
-the ``title`` field, create a text index using with the following snippet: 
+the ``title`` field, create a text index using the following snippet: 
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/textSearch.go
    :language: go
