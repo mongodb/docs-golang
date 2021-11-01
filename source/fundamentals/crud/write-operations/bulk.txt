@@ -97,8 +97,8 @@ contains information about the bulk operation if it's successful. The
    * - ``UpsertedCount`` 
      - The number of documents :ref:`upserted <upsert-definition-go>` by update and replace operations.
 
-   * - ``UpsertedID`` 
-     - The ``_id`` of the :ref:`upserted <upsert-definition-go>` documents.
+   * - ``UpsertedIDs`` 
+     - A map of an operation index to the ``_id`` of each :ref:`upserted <upsert-definition-go>` document.
 
 .. _write-model-go:
 
@@ -333,7 +333,6 @@ the bulk operation:
 
    [{_id ObjectID("...")} {type Masala} {rating 10}]
    [{_id ObjectID("...")} {type Matcha} {rating 7}]
-
 
 Additional Information
 ----------------------
