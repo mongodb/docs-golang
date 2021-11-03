@@ -159,9 +159,13 @@ Functional Iteration
 To iterate through all results, use the ``All()`` function. 
 
 This function unmarshals all the documents stored in a cursor into an
-array at the same time. ``All()`` makes your cursor non-tailable. This
-means that the cursor automatically closes after the ``MongoClient``
-exhausts it.
+array at the same time. 
+
+The ``All()`` function makes your cursor non-tailable, which
+means the following occurs:
+
+- The cursor automatically closes after the ``MongoClient`` exhausts it.
+- The cursor stops retrieving documents even if you insert them.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
    :language: go
@@ -171,6 +175,15 @@ exhausts it.
 
 Manual Iteration
 ~~~~~~~~~~~~~~~~
+
+Manual iteration functions make your cursor tailable, which means the
+following occurs:
+
+- The cursor remains open after the ``MongoClient`` exhausts it.
+- The cursor continues to retrieve documents as you insert them.
+
+Next
+````
 
 To iterate through each result or to purposely wait for the next
 available document, use the ``Next()`` function. 
@@ -184,11 +197,7 @@ This function blocks the current goroutine until a document is
 available, an error occurs, or the context expires. It returns ``true``
 if no errors occur and the ``MongoClient`` didn't exhaust the cursor.
 Otherwise, the function returns ``false``.
-
-``Next()`` makes your cursor tailable. This means that the cursor
-remains open after the ``MongoClient`` exhausts it.
    
-
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
    :language: go
    :dedent:
@@ -204,9 +213,6 @@ This function attempts to retrieve the next document in a cursor. It's
 non-blocking, which means it returns ``false`` if the ``MongoClient``
 exhausts the cursor, an error occurs, the next document isn't available
 or the context expires. Otherwise, the function returns ``true``.
-
-``TryNext()`` makes your cursor tailable. This means that the cursor
-remains open after the ``MongoClient`` exhausts it.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
    :language: go
