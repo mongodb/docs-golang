@@ -13,7 +13,13 @@ Search Text
 Overview
 --------
 
-In this guide, you can learn how to run a :ref:`text search <text-search-go>`.
+In this guide, you can learn how to run a :ref:`text search
+<text-search-go>`. 
+
+.. important::
+
+   MongoDB text search is different than :atlas:`Atlas Search
+   </atlas-search/>`.
 
 Sample Data
 ~~~~~~~~~~~
