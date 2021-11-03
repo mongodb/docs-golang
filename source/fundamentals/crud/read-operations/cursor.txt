@@ -156,16 +156,19 @@ abstracting away network and caching logic.
 Functional Iteration
 ~~~~~~~~~~~~~~~~~~~~
 
-To iterate through all results, use the ``All()`` function. 
-
-This function unmarshals all the documents stored in a cursor into an
-array at the same time. 
-
-The ``All()`` function makes your cursor non-tailable, which
+Functional iteration functions make your cursor non-tailable, which
 means the following occurs:
 
 - The cursor automatically closes after the ``MongoClient`` exhausts it.
 - The cursor stops retrieving documents even if you insert them.
+
+All
+```
+
+To iterate through all results, use the ``All()`` function. 
+
+This function unmarshals all the documents stored in a cursor into an
+array at the same time. 
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
    :language: go
@@ -191,7 +194,8 @@ available document, use the ``Next()`` function.
 .. tip::
 
    While going through each result, you can further specify how you want
-   the documents printed though the find operations options. 
+   the documents printed though the :ref:`find operations options
+   <retrieve-options>`.
 
 This function blocks the current goroutine until a document is
 available, an error occurs, or the context expires. It returns ``true``

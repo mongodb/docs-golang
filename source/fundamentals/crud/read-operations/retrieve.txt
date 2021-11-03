@@ -65,6 +65,8 @@ filter as a ``SingleResult`` type.
 To learn how to access data in a ``SingleResult`` see the :ref:`BSON
 <bson-unmarshalling>` guide.
 
+.. _retrieve-options:
+
 Modify Behavior
 ~~~~~~~~~~~~~~~
 
