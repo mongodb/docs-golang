@@ -20,12 +20,7 @@ In this guide, you can learn how to access data with a **cursor**.
 A cursor is a mechanism that allows an application to iterate over
 database results while holding only a subset of them in memory at a
 given time. Read operations that match multiple documents use a cursor
-to return matched documents in batches as opposed to all at once.
-
-.. important::
-
-   A cursor is not goroutine safe. Do not use the same cursor in
-   multiple goroutines at the same time.
+to return those documents in batches as opposed to all at once.
 
 Sample Cursor
 ~~~~~~~~~~~~~
@@ -41,12 +36,10 @@ The following sections use a ``cursor`` variable as shown:
 The ``cursor`` variable is a cursor that retrieved all the documents in
 a collection with the ``Find()`` function.
 
-.. _cursor-iteration-golang:
+.. important::
 
-.. note::
-   
-   If you previously used the cursor to iterate some documents, the
-   driver excludes those documents when you iterate again. 
+   A cursor is not goroutine safe. Do not use the same cursor in
+   multiple goroutines at the same time.
 
 Retrieve All Documents
 ----------------------
@@ -63,9 +56,8 @@ method:
 .. important:: Memory
 
    This method crashes your application if your query retrieves a number
-   of documents larger than the size of your array. If this occurs, you
-   should :ref:`retrieve the documents individually
-   <individual-documents-golang>`.
+   of documents larger than the size of your array. If this occurs,
+   :ref:`retrieve the documents individually <individual-documents-golang>`.
 
 .. _individual-documents-golang:
 
@@ -87,7 +79,8 @@ following is true:
 .. tip::
 
    Iterating through your documents individually removes the possibility
-   of crashing your application. You can also access a cursors elements.
+   of crashing your application and allows you to access a :ref:`cursors
+   elements <cursor-elements-golang>`.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
    :language: go
@@ -95,8 +88,13 @@ following is true:
    :start-after: begin cursor next
    :end-before: end cursor next
 
-Documents in the Cursor
-~~~~~~~~~~~~~~~~~~~~~~~
+.. note::
+   
+   If you previously used the cursor to iterate some documents, the
+   driver excludes those documents when you iterate again. 
+
+Documents Only in the Cursor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To attempt retrieving a document from your cursor, use the ``TryNext()``
 method.
@@ -116,6 +114,13 @@ each of the following is true:
    :start-after: begin cursor try next
    :end-before: end cursor try next
 
+.. note::
+   
+   If you previously used the cursor to iterate some documents, the
+   driver excludes those documents when you iterate again. 
+
+.. _cursor-elements-golang:
+
 Access Cursor Elements
 ----------------------
 
@@ -124,8 +129,8 @@ exhausted when the ``MongoClient`` iterates through its results and
 reaches its last element. Afterwards, the cursor won't respond to
 functions to access its elements.
 
-When :ref:`iterating through your cursors results
-<cursor-iteration-golang>`, you can view each document as a ``BSON`` or
+When :ref:`individually retrieving your cursors results
+<individual-documents-golang>`, you can view each document as a ``BSON`` or
 Go value.
 
 BSON Document
@@ -163,15 +168,15 @@ Other Elements
 
 You can also retrieve the following elements:
 
-- `The number of documents remaining in a batch <{+api+}/mongo#Cursor.RemainingBatchLength>`__
-- `The cursor ID <{+api+}/mongo#Cursor.ID>`__ 
-- `The errors encountered <{+api+}/mongo#Cursor.Err>`__
+- `The number of documents remaining in the batch. <{+api+}/mongo#Cursor.RemainingBatchLength>`__
+- `The cursor ID. <{+api+}/mongo#Cursor.ID>`__ 
+- `The cursor errors encountered. <{+api+}/mongo#Cursor.Err>`__
 
 .. important:: Retrieving the Cursor ID
 
    If you want to retrieve the cursor ID, include the option to set your
    batch size. The batch size needs to be a number less than or equal to
-   the number of documents you expect to retrieve for a valid cursor ID.
+   the number of documents you expect to retrieve.
    
    .. code-block:: go
       
@@ -218,11 +223,11 @@ For more information on any of the functions or types discussed in this
 guide, see the following API Documentation:
 
 - `Cursor <{+api+}/mongo#Cursor>`__
+- `Cursor.All() <{+api+}/mongo#Cursor.All>`__
+- `Cursor.Next() <{+api+}/mongo#Cursor.Next>`__
+- `Cursor.TryNext() <{+api+}/mongo#Cursor.TryNext>`__
 - `Cursor.Decode() <{+api+}/mongo#Cursor.Decode>`__
 - `Cursor.RemainingBatchLength() <{+api+}/mongo#Cursor.RemainingBatchLength>`__
 - `Cursor.ID() <{+api+}/mongo#Cursor.ID>`__
 - `Cursor.Err() <{+api+}/mongo#Cursor.Err>`__
-- `Cursor.All() <{+api+}/mongo#Cursor.All>`__
-- `Cursor.Next() <{+api+}/mongo#Cursor.Next>`__
-- `Cursor.TryNext() <{+api+}/mongo#Cursor.TryNext>`__
 - `Cursor.Close() <{+api+}/mongo#Cursor.Close>`__
