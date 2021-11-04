@@ -18,21 +18,103 @@ Overview
 In this guide, you can learn how to access data with a **cursor**.
 
 A cursor is a mechanism that allows an application to iterate over
-database results while holding a subset of them in memory at a given
-time. The Go driver uses a cursor in some read operations to return
-matched documents in batches as opposed to all at once.
+database results while holding only a subset of them in memory at a
+given time. Read operations that match multiple documents use a cursor
+to return matched documents in batches as opposed to all at once.
 
-Retrieve Sample Data
-~~~~~~~~~~~~~~~~~~~~
+.. important::
 
-Each section assumes you retrieve all the documents in your collection
-with the ``Find()`` function.
+   A cursor is not goroutine safe. Do not use the same cursor in
+   multiple goroutines at the same time.
+
+Sample Cursor
+~~~~~~~~~~~~~
+
+The following sections use a ``cursor`` variable as shown:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
    :language: go
    :dedent:
    :start-after: begin find
    :end-before: end find
+
+The ``cursor`` variable is a cursor that retrieved all the documents in
+a collection with the ``Find()`` function.
+
+.. _cursor-iteration-golang:
+
+.. note::
+   
+   If you previously used the cursor to iterate some documents, the
+   driver excludes those documents when you iterate again. 
+
+Retrieve All Documents
+----------------------
+
+To populate an array with all of your query results, use the ``All()``
+method:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
+   :language: go
+   :dedent:
+   :start-after: begin cursor all
+   :end-before: end cursor all
+
+.. important:: Memory
+
+   This method crashes your application if your query retrieves a number
+   of documents larger than the size of your array. If this occurs, you
+   should :ref:`retrieve the documents individually
+   <individual-documents-golang>`.
+
+.. _individual-documents-golang:
+
+Retrieve Documents Individually
+-------------------------------
+
+To retrieve documents from your cursor individually, use the
+``Next()`` method.
+
+This method blocks the current goroutine while fetching documents from
+MongoDB. That means the function returns a document if each of the
+following is true:
+
+- A document is currently or will later be available
+- No errors occurred
+- The ``MongoClient`` didn't exhaust the cursor
+- The context didn't expire
+
+.. tip::
+
+   Iterating through your documents individually removes the possibility
+   of crashing your application. You can also access a cursors elements.
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
+   :language: go
+   :dedent:
+   :start-after: begin cursor next
+   :end-before: end cursor next
+
+Documents in the Cursor
+~~~~~~~~~~~~~~~~~~~~~~~
+
+To attempt retrieving a document from your cursor, use the ``TryNext()``
+method.
+
+This method is unable to block the current goroutine while fetching
+documents from MongoDB. That means the function returns a document if
+each of the following is true:
+
+- A document is currently available
+- No errors occurred
+- The ``MongoClient`` didn't exhaust the cursor
+- The context didn't expire
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
+   :language: go
+   :dedent:
+   :start-after: begin cursor try next
+   :end-before: end cursor try next
 
 Access Cursor Elements
 ----------------------
@@ -42,20 +124,12 @@ exhausted when the ``MongoClient`` iterates through its results and
 reaches its last element. Afterwards, the cursor won't respond to
 functions to access its elements.
 
-.. important::
-
-   A cursor is not goroutine safe. Do not use the same cursor in
-   multiple goroutines at the same time.
-
-Current Document
-~~~~~~~~~~~~~~~~
-
 When :ref:`iterating through your cursors results
 <cursor-iteration-golang>`, you can view each document as a ``BSON`` or
 Go value.
 
-BSON
-````
+BSON Document
+~~~~~~~~~~~~~
 
 To access the current document as raw ``BSON``, use the ``Current``
 property.
@@ -66,8 +140,8 @@ property.
    :start-after: begin current
    :end-before: end current
 
-Go Value
-````````
+Go Value Document
+~~~~~~~~~~~~~~~~~
 
 To access the current document as a Go value, use the ``Decode()``
 function. 
@@ -84,41 +158,20 @@ unmarshalling process without any modification.
    }
    fmt.Println(result)
 
-Remaining Batch Length
-~~~~~~~~~~~~~~~~~~~~~~
+Other Elements
+~~~~~~~~~~~~~~
 
-To retrieve the amount of documents remaining in the current batch, use
-the ``RemainingBatchLength()`` function.
+You can also retrieve the following elements:
 
-.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
-   :language: go
-   :dedent:
-   :start-after: begin remaining batch length
-   :end-before: end remaining batch length
+- `The number of documents remaining in a batch <{+api+}/mongo#Cursor.RemainingBatchLength>`__
+- `The cursor ID <{+api+}/mongo#Cursor.ID>`__ 
+- `The errors encountered <{+api+}/mongo#Cursor.Err>`__
 
-.. note::
+.. important:: Retrieving the Cursor ID
 
-   If the amount is ``0`` and you call the ``Next()`` or ``TryNext()``
-   function, it performs a network request to fetch the next batch.
-
-Cursor ID
-~~~~~~~~~
-
-To retrieve the ID of the cursor, use the ``ID()`` function. 
-
-.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
-   :language: go
-   :dedent:
-   :start-after: begin id
-   :end-before: end id
-
-.. important::
-
-   Include the option to set your batch size. The batch size needs to be
-   a number less than or equal to the number of documents you expect to
-   retrieve for a valid cursor ID. If you omit this option, set the
-   batch size to greater than the elements retrieved, or the
-   ``MongoClient`` exhausts the cursor, the cursor ID is ``0``.
+   If you want to retrieve the cursor ID, include the option to set your
+   batch size. The batch size needs to be a number less than or equal to
+   the number of documents you expect to retrieve for a valid cursor ID.
    
    .. code-block:: go
       
@@ -128,107 +181,17 @@ To retrieve the ID of the cursor, use the ``ID()`` function.
          panic(err)
       }
 
-Errors
-~~~~~~
+   If you omit this option, set the batch size to greater than the
+   elements retrieved, or the ``MongoClient`` exhausts the cursor, the
+   cursor ID is ``0``.
 
-To retrieve the last error the cursor encountered, use the ``Err()``
-function. The error is ``nil`` if no errors occurred.
+Close the Cursor
+----------------
 
-.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
-   :language: go
-   :dedent:
-   :start-after: begin err
-   :end-before: end err
-
-.. _cursor-iteration-golang:
-
-Usage Patterns
---------------
-
-A cursor allows you to access query results one document at a time,
-abstracting away network and caching logic. 
-
-.. note::
-   
-   If you previously used the cursor to iterate some documents, the
-   driver excludes those documents when you iterate again. 
-
-Functional Iteration
-~~~~~~~~~~~~~~~~~~~~
-
-Functional iteration functions make your cursor non-tailable, which
-means the following occurs:
-
-- The cursor automatically closes after the ``MongoClient`` exhausts it.
-- The cursor stops retrieving documents even if you insert them.
-
-All
-```
-
-To iterate through all results, use the ``All()`` function. 
-
-This function unmarshals all the documents stored in a cursor into an
-array at the same time. 
-
-.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
-   :language: go
-   :dedent:
-   :start-after: begin cursor all
-   :end-before: end cursor all
-
-Manual Iteration
-~~~~~~~~~~~~~~~~
-
-Manual iteration functions make your cursor tailable, which means the
-following occurs:
-
-- The cursor remains open after the ``MongoClient`` exhausts it.
-- The cursor continues to retrieve documents as you insert them.
-
-Next
-````
-
-To iterate through each result or to purposely wait for the next
-available document, use the ``Next()`` function. 
-
-.. tip::
-
-   While going through each result, you can further specify how you want
-   the documents printed though the :ref:`find operations options
-   <retrieve-options>`.
-
-This function blocks the current goroutine until a document is
-available, an error occurs, or the context expires. It returns ``true``
-if no errors occur and the ``MongoClient`` didn't exhaust the cursor.
-Otherwise, the function returns ``false``.
-   
-.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
-   :language: go
-   :dedent:
-   :start-after: begin cursor next
-   :end-before: end cursor next
-
-Attempt Next
-````````````
-
-Alternatively, you can use the ``TryNext()`` function.
-
-This function attempts to retrieve the next document in a cursor. It's
-non-blocking, which means it returns ``false`` if the ``MongoClient``
-exhausts the cursor, an error occurs, the next document isn't available
-or the context expires. Otherwise, the function returns ``true``.
-
-.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
-   :language: go
-   :dedent:
-   :start-after: begin cursor try next
-   :end-before: end cursor try next
-
-Cursor Cleanup
---------------
-
-To free up a cursor's consumption of resources in both the client
-application and the MongoDB server, use the ``Close()`` function. 
+When your application no longer needs to use a cursor, close the cursor
+with the ``Close()`` method. This method free's up your cursor's
+consumption of resources in both the client application and the 
+MongoDB server.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
    :language: go
@@ -245,7 +208,6 @@ following guides:
 - :ref:`<retrieve-golang>`
 - :ref:`<query_document_golang>`
 - :ref:`<bson-golang>`
-- :manual:`Tailable Cursors </core/tailable-cursors/>`
 
 .. - Fundamentals > BSON page
 
