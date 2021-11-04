@@ -25,16 +25,14 @@ to return those documents in batches as opposed to all at once.
 Sample Cursor
 ~~~~~~~~~~~~~
 
-The following sections use a ``cursor`` variable as shown:
+The following sections use a ``cursor`` variable, which is a cursor that
+retrieved all the documents in a collection with the ``Find()`` function.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
    :language: go
    :dedent:
    :start-after: begin find
    :end-before: end find
-
-The ``cursor`` variable is a cursor that retrieved all the documents in
-a collection with the ``Find()`` function.
 
 .. important::
 
@@ -67,9 +65,8 @@ Retrieve Documents Individually
 To retrieve documents from your cursor individually, use the
 ``Next()`` method.
 
-This method blocks the current goroutine while fetching documents from
-MongoDB. That means the function returns a document if each of the
-following is true:
+This method blocks the current goroutine. That means the function
+returns a document if each of the following is true:
 
 - A document is currently or will later be available
 - No errors occurred
@@ -79,7 +76,7 @@ following is true:
 .. tip::
 
    Iterating through your documents individually removes the possibility
-   of crashing your application and allows you to access a :ref:`cursors
+   of crashing your application and allows you to :ref:`access a cursors
    elements <cursor-elements-golang>`.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
@@ -99,9 +96,8 @@ Documents Only in the Cursor
 To attempt retrieving a document from your cursor, use the ``TryNext()``
 method.
 
-This method is unable to block the current goroutine while fetching
-documents from MongoDB. That means the function returns a document if
-each of the following is true:
+This method is unable to block the current goroutine. That means the
+function returns a document if each of the following is true:
 
 - A document is currently available
 - No errors occurred
@@ -186,9 +182,9 @@ You can also retrieve the following elements:
          panic(err)
       }
 
-   If you omit this option, set the batch size to greater than the
-   elements retrieved, or the ``MongoClient`` exhausts the cursor, the
-   cursor ID is ``0``.
+   If you omit this option, set the batch size to a number greater than
+   the elements retrieved, or the ``MongoClient`` exhausts the cursor,
+   the cursor ID is ``0``.
 
 Close the Cursor
 ----------------
@@ -204,6 +200,12 @@ MongoDB server.
    :start-after: begin close
    :end-before: end close
 
+.. note:: 
+
+   Close the cursor when you retrieve documents individually because
+   those functions make a cursor :manual:`tailable
+   </core/tailable-cursors/>`.
+
 Additional Information
 ----------------------
 
@@ -213,6 +215,7 @@ following guides:
 - :ref:`<retrieve-golang>`
 - :ref:`<query_document_golang>`
 - :ref:`<bson-golang>`
+- :manual:`Tailable Cursors </core/tailable-cursors/>`
 
 .. - Fundamentals > BSON page
 
