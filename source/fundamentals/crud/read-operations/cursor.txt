@@ -99,9 +99,10 @@ method:
 
 .. important:: Memory
 
-   If your query retrieves a number of documents larger than the size of
-   your array, this method crashes your application. If this occurs, 
-   :ref:`retrieve the documents individually <individual-documents-golang>`.
+   If the number and size of documents returned by your query exceeds
+   available application memory, your program will crash. If you except
+   a large result set, you should :ref:`consume the cursor iteratively
+   <individual-documents-golang>`.
 
 Close the Cursor
 ----------------
@@ -135,6 +136,8 @@ following guides:
 - :manual:`Tailable Cursors </core/tailable-cursors/>`
 
 .. - Fundamentals > BSON page
+
+.. _cursor-api-docs-golang:
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
