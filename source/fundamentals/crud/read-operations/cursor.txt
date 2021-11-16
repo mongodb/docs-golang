@@ -44,18 +44,14 @@ Each section uses the following ``cursor`` variable, which is a
 Retrieve Documents Individually
 -------------------------------
 
-To retrieve documents from your cursor individually, use the
-``Next()`` method.
+To retrieve documents from your cursor individually while blocking the
+current goroutine, use the ``Next()`` method.
 
-This method blocks the current goroutine. That means the function
-returns a document if each of the following is true:
+The method returns a document if each of the following is true:
 
 - A document is currently or will later be available
 - No errors occurred
-- The ``MongoClient`` didn't exhaust the cursor
 - The context didn't expire
-
-.. include:: /includes/fundamentals/exhausted-cursor-definition.rst
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
    :language: go
@@ -63,21 +59,17 @@ returns a document if each of the following is true:
    :start-after: begin cursor next
    :end-before: end cursor next
 
-Documents Only in the Cursor
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Non-blocking Alternative
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-To attempt retrieving a document from your cursor, use the ``TryNext()``
-method.
+To attempt retrieving a document from your cursor without blocking the
+current goroutine, use the ``TryNext()`` method.
 
-This method is unable to block the current goroutine. That means the
-function returns a document if each of the following is true:
+The method returns a document if each of the following is true:
 
-- A document is currently available
+- A document is currently  or will later be available
 - No errors occurred
-- The ``MongoClient`` didn't exhaust the cursor
 - The context didn't expire
-
-.. include:: /includes/fundamentals/exhausted-cursor-definition.rst
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
    :language: go
@@ -101,16 +93,15 @@ method:
 
    If the number and size of documents returned by your query exceeds
    available application memory, your program will crash. If you except
-   a large result set, you should :ref:`consume the cursor iteratively
+   a large result set, you should :ref:`consume your cursor iteratively
    <individual-documents-golang>`.
 
 Close the Cursor
 ----------------
 
 When your application no longer needs to use a cursor, close the cursor
-with the ``Close()`` method. This method frees up your cursor's
-consumption of resources in both the client application and the 
-MongoDB server.
+with the ``Close()`` method. This method frees the resources your cursor
+consumes in both the client application and the MongoDB server.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/cursor.go
    :language: go
@@ -121,7 +112,7 @@ MongoDB server.
 .. note:: 
 
    Close the cursor when you :ref:`retrieve documents individually
-   <individual-documents-golang>` because those functions make a cursor
+   <individual-documents-golang>` because those methods make a cursor
    :manual:`tailable </core/tailable-cursors/>`.
 
 Additional Information
@@ -137,13 +128,11 @@ following guides:
 
 .. - Fundamentals > BSON page
 
-.. _cursor-api-docs-golang:
-
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-For more information on how to access a cursor's elements before the
-cursor is exhausted, see the following API Documentation:
+For more information on cursors and how to access their elements, see
+the following API Documentation:
 
 - `Cursor <{+api+}/mongo#Cursor>`__
 - `Cursor.All() <{+api+}/mongo#Cursor.All>`__
