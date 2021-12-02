@@ -139,6 +139,9 @@ func main() {
 			if err := cursor.Err(); err != nil {
 				log.Fatal(err)
 			}
+			if cursor.ID() == 0 {
+				break
+			}
 		}
 		// end cursor try next
 	}

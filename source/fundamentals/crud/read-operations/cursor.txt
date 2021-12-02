@@ -59,15 +59,15 @@ The method returns a document if each of the following is true:
    :start-after: begin cursor next
    :end-before: end cursor next
 
-Non-blocking Alternative
-~~~~~~~~~~~~~~~~~~~~~~~~
+Tailable Cursor
+~~~~~~~~~~~~~~~
 
-To attempt retrieving a document from your cursor without blocking the
-current goroutine, use the ``TryNext()`` method.
+To attempt retrieving a document from a :manual:`tailable cursor
+</core/tailable-cursors/>`, use the ``TryNext()`` method.
 
 The method returns a document if each of the following is true:
 
-- A document is currently  or will later be available
+- A document is currently or will later be available
 - No errors occurred
 - The context didn't expire
 
