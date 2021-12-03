@@ -67,7 +67,7 @@ To attempt retrieving a document from a :manual:`tailable cursor
 
 The method returns a document if each of the following is true:
 
-- A document is currently or will later be available
+- A document is currently available
 - No errors occurred
 - The context didn't expire
 
