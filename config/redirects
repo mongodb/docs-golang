@@ -1,5 +1,5 @@
 define: prefix docs/drivers/go
-define: base https://www.mongodb.com/docs/${prefix}
+define: base https://www.mongodb.com/${prefix}
 define: versions master
 
 raw: ${prefix}/ -> ${base}/current/
