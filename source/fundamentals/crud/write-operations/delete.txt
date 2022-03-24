@@ -144,5 +144,5 @@ guide, see the following API Documentation:
 
 - `DeleteOne() <{+api+}/mongo#Collection.DeleteOne>`__
 - `DeleteMany() <{+api+}/mongo#Collection.DeleteMany>`__
-- `DeleteOptions <{+api+}/mongo/options#DeleteOptions>`__
+- `DeleteOptions <{+api+}/mongo#options#DeleteOptions>`__
 - `DeleteResult <{+api+}/mongo#DeleteResult>`__
