@@ -22,7 +22,7 @@ following information:
 
 - Data collected over time
 - Metadata that describes the measurement
-- The time of the measurement
+- Date of the measurement
 
 .. list-table::
    :widths: 33, 33, 33
@@ -41,10 +41,6 @@ following information:
      - Amount of People Infected
      - Location
 
-.. important::
-
-   Versions prior to MongoDB 5.0 cannot create a time series collection.
-
 Create a Time Series Collection
 -------------------------------
 
@@ -54,16 +50,20 @@ To create a time series collection, pass the following parameters to the
 - The name of the new collection to create
 - The ``TimeSeriesOptions`` object specifying at least the time field
 
+.. important::
+
+   Versions prior to MongoDB 5.0 cannot create a time series collection.
+
 Example
 ~~~~~~~
 
-The following example creates a time series collection called
-``march2022`` with the ``temperature`` as the time field:
+The following example creates the ``spring2022.march2022`` time series
+collection the ``temperature`` as the time field:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/timeSeries.go
    :start-after: begin create ts coll
    :end-before: end create ts coll
-   :emphasize-lines: 5
+   :emphasize-lines: 2, 5
    :language: go
    :dedent:
 
@@ -73,7 +73,7 @@ command to the ``RunCommand()`` function:
 .. literalinclude:: /includes/fundamentals/code-snippets/timeSeries.go
    :start-after: begin check ts coll
    :end-before: end check ts coll
-   :emphasize-lines: 4
+   :emphasize-lines: 1, 4
    :language: go
    :dedent:
 
@@ -113,6 +113,8 @@ Additional Information
 For more information on the operations mentioned, see the following
 guides:
 
+- :ref:`manual-timeseries-collection`
+- :ref:`manual-timeseries-collection-limitations`
 - :ref:`run-command-usage-example`
 - :ref:`retrieve-golang`
 
@@ -124,9 +126,9 @@ API Documentation
 For more information on any of the functions or types discussed in this
 guide, see the following API Documentation:
 
-- `Database() <{+api+}mongo#Database.Client>`__
+- `Database() <{+api+}/mongo#Database.Client>`__
 - `TimeSeriesOptions <{+api+}/mongo/options#TimeSeriesOptions>`__
 - `SetTimeField() <{+api+}/mongo/options#TimeSeriesOptions.SetTimeField>`__
-- `CreateCollection() <{+api+}/mongo#Database.CreateCollection`__
-- `SetTimeSeriesOptions() <{+api+}/mongo/options#CreateCollectionOptions.SetTimeSeriesOptions`__
+- `CreateCollection() <{+api+}/mongo#Database.CreateCollection>`__
+- `SetTimeSeriesOptions() <{+api+}/mongo/options#CreateCollectionOptions.SetTimeSeriesOptions>`__
 - `RunCommand() <{+api+}/mongo#Database.RunCommand>`__
