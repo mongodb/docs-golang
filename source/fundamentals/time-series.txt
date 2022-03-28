@@ -14,7 +14,7 @@ Overview
 --------
 
 In this guide, you can learn about **time series collections** in
-MongoDB, and how to interact with them in the MongoDB Go driver.
+MongoDB, and how to interact with them in the {+driver-long+}.
 
 Time series collections efficiently store sequences of measurements over
 a period of time. The collection consists of time series data with the
@@ -44,21 +44,21 @@ following information:
 Create a Time Series Collection
 -------------------------------
 
+.. important::
+
+   Time series collections require MongoDB 5.0 or later.
+
 To create a time series collection, pass the following parameters to the
 ``CreateCollection()`` function:
 
 - The name of the new collection to create
 - The ``TimeSeriesOptions`` object specifying at least the time field
 
-.. important::
-
-   Versions prior to MongoDB 5.0 cannot create a time series collection.
-
 Example
 ~~~~~~~
 
 The following example creates the ``spring_weather.march2022`` time series
-collection the ``temperature`` as the time field:
+collection with the ``temperature`` as the time field:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/timeSeries.go
    :start-after: begin create ts coll
@@ -70,41 +70,44 @@ collection the ``temperature`` as the time field:
 To check if you created the collection, send the ``"listCollections"``
 command to the ``RunCommand()`` function:
 
-.. literalinclude:: /includes/fundamentals/code-snippets/timeSeries.go
-   :start-after: begin check ts coll
-   :end-before: end check ts coll
-   :emphasize-lines: 1, 4
-   :language: go
-   :dedent:
+.. io-code-block::
+   :caption: Testing whether we created a time series collection.
+   :copyable: true
 
-After running this example, the output resembles the following:
+   .. input:: /includes/fundamentals/code-snippets/timeSeries.go
+      :start-after: begin check ts coll
+      :end-before: end check ts coll
+      :language: go
+      :linenos:
+      :emphasize-lines: 1, 4
 
-.. code-block:: json
-   :emphasize-lines: 9, 11, 15
+   .. output:: 
+      :linenos:
+      :emphasize-lines: 9, 11, 15
 
-   {  
-      ...
-      "cursor": {
-           "firstBatch": [
-               {
-                   "info": {
-                       "readOnly": false
-                   },
-                   "name": "march2022",
-                   "options": {
-                       "timeseries": {
-                           ...
-                       }
-                   },
-                   "type": "timeseries"
-               },
-       ...
-    }
+      {  
+         ...
+         "cursor": {
+              "firstBatch": [
+                  {
+                      "info": {
+                          "readOnly": false
+                      },
+                      "name": "march2022",
+                      "options": {
+                          "timeseries": {
+                              ...
+                          }
+                      },
+                      "type": "timeseries"
+                  },
+          ...
+       }
 
 Query a Time Series Collection
 ------------------------------
 
-To query in a time series collection, use the same conventions as you
+To query a time series collection, use the same conventions as you
 would for :ref:`retrieving <retrieve-golang>` and aggregating data.
 
 Additional Information
@@ -126,7 +129,6 @@ API Documentation
 For more information on any of the functions or types discussed in this
 guide, see the following API Documentation:
 
-- `Database() <{+api+}/mongo#Database.Client>`__
 - `TimeSeriesOptions <{+api+}/mongo/options#TimeSeriesOptions>`__
 - `SetTimeField() <{+api+}/mongo/options#TimeSeriesOptions.SetTimeField>`__
 - `CreateCollection() <{+api+}/mongo#Database.CreateCollection>`__
