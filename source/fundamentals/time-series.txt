@@ -74,9 +74,7 @@ command to the ``RunCommand()`` function:
    :caption: Testing whether we created a time series collection.
    :copyable: true
 
-   .. input:: /includes/fundamentals/code-snippets/timeSeries.go
-      :start-after: begin check ts coll
-      :end-before: end check ts coll
+   .. input:: /includes/fundamentals/code-snippets/timeSeriesRunCommand.go
       :language: go
       :linenos:
       :emphasize-lines: 1, 4
