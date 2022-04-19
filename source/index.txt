@@ -30,7 +30,7 @@ Quick Start
 -----------
 
 Learn how to establish a connection to MongoDB Atlas and begin
-working with data in the :doc:`Quick Start </quick-start>` section.
+working with data in the :ref:`go-quickstart` section.
 
 Usage Examples
 --------------
