@@ -1,4 +1,4 @@
-.. _go-count-documents:
+.. _golang-count-documents:
 
 ===============
 Count Documents
@@ -16,7 +16,7 @@ Overview
 --------
 
 In this guide, you can learn how to get an :ref:`accurate
-<accurate-count-go>` and :ref:`estimated <estimated-count-go>` count of
+<golang-accurate-count>` and :ref:`estimated <golang-estimated-count>` count of
 the number of documents in your collection.
 
 Sample Data
@@ -37,7 +37,7 @@ snippet:
 Each document contains a rating for a type of tea that corresponds to
 the ``type`` and ``rating`` fields.
 
-.. _accurate-count-go:
+.. _golang-accurate-count:
 
 Accurate Count
 --------------
@@ -133,7 +133,7 @@ After running this example, the output resembles the following:
 
    [{total_documents 5}]
 
-.. _estimated-count-go:
+.. _golang-estimated-count:
 
 Estimated Count
 ---------------
@@ -193,7 +193,7 @@ Additional Information
 For more information on the operations mentioned, see the following
 guides:
 
-- :ref:`query_document_golang`
+- :ref:`golang-query-document`
 - :doc:`Skip Returned Results </fundamentals/crud/read-operations/skip>`
 - :doc:`Limit the Number of Returned Results </fundamentals/crud/read-operations/limit>`
 

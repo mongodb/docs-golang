@@ -1,4 +1,4 @@
-.. _go-retrieve-distinct:
+.. _golang-retrieve-distinct:
 
 ========================
 Retrieve Distinct Values
@@ -107,7 +107,7 @@ For a runnable example of retrieving distinct values, see the
 usage example.
 
 For information about construting a query filter, see the
-:ref:`query_document_golang` guide.
+:ref:`golang-query-document` guide.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

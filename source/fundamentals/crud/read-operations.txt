@@ -1,4 +1,4 @@
-.. _go-crud-read-operations:
+.. _golang-crud-read-operations:
 
 ===============
 Read Operations
@@ -6,16 +6,16 @@ Read Operations
 
 .. default-domain:: mongodb
 
-- :ref:`query_document_golang`
-- :ref:`go-count-documents`
-- :ref:`retrieve-golang`
-- :ref:`cursor-golang`
-- :ref:`go-retrieve-distinct`
-- :ref:`go-sort-results`
-- :ref:`go-skip`
-- :ref:`go-limit`
-- :ref:`go-project`
-- :ref:`go-search-text`
+- :ref:`golang-query-document`
+- :ref:`golang-count-documents`
+- :ref:`golang-retrieve`
+- :ref:`golang-cursor`
+- :ref:`golang-retrieve-distinct`
+- :ref:`golang-sort-results`
+- :ref:`golang-skip`
+- :ref:`golang-limit`
+- :ref:`golang-project`
+- :ref:`golang-search-text`
 
 ..
   - :doc:`/fundamentals/crud/read-operations/geo`

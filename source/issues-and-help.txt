@@ -1,4 +1,4 @@
-.. _go-issues-and-help:
+.. _golang-issues-and-help:
 
 =============
 Issues & Help

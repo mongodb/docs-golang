@@ -44,7 +44,7 @@ Additional Information
 ----------------------
 
 For more information on deleting documents, see our guide on
-:ref:`deleting documents <delete_guide_golang>`.
+:ref:`deleting documents <golang-delete-guide>`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

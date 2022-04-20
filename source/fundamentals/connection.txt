@@ -1,4 +1,4 @@
-.. _go-connection-guide:
+.. _golang-connection-guide:
 
 ================
 Connection Guide
@@ -12,7 +12,7 @@ Connection Guide
    :depth: 2
    :class: singlecol
 
-.. _golang_connection_guide:
+.. _golang-connection-guide:
 
 This guide shows you how to connect to a MongoDB instance or replica set
 deployment using the Go Driver.
@@ -40,7 +40,7 @@ servers in rotation without reconfiguring clients.
 .. note::
 
    If your deployment is on MongoDB Atlas, see the
-   :ref:`Quick Start guide <connect-to-your-cluster>` to learn how to
+   :ref:`Quick Start guide <golang-connect-to-your-cluster>` to learn how to
    retrieve your connection string.
 
 The next part of the connection string contains your username and, if
@@ -57,7 +57,7 @@ your MongoDB instance.
 The last part of the connection string specifies connection and authentication
 options. In the example, we set two connection options:
 ``maxPoolSize=20`` and ``w=majority``. For more information on connection
-options, read the :ref:`connection-options` section of this guide.
+options, read the :ref:`golang-connection-options` section of this guide.
 
 The following code shows how you can use the sample connection URI in a
 client to connect to MongoDB.
@@ -128,7 +128,7 @@ connections:
 - Require you to :manual:`specify a secondary read preference </core/read-preference/#mongodb-readmode-secondary>`
   when the specified host isn't the **primary**.
 
-.. _connection-options:
+.. _golang-connection-options:
 
 ------------------
 Connection Options

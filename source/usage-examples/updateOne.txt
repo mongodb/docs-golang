@@ -52,7 +52,7 @@ Additional Information
 ----------------------
 
 For more information on replacing documents, specifying query filters, and
-handling potential errors, see our guide on :ref:`changing a document <change_document_golang>`.
+handling potential errors, see our guide on :ref:`changing a document <golang-change-document>`.
 
 For more information on update operators,
 see the :manual:`MongoDB update operator reference documentation

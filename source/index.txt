@@ -30,13 +30,13 @@ Quick Start
 -----------
 
 Learn how to establish a connection to MongoDB Atlas and begin
-working with data in the :ref:`go-quickstart` section.
+working with data in the :ref:`golang-quickstart` section.
 
 Usage Examples
 --------------
 
 For fully runnable code snippets and explanations for common
-methods, see the :ref:`go-usage-examples` section.
+methods, see the :ref:`golang-usage-examples` section.
 
 Fundamentals
 ------------
@@ -54,20 +54,20 @@ Go driver, see the `{+driver-long+} API documentation
 .. ---
 
 .. For answers to commonly asked questions about the MongoDB
-.. Go Driver, see the :ref:`go-faq`
+.. Go Driver, see the :ref:`golang-faq`
 .. section.
 
 Issues & Help
 -------------
 
 Learn how to report bugs, contribute to the driver, and find
-additional resources for asking questions in the :ref:`go-issues-and-help` section.
+additional resources for asking questions in the :ref:`golang-issues-and-help` section.
 
 Compatibility
 -------------
 
 For the compatibility charts that show the recommended Go Driver version
-for each MongoDB Server version, see the :ref:`go-compatibility` section.
+for each MongoDB Server version, see the :ref:`golang-compatibility` section.
 
 .. What's New
 .. ----------

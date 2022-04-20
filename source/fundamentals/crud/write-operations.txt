@@ -1,4 +1,4 @@
-.. _go-crud-write-operations:
+.. _golang-crud-write-operations:
 
 ================
 Write Operations

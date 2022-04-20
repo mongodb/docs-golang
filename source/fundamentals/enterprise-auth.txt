@@ -21,7 +21,7 @@ Kerberos (GSSAPI)
 LDAP (PLAIN)
 
 To authenticate using another mechanism, see
-:ref:`go-authentication-mechanisms`. For more
+:ref:`golang-authentication-mechanisms`. For more
 information on establishing a connection to your MongoDB cluster, read our
-:ref:`go-connection-guide`.
+:ref:`golang-connection-guide`.
 

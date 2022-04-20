@@ -1,4 +1,4 @@
-.. _go-compatibility:
+.. _golang-compatibility:
 
 Compatibility
 -------------

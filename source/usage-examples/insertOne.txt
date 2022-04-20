@@ -47,7 +47,7 @@ Additional Information
 ----------------------
 
 For more information on inserting documents, see our guide on
-:ref:`inserting documents <insert_guide_golang>`.
+:ref:`inserting documents <golang-insert-guide>`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

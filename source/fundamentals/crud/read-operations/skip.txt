@@ -1,4 +1,4 @@
-.. _go-skip:
+.. _golang-skip:
 
 =====================
 Skip Returned Results
@@ -119,7 +119,7 @@ Additional Information
 For more information about the operations mentioned, see the following
 guides:
 
-- :ref:`query_document_golang`
+- :ref:`golang-query-document`
 - :doc:`Retrieve Data </fundamentals/crud/read-operations/retrieve>`
 - :doc:`Sort Results </fundamentals/crud/read-operations/sort>`
 

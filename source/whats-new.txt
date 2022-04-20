@@ -1,4 +1,4 @@
-.. _go-whats-new:
+.. _golang-whats-new:
 
 ==========
 What's New

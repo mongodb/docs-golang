@@ -1,4 +1,4 @@
-.. _go-sort-results:
+.. _golang-sort-results:
 
 ============
 Sort Results
@@ -201,7 +201,7 @@ Additional Information
 For more information about the operations mentioned, see the following
 guides:
 
-- :ref:`query_document_golang`
+- :ref:`golang-query-document`
 - :doc:`Retrieve Data </fundamentals/crud/read-operations/retrieve>`
 - :doc:`Compound Operations </fundamentals/crud/compound-operations>`
 

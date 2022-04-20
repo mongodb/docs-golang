@@ -1,4 +1,4 @@
-.. _go-project:
+.. _golang-project:
 
 ==============================
 Specify Which Fields to Return
@@ -99,7 +99,7 @@ list in the projection, the driver excludes them.
     You must explicitly exclude the ``_id`` field if you do not want it
     returned.
 
-.. _go-include-projection:
+.. _golang-include-projection:
 
 Example
 ```````
@@ -165,7 +165,7 @@ Additional Information
 For more information about the operations mentioned, see the following
 guides:
 
-- :ref:`query_document_golang`
+- :ref:`golang-query-document`
 - :doc:`Retrieve Data </fundamentals/crud/read-operations/retrieve>`
 - :doc:`Compound Operations </fundamentals/crud/compound-operations>`
 

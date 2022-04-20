@@ -1,4 +1,4 @@
-.. _delete_guide_golang:
+.. _golang-delete-guide:
 
 =================
 Delete a Document
@@ -128,7 +128,7 @@ examples:
 For more information on performing the operations mentioned, see the
 following guides:
 
-- :ref:`query_document_golang`
+- :ref:`golang-query-document`
 
 For information about how the driver uses Context, see our guide on
 :doc:`Context </fundamentals/context>`.

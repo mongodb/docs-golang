@@ -1,4 +1,4 @@
-.. _go-quickstart:
+.. _golang-quickstart:
 
 ===========
 Quick Start
@@ -24,11 +24,11 @@ Create a new directory and initialize your project with ``go mod``.
 
 .. code-block:: shell
 
-   mkdir go-quickstart
-   cd go-quickstart
-   go mod init go-quickstart
+   mkdir golang-quickstart
+   cd golang-quickstart
+   go mod init golang-quickstart
 
-.. _add-mongodb-dependency:
+.. _golang-add-mongodb-dependency:
 
 Add MongoDB as a Dependency
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
