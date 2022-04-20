@@ -1,3 +1,5 @@
+.. _go-authentication-mechanisms:
+
 =========================
 Authentication Mechanisms
 =========================
@@ -19,7 +21,7 @@ authentication mechanisms to confirm an identity and establish trust to
 ensure security in the driver and server before connecting.
 
 If you want to establish a connection to your MongoDB cluster without an
-authentication mechanism, see our :doc:`Connection Guide </fundamentals/connection>`.
+authentication mechanism, see our :ref:`go-connection-guide`.
 
 Supported Mechanisms
 --------------------
@@ -277,5 +279,5 @@ following:
 
 ..
   For more information on configuring your application to use
-  certificates as well as TLS/SSL options, see our
-  :doc:`TLS/SSL guide </fundamentals/connection/tls>`.
+  certificates as well as TLS/SSL options, see
+  :ref:`go-tls-ssl-guide`.

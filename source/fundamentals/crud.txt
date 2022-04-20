@@ -14,11 +14,10 @@ CRUD Operations
 CRUD (Create, Read, Update, Delete) operations enable you to work with
 data stored in MongoDB.
 
-- :doc:`Read Operations </fundamentals/crud/read-operations>` find and return
+- :ref:`go-crud-read-operations` find and return
   documents stored in your database.
-- :doc:`Write Operations </fundamentals/crud/write-operations>` insert, modify,
+- :ref:`go-crud-write-operations` insert, modify,
   or delete documents in your database.
 
 Some operations combine aspects of read and write operations. To learn
-more about these hybrid methods, see our guide on :doc:`compound
-operations </fundamentals/crud/compound-operations>`.
+more about these hybrid methods, see our guide on :ref:`compound-operations-golang`.

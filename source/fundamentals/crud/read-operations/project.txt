@@ -1,3 +1,5 @@
+.. _go-project:
+
 ==============================
 Specify Which Fields to Return
 ==============================

@@ -311,9 +311,9 @@ For more information on performing the operations mentioned, see the
 following guides:
 
 - :ref:`query_document_golang`
-- :doc:`Retrieve Data </fundamentals/crud/read-operations/retrieve>`
-- :doc:`Delete a Document </fundamentals/crud/write-operations/delete>`
-- :doc:`Update or Replace a Document </fundamentals/crud/write-operations/change-a-document>`
+- :ref:`Retrieve Data <retrieve-golang>`
+- :ref:`Delete a Document <delete_guide_golang>`
+- :ref:`Update or Replace a Document <change_document_golang>`
 - :ref:`Access Data in a SingleResult <bson-unmarshalling>`
 
 API Documentation

@@ -1,3 +1,5 @@
+.. _go-sort-results:
+
 ============
 Sort Results
 ============
