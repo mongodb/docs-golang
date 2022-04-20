@@ -1,6 +1,6 @@
 .. _go-crud-read-operations:
 
-==============
+===============
 Read Operations
 ===============
 
