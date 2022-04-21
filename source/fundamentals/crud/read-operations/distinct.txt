@@ -102,12 +102,9 @@ After running this example, the output resembles the following:
 Additional Information
 ----------------------
 
-For a runnable example of retrieving distinct values, see the
-:ref:`golang-distinct-usage`
-usage example.
+For a runnable example of retrieving distinct values, see :ref:`golang-distinct-usage`.
 
-For information about construting a query filter, see the
-:ref:`golang-query-document` guide.
+For information about construting a query filter, see :ref:`golang-query-document`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

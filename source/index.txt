@@ -36,7 +36,7 @@ Usage Examples
 --------------
 
 For fully runnable code snippets and explanations for common
-methods, see the :ref:`golang-usage-examples` section.
+methods, see :ref:`golang-usage-examples`.
 
 Fundamentals
 ------------
@@ -54,7 +54,7 @@ Go driver, see the `{+driver-long+} API documentation
 .. ---
 
 .. For answers to commonly asked questions about the MongoDB
-.. Go Driver, see the :ref:`golang-faq`
+.. Go Driver, see :ref:`golang-faq`
 .. section.
 
 Issues & Help
@@ -67,7 +67,7 @@ Compatibility
 -------------
 
 For the compatibility charts that show the recommended Go Driver version
-for each MongoDB Server version, see the :ref:`golang-compatibility` section.
+for each MongoDB Server version, see :ref:`golang-compatibility`.
 
 .. What's New
 .. ----------

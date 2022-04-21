@@ -22,4 +22,4 @@ data stored in MongoDB.
   or delete documents in your database.
 
 Some operations combine aspects of read and write operations. To learn
-more about these hybrid methods, see our guide on :ref:`golang-compound-operations`.
+more about these hybrid methods, see :ref:`golang-compound-operations`.

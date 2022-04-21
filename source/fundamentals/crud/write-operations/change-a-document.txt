@@ -56,7 +56,7 @@ field. You cannot use update and replace operations to change the
 ``_id`` field. If you attempt to change this field, the update and
 replace functions return a ``WriteError``.
 
-.. _golang-golang-update-documents:
+.. _golang-update-documents:
 
 Update
 ------
@@ -300,8 +300,7 @@ guides:
 - :ref:`golang-compound-operations`
 - :manual:`Update Operators </reference/operator/update/#update-operators>`
 
-For information on updating array elements, see the
-:ref:`<golang-update-arrays>` guide.
+For information on updating array elements, see :ref:`<golang-update-arrays>`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

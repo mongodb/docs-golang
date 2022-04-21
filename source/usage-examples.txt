@@ -58,21 +58,20 @@ instance uses :manual:`SCRAM authentication </core/security-scram/>`,
 you can replace ``<user>`` with your username, ``<password>`` with your
 password, and ``<cluster-url>`` with the IP address or URL of your instance.
 
-For more information about connecting to your MongoDB instance, see our
-:ref:`Connection Guide <golang-connection-guide>`.
+For more information about connecting to your MongoDB instance, see :ref:`golang-connection-guide`.
 
 Environment Variable
 ~~~~~~~~~~~~~~~~~~~~
 
 To connect the example to your MongoDB instance, you must :ref:`define
-an environment variable <golang-golang-usage-examples-env-variable>` with
-:ref:`your connection string <golang-golang-usage-examples-connection-string>`.
+an environment variable <golang-usage-examples-env-variable>` with
+:ref:`your connection string <golang-usage-examples-connection-string>`.
 
 .. code-block:: go
 
    uri := os.Getenv("MONGODB_URI")
 
-.. _golang-golang-usage-examples-env-variable:
+.. _golang-usage-examples-env-variable:
 
 
 You can use `GoDotEnv <https://github.com/joho/godotenv>`__ to define
@@ -88,9 +87,9 @@ root of your project. For more information, see the
 
 .. note::
 
-   Replace the preceding connection string with :ref:`your MongoDB deployment's connection string <golang-golang-usage-examples-connection-string>`.
+   Replace the preceding connection string with :ref:`your MongoDB deployment's connection string <golang-usage-examples-connection-string>`.
 
-.. _golang-golang-usage-examples-connection-string:
+.. _golang-usage-examples-connection-string:
 
 
 

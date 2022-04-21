@@ -44,8 +44,8 @@ After you run the full example, you should see the following:
 Additional Information
 ----------------------
 
-For more information on counting documents, see our guide on
-:ref:`Counting Documents <golang-count-documents>`.
+For more information on counting documents, see 
+:ref:`golang-count-documents`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

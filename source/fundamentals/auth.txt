@@ -21,7 +21,7 @@ authentication mechanisms to confirm an identity and establish trust to
 ensure security in the driver and server before connecting.
 
 If you want to establish a connection to your MongoDB cluster without an
-authentication mechanism, see our :ref:`golang-connection-guide`.
+authentication mechanism, see :ref:`golang-connection-guide`.
 
 Supported Mechanisms
 --------------------

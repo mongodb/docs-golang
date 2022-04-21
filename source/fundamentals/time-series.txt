@@ -118,7 +118,7 @@ guides:
 
 - :ref:`manual-timeseries-collection`
 - :ref:`manual-timeseries-collection-limitations`
-- :ref:`golang-golang-run-command-usage-example`
+- :ref:`golang-run-command-usage-example`
 - :ref:`golang-retrieve`
 
 .. TODO: db and collections, run command fundamentals page, aggregation page

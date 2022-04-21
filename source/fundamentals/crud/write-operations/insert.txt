@@ -27,8 +27,7 @@ the ``InsertMany()`` or ``BulkWrite()`` functions.
 The following sections focus on ``InsertOne()`` and ``InsertMany()``.
 
 ..
-  For an example on how to use the ``BulkWrite()`` function, see the :ref:`Bulk
-  Operations Usage Example <golang-bulk-ops-usage-example>`.
+  For an example on how to use the ``BulkWrite()`` function, see :ref:`golang-bulk-ops-usage-example`.
 
 The ``_id`` Field
 -----------------

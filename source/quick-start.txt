@@ -24,9 +24,9 @@ Create a new directory and initialize your project with ``go mod``.
 
 .. code-block:: shell
 
-   mkdir golang-quickstart
-   cd golang-quickstart
-   go mod init golang-quickstart
+   mkdir go-quickstart
+   cd go-quickstart
+   go mod init go-quickstart
 
 .. _golang-add-mongodb-dependency:
 

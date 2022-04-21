@@ -48,7 +48,7 @@ a Document Usage Example <golang-find-one>`.
 Additional Information
 ----------------------
 
-For more information on inserting documents, see our guide on
+For more information on inserting documents, see 
 :ref:`inserting documents <golang-insert-guide>`.
 
 API Documentation

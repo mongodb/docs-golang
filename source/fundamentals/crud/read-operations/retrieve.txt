@@ -53,7 +53,7 @@ The ``Find()`` function expects you to pass a ``Context`` type and a
 query filter. The function returns *all* documents that match the filter
 as a ``Cursor`` type.
 
-To learn how to access data in a cursor, see the :ref:`<golang-cursor>` guide.
+To learn how to access data in a cursor, see :ref:`<golang-cursor>`.
 
 Find One Document
 ~~~~~~~~~~~~~~~~~
@@ -62,8 +62,7 @@ The ``FindOne()`` function expects you to pass a ``Context`` type and a
 query filter. The function returns *the first document* that matches the
 filter as a ``SingleResult`` type.
 
-To learn how to access data in a ``SingleResult`` see the :ref:`BSON
-<golang-bson-unmarshalling>` guide.
+To learn how to access data in a ``SingleResult`` see :ref:`golang-bson-unmarshalling`.
 
 .. _golang-retrieve-options:
 
@@ -177,7 +176,7 @@ The function returns the resulting documents in a ``Cursor`` type. If
 you omit the :manual:`$match </reference/operator/aggregation/match/#mongodb-pipeline-pipe.-match>`
 stage, the pipeline proceeds using all documents in the collection.
 
-To learn how to access data in a cursor, see the :ref:`<golang-cursor>` guide.
+To learn how to access data in a cursor, see :ref:`golang-cursor`.
 
 Modify Behavior
 ~~~~~~~~~~~~~~~

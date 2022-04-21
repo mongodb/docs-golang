@@ -5,7 +5,7 @@ Use Struct Tags
 .. default-domain:: mongodb
 
 You can specify the way that the Go Driver converts Go
-structs to :manual:`BSON </reference/golang-bson-types/>` by using struct tags.
+structs to :manual:`BSON </reference/bson-types/>` by using struct tags.
 
 Example
 -------
@@ -56,14 +56,13 @@ in the ``posts`` collection:
        "tags" : ["seasons", "gardening", "flower"]
    }
 
-For an example on how to find a document, see our :ref:`Find
-a Document Usage Example <golang-find-one>`.
+For an example on how to find a document, see :ref:`golang-find-one`.
 
 Additional Information
 ----------------------
 
 For more information on using struct tags, converting to/from BSON, and
-handling potential errors, see our guide on :ref:`working with BSON <golang-bson>`.
+handling potential errors, see :ref:`working with BSON <golang-bson>`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
