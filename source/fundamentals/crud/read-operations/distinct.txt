@@ -103,7 +103,7 @@ Additional Information
 ----------------------
 
 For a runnable example of retrieving distinct values, see the
-:doc:`Retrieve Distinct Values of a Field </usage-examples/distinct>`
+:ref:`golang-distinct-usage`
 usage example.
 
 For information about construting a query filter, see the

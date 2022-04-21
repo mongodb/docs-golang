@@ -338,7 +338,7 @@ Additional Information
 ----------------------
 
 For a runnable example on performing a bulk operation, see the
-:ref:`<golang-golang-bulk-ops-usage-example>` usage example.
+:ref:`<golang-bulk-ops-usage-example>` usage example.
 
 Related Operations
 ~~~~~~~~~~~~~~~~~~

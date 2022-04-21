@@ -45,7 +45,7 @@ Additional Information
 ----------------------
 
 For more information on counting documents, see our guide on
-:doc:`Counting Documents </fundamentals/crud/read-operations/count>`.
+:ref:`Counting Documents <golang-count-documents>`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

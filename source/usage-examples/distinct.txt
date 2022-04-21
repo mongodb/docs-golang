@@ -1,3 +1,5 @@
+.. _golang-distinct-usage:
+
 ===================================
 Retrieve Distinct Values of a Field
 ===================================
@@ -43,7 +45,7 @@ Additional Information
 ----------------------
 
 For more information on retrieving distinct values, see our guide on
-:doc:`retrieving distinct values </fundamentals/crud/read-operations/distinct>`.
+:ref:`retrieving distinct values <golang-retrieve-distinct>`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

@@ -288,20 +288,20 @@ Additional Information
 For runnable examples of the update and replace operations, see the
 following usage examples:
 
-- :doc:`Update a Document </usage-examples/updateOne>`
-- :doc:`Update Multiple Documents </usage-examples/updateMany>`
-- :doc:`Replace a Document </usage-examples/replaceOne>`
+- :ref:`golang-update-one`
+- :ref:`golang-update-many`
+- :ref:`golang-replace`
 
 For more information about the operations mentioned, see the following
 guides:
 
 - :ref:`golang-query-document`
-- :doc:`Insert or Update in a Single Operation </fundamentals/crud/write-operations/upsert>`
-- :doc:`Compound Operations </fundamentals/crud/compound-operations>`
+- :ref:`golang-upsert`
+- :ref:`golang-compound-operations`
 - :manual:`Update Operators </reference/operator/update/#update-operators>`
 
 For information on updating array elements, see the
-:ref:`<golang-update-arrays-golang>` guide.
+:ref:`<golang-update-arrays>` guide.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

@@ -97,8 +97,8 @@ For more information about the operations mentioned, see the following
 guides:
 
 - :ref:`golang-query-document`
-- :doc:`Change a Document </fundamentals/crud/write-operations/change-a-document>`
-- :doc:`Compound Operations </fundamentals/crud/compound-operations>`
+- :ref:`golang-change-document`
+- :ref:`golang-compound-operations`
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

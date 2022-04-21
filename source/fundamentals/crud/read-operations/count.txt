@@ -194,8 +194,8 @@ For more information on the operations mentioned, see the following
 guides:
 
 - :ref:`golang-query-document`
-- :doc:`Skip Returned Results </fundamentals/crud/read-operations/skip>`
-- :doc:`Limit the Number of Returned Results </fundamentals/crud/read-operations/limit>`
+- :ref:`golang-skip`
+- :ref:`golang-limit`
 
 .. - :doc:`Aggregation </fundamentals/aggregation>` 
 .. - :doc:`Collations </fundamentals/collations>`

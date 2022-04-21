@@ -1,3 +1,5 @@
+.. _golang-time-series:
+
 =======================
 Time Series Collections
 =======================

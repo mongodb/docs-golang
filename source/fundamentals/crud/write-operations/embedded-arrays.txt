@@ -1,4 +1,4 @@
-.. _golang-update-arrays-golang:
+.. _golang-update-arrays:
 
 ===========================
 Update Arrays in a Document
