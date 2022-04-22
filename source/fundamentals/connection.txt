@@ -37,9 +37,7 @@ servers in rotation without reconfiguring clients.
 
 .. note::
 
-   If your deployment is on MongoDB Atlas, see the
-   :ref:`Quick Start guide <golang-connect-to-your-cluster>` to learn how to
-   retrieve your connection string.
+   To learn how to retrieve your connection string in Atlas, see the :ref:`Quick Start guide <golang-connect-to-your-cluster>`.
 
 The next part of the connection string contains your username and, if
 you are using password-based authentication, your password. Replace the value of

@@ -53,7 +53,7 @@ The ``Find()`` function expects you to pass a ``Context`` type and a
 query filter. The function returns *all* documents that match the filter
 as a ``Cursor`` type.
 
-To learn how to access data in a cursor, see :ref:`<golang-cursor>`.
+To learn how to access data in a cursor, see :ref:`golang-cursor`.
 
 Find One Document
 ~~~~~~~~~~~~~~~~~

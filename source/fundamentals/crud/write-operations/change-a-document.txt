@@ -92,7 +92,7 @@ and descriptions </reference/operator/update-field/>`.
    more information on the aggregation stages MongoDB supports in
    aggregation pipelines, see our tutorial on performing
    :manual:`updates with aggregation pipelines
-   </tutorial/golang-update-documents-with-aggregation-pipeline/>`.
+   </tutorial/update-documents-with-aggregation-pipeline/>`.
 
 Return Values
 ~~~~~~~~~~~~~
@@ -300,7 +300,7 @@ guides:
 - :ref:`golang-compound-operations`
 - :manual:`Update Operators </reference/operator/update/#update-operators>`
 
-For information on updating array elements, see :ref:`<golang-update-arrays>`.
+For information on updating array elements, see :ref:`golang-update-arrays`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

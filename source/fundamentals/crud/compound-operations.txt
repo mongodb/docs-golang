@@ -311,9 +311,9 @@ For more information on performing the operations mentioned, see the
 following guides:
 
 - :ref:`golang-query-document`
-- :ref:`Retrieve Data <golang-retrieve>`
-- :ref:`Delete a Document <golang-delete-guide>`
-- :ref:`Update or Replace a Document <golang-change-document>`
+- :ref:`golang-retrieve`
+- :ref:`golang-delete-guide`
+- :ref:`golang-change-document`
 - :ref:`Access Data in a SingleResult <golang-bson-unmarshalling>`
 
 API Documentation

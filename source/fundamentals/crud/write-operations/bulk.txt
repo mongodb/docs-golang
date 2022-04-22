@@ -337,8 +337,8 @@ the bulk operation:
 Additional Information
 ----------------------
 
-For a runnable example on performing a bulk operation, see the
-:ref:`<golang-bulk-ops-usage-example>` usage example.
+For a runnable example on performing a bulk operation, see
+:ref:`golang-bulk-ops-usage-example`.
 
 Related Operations
 ~~~~~~~~~~~~~~~~~~
@@ -346,10 +346,10 @@ Related Operations
 For more information on performing the operations mentioned, see the
 following guides:
 
-- :ref:`<golang-query-document>`
-- :ref:`<golang-insert-guide>`
-- :ref:`<golang-change-document>`
-- :ref:`<golang-delete-guide>`
+- :ref:`golang-query-document`
+- :ref:`golang-insert-guide`
+- :ref:`golang-change-document`
+- :ref:`golang-delete-guide`
 - :manual:`Bulk Write Operations </core/bulk-write-operations/>`
 
 API Documentation

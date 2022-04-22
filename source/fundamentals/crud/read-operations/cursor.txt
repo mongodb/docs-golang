@@ -121,9 +121,9 @@ Additional Information
 For more information on the operations discussed in this guide, see the
 following guides:
 
-- :ref:`<golang-retrieve>`
-- :ref:`<golang-query-document>`
-- :ref:`<golang-bson>`
+- :ref:`golang-retrieve`
+- :ref:`golang-query-document`
+- :ref:`golang-bson`
 - :manual:`Tailable Cursors </core/tailable-cursors/>`
 
 .. - Fundamentals > BSON page
