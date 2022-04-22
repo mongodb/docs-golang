@@ -33,7 +33,7 @@ their related reference and API documentation.
           .. output::
              :language: go
 
-             { "type": "Assam", "rating": 5 ...}
+             [{type Assam}, {rating 5} ...]
 
    * - | **Find Multiple Documents**
        |
@@ -52,8 +52,8 @@ their related reference and API documentation.
           .. output::
              :language: go
 
-             { "type": "Masala", "rating": 10, ... }
-             { "type": "Earl Grey", "rating": 8, ... }
+             [{type Masala}, {rating 10}, ... ]
+             [{type Earl Grey}, {rating 8}, ... ]
 
    * - | **Insert a Document**
        |
@@ -183,7 +183,7 @@ their related reference and API documentation.
           .. output::
              :language: go
 
-             { "type": "Jasmine", "rating": 9, ... }
+             [{type Jasmine}, {rating 9}, ... }]
 
    * - | **Delete a Document**
        |
@@ -366,7 +366,7 @@ their related reference and API documentation.
 
    * - | **Skip Retrieved Documents**
        |
-       | `API Documentation <{+api+}/mongo/options#FindOptions.SetSkipp>`__
+       | `API Documentation <{+api+}/mongo/options#FindOptions.SetSkip>`__
        | :ref:`Fundamentals <golang-skip>`
 
      - .. io-code-block::
