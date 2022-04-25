@@ -180,7 +180,7 @@ to tune with ``InsertOneOptions`` are:
    * - ``Ordered``
      - | If ``true``, the driver sends documents to the server in the order provided.
          If an error occurs, the driver and server abort all remaining insert operations.
-         To learn more, see the section on :ref:`ordered behavior <golang-ordered-behavior>`.
+         To learn more, see :ref:`golang-ordered-behavior`.
 
        | Default: ``false``
 

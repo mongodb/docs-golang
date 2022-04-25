@@ -207,7 +207,7 @@ guides:
 
 To learn about sorting text scores from your text search, see :ref:`golang-search-text`.
 
-.. To learn more aboutaggregation, see the
+.. To learn more about aggregation, see the
 .. :doc:`Aggregation </fundamentals/aggregation>` guide.
 
 API Documentation
