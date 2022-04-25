@@ -21,4 +21,4 @@ Documents
 contain literal data such as strings, numbers, and dates as well as
 other (embedded) documents. To learn more about document field
 types and structure, see the server documentation for :manual:`documents
-<core/document/>`.
+</core/document/>`.
