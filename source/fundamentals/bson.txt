@@ -237,22 +237,25 @@ The following example demonstrates how you can use the ``Decode()``
 method to unmarshal and read the result of a simple ``FindOne()``
 operation:
 
-.. code-block:: go
+- .. io-code-block::
+      :copyable: true
 
-   coll := client.Database("school").Collection("students")
-   filter := bson.D{{"age", 8}}
+   .. input::
+      :language: go
 
-   var result bson.D
-   err := coll.FindOne(context.TODO(), filter).Decode(&result)
-   ...
+      coll := client.Database("school").Collection("students")
+      filter := bson.D{{"age", 8}}
 
-   fmt.Println(result)
+      var result bson.D
+      err := coll.FindOne(context.TODO(), filter).Decode(&result)
+      ...
 
-The output of the preceding code should look like this:
+      fmt.Println(result)
 
-.. code-block:: none
+   .. output::
+      :language: none
 
-   [{_id ObjectID("...")} {first_name Arthur} {street 1 Fern Way} {city Elwood City} {state PA} {age 8}]
+      [{_id ObjectID("...")} {first_name Arthur} {street 1 Fern Way} {city Elwood City} {state PA} {age 8}]
 
 The ``Cursor`` type also uses the ``All()`` method, which unmarshals all
 documents stored in the cursor into an array at the same time.
