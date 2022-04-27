@@ -267,27 +267,30 @@ of ``[]byte`` type.
 The following code demonstrates how you can unmarshal BSON back into a
 user-defined struct by using methods from the ``bson`` package:
 
-.. code-block:: go
+.. io-code-block::
+   :copyable: true
 
-   type Item struct {
+   .. input::
+      :language: go
+
+      type Item struct {
       Category string
       Quantity int32
-   }
-   ...
+      }
+      ...
 
-   doc, err := bson.Marshal(bson.D{{"category", "plate"}, {"quantity", 6}})
-   ...
-   var test Item
-   err = bson.Unmarshal(doc, &test)
-   ...
-   fmt.Printf("Unmarshalled Struct:\n%+v\n", test)
+      doc, err := bson.Marshal(bson.D{{"category", "plate"}, {"quantity", 6}})
+      ...
+      var test Item
+      err = bson.Unmarshal(doc, &test)
+      ...
+      fmt.Printf("Unmarshalled Struct:\n%+v\n", test)
 
-The output of the preceding code should look like this:
+   .. output::
+      :language: none
 
-.. code-block:: none
-
-   Unmarshalled Struct:
-   {Category:plate Quantity:6}
+      Unmarshalled Struct:
+      {Category:plate Quantity:6}
 
 .. note::
 
