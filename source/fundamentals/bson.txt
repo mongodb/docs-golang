@@ -237,8 +237,8 @@ The following example demonstrates how you can use the ``Decode()``
 method to unmarshal and read the result of a simple ``FindOne()``
 operation:
 
-- .. io-code-block::
-      :copyable: true
+.. io-code-block::
+   :copyable: true
 
    .. input::
       :language: go
