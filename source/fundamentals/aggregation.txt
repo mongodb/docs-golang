@@ -9,7 +9,7 @@ Aggregation
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 2
+   :depth: 1
    :class: singlecol
 
 Overview
@@ -106,30 +106,30 @@ documents by the ``type`` field and calculates the average using the
    .. input::
       :language: go
 
-			// create the stage
-			groupStage := bson.D{
-					{"$group", bson.D{
-							{"_id", "$type"},
-							{"average", bson.D{
-									{"$avg", "$rating"},
-					}},
-			}}}
+      // create the stage
+      groupStage := bson.D{
+          {"$group", bson.D{
+              {"_id", "$type"},
+              {"average", bson.D{
+                  {"$avg", "$rating"},
+          }},
+      }}}
 
-			// pass the stage into a pipeline
-			// pass the pipeline as the second paramter in the Aggregate() method
-			cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{groupStage})
-			if err != nil {
-					panic(err)
-			}
+      // pass the stage into a pipeline
+      // pass the pipeline as the second paramter in the Aggregate() method
+      cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{groupStage})
+      if err != nil {
+          panic(err)
+      }
 
-			// display the results
-			var results []bson.M
-			if err = cursor.All(context.TODO(), &results); err != nil {
-					panic(err)
-			}
-			for _, result := range results {
-					fmt.Printf("%v has an average rating of %v \n", result["_id"], result["average"])
-			}
+      // display the results
+      var results []bson.M
+      if err = cursor.All(context.TODO(), &results); err != nil {
+          panic(err)
+      }
+      for _, result := range results {
+          fmt.Printf("%v has an average rating of %v \n", result["_id"], result["average"])
+      }
 
    .. output::
       :language: go
@@ -154,34 +154,34 @@ documents using the ``$sum`` expression operator.
    .. input::
       :language: go
 
-			// create the stages
-			matchStage := bson.D{{"$match", bson.D{
-					{"rating", bson.D{
-							{"$gt", 8}},
-					}},
-			}}
-			groupStage := bson.D{{"$group", bson.D{
-					{"_id", "$type"},
-					{"count", bson.D{
-						{"$sum", 1},
-					}},
-			}}}
+      // create the stages
+      matchStage := bson.D{{"$match", bson.D{
+          {"rating", bson.D{
+              {"$gt", 8}},
+          }},
+      }}
+      groupStage := bson.D{{"$group", bson.D{
+          {"_id", "$type"},
+          {"count", bson.D{
+              {"$sum", 1},
+          }},
+      }}}
 
-			// pass the stage into a pipeline
-			// pass the pipeline as the second paramter in the Aggregate() method
-			cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{matchStage, groupStage})
-			if err != nil {
-					panic(err)
-			}
+      // pass the stage into a pipeline
+      // pass the pipeline as the second paramter in the Aggregate() method
+      cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{matchStage, groupStage})
+      if err != nil {
+          panic(err)
+      }
 
-			// display the results
-			var results []bson.M
-			if err = cursor.All(context.TODO(), &results); err != nil {
-					panic(err)
-			}
-			for _, result := range results {
-					fmt.Printf("%v Count: %v \n", result["_id"], result["count"])
-			}
+      // display the results
+      var results []bson.M
+      if err = cursor.All(context.TODO(), &results); err != nil {
+          panic(err)
+      }
+      for _, result := range results {
+          fmt.Printf("%v Count: %v \n", result["_id"], result["count"])
+      }
 
    .. output::
       :language: go
