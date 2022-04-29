@@ -84,6 +84,8 @@ After running this example, the output resembles the following:
    [{_id ObjectID("...")} {type Earl Grey} {rating 8}]
    [{_id ObjectID("...")} {type Masala} {rating 10}]
 
+.. _golang-skip-aggregation:
+
 Aggregation
 -----------
 
@@ -122,9 +124,7 @@ guides:
 - :ref:`golang-query-document`
 - :ref:`golang-retrieve`
 - :ref:`golang-sort-results`
-
-.. To learn more about aggregation, see the
-.. :doc:`Aggregation </fundamentals/aggregation>` guide.
+- :ref:`golang-aggregation`
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

@@ -105,6 +105,8 @@ After running this example, the output resembles the following:
 
    Number of ratings less than six: 4
 
+.. _golang-count-aggregation:
+
 Aggregation
 -----------
 
@@ -195,8 +197,8 @@ guides:
 - :ref:`golang-query-document`
 - :ref:`golang-skip`
 - :ref:`golang-limit`
+- :ref:`golang-aggregation` 
 
-.. - :doc:`Aggregation </fundamentals/aggregation>` 
 .. - :doc:`Collations </fundamentals/collations>`
 
 API Documentation

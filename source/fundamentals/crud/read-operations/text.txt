@@ -218,6 +218,8 @@ After running this example, the output resembles the following:
    MongoDB matches terms, see :manual:`Index Entries
    </core/index-text/#index-entries>`.
 
+.. _golang-search-text-aggregation:
+
 Aggregation
 -----------
 
@@ -287,9 +289,9 @@ guides:
 - :manual:`Text Indexes </core/index-text/>`
 - :manual:`$text </reference/operator/query/text/>`
 - :manual:`$meta </reference/operator/aggregation/meta/>`
+- :ref:`golang-aggregation`
 
 .. - :doc:`Indexes </fundamentals/crud/indexes>`
-.. - :doc:`Aggregation </fundamentals/aggregation>`
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
