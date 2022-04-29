@@ -55,7 +55,11 @@ The following table lists the tasks you can perform with find and aggregation op
        | Sort the results
        | Limit the results
        | Count the results
-     - | Perform *all* find operations
+     - | Select *what* documents to return
+       | Select *which* fields to return
+       | Sort the results
+       | Limit the results
+       | Count the results
        | Rename fields
        | Calculate fields
        | Summarize data
@@ -90,15 +94,19 @@ To run the examples in this section, load the sample data into the
    :language: go
    :dedent:
 
+Each document represents a person's rating for a particular tea, and the
+amount of visits they made to a local tea shop.
+
 Average Rating
 ~~~~~~~~~~~~~~
 
-The following example calculates and displays the average rating of each
-tea.
+The following example calculates and displays the average rating and
+amount of ratings for each tea.
 
 The aggregation pipleline uses the ``$group`` stage to group the
-documents by the ``type`` field and calculates the average using the
-``$avg`` expression operator.
+documents by the ``type`` field, calculates the average using the
+``$avg`` expression operator, and counts the number of documents using
+the ``$sum`` expression operator.
 
 .. io-code-block::
    :copyable: true
@@ -112,7 +120,10 @@ documents by the ``type`` field and calculates the average using the
               {"_id", "$type"},
               {"average", bson.D{
                   {"$avg", "$rating"},
-          }},
+              }},
+              {"count", bson.D{
+                  {"$sum", 1},
+              }},
       }}}
 
       // pass the stage into a pipeline
@@ -129,24 +140,31 @@ documents by the ``type`` field and calculates the average using the
       }
       for _, result := range results {
           fmt.Printf("%v has an average rating of %v \n", result["_id"], result["average"])
+          fmt.Printf("%v Count: %v \n", result["_id"], result["count"])
       }
 
    .. output::
       :language: go
 
       Masala has an average rating of 8.363636363636363 
+      Masala Count: 11 
       Earl Grey has an average rating of 7.375 
+      Earl Grey Count: 8 
 
-Amount of Documents
-~~~~~~~~~~~~~~~~~~~
+Omit Fields in Results
+~~~~~~~~~~~~~~~~~~~~~~
 
-The following example calculates and displays the amount of documents
-with ratings over 8 for each tea.
+The following example matches documents with ratings over 8 for each tea
+and displays the top 5 highest ratings tea types and the amount of
+visits.
 
-The aggregation pipleline uses the ``$match`` stage to match documents
-with a ``rating`` greater than 8. Then, the pipeline uses the ``$group``
-stage to group the documents by the ``type`` field and counts the
-documents using the ``$sum`` expression operator.
+The aggregation pipleline contains the following stages:
+
+- ``$match`` stage to match documents with a ``rating`` greater than 8
+- ``$unset`` stage to omit the ``_id`` and ``rating`` fields
+- ``$sort`` stage to sort the ``visits`` in descending order and the ``type`` in
+  ascending order
+- ``$limit`` stage to show the first five documents
 
 .. io-code-block::
    :copyable: true
@@ -160,34 +178,37 @@ documents using the ``$sum`` expression operator.
               {"$gt", 8}},
           }},
       }}
-      groupStage := bson.D{{"$group", bson.D{
-          {"_id", "$type"},
-          {"count", bson.D{
-              {"$sum", 1},
-          }},
-      }}}
+      unsetStage := bson.D{{"$unset",bson.A{"_id", "rating"},}}
+      sortStage := bson.D{{"$sort", bson.D{
+          {"visits", -1},
+          {"type", 1}},
+      }}
+      limitStage := bson.D{{"$limit", 5}}
 
       // pass the stage into a pipeline
       // pass the pipeline as the second paramter in the Aggregate() method
-      cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{matchStage, groupStage})
+      cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{matchStage, unsetStage, sortStage, limitStage})
       if err != nil {
           panic(err)
       }
 
       // display the results
-      var results []bson.M
+      		var results []bson.M
       if err = cursor.All(context.TODO(), &results); err != nil {
           panic(err)
       }
       for _, result := range results {
-          fmt.Printf("%v Count: %v \n", result["_id"], result["count"])
+          fmt.Println(result)
       }
 
    .. output::
       :language: go
 
-      Masala Count: 7 
-      Earl Grey Count: 3 
+      map[type:Masala visits:24]
+      map[type:Masala visits:24]
+      map[type:Masala visits:21]
+      map[type:Masala visits:20]
+      map[type:Earl Grey visits:19]
 
 Additional Information
 ----------------------
