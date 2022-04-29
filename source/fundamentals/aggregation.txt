@@ -19,13 +19,10 @@ In this guide, you can learn how to use **aggregation operations** in the
 {+driver-long+}.
 
 Aggregation operations process data in your MongoDB collections based on
-your specifications in the **aggregation pipeline**. An
-:manual:`aggregation pipeline </core/aggregation-pipeline/>` consists of
-one or more **stages**. Each :manual:`stage
-</meta/aggregation-quick-reference/#stages>` performs an operation based
-on its :manual:`expression operators </reference/operator/aggregation/>`. 
-After the driver executes the aggregation pipeline, it returns an
-aggregated result.
+your specifications in the **aggregation pipeline**. An aggregation
+pipeline consists of one or more **stages**. Each stage performs an
+operation based on its expression operators. After the driver executes
+the aggregation pipeline, it returns an aggregated result.
 
 Analogy
 ~~~~~~~
@@ -81,9 +78,6 @@ operations, keep the following in mind:
   has a strict memory limit of 100 megabytes and ignores
   ``allowDiskUse``.
 
-To learn more, see :manual:`Aggregation Pipeline Limits
-</core/aggregation-pipeline-limits/>`. 
-
 Examples
 --------
 
@@ -112,7 +106,7 @@ documents by the ``type`` field and calculates the average using the
    .. input::
       :language: go
 
-      // create the stage
+			// create the stage
 			groupStage := bson.D{
 					{"$group", bson.D{
 							{"_id", "$type"},
@@ -132,7 +126,7 @@ documents by the ``type`` field and calculates the average using the
 			var results []bson.M
 			if err = cursor.All(context.TODO(), &results); err != nil {
 					panic(err)
-      }
+			}
 			for _, result := range results {
 					fmt.Printf("%v has an average rating of %v \n", result["_id"], result["average"])
 			}
@@ -164,7 +158,7 @@ documents using the ``$sum`` expression operator.
 			matchStage := bson.D{{"$match", bson.D{
 					{"rating", bson.D{
 							{"$gt", 8}},
-          }},
+					}},
 			}}
 			groupStage := bson.D{{"$group", bson.D{
 					{"_id", "$type"},
@@ -205,6 +199,7 @@ guides:
 - :manual:`Aggregation Pipeline </core/aggregation-pipeline/>`
 - :manual:`Aggregation Stages </meta/aggregation-quick-reference/#stages>`
 - :manual:`Operator Expressions </meta/aggregation-quick-reference/#operator-expressions>`
+- :manual:`Aggregation Pipeline Limits </core/aggregation-pipeline-limits/>`
 
 To view more aggregation examples, see the following guides:
 
@@ -214,7 +209,7 @@ To view more aggregation examples, see the following guides:
 - :ref:`Text <golang-search-text-aggregation>`
 
 To learn more about the ``Aggregate()`` method and its behavior, see
-:ref:`Retrieve Data <golang-retrieve-aggregation>`
+:ref:`Retrieve Data <golang-retrieve-aggregation>`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
