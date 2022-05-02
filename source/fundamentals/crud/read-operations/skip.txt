@@ -76,17 +76,17 @@ The following example performs the following actions in order with the
       :language: go
 
       filter := bson.D{}
-		opts := options.Find().SetSort(bson.D{{"rating", 1}}).SetSkip(2)
+      opts := options.Find().SetSort(bson.D{{"rating", 1}}).SetSkip(2)
 
-		cursor, err := coll.Find(context.TODO(), filter, opts)
+      cursor, err := coll.Find(context.TODO(), filter, opts)
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
-			panic(err)
-		}
-		for _, result := range results {
-			fmt.Println(result)
-		}
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none
@@ -117,20 +117,20 @@ The following example performs the following actions in order with the
       :language: go
 
       sortStage := bson.D{{"$sort", bson.D{{"rating", -1}}}}
-		skipStage := bson.D{{"$skip", 3}}
+      skipStage := bson.D{{"$skip", 3}}
 
-		cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{sortStage, skipStage})
-		if err != nil {
-			panic(err)
-		}
+      cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{sortStage, skipStage})
+      if err != nil {
+         panic(err)
+      }
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
-			panic(err)
-		}
-		for _, result := range results {
-			fmt.Println(result)
-		}
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none

@@ -323,7 +323,7 @@ The following example performs the following actions in order with the
           panic(err)
       }
 
-		  fmt.Println(previousDoc)
+      fmt.Println(previousDoc)
       
    .. output::
       :language: none

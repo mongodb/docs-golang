@@ -78,17 +78,17 @@ The following example specifies an ascending sort on the ``rating`` field:
       :language: go
 
       filter := bson.D{}
-		opts := options.Find().SetSort(bson.D{{"rating", 1}})
+      opts := options.Find().SetSort(bson.D{{"rating", 1}})
 
-		cursor, err := coll.Find(context.TODO(), filter, opts)
+      cursor, err := coll.Find(context.TODO(), filter, opts)
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
-			panic(err)
-		}
-		for _, result := range results {
-			fmt.Println(result)
-		}
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none
@@ -125,17 +125,17 @@ The following example specifies a descending sort on the ``rating`` field:
       :language: go
 
       filter := bson.D{}
-		opts := options.Find().SetSort(bson.D{{"rating", -1}})
+      opts := options.Find().SetSort(bson.D{{"rating", -1}})
 
-		cursor, err := coll.Find(context.TODO(), filter, opts)
+      cursor, err := coll.Find(context.TODO(), filter, opts)
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
-			panic(err)
-		}
-		for _, result := range results {
-			fmt.Println(result)
-		}
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none
@@ -178,17 +178,17 @@ then a descending sort on the ``type`` field:
       :language: go
 
       filter := bson.D{}
-		opts := options.Find().SetSort(bson.D{{"rating", 1}, {"type", -1}})
+      opts := options.Find().SetSort(bson.D{{"rating", 1}, {"type", -1}})
 
-		cursor, err := coll.Find(context.TODO(), filter, opts)
+      cursor, err := coll.Find(context.TODO(), filter, opts)
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
-			panic(err)
-		}
-		for _, result := range results {
-			fmt.Println(result)
-		}
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none
@@ -219,18 +219,18 @@ field, then an ascending sort on the ``type`` field:
 
       sortStage := bson.D{{"$sort", bson.D{{"rating", -1}, {"type", 1}}}}
 
-		cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{sortStage})
-		if err != nil {
-			panic(err)
-		}
+      cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{sortStage})
+      if err != nil {
+         panic(err)
+      }
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
-			panic(err)
-		}
-		for _, result := range results {
-			fmt.Println(result)
-		}
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none

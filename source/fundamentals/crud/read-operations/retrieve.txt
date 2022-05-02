@@ -125,26 +125,26 @@ the ``Find()`` method, which performs the following actions:
       :language: go
 
       filter := bson.D{
-			  {"$and",
-          bson.A{
-            bson.D{{"rating", bson.D{{"$gt", 5}}}},
-            bson.D{{"rating", bson.D{{"$lt", 10}}}},
-          }},
-        }
+         {"$and",
+            bson.A{
+               bson.D{{"rating", bson.D{{"$gt", 5}}}},
+               bson.D{{"rating", bson.D{{"$lt", 10}}}},
+            }},
+      }
       projection := bson.D{{"type", 1}, {"rating", 1}, {"_id", 0}}
       opts := options.Find().SetProjection(projection)
 
       cursor, err := coll.Find(context.TODO(), filter, opts)
       if err != nil {
-        panic(err)
+         panic(err)
       }
 
       var results []bson.D
       if err = cursor.All(context.TODO(), &results); err != nil {
-        panic(err)
+         panic(err)
       }
       for _, result := range results {
-        fmt.Println(result)
+         fmt.Println(result)
       }
 
    .. output::
@@ -177,7 +177,7 @@ to the ``FindOne()`` method, which performs the following actions:
       var result bson.D
       err := coll.FindOne(context.TODO(), filter, opts).Decode(&result)
       if err != nil {
-        panic(err)
+         panic(err)
       }
 
       fmt.Println(result)
@@ -280,24 +280,24 @@ performs the following actions:
       :language: go
 
       groupStage := bson.D{
-			  {"$group", bson.D{
-				  {"_id", "$type"},
-				  {"average", bson.D{
-					  {"$avg", "$rating"},
-				}},
-			}}}
+         {"$group", bson.D{
+            {"_id", "$type"},
+            {"average", bson.D{
+               {"$avg", "$rating"},
+            }},
+      }}}
 
       cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{groupStage})
       if err != nil {
-        panic(err)
+         panic(err)
       }
 
       var results []bson.M
       if err = cursor.All(context.TODO(), &results); err != nil {
-        panic(err)
+         panic(err)
       }
       for _, result := range results {
-        fmt.Printf("%v has an average rating of %v \n", result["_id"], result["average"])
+         fmt.Printf("%v has an average rating of %v \n", result["_id"], result["average"])
       }
 
    .. output::

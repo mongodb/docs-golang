@@ -104,14 +104,14 @@ method:
       :language: go
 
       filter := bson.D{{"rating", bson.D{{"$gt", 8}}}}
-		opts := options.Delete().SetHint(bson.D{{"_id", 1}})
+      opts := options.Delete().SetHint(bson.D{{"_id", 1}})
 
-		result, err := coll.DeleteMany(context.TODO(), filter, opts)
-		if err != nil {
-			panic(err)
-		}
+      result, err := coll.DeleteMany(context.TODO(), filter, opts)
+      if err != nil {
+         panic(err)
+      }
 
-		fmt.Printf("Number of documents deleted: %d\n", result.DeletedCount)
+      fmt.Printf("Number of documents deleted: %d\n", result.DeletedCount)
 
    .. output::
       :language: none

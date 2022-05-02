@@ -83,16 +83,16 @@ The following example performs the following actions:
       :language: go
 
       filter := bson.D{{"type", "Oolong"}}
-		update := bson.D{{"$set", bson.D{{"rating", 8}}}}
-		opts := options.Update().SetUpsert(true)
+      update := bson.D{{"$set", bson.D{{"rating", 8}}}}
+      opts := options.Update().SetUpsert(true)
 
-		result, err := coll.UpdateOne(context.TODO(), filter, update, opts)
-		if err != nil {
-			panic(err)
-		}
+      result, err := coll.UpdateOne(context.TODO(), filter, update, opts)
+      if err != nil {
+         panic(err)
+      }
 
-		fmt.Printf("Number of documents updated: %v\n", result.ModifiedCount)
-		fmt.Printf("Number of documents upserted: %v\n", result.UpsertedCount)
+      fmt.Printf("Number of documents updated: %v\n", result.ModifiedCount)
+      fmt.Printf("Number of documents upserted: %v\n", result.UpsertedCount)
 
    .. output::
       :language: none

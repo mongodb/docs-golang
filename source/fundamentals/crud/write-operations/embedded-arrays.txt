@@ -81,16 +81,16 @@ This example performs the following actions:
       :language: go
 
       filter := bson.D{{"qty", bson.D{{"$gt", 10}}}}
-		update := bson.D{{"$inc", bson.D{{"qty.$", -5}}}}
-		opts := options.FindOneAndUpdate().SetReturnDocument(options.After)
+      update := bson.D{{"$inc", bson.D{{"qty.$", -5}}}}
+      opts := options.FindOneAndUpdate().SetReturnDocument(options.After)
 
-		var updatedDoc bson.D
-		err := coll.FindOneAndUpdate(context.TODO(), filter, update, opts).Decode(&updatedDoc)
-		if err != nil {
-			panic(err)
-		}
+      var updatedDoc bson.D
+      err := coll.FindOneAndUpdate(context.TODO(), filter, update, opts).Decode(&updatedDoc)
+      if err != nil {
+         panic(err)
+      }
 
-		fmt.Println(updatedDoc)
+      fmt.Println(updatedDoc)
 
    .. output::
       :language: none
@@ -133,16 +133,16 @@ This example performs the following actions:
       :language: go
 
       identifier := []interface{}{bson.D{{"smaller", bson.D{{"$lt", 18}}}}}
-		update := bson.D{{"$inc", bson.D{{"qty.$[smaller]", 7}}}}
-		opts := options.FindOneAndUpdate().SetArrayFilters(options.ArrayFilters{Filters: identifier}).SetReturnDocument(options.After)
+      update := bson.D{{"$inc", bson.D{{"qty.$[smaller]", 7}}}}
+      opts := options.FindOneAndUpdate().SetArrayFilters(options.ArrayFilters{Filters: identifier}).SetReturnDocument(options.After)
 
-		var updatedDoc bson.D
-		err := coll.FindOneAndUpdate(context.TODO(), bson.D{}, update, opts).Decode(&updatedDoc)
-		if err != nil {
-			panic(err)
-		}
+      var updatedDoc bson.D
+      err := coll.FindOneAndUpdate(context.TODO(), bson.D{}, update, opts).Decode(&updatedDoc)
+      if err != nil {
+         panic(err)
+      }
 
-		fmt.Println(updatedDoc)
+      fmt.Println(updatedDoc)
 
    .. output::
       :language: none
@@ -174,15 +174,15 @@ This example multiplies every array element in ``qty`` by ``2``:
       :language: go
 
       update := bson.D{{"$mul", bson.D{{"qty.$[]", 2}}}}
-		opts := options.FindOneAndUpdate().SetReturnDocument(options.After)
+      opts := options.FindOneAndUpdate().SetReturnDocument(options.After)
 
-		var updatedDoc bson.D
-		err := coll.FindOneAndUpdate(context.TODO(), bson.D{}, update, opts).Decode(&updatedDoc)
-		if err != nil {
-			panic(err)
-		}
+      var updatedDoc bson.D
+      err := coll.FindOneAndUpdate(context.TODO(), bson.D{}, update, opts).Decode(&updatedDoc)
+      if err != nil {
+         panic(err)
+      }
 
-		fmt.Println(updatedDoc)
+      fmt.Println(updatedDoc)
 
    .. output::
       :language: none

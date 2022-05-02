@@ -93,22 +93,21 @@ The following example matches documents where the ``type`` is "Oolong":
 
    .. input::
       :language: go
-	  :dedent:
 
       filter := bson.D{{"type", "Oolong"}}
 
       cursor, err := coll.Find(context.TODO(), filter)
-	  if err != nil {
-			panic(err)
-	  }
+      if err != nil {
+         panic(err)
+      }
 
-	  var results []bson.D
-	  if err = cursor.All(context.TODO(), &results); err != nil {
-	    	panic(err)
-	  }
-	  for _, result := range results {
-			fmt.Println(result)
-	  }
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none
@@ -152,19 +151,19 @@ than ``7``:
       :language: go
 
       filter := bson.D{{"rating", bson.D{{"$lt", 7}}}}
-
-	  cursor, err := coll.Find(context.TODO(), filter)
-	  if err != nil {
-		panic(err)
-	  }
-
-	  var results []bson.D
-	  if err = cursor.All(context.TODO(), &results); err != nil {
-		panic(err)
-	  }
-	  for _, result := range results {
-		fmt.Println(result)
-	  }
+      
+      cursor, err := coll.Find(context.TODO(), filter)
+      if err != nil {
+         panic(err)
+      }
+      
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none
@@ -197,26 +196,26 @@ than ``7`` and less than or equal to ``10``:
       :language: go
 
       filter := bson.D{
-			{"$and",
-				bson.A{
-					bson.D{{"rating", bson.D{{"$gt", 7}}}},
-					bson.D{{"rating", bson.D{{"$lte", 10}}}},
-				},
-			},
-	   }
+         {"$and",
+            bson.A{
+               bson.D{{"rating", bson.D{{"$gt", 7}}}},
+               bson.D{{"rating", bson.D{{"$lte", 10}}}},
+            },
+         },
+      }
 
-	  cursor, err := coll.Find(context.TODO(), filter)
-	  if err != nil {
-		panic(err)
-	  }
+      cursor, err := coll.Find(context.TODO(), filter)
+      if err != nil {
+         panic(err)
+      }
 
-	  var results []bson.D
-	  if err = cursor.All(context.TODO(), &results); err != nil {
-		panic(err)
-	  }
-	  for _, result := range results {
-		fmt.Println(result)
-	  }
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none
@@ -266,18 +265,18 @@ not exist:
 
       filter := bson.D{{"vendor", bson.D{{"$exists", false}}}}
 
-	  cursor, err := coll.Find(context.TODO(), filter)
-	  if err != nil {
-		panic(err)
-	  }
+      cursor, err := coll.Find(context.TODO(), filter)
+      if err != nil {
+         panic(err)
+      }
 
-	  var results []bson.D
-	  if err = cursor.All(context.TODO(), &results); err != nil {
-		panic(err)
-	  }
-	  for _, result := range results {
-		fmt.Println(result)
-	  }
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none
@@ -311,18 +310,18 @@ the letter "E":
 
       filter := bson.D{{"type", bson.D{{"$regex", "^E"}}}}
 
-	  cursor, err := coll.Find(context.TODO(), filter)
-	  if err != nil {
-		panic(err)
-	  }
+      cursor, err := coll.Find(context.TODO(), filter)
+      if err != nil {
+         panic(err)
+      }
 
-	  var results []bson.D
-	  if err = cursor.All(context.TODO(), &results); err != nil {
-		panic(err)
-	  }
-	  for _, result := range results {
-		fmt.Println(result)
-	  }
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none
@@ -351,18 +350,18 @@ The following example matches documents where the ``vendor`` contains "C":
 
       filter := bson.D{{"vendor", bson.D{{"$all", bson.A{"C"}}}}}
 
-	  cursor, err := coll.Find(context.TODO(), filter)
-	  if err != nil {
-		panic(err)
-	  }
+      cursor, err := coll.Find(context.TODO(), filter)
+      if err != nil {
+         panic(err)
+      }
 
-	  var results []bson.D
-	  if err = cursor.All(context.TODO(), &results); err != nil {
-		panic(err)
-	  }
-	  for _, result := range results {
-		fmt.Println(result)
-	  }
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none
@@ -395,18 +394,18 @@ bits set as ``6`` (which is "00000110"):
 
       filter := bson.D{{"rating", bson.D{{"$bitsAllSet", 6}}}}
 
-	  cursor, err := coll.Find(context.TODO(), filter)
-	  if err != nil {
-		panic(err)
-	  }
+      cursor, err := coll.Find(context.TODO(), filter)
+      if err != nil {
+         panic(err)
+      }
 
-	  var results []bson.D
-	  if err = cursor.All(context.TODO(), &results); err != nil {
-		panic(err)
-	  }
-	  for _, result := range results {
-		fmt.Println(result)
-	  }
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none

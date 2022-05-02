@@ -107,18 +107,18 @@ The following example runs a text search for titles that contain the term "War":
 
       filter := bson.D{{"$text", bson.D{{"$search", "War"}}}}
 
-		cursor, err := coll.Find(context.TODO(), filter)
-		if err != nil {
-			panic(err)
-		}
+      cursor, err := coll.Find(context.TODO(), filter)
+      if err != nil {
+         panic(err)
+      }
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
-			panic(err)
-		}
-		for _, result := range results {
-			fmt.Println(result)
-		}
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none
@@ -152,18 +152,18 @@ phrase "Infinity War":
 
       filter := bson.D{{"$text", bson.D{{"$search", "\"Infinity War\""}}}}
 
-		cursor, err := coll.Find(context.TODO(), filter)
-		if err != nil {
-			panic(err)
-		}
+      cursor, err := coll.Find(context.TODO(), filter)
+      if err != nil {
+         panic(err)
+      }
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
-			panic(err)
-		}
-		for _, result := range results {
-			fmt.Println(result)
-		}
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none
@@ -197,18 +197,18 @@ term "Avenger", but does not contain the phrase "Captain America":
 
       filter := bson.D{{"$text", bson.D{{"$search", "Avenger -\"Captain America\""}}}}
 
-		cursor, err := coll.Find(context.TODO(), filter)
-		if err != nil {
-			panic(err)
-		}
+      cursor, err := coll.Find(context.TODO(), filter)
+      if err != nil {
+         panic(err)
+      }
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
-			panic(err)
-		}
-		for _, result := range results {
-			fmt.Println(result)
-		}
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none
@@ -241,22 +241,22 @@ The following example performs the following actions:
       :language: go
 
       filter := bson.D{{"$text", bson.D{{"$search", "Avenger"}}}}
-		sort := bson.D{{"score", bson.D{{"$meta", "textScore"}}}}
-		projection := bson.D{{"title", 1}, {"score", bson.D{{"$meta", "textScore"}}}, {"_id", 0}}
-		opts := options.Find().SetSort(sort).SetProjection(projection)
+      sort := bson.D{{"score", bson.D{{"$meta", "textScore"}}}}
+      projection := bson.D{{"title", 1}, {"score", bson.D{{"$meta", "textScore"}}}, {"_id", 0}}
+      opts := options.Find().SetSort(sort).SetProjection(projection)
 
-		cursor, err := coll.Find(context.TODO(), filter, opts)
-		if err != nil {
-			panic(err)
-		}
+      cursor, err := coll.Find(context.TODO(), filter, opts)
+      if err != nil {
+         panic(err)
+      }
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
-			panic(err)
-		}
-		for _, result := range results {
-			fmt.Println(result)
-		}
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none
@@ -293,18 +293,18 @@ The following example runs a text search for titles that contain the term "Winte
 
       matchStage := bson.D{{"$match", bson.D{{"$text", bson.D{{"$search", "Winter"}}}}}}
 
-		cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{matchStage})
-		if err != nil {
-			panic(err)
-		}
+      cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{matchStage})
+      if err != nil {
+         panic(err)
+      }
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
-			panic(err)
-		}
-		for _, result := range results {
-			fmt.Println(result)
-		}
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none
@@ -327,21 +327,21 @@ The following example performs the following actions:
       :language: go
 
       matchStage := bson.D{{"$match", bson.D{{"$text", bson.D{{"$search", "Avenger"}}}}}}
-		sortStage := bson.D{{"$sort", bson.D{{"score", bson.D{{ "$meta", "textScore" }}}}}}
-		projectStage := bson.D{{"$project", bson.D{{"title", 1}, {"score", bson.D{{ "$meta", "textScore" }}}, {"_id", 0}}}}
+      sortStage := bson.D{{"$sort", bson.D{{"score", bson.D{{ "$meta", "textScore" }}}}}}
+      projectStage := bson.D{{"$project", bson.D{{"title", 1}, {"score", bson.D{{ "$meta", "textScore" }}}, {"_id", 0}}}}
 
-		cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{matchStage, sortStage, projectStage})
-		if err != nil {
-			panic(err)
-		}
+      cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{matchStage, sortStage, projectStage})
+      if err != nil {
+         panic(err)
+      }
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
-			panic(err)
-		}
-		for _, result := range results {
-			fmt.Println(result)
-		}
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none

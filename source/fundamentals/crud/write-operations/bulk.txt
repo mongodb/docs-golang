@@ -317,19 +317,19 @@ The following example performs the following actions in any order:
       :language: go
 
       models := []mongo.WriteModel{
-        mongo.NewInsertOneModel().SetDocument(bson.D{{"type", "Oolong"}, {"rating", 9}}),
-        mongo.NewInsertOneModel().SetDocument(bson.D{{"type", "Assam"}, {"rating", 6}}),
-        mongo.NewReplaceOneModel().SetFilter(bson.D{{"type", "Earl Grey"}}).
-          SetReplacement(bson.D{{"type", "Matcha"}, {"rating", 4}}),
-        mongo.NewUpdateManyModel().SetFilter(bson.D{{"rating", bson.D{{"$lt", 7}}}}).
-          SetUpdate(bson.D{{"$inc", bson.D{{"rating", 3}}}}),
-        mongo.NewDeleteManyModel().SetFilter(bson.D{{"rating", 9}}),
+         mongo.NewInsertOneModel().SetDocument(bson.D{{"type", "Oolong"}, {"rating", 9}}),
+         mongo.NewInsertOneModel().SetDocument(bson.D{{"type", "Assam"}, {"rating", 6}}),
+         mongo.NewReplaceOneModel().SetFilter(bson.D{{"type", "Earl Grey"}}).
+            SetReplacement(bson.D{{"type", "Matcha"}, {"rating", 4}}),
+         mongo.NewUpdateManyModel().SetFilter(bson.D{{"rating", bson.D{{"$lt", 7}}}}).
+            SetUpdate(bson.D{{"$inc", bson.D{{"rating", 3}}}}),
+         mongo.NewDeleteManyModel().SetFilter(bson.D{{"rating", 9}}),
       }
       opts := options.BulkWrite().SetOrdered(false)
 
       results, err := coll.BulkWrite(context.TODO(), models, opts)
       if err != nil {
-        panic(err)
+         panic(err)
       }
       
       fmt.Printf("Number of documents inserted: %d\n", results.InsertedCount)
