@@ -274,8 +274,8 @@ user-defined struct by using methods from the ``bson`` package:
       :language: go
 
       type Item struct {
-      Category string
-      Quantity int32
+         Category string
+         Quantity int32
       }
       ...
 

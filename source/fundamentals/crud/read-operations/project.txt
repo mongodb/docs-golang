@@ -75,18 +75,18 @@ from the ``Find()`` method:
 
       opts := options.Find().SetProjection(bson.D{{"rating", 0}})
 
-		cursor, err := coll.Find(context.TODO(), bson.D{}, opts)
-		if err != nil {
+	   cursor, err := coll.Find(context.TODO(), bson.D{}, opts)
+	   if err != nil {
 			panic(err)
-		}
+	   }
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
+	   var results []bson.D
+	   if err = cursor.All(context.TODO(), &results); err != nil {
 			panic(err)
-		}
-		for _, result := range results {
+	   }
+	   for _, result := range results {
 			fmt.Println(result)
-		}
+	   }
 
    .. output::
       :language: none
@@ -131,18 +131,18 @@ documents from the ``Find()`` method:
 
       opts := options.Find().SetProjection(bson.D{{"type", 1}, {"rating", 1}, {"_id", 0}})
 
-		cursor, err := coll.Find(context.TODO(), bson.D{}, opts)
-		if err != nil {
+	   cursor, err := coll.Find(context.TODO(), bson.D{}, opts)
+	   if err != nil {
 			panic(err)
-		}
+	   }
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
+	   var results []bson.D
+	   if err = cursor.All(context.TODO(), &results); err != nil {
 			panic(err)
-		}
-		for _, result := range results {
+	   }
+	   for _, result := range results {
 			fmt.Println(result)
-		}
+	   }
 
    .. output::
       :language: none
@@ -176,18 +176,18 @@ documents from the ``Aggregate()`` method:
 
       projectStage := bson.D{{"$project", bson.D{{"type", 1}, {"rating", 1}, {"_id", 0}}}}
 
-		cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{projectStage})
-		if err != nil {
+	   cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{projectStage})
+	   if err != nil {
 			panic(err)
-		}
+	   }
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
+	   var results []bson.D
+	   if err = cursor.All(context.TODO(), &results); err != nil {
 			panic(err)
-		}
-		for _, result := range results {
+	   }
+	   for _, result := range results {
 			fmt.Println(result)
-		}
+	   }
 
    .. output::
       :language: none

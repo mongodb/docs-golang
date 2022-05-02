@@ -65,17 +65,17 @@ The following example shows how to return two documents:
       :language: go
 
       filter := bson.D{}
-		opts := options.Find().SetLimit(2)
+	   opts := options.Find().SetLimit(2)
 
-		cursor, err := coll.Find(context.TODO(), filter, opts)
+	   cursor, err := coll.Find(context.TODO(), filter, opts)
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
+	   var results []bson.D
+	   if err = cursor.All(context.TODO(), &results); err != nil {
 			panic(err)
-		}
-		for _, result := range results {
+	   }
+	   for _, result := range results {
 			fmt.Println(result)
-		}
+	   }
 
    .. output::
       :language: none
@@ -107,17 +107,17 @@ The following example performs the following actions in order using the
       :language: go
 
       filter := bson.D{}
-		opts := options.Find().SetSort(bson.D{{"rating", -1}}).SetLimit(2).SetSkip(1)
+	   opts := options.Find().SetSort(bson.D{{"rating", -1}}).SetLimit(2).SetSkip(1)
 
-		cursor, err := coll.Find(context.TODO(), filter, opts)
+	   cursor, err := coll.Find(context.TODO(), filter, opts)
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
+	   var results []bson.D
+	   if err = cursor.All(context.TODO(), &results); err != nil {
 			panic(err)
-		}
-		for _, result := range results {
+	   }
+	   for _, result := range results {
 			fmt.Println(result)
-		}
+	   }
 
    .. output::
       :language: none
@@ -157,18 +157,18 @@ The following example shows how to return three documents:
 
       limitStage := bson.D{{"$limit", 3}}
 
-		cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{limitStage})
-		if err != nil {
+	   cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{limitStage})
+	   if err != nil {
 			panic(err)
-		}
+	   }
 
-		var results []bson.D
-		if err = cursor.All(context.TODO(), &results); err != nil {
+	   var results []bson.D
+	   if err = cursor.All(context.TODO(), &results); err != nil {
 			panic(err)
-		}
-		for _, result := range results {
+	   }
+	   for _, result := range results {
 			fmt.Println(result)
-		}
+	   }
 
    .. output::
       :language: none

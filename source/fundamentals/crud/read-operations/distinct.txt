@@ -91,11 +91,11 @@ of the ``type`` field using the ``Distinct()`` method:
 
       results, err := coll.Distinct(context.TODO(), "type", bson.D{})
       if err != nil {
-         panic(err)
+            panic(err)
       }
 
       for _, result := range results {
-         fmt.Println(result)
+            fmt.Println(result)
       }
 
    .. output::

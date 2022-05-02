@@ -96,17 +96,17 @@ The following example matches documents where the ``type`` is "Oolong":
 
       filter := bson.D{{"type", "Oolong"}}
 
-	  cursor, err := coll.Find(context.TODO(), filter)
+      cursor, err := coll.Find(context.TODO(), filter)
 	  if err != nil {
-		panic(err)
+			panic(err)
 	  }
 
 	  var results []bson.D
 	  if err = cursor.All(context.TODO(), &results); err != nil {
-		panic(err)
+	    	panic(err)
 	  }
 	  for _, result := range results {
-		fmt.Println(result)
+			fmt.Println(result)
 	  }
 
    .. output::

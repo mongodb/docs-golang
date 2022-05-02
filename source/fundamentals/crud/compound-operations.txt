@@ -118,7 +118,7 @@ is "Assam" with the ``FindOneAndDelete()`` method:
       var deletedDoc bson.D
       err := coll.FindOneAndDelete(context.TODO(), filter).Decode(&deletedDoc)
       if err != nil {
-        panic(err)
+          panic(err)
       }
 
 		  fmt.Println(deletedDoc)
@@ -222,7 +222,7 @@ The following example performs the following actions in order with the
       var updatedDoc bson.D
       err := coll.FindOneAndUpdate(context.TODO(), filter, update, opts).Decode(&updatedDoc)
       if err != nil {
-        panic(err)
+          panic(err)
       }
 
       fmt.Println(updatedDoc)
@@ -320,7 +320,7 @@ The following example performs the following actions in order with the
       var previousDoc bson.D
       err := coll.FindOneAndReplace(context.TODO(), filter, replacement).Decode(&previousDoc)
       if err != nil {
-        panic(err)
+          panic(err)
       }
 
 		  fmt.Println(previousDoc)
