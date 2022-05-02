@@ -71,10 +71,10 @@ The following example shows how to return two documents:
 
       var results []bson.D
       if err = cursor.All(context.TODO(), &results); err != nil {
-		   panic(err)
+         panic(err)
       }
       for _, result := range results {
-		   fmt.Println(result)
+         fmt.Println(result)
       }
 
    .. output::
@@ -113,10 +113,10 @@ The following example performs the following actions in order using the
 
       var results []bson.D
       if err = cursor.All(context.TODO(), &results); err != nil {
-		   panic(err)
+         panic(err)
       }
       for _, result := range results {
-		   fmt.Println(result)
+         fmt.Println(result)
       }
 
    .. output::
@@ -159,15 +159,15 @@ The following example shows how to return three documents:
 
       cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{limitStage})
       if err != nil {
-		   panic(err)
+         panic(err)
       }
 
       var results []bson.D
       if err = cursor.All(context.TODO(), &results); err != nil {
-		   panic(err)
+         panic(err)
       }
       for _, result := range results {
-		   fmt.Println(result)
+         fmt.Println(result)
       }
 
    .. output::

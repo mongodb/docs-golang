@@ -102,7 +102,7 @@ The following example counts the number of documents where the
 
       count, err := coll.CountDocuments(context.TODO(), filter)
       if err != nil {
-          panic(err)
+         panic(err)
       }
       fmt.Printf("Number of ratings less than six: %d\n", count)
 
@@ -201,7 +201,7 @@ The following example estimates the number of documents in the
 
       count, err := coll.EstimatedDocumentCount(context.TODO())
       if err != nil {
-			    panic(err)
+         panic(err)
       }
       fmt.Printf("Estimated number of documents in the ratings collection: %d\n", count)
 
