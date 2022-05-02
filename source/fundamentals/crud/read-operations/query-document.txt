@@ -93,6 +93,7 @@ The following example matches documents where the ``type`` is "Oolong":
 
    .. input::
       :language: go
+	  :dedent:
 
       filter := bson.D{{"type", "Oolong"}}
 
