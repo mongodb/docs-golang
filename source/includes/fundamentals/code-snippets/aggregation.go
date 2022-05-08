@@ -71,7 +71,7 @@ func main() {
 			panic(err)
 		}
 		for _, result := range results {
-			fmt.Printf("%v tea has an average price of $%v \n", result["_id"], result["average_price"])
+			fmt.Printf("Average price of %v tea: $%v \n", result["_id"], result["average_price"])
 			fmt.Printf("Amount of %v tea: %v \n\n", result["_id"], result["type_total"])
 		}
 	}

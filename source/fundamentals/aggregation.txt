@@ -124,7 +124,7 @@ the ``$sum`` expression operator.
               {"type_total", bson.D{
                   {"$sum", 1},
               }},
-			}}}
+      }}}
 
       // pass the stage into a pipeline
       // pass the pipeline as the second paramter in the Aggregate() method
@@ -146,10 +146,10 @@ the ``$sum`` expression operator.
    .. output::
       :language: go
 
-      black tea has an average price of $6.075 
+      Average price of black tea: $6.075 
       Amount of black tea: 4 
 
-      green tea has an average price of $5.7 
+      Average price of green tea: $5.7 
       Amount of green tea: 4 
 
 Omit Fields in Results
@@ -175,8 +175,8 @@ The aggregation pipleline contains the following stages:
       matchStage := bson.D{{"$match", bson.D{{"toppings", "milk foam"}}}}
       unsetStage := bson.D{{"$unset", bson.A{"_id", "category"}}}
       sortStage := bson.D{{"$sort", bson.D{
-			    {"price", 1},
-			    {"toppings", 1}},
+          {"price", 1},
+          {"toppings", 1}},
       }}
       limitStage := bson.D{{"$limit", 2}}
 
@@ -188,7 +188,7 @@ The aggregation pipleline contains the following stages:
       }
 
       // display the results
-      		var results []bson.M
+      var results []bson.M
       if err = cursor.All(context.TODO(), &results); err != nil {
           panic(err)
       }
