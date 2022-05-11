@@ -12,13 +12,14 @@ method.
 Example
 -------
 
-.. include:: /includes/usage-examples/run-example-tip.rst
-
 The following example performs the following on the ``haikus``
 collection:
 
 - Matches a document in which the ``title`` is "Record of a Shriveled Datum"
 - Replaces the matched document with a new document
+
+
+.. include:: /includes/usage-examples/replace-example-note.rst
 
 .. literalinclude:: /includes/usage-examples/code-snippets/replace.go
    :start-after: begin replace

@@ -1,3 +1,3 @@
 .. tip::
 
-   You must follow the :ref:`golang-usage-examples` instructions before running this example.
+   Read the :ref:`golang-usage-examples` to learn how to run this example.
