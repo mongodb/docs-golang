@@ -12,12 +12,12 @@ You can delete multiple documents in a collection by using the
 Example
 -------
 
-.. include:: /includes/usage-examples/run-example-tip.rst
-
 The following example matches documents in the ``movies`` collection
 in which the ``runtime`` is greater than 800 minutes, deleting all
 documents matched:
 
+.. include:: /includes/usage-examples/run-example-tip.rst
+   
 .. literalinclude:: /includes/usage-examples/code-snippets/deleteMany.go
    :start-after: begin deleteMany
    :end-before: end deleteMany

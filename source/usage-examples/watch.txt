@@ -12,11 +12,11 @@ You can open a change stream on a ``MongoCollection``,
 Example
 -------
 
-.. include:: /includes/usage-examples/run-example-tip.rst
-
 The following example opens a change stream on the ``haikus`` collection
 and prints inserted documents:
 
+.. include:: /includes/usage-examples/run-example-tip.rst
+   
 .. literalinclude:: /includes/usage-examples/code-snippets/watch.go
    :start-after: begin watch
    :end-before: end watch

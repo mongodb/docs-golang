@@ -19,7 +19,7 @@ collection:
 - Replaces the matched document with a new document
 
 
-.. include:: /includes/usage-examples/replace-example-note.rst
+.. include:: /includes/usage-examples/replace-example-tip.rst
 
 .. literalinclude:: /includes/usage-examples/code-snippets/replace.go
    :start-after: begin replace

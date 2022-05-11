@@ -14,14 +14,14 @@ method.
 Example
 -------
 
-.. include:: /includes/usage-examples/run-example-tip.rst
-
 The following example performs the following on the ``movies``
 collection:
 
 - Approximates the number of documents in the collection
 - Counts the number of documents in which the ``countries`` contains "China"
 
+.. include:: /includes/usage-examples/run-example-tip.rst
+    
 .. literalinclude:: /includes/usage-examples/code-snippets/count.go
    :start-after: begin countDocuments
    :end-before: end countDocuments

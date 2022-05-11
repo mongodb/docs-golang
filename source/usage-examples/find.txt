@@ -12,11 +12,11 @@ method.
 Example
 -------
 
-.. include:: /includes/usage-examples/run-example-tip.rst
-
 The following example matches documents in the ``zips`` collection
 in which the ``pop`` is less than or equal to 500 people,
 returning all documents matched:
+
+.. include:: /includes/usage-examples/run-example-tip.rst
 
 .. literalinclude:: /includes/usage-examples/code-snippets/find.go
    :start-after: begin find

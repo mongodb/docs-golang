@@ -12,14 +12,14 @@ collection by using the ``Distinct()`` method.
 Example
 -------
 
-.. include:: /includes/usage-examples/run-example-tip.rst
-
 The following example performs the following on the ``movies``
 collection:
 
 - Matches documents in which the ``directors`` contains "Natalie Portman"
 - Returns distinct values of the ``title`` from the matched documents
 
+.. include:: /includes/usage-examples/run-example-tip.rst
+   
 .. literalinclude:: /includes/usage-examples/code-snippets/distinct.go
    :start-after: begin distinct
    :end-before: end distinct

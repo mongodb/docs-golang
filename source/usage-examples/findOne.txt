@@ -17,6 +17,8 @@ The following example matches documents in the ``movies`` collection
 in which the ``title`` is "The Room", returning the first document
 matched:
 
+.. include:: /includes/usage-examples/run-example-tip.rst
+
 .. literalinclude:: /includes/usage-examples/code-snippets/findOne.go
    :start-after: begin findOne
    :end-before: end findOne
@@ -25,8 +27,6 @@ matched:
    :emphasize-lines: 4
 
 View a `fully runnable example <{+example+}/findOne.go>`__
-
-.. include:: /includes/usage-examples/run-example-tip.rst
 
 Expected Result
 ---------------

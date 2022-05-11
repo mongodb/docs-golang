@@ -12,12 +12,12 @@ method.
 Example
 -------
 
-.. include:: /includes/usage-examples/run-example-tip.rst
-
 The following example inserts two documents in the ``haikus`` collection:
 
 .. include:: /includes/fundamentals/automatic-db-coll-creation.rst
 
+.. include:: /includes/usage-examples/run-example-tip.rst
+  
 .. literalinclude:: /includes/usage-examples/code-snippets/insertMany.go
    :start-after: begin insertMany
    :end-before: end insertMany
