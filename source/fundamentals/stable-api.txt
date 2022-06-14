@@ -1,0 +1,144 @@
+.. _golang-stable-api:
+
+==============
+{+stable-api+}
+==============
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to specify the {+stable-api+} when
+connecting to a MongoDB instance or replica set. 
+
+.. note::
+
+   The {+stable-api+} feature requires MongoDB Server 5.0 or later.
+
+   You should only use the {+stable-api+} feature if all the MongoDB
+   servers you are connecting to support this feature.
+
+{+stable-api+}
+--------------
+
+The {+stable-api+} feature forces the server to run operations with
+behaviors compatible with the **API version** you specify. An API
+version defines the expected behavior of the operations it covers and
+the format of server responses. The operations and the server responses
+may differ depending on the API version you specify.
+
+With an official MongoDB driver, you can update your driver or server
+without worrying about backward compatibility issues of the commands
+covered by the {+stable-api+}.
+
+To learn more about the list of commands the server covers, see
+:manual:`{+stable-api+} </reference/stable-api/>`. 
+
+Specify an API Version
+----------------------
+
+The ``Client`` optionally takes a ``ServerAPIOptions`` type through
+the ``ClientOptions``.  
+
+To specify an API version, append the ``SetServerAPIOptions()`` method
+with your :ref:`ServerAPIOptions <golang-stable-api-options>` to your
+``ClientOptions``.
+
+.. note:: 
+   
+   The {+driver-long+} currently supports ``ServerAPIVersion1``.
+
+Example
+~~~~~~~
+
+The following example instantiates a ``Client`` that sets the
+{+stable-api+} version and connects to a server.
+
+.. code-block:: go
+   :copyable: true
+
+   // Specify a server URI to connect to
+   uri:= "mongodb://<hostname>:<port>"
+
+   // Specify the Stable API version in the ClientOptions object
+   serverAPI := options.ServerAPI(options.ServerAPIVersion1)
+   
+   // Pass in the URI and the ClientOptions to the Client
+   client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri).SetServerAPIOptions(serverAPI))
+   if err != nil {
+       panic(err)
+   }
+
+.. _golang-stable-api-options:
+
+Modify Behavior
+---------------
+
+You can modify the behavior of the ``ServerAPI()`` method by appending
+to the ``ServerAPIOptions`` type. If you don't specify any options, the
+driver uses the default values for each option.
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+   :widths: 30 70
+
+   * - Method
+     - Description
+
+   * - ``ServerAPI()``
+     - | The API version to use.
+       |
+       | Default: **ServerAPIVersion1**
+
+   * - ``SetStrict()``
+     - | Whether the server should return errors for features that are not part of the API version.
+       |
+       | Default: **false**
+
+   * - ``SetDeprecationErrors()``
+     - | Whether the server should return errors for deprecated features.
+       |
+       | Default: **false**
+
+Example
+~~~~~~~
+
+The following example sets the all of the available options of the
+``ServerAPI`` to ``true``.
+
+.. code-block:: go
+   :copyable: true
+    
+   // Specify a server URI to connect to
+   uri:= "mongodb://<hostname>:<port>"
+
+   // Specify the Stable API version and append options in the ClientOptions object
+   serverAPI := options.ServerAPI(options.ServerAPIVersion1).SetStrict(true).SetDeprecationErrors(true)
+   
+   // Pass in the URI and the ClientOptions to the Client
+   client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri).SetServerAPIOptions(serverAPI))
+   if err != nil {
+       panic(err)
+   }
+
+Additional Information
+----------------------
+
+For more information on the options in this section, see the following
+API Documentation:
+
+- `Client <{+api+}/mongo/options#Client>`__
+- `ClientOptions <{+api+}/mongo/options#ClientOptions>`__
+- `ServerAPI() <{+api+}/mongo/options#ServerAPI>`__
+- `ServerAPIOptions() <mongo/options#ServerAPIOptions>`__
+- `ServerApiVersion <{+api+}/mongo/options#ServerAPIVersion>`__
+- `SetDeprecationErrors() <{+api+}/mongo/options#ServerAPIOptions.SetDeprecationErrors>`__
+- `SetStrict() <{+api+}/mongo/options#ServerAPIOptions.SetStrict>`__
