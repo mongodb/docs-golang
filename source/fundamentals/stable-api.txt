@@ -52,7 +52,7 @@ your connection.
 
 .. note:: 
    
-   The {+driver-long+} only supports ``ServerAPIVersion1``.
+   The {+driver-long+} currently only supports ``ServerAPIVersion1``.
 
 Example
 ~~~~~~~
@@ -80,9 +80,9 @@ The following example instantiates a ``Client`` that sets the
 Modify Behavior
 ---------------
 
-You can modify the behavior of the ``ServerAPI()`` method by appending
-to the ``ServerAPIOptions`` type. If you don't specify any options, the
-driver uses the default values for each option.
+You can further modify the behavior of the stable API feature by
+appending to the ``ServerAPIOptions`` type. If you don't specify any
+options, the driver uses the default values for each option.
 
 .. list-table::
    :header-rows: 1
@@ -98,12 +98,12 @@ driver uses the default values for each option.
        | Default: **ServerAPIVersion1**
 
    * - ``SetStrict()``
-     - | Flag that indicates whether  the server should return errors for features that aren't part of the API version.
+     - | Flag that indicates whether the server should return errors for features that aren't part of the API version.
        |
        | Default: **false**
 
    * - ``SetDeprecationErrors()``
-     - | Flag that indicates whether  the server should return errors for deprecated features.
+     - | Flag that indicates whether the server should return errors for deprecated features.
        |
        | Default: **false**
 
@@ -146,7 +146,7 @@ API Documentation:
 - `Client <{+api+}/mongo/options#Client>`__
 - `ClientOptions <{+api+}/mongo/options#ClientOptions>`__
 - `ServerAPI() <{+api+}/mongo/options#ServerAPI>`__
-- `ServerAPIOptions() <{+api+}/mongo/options#ServerAPIOptions>`__
+- `ServerAPIOptions <{+api+}/mongo/options#ServerAPIOptions>`__
 - `ServerApiVersion <{+api+}/mongo/options#ServerAPIVersion>`__
 - `SetDeprecationErrors() <{+api+}/mongo/options#ServerAPIOptions.SetDeprecationErrors>`__
 - `SetStrict() <{+api+}/mongo/options#ServerAPIOptions.SetStrict>`__
