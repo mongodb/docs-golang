@@ -64,7 +64,7 @@ The following example instantiates a ``Client`` that sets the
    :copyable: true
 
    // Specify a server URI to connect to
-   uri:= "mongodb://<hostname>:<port>"
+   uri := "mongodb://<hostname>:<port>"
 
    // Specify the Stable API version in the ClientOptions object
    serverAPI := options.ServerAPI(options.ServerAPIVersion1)
@@ -120,7 +120,7 @@ This example specifies for the server to perform the following actions:
    :copyable: true
     
    // Specify a server URI to connect to
-   uri:= "mongodb://<hostname>:<port>"
+   uri := "mongodb://<hostname>:<port>"
 
    // Specify the Stable API version and append options in the ClientOptions object
    serverAPI := options.ServerAPI(options.ServerAPIVersion1).SetStrict(true).SetDeprecationErrors(true)
