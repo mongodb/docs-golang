@@ -461,8 +461,8 @@ guides:
 - :manual:`Geospatial Queries </geospatial-queries/>`
 - :manual:`GeoJSON Objects </reference/geojson>`
 - :manual:`Unique Indexes </core/index-unique>`
-- :ref:`Clustered Indexes <db.createCollection.clusteredIndex>`
-- :ref:`Clustered Collections <clustered-collections>`
+- :v5.3:`Clustered Indexes </reference/method/db.createCollection/#std-label-db.createCollection.clusteredIndex>`
+- :v5.3:`Clustered Collections </core/clustered-collections/#std-label-clustered-collections>`
 
 To learn more about the operations mentioned, see the following
 guides:
