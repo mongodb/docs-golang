@@ -39,30 +39,30 @@ A query in MongoDB can contain the following elements:
 .. list-table::
    :header-rows: 1
    :stub-columns: 1
-   :widths: 20 60 20
+   :widths: 20 20 60
 
    * - Element
-     - Purpose
      - Necessity
+     - Purpose
 
-   * - Query 
-     - Specify the fields and values you're looking for.
+   * - Query
      - **Required**
+     - Specify the fields and values you're looking for.
 
    * - Options
-     - Specify how the query executes. 
      - **Optional**
+     - Specify how the query executes.
 
-   * - Projection 
-     - Specify the fields that MongoDB should return.
+   * - Projection
      - **Optional**
+     - Specify the fields that MongoDB should return.
 
    * - Sort
-     - Specify the order MongoDB returns documents.
      - **Optional**
+     - Specify the order MongoDB returns documents.
 
-When you specify elements in the same index, MongoDB returns results
-directly from the index, also called a **covered query**.
+When you specify these elements in the same index, MongoDB returns
+results directly from the index, also called a **covered query**.
 
 .. important:: Sort Criteria
 
@@ -84,7 +84,7 @@ directly from the index, also called a **covered query**.
    descending would require an in-memory sort.
 
    To learn how to ensure your index covers your query criteria and
-   projection, see :manual:`query coverage
+   projection, see :manual:`Query Coverage
    </core/query-optimization/#covered-query>`.
 
 Operational Considerations
@@ -120,10 +120,12 @@ types. For a full list of index types, see :manual:`Indexes </indexes/>`.
 Single Field Indexes
 ~~~~~~~~~~~~~~~~~~~~
 
-Single field indexes contain a reference to a single field within a
-collection's documents. They improve single field query and sort
-performance, and support TLL indexes that automatically remove
-documents from a collection after a certain amount of time.
+Single field indexes holds a reference to a field within a
+collection's documents. 
+
+This index improves single field queries and sort performance, and 
+supports TLL indexes that automatically remove documents from a
+collection after a certain amount of time.
 
 .. note::
 
@@ -140,11 +142,17 @@ The following example creates an index in ascending order on the
 .. io-code-block::
    :copyable: true
 
-   .. input::   
-      :start-after: begin single field index
-      :end-before: end single field index
+   .. input::
       :language: go
       :dedent:
+
+      indexModel := mongo.IndexModel{Keys: bson.D{{"title", 1}}}
+      name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
+      if err != nil {
+          panic(err)
+      }
+
+      fmt.Println("Name of Index Created: " + name)
 
    .. output::
       :language: none
@@ -157,8 +165,8 @@ The following example creates an index in ascending order on the
 Compound Indexes
 ~~~~~~~~~~~~~~~~
 
-Compound indexes hold references to multiple fields within a
-collection's documents. They improve query and sort performance.
+Compound indexes hold a reference to multiple fields within a
+collection's documents. This index improves query and sort performance.
 
 Example
 ```````
@@ -169,11 +177,17 @@ The following example creates a compound index on the ``fullplot`` and
 .. io-code-block::
    :copyable: true
 
-   .. input::   
-      :start-after: begin compound index
-      :end-before: end compound index
+   .. input::
       :language: go
       :dedent:
+
+      indexModel := mongo.IndexModel{Keys: bson.D{{"fullplot", -1}, {"title", 1}}}
+      name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
+      if err != nil {
+          panic(err)
+      }
+
+      fmt.Println("Name of Index Created: " + name)
 
    .. output::
       :language: none
@@ -184,25 +198,31 @@ The following example creates a compound index on the ``fullplot`` and
 Multikey Indexes (Indexes on Array Fields)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Multikey indexes improve the performance of queries that specify an
-array field as an index. A multikey index uses the same syntax as a
-:ref:`single field <go-single-field-index>` or :ref:`compound index
-<go-compound-index>`.
+Multikey indexes use the same syntax as a
+:ref:`single field index <go-single-field-index>` and a :ref:`compound index
+<go-compound-index>`. This index improve sthe performance of queries
+that specify an array field as an index.
 
 Example
 ```````
 
 The following example creates a compound, multikey index on the ``cast``
-field:
+field in the ``sample_mflix.movies`` collection:
 
 .. io-code-block::
    :copyable: true
 
-   .. input::   
-      :start-after: begin milti key index
-      :end-before: end milti key index
+   .. input::
       :language: go
       :dedent:
+
+      indexModel := mongo.IndexModel{Keys: bson.D{{"cast", -1}}}
+      name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
+      if err != nil {
+          panic(err)
+      }
+
+      fmt.Println("Name of Index Created: " + name)
 
    .. output::
       :language: none
@@ -229,27 +249,30 @@ the ``vendors`` collection:
 .. io-code-block::
    :copyable: true
 
-   .. input::   
-      :start-after: begin create ci coll
-      :end-before: end create ci coll
+   .. input::
       :language: go
       :dedent:
+
+      db := client.Database("tea")
+      cio := bson.D{{"key", bson.D{{"_id", 1}}}, {"unique", true}}
+      opts := options.CreateCollection().SetClusteredIndex(cio)
+
+      db.CreateCollection(context.TODO(), "vendors", opts)
 
 .. _golang-text-indexes:
 
 Text Indexes
 ~~~~~~~~~~~~
 
-Text indexes support text search queries on string content. They include
-string fields or an array of strings. A collection can only contain one
-text index. 
+Text indexes support text search queries on string content. This index
+included string fields or an array of strings. MongoDB supports text
+search for several languages. You can specify the default language as an
+option when creating the index.
 
-If you want to create a text index for multiple text fields, you need to
-create a :ref:`compound index <go-compound-index>`. The text search runs
-on all the text fields within the compound index.
-
-MongoDB supports text search for several languages. You can specify the
-default language as an option when creating the index.
+A collection can only contain one text index. If you want to create a
+text index for multiple text fields, you need to create a :ref:`compound
+index <go-compound-index>`. The text search runs on all the text fields
+within the compound index.
 
 .. tip::
 
@@ -261,16 +284,23 @@ Example
 ```````
 
 The following example creates a text index on the ``plot`` field with
-``italian`` as the default language:
+``italian`` as the default language in the ``sample_mflix.movies``
+collection:
 
 .. io-code-block::
    :copyable: true
 
-   .. input::   
-      :start-after: begin text index
-      :end-before: end text index
+   .. input::
       :language: go
       :dedent:
+
+      indexModel := mongo.IndexModel{Keys: bson.D{{"title", 1}}}
+      name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
+      if err != nil {
+          panic(err)
+      }
+
+      fmt.Println("Name of Index Created: " + name)
 
    .. output::
       :language: none
@@ -287,10 +317,10 @@ MongoDB supports queries containing geospatial coordinate data by using
 **2dsphere indexes**. A ``2dsphere`` index must be in a GeoJSON objects
 field. 
 
-They allow you to perfrom the following:
+This index allows you to perfrom the following:
 
 - Query geospatial data for inclusion, intersection, and proximity
-- Calculate distances on a Euclidean plane and for working with the
+- Calculation of distances on a Euclidean plane and for working with the
   "legacy coordinate pairs" syntax used in MongoDB 2.2 and earlier.
 
 Example
@@ -333,11 +363,17 @@ The following example creates a ``2dsphere`` index on the ``location.geo`` field
 .. io-code-block::
    :copyable: true
 
-   .. input::   
-      :start-after: begin geo index
-      :end-before: end geo index
+   .. input::
       :language: go
       :dedent:
+
+      indexModel := mongo.IndexModel{Keys: bson.D{{"location.geo", "2dsphere"}}}
+      name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
+      if err != nil {
+          panic(err)
+      }
+
+      fmt.Println("Name of Index Created: " + name)
 
    .. output::
       :language: none
@@ -363,11 +399,17 @@ The following example creates a unique, descending index on the ``theaterId`` fi
 .. io-code-block::
    :copyable: true
 
-   .. input::   
-      :start-after: begin unique index
-      :end-before: end unique index
+   .. input::
       :language: go
       :dedent:
+
+      indexModel := mongo.IndexModel{Keys: bson.D{{"theaterId", -1}}, Options: options.Index().SetUnique(true)}
+      name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
+      if err != nil {
+          panic(err)
+      }
+
+      fmt.Println("Name of Index Created: " + name)
 
    .. output::
       :language: none
@@ -390,11 +432,15 @@ in the ``sample_mflix.movies`` collection:
 .. io-code-block::
    :copyable: true
 
-   .. input::   
-      :start-after: begin remove index
-      :end-before: end remove index
+   .. input::
       :language: go
       :dedent:
+
+      res, err := coll.Indexes().DropOne(context.TODO(), "title_1")
+      if err != nil {
+          panic(err)
+      }
+      fmt.Println(res)
 
    .. output::
       :language: none
@@ -405,15 +451,38 @@ in the ``sample_mflix.movies`` collection:
 Additional Information
 ----------------------
 
-- :manual:`single field indexes </core/index-single>`
+To learn more about the indexes mentioned, see the following
+guides:
+
+- :manual:`Single Field Indexes </core/index-single>`
 - :manual:`TTL Indexes </core/index-ttl>`
-- :manual:`Compound indexes </core/index-compound>`
-- :manual:`here </core/index-compound/#prefixes>`
-- :manual:`Multikey Indexes page </core/index-multikey>`
-- :manual:`Compound Text Index Restrictions </core/index-text/#std-label-text-index-compound>`
+- :manual:`Compound Indexes </core/index-compound>`
+- :manual:`Multikey Indexes </core/index-multikey>`
 - :manual:`Text Indexes </core/index-text>`
+- :manual:`Compound Text Index Restrictions </core/index-text/#std-label-text-index-compound>`
 - :manual:`Geospatial Queries </geospatial-queries/>`
-- :manual:`GeoJSON objects </reference/geojson>`
-- :manual:`Unique Indexes page </core/index-unique>`
+- :manual:`GeoJSON Objects </reference/geojson>`
+- :manual:`Unique Indexes </core/index-unique>`
 - :ref:`Clustered Indexes <db.createCollection.clusteredIndex>`
 - :ref:`Clustered Collections <clustered-collections>`
+
+To learn more about the operations mentioned, see the following
+guides:
+
+- :ref:`golang-query-document`
+- :ref:`golang-change-document`
+- :ref:`golang-delete-guide`
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+To learn more about any of the methods discussed in this
+guide, see the following API Documentation:
+
+- `IndexModel <{+api+}/mongo#IndexModel>`__
+- `CreateOne() <{+api+}/mongo#IndexView.CreateOne>`__
+- `IndexOptions <{+api+}/mongo/options#IndexOptions>`__
+- `SetDefaultLanguage() <{+api+}/mongo/options#IndexOptions.SetDefaultLanguage>`__
+- `DropOne() <{+api+}/mongo#IndexView.DropOne>`__
+- `CreateCollection() <{+api+}/mongo#Database.CreateCollection>`__
+- `CreateCollectionOptions <{+api+}/mongo/options#CreateCollectionOptions
