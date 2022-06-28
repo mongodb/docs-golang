@@ -246,17 +246,14 @@ Example
 The following example creates a clustered index on the ``_id`` field in
 the ``tea.vendors`` collection:
 
-.. io-code-block::
+.. code-block:: go
    :copyable: true
 
-   .. input::
-      :language: go
+   db := client.Database("tea")
+   cio := bson.D{{"key", bson.D{{"_id", 1}}}, {"unique", true}}
+   opts := options.CreateCollection().SetClusteredIndex(cio)
 
-      db := client.Database("tea")
-      cio := bson.D{{"key", bson.D{{"_id", 1}}}, {"unique", true}}
-      opts := options.CreateCollection().SetClusteredIndex(cio)
-
-      db.CreateCollection(context.TODO(), "vendors", opts)
+   db.CreateCollection(context.TODO(), "vendors", opts)
 
 .. _golang-text-indexes:
 
