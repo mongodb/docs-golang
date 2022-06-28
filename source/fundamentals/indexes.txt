@@ -113,7 +113,7 @@ Index Types
 
 MongoDB supports several index types to support querying your data. The
 following sections describe and show how to create the most common index
-types. For a full list of index types, see :manual:`Indexes </indexes/>`.
+types. To view a full list of index types, see :manual:`Indexes </indexes/>`.
 
 .. _golang-single-field-index:
 
@@ -198,13 +198,13 @@ Multikey Indexes (Indexes on Array Fields)
 
 Multikey indexes use the same syntax as a
 :ref:`single field index <golang-single-field-index>` and a
-:ref:`compound index <golang-compound-index>`. This index improve sthe
+:ref:`compound index <golang-compound-index>`. This index improves the
 performance of queries that specify an array field as an index.
 
 Example
 ```````
 
-The following example creates a compound, multikey index on the ``cast``
+The following example creates a multikey index on the ``cast``
 field in the ``sample_mflix.movies`` collection:
 
 .. io-code-block::
@@ -240,8 +240,11 @@ To create a clustered index, specify the clustered index option with the
 ``_id`` field as the key and the unique field as ``true`` when you
 create your collection.
 
+Example
+```````
+
 The following example creates a clustered index on the ``_id`` field in
-the ``vendors`` collection:
+the ``tea.vendors`` collection:
 
 .. io-code-block::
    :copyable: true
@@ -261,13 +264,13 @@ Text Indexes
 ~~~~~~~~~~~~
 
 Text indexes support text search queries on string content. This index
-included string fields or an array of strings. MongoDB supports text
+requires a string field or an array of strings. MongoDB supports text
 search for several languages. You can specify the default language as an
 option when creating the index.
 
 A collection can only contain one text index. If you want to create a
 text index for multiple text fields, you need to create a :ref:`compound
-index <go-compound-index>`. The text search runs on all the text fields
+index <golang-compound-index>`. The text search runs on all the text fields
 within the compound index.
 
 .. tip::
@@ -314,7 +317,7 @@ field.
 
 This index allows you to perfrom the following:
 
-- Query geospatial data for inclusion, intersection, and proximity
+- Query geospatial data for inclusion, intersection, and proximity.
 - Calculation of distances on a Euclidean plane and for working with the
   "legacy coordinate pairs" syntax used in MongoDB 2.2 and earlier.
 
@@ -388,6 +391,9 @@ To create a unique index, specify the field or combination of fields
 that you want to prevent duplication on and set the ``unique`` option to
 ``true``.
 
+Example
+```````
+
 The following example creates a unique, descending index on the ``theaterId`` field:
 
 .. io-code-block::
@@ -396,7 +402,10 @@ The following example creates a unique, descending index on the ``theaterId`` fi
    .. input::
       :language: go
 
-      indexModel := mongo.IndexModel{Keys: bson.D{{"theaterId", -1}}, Options: options.Index().SetUnique(true)}
+      indexModel := mongo.IndexModel{
+          Keys: bson.D{{"theaterId", -1}}, 
+          Options: options.Index().SetUnique(true)
+      }
       name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
       if err != nil {
           panic(err)
