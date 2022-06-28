@@ -102,7 +102,7 @@ func main() {
 		db := client.Database("sample_mflix")
 		coll := db.Collection("movies")
 
-		// begin milti key index
+		// begin multi key index
 		indexModel := mongo.IndexModel{Keys: bson.D{{"cast", -1}}}
 		name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
 		if err != nil {
@@ -110,7 +110,7 @@ func main() {
 		}
 
 		fmt.Println("Name of Index Created: " + name)
-		// end milti key index
+		// end multi key index
 
 		res, err := coll.Indexes().DropOne(context.TODO(), "cast_-1")
 		if err != nil {
