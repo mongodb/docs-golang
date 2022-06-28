@@ -144,7 +144,6 @@ The following example creates an index in ascending order on the
 
    .. input::
       :language: go
-      :dedent:
 
       indexModel := mongo.IndexModel{Keys: bson.D{{"title", 1}}}
       name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
@@ -179,7 +178,6 @@ The following example creates a compound index on the ``fullplot`` and
 
    .. input::
       :language: go
-      :dedent:
 
       indexModel := mongo.IndexModel{Keys: bson.D{{"fullplot", -1}, {"title", 1}}}
       name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
@@ -199,9 +197,9 @@ Multikey Indexes (Indexes on Array Fields)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Multikey indexes use the same syntax as a
-:ref:`single field index <go-single-field-index>` and a :ref:`compound index
-<go-compound-index>`. This index improve sthe performance of queries
-that specify an array field as an index.
+:ref:`single field index <golang-single-field-index>` and a
+:ref:`compound index <golang-compound-index>`. This index improve sthe
+performance of queries that specify an array field as an index.
 
 Example
 ```````
@@ -214,7 +212,6 @@ field in the ``sample_mflix.movies`` collection:
 
    .. input::
       :language: go
-      :dedent:
 
       indexModel := mongo.IndexModel{Keys: bson.D{{"cast", -1}}}
       name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
@@ -251,7 +248,6 @@ the ``vendors`` collection:
 
    .. input::
       :language: go
-      :dedent:
 
       db := client.Database("tea")
       cio := bson.D{{"key", bson.D{{"_id", 1}}}, {"unique", true}}
@@ -292,8 +288,7 @@ collection:
 
    .. input::
       :language: go
-      :dedent:
-
+      
       indexModel := mongo.IndexModel{Keys: bson.D{{"title", 1}}}
       name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
       if err != nil {
@@ -364,8 +359,7 @@ The following example creates a ``2dsphere`` index on the ``location.geo`` field
    :copyable: true
 
    .. input::
-      :language: go
-      :dedent:
+      :language: go      
 
       indexModel := mongo.IndexModel{Keys: bson.D{{"location.geo", "2dsphere"}}}
       name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
@@ -401,7 +395,6 @@ The following example creates a unique, descending index on the ``theaterId`` fi
 
    .. input::
       :language: go
-      :dedent:
 
       indexModel := mongo.IndexModel{Keys: bson.D{{"theaterId", -1}}, Options: options.Index().SetUnique(true)}
       name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
@@ -434,7 +427,6 @@ in the ``sample_mflix.movies`` collection:
 
    .. input::
       :language: go
-      :dedent:
 
       res, err := coll.Indexes().DropOne(context.TODO(), "title_1")
       if err != nil {
@@ -485,4 +477,4 @@ guide, see the following API Documentation:
 - `SetDefaultLanguage() <{+api+}/mongo/options#IndexOptions.SetDefaultLanguage>`__
 - `DropOne() <{+api+}/mongo#IndexView.DropOne>`__
 - `CreateCollection() <{+api+}/mongo#Database.CreateCollection>`__
-- `CreateCollectionOptions <{+api+}/mongo/options#CreateCollectionOptions
+- `CreateCollectionOptions <{+api+}/mongo/options#CreateCollectionOptions>`__
