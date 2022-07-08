@@ -236,34 +236,6 @@ field in the ``sample_mflix.movies`` collection:
 
       cast_-1
 
-.. _golang-clustered-indexes:
-
-Clustered Indexes
-~~~~~~~~~~~~~~~~~
-
-Clustered indexes improve the performance of insert, update, and delete
-operations on **clustered collections**. Clustered collections store
-documents ordered by the clustered index key value.
-
-To create a clustered index, specify the clustered index option with the
-``_id`` field as the key and the unique field as ``true`` when you
-create your collection.
-
-Example
-```````
-
-The following example creates a clustered index on the ``_id`` field in
-the ``tea.vendors`` collection:
-
-.. code-block:: go
-   :copyable: true
-
-   db := client.Database("tea")
-   cio := bson.D{{"key", bson.D{{"_id", 1}}}, {"unique", true}}
-   opts := options.CreateCollection().SetClusteredIndex(cio)
-
-   db.CreateCollection(context.TODO(), "vendors", opts)
-
 .. _golang-text-indexes:
 
 Text Indexes
@@ -472,8 +444,6 @@ guides:
 - :manual:`Geospatial Queries </geospatial-queries/>`
 - :manual:`GeoJSON Objects </reference/geojson>`
 - :manual:`Unique Indexes </core/index-unique>`
-- :v5.3:`Clustered Indexes </reference/method/db.createCollection/#std-label-db.createCollection.clusteredIndex>`
-- :v5.3:`Clustered Collections </core/clustered-collections/#std-label-clustered-collections>`
 
 To learn more about the operations mentioned, see the following
 guides:
@@ -493,5 +463,3 @@ guide, see the following API Documentation:
 - `IndexOptions <{+api+}/mongo/options#IndexOptions>`__
 - `SetDefaultLanguage() <{+api+}/mongo/options#IndexOptions.SetDefaultLanguage>`__
 - `DropOne() <{+api+}/mongo#IndexView.DropOne>`__
-- `CreateCollection() <{+api+}/mongo#Database.CreateCollection>`__
-- `CreateCollectionOptions <{+api+}/mongo/options#CreateCollectionOptions>`__
