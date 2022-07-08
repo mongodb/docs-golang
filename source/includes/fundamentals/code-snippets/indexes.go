@@ -38,9 +38,9 @@ func main() {
 		// begin check ci coll
 		command := bson.D{{"listCollections", 1}}
 		var result bson.M
-		commandErr := db.RunCommand(context.TODO(), command).Decode(&result)
-		if commandErr != nil {
-			panic(commandErr)
+		err := db.RunCommand(context.TODO(), command).Decode(&result)
+		if err != nil {
+			panic(err)
 		}
 
 		output, outputErr := json.MarshalIndent(result, "", "    ")
@@ -125,7 +125,10 @@ func main() {
 		coll := db.Collection("movies")
 
 		//begin text index
-		indexModel := mongo.IndexModel{Keys: bson.D{{"plot", "text"}}, Options: options.Index().SetDefaultLanguage("italian")}
+		indexModel := mongo.IndexModel{
+			Keys: bson.D{{"plot", "text"}}, 
+			Options: options.Index().SetDefaultLanguage("italian")
+		}
 		name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
 		if err != nil {
 			panic(err)
@@ -157,8 +160,6 @@ func main() {
 		// end geo index
 
 		res, err := coll.Indexes().DropOne(context.TODO(), "location.geo_2dsphere")
-
-		// res, err := coll.Indexes().DropOne(context.TODO(), "geo index")
 		if err != nil {
 			panic(err)
 		}
@@ -171,7 +172,10 @@ func main() {
 		coll := db.Collection("theaters")
 
 		// begin unique index
-		indexModel := mongo.IndexModel{Keys: bson.D{{"theaterId", -1}}, Options: options.Index().SetUnique(true)}
+		indexModel := mongo.IndexModel{
+			Keys: bson.D{{"theaterId", -1}}, 
+			Options: options.Index().SetUnique(true),
+		}
 		name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
 		if err != nil {
 			panic(err)

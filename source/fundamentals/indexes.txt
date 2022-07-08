@@ -145,7 +145,9 @@ The following example creates an index in ascending order on the
    .. input::
       :language: go
 
-      indexModel := mongo.IndexModel{Keys: bson.D{{"title", 1}}}
+      indexModel := mongo.IndexModel{
+          Keys: bson.D{{"title", 1}}
+      }
       name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
       if err != nil {
           panic(err)
@@ -179,7 +181,12 @@ The following example creates a compound index on the ``fullplot`` and
    .. input::
       :language: go
 
-      indexModel := mongo.IndexModel{Keys: bson.D{{"fullplot", -1}, {"title", 1}}}
+      indexModel := mongo.IndexModel{
+          Keys: bson.D{
+              {"fullplot", -1}, 
+              {"title", 1}
+          }
+      }
       name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
       if err != nil {
           panic(err)
@@ -213,7 +220,9 @@ field in the ``sample_mflix.movies`` collection:
    .. input::
       :language: go
 
-      indexModel := mongo.IndexModel{Keys: bson.D{{"cast", -1}}}
+      indexModel := mongo.IndexModel{
+          Keys: bson.D{{"cast", -1}}
+      }
       name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
       if err != nil {
           panic(err)
@@ -361,7 +370,9 @@ The following example creates a ``2dsphere`` index on the ``location.geo`` field
    .. input::
       :language: go      
 
-      indexModel := mongo.IndexModel{Keys: bson.D{{"location.geo", "2dsphere"}}}
+      indexModel := mongo.IndexModel{
+          Keys: bson.D{{"location.geo", "2dsphere"}}
+      }
       name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
       if err != nil {
           panic(err)
@@ -401,7 +412,7 @@ The following example creates a unique, descending index on the ``theaterId`` fi
 
       indexModel := mongo.IndexModel{
           Keys: bson.D{{"theaterId", -1}}, 
-          Options: options.Index().SetUnique(true)
+          Options: options.Index().SetUnique(true),
       }
       name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
       if err != nil {
