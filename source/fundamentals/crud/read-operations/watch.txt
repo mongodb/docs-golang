@@ -68,7 +68,7 @@ outputs all changes:
    if err != nil {
       panic(err)
    }
-   defer changeStream.close(context.TODO())
+   defer changeStream.Close(context.TODO())
 
    // iterate over the cursor to print the change stream events
    for changeStream.Next(context.TODO()) {
@@ -127,7 +127,7 @@ new delete operations:
    if err != nil {
       panic(err)
    }
-   defer changeStream.close(context.TODO())
+   defer changeStream.Close(context.TODO())
 
    for changeStream.Next(context.TODO()) {
       fmt.Println(changeStream.Current)
