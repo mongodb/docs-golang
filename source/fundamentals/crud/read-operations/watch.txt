@@ -167,7 +167,7 @@ You can specify the following options in the opts parameter:
 - ``StartAtOperationTime``
 
 For more information on these fields, visit the 
-:manual:`MongoDB manual </reference/method/Mongo.watch/#mongodb-method-Mongo.watch>`
+:manual:`MongoDB manual </reference/method/Mongo.watch/#mongodb-method-Mongo.watch>`.
 
 Example
 ```````
