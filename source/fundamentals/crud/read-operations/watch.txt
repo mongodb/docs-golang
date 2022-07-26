@@ -1,0 +1,235 @@
+.. _golang-watch-changes:
+
+=================
+Watch for Changes
+=================
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to open a change stream and monitor document changes.
+
+Sample Data
+~~~~~~~~~~~
+
+To run the examples in this guide, load these documents into the
+``tea.ratings`` collection with the following
+snippet:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/sort.go
+   :language: go
+   :dedent:
+   :start-after: begin insertDocs
+   :end-before: end insertDocs
+
+.. include:: /includes/fundamentals/tea-sample-data-ending.rst
+
+Watch() Method
+--------------
+
+To watch for changes, use the ``Watch()`` method on any of the following objects:
+
+- ``MongoCollection``
+- ``MongoDatabase``
+- ``MongoClient``
+
+The ``Watch()`` method returns a change stream for all data changes in the collection,
+database, or deployment. 
+
+You can pass a pipeline parameter to ``Watch()`` to match only certain change operations. You
+can also pass an opts parameter to specify options for creating the change stream. 
+
+Open a Change Stream
+~~~~~~~~~~~~~~~~~~~~
+
+To open a change stream and return all document changes, use ``Watch()`` with a Context
+parameter and an empty pipeline parameter.
+
+Example
+```````
+
+The following example opens a change stream on the ``tea.ratings`` collection and 
+outputs all changes:
+
+.. code-block:: go
+
+   coll := client.Database("tea").Collection("ratings")
+
+   // open a change stream with an empty pipeline parameter
+   changeStream, err := coll.Watch(context.TODO(), mongo.Pipeline{})
+   if err != nil {
+      panic(err)
+   }
+   defer changeStream.close(context.TODO())
+
+   // iterate over the cursor to print the change stream events
+   for changeStream.Next(context.TODO()) {
+      fmt.Println(changeStream.Current)
+   }
+
+If you modify the ``tea.ratings`` collection in a separate shell, this code will print
+your changes. Inserting a document with a ``name`` value of "``White Peony``" and a 
+``rating`` value of ``4`` will output the following change event:
+   
+.. code-block:: go
+   :copyable: false
+
+   map[_id:map[_data:8262DFFF73000000262B022C0100296E5A1004FB2444E03F9A4C5A
+   B3C7E868E387116846645F6964006462DFFF538BC04F3816B8BCD10004] clusterTime:
+   {1658847091 38} documentKey:map[_id:ObjectID("62dfff538bc04f3816b8bcd1")] 
+   fullDocument:map[_id:ObjectID("62dfff538bc04f3816b8bcd1") 
+   rating:4 type:White Peony] ns:map[coll:ratings db:tea] operationType:insert]
+
+.. note::
+
+   The ``_data``, ``clusterTime``, and ``ObjectID`` values in the output will 
+   vary with each user.
+
+Pipeline Parameter
+~~~~~~~~~~~~~~~~~~
+
+Use a pipeline parameter to modify the change stream output. This parameter must be 
+a ``non-nil`` value, but you can pass an empty aggregation pipeline to return an unfiltered
+change stream. Format the pipeline parameter as an array of documents, with each 
+document representing an aggregation stage. 
+
+You can use the following pipeline stages in this parameter:
+
+- ``$addFields``
+- ``$match``
+- ``$project``
+- ``$replaceRoot``
+- ``$replaceWith``
+- ``$redact``
+- ``$set``
+- ``$unset``
+
+Example
+```````
+
+The following example opens a change stream on the ``tea`` database but only watches for
+new delete operations:
+
+.. code-block:: go
+
+   db := client.Database("tea")
+
+   pipeline := bson.D{{"$match", bson.D{{"operationType", "delete"}}}}
+   changeStream, err := db.Watch(context.TODO(), mongo.Pipeline{pipeline})
+   if err != nil {
+      panic(err)
+   }
+   defer changeStream.close(context.TODO())
+
+   for changeStream.Next(context.TODO()) {
+      fmt.Println(changeStream.Current)
+   }
+
+If you delete the ``tea.ratings`` document with a ``name`` value of 
+"``White Peony``" in a separate shell, this code will output the following:
+
+.. code-block:: go
+   :copyable: false
+   
+   {"_id": {"_data": "8262E0051B000000102B022C0100296E5A1004FB2444E03F9A4C5AB
+   3C7E868E387116846645F6964006462DFFF538BC04F3816B8BCD10004"},"operationType":
+   "delete","clusterTime": {"$timestamp":{"t":"1658848539","i":"16"}},"ns": 
+   {"db": "tea","coll": "ratings"},"documentKey": {"_id": {"$oid":"62dfff538bc04f3816b8bcd1"}}}
+
+.. note::
+
+   The ``Watch()`` method was called on the ``tea`` database, so the code outputs
+   new delete operations in any ``tea`` collection.
+
+
+Opts Parameter
+~~~~~~~~~~~~~~
+
+You can use an opts parameter to modify the behavior of the ``Watch()`` method. This
+parameter is optional and can remain ``nil``. 
+
+You can specify the following options in the opts parameter:
+
+- ``ResumeAfter``
+- ``StartAfter``
+- ``FullDocument``
+- ``BatchSize``
+- ``MaxAwaitTime``
+- ``Collation``
+- ``StartAtOperationTime``
+
+For more information on these fields, visit the 
+:manual:`MongoDB manual </reference/method/Mongo.watch/#mongodb-method-Mongo.watch>`
+
+Example
+```````
+
+The following example calls the ``Watch()`` method on the ``tea.ratings`` collection. It 
+specifies the ``FullDocument`` opts parameter to output a copy of the entire modified document:
+
+.. code-block:: go
+
+	coll := client.Database("tea").Collection("ratings")
+	opts := options.ChangeStream().SetFullDocument(options.UpdateLookup)
+
+	changeStream, err := coll.Watch(context.TODO(), mongo.Pipeline{}, opts)
+	if err != nil {
+		panic(err)
+	}
+	defer changeStream.Close(context.TODO())
+
+	for changeStream.Next(context.TODO()) {
+		fmt.Println(changeStream.Current)
+	}
+
+If you update the ``rating`` value of the "``Masala``" tea from ``10`` to ``9``, 
+this code outputs the following: 
+
+.. code-block:: go
+   :copyable: false
+
+   {"_id": {"_data": "8262E01219000000062B022C0100296E5A1004FB2444E03F9A4C5AB3C7E
+   868E387116846645F6964006462DFFF3C5E043FA89EE1C04C0004"},"operationType": 
+   "update","clusterTime": {"$timestamp":{"t":"1658851865","i":"6"}},"fullDocument":
+   {"_id": {"$oid":"62dfff3c5e043fa89ee1c04c"},"type": "Masala","rating": {"$numberInt":"9"}},
+   "ns": {"db": "tea","coll": "ratings"},"documentKey": {"_id": {"$oid":"62dfff3c5e043fa89ee1
+   c04c"}},"updateDescription": {"updatedFields": {"rating": {"$numberInt":"9"}},"removedFields":
+   [],"truncatedArrays": []}}
+
+Without specifying the ``FullDocument`` option, the same update operation outputs the following:
+
+.. code-block:: go
+   :copyable: false
+
+   {"_id": {"_data": "8262E011D9000000242B022C0100296E5A1004FB2444E03F9A4C5AB3C7E86
+   8E387116846645F6964006462DFFF3C5E043FA89EE1C04C0004"},"operationType": "update",
+   "clusterTime": {"$timestamp":{"t":"1658851801","i":"36"}},"ns": {"db": "tea",
+   "coll": "ratings"},"documentKey": {"_id": {"$oid":"62dfff3c5e043fa89ee1c04c"}},
+   "updateDescription": {"updatedFields": {"rating": {"$numberInt":"9"}},"removedFields":
+   [],"truncatedArrays": []}}
+
+The output no longer includes the ``"fullDocument"`` value.
+
+Additional Information
+----------------------
+
+For a runnable example of a change stream, see :ref:`golang-watch`.
+
+For more information on change streams, see :manual:`Change Streams </changeStreams/>`
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+To learn more about the ``Watch()`` method, visit the following API documentation links:
+
+- `Watch() for collections <{+api+}/mongo#Collection.Watch>`__
+- `Watch() for databases <{+api+}/mongo#Database.Watch>`__
+- `Watch() for clients <{+api+}/mongo#Client.Watch>`__

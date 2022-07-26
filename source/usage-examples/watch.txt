@@ -55,9 +55,7 @@ Additional Information
 To learn more about opening a change stream and handling
 potential errors, see:
 
-..
-  - Go Driver <TODO: Change Stream Guide>
-
+- :ref:`Watch for Changes <golang-watch-changes>` fundamentals page.
 - MongoDB Server Manual :manual:`Change Streams Documentation </changeStreams>`.
 
 API Documentation
