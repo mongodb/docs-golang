@@ -15,7 +15,10 @@ Watch for Changes
 Overview
 --------
 
-In this guide, you can learn how to open a change stream and monitor document changes.
+In this guide, you can learn how to monitor document changes with a change stream.
+
+A change stream outputs new change events, providing access to real-time data changes.
+You can open a change stream on a collection, database, or client object.
 
 Sample Data
 ~~~~~~~~~~~
@@ -30,31 +33,28 @@ snippet:
    :start-after: begin insertDocs
    :end-before: end insertDocs
 
-.. include:: /includes/fundamentals/tea-sample-data-ending.rst
+.. tip:: Non-existent Databases and Collections
 
-Watch() Method
---------------
+   If the necessary database and collection don't exist when
+   you perform a write operation, the server implicitly creates
+   them.
 
-To watch for changes, use the ``Watch()`` method on any of the following objects:
+Each document contains a rating for a type of tea that corresponds to the ``type``
+and ``rating`` fields.
 
-- ``MongoCollection``
-- ``MongoDatabase``
-- ``MongoClient``
+.. note::
 
-The ``Watch()`` method returns a change stream for all data changes in the collection,
-database, or deployment. 
-
-You can pass a pipeline parameter to ``Watch()`` to match only certain change operations. You
-can also pass an opts parameter to specify options for creating the change stream. 
+   Each example truncates the ``_data``, ``clusterTime``, and ``ObjectID`` values
+   because the driver generates them uniquely.
 
 Open a Change Stream
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
-To open a change stream and return all document changes, use ``Watch()`` with a Context
-parameter and an empty pipeline parameter.
+To open a change stream, use the ``Watch()`` method. The ``Watch()`` method requires a context
+parameter and a pipeline parameter. To return all changes, pass in an empty Pipeline object.
 
 Example
-```````
+~~~~~~~
 
 The following example opens a change stream on the ``tea.ratings`` collection and 
 outputs all changes:
@@ -76,30 +76,22 @@ outputs all changes:
    }
 
 If you modify the ``tea.ratings`` collection in a separate shell, this code will print
-your changes. Inserting a document with a ``name`` value of "``White Peony``" and a 
+your changes. Inserting a document with a ``type`` value of ``"White Peony"`` and a 
 ``rating`` value of ``4`` will output the following change event:
    
 .. code-block:: go
    :copyable: false
 
-   map[_id:map[_data:8262DFFF73000000262B022C0100296E5A1004FB2444E03F9A4C5A
-   B3C7E868E387116846645F6964006462DFFF538BC04F3816B8BCD10004] clusterTime:
-   {1658847091 38} documentKey:map[_id:ObjectID("62dfff538bc04f3816b8bcd1")] 
-   fullDocument:map[_id:ObjectID("62dfff538bc04f3816b8bcd1") 
-   rating:4 type:White Peony] ns:map[coll:ratings db:tea] operationType:insert]
+   map[_id:map[_data:...] clusterTime: {...} documentKey:map[_id:ObjectID("...")] 
+   fullDocument:map[_id:ObjectID("...") rating:4 type:White Peony] ns:
+   map[coll:ratings db:tea] operationType:insert]
 
-.. note::
+Modify the Change Stream Output
+-------------------------------
 
-   The ``_data``, ``clusterTime``, and ``ObjectID`` values in the output will 
-   vary with each user.
-
-Pipeline Parameter
-~~~~~~~~~~~~~~~~~~
-
-Use a pipeline parameter to modify the change stream output. This parameter must be 
-a ``non-nil`` value, but you can pass an empty aggregation pipeline to return an unfiltered
-change stream. Format the pipeline parameter as an array of documents, with each 
-document representing an aggregation stage. 
+Use the pipeline parameter to modify the change stream output. This parameter allows you to
+only watch for certain change events. Format the pipeline parameter as an array of documents,
+with each document representing an aggregation stage. 
 
 You can use the following pipeline stages in this parameter:
 
@@ -113,9 +105,9 @@ You can use the following pipeline stages in this parameter:
 - ``$unset``
 
 Example
-```````
+~~~~~~~
 
-The following example opens a change stream on the ``tea`` database but only watches for
+The following example opens a change stream on the ``tea`` database, but only watches for
 new delete operations:
 
 .. code-block:: go
@@ -133,16 +125,15 @@ new delete operations:
       fmt.Println(changeStream.Current)
    }
 
-If you delete the ``tea.ratings`` document with a ``name`` value of 
-"``White Peony``" in a separate shell, this code will output the following:
+If you delete the ``tea.ratings`` document with a ``type`` value of 
+``"White Peony"`` in a separate shell, this code will output the following:
 
 .. code-block:: go
    :copyable: false
    
-   {"_id": {"_data": "8262E0051B000000102B022C0100296E5A1004FB2444E03F9A4C5AB
-   3C7E868E387116846645F6964006462DFFF538BC04F3816B8BCD10004"},"operationType":
-   "delete","clusterTime": {"$timestamp":{"t":"1658848539","i":"16"}},"ns": 
-   {"db": "tea","coll": "ratings"},"documentKey": {"_id": {"$oid":"62dfff538bc04f3816b8bcd1"}}}
+   {"_id": {"_data": "..."},"operationType": "delete","clusterTime": 
+   {"$timestamp":{"t":"...","i":"..."}},"ns": {"db": "tea","coll": "ratings"},
+   "documentKey": {"_id": {"$oid":"..."}}}
 
 .. note::
 
@@ -150,11 +141,10 @@ If you delete the ``tea.ratings`` document with a ``name`` value of
    new delete operations in any ``tea`` collection.
 
 
-Opts Parameter
-~~~~~~~~~~~~~~
+Modify the Behavior of Watch()
+------------------------------
 
-You can use an opts parameter to modify the behavior of the ``Watch()`` method. This
-parameter is optional and can remain ``nil``. 
+Use an opts parameter to modify the behavior of the ``Watch()`` method. 
 
 You can specify the following options in the opts parameter:
 
@@ -170,7 +160,7 @@ For more information on these fields, visit the
 :manual:`MongoDB manual </reference/method/Mongo.watch/#mongodb-method-Mongo.watch>`.
 
 Example
-```````
+~~~~~~~
 
 The following example calls the ``Watch()`` method on the ``tea.ratings`` collection. It 
 specifies the ``FullDocument`` opts parameter to output a copy of the entire modified document:
@@ -190,33 +180,20 @@ specifies the ``FullDocument`` opts parameter to output a copy of the entire mod
 		fmt.Println(changeStream.Current)
 	}
 
-If you update the ``rating`` value of the "``Masala``" tea from ``10`` to ``9``, 
+If you update the ``rating`` value of the ``"Masala"`` tea from ``10`` to ``9``, 
 this code outputs the following: 
 
 .. code-block:: go
    :copyable: false
 
-   {"_id": {"_data": "8262E01219000000062B022C0100296E5A1004FB2444E03F9A4C5AB3C7E
-   868E387116846645F6964006462DFFF3C5E043FA89EE1C04C0004"},"operationType": 
-   "update","clusterTime": {"$timestamp":{"t":"1658851865","i":"6"}},"fullDocument":
-   {"_id": {"$oid":"62dfff3c5e043fa89ee1c04c"},"type": "Masala","rating": {"$numberInt":"9"}},
-   "ns": {"db": "tea","coll": "ratings"},"documentKey": {"_id": {"$oid":"62dfff3c5e043fa89ee1
-   c04c"}},"updateDescription": {"updatedFields": {"rating": {"$numberInt":"9"}},"removedFields":
-   [],"truncatedArrays": []}}
+   {"_id": {"_data": "..."},"operationType": "update","clusterTime": {"$timestamp":
+   {"t":"...","i":"..."}},"fullDocument": {"_id": {"$oid":"..."},"type": "Masala","rating":
+   {"$numberInt":"9"}}, "ns": {"db": "tea","coll": "ratings"},"documentKey": {"_id": 
+   {"$oid":"..."}}, "updateDescription": {"updatedFields": {"rating": {"$numberInt":"9"}},
+   "removedFields": [],"truncatedArrays": []}}
 
-Without specifying the ``FullDocument`` option, the same update operation outputs the following:
-
-.. code-block:: go
-   :copyable: false
-
-   {"_id": {"_data": "8262E011D9000000242B022C0100296E5A1004FB2444E03F9A4C5AB3C7E86
-   8E387116846645F6964006462DFFF3C5E043FA89EE1C04C0004"},"operationType": "update",
-   "clusterTime": {"$timestamp":{"t":"1658851801","i":"36"}},"ns": {"db": "tea",
-   "coll": "ratings"},"documentKey": {"_id": {"$oid":"62dfff3c5e043fa89ee1c04c"}},
-   "updateDescription": {"updatedFields": {"rating": {"$numberInt":"9"}},"removedFields":
-   [],"truncatedArrays": []}}
-
-The output no longer includes the ``"fullDocument"`` value.
+Without specifying the ``FullDocument`` option, the same update operation no longer
+outputs the ``"fullDocument"`` value.
 
 Additional Information
 ----------------------
