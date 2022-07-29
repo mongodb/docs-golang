@@ -200,7 +200,7 @@ Additional Information
 
 For a runnable example of a change stream, see :ref:`golang-watch`.
 
-For more information on change streams, see :manual:`Change Streams </changeStreams/>`
+For more information on change streams, see :manual:`Change Streams </changeStreams/>`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
