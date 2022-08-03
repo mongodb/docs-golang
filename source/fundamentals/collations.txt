@@ -106,14 +106,14 @@ to ignore differences in letter accents.
    collate := &options.Collation{Locale: "fr", Strength: 1}
    
    // specify the opts parameter as the collation
-	opts := options.CreateCollection().SetCollation(collate)
+   opts := options.CreateCollection().SetCollation(collate)
 	
    // create the "books" collection with the collation opts parameter
    err := db.CreateCollection(context.TODO(), "books", opts)
 
-	if err != nil {
-		log.Fatal(err)
-	}
+   if err != nil {
+      log.Fatal(err)
+   }
 
 Use the Default Collection Collation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -193,32 +193,31 @@ field and specifies a new collation with an ``"en_US"`` locale:
    .. input::
       :language: go
 
-      // specify the collation locale and opts parameter
-      collate := &options.Collation{Locale: "en_US"}
+       // specify the collation locale and opts parameter
+       collate := &options.Collation{Locale: "en_US"}
 	   opts := options.Index().SetCollation(collate)
 
 	   if err != nil {
 		   log.Fatal(err)
 	   }
 
-      // create a "name" field index with the collation option
-      indexModel := mongo.IndexModel{
+       // create a "name" field index with the collation option
+       indexModel := mongo.IndexModel{
          Keys:    bson.D{{"name", 1}},
          Options: opts,
-      }
+       }
 
-      name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
-      if err != nil {
+       name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
+       if err != nil {
          panic(err)
-      }
-
-      fmt.Println("Name of Index Created: " + name)
+       }
+       fmt.Println("Name of Index Created: " + name)
 
    .. output::
       :language: none
       :visible: false
 
-      Name of Index Created: name_1
+       Name of Index Created: name_1
 
 
 Set a Collation on an Operation
