@@ -4,5 +4,303 @@ Collations
 
 .. default-domain:: mongodb
 
-A collation is a set of character ordering and matching rules that
-apply to a specific language and locale.
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to use **collations** to run
+operations using string ordering for specific languages and locales (a
+community or region that shares common language idioms).
+
+MongoDB sorts strings using *binary collation* by default. This collation
+method uses the `ASCII standard <https://en.wikipedia.org/wiki/ASCII>`_
+character values to compare and order strings. Languages and locales
+have specific character ordering conventions that differ from the ASCII
+standard.
+
+For example, in Canadian French, the right-most accented character determines
+the ordering for strings when the other characters are the same. Consider the
+following French words: **cote**, **coté**, **côte**, and **côté**.
+
+MongoDB sorts them in the following order using the default binary collation:
+
+.. code-block:: none
+
+   cote
+   coté
+   côte
+   côté
+
+MongoDB sorts them in the following order using the Canadian French collation:
+
+.. code-block:: none
+
+   cote
+   côte
+   coté
+   côté
+
+Usage
+-----
+
+You can specify a collation when you create a new collection, view, or index. You can also
+define a collation for specific operations that support collation. 
+
+Specifying a collation on a new collection or view defines the default collation for
+any operations called on these objects. Use the ``CreateCollection()`` or ``CreateView()``
+method with an opts parameter to set the collation.
+
+Specifying a collation on a new index defines the sort order for operations that 
+use that index. To use the collation for the index, you must provide a matching collation for
+an operation. Then, use the index with that operation. On an ``Indexes`` object,
+use the ``CreateOne()`` method with an opts parameter to set the collation.
+
+Specifying a collation on an operation overrides any default collation previously
+defined for a collection. See the :manual:`MongoDB manual </reference/collation/#collation-document>`
+for a list of operations that support collation.
+
+Collation Parameters
+~~~~~~~~~~~~~~~~~~~~
+
+The collation object contains the following parameters:
+
+.. code-block:: go
+
+   type Collation struct {
+     Locale <string>
+     CaseLevel <bool>
+     CaseFirst <string>
+     Strength <int>
+     NumericOrdering <bool>
+     Alternate <string>
+     MaxVariable <string>
+     Normalization <bool>
+     Backwards <bool>
+   }
+
+You must specify the ``Locale`` field in the collation, but all other fields
+are optional. For a complete list of supported locales and the default values
+for the ``Locale`` fields, see :manual:`Supported Languages and Locales
+</reference/collation-locales-defaults/#supported-languages-and-locales>`.
+For descriptions of each field, see the :manual:`Collation Document MongoDB
+manual entry </reference/collation/#collation-document>`.
+
+Collation Examples
+------------------
+
+Set a Default Collation on a Collection
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following example creates a new collection called ``books`` and specifies a default
+collation with the ``"fr"`` locale. The ``Strength`` collation field has a value of ``1``
+to ignore differences in letter accents.
+
+.. code-block:: go
+
+   // specify the collation locale and strength
+   collate := &options.Collation{Locale: "fr", Strength: 1}
+   
+   // specify the opts parameter as the collation
+	opts := options.CreateCollection().SetCollation(collate)
+	
+   // create the "books" collection with the collation opts parameter
+   err := db.CreateCollection(context.TODO(), "books", opts)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+Use the Default Collection Collation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you call an operation that supports collation on the ``books`` collection, the operation
+will now use the default collation. Assume you want to insert and query the following
+documents into ``books``:
+
+.. code-block:: json
+
+   {"_id", 1}, {"name", "The Brothers Karamazov"}, {"author", "Dostoyevsky"}, {"length", "824"}
+   {"_id", 2}, {"name", "Les Misérables"}, {"author", "Hugo"}, {"length", "1462"}
+   {"_id", 3}, {"name", "Atlas Shrugged"}, {"author", "Rand"}, {"length", "1088"}
+   {"_id", 4}, {"name", "Infinite Jest"}, {"author", "Wallace"}, {"length", "1104"}
+   {"_id", 5}, {"name", "Cryptonomicon"}, {"author", "Stephenson"}, {"length", "918"}
+   {"_id", 6}, {"name", "Ça"}, {"author", "King"}, {"length", "1138"}
+
+.. note::
+
+   For help with inserting documents, visit :ref:`golang-insert-guide`.
+   
+After inserting these documents, you can use an operation with the default ``books``
+collation specified in the **Set a Default Collation on a Collection** section. The 
+following example uses the ``Find()`` method to return all documents with a ``name``
+value that alphabetically precedes ``"Infinite Jest"``:
+
+.. io-code-block::
+   :copyable: true
+
+   .. input::
+      :language: go
+
+      filter := bson.D{{"name", bson.D{{"$lt", "Infinite Jest"}}}}
+      cursor, err := coll.Find(context.TODO(), filter)
+
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
+      }
+      for _, result := range results {
+         fmt.Println(result)
+      }
+
+   .. output::
+      :language: none
+      :visible: false
+
+      [{_id 3} {name Atlas Shrugged} {author Rand} {length 1088}]
+      [{_id 5} {name Cryptonomicon} {author Stephenson} {length 918}]
+      [{_id 6} {name Ça} {author King} {length 1138}]
+
+Without specifying a default ``books`` collation, the ``Find()`` method would follow default
+binary collation rules to determine the ``name`` values that precede ``"Infinite Jest"``. These
+rules place words beginning with "Ç" after those beginning with "I". The output would resemble
+the following:
+
+.. code-block:: json
+   :copyable: false
+
+   [{_id 3} {name Atlas Shrugged} {author Rand} {length 1088}]
+   [{_id 5} {name Cryptonomicon} {author Stephenson} {length 918}]
+
+See :ref:`golang-retrieve` for help with using the ``Find()`` method.
+
+Set a Collation on an Index 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+After creating the ``books`` collection and specifying a collation, you cannot set a new default 
+collation directly. However, you can create an index with a new collation. 
+
+The following example uses the ``CreateOne()`` method to create an ascending index on the ``name``
+field and specifies a new collation with an ``"en_US"`` locale:
+
+.. io-code-block::
+   :copyable: true
+
+   .. input::
+      :language: go
+
+      // specify the collation locale and opts parameter
+      collate := &options.Collation{Locale: "en_US"}
+	   opts := options.Index().SetCollation(collate)
+
+	   if err != nil {
+		   log.Fatal(err)
+	   }
+
+      // create a "name" field index with the collation option
+      indexModel := mongo.IndexModel{
+         Keys:    bson.D{{"name", 1}},
+         Options: opts,
+      }
+
+      name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
+      if err != nil {
+         panic(err)
+      }
+
+      fmt.Println("Name of Index Created: " + name)
+
+   .. output::
+      :language: none
+      :visible: false
+
+      Name of Index Created: name_1
+
+
+Set a Collation on an Operation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Operations that read, update, and delete documents from a collection can use collations. 
+
+The following example uses the ``UpdateMany()`` method to update documents with ``length`` 
+values greater than ``"1000"``. The ``NumericOrdering`` collation field has a value of
+``true`` to ensure numeric comparison, rather than string comparison:
+
+.. io-code-block::
+   :copyable: true
+
+   .. input::
+      :language: go
+
+      // match documents with "length" values over 1000 
+      filter := bson.D{{"length", bson.D{{"$gt", "1000"}}}}
+
+      // add a "long" field to these documents
+      update := bson.D{{"$set", bson.D{{"long", true}}}}
+
+      // specify numeric ordering conventions
+      collate := &options.Collation{Locale: "en_US", NumericOrdering: true}
+      opts := options.Update().SetCollation(collate)
+
+      result, err := coll.UpdateMany(context.TODO(), filter, update, opts)
+      if err != nil {
+         log.Fatal(err)
+      }
+      fmt.Printf("Documents updated: %v\n", result.ModifiedCount)
+
+   .. output::
+      :language: none
+      :visible: false
+
+      Documents updated: 4
+
+The following documents now have a ``long`` field set to ``true``:
+
+.. code-block:: json
+   :copyable: false
+   
+   {"_id", 2}, {"name", "Les Misérables"}, {"author", "Hugo"}, {"length", "1462"}, {"long", true}
+   {"_id", 3}, {"name", "Atlas Shrugged"}, {"author", "Rand"}, {"length", "1088"}, {"long", true}
+   {"_id", 4}, {"name", "Infinite Jest"}, {"author", "Wallace"}, {"length", "1104"}, {"long", true}
+   {"_id", 6}, {"name", "Ça"}, {"author", "King"}, {"length", "1138"}, {"long", true}
+
+Without specifying a collation with a ``NumericOrdering`` field set to ``true``, the
+same ``UpdateMany()`` operation would compare ``length`` values as strings. The
+following documents would have a ``long`` field set to ``true``:
+
+.. code-block:: json
+   :copyable: false
+   
+   {"_id", 1}, {"name", "The Brothers Karamazov"}, {"author", "Dostoyevsky"}, {"length", "824"}, {"long", true}
+   {"_id", 5}, {"name", "Cryptonomicon"}, {"author", "Stephenson"}, {"length", "918"}, {"long", true}
+
+Additional Information
+----------------------
+
+To learn more about the ``Find()`` and ``UpdateOne()`` methods mentioned,
+see the following guides:
+
+- :ref:`golang-retrieve`
+- :ref:`golang-change-document`
+
+To learn more about collations, visit the following manual pages:
+
+- :manual:`Collation </reference/collation/#collation-document>`
+- :manual:`Collation Locales and Default Parameters </reference/collation-locales-defaults/#supported-languages-and-locales>`
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+To learn more about any of the methods discussed in this
+guide, see the following API Documentation:
+
+- `Collation <{+api+}/mongo/options#Collation>`__
+- `CreateCollectionOptions <{+api+}/mongo/options#CreateCollectionOptions>`__
+- `IndexModel <{+api+}/mongo#IndexModel>`__
+- `CreateOne() <{+api+}/mongo#IndexView.CreateOne>`__
+- `IndexOptions <{+api+}/mongo/options#IndexOptions>`__
+- `UpdateOptions <{+api+}/mongo/options#UpdateOptions>`__
