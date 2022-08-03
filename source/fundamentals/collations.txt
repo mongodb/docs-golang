@@ -119,8 +119,8 @@ Use the Default Collection Collation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you call an operation that supports collation on the ``books`` collection, the operation
-will now use the default collation. Assume you want to insert and query the following
-documents into ``books``:
+will now use the default collation. Assume you want to insert the following documents
+into ``books``:
 
 .. code-block:: json
 
