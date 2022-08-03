@@ -195,11 +195,7 @@ field and specifies a new collation with an ``"en_US"`` locale:
 
        // specify the collation locale and opts parameter
        collate := &options.Collation{Locale: "en_US"}
-	   opts := options.Index().SetCollation(collate)
-
-	   if err != nil {
-		   log.Fatal(err)
-	   }
+       opts := options.Index().SetCollation(collate)
 
        // create a "name" field index with the collation option
        indexModel := mongo.IndexModel{
