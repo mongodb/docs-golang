@@ -7,27 +7,35 @@ Collations
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 Overview
 --------
 
-In this guide, you can learn how to use **collations** to run
-operations using string ordering for specific languages and locales (a
-community or region that shares common language idioms).
+In this guide, you can learn how to use **collations**, a set of string sorting
+rules. Collations allow you to run operations with language- or locale-specific
+string ordering conventions.
+
+Collations in MongoDB
+---------------------
 
 MongoDB sorts strings using *binary collation* by default. This collation
 method uses the `ASCII standard <https://en.wikipedia.org/wiki/ASCII>`_
-character values to compare and order strings. Languages and locales
+character values to compare and order strings. Certain languages and locales
 have specific character ordering conventions that differ from the ASCII
 standard.
 
 For example, in Canadian French, the right-most accented character determines
 the ordering for strings when the other characters are the same. Consider the
-following French words: **cote**, **coté**, **côte**, and **côté**.
+following Canadian French words: 
 
-MongoDB sorts them in the following order using the default binary collation:
+- **cote**
+- **coté**
+- **côte**
+- **côté**
+
+When using the default binary collation, MongoDB sorts them in the following order:
 
 .. code-block:: none
 
@@ -36,7 +44,7 @@ MongoDB sorts them in the following order using the default binary collation:
    côte
    côté
 
-MongoDB sorts them in the following order using the Canadian French collation:
+When using the Canadian French collation, MongoDB sorts them in the following order:
 
 .. code-block:: none
 
@@ -49,49 +57,54 @@ Usage
 -----
 
 You can specify a collation when you create a new collection, view, or index. You can also
-define a collation for specific operations that support collation. 
+specify a collation in a subset of operations. . 
+
+Collection or View
+~~~~~~~~~~~~~~~~~~
 
 Specifying a collation on a new collection or view defines the default collation for
-any operations called on these objects. Use the ``CreateCollection()`` or ``CreateView()``
-method with an opts parameter to set the collation.
+any operations called on these objects. Set a collation through a ``CreateCollectionOptions``
+or ``CreateIndexOptions`` object. Then, call the ``CreateCollection()`` or ``CreateView()``
+method with your options object as an argument.
 
-Specifying a collation on a new index defines the sort order for operations that 
-use that index. To use the collation for the index, you must provide a matching collation for
-an operation. Then, use the index with that operation. On an ``Indexes`` object,
-use the ``CreateOne()`` method with an opts parameter to set the collation.
+Index
+~~~~~
+
+You can specify a collation when you create a new index on a collection. The index stores
+an ordered representation of the documents in the collection so your operation does not need
+to perform the ordering in-memory.
+
+To use the collation for the index, you must provide a matching collation for an operation.
+Then, use the index with that operation. Set a collation through an ``IndexOptions`` object
+and call the ``CreateOne()`` method with your options object as an argument.
+
+Operation
+~~~~~~~~~
 
 Specifying a collation on an operation overrides any default collation previously
 defined for a collection. See the :manual:`MongoDB manual </reference/collation/#collation-document>`
 for a list of operations that support collation.
 
-Collation Parameters
-~~~~~~~~~~~~~~~~~~~~
+Collation Fields
+~~~~~~~~~~~~~~~~
 
-The collation object contains the following parameters:
+To create a Collation object, you must specify a ``Locale`` field; all other fields are
+optional. For example, the following code snippet specifies a Collation object with
+the ``"en_US"`` locale collation:
 
 .. code-block:: go
 
-   type Collation struct {
-     Locale <string>
-     CaseLevel <bool>
-     CaseFirst <string>
-     Strength <int>
-     NumericOrdering <bool>
-     Alternate <string>
-     MaxVariable <string>
-     Normalization <bool>
-     Backwards <bool>
-   }
+   collation := &options.Collation{Locale: "en_US"}
 
-You must specify the ``Locale`` field in the collation, but all other fields
-are optional. For a complete list of supported locales and the default values
-for the ``Locale`` fields, see :manual:`Supported Languages and Locales
+For a complete list of collation fields, visit the `Collation API documentation 
+<{+api+}/mongo/options#Collation>`__. To see all the supported locales and the
+default values for the ``Locale`` fields, visit :manual:`Supported Languages and Locales
 </reference/collation-locales-defaults/#supported-languages-and-locales>`.
-For descriptions of each field, see the :manual:`Collation Document MongoDB
-manual entry </reference/collation/#collation-document>`.
 
 Collation Examples
 ------------------
+
+.. _golang-collection-collation:
 
 Set a Default Collation on a Collection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -102,18 +115,20 @@ to ignore differences in letter accents.
 
 .. code-block:: go
 
-   // specify the collation locale and strength
-   collate := &options.Collation{Locale: "fr", Strength: 1}
-   
-   // specify the opts parameter as the collation
-   opts := options.CreateCollection().SetCollation(collate)
-	
-   // create the "books" collection with the collation opts parameter
+   collation := &options.Collation{Locale: "fr", Strength: 1}
+   opts := options.CreateCollection().SetCollation(collation)
    err := db.CreateCollection(context.TODO(), "books", opts)
 
    if err != nil {
       log.Fatal(err)
    }
+
+This example accomplishes the following tasks:
+
+- Defines a Collation object
+- Builds the options parameter with that Collation object
+- Calls ``CreateCollection()`` with a ``"books"`` collection arugment and an options
+argument
 
 Use the Default Collection Collation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -124,19 +139,18 @@ into ``books``:
 
 .. code-block:: json
 
-   {"_id", 1}, {"name", "The Brothers Karamazov"}, {"author", "Dostoyevsky"}, {"length", "824"}
-   {"_id", 2}, {"name", "Les Misérables"}, {"author", "Hugo"}, {"length", "1462"}
-   {"_id", 3}, {"name", "Atlas Shrugged"}, {"author", "Rand"}, {"length", "1088"}
-   {"_id", 4}, {"name", "Infinite Jest"}, {"author", "Wallace"}, {"length", "1104"}
-   {"_id", 5}, {"name", "Cryptonomicon"}, {"author", "Stephenson"}, {"length", "918"}
-   {"_id", 6}, {"name", "Ça"}, {"author", "King"}, {"length", "1138"}
+   {"name" : "The Brothers Karamazov", "author" : "Dostoyevsky", "length" : "824"}
+   {"name" : "Les Misérables", "author" : "Hugo", "length": "1462"}
+   {"name" : "Infinite Jest", "author" : "Wallace", "length" : "1104"}
+   {"name" : "Cryptonomicon", "author" : "Stephenson", "length" : "918"}
+   {"name" : "Ça", "author" : "King", "length" : "1138"}
 
 .. note::
 
-   For help with inserting documents, visit :ref:`golang-insert-guide`.
+   To learn how to insert documents, see :ref:`golang-insert-guide`.
    
-After inserting these documents, you can use an operation with the default ``books``
-collation specified in the **Set a Default Collation on a Collection** section. The 
+After inserting these documents, you can use an operation with the default collation
+on ``books`` specified in the :ref:`golang-collection-collation` section. The 
 following example uses the ``Find()`` method to return all documents with a ``name``
 value that alphabetically precedes ``"Infinite Jest"``:
 
@@ -161,9 +175,8 @@ value that alphabetically precedes ``"Infinite Jest"``:
       :language: none
       :visible: false
 
-      [{_id 3} {name Atlas Shrugged} {author Rand} {length 1088}]
-      [{_id 5} {name Cryptonomicon} {author Stephenson} {length 918}]
-      [{_id 6} {name Ça} {author King} {length 1138}]
+      [{name Cryptonomicon} {author Stephenson} {length 918}]
+      [{name Ça} {author King} {length 1138}]
 
 Without specifying a default ``books`` collation, the ``Find()`` method would follow default
 binary collation rules to determine the ``name`` values that precede ``"Infinite Jest"``. These
@@ -173,8 +186,7 @@ the following:
 .. code-block:: json
    :copyable: false
 
-   [{_id 3} {name Atlas Shrugged} {author Rand} {length 1088}]
-   [{_id 5} {name Cryptonomicon} {author Stephenson} {length 918}]
+   [{name Cryptonomicon} {author Stephenson} {length 918}]
 
 See :ref:`golang-retrieve` for help with using the ``Find()`` method.
 
@@ -194,8 +206,8 @@ field and specifies a new collation with an ``"en_US"`` locale:
       :language: go
 
        // specify the collation locale and opts parameter
-       collate := &options.Collation{Locale: "en_US"}
-       opts := options.Index().SetCollation(collate)
+       collation := &options.Collation{Locale: "en_US"}
+       opts := options.Index().SetCollation(collation)
 
        // create a "name" field index with the collation option
        indexModel := mongo.IndexModel{
@@ -221,7 +233,7 @@ Set a Collation on an Operation
 
 Operations that read, update, and delete documents from a collection can use collations. 
 
-The following example uses the ``UpdateMany()`` method to update documents with ``length`` 
+The following example uses the ``Find()`` method to return documents with ``length`` 
 values greater than ``"1000"``. The ``NumericOrdering`` collation field has a value of
 ``true`` to ensure numeric comparison, rather than string comparison:
 
@@ -231,47 +243,39 @@ values greater than ``"1000"``. The ``NumericOrdering`` collation field has a va
    .. input::
       :language: go
 
-      // match documents with "length" values over 1000 
       filter := bson.D{{"length", bson.D{{"$gt", "1000"}}}}
+      collation := &options.Collation{Locale: "en_US", NumericOrdering: true}
+      opts := options.Find().SetCollation(collation)
 
-      // add a "long" field to these documents
-      update := bson.D{{"$set", bson.D{{"long", true}}}}
-
-      // specify numeric ordering conventions
-      collate := &options.Collation{Locale: "en_US", NumericOrdering: true}
-      opts := options.Update().SetCollation(collate)
-
-      result, err := coll.UpdateMany(context.TODO(), filter, update, opts)
-      if err != nil {
-         log.Fatal(err)
+      result, err := coll.Find(context.TODO(), filter, opts)
+      
+      var results []bson.D
+      if err = cursor.All(context.TODO(), &results); err != nil {
+         panic(err)
       }
-      fmt.Printf("Documents updated: %v\n", result.ModifiedCount)
+      
+      for _, result := range results {
+         fmt.Println(result)
+      }
 
    .. output::
       :language: none
       :visible: false
 
-      Documents updated: 4
-
-The following documents now have a ``long`` field set to ``true``:
-
-.. code-block:: json
-   :copyable: false
-   
-   {"_id", 2}, {"name", "Les Misérables"}, {"author", "Hugo"}, {"length", "1462"}, {"long", true}
-   {"_id", 3}, {"name", "Atlas Shrugged"}, {"author", "Rand"}, {"length", "1088"}, {"long", true}
-   {"_id", 4}, {"name", "Infinite Jest"}, {"author", "Wallace"}, {"length", "1104"}, {"long", true}
-   {"_id", 6}, {"name", "Ça"}, {"author", "King"}, {"length", "1138"}, {"long", true}
+      [{name Ça} {author King} {length 1138}]
+      [{name Infinite Jest} {author Wallace} {length 1104}]
+      [{name Les Misérables} {author Hugo} {length 1462}] 
 
 Without specifying a collation with a ``NumericOrdering`` field set to ``true``, the
-same ``UpdateMany()`` operation would compare ``length`` values as strings. The
-following documents would have a ``long`` field set to ``true``:
+same ``Find()`` operation would compare ``length`` values as strings. For example, the
+operation would consider the string ``"824"`` as greater than ``"1000"``. The
+output would resemble the following:
 
 .. code-block:: json
    :copyable: false
    
-   {"_id", 1}, {"name", "The Brothers Karamazov"}, {"author", "Dostoyevsky"}, {"length", "824"}, {"long", true}
-   {"_id", 5}, {"name", "Cryptonomicon"}, {"author", "Stephenson"}, {"length", "918"}, {"long", true}
+   [{name The Brothers Karamazov} {author Dostoyevsky} {length 824}]
+   [{name Cryptonomicon} {author Stephenson} {length 918}]
 
 Additional Information
 ----------------------
