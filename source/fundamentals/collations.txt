@@ -127,8 +127,7 @@ This example accomplishes the following tasks:
 
 - Defines a Collation object
 - Builds the options parameter with that Collation object
-- Calls ``CreateCollection()`` with a ``"books"`` collection arugment and an options
-argument
+- Calls ``CreateCollection()`` with a ``"books"`` collection argument and an options argument
 
 Use the Default Collection Collation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -205,11 +204,9 @@ field and specifies a new collation with an ``"en_US"`` locale:
    .. input::
       :language: go
 
-       // specify the collation locale and opts parameter
        collation := &options.Collation{Locale: "en_US"}
        opts := options.Index().SetCollation(collation)
 
-       // create a "name" field index with the collation option
        indexModel := mongo.IndexModel{
          Keys:    bson.D{{"name", 1}},
          Options: opts,
