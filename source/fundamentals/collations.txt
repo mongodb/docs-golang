@@ -99,8 +99,14 @@ Operation
 ~~~~~~~~~
 
 Specifying a collation on an operation overrides any default collation previously
-defined for a collection. See the :manual:`MongoDB manual </reference/collation/#collation-document>`
-for a list of operations that support collation.
+defined for a collection. If you specify a new collation on an operation that differs
+from the index collation, you cannot use that index. As a result, the operation may not
+perform as well as one that is covered by an index. 
+
+For more information on the disadvantages of sorting operations not covered by an index,
+see the server manual page on :manual:`Using Indexes to Sort Query Results </tutorial/sort-results-with-indexes/>`.
+See the :manual:`MongoDB manual </reference/collation/#collation-document>` for a list of
+operations that support collation.
 
 Collation Examples
 ------------------
