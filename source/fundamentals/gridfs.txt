@@ -4,7 +4,61 @@ GridFS
 
 .. default-domain:: mongodb
 
-GridFS is a specification implemented by the driver that describes how to
-split files into chunks when storing them and reassemble them when retrieving
-them. The driver implementation of GridFS is an abstraction that manages
-the operations and organization of the file storage.
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to store and retrieve large files in
+MongoDB using **GridFS**. GridFS is a specification that describes how
+to split files into chunks when storing them and reassemble the files when
+retrieving them. The driver implementation of GridFS is an abstraction that
+manages the operations and organization of the file storage. 
+
+You should use GridFS if the size of your files exceed the BSON document
+size limit of 16MB. For more detailed information on whether GridFS is
+suitable for your use case, see the :manual:`GridFS server manual page </core/gridfs>`.
+
+How GridFS Works
+----------------
+
+GridFS organizes files in a **bucket**, a group of MongoDB collections
+that contain the chunks of files and information describing them. The
+bucket contains the following collections:
+
+- The ``chunks`` collection, storing the binary file chunks.
+- The ``files`` collection, storing the file metadata.
+
+When you create a new GridFS bucket, the driver creates the preceding 
+collections, prefixed with the default bucket name ``fs``, unless
+you specify a different name. The driver also creates an index on each
+collection to ensure efficient retrieval of the files and related
+metadata. The driver only creates the GridFS bucket on the first write
+operation if it does not already exist. The driver only creates indexes if
+they do not exist and when the bucket is empty. For more information on
+GridFS indexes, see the server manual page on :manual:`GridFS Indexes </core/gridfs/#gridfs-indexes>`.
+
+When storing files with GridFS, the driver splits the files into smaller
+chunks, each represented by a separate document in the ``chunks`` collection.
+It also creates a document in the ``files`` collection that contains
+a file ID, file name, and other file metadata. You can upload the file from
+memory or from a stream. See the following diagram to see how GridFS splits
+the files when uploaded to a bucket.
+
+.. figure:: /includes/figures/GridFS-upload.png
+   :alt: A diagram that shows how GridFS uploads a file to a bucket
+
+When retrieving files, GridFS fetches the metadata from the ``files``
+collection in the specified bucket and uses the information to reconstruct
+the file from documents in the ``chunks`` collection. You can read the file
+into memory or output it to a stream.
+
+Create a GridFS Bucket
+----------------------
+
+To store or retrieve files from GridFS, create a bucket or get a reference to
+an existing one on a MongoDB database. 
