@@ -247,7 +247,7 @@ values greater than ``"1000"``. The ``NumericOrdering`` collation field has a va
       myCollation := &options.Collation{Locale: "en_US", NumericOrdering: true}
       opts := options.Find().SetCollation(myCollation)
 
-      result, err := coll.Find(context.TODO(), filter, opts)
+      cursor, err := coll.Find(context.TODO(), filter, opts)
       
       var results []bson.D
       if err = cursor.All(context.TODO(), &results); err != nil {
