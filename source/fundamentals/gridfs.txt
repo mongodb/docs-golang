@@ -326,7 +326,7 @@ Delete Files
 You can remove a file from your GridFS bucket by calling the ``Delete()`` method on
 the bucket. Pass a ``fileID`` value as an argument to ``Delete()``. 
 
-The following example deletes a file with a ``fileID`` value of ``62e005408bc`:
+The following example deletes a file with a ``fileID`` value of ``62e005408bc``:
 
 .. code-block:: go
 
