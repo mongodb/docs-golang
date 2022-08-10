@@ -142,15 +142,15 @@ to a GridFS bucket. It uses an ``opts`` parameter to set file metadata:
       :language: go
 
       fileContent, err := os.Open("path/to/file.txt")
-	  uploadOpts := options.GridFSUpload().SetMetadata(bson.D{{"metadata tag", "first"}})
-	  
-	  objectID, err := bucket.UploadFromStream("file.txt", io.Reader(fileContent),
+      uploadOpts := options.GridFSUpload().SetMetadata(bson.D{{"metadata tag", "first"}})
+
+      objectID, err := bucket.UploadFromStream("file.txt", io.Reader(fileContent),
          uploadOpts)
       if err != nil {
          panic(err)
       }
 
-	  fmt.Printf("New file uploaded with ID %s", objectID)
+      fmt.Printf("New file uploaded with ID %s", objectID)
 
    .. output::
       :language: none
@@ -183,7 +183,7 @@ on the content of ``"file.txt"`` to write its content to the stream:
       :language: go
 
       fileContent, err := os.Open("path/to/file.txt")
-      uploadOpts := options.GridFSUpload().SetChunkSizeBytes(200)
+      uploadOpts := options.GridFSUpload().SetChunkSizeBytes(200000)
       uploadStream, err := bucket.OpenUploadStream("file.txt", uploadOpts)
 
       if bytes, err = uploadStream.Write(fileContent); err != nil {
@@ -203,85 +203,102 @@ on the content of ``"file.txt"`` to write its content to the stream:
 Retrieve File Information
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this section, you can learn how to retrieve file metadata stored in the files
-collection of the GridFS bucket.
+You can retrieve file metadata stored in the ``files`` collection of the GridFS
+bucket. Each document in the ``files`` collection contains the following information:
 
-Call the ``Find()`` method on a ``Bucket`` instance.
+- The file ID
+- The file length
+- The maximum chunk size
+- The upload date and time
+- The file name
+- A ``metadata`` document in which you can store any other information
 
-- Function: 
-   func (b *Bucket) Find(filter interface{}, opts ...*options.GridFSFindOptions)
-- Example: 
-   filter := bson.D{
-		{"length", bson.D{{"$gt", 1000}}},
-	}
-	cursor, err := bucket.Find(filter)
-   // iterating:
+To retrieve file data, call the ``Find()`` method on a ``GridFSBucket``
+instance. You can pass a query filter as an argument to ``Find()`` to match
+only certain file documents.
+
+.. note::
+
+   The ``Find()`` method requires a query filter as a parameter. To match all 
+   documents in the ``files`` collection, pass an empty query filter to ``Find()``.
+
+The following example retrieves the file name and length of documents in the ``files``
+collection. It passes a filter argument to the ``Find()`` method to match documents with
+``length`` values greater than ``1500``:
+
+.. code-block:: go
+
+   filter := bson.D {{"length", bson.D{{"$gt", 1500}}}
+      cursor, err := bucket.Find(filter)
+
    type gridfsFile struct {
-		Name   string `bson:"filename"`
-		Length int64  `bson:"length"`
-	}
+      Name   string `bson:"filename"`
+      Length int64  `bson:"length"`
+   }
    var foundFiles []gridfsFile
-	if err = cursor.All(context.TODO(), &foundFiles); err != nil {
-		log.Fatal(err)
-	}
+   if err = cursor.All(context.TODO(), &foundFiles); err != nil {
+      log.Fatal(err)
+   }
 
-	for _, file := range foundFiles {
-		fmt.Printf("filename: %s, length: %d\n", file.Name, file.Length)
-	}
+   for _, file := range foundFiles {
+      fmt.Printf("filename: %s, length: %d\n", file.Name, file.Length)
+   }
+
+This code outputs the ``name`` and ``length`` values of documents in the ``files``
+collection that match the query filter.
 
 .. _golang-download-files:
 
 Download Files
 ~~~~~~~~~~~~~~
 
-Similar to uploading files, there are two ways to download GridFS files. You can download
-a file directly to a stream or you can save it to memory from a stream. 
+You can download a GridFS file in one of the following ways:
+
+- Use the ``DowloadToStream()`` method to download a file to an output stream
+- Use the ``OpenDownloadStream()`` method to open an input stream
 
 Download a File to an Output Stream
 ```````````````````````````````````
 
 You can download a file in a GridFS bucket directly to an output stream using the
-``DownloadToStream()`` method.
+``DownloadToStream()`` method. ``DownloadToStream()`` takes a ``fileID`` value and an
+``io.Writer`` as parameters. The method downloads the file with the specified ``fileID``
+and writes to the ``io.Writer``.
 
-This method takes an io.Writer parameter, which represents the download destination. It
-internally create a new DownloadStream and closes it once the operation is complete.
+The following example downloads a file with an ID value of ``62e005408bc`` and writes
+to a file buffer:
 
-- Function: 
-   func (b *Bucket) DownloadToStream(fileID interface{}, stream io.Writer)
-- Example:
-	var bucket *gridfs.Bucket
-	var fileID primitive.ObjectID
+.. code-block:: go
 
-	fileBuffer := bytes.NewBuffer(nil)
-	if _, err := bucket.DownloadToStream(fileID, fileBuffer); err != nil {
-		log.Fatal(err)
-	}
-}
+   id, err = primitive.ObjectIDFromHex("62e005408bc")
+   fileBuffer := bytes.NewBuffer(nil)
+   if _, err := bucket.DownloadToStream(id, fileBuffer); err != nil {
+      log.Fatal(err)
+   }
 
 Download a File to an Input Stream
 ``````````````````````````````````
 
-You can download a file in a GridFS bucket to memory by using an input stream. Call
-the ``OpenDownloadStream()`` method on the GridFS bucket.
+You can download a file in a GridFS bucket to memory with an input stream. Call
+the ``OpenDownloadStream()`` method on the GridFS bucket. ``OpenDownloadStream()`` takes
+a ``fileID`` value as a parameter and returns an input stream from which you can read
+the file.
 
-This method returns a ``DownloadStream`` instance, which you can then read with the 
-``Read()`` method.
+The following example downloads a file with an ID value of ``62e005408bc`` into memory
+and reads its contents:
 
-- Function:
-   func (b *Bucket) OpenDownloadStream(fileID interface{})
-- Example:
-	var bucket *gridfs.Bucket
-	var fileID primitive.ObjectID
+.. code-block:: go
 
-	downloadStream, err := bucket.OpenDownloadStream(fileID)
-	if err != nil {
-		log.Fatal(err)
-	}
+   id, err = primitive.ObjectIDFromHex("62e005408bc")
+   downloadStream, err := bucket.OpenDownloadStream(id)
+   if err != nil {
+      log.Fatal(err)
+   }
 
    fileBuffer := bytes.NewBuffer(nil)
-	if _, err := downloadStream.Read(fileBuffer); err != nil {
-		log.Fatal(err)
-	}
+   if _, err := downloadStream.Read(fileBuffer); err != nil {
+      log.Fatal(err)
+   }
 
 .. _golang-rename-files:
 
@@ -289,17 +306,17 @@ Rename Files
 ~~~~~~~~~~~~
 
 You can update the name of a GridFS file in your bucket by calling the ``Rename()``
-method on the GridFS bucket. Pass the file ID as an argument to ``Rename()``. 
+method on the GridFS bucket. Pass a ``fileID`` value as an argument to ``Rename()``. 
 
-- Function:
-   func (b *Bucket) Rename(fileID interface{}, newFilename string)
-- Example:
-	var bucket *gridfs.Bucket
-	var fileID primitive.ObjectID
+The following example renames a file with a ``fileID`` value of ``62e005408bc`` to 
+``"mongodbTutorial.zip"``:
 
-	if err := bucket.Rename(fileID, "new file name"); err != nil {
-		log.Fatal(err)
-	}
+.. code-block:: go
+
+   id, err = primitive.ObjectIDFromHex("62e005408bc")
+   if err := bucket.Rename(id, "mongodbTutorial.zip"); err != nil {
+       log.Fatal(err)
+   }
 
 .. _golang-delete-files:
 
@@ -307,17 +324,16 @@ Delete Files
 ~~~~~~~~~~~~
 
 You can remove a file from your GridFS bucket by calling the ``Delete()`` method on
-the GridFS bucket. Pass the file ID as an argument to ``Delete()``. 
+the bucket. Pass a ``fileID`` value as an argument to ``Delete()``. 
 
-- Function:
-   func (b *Bucket) Delete(fileID interface{})
-- Example:
-   var bucket *gridfs.Bucket
-	var fileID primitive.ObjectID
+The following example deletes a file with a ``fileID`` value of ``62e005408bc`:
 
-	if err := bucket.Delete(fileID); err != nil {
-		log.Fatal(err)
-	}
+.. code-block:: go
+
+   id, err = primitive.ObjectIDFromHex("62e005408bc")
+   if err := bucket.Delete(id); err != nil {
+      log.Fatal(err)
+   }
 
 .. _golang-delete-bucket:
 
@@ -326,28 +342,32 @@ Delete a GridFS Bucket
 
 You can delete a GridFS bucket by calling the ``Drop()`` method on the bucket.
 
-- Function: 
-   func (b *Bucket) Drop()
-- Example:
-   var bucket *gridfs.Bucket
+The following code example deletes a GridFS bucket:
 
-	if err := bucket.Drop(); err != nil {
-		log.Fatal(err)
-	}
+.. code-block:: go
+
+   if err := bucket.Drop(); err != nil {
+      log.Fatal(err)
+   }
+
 
 Additional Resources
 --------------------
 
-Manual:
-- GridFS (https://www.mongodb.com/docs/manual/core/gridfs/#std-label-faq-developers-when-to-use-gridfs) 
+To learn more about GridFS and its operations, visit the :manual:`GridFS manual page </core/gridfs>`.
 
-API documentation:
-- Create a bucket (https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo/gridfs#NewBucket)
-- Open upload stream (https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo/gridfs#Bucket.OpenUploadStream)
-- Upload from stream (https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo/gridfs#Bucket.UploadFromStream)
-- Find() (https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo/gridfs#Bucket.UploadFromStream)
-- Open download stream (https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo/gridfs#Bucket.OpenDownloadStream)
-- Download to stream (https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo/gridfs#Bucket.DownloadToStream)
-- Rename() (https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo/gridfs#Bucket.Rename)
-- Delete() (https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo/gridfs#Bucket.Delete)
-- Drop() (https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo/gridfs#Bucket.Drop)
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+To learn more about the methods or types discussed in this guide, see the following
+API Documentation:
+
+- `NewBucket() <{+api+}/mongo/gridfs#NewBucket>`__
+- `OpenUploadStream() <{+api+}/mongo/gridfs#Bucket.OpenUploadStream>`__
+- `UploadFromStream() <{+api+}/mongo/gridfs#Bucket.UploadFromStream>`__
+- `Find() <{+api+}/mongo/gridfs#Bucket.Find>`__
+- `OpenDownloadStream() <{+api+}/mongo/gridfs#Bucket.OpenUploadStream>`__
+- `DownloadToStream() <{+api+}/mongo/gridfs#Bucket.DownloadToStream>`__
+- `Rename() <{+api+}/mongo/gridfs#Bucket.Rename>`__
+- `Delete() <{+api+}/mongo/gridfs#Bucket.Delete>`__
+- `Drop() <{+api+}/mongo/gridfs#Bucket.Drop>`__
