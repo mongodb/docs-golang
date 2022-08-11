@@ -14,15 +14,16 @@ Overview
 --------
 
 In this guide, you can learn how to store and retrieve large files in
-MongoDB using **GridFS**. GridFS is a specification that describes how
-to split files into chunks when storing them and reassemble the files when
-retrieving them. The driver implementation of GridFS is an abstraction that
-manages the operations and organization of the file storage. 
+MongoDB using the **GridFS** specification. GridFS splits large files
+into chunks and stores each chunk as a separate document. When you query
+GridFS for a file, the driver will reassemble the chunks as needed. The
+driver implementation of GridFS is an abstraction that manages the operations
+and organization of the file storage. 
 
-You should use GridFS if the size of your files exceed the BSON document
-size limit of 16MB. GridFS is also useful for accessing files without loading
-the entire file into memory. For more detailed information on whether GridFS
-is suitable for your use case, see the :manual:`GridFS server manual page </core/gridfs>`.
+Use GridFS if the size of your files exceed the BSON document size limit of
+16MB. GridFS is also useful for accessing files without loading the entire file
+into memory. For more detailed information on whether GridFS is suitable for
+your use case, see the :manual:`GridFS server manual page </core/gridfs>`.
 
 How GridFS Works
 ----------------
@@ -35,26 +36,26 @@ bucket contains the following collections:
 - The ``files`` collection, which stores the file metadata.
 
 When you create a new GridFS bucket, the driver creates the preceding 
-collections, prefixed with the default bucket name ``fs``, unless
-you specify a different name. The driver also creates an index on each
-collection to ensure efficient retrieval of the files and related
-metadata. The driver only creates the GridFS bucket on the first write
-operation if it does not already exist. The driver only creates indexes if
-they do not exist and when the bucket is empty. For more information on
+collections. The collection names are prefixed with the default bucket
+name ``fs``, unless you specify a different name. The driver creates
+the new GridFS bucket during the first write operation.
+
+The driver also creates an index on each collection to ensure efficient
+retrieval of the files and related metadata. The driver only creates indexes
+if they do not exist and when the bucket is empty. For more information on
 GridFS indexes, see the server manual page on :manual:`GridFS Indexes </core/gridfs/#gridfs-indexes>`.
 
 When storing files with GridFS, the driver splits the files into smaller
 chunks, each represented by a separate document in the ``chunks`` collection.
 It also creates a document in the ``files`` collection that contains
-a file ID, file name, and other file metadata. You can upload the file from
-memory or from a stream. See the following diagram to see how GridFS splits
-the files when uploaded to a bucket.
+a file ID, file name, and other file metadata. The following diagram shows
+how GridFS splits the uploaded files:
 
 .. figure:: /includes/figures/GridFS-upload.png
    :alt: A diagram that shows how GridFS uploads a file to a bucket
 
 When retrieving files, GridFS fetches the metadata from the ``files``
-collection in the specified bucket and uses the information to reconstruct
+collection in the specified bucket, then uses that information to reconstruct
 the file from documents in the ``chunks`` collection. You can read the file
 into memory or output it to a stream.
 
@@ -64,13 +65,13 @@ Use GridFS
 To learn about GridFS operations and how to perform them, navigate to the
 following sections:
 
-- :ref:`Create a Bucket <golang-create-bucket>`
-- :ref:`Upload Files <golang-upload-files>`
-- :ref:`Retrieve File Information <golang-retrieve-info>`
-- :ref:`Download Files <golang-download-files>`
-- :ref:`Rename Files <golang-rename-files>`
-- :ref:`Delete Files <golang-delete-files>`
-- :ref:`Delete a Bucket <golang-delete-bucket>`
+- :ref:`<golang-create-bucket>`
+- :ref:`<golang-upload-files>`
+- :ref:`<golang-retrieve-info>`
+- :ref:`<golang-download-files>`
+- :ref:`<golang-rename-files>`
+- :ref:`<golang-delete-files>`
+- :ref:`<golang-delete-bucket>`
 
 .. _golang-create-bucket:
 
@@ -91,12 +92,12 @@ call the ``NewBucket()`` method with a database parameter:
 
 .. note::
 
-   The ``NewBucket()`` method instantiates a bucket if one does not already exist. 
-   However, the bucket is only created when you upload your first file.
+   If a GridFS bucket already exists, the ``NewBucket()`` method will return
+   a reference to the bucket rather than instantiate a new one.
 
-To instantiate a bucket with a custom name other than the default name ``fs``,
-call the ``SetName()`` method on a ``BucketOptions`` instance. Then, pass this code
-as a second parameter to the ``NewBucket()`` method:
+By default, the new bucket will be named ``fs``. To instantiate a bucket with a
+custom name, call the ``SetName()`` method on a ``BucketOptions`` instance as 
+follows:
 
 .. code-block:: go
 
@@ -115,8 +116,8 @@ Upload Files
 
 You can upload a file into a GridFS bucket in one of the following ways:
 
-- Use the ``UploadFromStream()`` method, which reads from an input stream
-- Use the ``OpenUploadStream()`` method, which writes to an output stream
+- Use the ``UploadFromStream()`` method, which reads from an input stream.
+- Use the ``OpenUploadStream()`` method, which writes to an output stream.
 
 For either upload process, you can specify configuration information on an instance
 of ``UploadOptions``. For a full list of ``UploadOptions`` fields, visit the 
@@ -125,15 +126,15 @@ of ``UploadOptions``. For a full list of ``UploadOptions`` fields, visit the
 Upload with an Input Stream
 ```````````````````````````
 
-You can use an input stream to upload a file to a GridFS bucket. To upload a file,
-use the ``UploadFromStream()`` method with the following parameters:
+To upload a file with an input stream, use the ``UploadFromStream()`` method
+with the following parameters:
 
 - Your file name
 - An ``io.Reader``, with your opened file as a parameter
 - An optional ``opts`` parameter to modify the behavior of ``UploadFromStream()``
 
-The following code example reads from a file called ``"file.txt"`` and uploads the content
-to a GridFS bucket. It uses an ``opts`` parameter to set file metadata:
+The following code example reads from a file called ``file.txt`` and uploads the
+content to a GridFS bucket. It uses an ``opts`` parameter to set file metadata:
 
 .. io-code-block::
    :copyable: true
@@ -160,21 +161,22 @@ to a GridFS bucket. It uses an ``opts`` parameter to set file metadata:
 
 .. note::
 
-   The driver uniquely generates each object ID number. The ID number outputted will
-   resemble the sample output but varies with each file and user.
+   The driver uniquely generates each object ID number. The ID number outputted
+   will resemble the sample output but varies with each file and user.
 
 Upload with an Output Stream
 ````````````````````````````
 
-You can use an output stream to upload a file to a GridFS bucket. To upload a file,
-use the ``OpenUploadStream()`` method with the following parameters:
+To upload a file with an output stream, use the ``OpenUploadStream()`` method
+with the following parameters:
 
 - Your file name
 - An optional ``opts`` parameter to modify the behavior of ``OpenUploadStream()``
 
-The following code example opens an upload stream on a GridFS bucket and sets the number
-of bytes in each chunk with an ``opts`` parameter. Then, it calls the ``Write()`` method
-on the content of ``"file.txt"`` to write its content to the stream:
+The following code example opens an upload stream on a GridFS bucket and sets
+the number of bytes in each chunk with an ``opts`` parameter. Then, it calls
+the ``Write()`` method on the content of ``file.txt`` to write its content to
+the stream:
 
 .. io-code-block::
    :copyable: true
@@ -204,7 +206,8 @@ Retrieve File Information
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can retrieve file metadata stored in the ``files`` collection of the GridFS
-bucket. Each document in the ``files`` collection contains the following information:
+bucket. Each document in the ``files`` collection contains the following
+information:
 
 - The file ID
 - The file length
@@ -222,9 +225,8 @@ only certain file documents.
    The ``Find()`` method requires a query filter as a parameter. To match all 
    documents in the ``files`` collection, pass an empty query filter to ``Find()``.
 
-The following example retrieves the file name and length of documents in the ``files``
-collection. It passes a filter argument to the ``Find()`` method to match documents with
-``length`` values greater than ``1500``:
+The following example retrieves the file name and length of documents in the
+``files`` collection with ``length`` values greater than ``1500``:
 
 .. code-block:: go
 
@@ -244,9 +246,6 @@ collection. It passes a filter argument to the ``Find()`` method to match docume
       fmt.Printf("filename: %s, length: %d\n", file.Name, file.Length)
    }
 
-This code outputs the ``name`` and ``length`` values of documents in the ``files``
-collection that match the query filter.
-
 .. _golang-download-files:
 
 Download Files
@@ -254,19 +253,19 @@ Download Files
 
 You can download a GridFS file in one of the following ways:
 
-- Use the ``DowloadToStream()`` method to download a file to an output stream
-- Use the ``OpenDownloadStream()`` method to open an input stream
+- Use the ``DowloadToStream()`` method to download a file to an output stream.
+- Use the ``OpenDownloadStream()`` method to open an input stream.
 
 Download a File to an Output Stream
 ```````````````````````````````````
 
 You can download a file in a GridFS bucket directly to an output stream using the
-``DownloadToStream()`` method. ``DownloadToStream()`` takes an ``ObjectID`` value and an
-``io.Writer`` as parameters. The method downloads the file with the specified ``ObjectID``
-and writes to the ``io.Writer``.
+``DownloadToStream()`` method. ``DownloadToStream()`` takes an ``ObjectID`` value
+and an ``io.Writer`` as parameters. The method downloads the file with the specified
+``ObjectID`` and writes to the ``io.Writer``.
 
-The following example downloads a file with an ``_id`` value of ``62e005408bc`` and writes
-to a file buffer:
+The following example downloads a file with an ``_id`` value of ``62e005408bc`` and
+writes to a file buffer:
 
 .. code-block:: go
 
@@ -279,13 +278,12 @@ to a file buffer:
 Download a File to an Input Stream
 ``````````````````````````````````
 
-You can download a file in a GridFS bucket to memory with an input stream. Call
-the ``OpenDownloadStream()`` method on the GridFS bucket. ``OpenDownloadStream()`` takes
-a ``ObjectID`` value as a parameter and returns an input stream from which you can read
-the file.
+You can download a file in a GridFS bucket to memory with an input stream using
+the ``OpenDownloadStream()`` method. ``OpenDownloadStream()`` takes a ``ObjectID``
+value as a parameter and returns an input stream from which you can read the file.
 
-The following example downloads a file with an ``_id`` value of ``62e005408bc`` into memory
-and reads its contents:
+The following example downloads a file with an ``_id`` value of ``62e005408bc`` into
+memory and reads its contents:
 
 .. code-block:: go
 
@@ -305,9 +303,9 @@ and reads its contents:
 Rename Files
 ~~~~~~~~~~~~
 
-You can update the name of a GridFS file in your bucket by calling the ``Rename()``
-method on the GridFS bucket. Pass an ``ObjectID`` value and a new ``filename`` value as
-arguments to ``Rename()``. 
+You can update the name of a GridFS file in your bucket by using the ``Rename()``
+method. Pass an ``ObjectID`` value and a new ``filename`` value as arguments to
+``Rename()``. 
 
 The following example renames a file with an ``_id`` value of ``62e005408bc`` to 
 ``"mongodbTutorial.zip"``:
@@ -324,8 +322,8 @@ The following example renames a file with an ``_id`` value of ``62e005408bc`` to
 Delete Files
 ~~~~~~~~~~~~
 
-You can remove a file from your GridFS bucket by calling the ``Delete()`` method on
-the bucket. Pass an ``ObjectID`` value as an argument to ``Delete()``. 
+You can remove a file from your GridFS bucket by using the ``Delete()`` method.
+Pass an ``ObjectID`` value as an argument to ``Delete()``. 
 
 The following example deletes a file with an ``_id`` value of ``62e005408bc``:
 
