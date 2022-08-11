@@ -21,7 +21,7 @@ driver implementation of GridFS is an abstraction that manages the operations
 and organization of the file storage. 
 
 Use GridFS if the size of your files exceed the BSON document size limit of
-16MB. GridFS is also useful for accessing files without loading the entire file
+16 MB. GridFS is also useful for accessing files without loading the entire file
 into memory. For more detailed information on whether GridFS is suitable for
 your use case, see the :manual:`GridFS server manual page </core/gridfs>`.
 
@@ -36,12 +36,12 @@ bucket contains the following collections:
 - The ``files`` collection, which stores the file metadata.
 
 When you create a new GridFS bucket, the driver creates the preceding 
-collections. The collection names are prefixed with the default bucket
-name ``fs``, unless you specify a different name. The driver creates
-the new GridFS bucket during the first write operation.
+collections. The default bucket name ``fs`` prefixes the collection names,
+unless you specify a different name. The driver creates the new GridFS bucket
+during the first write operation.
 
 The driver also creates an index on each collection to ensure efficient
-retrieval of the files and related metadata. The driver only creates indexes
+retrieval of the files and related metadata. The driver creates indexes
 if they do not exist and when the bucket is empty. For more information on
 GridFS indexes, see the server manual page on :manual:`GridFS Indexes </core/gridfs/#gridfs-indexes>`.
 
@@ -92,10 +92,10 @@ call the ``NewBucket()`` method with a database parameter:
 
 .. note::
 
-   If a GridFS bucket already exists, the ``NewBucket()`` method will return
-   a reference to the bucket rather than instantiate a new one.
+   If a GridFS bucket already exists, the ``NewBucket()`` method returns a
+   reference to the bucket rather than instantiating a new one.
 
-By default, the new bucket will be named ``fs``. To instantiate a bucket with a
+By default, the new bucket is named ``fs``. To instantiate a bucket with a
 custom name, call the ``SetName()`` method on a ``BucketOptions`` instance as 
 follows:
 
