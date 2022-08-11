@@ -339,7 +339,7 @@ The following example deletes a file with an ``_id`` value of ``62e005408bc``:
 Delete a GridFS Bucket
 ~~~~~~~~~~~~~~~~~~~~~~
 
-You can delete a GridFS bucket by calling the ``Drop()`` method on the bucket.
+You can delete a GridFS bucket by using the ``Drop()`` method.
 
 The following code example deletes a GridFS bucket:
 
