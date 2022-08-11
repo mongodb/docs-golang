@@ -229,7 +229,7 @@ collection. It passes a filter argument to the ``Find()`` method to match docume
 .. code-block:: go
 
    filter := bson.D {{"length", bson.D{{"$gt", 1500}}}
-      cursor, err := bucket.Find(filter)
+   cursor, err := bucket.Find(filter)
 
    type gridfsFile struct {
       Name   string `bson:"filename"`
@@ -261,11 +261,11 @@ Download a File to an Output Stream
 ```````````````````````````````````
 
 You can download a file in a GridFS bucket directly to an output stream using the
-``DownloadToStream()`` method. ``DownloadToStream()`` takes a ``fileID`` value and an
-``io.Writer`` as parameters. The method downloads the file with the specified ``fileID``
+``DownloadToStream()`` method. ``DownloadToStream()`` takes an ``ObjectID`` value and an
+``io.Writer`` as parameters. The method downloads the file with the specified ``ObjectID``
 and writes to the ``io.Writer``.
 
-The following example downloads a file with an ID value of ``62e005408bc`` and writes
+The following example downloads a file with an ``_id`` value of ``62e005408bc`` and writes
 to a file buffer:
 
 .. code-block:: go
@@ -281,10 +281,10 @@ Download a File to an Input Stream
 
 You can download a file in a GridFS bucket to memory with an input stream. Call
 the ``OpenDownloadStream()`` method on the GridFS bucket. ``OpenDownloadStream()`` takes
-a ``fileID`` value as a parameter and returns an input stream from which you can read
+a ``ObjectID`` value as a parameter and returns an input stream from which you can read
 the file.
 
-The following example downloads a file with an ID value of ``62e005408bc`` into memory
+The following example downloads a file with an ``_id`` value of ``62e005408bc`` into memory
 and reads its contents:
 
 .. code-block:: go
@@ -306,9 +306,10 @@ Rename Files
 ~~~~~~~~~~~~
 
 You can update the name of a GridFS file in your bucket by calling the ``Rename()``
-method on the GridFS bucket. Pass a ``fileID`` value as an argument to ``Rename()``. 
+method on the GridFS bucket. Pass an ``ObjectID`` value and a new ``filename`` value as
+arguments to ``Rename()``. 
 
-The following example renames a file with a ``fileID`` value of ``62e005408bc`` to 
+The following example renames a file with an ``_id`` value of ``62e005408bc`` to 
 ``"mongodbTutorial.zip"``:
 
 .. code-block:: go
@@ -324,9 +325,9 @@ Delete Files
 ~~~~~~~~~~~~
 
 You can remove a file from your GridFS bucket by calling the ``Delete()`` method on
-the bucket. Pass a ``fileID`` value as an argument to ``Delete()``. 
+the bucket. Pass an ``ObjectID`` value as an argument to ``Delete()``. 
 
-The following example deletes a file with a ``fileID`` value of ``62e005408bc``:
+The following example deletes a file with an ``_id`` value of ``62e005408bc``:
 
 .. code-block:: go
 
