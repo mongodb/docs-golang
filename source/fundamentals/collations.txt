@@ -99,7 +99,7 @@ to ignore differences in letter accents.
 Use the Default Collation Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you call an operation that supports collation on the ``books`` collection, the operation
+If you call an operation that uses a collation on the ``books`` collection, the operation
 will now use the default collation specified in the :ref:`golang-create-collection`.
 
 Assume the ``books`` collection contains the following documents:
@@ -155,7 +155,7 @@ the following:
    [{name Cryptonomicon} {length 918}]
    [{name Emma} {length 474}]
 
-See :ref:`golang-retrieve` for help with using the ``Find()`` method.
+To learn more about the `Find()` method, see :ref:`golang-retrieve`.
 
 .. _golang-index-collation:
 
@@ -259,9 +259,9 @@ order:
       :language: none
       :visible: false
 
-      [{name Infinite Jest} {author Wallace} {length 1104}]
-      [{name Ça} {author King} {length 1138}]
-      [{name Les Misérables} {author Hugo} {length 1462}] 
+      [{name Infinite Jest} {length 1104}]
+      [{name Ça} {length 1138}]
+      [{name Les Misérables} {length 1462}] 
 
 Without specifying a collation with a ``NumericOrdering`` field set to ``true``, the
 same ``Find()`` operation would compare ``length`` values as strings. For example, the
@@ -271,8 +271,8 @@ output would resemble the following:
 .. code-block:: json
    :copyable: false
    
-   [{name Emma} {author Austen} {length 474}]
-   [{name Cryptonomicon} {author Stephenson} {length 918}]
+   [{name Emma} {length 474}]
+   [{name Cryptonomicon} {length 918}]
 
 Additional Information
 ----------------------
