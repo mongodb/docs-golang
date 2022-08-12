@@ -277,11 +277,7 @@ output would resemble the following:
 Additional Information
 ----------------------
 
-To learn more about the ``Find()`` and ``UpdateOne()`` methods mentioned,
-see the following guides:
-
-- :ref:`golang-retrieve`
-- :ref:`golang-change-document`
+To learn more about the ``Find()`` method, see the :ref:`golang-retrieve` guide.
 
 To learn more about collations, visit the following manual pages:
 
