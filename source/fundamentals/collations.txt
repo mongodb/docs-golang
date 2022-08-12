@@ -155,7 +155,7 @@ the following:
    [{name Cryptonomicon} {length 918}]
    [{name Emma} {length 474}]
 
-To learn more about the `Find()` method, see :ref:`golang-retrieve`.
+To learn more about the ``Find()`` method, see :ref:`golang-retrieve`.
 
 .. _golang-index-collation:
 
