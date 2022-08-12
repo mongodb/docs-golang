@@ -20,7 +20,7 @@ GridFS for a file, the driver will reassemble the chunks as needed. The
 driver implementation of GridFS is an abstraction that manages the operations
 and organization of the file storage. 
 
-Use GridFS if the size of your files exceed the BSON document size limit of
+Use GridFS if the size of your files exceeds the BSON document size limit of
 16 MB. GridFS is also useful for accessing files without loading the entire file
 into memory. For more detailed information on whether GridFS is suitable for
 your use case, see the :manual:`GridFS server manual page </core/gridfs>`.
@@ -37,13 +37,13 @@ bucket contains the following collections:
 
 When you create a new GridFS bucket, the driver creates the preceding 
 collections. The default bucket name ``fs`` prefixes the collection names,
-unless you specify a different name. The driver creates the new GridFS bucket
-during the first write operation.
+unless you specify a different bucket name. The driver creates the new GridFS
+bucket during the first write operation.
 
 The driver also creates an index on each collection to ensure efficient
 retrieval of the files and related metadata. The driver creates indexes
-if they do not exist and when the bucket is empty. For more information on
-GridFS indexes, see the server manual page on :manual:`GridFS Indexes </core/gridfs/#gridfs-indexes>`.
+if they do not already exist and when the bucket is empty. For more information
+on GridFS indexes, see the server manual page on :manual:`GridFS Indexes </core/gridfs/#gridfs-indexes>`.
 
 When storing files with GridFS, the driver splits the files into smaller
 chunks, each represented by a separate document in the ``chunks`` collection.
