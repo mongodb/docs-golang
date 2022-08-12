@@ -69,20 +69,8 @@ For a complete list of ``Collation`` object fields, visit the `Collation API doc
 default values for the ``Locale`` fields, visit :manual:`Supported Languages and Locales
 </reference/collation-locales-defaults/#supported-languages-and-locales>`.
 
-Usage
------
-
-For information on applying a collation to a collection, view, index, or operation, navigate
-to the following sections:
-
-- :ref:`golang-collection-collation`
-- :ref:`golang-index-collation`
-- :ref:`golang-op-collation`
-
-.. _golang-collection-collation:
-
 Set a Collation on a Collection or View
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------
 
 You can apply a collation when you create a new collection or view. This defines the default
 collation for any operations called on that collection or view. Set a collation through a 
@@ -92,7 +80,7 @@ collation for any operations called on that collection or view. Set a collation 
 .. _golang-create-collection:
 
 Create a Collection Example
-```````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following example creates a new collection called ``books`` and specifies a default
 collation with the ``"fr"`` locale. The ``Strength`` collation field has a value of ``1``
@@ -109,10 +97,10 @@ to ignore differences in letter accents.
    }
 
 Use the Default Collation Example
-`````````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you call an operation that supports collation on the ``books`` collection, the operation
-will now use the default collation.
+will now use the default collation specified in the :ref:`golang-create-collection`.
 
 Assume the ``books`` collection contains the following documents:
 
@@ -128,9 +116,8 @@ Assume the ``books`` collection contains the following documents:
 
    To learn how to insert documents, see :ref:`golang-insert-guide`.
    
-You can use an operation with the default collation on the ``books`` collection specified
-in the :ref:`golang-create-collection`. The following example uses the ``Find()`` method
-to return all documents with a ``name`` value that alphabetically precedes ``"Infinite Jest"``:
+The following example uses the ``Find()`` method to return all documents with a ``name`` value
+that alphabetically precedes ``"Infinite Jest"``:
 
 .. io-code-block::
    :copyable: true
@@ -173,11 +160,11 @@ See :ref:`golang-retrieve` for help with using the ``Find()`` method.
 .. _golang-index-collation:
 
 Set a Collation on an Index 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------
 
 You can apply a collation when you create a new index on a collection. The index stores
 an ordered representation of the documents in the collection so your MongoDB instance
-does not need to perform the ordering in-memory. 
+does not need to perform the ordering for sorting operations in-memory. 
 
 To use the index in an operation, your operation must use the same collation as the one
 specified in the index. Additionally, ensure that the operation is covered by the index that
@@ -185,14 +172,14 @@ contains the collation. Set a collation through an ``IndexOptions`` object and c
 ``CreateOne()`` method with your options object as an argument.
 
 Example
-```````
+~~~~~~~
 
-After creating the ``books`` collection and applying a default collation, you cannot change
-the collection's default collation. However, you can create an index for the collection with
-a different collation. 
+After creating the ``books`` collection and applying a default collation, as shown in the
+:ref:`golang-create-collection` section, you cannot change the collection's default collation.
+However, you can create an index for the collection with a different collation. 
 
-The following example uses the ``CreateOne()`` method to create an ascending index on the ``name``
-field and specifies a new collation with an ``"en_US"`` locale:
+The following example uses the ``CreateOne()`` method to create an ascending index on the
+``name`` field and specifies a new collation with an ``"en_US"`` locale:
 
 .. io-code-block::
    :copyable: true
@@ -223,20 +210,21 @@ field and specifies a new collation with an ``"en_US"`` locale:
 .. _golang-op-collation:
 
 Set a Collation on an Operation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
-Applying a collation to an operation overrides any default collation previously
-defined for a collection. If you apply a new collation to an operation that differs
-from an index's collation, you cannot use that index. As a result, the operation may not
-perform as well as one that is covered by an index. 
+Operations that read, update, and delete documents from a collection can use collations.
+Applying a collation to an operation overrides any default collation previously defined
+for a collection. 
 
-For more information on the disadvantages of sorting operations not covered by an index,
-see :manual:`Using Indexes to Sort Query Results </tutorial/sort-results-with-indexes/>`.
+If you apply a new collation to an operation that differs from an index's collation,
+you cannot use that index. As a result, the operation may not perform as well as one
+that is covered by an index. For more information on the disadvantages of sorting operations
+not covered by an index, see :manual:`Using Indexes to Sort Query Results </tutorial/sort-results-with-indexes/>`.
 See the :manual:`MongoDB manual </reference/collation/#collation-document>` for a list of
 operations that support collation.
 
 Example
-```````
+~~~~~~~
 
 You can use operations that support collation to update and query documents in the 
 ``books`` collection. 
