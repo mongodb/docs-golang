@@ -184,23 +184,6 @@ the stream:
    :start-after: begin OpenUploadStream example
    :end-before: end OpenUploadStream example
 
-
-.. io-code-block::
-   :copyable: true
-
-   .. input::
-      .. literalinclude:: /includes/fundamentals/code-snippets/gridfs.go
-         :language: go
-         :dedent:
-         :start-after: begin OpenUploadStream example
-         :end-before: end OpenUploadStream example
-
-   .. output::
-      :language: none
-      :visible: false
-
-      New file uploaded with 1000 bytes written
-
 .. _golang-retrieve-info:
 
 Retrieve File Information
