@@ -142,10 +142,10 @@ content to a GridFS bucket. It uses an ``opts`` parameter to set file metadata:
    .. input::
       :language: go
 
-      fileContent, err := os.Open("path/to/file.txt")
+      file, err := os.Open("path/to/file.txt")
       uploadOpts := options.GridFSUpload().SetMetadata(bson.D{{"metadata tag", "first"}})
 
-      objectID, err := bucket.UploadFromStream("file.txt", io.Reader(fileContent),
+      objectID, err := bucket.UploadFromStream("file.txt", io.Reader(file),
          uploadOpts)
       if err != nil {
          panic(err)
@@ -178,21 +178,22 @@ the number of bytes in each chunk with an ``opts`` parameter. Then, it calls
 the ``Write()`` method on the content of ``file.txt`` to write its content to
 the stream:
 
+.. literalinclude:: /includes/fundamentals/code-snippets/gridfs.go
+   :language: go
+   :dedent:
+   :start-after: begin OpenUploadStream example
+   :end-before: end OpenUploadStream example
+
+
 .. io-code-block::
    :copyable: true
 
    .. input::
-      :language: go
-
-      fileContent, err := os.Open("path/to/file.txt")
-      uploadOpts := options.GridFSUpload().SetChunkSizeBytes(200000)
-      uploadStream, err := bucket.OpenUploadStream("file.txt", uploadOpts)
-
-      if bytes, err = uploadStream.Write(fileContent); err != nil {
-         panic(err)
-      }
-
-      fmt.Printf("New file uploaded with %d bytes written", bytes)
+      .. literalinclude:: /includes/fundamentals/code-snippets/gridfs.go
+         :language: go
+         :dedent:
+         :start-after: begin OpenUploadStream example
+         :end-before: end OpenUploadStream example
 
    .. output::
       :language: none
@@ -230,8 +231,11 @@ The following example retrieves the file name and length of documents in the
 
 .. code-block:: go
 
-   filter := bson.D {{"length", bson.D{{"$gt", 1500}}}
+   filter := bson.D{{"length", bson.D{{"$gt", 1500}}}}
    cursor, err := bucket.Find(filter)
+   if err != nil {
+      panic(err)
+   }
 
    type gridfsFile struct {
       Name   string `bson:"filename"`
@@ -239,7 +243,7 @@ The following example retrieves the file name and length of documents in the
    }
    var foundFiles []gridfsFile
    if err = cursor.All(context.TODO(), &foundFiles); err != nil {
-      log.Fatal(err)
+      panic(err)
    }
 
    for _, file := range foundFiles {
@@ -260,42 +264,40 @@ Download a File to an Output Stream
 ```````````````````````````````````
 
 You can download a file in a GridFS bucket directly to an output stream using the
-``DownloadToStream()`` method. ``DownloadToStream()`` takes an ``ObjectID`` value
-and an ``io.Writer`` as parameters. The method downloads the file with the specified
-``ObjectID`` and writes to the ``io.Writer``.
+``DownloadToStream()`` method. ``DownloadToStream()`` takes a file ID and an
+``io.Writer`` as parameters. The method downloads the file with the specified
+file ID and writes to the ``io.Writer``.
 
-The following example downloads a file with an ``_id`` value of ``62e005408bc`` and
-writes to a file buffer:
+The following example downloads a file and writes to a file buffer:
 
 .. code-block:: go
 
-   id, err = primitive.ObjectIDFromHex("62e005408bc")
+   id, err = primitive.ObjectIDFromHex("62f7bd54a6e4452da13b3e88")
    fileBuffer := bytes.NewBuffer(nil)
    if _, err := bucket.DownloadToStream(id, fileBuffer); err != nil {
-      log.Fatal(err)
+      panic(err)
    }
 
 Download a File to an Input Stream
 ``````````````````````````````````
 
 You can download a file in a GridFS bucket to memory with an input stream using
-the ``OpenDownloadStream()`` method. ``OpenDownloadStream()`` takes a ``ObjectID``
-value as a parameter and returns an input stream from which you can read the file.
+the ``OpenDownloadStream()`` method. ``OpenDownloadStream()`` takes a file ID as
+a parameter and returns an input stream from which you can read the file.
 
-The following example downloads a file with an ``_id`` value of ``62e005408bc`` into
-memory and reads its contents:
+The following example downloads a file into memory and reads its contents:
 
 .. code-block:: go
 
-   id, err = primitive.ObjectIDFromHex("62e005408bc")
+   id, err = primitive.ObjectIDFromHex("62f7bd54a6e4452da13b3e88")
    downloadStream, err := bucket.OpenDownloadStream(id)
    if err != nil {
-      log.Fatal(err)
+      panic(err)
    }
 
    fileBuffer := bytes.NewBuffer(nil)
    if _, err := downloadStream.Read(fileBuffer); err != nil {
-      log.Fatal(err)
+      panic(err)
    }
 
 .. _golang-rename-files:
@@ -304,17 +306,16 @@ Rename Files
 ~~~~~~~~~~~~
 
 You can update the name of a GridFS file in your bucket by using the ``Rename()``
-method. Pass an ``ObjectID`` value and a new ``filename`` value as arguments to
+method. Pass a file ID value and a new ``filename`` value as arguments to
 ``Rename()``. 
 
-The following example renames a file with an ``_id`` value of ``62e005408bc`` to 
-``"mongodbTutorial.zip"``:
+The following example renames a file to ``"mongodbTutorial.zip"``:
 
 .. code-block:: go
 
-   id, err = primitive.ObjectIDFromHex("62e005408bc")
+   id, err = primitive.ObjectIDFromHex("62f7bd54a6e4452da13b3e88")
    if err := bucket.Rename(id, "mongodbTutorial.zip"); err != nil {
-       log.Fatal(err)
+       panic(err)
    }
 
 .. _golang-delete-files:
@@ -323,15 +324,15 @@ Delete Files
 ~~~~~~~~~~~~
 
 You can remove a file from your GridFS bucket by using the ``Delete()`` method.
-Pass an ``ObjectID`` value as an argument to ``Delete()``. 
+Pass a file ID value as an argument to ``Delete()``. 
 
-The following example deletes a file with an ``_id`` value of ``62e005408bc``:
+The following example deletes a file:
 
 .. code-block:: go
 
-   id, err = primitive.ObjectIDFromHex("62e005408bc")
+   id, err = primitive.ObjectIDFromHex("62f7bd54a6e4452da13b3e88")
    if err := bucket.Delete(id); err != nil {
-      log.Fatal(err)
+      panic(err)
    }
 
 .. _golang-delete-bucket:
@@ -346,7 +347,7 @@ The following code example deletes a GridFS bucket:
 .. code-block:: go
 
    if err := bucket.Drop(); err != nil {
-      log.Fatal(err)
+      panic(err)
    }
 
 
