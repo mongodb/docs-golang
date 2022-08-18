@@ -93,7 +93,7 @@ to ignore differences in letter accents.
    err := db.CreateCollection(context.TODO(), "books", opts)
 
    if err != nil {
-      log.Fatal(err)
+      panic(err)
    }
 
 Use the Default Collation Example
@@ -127,6 +127,9 @@ that alphabetically precedes ``"Infinite Jest"``:
 
       filter := bson.D{{"name", bson.D{{"$lt", "Infinite Jest"}}}}
       cursor, err := coll.Find(context.TODO(), filter)
+      if err != nil {
+         panic(err)
+      }
 
       var results []bson.D
       if err = cursor.All(context.TODO(), &results); err != nil {
@@ -245,6 +248,9 @@ order:
       opts := options.Find().SetCollation(myCollation)
 
       cursor, err := coll.Find(context.TODO(), filter, opts)
+      if err != nil {
+         panic(err)
+      }
       
       var results []bson.D
       if err = cursor.All(context.TODO(), &results); err != nil {
