@@ -13,8 +13,8 @@ Search Geospatially
 Overview
 --------
 
-In this guide, you can learn how to search **geospatial data** with the
-MongoDB Java Driver, and the different geospatial data formats supported by MongoDB.
+In this guide, you can learn about different **geospatial data** formats and how to
+search geospatial data with the MongoDB Go Driver.
 
 Geospatial data is data that represents a geographical location on
 the surface of the Earth. Examples of geospatial data include:
@@ -47,8 +47,8 @@ For definitive information on GeoJSON, see the
 GeoJSON Positions
 ~~~~~~~~~~~~~~~~~
 
-A position represents a single place on Earth, and exists in code as an array
-containing two or three number values: 
+A position represents a single place on Earth and exists in code as an array
+containing the following values: 
 
 - Longitude in the first position (required)
 - Latitude in the second position (required)
@@ -89,37 +89,27 @@ Index
 
 To query data stored in the GeoJSON format, add the field containing
 GeoJSON data to a ``2dsphere`` index. The following snippet creates a
-``2dsphere`` index on the ``location.geo`` field using the ``Indexes`` builder:
-
-- create an index on the collection
-- define the index model on the field containing geoJSON data
-- in the index model, key should look like this: Keys: bson.D{{"<fieldname>", "2dsphere"}}
+``2dsphere`` index on the ``location.geo`` field:
 
 .. code-block:: go
+      
+      indexModel := mongo.IndexModel{
+      Keys:    bson.D{{"location.geo", "2dsphere"}},
+      }
 
-   // <MongoCollection setup code here>
-   opts := options.Index().SetCollation(myCollation)
-
-       indexModel := mongo.IndexModel{
-         Keys:    bson.D{{"name", "2dsphere"}},
-       }
-
-       name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
-       if err != nil {
+      name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
+      if err != nil {
          panic(err)
-       }
+      }
 
-For more information on the ``Indexes`` builder, see our 
-:doc:`guide on the Indexes builder </fundamentals/builders/indexes>`.
-
-.. guide resource
+For more information on using indexes, visit the :ref:`</fundamentals/indexes>` guide.
 
 Coordinates on a 2D Plane
 -------------------------
 
 You can store geospatial data using ``x`` and ``y`` coordinates on 
 a two-dimensional Euclidean plane. We refer to coordinates on a two-dimensional
-plane as "legacy coordinate pairs".
+plane as "legacy coordinate pairs."
 
 Legacy coordinate pairs have the following structure:
 
@@ -135,20 +125,21 @@ Index
 
 To query data stored as legacy coordinate pairs, you must add the field containing
 legacy coordinate pairs to  a ``2d`` index. The following snippet creates a
-``2d`` index on the ``coordinates`` field using the ``Indexes`` builder:
+``2d`` index on the ``coordinates`` field:
 
 .. code-block:: java
 
-   // <MongoCollection setup code here>
-   collection.createIndex(Indexes.geo2d("coordinates"));
+   indexModel := mongo.IndexModel{
+      Keys:    bson.D{{"location.geo.coordinates", "2d"}},
+   }
 
-For more information on the ``Indexes`` builder, see our 
-:doc:`guide on the Indexes builder </fundamentals/builders/indexes>`. 
-   
+   name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
+   if err != nil {
+      panic(err)
+   }
+
 For more information on legacy coordinate pairs, see the
 :manual:`MongoDB server manual page on legacy coordinate pairs </geospatial-queries/#legacy-coordinate-pairs>`.
-
-.. external resource
 
 .. tip:: Supported Operators
 
@@ -162,8 +153,9 @@ For more information on legacy coordinate pairs, see the
 Geospatial Queries
 ------------------
 
-Geospatial queries consist of a query operator and GeoJSON shapes as query
-parameters.
+To perform a geospatial query, create a query filter with a field name and a geospatial
+query operator. You can specify additional options for certain geospatial query operators
+to limit the documents returned.
 
 Query Operators
 ~~~~~~~~~~~~~~~
@@ -175,29 +167,20 @@ To query your geospatial data, use one of the following query operators:
 - ``$nearSphere``
 - ``$geoIntersects`` *requires a 2dsphere index*
 
-You can specify these query operators in the MongoDB Java driver with the
-``near()``, ``geoWithin()``, ``nearSphere()``, and ``geoIntersects()`` utility
-methods of the ``Filters`` builder class.
+When using the ``$geoWithin`` operator, you can specify the following shape operators:
+
+- ``$box``
+- ``$polygon``
+- ``$center``
+- ``$centerSphere``
+
+When using the ``$near`` operator, you can specify the following distance operators:
+
+- ``$minDistance``
+- ``$maxDistance``
 
 For more information on geospatial query operators, see the
 :manual:`manual entry for geospatial queries </geospatial-queries/#geospatial-query-operators>`.
-
-.. external resource
-
-For more information on ``Filters``, see our 
-:doc:`guide on the Filters builder </fundamentals/builders/filters>`.  
-
-Query Parameters
-~~~~~~~~~~~~~~~~
-
-To specify a shape to use in a geospatial query, use the
-``Position``, ``Point``, ``LineString``, and ``Polygon`` classes of the MongoDB
-Java driver.
-
-For a full list of the GeoJSON shapes available in the MongoDB Java driver, see the
-`GeoJSON package
-<{+api+}/apidocs/mongodb-driver-core/com/mongodb/client/model/geojson/package-summary.html>`__
-API Documentation.
 
 .. external resource
 
@@ -207,6 +190,27 @@ Examples
 Query by Proximity
 ~~~~~~~~~~~~~~~~~~
 
+Code example:
+
+location := bson.D{{"type", "Point"}, {"coordinates", []float32{-76.512016, 38.29697}}}
+
+	filter := bson.D{
+		{"location.geo",
+			bson.D{
+				{"$near", bson.D{
+					{"$geometry", location},
+				}},
+			}},
+	}
+	var places []bson.D
+	output, err := coll.Find(context.TODO(), filter)
+	if err = output.All(context.TODO(), &places); err != nil {
+		panic(err)
+	}
+	fmt.Println(places)
+
 Query Within a Range
 ~~~~~~~~~~~~~~~~~~~~
+
+Code example:
 
