@@ -100,7 +100,7 @@ GeoJSON data to a ``2dsphere`` index. The following snippet creates a
          panic(err)
       }
 
-For more information on using indexes, visit the :ref:`</fundamentals/indexes>` guide.
+For more information on using indexes, visit the :ref:`golang-indexes` guide.
 
 Coordinates on a 2D Plane
 -------------------------
@@ -199,41 +199,45 @@ Query by Proximity
 
 Code example:
 
+.. code-block:: go
+
    location := bson.D{{"type", "Point"}, {"coordinates", []float32{-76.512016, 38.29697}}}
 
-	filter := bson.D{
-		{"location.geo",
-			bson.D{
-				{"$near", bson.D{
-					{"$geometry", location},
-				}},
-			}},
-	}
-	var places []bson.D
-	output, err := coll.Find(context.TODO(), filter)
-	if err = output.All(context.TODO(), &places); err != nil {
-		panic(err)
-	}
-	fmt.Println(places)
+   filter := bson.D{
+      {"location.geo",
+         bson.D{
+            {"$near", bson.D{
+            {"$geometry", location},
+            }},
+         }},
+   }
+   var places []bson.D
+   output, err := coll.Find(context.TODO(), filter)
+   if err = output.All(context.TODO(), &places); err != nil {
+      panic(err)
+   }
+   fmt.Println(places)
 
 Query Within a Range
 ~~~~~~~~~~~~~~~~~~~~
 
 Code example:
 
-	location := bson.D{{"type", "Point"}, {"coordinates", []float32{-73.9667, 40.78}}}
+.. code-block:: go
 
-	filter := bson.D{
-		{"location.geo",
-			bson.D{
-				{"$nearSphere", bson.D{
-					{"$geometry", location},
-					{"$maxDistance", 10000},
-				}},
-			}},
-	}
-	var places bson.D
-	err := coll.FindOne(context.TODO(), filter).Decode(&places)
+   location := bson.D{{"type", "Point"}, {"coordinates", []float32{-73.9667, 40.78}}}
+
+   filter := bson.D{
+      {"location.geo",
+         bson.D{
+            {"$nearSphere", bson.D{
+            {"$geometry", location},
+            {"$maxDistance", 10000},
+            }},
+         }},
+   }
+   var places bson.D
+   err := coll.FindOne(context.TODO(), filter).Decode(&places)
    if err != nil {
       panic(err)
    }
