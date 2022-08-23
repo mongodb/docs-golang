@@ -49,7 +49,7 @@ The MongoDB manual contains detailed information on the following {+qe+} topics:
 
 - To get started, see the :ref:`{+qe+} Quick Start <qe-quick-start>`.
 - To learn how to use {+qe+}, see the :ref:`{+qe+} Fundamentals <qe-fundamentals>`.
-- To learn how to integrate your implementation with a KMS, see the :ref:`{+qe+} Tutorials<qe-tutorials>`.
+- To learn how to integrate your implementation with a {+kms-long+}, see the :ref:`{+qe+} Tutorials <qe-tutorials>`.
 - To learn {+qe+} concepts, see the :ref:`{+qe+} Reference <qe-reference>`.
 
 {+csfle-long+}
@@ -67,5 +67,5 @@ The MongoDB manual contains detailed information on the following {+csfle-short+
 
 - To get started, see the :ref:`{+csfle-short+} Quick Start <csfle-quick-start>`.
 - To learn how to use {+csfle-short+}, see the :ref:`{+csfle-short+} Fundamentals <csfle-fundamentals>`.
-- To learn how to integrate your {+csfle-short+} implementation with a KMS, see the :ref:`{+csfle-short+} Tutorials <csfle-tutorials>`.
+- To learn how to integrate your {+csfle-short+} implementation with a {+kms-long+}, see the :ref:`{+csfle-short+} Tutorials <csfle-tutorials>`.
 - To learn {+csfle-short+} concepts, see the :ref:`{+csfle-short+} Reference <csfle-reference>`.
