@@ -81,8 +81,8 @@ made up of positions.
 
 Here are some common GeoJSON types and how you can specify them with positions:
 
-- ``Point``: a single position. This could represent the location of the
-  MongoDB Headquarters.
+- ``Point``: a single position. The following ``Point`` represents the location of
+  the MongoDB Headquarters.
 
   .. code-block:: go
      :copyable: False
@@ -96,8 +96,8 @@ Here are some common GeoJSON types and how you can specify them with positions:
      }
 
 - ``LineString``: an array of two or more positions that forms a series of line
-  segments. This could represent
-  `the route of the Great Wall of China <https://commons.wikimedia.org/wiki/File:GreatWallChina4.png>`__.
+  segments. This following ``LineString`` represents a segment of
+  `the Great Wall of China <https://commons.wikimedia.org/wiki/File:GreatWallChina4.png>`__.
 
   .. code-block:: go
      :copyable: False
@@ -116,8 +116,8 @@ Here are some common GeoJSON types and how you can specify them with positions:
      }
 
 - ``Polygon``: an array of positions in which the first and last
-  position are the same and enclose some space. This could represent
-  `the land within Vatican City <https://commons.wikimedia.org/wiki/File:Vatican_City_map_EN.png>`__.
+  position are the same and enclose some space. This following
+  ``Polygon`` represents `the land within Vatican City <https://commons.wikimedia.org/wiki/File:Vatican_City_map_EN.png>`__.
 
   .. code-block:: go
      :copyable: False
