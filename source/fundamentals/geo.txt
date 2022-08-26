@@ -42,9 +42,9 @@ All geospatial data in MongoDB is stored in one of the following formats:
 GeoJSON
 ~~~~~~~
 
-GeoJSON is the preferred format to store geospatial data in MongoDB.
-To specifying a location you must declare one or more **positions**
-and choose the appropriate **type**.
+Use GeoJSON to store data that represents geospatial information on
+an earth-like sphere. GeoJSON is composed of one or more **positions**
+and a **type**.
 
 Positions
 `````````
@@ -76,7 +76,7 @@ New York City, NY.
 Types
 `````
 
-Your GeoJSON object's type determines its geometric shape. Geometric shapes are
+Your GeoJSON object's type determines the geometric shape it represents. Geometric shapes are
 made up of positions.
 
 Here are some common GeoJSON types and how you can specify them with positions:
@@ -88,7 +88,7 @@ Here are some common GeoJSON types and how you can specify them with positions:
      :copyable: False
 
      bson.D{
-         {"name", "HQ"},
+         {"name", "MongoDB HQ"},
          {"location", bson.D{
              {"type", "Point"},
              {"coordinates", []float64{-73.986805, 40.7620853}},
@@ -136,7 +136,7 @@ Here are some common GeoJSON types and how you can specify them with positions:
      }
 
 
-To learn more about the shapes you can use in MongoDB, see the
+To learn more about the GeoJSON types you can use in MongoDB, see the
 :manual:`GeoJSON manual entry </reference/geojson/>`.
 
 For definitive information on GeoJSON, see the
@@ -145,18 +145,18 @@ For definitive information on GeoJSON, see the
 Legacy Coordinate Pairs
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-You can store geospatial data using ``x`` and ``y`` coordinates on
-a two-dimensional Euclidean plane. We refer to coordinates on a two-dimensional
-plane as "legacy coordinate pairs."
+Use legacy coordinate pairs to store data that represents geospatial information
+on a two-dimensional Euclidean plane.
 
-Legacy coordinate pairs have the following structure:
-
-.. code-block:: json
-
-   "<field name>" : [ x, y ]
 
 Your field should contain an array of two values in which the first represents
 the ``x`` axis value and the second represents the ``y`` axis value.
+
+.. code-block:: json
+   :copyable: False
+
+   bson.D{{"center", []int16{0, 0}}}
+
 
 For more information on legacy coordinate pairs, see the
 :manual:`MongoDB server manual page on legacy coordinate pairs </geospatial-queries/#legacy-coordinate-pairs>`.
@@ -167,7 +167,7 @@ Geospatial Indexes
 ------------------
 
 To enable querying for geosptial data, you must first create a supporting
-index. The index types that enable geospatial queries are:
+index. The following index types that enable geospatial queries:
 
 
 - ``2dsphere`` for GeoJSON data
@@ -176,8 +176,8 @@ index. The index types that enable geospatial queries are:
 2dsphere
 ~~~~~~~~
 To query data stored in the GeoJSON format, add the field containing
-GeoJSON data to a ``2dsphere`` index. The following snippet creates a
-``2dsphere`` index on the ``location`` field:
+both the ``type`` and ``coordinates`` to a ``2dsphere`` index. The
+following snippet creates a ``2dsphere`` index on the ``location`` field:
 
 .. code-block:: go
 
@@ -266,53 +266,75 @@ Query by Proximity
 ~~~~~~~~~~~~~~~~~~
 
 The following example queries for documents with a ``location.geo`` field
-near the MongoDB Headquarters in New York City, NY. It returns documents
+within 1000 meters of the MongoDB Headquarters in New York City, NY. It returns documents
 from nearest to farthest.
 
-.. code-block:: go
+.. io-code-block::
 
-   mongoDBHQ := bson.D{{"type", "Point"}, {"coordinates", []float64{-73.986805, 40.7620853}}}
+   .. input::
+      :language: go
 
-   filter := bson.D{
-       {"location.geo", bson.D{
-           {"$near", bson.D{
-               {"$geometry", mongoDBHQ},
-           }},
-       }},
-   }
-   var places []bson.D
-   output, err := coll.Find(context.TODO(), filter)
-   if err = output.All(context.TODO(), &places); err != nil {
-       panic(err)
-   }
-   fmt.Println(places)
+      mongoDBHQ := bson.D{{"type", "Point"}, {"coordinates", []float64{-73.986805, 40.7620853}}}
+
+      filter := bson.D{
+          {"location.geo", bson.D{
+              {"$near", bson.D{
+                  {"$geometry", mongoDBHQ},
+                  {"$maxDistance", 1000},
+              }},
+          }},
+      }
+      var places []bson.D
+      output, err := coll.Find(context.TODO(), filter)
+      if err = output.All(context.TODO(), &places); err != nil {
+          panic(err)
+      }
+      fmt.Println(places)
+
+   .. output::
+      :language: json
+
+      [
+        [{_id ObjectID(...)} {theaterId 1908} {location [{address [...]} {geo [{type Point} {coordinates [-73.983487 40.76078]}]}]}]
+        [{_id ObjectID(...)} {theaterId 1448} {location [{address [...]} {geo [{type Point} {coordinates [-73.982094 40.76988]}]}]}]
+      ]
+
 
 Query Within a Range
 ~~~~~~~~~~~~~~~~~~~~
 
 The following example queries for documents with a ``location.geo`` field
-within 10,000 meters of the MongoDB Headquarters in New York City, NY. It
-returns documents from nearest to farthest.
+no closer than 2000 meters and no farther than 3000 meters of the MongoDB
+Headquarters in New York City, NY. It returns documents from nearest to farthest.
 
-.. code-block:: go
+.. io-code-block::
 
-   mongoDBHQ := bson.D{{"type", "Point"}, {"coordinates", []float64{-73.986805, 40.7620853}}}
+   .. input::
+      :lanuage: go
 
-   filter := bson.D{
-       {"location.geo",
-            bson.D{
-                {"$nearSphere", bson.D{
-                    {"$geometry", MongoDBHQ},
-                    {"$maxDistance", 10000},
-             }},
-       }},
-   }
-   var places bson.D
-   err := coll.Find(context.TODO(), filter).Decode(&places)
-   if err != nil {
-       panic(err)
-   }
-   fmt.Println(places)
+      mongoDBHQ := bson.D{{"type", "Point"}, {"coordinates", []float64{-73.986805, 40.7620853}}}
+
+      filter := bson.D{
+          {"location.geo",
+               bson.D{
+                   {"$nearSphere", bson.D{
+                       {"$geometry", MongoDBHQ},
+                       {"$minDistance", 2000},
+                       {"$maxDistance", 3000},
+                }},
+          }},
+      }
+      var places bson.D
+      err := coll.Find(context.TODO(), filter).Decode(&places)
+      if err != nil {
+          panic(err)
+      }
+      fmt.Println(places)
+
+   .. output::
+      :language: json
+
+      [[{_id ObjectID(...)} {theaterId 482} {location [...]} {geo [{type Point} {coordinates [-73.99295 40.74194]}]}]}]]
 
 Additional Resources
 --------------------
