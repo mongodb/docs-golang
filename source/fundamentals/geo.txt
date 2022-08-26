@@ -31,7 +31,7 @@ Examples of geospatial data include:
 Store Geospatial Data
 ---------------------
 
-You have two options to store geospatial data in MongoDB:
+All geospatial data in MongoDB is stored in one of the following formats:
 
 - GeoJSON, a format that represents geospatial data on an earth-like
   sphere.
