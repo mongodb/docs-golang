@@ -103,17 +103,17 @@ Here are some common GeoJSON types and how you can specify them with positions:
      :copyable: False
 
      bson.D{
-             {"name", "Great Wall of China"},
-             {"location", bson.D{
-                 {"type", "LineString"},
-                 {"coordinates", [][]float64{
-                     {116.572, 40.430},
-                     {116.570, 40.434},
-                     {116.567, 40.436},
-                     {116.566, 40.441},
-                 }}},
-             },
-         }
+         {"name", "Great Wall of China"},
+         {"location", bson.D{
+             {"type", "LineString"},
+             {"coordinates", [][]float64{
+                 {116.572, 40.430},
+                 {116.570, 40.434},
+                 {116.567, 40.436},
+                 {116.566, 40.441},
+             }}},
+         },
+     }
 
 - ``Polygon``: an array of positions in which the first and last
   position are the same and enclose some space. This could represent
