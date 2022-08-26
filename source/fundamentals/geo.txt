@@ -225,7 +225,6 @@ to enable geospatial queries.
    and their index compatibility, see the
    :manual:`manual entry for geospatial queries </geospatial-queries/#geospatial-query-operators>`.
 
-   .. external resource
 Query Operators
 ~~~~~~~~~~~~~~~
 
