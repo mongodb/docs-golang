@@ -43,11 +43,11 @@ GeoJSON
 ~~~~~~~
 
 GeoJSON is the preferred format to store geospatial data in MongoDB.
-Specifying a location begins with declaring one or more **positions**,
-and choosing the appropriate **type**.
+To specifying a location you must declare one or more **positions**
+and choose the appropriate **type**.
 
-GeoJSON Positions
-`````````````````
+Positions
+`````````
 
 A position represents a single place on Earth and exists in code as an array
 containing the following values:
@@ -73,8 +73,8 @@ New York City, NY.
   Maps list coordinates as latitude first and longitude second.
 
 
-GeoJSON Types
-`````````````
+Types
+`````
 
 Your GeoJSON object's type determines its geometric shape. Geometric shapes are
 made up of positions.
@@ -173,8 +173,8 @@ index. The index types that enable geospatial queries are:
 - ``2dsphere`` for GeoJSON data
 - ``2d`` for legacy coordinate pairs
 
-2dsphere Index
-~~~~~~~~~~~~~~
+2dsphere
+~~~~~~~~
 To query data stored in the GeoJSON format, add the field containing
 GeoJSON data to a ``2dsphere`` index. The following snippet creates a
 ``2dsphere`` index on the ``location`` field:
@@ -191,8 +191,8 @@ GeoJSON data to a ``2dsphere`` index. The following snippet creates a
    }
 
 
-2d Index
-~~~~~~~~
+2d
+~~
 To query data stored as legacy coordinate pairs, you must add the field containing
 legacy coordinate pairs to  a ``2d`` index. The following snippet creates a
 ``2d`` index on the ``coordinates`` field:
@@ -200,7 +200,7 @@ legacy coordinate pairs to  a ``2d`` index. The following snippet creates a
 .. code-block:: go
 
    indexModel := mongo.IndexModel{
-       Keys:    bson.D{{"location.geo.coordinates", "2d"}},
+       Keys:    bson.D{{"location.coordinates", "2d"}},
    }
 
    name, err := coll.Indexes().CreateOne(context.TODO(), indexModel)
@@ -308,7 +308,7 @@ returns documents from nearest to farthest.
        }},
    }
    var places bson.D
-   err := coll.FindOne(context.TODO(), filter).Decode(&places)
+   err := coll.Find(context.TODO(), filter).Decode(&places)
    if err != nil {
        panic(err)
    }
