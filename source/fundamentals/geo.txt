@@ -310,7 +310,7 @@ Headquarters in New York City, NY. It returns documents from nearest to farthest
 .. io-code-block::
 
    .. input::
-      :lanuage: go
+      :language: go
 
       mongoDBHQ := bson.D{{"type", "Point"}, {"coordinates", []float64{-73.986805, 40.7620853}}}
 
