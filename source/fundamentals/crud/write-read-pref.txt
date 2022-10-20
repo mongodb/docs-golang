@@ -21,7 +21,7 @@ executes create, read, update, and delete (CRUD) operations using
 for replica sets.
 
 Write concern, read concern, and read preference options can be set at
-the following levels in your code:
+the following levels:
 
 - Client level, which sets the *default for all operation executions*
   unless overridden
@@ -93,7 +93,7 @@ with this option:
 
 .. code-block:: go
    :emphasize-lines: 2-3
-
+   
    uri := "mongodb://<hostname>:<port>"
    wc := writeconcern.W(2)
 	 opts := options.Client().ApplyURI(uri).SetWriteConcern(writeconcern.New(wc))
