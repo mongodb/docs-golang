@@ -96,8 +96,8 @@ with this option:
    
    uri := "mongodb://<hostname>:<port>"
    wc := writeconcern.W(2)
-	 opts := options.Client().ApplyURI(uri).SetWriteConcern(writeconcern.New(wc))
-	 client, err := mongo.Connect(context.TODO(), opts)
+   opts := options.Client().ApplyURI(uri).SetWriteConcern(writeconcern.New(wc))
+   client, err := mongo.Connect(context.TODO(), opts)
 
 Read Concern
 ------------
@@ -166,9 +166,9 @@ The following code shows how you can specify a read concern of
    :emphasize-lines: 1-2
 
    rc := readconcern.Majority()
-	 opts := options.Collection().SetReadConcern(rc)
-	 database := client.Database("myDB")
-	 coll := database.Collection("myCollection", opts)
+   opts := options.Collection().SetReadConcern(rc)
+   database := client.Database("myDB")
+   coll := database.Collection("myCollection", opts)
 
 Read Preference
 ---------------
@@ -231,8 +231,8 @@ from secondary nodes and select a ``Database`` with this configuration:
    :emphasize-lines: 1-2
 
    rp := readpref.Secondary()
-	 opts := options.Database().SetReadPreference(rp)
-	 database := client.Database("myDB", opts)
+   opts := options.Database().SetReadPreference(rp)
+   database := client.Database("myDB", opts)
 
 Additional Information
 ----------------------
