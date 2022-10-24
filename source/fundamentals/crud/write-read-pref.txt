@@ -31,8 +31,8 @@ the following levels:
 - Collection level
 - Query level
 
-You should read this guide if you need to modify how operations execute
-in your replica sets to manage the consistency and availability of your data.
+You should read this guide if you need to customize the consistency and
+availability of the data in your replica sets.
 
 Write Concern
 -------------
@@ -51,7 +51,7 @@ The {+driver-long+} provides the ``writeconcern`` package, which lets
 you specify the write concern for a replica set. Set the write
 concern using the ``SetWriteConcern()`` method with an ``Option``
 type. The ``Option`` type has the following methods to specify the
-read concern:
+write concern:
 
 .. list-table::
    :widths: 25 75
@@ -196,7 +196,7 @@ Options
 The {+driver-long+} provides the ``readpref`` package, which lets
 you specify the read preference for a replica set. Set the read preference using the
 ``SetReadPreference()`` method with a ``ReadPref`` type. The ``ReadPref``
-type has the following methods to specify the read concern:
+type has the following methods to specify the read preference:
 
 .. list-table::
    :widths: 25 75
