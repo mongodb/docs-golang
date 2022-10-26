@@ -21,6 +21,7 @@ Fundamentals
    /fundamentals/time-series
    /fundamentals/encrypt-fields
    /fundamentals/geo
+   /fundamentals/sessions
 
 ..
   /fundamentals/enterprise-auth

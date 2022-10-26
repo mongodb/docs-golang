@@ -1,0 +1,152 @@
+.. _golang-sessions:
+
+========
+Sessions
+========
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to use **sessions**, or logical
+sessions, with the {+driver-short+}. Sessions enable :manual:`causal
+consistency </core/read-isolation-consistency-recency/#causal-consistency>`
+for a group of operations or allow you to execute operations in an :website:`ACID
+transaction </basics/acid-transactions>`.
+
+With the {+driver-short+}, you can create a new session from a
+``Client`` instance as a ``Session`` type. You should only use a
+``Session`` instance created from a ``Client`` to execute operations
+using that ``Client`` or in a database or collection selected from that
+``Client``.
+
+.. warning::
+   
+   You should not use custom implementations of the ``Session``
+   interface in production. Additionally, implementations of ``Session``
+   are not safe for concurrent use by multiple `goroutines
+   <https://www.golang-book.com/books/intro/10>`__.
+
+Method Set
+----------
+
+After you start a session using the ``StartSession()`` method, you can modify
+the session state using the method set in the ``Session`` interface. The
+following table describes these methods:
+
+.. list-table::
+   :widths: 25 75
+   :header-rows: 1
+
+   * - Method
+     - Description
+
+   * - ``StartTransaction()``
+     - | Starts a new transaction, configured with the given options, on
+         this session. Returns an error if there is already
+         a transaction in progress for the session. For more
+         information, see the :manual:`Manual entry </reference/method/Session.startTransaction/>`.
+       |
+       | **Parameter**: ``TransactionOptions``
+       | **Return Type**: ``error``
+
+   * - ``AbortTransaction()``
+     - | Aborts the active transaction for this session. Returns an
+         error if there is no active transaction for the session or the
+         transaction has been committed or aborted. For more
+         information, see the :manual:`Manual entry </reference/method/Session.abortTransaction/>`.
+       |
+       | **Parameter**: ``Context``
+       | **Return Type**: ``error``
+
+   * - ``CommitTransaction()``
+     - | Commits the active transaction for this session. Returns an
+         error if there is no active transaction for the session or the
+         transaction has been aborted. For more
+         information, see the :manual:`Manual entry </reference/method/Session.commitTransaction/>`.
+       |
+       | **Parameter**: ``Context``
+       | **Return Type**: ``error``
+
+   * - ``WithTransaction()``
+     - | Starts a transaction on this session and runs the ``fn``
+         callback. For more
+         information, see the :manual:`Manual entry </reference/method/Session.withTransaction/>`.
+       |
+       | **Parameter**: ``Context``, ``fn func(sessCtx SessionContext)``, ``TransactionOptions``
+       | **Return Type**: ``interface{}``, ``error``
+
+   * - ``EndSession()``
+     - | Aborts any existing transactions and closes the session.
+       |
+       | **Parameter**: ``Context``
+       | **Return Type**: none
+
+The ``Session`` interface additionally has methods to retrieve session
+properties and modify mutable session properties. Find more information
+in the :ref:`API documentation <api-doc>`.
+
+Example
+-------
+
+The following example shows how you can create a session, create a
+transaction, and commit an insert operation within the transaction through the
+following steps:
+
+1. Create a ``Session`` using the ``StartSession()`` method from the client.
+#. Start a transaction within the session using the ``StartTransaction()`` method with a write concern.
+#. Insert a document.
+#. Commit the transaction using the ``CommitTransaction()`` method.
+#. If any of the preceding steps return an error, abort the transaction
+   using the ``AbortTransaction()`` method.
+#. Close the transaction and session using the ``EndSession()`` method.
+
+.. literalinclude:: /includes/fundamentals/code-snippets/session.go
+   :language: go
+   :dedent:
+   :start-after: start-session
+   :end-before: end-session
+
+.. note:: Multi-Document Transactions
+   
+   If you perform multiple operations within a transaction, your
+   transaction will abort if any of the individual operations returns an
+   error. None of the operations in the transaction will succeed and you
+   will not see any changes in your data.
+
+Additional Information
+----------------------
+
+For more information about insert operations, see the :ref:`insert
+fundamentals page <golang-insert-guide>`.
+
+For more information about write concerns, see the
+:ref:`golang-write-read-pref` fundamentals page.
+
+For an additional example using sessions and transactions with the {+driver-short+}, see the
+:website:`developer blog post on Multi-Document ACID Transactions
+</developer/languages/go/golang-multi-document-acid-transactions/>`.
+
+.. TODO link to transactions sub page
+
+.. _api-doc:
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+To learn more about any of the types or methods discussed in this
+guide, see the following API Documentation:
+
+- `Session <{+api+}/mongo#Session>`__
+- `Client <{+api+}/mongo#Client>`__
+- `StartSession() <{+api+}/mongo#Client.StartSession>`__
+- `WithSession() <{+api+}/mongo#WithSession>`__
+- `SetWriteConcern() <{+api+}/options#TransactionOptions.SetWriteConcern>`__
+- `InsertOne() <{+api+}/mongo#Collection.InsertOne>`__
