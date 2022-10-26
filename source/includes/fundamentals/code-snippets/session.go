@@ -38,18 +38,18 @@ func main() {
 	}
 	defer session.EndSession(context.Background())
 
-	err = mongo.WithSession(context.Background(), session, func(sessionContext mongo.SessionContext) error {
+	err = mongo.WithSession(context.Background(), session, func(sessCtx mongo.SessionContext) error {
 		if err = session.StartTransaction(txnOptions); err != nil {
 			return err
 		}
 
 		doc := bson.D{{"title", "Sula"}, {"author", "Toni Morrison"}}
-		result, err := coll.InsertOne(sessionContext, doc)
+		result, err := coll.InsertOne(sessCtx, doc)
 		if err != nil {
 			return err
 		}
 
-		if err = session.CommitTransaction(sessionContext); err != nil {
+		if err = session.CommitTransaction(sessCtx); err != nil {
 			return err
 		}
 

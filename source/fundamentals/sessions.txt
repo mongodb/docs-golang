@@ -23,9 +23,9 @@ transaction </basics/acid-transactions>`.
 
 With the {+driver-short+}, you can create a new session from a
 ``Client`` instance as a ``Session`` type. You should only use a
-``Session`` instance created from a ``Client`` to execute operations
-using that ``Client`` or in a database or collection selected from that
-``Client``.
+``Session`` instance created from a client to execute operations
+using that client instance or in a database or collection selected from that
+client.
 
 .. warning::
    
@@ -100,8 +100,9 @@ The following example shows how you can create a session, create a
 transaction, and commit an insert operation within the transaction through the
 following steps:
 
-1. Create a ``Session`` using the ``StartSession()`` method from the client.
-#. Start a transaction within the session using the ``StartTransaction()`` method with a write concern.
+1. Create a session from the client using the ``StartSession()`` method.
+#. Start a transaction within the session using the
+   ``StartTransaction()`` method, specifying a write concern.
 #. Insert a document.
 #. Commit the transaction using the ``CommitTransaction()`` method.
 #. If any of the preceding steps return an error, abort the transaction
@@ -111,6 +112,7 @@ following steps:
 .. literalinclude:: /includes/fundamentals/code-snippets/session.go
    :language: go
    :dedent:
+   :emphasize-lines: 4,8,10-11,16,21,29
    :start-after: start-session
    :end-before: end-session
 
@@ -148,5 +150,5 @@ guide, see the following API Documentation:
 - `Client <{+api+}/mongo#Client>`__
 - `StartSession() <{+api+}/mongo#Client.StartSession>`__
 - `WithSession() <{+api+}/mongo#WithSession>`__
-- `SetWriteConcern() <{+api+}/options#TransactionOptions.SetWriteConcern>`__
+- `SetWriteConcern() <{+api+}/mongo/options#TransactionOptions.SetWriteConcern>`__
 - `InsertOne() <{+api+}/mongo#Collection.InsertOne>`__

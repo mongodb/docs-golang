@@ -16,12 +16,12 @@ Fundamentals
    /fundamentals/crud
    /fundamentals/aggregation
    /fundamentals/indexes
+   /fundamentals/sessions
    /fundamentals/collations
    /fundamentals/gridfs
    /fundamentals/time-series
    /fundamentals/encrypt-fields
    /fundamentals/geo
-   /fundamentals/sessions
 
 ..
   /fundamentals/enterprise-auth
