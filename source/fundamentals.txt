@@ -16,7 +16,7 @@ Fundamentals
    /fundamentals/crud
    /fundamentals/aggregation
    /fundamentals/indexes
-   /fundamentals/sessions
+   /fundamentals/transactions
    /fundamentals/collations
    /fundamentals/gridfs
    /fundamentals/time-series

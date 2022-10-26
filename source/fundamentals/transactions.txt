@@ -1,8 +1,8 @@
-.. _golang-sessions:
+.. _golang-transactions:
 
-========
-Sessions
-========
+============
+Transactions
+============
 
 .. default-domain:: mongodb
 
@@ -15,11 +15,18 @@ Sessions
 Overview
 --------
 
-In this guide, you can learn how to use **sessions**, or logical
-sessions, with the {+driver-short+}. Sessions enable :manual:`causal
-consistency </core/read-isolation-consistency-recency/#causal-consistency>`
+In this guide, you can learn how to use **transactions** with the
+{+driver-long+}. A transaction is a unit of work, composed of a series
+of operations that you want either to succeed together, or fail together
+when one or more of the operations fail. 
+
+In MongoDB, transactions run within logical **sessions**. A session is a
+grouping of related read or write operations that you want to run
+sequentially. Sessions enable :manual:`causal consistency </core/read-isolation-consistency-recency/#causal-consistency>`
 for a group of operations or allow you to execute operations in an :website:`ACID
-transaction </basics/acid-transactions>`.
+transaction </basics/acid-transactions>`. MongoDB guarantees that the data
+involved in your transaction operations remains consistent, even if the operations
+encounter unexpected errors.
 
 With the {+driver-short+}, you can create a new session from a
 ``Client`` instance as a ``Session`` type. You should only use a
@@ -34,8 +41,8 @@ client.
    are not safe for concurrent use by multiple `goroutines
    <https://www.golang-book.com/books/intro/10>`__.
 
-Method Set
-----------
+Methods
+-------
 
 After you start a session using the ``StartSession()`` method, you can modify
 the session state using the method set in the ``Session`` interface. The
@@ -109,7 +116,7 @@ following steps:
    using the ``AbortTransaction()`` method.
 #. Close the transaction and session using the ``EndSession()`` method.
 
-.. literalinclude:: /includes/fundamentals/code-snippets/session.go
+.. literalinclude:: /includes/fundamentals/code-snippets/transaction.go
    :language: go
    :dedent:
    :emphasize-lines: 4,8,10-11,16,21,29
