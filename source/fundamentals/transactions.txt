@@ -16,9 +16,10 @@ Overview
 --------
 
 In this guide, you can learn how to use **transactions** with the
-{+driver-long+}. A transaction is a unit of work, composed of a series
-of operations that you want either to succeed together, or fail together
-when one or more of the operations fail. 
+{+driver-long+}. A transaction is a unit of work that is composed of a series
+of operations. You can execute operations in a transaction so that they
+either succeed together or fail together when one or more of the
+operations fail.
 
 In MongoDB, transactions run within logical **sessions**. A session is a
 grouping of related read or write operations that you want to run
@@ -133,8 +134,8 @@ following steps:
 Additional Information
 ----------------------
 
-For more information about insert operations, see the :ref:`insert
-fundamentals page <golang-insert-guide>`.
+For more information about insert operations, see the
+:ref:`golang-insert-guide` fundamentals page.
 
 For more information about write concerns, see the
 :ref:`golang-write-read-pref` fundamentals page.
