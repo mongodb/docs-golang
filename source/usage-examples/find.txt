@@ -47,9 +47,9 @@ the ``results`` variable as ``Restaurant`` structs:
 
    // results truncated
    ...
-   { ... , "city" : "SHAKTOOLIK", ... , "pop" : 183, "state" : "AK" },
-   { ... , "city" : "DARLINGTON", ... , "pop" : 12, "state" : "ID" },
-   { ... , "city" : "EAST BARRE", ... , "pop" : 381, "state" : "VT" },
+   { ... , "Name" : "Epistrophy Cafe", "RestaurantId": "41117553", "Cuisine" : "Italian", ... },
+   { ... , "Name" : "Remi", "RestaurantId": "41118090", "Cuisine" : "Italian", ... },
+   { ... , "Name" : "Sant Ambroeus", "RestaurantId": "41120682", "Cuisine" : "Italian", ... },
    ...
 
 Additional Information
