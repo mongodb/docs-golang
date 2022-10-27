@@ -16,7 +16,7 @@ Overview
 --------
 
 In this guide, you can learn how to run a raw **database command** with the
-{+driver-short+}. You can use raw database commands to perform a variety of
+{+driver-short+}. You can use database commands to perform a variety of
 administrative and diagnostic tasks, such as fetching server statistics,
 initializing a replica set, or running an aggregation pipeline.
 
@@ -38,28 +38,27 @@ as a cursor.
    .. code-block:: go
 
       opts := options.RunCmd().SetReadPreference(readpref.Primary())
-	   err := db.RunCommand(context.TODO(), command, opts).Decode(&result)
+      err := db.RunCommand(context.TODO(), command, opts).Decode(&result)
    
    For more information on
    read preference options, see the :ref:`golang-write-read-pref`
    fundamentals page.
 
-Each method takes a Context and a document for the command. The
+Each method takes a Context and command document. The
 command document must be an order-preserving type such as ``bson.D``.
 The following example shows how to compose a command document using the
-``distinct`` command for the ``key`` value ":
+``distinct`` command for the ``key`` value "life_cycle":
 
 .. code-block:: go
    :emphasize-lines: 2,5
 
-   db := client.Database("sample_database")
-	command := bson.D{{"distinct", "sample_flowers"}, {"key", "life_cycle"}}
+   db := client.Database("plants")
+   command := bson.D{{"distinct", "flowers"}, {"key", "life_cycle"}}
+   
+   var result bson.M
+   err := db.RunCommand(context.TODO(), command).Decode(&result)
 
-	var result bson.M
-	err := db.RunCommand(context.TODO(), command).Decode(&result)
-
-For a full list of database commands, see the :ref:`Additional
-Information <addl-info>`
+For a full list of database commands, see the :ref:`Additional Information <addl-info-runcommand>`.
 
 Response
 --------
@@ -99,25 +98,24 @@ Example
 -------
 
 The following code shows how you can run the ``listCollections`` command on the sample
-``plants`` database. You can optionally include a query
-filter for collection properties in the command document for
-``listCollections``. This example only searches for collections
-with an ``info.readOnly`` property of ``false``.
+``plants`` database with the ``RunCommandCursor()`` method. This example
+only searches for collections with an ``info.readOnly`` property of ``false``.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/runCommand.go
    :language: go
+   :dedent:
    :start-after: start-runcommand
    :end-before: end-runcommand
 
 Output
 ~~~~~~
 
-Once you decode the cursor, you should see all of the collections in the
-``plants`` database, including data about each collection, such as the
-collection name, type, validation schema, and other collection options:
+Once you decode the cursor, you should see the collections in the
+``plants`` database that match the filter, including data about each
+collection, such as the name, type, validation schema, and other
+collection options:
 
-.. code-block::
-   :language: json
+.. code-block:: json
 
    [
        { "Key": "name", "Value": "succulents" },
@@ -141,16 +139,16 @@ collection name, type, validation schema, and other collection options:
        { "Key": "idIndex", "Value": [ ... ] }
    ]
 
-.. addl-info:
+.. _addl-info-runcommand:
 
 Additional Information
 ----------------------
 
 For more information about the concepts in this guide, see the following documentation:
 
-- :manual:`Server method db.runCommand() </reference/method/db.runCommand/>`
+- :manual:`db.runCommand() </reference/method/db.runCommand/>`
 - :manual:`Database Commands </reference/command/>`
-- :manual:`listCollections command db.runCommand() </reference/command/listCollections/>`
+- :manual:`listCollections Command </reference/command/listCollections/>`
 
 To learn how to retrieve data from a cursor, see :ref:`golang-cursor`.
 
