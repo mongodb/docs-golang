@@ -1,0 +1,163 @@
+.. _golang-run-command:
+
+=============
+Run a Command
+=============
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to run a raw **database command** with the
+{+driver-short+}. You can use raw database commands to perform a variety of
+administrative and diagnostic tasks, such as fetching server statistics,
+initializing a replica set, or running an aggregation pipeline.
+
+Compose a Command
+-----------------
+
+The {+driver-short+} provides two methods to run a database command. The
+``RunCommand()`` method executes the given command against the database
+and returns a ``SingleResult`` type. The ``RunCommandCursor()`` method
+executes the given command against the database and parses the response
+as a cursor.
+
+.. note:: Read Preference
+
+   These methods do not obey the read preference set for the database.
+   You can set a read preference for a database command by passing a
+   options to either method:
+   
+   .. code-block:: go
+
+      opts := options.RunCmd().SetReadPreference(readpref.Primary())
+	   err := db.RunCommand(context.TODO(), command, opts).Decode(&result)
+   
+   For more information on
+   read preference options, see the :ref:`golang-write-read-pref`
+   fundamentals page.
+
+Each method takes a Context and a document for the command. The
+command document must be an order-preserving type such as ``bson.D``.
+The following example shows how to compose a command document using the
+``distinct`` command for the ``key`` value ":
+
+.. code-block:: go
+   :emphasize-lines: 2,5
+
+   db := client.Database("sample_database")
+	command := bson.D{{"distinct", "sample_flowers"}, {"key", "life_cycle"}}
+
+	var result bson.M
+	err := db.RunCommand(context.TODO(), command).Decode(&result)
+
+For a full list of database commands, see the :ref:`Additional
+Information <addl-info>`
+
+Response
+--------
+
+Each method returns a document or a cursor containing documents with the
+following fields:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Field
+     - Description
+
+   * - <command result>
+     - Provides fields specific to the database command.
+
+   * - ``ok``
+     - Indicates whether the command has succeeded (``1``)
+       or failed (``0``).
+
+   * - ``operationTime``
+     - Indicates the logical time of the operation. MongoDB uses the
+       logical time to order operations.
+
+   * - ``$clusterTime``
+     - Provides a document that returns the signed cluster time. Cluster time is a
+       logical time used for ordering of operations.
+
+       The document contains the following fields:
+
+       - ``clusterTime``, which is the timestamp of the highest known cluster time for the member
+       - ``signature``, which is a document that contains the hash of the cluster time and the ID
+         of the key used to sign the cluster time
+
+Example
+-------
+
+The following code shows how you can run the ``listCollections`` command on the sample
+``plants`` database. You can optionally include a query
+filter for collection properties in the command document for
+``listCollections``. This example only searches for collections
+with an ``info.readOnly`` property of ``false``.
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/runCommand.go
+   :language: go
+   :start-after: start-runcommand
+   :end-before: end-runcommand
+
+Output
+~~~~~~
+
+Once you decode the cursor, you should see all of the collections in the
+``plants`` database, including data about each collection, such as the
+collection name, type, validation schema, and other collection options:
+
+.. code-block::
+   :language: json
+
+   [
+       { "Key": "name", "Value": "succulents" },
+       { "Key": "type", "Value": "collection" },
+       { "Key": "options", "Value": [] },
+       { "Key": "info", "Value": [ { "Key": "readOnly", "Value": false }, ... },
+       { "Key": "idIndex", "Value": [ ... ] }
+   ]
+   [
+       { "Key": "name", "Value": "flowers" },
+       { "Key": "type", "Value": "collection" },
+       { "Key": "options", "Value": [ { "Key": "validator", "Value": [ { "Key": "$jsonSchema", "Value": [ ... ] } ] }, ... ] },
+       { "Key": "info", "Value": [ { "Key": "readOnly", "Value": false }, ... },
+       { "Key": "idIndex", "Value": [ ... ] }
+   ]
+   [
+       { "Key": "name", "Value": "growth_experiment" },
+       { "Key": "type", "Value": "timeseries" },
+       { "Key": "options", "Value": [ { "Key": "timeseries", "Value": [ { "Key": "timeField", "Value": "tstep" }, ... ] } ] },
+       { "Key": "info", "Value": [ { "Key": "readOnly", "Value": false }, ... },
+       { "Key": "idIndex", "Value": [ ... ] }
+   ]
+
+.. addl-info:
+
+Additional Information
+----------------------
+
+For more information about the concepts in this guide, see the following documentation:
+
+- :manual:`Server method db.runCommand() </reference/method/db.runCommand/>`
+- :manual:`Database Commands </reference/command/>`
+- :manual:`listCollections command db.runCommand() </reference/command/listCollections/>`
+
+To learn how to retrieve data from a cursor, see :ref:`golang-cursor`.
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+- `RunCommand() <{+api+}/mongo#Database.RunCommand>`__
+- `RunCommandCursor() <{+api+}/mongo#Database.RunCommandCursor>`__
+- `RunCmdOptions <{+api+}/mongo/options#RunCmdOptions>`__
+- `Cursor <{+api+}/mongo#Cursor>`__
