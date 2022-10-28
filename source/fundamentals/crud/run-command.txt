@@ -28,9 +28,9 @@ commands:
 
 - ``RunCommand()``, which returns the command response as a
   ``SingleResult`` type. You can use this method with any database command.
-- ``RunCommandCursor()``, which returns the command response as a as a
+- ``RunCommandCursor()``, which returns the command response as a
   ``Cursor`` type. You can use this method if your database command
-  returns multiple results.
+  returns multiple result documents.
 
 Each method requires a Context and a command document. The
 command document must be an order-preserving type such as ``bson.D``.
@@ -75,8 +75,8 @@ following fields:
 
    * - <command result>
      - Provides fields specific to the database command. For example,
-     ``count`` returns the ``n`` field and ``explain`` returns the
-     ``queryPlanner`` field.
+       ``count`` returns the ``n`` field and ``explain`` returns the
+       ``queryPlanner`` field.
 
    * - ``ok``
      - Indicates whether the command has succeeded (``1``)
