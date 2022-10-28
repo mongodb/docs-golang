@@ -83,8 +83,9 @@ following fields:
        or failed (``0``).
 
    * - ``operationTime``
-     - Indicates the logical time of the operation. MongoDB uses the
-       logical time to order operations.
+     - Indicates the :website:`logical time
+       </blog/post/transactions-background-part-4-the-global-logical-clock>`
+       of the operation. MongoDB uses the logical time to order operations.
 
    * - ``$clusterTime``
      - Provides a document that returns the signed cluster time. Cluster time is a
