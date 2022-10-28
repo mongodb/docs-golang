@@ -1,5 +1,5 @@
 The following compatibility table specifies the minimum version of the
-of the Go programming language to use with versions of the {+driver-long+}.
+Go programming language to use with versions of the {+driver-long+}.
 
 The first column lists the driver version.
 
