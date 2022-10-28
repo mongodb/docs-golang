@@ -46,17 +46,13 @@ as a cursor.
 
 Each method takes a Context and command document. The
 command document must be an order-preserving type such as ``bson.D``.
-The following example shows how to compose a command document using the
-``distinct`` command for the ``key`` value "life_cycle":
+The following code shows how you can run the ``listCollections`` command
+on a database with the ``RunCommandCursor()`` method:
 
 .. code-block:: go
-   :emphasize-lines: 2,5
 
-   db := client.Database("plants")
-   command := bson.D{{"distinct", "flowers"}, {"key", "life_cycle"}}
-   
-   var result bson.M
-   err := db.RunCommand(context.TODO(), command).Decode(&result)
+   command := bson.D{{"listCollections", 1}}   
+   cursor, err := db.RunCommandCursor(context.TODO(), command)
 
 For a full list of database commands, see the :ref:`Additional Information <addl-info-runcommand>`.
 
@@ -97,9 +93,10 @@ following fields:
 Example
 -------
 
-The following code shows how you can run the ``listCollections`` command on the sample
-``plants`` database with the ``RunCommandCursor()`` method. This example
-only searches for collections with an ``info.readOnly`` property of ``false``.
+The following code shows how you can run the ``count`` command on the
+``flowers`` collection of the ``plants`` database with the ``RunCommand()`` method. This example
+only searches for collections with a ``price`` property less than or
+equal to 9.99.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/runCommand.go
    :language: go
@@ -110,34 +107,34 @@ only searches for collections with an ``info.readOnly`` property of ``false``.
 Output
 ~~~~~~
 
-Once you decode the cursor, you should see the collections in the
-``plants`` database that match the filter, including data about each
-collection, such as the name, type, validation schema, and other
-collection options:
+In the output, you should see the number of documents in
+the collection that match the query as well as the command
+execution information:
 
 .. code-block:: json
+   :emphasize-lines: 15
 
-   [
-       { "Key": "name", "Value": "succulents" },
-       { "Key": "type", "Value": "collection" },
-       { "Key": "options", "Value": [] },
-       { "Key": "info", "Value": [ { "Key": "readOnly", "Value": false }, ... },
-       { "Key": "idIndex", "Value": [ ... ] }
-   ]
-   [
-       { "Key": "name", "Value": "flowers" },
-       { "Key": "type", "Value": "collection" },
-       { "Key": "options", "Value": [ { "Key": "validator", "Value": [ { "Key": "$jsonSchema", "Value": [ ... ] } ] }, ... ] },
-       { "Key": "info", "Value": [ { "Key": "readOnly", "Value": false }, ... },
-       { "Key": "idIndex", "Value": [ ... ] }
-   ]
-   [
-       { "Key": "name", "Value": "growth_experiment" },
-       { "Key": "type", "Value": "timeseries" },
-       { "Key": "options", "Value": [ { "Key": "timeseries", "Value": [ { "Key": "timeField", "Value": "tstep" }, ... ] } ] },
-       { "Key": "info", "Value": [ { "Key": "readOnly", "Value": false }, ... },
-       { "Key": "idIndex", "Value": [ ... ] }
-   ]
+   {
+       "$clusterTime": {
+           "clusterTime": {
+               "T": 1666967516,
+               "I": 32
+           },
+           "signature": {
+               "hash": {
+                   "Subtype": 0,
+                   "Data": "..."
+               },
+               "keyId": 7120249010111119362
+           }
+       },
+       "n": 47,
+       "ok": 1,
+       "operationTime": {
+           "T": 1666967516,
+           "I": 32
+       }
+   }
 
 .. _addl-info-runcommand:
 
@@ -150,7 +147,8 @@ For more information about the concepts in this guide, see the following documen
 - :manual:`Database Commands </reference/command/>`
 - :manual:`listCollections Command </reference/command/listCollections/>`
 
-To learn how to retrieve data from a cursor, see :ref:`golang-cursor`.
+To learn how to retrieve data from a cursor, see the
+:ref:`golang-cursor` fundamentals page.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

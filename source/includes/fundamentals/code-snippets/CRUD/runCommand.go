@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"log"
 	"os"
@@ -30,20 +31,19 @@ func main() {
 
 	// start-runcommand
 	db := client.Database("plants")
-	filter := bson.D{{"info.readOnly", false}}
-	command := bson.D{{"listCollections", 1}, {"filter", filter}}
+	filter := bson.D{{"price", bson.D{{"$lte", 9.99}}}}
+	command := bson.D{{"count", "flowers"}, {"query", filter}}
 
-	cursor, err := db.RunCommandCursor(context.TODO(), command)
+	var result bson.M
+	err = db.RunCommand(context.TODO(), command).Decode(&result)
+	// end-runcommand
+
 	if err != nil {
 		panic(err)
 	}
-	// end-runcommand
-
-	var results []bson.D
-	if err = cursor.All(context.TODO(), &results); err != nil {
+	output, err := json.MarshalIndent(result, "", "    ")
+	if err != nil {
 		panic(err)
 	}
-	for _, result := range results {
-		fmt.Println(result)
-	}
+	fmt.Printf("%s\n", output)
 }
