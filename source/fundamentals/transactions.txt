@@ -16,10 +16,11 @@ Overview
 --------
 
 In this guide, you can learn how to use **transactions** with the
-{+driver-long+}. A transaction is a unit of work that is composed of a series
-of operations. You can execute operations in a transaction so that they
-either succeed together or fail together when one or more of the
-operations fail.
+{+driver-long+}. :manual:`Transactions </core/transactions/>` allow you
+to run a series of operations that are not visible from outside the
+transaction until it is committed. If any operation in the
+transaction fails, the driver aborts the transaction and discards all
+data changes before they ever become visible.
 
 In MongoDB, transactions run within logical **sessions**. A session is a
 grouping of related read or write operations that you want to run
@@ -30,17 +31,21 @@ involved in your transaction operations remains consistent, even if the operatio
 encounter unexpected errors.
 
 With the {+driver-short+}, you can create a new session from a
-``Client`` instance as a ``Session`` type. You should only use a
-``Session`` instance created from a client to execute operations
-using that client instance or in a database or collection selected from that
-client.
+``Client`` instance as a ``Session`` type.
+
+.. warning::
+
+   You should only use ``Session`` with the ``Client`` (or associated
+   ``Database`` or ``Collection``) that created the ``Session``. Using a
+   ``Session`` with a different ``Client`` will result in operation
+   errors.
 
 .. warning::
    
-   You should not use custom implementations of the ``Session``
-   interface in production. Additionally, implementations of ``Session``
-   are not safe for concurrent use by multiple `goroutines
-   <https://www.golang-book.com/books/intro/10>`__.
+   Implementations of ``Session`` are not safe for concurrent use by multiple `goroutines
+   <https://www.golang-book.com/books/intro/10>`__. Additionally, you
+   should not use custom implementations of the ``Session`` interface in
+   production.
 
 Methods
 -------
@@ -120,16 +125,8 @@ following steps:
 .. literalinclude:: /includes/fundamentals/code-snippets/transaction.go
    :language: go
    :dedent:
-   :emphasize-lines: 4,8,10-11,16,21,29
    :start-after: start-session
    :end-before: end-session
-
-.. note:: Multi-Document Transactions
-   
-   If you perform multiple operations within a transaction, your
-   transaction will abort if any of the individual operations returns an
-   error. None of the operations in the transaction will succeed and you
-   will not see any changes in your data.
 
 Additional Information
 ----------------------

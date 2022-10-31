@@ -36,29 +36,33 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	defer session.EndSession(context.Background())
+	defer session.EndSession(context.TODO())
 
-	err = mongo.WithSession(context.Background(), session, func(sessCtx mongo.SessionContext) error {
+	err = mongo.WithSession(context.TODO(), session, func(ctx mongo.SessionContext) error {
 		if err = session.StartTransaction(txnOptions); err != nil {
 			return err
 		}
 
-		doc := bson.D{{"title", "Sula"}, {"author", "Toni Morrison"}}
-		result, err := coll.InsertOne(sessCtx, doc)
+		docs := []interface{}{
+			bson.D{{"title", "The Bluest Eye"}, {"author", "Toni Morrison"}},
+			bson.D{{"title", "Sula"}, {"author", "Toni Morrison"}},
+			bson.D{{"title", "Song of Solomon"}, {"author", "Toni Morrison"}},
+		}
+		result, err := coll.InsertMany(ctx, docs)
 		if err != nil {
 			return err
 		}
 
-		if err = session.CommitTransaction(sessCtx); err != nil {
+		if err = session.CommitTransaction(ctx); err != nil {
 			return err
 		}
 
-		fmt.Println(result.InsertedID)
+		fmt.Println(result.InsertedIDs)
 		return nil
 	})
 	if err != nil {
-		if abortErr := session.AbortTransaction(context.Background()); abortErr != nil {
-			panic(abortErr)
+		if err := session.AbortTransaction(context.TODO()); err != nil {
+			panic(err)
 		}
 		panic(err)
 	}
