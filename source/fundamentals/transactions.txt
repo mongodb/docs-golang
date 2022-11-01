@@ -22,7 +22,8 @@ transaction until it is committed. If any operation in the
 transaction fails, the driver aborts the transaction and discards all
 data changes before they ever become visible.
 
-In MongoDB, transactions run within logical **sessions**. A session is a
+In MongoDB, transactions run within logical **sessions**. A
+:manual:`session </reference/server-sessions/>` is a
 grouping of related read or write operations that you want to run
 sequentially. Sessions enable :manual:`causal consistency </core/read-isolation-consistency-recency/#causal-consistency>`
 for a group of operations or allow you to execute operations in an :website:`ACID
@@ -43,15 +44,13 @@ With the {+driver-short+}, you can create a new session from a
 .. warning::
    
    Implementations of ``Session`` are not safe for concurrent use by multiple `goroutines
-   <https://www.golang-book.com/books/intro/10>`__. Additionally, you
-   should not use custom implementations of the ``Session`` interface in
-   production.
+   <https://www.golang-book.com/books/intro/10>`__.
 
 Methods
 -------
 
 After you start a session using the ``StartSession()`` method, you can modify
-the session state using the method set in the ``Session`` interface. The
+the session state using the method set provided by the ``Session`` interface. The
 following table describes these methods:
 
 .. list-table::
@@ -90,10 +89,9 @@ following table describes these methods:
 
    * - ``WithTransaction()``
      - | Starts a transaction on this session and runs the ``fn``
-         callback. For more
-         information, see the :manual:`Manual entry </reference/method/Session.withTransaction/>`.
+         callback.
        |
-       | **Parameter**: ``Context``, ``fn func(sessCtx SessionContext)``, ``TransactionOptions``
+       | **Parameter**: ``Context``, ``fn func(ctx SessionContext)``, ``TransactionOptions``
        | **Return Type**: ``interface{}``, ``error``
 
    * - ``EndSession()``
@@ -104,19 +102,19 @@ following table describes these methods:
 
 The ``Session`` interface additionally has methods to retrieve session
 properties and modify mutable session properties. Find more information
-in the :ref:`API documentation <api-doc>`.
+in the :ref:`API documentation <api-docs-transaction>`.
 
 Example
 -------
 
 The following example shows how you can create a session, create a
-transaction, and commit an insert operation within the transaction through the
+transaction, and commit a multi-document insert operation through the
 following steps:
 
 1. Create a session from the client using the ``StartSession()`` method.
 #. Start a transaction within the session using the
    ``StartTransaction()`` method, specifying a write concern.
-#. Insert a document.
+#. Insert documents.
 #. Commit the transaction using the ``CommitTransaction()`` method.
 #. If any of the preceding steps return an error, abort the transaction
    using the ``AbortTransaction()`` method.
@@ -127,6 +125,8 @@ following steps:
    :dedent:
    :start-after: start-session
    :end-before: end-session
+
+.. :emphasize-lines:
 
 Additional Information
 ----------------------
@@ -141,9 +141,7 @@ For an additional example using sessions and transactions with the {+driver-shor
 :website:`developer blog post on Multi-Document ACID Transactions
 </developer/languages/go/golang-multi-document-acid-transactions/>`.
 
-.. TODO link to transactions sub page
-
-.. _api-doc:
+.. _api-docs-transaction:
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
@@ -156,4 +154,4 @@ guide, see the following API Documentation:
 - `StartSession() <{+api+}/mongo#Client.StartSession>`__
 - `WithSession() <{+api+}/mongo#WithSession>`__
 - `SetWriteConcern() <{+api+}/mongo/options#TransactionOptions.SetWriteConcern>`__
-- `InsertOne() <{+api+}/mongo#Collection.InsertOne>`__
+- `InsertMany() <{+api+}/mongo#Collection.InsertMany>`__
