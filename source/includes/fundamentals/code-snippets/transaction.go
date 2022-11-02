@@ -38,33 +38,44 @@ func main() {
 	}
 	defer session.EndSession(context.TODO())
 
-	err = mongo.WithSession(context.TODO(), session, func(ctx mongo.SessionContext) error {
-		if err = session.StartTransaction(txnOptions); err != nil {
-			return err
-		}
-
-		docs := []interface{}{
+	result, err := session.WithTransaction(context.TODO(), func(ctx mongo.SessionContext) (interface{}, error) {
+		result, err := coll.InsertMany(ctx, []interface{}{
 			bson.D{{"title", "The Bluest Eye"}, {"author", "Toni Morrison"}},
 			bson.D{{"title", "Sula"}, {"author", "Toni Morrison"}},
 			bson.D{{"title", "Song of Solomon"}, {"author", "Toni Morrison"}},
-		}
-		result, err := coll.InsertMany(ctx, docs)
-		if err != nil {
-			return err
-		}
-
-		if err = session.CommitTransaction(ctx); err != nil {
-			return err
-		}
-
-		fmt.Println(result.InsertedIDs)
-		return nil
-	})
-	if err != nil {
-		if err := session.AbortTransaction(context.TODO()); err != nil {
-			panic(err)
-		}
-		panic(err)
-	}
+		})
+		return result, err
+	}, txnOptions)
 	// end-session
+
+	fmt.Printf("Inserted _id values: %v\n", result)
+
+	// err = mongo.WithSession(context.TODO(), session, func(ctx mongo.SessionContext) error {
+	// 	if err = session.StartTransaction(txnOptions); err != nil {
+	// 		return err
+	// 	}
+
+	// 	docs := []interface{}{
+	// 		bson.D{{"title", "The Year of Magical Thinking"}, {"author", "Joan Didion"}},
+	// 		bson.D{{"title", "Play It As It Lays"}, {"author", "Joan Didion"}},
+	// 		bson.D{{"title", "The White Album"}, {"author", "Joan Didion"}},
+	// 	}
+	// 	result, err := coll.InsertMany(ctx, docs)
+	// 	if err != nil {
+	// 		return err
+	// 	}
+
+	// 	if err = session.CommitTransaction(ctx); err != nil {
+	// 		return err
+	// 	}
+
+	// 	fmt.Println(result.InsertedIDs)
+	// 	return nil
+	// })
+	// if err != nil {
+	// 	if err := session.AbortTransaction(context.TODO()); err != nil {
+	// 		panic(err)
+	// 	}
+	// 	panic(err)
+	// }
 }

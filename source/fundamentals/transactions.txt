@@ -112,21 +112,18 @@ transaction, and commit a multi-document insert operation through the
 following steps:
 
 1. Create a session from the client using the ``StartSession()`` method.
-#. Start a transaction within the session using the
-   ``StartTransaction()`` method, specifying a write concern.
-#. Insert documents.
-#. Commit the transaction using the ``CommitTransaction()`` method.
-#. If any of the preceding steps return an error, abort the transaction
-   using the ``AbortTransaction()`` method.
+#. Use the ``WithTransaction()`` method to start a transaction.
+#. Insert multiple documents. The ``WithTransaction()`` method executes the
+   insert and commits the transaction. If any operation results in
+   errors, ``WithTransaction()`` handles aborting the transaction.
 #. Close the transaction and session using the ``EndSession()`` method.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/transaction.go
    :language: go
    :dedent:
+   :emphasize-lines: 4,8,10-11
    :start-after: start-session
    :end-before: end-session
-
-.. :emphasize-lines:
 
 Additional Information
 ----------------------
@@ -152,6 +149,6 @@ guide, see the following API Documentation:
 - `Session <{+api+}/mongo#Session>`__
 - `Client <{+api+}/mongo#Client>`__
 - `StartSession() <{+api+}/mongo#Client.StartSession>`__
-- `WithSession() <{+api+}/mongo#WithSession>`__
+- `TransactionOptions <{+api+}/mongo/options#TransactionOptions>`__
 - `SetWriteConcern() <{+api+}/mongo/options#TransactionOptions.SetWriteConcern>`__
 - `InsertMany() <{+api+}/mongo#Collection.InsertMany>`__
