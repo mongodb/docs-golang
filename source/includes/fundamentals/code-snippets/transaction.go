@@ -50,6 +50,9 @@ func main() {
 
 	fmt.Printf("Inserted _id values: %v\n", result)
 
+	// MANUAL TRANSACTION EXAMPLE
+	// uncomment this section to run this code
+
 	// err = mongo.WithSession(context.TODO(), session, func(ctx mongo.SessionContext) error {
 	// 	if err = session.StartTransaction(txnOptions); err != nil {
 	// 		return err
