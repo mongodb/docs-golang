@@ -17,10 +17,10 @@ Overview
 
 In this guide, you can learn how to use **transactions** with the
 {+driver-long+}. :manual:`Transactions </core/transactions/>` allow you
-to run a series of operations that are not visible from outside the
-transaction until it is committed. If any operation in the
-transaction fails, the driver aborts the transaction and discards all
-data changes before they ever become visible.
+to run a series of operations that do not change any data until the
+transaction is committed. If any operation in the transaction fails, the 
+driver aborts the transaction and discards all data changes before they
+ever become visible.
 
 In MongoDB, transactions run within logical **sessions**. A
 :manual:`session </reference/server-sessions/>` is a
