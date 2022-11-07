@@ -58,7 +58,7 @@ The following example specifies the authentication mechanism using the following
 placeholders:
 
 - ``username``: Your :wikipedia:`URL-encoded <Percent-encoding>`
-  principal name. An sample username is "myuser@KERBEROS.EXAMPLE.COM"
+  principal name. A sample username is *myuser@KERBEROS.EXAMPLE.COM*.
 - ``password``: Your Kerberos user's password.
 - ``hostname``: The network address of your MongoDB server, accessible by your client.
 - ``port``: Your MongoDB server's port number.
@@ -77,10 +77,11 @@ preferences:
 .. code-block:: go
 
    credential := options.Credential{
-   		  AuthMechanism: "GSSAPI",
-   		  Username:      "<username>",
+           AuthMechanism: "GSSAPI",
+           Username:      "<username>",
            Password:      "<password>",
    }
+
    uri := "mongodb://<hostname>:<port>"
    clientOpts := options.Client().ApplyURI(uri).SetAuth(credential)
    
@@ -127,10 +128,11 @@ preferences:
 .. code-block:: go
 
    credential := options.Credential{
-		     AuthMechanism: "PLAIN",
-		     Username:      "<username>",
-		     Password:      "<password>",
+           AuthMechanism: "PLAIN",
+           Username:      "<username>",
+           Password:      "<password>",
 	}
+
    uri := "mongodb://<hostname>:<port>"
    clientOpts := options.Client().ApplyURI(uri).SetAuth(credential)
    
@@ -154,17 +156,17 @@ for the ``SERVICE_NAME`` and ``SERVICE_REALM`` fields when defining a
 .. code-block:: go
 
    credential := options.Credential{
-		      AuthMechanism: "GSSAPI",
-		      Username:      "<username>",
-		      Password:      "<password>",
-		      AuthMechanismProperties: map[string]string{
-		      	     "SERVICE_REALM": "<Kerberos service realm>",
-                    "SERVICE_NAME":  "<service name>",
-		      },
-	}
+           AuthMechanism: "GSSAPI",
+           Username:      "<username>",
+           Password:      "<password>",
+           AuthMechanismProperties: map[string]string{
+                   "SERVICE_REALM": "<Kerberos service realm>",
+                   "SERVICE_NAME":  "<service name>",
+           },
+   }
 
 For a full list of properties, see the
-:ref:`manual entry on authentication properties </reference/connection-string/#mongodb-urioption-urioption.authMechanismProperties>`.
+:manual:`manual entry on authentication properties </reference/connection-string/#mongodb-urioption-urioption.authMechanismProperties>`.
 
 Additional Information
 ----------------------
