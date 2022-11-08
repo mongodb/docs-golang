@@ -10,7 +10,7 @@ Fundamentals section:
 - :ref:`Read from and Write to MongoDB <golang-crud>`
 - :ref:`Perform Aggregations <golang-aggregation>`
 - :ref:`Construct Indexes <golang-indexes>`
-- :ref:`Specify Collations <golang-collations>`
+- :ref:`Specify Collations to Order Results <golang-collations>`
 - :ref:`Store and Retrieve Files in MongoDB <golang-gridfs>`
 - :ref:`Use a Time Series Collection <golang-time-series>`
 - :ref:`Encrypt Fields <golang-fle>`
