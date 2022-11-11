@@ -25,6 +25,9 @@ in the ``restaurants`` collection:
    :copyable: 
    :dedent:
 
+The ``omitempty`` :ref:`struct tags<golang-struct-tags>` omit the corresponding 
+fields from the inserted document when left empty.
+
 
 The following example inserts a document that contains a new restaurant's 
 ``name``, ``cuisine``, and ``borough``, in the ``restaurants`` collection:
@@ -37,9 +40,6 @@ The following example inserts a document that contains a new restaurant's
    :emphasize-lines: 4
    :language: go
    :dedent:
-
-The specification of the ``omitempty`` :ref:`struct tags<golang-struct-tags>` 
-omits the empty ``RestaurantId``, ``Address``, and ``Grades`` fields.
 
 View a `fully runnable example <{+example+}/insertOne.go>`__
 
