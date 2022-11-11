@@ -25,12 +25,11 @@ in the ``restaurants`` collection:
    :copyable: 
    :dedent:
 
-The ``omitempty`` :ref:`struct tags<golang-struct-tags>` omit the corresponding 
-fields from the inserted document when left empty.
+The ``omitempty`` :ref:`struct tag<golang-struct-tags>` omits the corresponding 
+field from the inserted document when left empty.
 
 
-The following example inserts a document that contains a new restaurant's 
-``name``, ``cuisine``, and ``borough``, in the ``restaurants`` collection:
+The following example inserts a new document to the ``restaurants`` collection:
 
 .. include:: /includes/fundamentals/automatic-db-coll-creation.rst
 
@@ -54,12 +53,13 @@ document in the ``restaurants`` collection:
 
    {
      "_id": ObjectId("..."),
-     "Name": "8282",
-     "Cuisine": "Korean",
-     "Borough": "Manhattan"
+     "name": "8282",
+     "cuisine": "Korean",
+     "borough": "Manhattan"
    }
 
-For an example on how to find a document, see :ref:`golang-find-one`.
+For an example on how to find a document, see the :ref:`golang-find-one` usage 
+example.
 
 Additional Information
 ----------------------
