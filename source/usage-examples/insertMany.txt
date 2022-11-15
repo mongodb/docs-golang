@@ -27,7 +27,8 @@ in the ``restaurants`` collection:
 The ``omitempty`` :ref:`struct tag<golang-struct-tags>` omits the corresponding 
 field from the inserted document when left empty.
 
-The following example inserts a new document to the ``restaurants`` collection:
+The following example inserts three new documents to the ``restaurants`` 
+collection:
 
 .. include:: /includes/fundamentals/automatic-db-coll-creation.rst
 
