@@ -25,7 +25,7 @@ in the ``restaurants`` collection:
    :dedent:
 
 The ``omitempty`` :ref:`struct tag<golang-struct-tags>` omits the corresponding 
-field from the inserted document when left empty.'
+field from the inserted document when left empty.
 
 The following example inserts a new document to the ``restaurants`` collection:
 
