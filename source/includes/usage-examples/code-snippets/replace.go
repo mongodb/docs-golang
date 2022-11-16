@@ -15,10 +15,10 @@ import (
 // start-restaurant-struct
 type Restaurant struct {
 	Name         string
-	RestaurantId string `bson:"restaurant_id,omitempty"`
-	Cuisine      string
-	Address      interface{} `bson:"address,omitempty"`
-	Borough      string
+	RestaurantId string        `bson:"restaurant_id,omitempty"`
+	Cuisine      string        `bson:"cuisine,omitempty"`
+	Address      interface{}   `bson:"address,omitempty"`
+	Borough      string        `bson:"borough,omitempty"`
 	Grades       []interface{} `bson:"grades,omitempty"`
 }
 
@@ -47,7 +47,7 @@ func main() {
 	// begin replace
 	coll := client.Database("sample_restaurants").Collection("restaurants")
 	filter := bson.D{{"name", "Madame Vo"}}
-	replacement := Restaurant{Name: "Monsieur Vo", Cuisine: "Vietnamese, Fusion", Borough: "Manhattan"}
+	replacement := Restaurant{Name: "Monsieur Vo", Cuisine: "Asian Fusion"}
 
 	result, err := coll.ReplaceOne(context.TODO(), filter, replacement)
 	if err != nil {

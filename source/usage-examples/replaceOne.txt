@@ -54,8 +54,7 @@ document in the ``restaurants`` collection:
    {
       "_id" : ObjectId("..."),
       "name" : "Monsieur Vo",
-      "cuisine" : "Asian Fusion",
-      "borough" : "Manhattan"
+      "cuisine" : "Asian Fusion"
    }
 
 For an example on how to find a document, see the :ref:`golang-find-one` usage 
