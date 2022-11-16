@@ -45,7 +45,7 @@ func main() {
 
 	// begin insertOne
 	coll := client.Database("sample_restaurants").Collection("restaurants")
-	newRestaurant := Restaurant{Name: "8282", Cuisine: "Korean", Borough: "Manhattan"}
+	newRestaurant := Restaurant{Name: "8282", Cuisine: "Korean"}
 
 	result, err := coll.InsertOne(context.TODO(), newRestaurant)
 	if err != nil {
