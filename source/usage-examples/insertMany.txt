@@ -50,9 +50,8 @@ documents in the ``restaurants`` collection:
 .. code-block:: json
   :copyable: false
     
-    // results truncated
-    { "_id": ObjectID("637545bb90e4c0a8b4ad9f52"), "name": "Rule of Thirds", "cuisine": "Japanese"},
-    { "_id": ObjectID("637545bb90e4c0a8b4ad9f53"), "name": "Madame Vo", "cuisine": "Vietnamese"}
+    { "_id": ObjectID("..."), "name": "Rule of Thirds", "cuisine": "Japanese"},
+    { "_id": ObjectID("..."), "name": "Madame Vo", "cuisine": "Vietnamese"}
 
 For an example on how to find multiple documents, see the 
 :ref:`golang-find-multiple` usage example.
