@@ -35,6 +35,11 @@ an error.
     ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
     defer cancel()
     client.Database("<db>").Collection("<collection>").Insert(ctx, bson.D{{"x",1}})
+    
+If the Context passed into an operation does not have a deadline, you
+can set a ``Timeout`` option on your ``Client`` and the operation will
+derive the timeout specification from this setting. To learn more
+about using the single timeout setting, see the :ref:`Connection Guide <golang-timeout-setting>`.
 
 Expiration
 ----------
@@ -118,48 +123,3 @@ driver overwrites with the ``context.Canceled`` error.
     In versions prior to 1.5.0, the driver doesn't detect the Context
     cancellation and waits for the ``Read()`` or ``Write()`` method to
     return.
-
-Single Timeout Setting
-----------------------
-
-You can set a single ``Timeout`` option on your ``Client`` to govern the
-amount of time that a single operation can take to execute using the
-``SetTimeout()`` method or specifying the ``timeoutMS`` option in your
-connection URI string. ``Database``, ``Collection``,
-``Session``, ``ChangeStream``, and ``Bucket`` instances elsewhere in
-your code inherit the ``Timeout`` option from ``Client`` if you do not set a
-Context for operations against the same entity. 
-
-If you pass a Context into an operation with a deadline, the driver uses
-that Context deadline for the operation. If the context does not have a
-deadline, the driver derives a new Context from the given Context using
-the ``Timeout`` option set on the ``Client``.
-
-The following code shows how to set the ``Timeout`` option on a ``Client``
-with the ``SetTimeout`` option:
-
-.. code-block:: go
-
-   opts := options.Client().SetTimeout(5 * time.Second)
-
-The following example shows how you can set a single timeout with the
-URI option and execute an operation that inherits this setting:
-
-.. code-block:: go
-
-   uri := "mongodb://user:pass@sample.host:27017/?timeoutMS=5000"
-   client := mongo.Connect(uri)
-   coll := client.Database("<db>").Collection("<collection>")
-   ...
-   coll.InsertOne(context.Background(), doc)
-
-To learn more about URI options, see the :ref:`Connection Guide
-<golang-connection-options>`.
-
-.. important:: Legacy Timeout Options
-
-   ``SocketTimeout``, ``wTimeout``, ``MaxTime``, and ``MaxCommitTime``
-   will be deprecated in an upcoming release. The driver ignores ``MaxTime`` and
-   ``MaxCommitTime`` if you set ``Timeout``. The driver will still honor
-   ``SocketTimeout`` and ``wTimeout``, but these settings may result in
-   undefined behavior. Consider using only the single timeout option instead.
