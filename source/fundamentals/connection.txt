@@ -147,7 +147,7 @@ URI to specify the behavior of the client.
      - integer
      - ``null``
      - Specifies the number of milliseconds that a single operation run on the
-       ``Client`` can take before returning an error. Operations honor
+       ``Client`` can take before returning a timeout error. Operations honor
        this setting only if there is no deadline on the operation Context.
 
    * - **connectTimeoutMS**
