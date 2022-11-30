@@ -253,7 +253,7 @@ the ``Timeout`` option set on the ``Client``.
    expires, the driver returns a timeout error. Versions 1.1 and later
    of the {+driver-short+} enable retryable reads and writes by default.
    See the Server manual for more information about :ref:`retryable
-   reads <retryable-reads>` and :ref:`retryable writes <retryable-writes>`.
+   reads <retryable-reads>` and :manual:`retryable writes </core/retryable-writes/>`.
 
 The following code shows how to set the ``Timeout`` option on a ``Client``
 with the ``SetTimeout`` option:
