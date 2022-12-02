@@ -142,7 +142,7 @@ document.
 
 .. note:: 
 
-   This method differs from using ``FindOne()`` method`` followed by
+   This method differs from using the ``FindOne()`` method followed by
    the ``UpdateOne()`` method.
    ``FindOneAndUpdate()`` performs a find and update as a single
    operation, and eliminates the possibility of someone altering a
