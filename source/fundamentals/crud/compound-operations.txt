@@ -58,7 +58,8 @@ the specified query filter and deletes it. The method returns a
 
 .. note:: 
 
-   This method differs from the ``DeleteOne()`` method.
+   This method differs from using the ``FindOne()`` method followed by the
+   ``DeleteOne()`` method.
    ``FindOneAndDelete()`` performs a find and delete as a single
    operation, and eliminates the possibility of someone altering a
    document between both operations.
@@ -141,7 +142,8 @@ document.
 
 .. note:: 
 
-   This method differs from the ``UpdateOne()`` method.
+   This method differs from using ``FindOne()`` method`` followed by
+   the ``UpdateOne()`` method.
    ``FindOneAndUpdate()`` performs a find and update as a single
    operation, and eliminates the possibility of someone altering a
    document between both operations.
