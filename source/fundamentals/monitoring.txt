@@ -15,7 +15,7 @@ Monitoring
 Overview
 --------
 
-In this guide, you can learn how to monitor topology events in a MongoDB instance,
+In this guide, you can learn how to **monitor** topology events in a MongoDB instance,
 replica set, or sharded cluster. The driver creates topology events, also
 known as Server Discovery and Monitoring (SDAM) events, when there are
 changes in the state of the instance or cluster that you are connected to.
@@ -25,13 +25,13 @@ or when the cluster elects a new primary.
 You should read this guide if you need to record topology changes in your application or
 want to explore the information provided by these events.
 
-Subscribe to Event
-------------------
+Subscribe to Events
+-------------------
 
 You can access details about SDAM events by subscribing to them
 in your application. The following example demonstrates how to subscribe
-to one of the SDAM events, ``ServerClosedEvent``, by instantiating a
-``ServerMonitor`` struct and connecting to a deployment:
+to the ``ServerClosed`` event by instantiating a
+``ServerMonitor`` and connecting to a deployment:
 
 .. code-block:: go
 
@@ -39,7 +39,7 @@ to one of the SDAM events, ``ServerClosedEvent``, by instantiating a
    srvMonitor := &event.ServerMonitor{
        ServerClosed: func(e *event.ServerClosedEvent) {
            eventArray = append(eventArray, e)
-          },
+       },
    }
    clientOpts := options.Client().ApplyURI("mongodb://<hostname>:<port>").SetServerMonitor(svrMonitor)
    client, err := mongo.Connect(context.Background(), clientOpts)
@@ -47,7 +47,7 @@ to one of the SDAM events, ``ServerClosedEvent``, by instantiating a
 Event Descriptions
 ------------------
 
-You can subscribe to the following SDAM events using a ``ServerMonitor``:
+You can subscribe to the following SDAM events by specifying properties of ``ServerMonitor``:
 
 .. list-table::
    :widths: 35 65 
@@ -67,7 +67,7 @@ You can subscribe to the following SDAM events using a ``ServerMonitor``:
 
    * - ``TopologyDescriptionChangedEvent``
      - Created when the topology changes, such as an election of a new
-       primary or disconnection of a **mongos** proxy.
+       primary or disconnection of a ``mongos`` proxy.
 
    * - ``TopologyOpeningEvent``
      - Created when the topology is initialized.
@@ -105,7 +105,7 @@ ServerDescriptionChangedEvent
            "AverageRTT": 0,
            "AverageRTTSet": false,
            "Compression": null,
-           "CanonicalAddr": "",
+           "CanonicalAddr": "...",
            "ElectionID": "...",
            "HeartbeatInterval": 0,
            "HelloOK": false,
@@ -119,11 +119,11 @@ ServerDescriptionChangedEvent
            "Members": null,
            "Passives": null,
            "Passive": false,
-           "Primary": "",
+           "Primary": "...",
            "ReadOnly": false,
            "ServiceID": null,
            "SessionTimeoutMinutes": 0,
-           "SetName": "",
+           "SetName": "...",
            "SetVersion": 0,
            "Tags": null,
            "TopologyVersion": null,
@@ -252,11 +252,11 @@ TopologyDescriptionChangedEvent
                    "Members": null,
                    "Passives": null,
                    "Passive": false,
-                   "Primary": "",
+                   "Primary": "...",
                    "ReadOnly": false,
                    "ServiceID": null,
                    "SessionTimeoutMinutes": 0,
-                   "SetName": "",
+                   "SetName": "...",
                    "SetVersion": 0,
                    "Tags": null,
                    "TopologyVersion": null,
