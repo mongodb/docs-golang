@@ -19,6 +19,7 @@ Fundamentals
    /fundamentals/indexes
    /fundamentals/transactions
    /fundamentals/collations
+   /fundamentals/monitoring
    /fundamentals/gridfs
    /fundamentals/time-series
 
@@ -27,6 +28,5 @@ Fundamentals
   /fundamentals/data-formats
   /fundamentals/builders
   /fundamentals/logging
-  /fundamentals/monitoring
-
+  
 .. include:: /includes/fundamentals-sections.rst
