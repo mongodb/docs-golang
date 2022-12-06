@@ -1,5 +1,4 @@
 .. _golang-compound-operations:
-
 ===================
 Compound Operations
 ===================
@@ -44,7 +43,6 @@ Run the following snippet to load the documents into the ``tea.ratings`` collect
    :dedent:
    :start-after: begin insertDocs
    :end-before: end insertDocs
-
 .. include:: /includes/fundamentals/tea-sample-data-ending.rst
 
 .. _golang-find-and-delete:
@@ -58,11 +56,11 @@ the specified query filter and deletes it. The method returns a
 
 .. note:: 
 
-   This method differs from using the ``FindOne()`` method followed by the
-   ``DeleteOne()`` method.
-   ``FindOneAndDelete()`` performs a find and delete as a single
-   operation, and eliminates the possibility of someone altering a
-   document between both operations.
+   If you need to find a document and delete it, use 
+   this method instead of ``findone()`` and ``deleteOne()``. This method 
+   performs the find and delete atomically, which means it executes the 
+   commands in a single operation. This eliminates the possibility of 
+   someone altering the document between the operations.
 
 Modify Behavior
 ~~~~~~~~~~~~~~~
@@ -142,11 +140,11 @@ document.
 
 .. note:: 
 
-   This method differs from using the ``FindOne()`` method followed by
-   the ``UpdateOne()`` method.
-   ``FindOneAndUpdate()`` performs a find and update as a single
-   operation, and eliminates the possibility of someone altering a
-   document between both operations.
+   If you need to find a document and update it, use 
+   this method instead of ``findone()`` and ``updateOne()``. This method 
+   performs the find and update atomically, which means it executes the 
+   commands in a single operation. This eliminates the possibility of 
+   someone altering the document between the operations.
 
 Modify Behavior
 ~~~~~~~~~~~~~~~
