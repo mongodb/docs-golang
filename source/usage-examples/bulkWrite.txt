@@ -24,11 +24,14 @@ in the ``restaurants`` collection:
    :copyable: 
    :dedent:
 
+The ``omitempty`` :ref:`struct tag<golang-struct-tags>` omits the corresponding 
+field from the inserted document when left empty.
+
 The following example performs the following in order on the ``restaurants``
 collection:
 
-- Matches a document in which the ``Name`` is "Cafe Tomato" and replaces it with a new document
-- Matches a document in which the ``Name`` is "Cafe Zucchini" and updates
+- Matches a document in which the ``name`` is "Cafe Tomato" and replaces it with a new document
+- Matches a document in which the ``name`` is "Cafe Zucchini" and updates
   the value to "Zucchini Land"
 
 .. literalinclude:: /includes/usage-examples/code-snippets/bulk.go
