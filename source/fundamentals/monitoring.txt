@@ -41,7 +41,7 @@ to the ``ServerClosed`` event by instantiating a
            eventArray = append(eventArray, e)
        },
    }
-   clientOpts := options.Client().ApplyURI("mongodb://<hostname>:<port>").SetServerMonitor(svrMonitor)
+   clientOpts := options.Client().ApplyURI(uri).SetServerMonitor(svrMonitor)
    client, err := mongo.Connect(context.Background(), clientOpts)
 
 Event Descriptions
@@ -165,7 +165,7 @@ ServerDescriptionChangedEvent
    }
 
 To interpret the value of the ``Kind`` field, see the :ref:`Kind Field
-Value Note <golang-monitoring-kind-field-note>`.
+Value section <golang-monitoring-kind-field>`.
 
 ServerOpeningEvent
 ~~~~~~~~~~~~~~~~~~
@@ -257,7 +257,7 @@ TopologyDescriptionChangedEvent
    }
 
 To interpret the value of the ``Kind`` field, see the :ref:`Kind Field
-Value Note <golang-monitoring-kind-field-note>`.
+Value section <golang-monitoring-kind-field>`.
 
 TopologyOpeningEvent
 ~~~~~~~~~~~~~~~~~~~~
@@ -338,7 +338,7 @@ ServerHeartbeatSucceededEvent
    }
 
 To interpret the value of the ``Kind`` field, see the :ref:`Kind Field
-Value Note <golang-monitoring-kind-field-note>`.
+Value section <golang-monitoring-kind-field>`.
 
 ServerHeartbeatFailedEvent
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -354,37 +354,38 @@ ServerHeartbeatFailedEvent
        "Awaited": true
    }
 
-.. golang-monitoring-kind-field-note:
+.. _golang-monitoring-kind-field:
 
-.. note:: ``Kind`` Field Value
+``Kind`` Field Value
+````````````````````
 
-   The ``Kind`` field in an event document represents the type of a
-   single server in a topology and can have the following values:
-   
-   .. list-table::
-      :widths: 30 70
-      :header-rows: 1
-   
-      * - Value
-        - Description
-      * - ``0``
-        - Unknown instance
-      * - ``1``
-        - Standalone instance
-      * - ``2``
-        - Replica set member
-      * - ``6``
-        - Primary instance
-      * - ``10``
-        - Secondary instance
-      * - ``18``
-        - Arbiter instance
-      * - ``34``
-        - Replica set ghost (a member that cannot be queried)
-      * - ``256``
-        - ``mongos`` proxy instance
-      * - ``512``
-        - Load balancer instance
+The ``Kind`` field in an event document represents the type of a
+single server in a topology and can have the following values:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Value
+     - Description
+   * - ``0``
+     - Unknown instance
+   * - ``1``
+     - Standalone instance
+   * - ``2``
+     - Replica set member
+   * - ``6``
+     - Primary instance
+   * - ``10``
+     - Secondary instance
+   * - ``18``
+     - Arbiter instance
+   * - ``34``
+     - Replica set ghost (a member that cannot be queried)
+   * - ``256``
+     - ``mongos`` proxy instance
+   * - ``512``
+     - Load balancer instance
 
 API Documentation
 -----------------
