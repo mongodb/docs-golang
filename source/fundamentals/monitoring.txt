@@ -15,7 +15,7 @@ Monitoring
 Overview
 --------
 
-In this guide, you can learn how to **monitor** topology events in a MongoDB instance,
+In this guide, you can learn how to monitor topology events in a MongoDB instance,
 replica set, or sharded cluster. The driver creates topology events, also
 known as Server Discovery and Monitoring (SDAM) events, when there are
 changes in the state of the instance or cluster that you are connected to.
@@ -47,7 +47,8 @@ to the ``ServerClosed`` event by instantiating a
 Event Descriptions
 ------------------
 
-You can subscribe to the following SDAM events by specifying properties of ``ServerMonitor``:
+You can subscribe to the following SDAM events by specifying properties
+of a ``ServerMonitor`` instance:
 
 .. list-table::
    :widths: 35 65 
@@ -163,33 +164,8 @@ ServerDescriptionChangedEvent
        }
    }
 
-The ``Kind`` field in the server descriptions represents the type of a
-single server in a topology and can have the following values:
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Value
-     - Description
-   * - ``0``
-     - Unknown instance
-   * - ``1``
-     - Standalone instance
-   * - ``2``
-     - Replica set member
-   * - ``6``
-     - Primary instance
-   * - ``10``
-     - Secondary instance
-   * - ``18``
-     - Arbiter instance
-   * - ``34``
-     - Replica set ghost, a member that cannot be queried
-   * - ``256``
-     - Mongos proxy instance
-   * - ``512``
-     - Load balancer instance
+To interpret the value of the ``Kind`` field, see the :ref:`Kind Field
+Value Note <golang-monitoring-kind-field-note>`.
 
 ServerOpeningEvent
 ~~~~~~~~~~~~~~~~~~
@@ -220,9 +196,10 @@ TopologyDescriptionChangedEvent
 
 .. important::
 
-   The driver calls ``TopologyDescriptionChanged`` when the deployment topology is locked,
-   so the callback should not attempt any operation that requires server
-   selection on the same client.
+   Because the driver calls ``TopologyDescriptionChanged`` when the
+   deployment topology is locked, the callback (function argument) for this event
+   should not attempt any operation that requires server selection on
+   the same client.
 
 .. code-block:: bash
    :copyable: false
@@ -279,33 +256,8 @@ TopologyDescriptionChangedEvent
        }
    }
 
-The ``Kind`` field in the server descriptions represents the type of a
-single server in a topology and can have the following values:
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Value
-     - Description
-   * - ``0``
-     - Unknown instance
-   * - ``1``
-     - Standalone instance
-   * - ``2``
-     - Replica set member
-   * - ``6``
-     - Primary instance
-   * - ``10``
-     - Secondary instance
-   * - ``18``
-     - Arbiter instance
-   * - ``34``
-     - Replica set ghost, a member that cannot be queried
-   * - ``256``
-     - Mongos proxy instance
-   * - ``512``
-     - Load balancer instance
+To interpret the value of the ``Kind`` field, see the :ref:`Kind Field
+Value Note <golang-monitoring-kind-field-note>`.
 
 TopologyOpeningEvent
 ~~~~~~~~~~~~~~~~~~~~
@@ -385,33 +337,8 @@ ServerHeartbeatSucceededEvent
        "Awaited": true
    }
 
-The ``Kind`` field in the server description represents the type of a
-single server in a topology and can have the following values:
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Value
-     - Description
-   * - ``0``
-     - Unknown instance
-   * - ``1``
-     - Standalone instance
-   * - ``2``
-     - Replica set member
-   * - ``6``
-     - Primary instance
-   * - ``10``
-     - Secondary instance
-   * - ``18``
-     - Arbiter instance
-   * - ``34``
-     - Replica set ghost, a member that cannot be queried
-   * - ``256``
-     - Mongos proxy instance
-   * - ``512``
-     - Load balancer instance
+To interpret the value of the ``Kind`` field, see the :ref:`Kind Field
+Value Note <golang-monitoring-kind-field-note>`.
 
 ServerHeartbeatFailedEvent
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -427,9 +354,42 @@ ServerHeartbeatFailedEvent
        "Awaited": true
    }
 
+.. golang-monitoring-kind-field-note:
+
+.. note:: ``Kind`` Field Value
+
+   The ``Kind`` field in an event document represents the type of a
+   single server in a topology and can have the following values:
+   
+   .. list-table::
+      :widths: 30 70
+      :header-rows: 1
+   
+      * - Value
+        - Description
+      * - ``0``
+        - Unknown instance
+      * - ``1``
+        - Standalone instance
+      * - ``2``
+        - Replica set member
+      * - ``6``
+        - Primary instance
+      * - ``10``
+        - Secondary instance
+      * - ``18``
+        - Arbiter instance
+      * - ``34``
+        - Replica set ghost (a member that cannot be queried)
+      * - ``256``
+        - ``mongos`` proxy instance
+      * - ``512``
+        - Load balancer instance
+
 API Documentation
 -----------------
 
 - `ServerMonitor <{+api+}/event#ServerMonitor>`__ type
 - `SetServerMonitor() <{+api+}/mongo/options#ClientOptions.SetServerMonitor>`__ method
 - `ServerKind <{+api+}/mongo/description#ServerKind>`__ type
+- `Server <{+api+}/mongo/description#Server>`__ type
