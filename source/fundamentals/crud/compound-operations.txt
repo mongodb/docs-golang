@@ -57,21 +57,14 @@ the specified query filter and deletes it. The method returns a
 
 .. note:: 
 
-   The ``FindOneAndDelete()`` method behaves differently than the ``findOne()`` and 
-   ``deleteOne()`` methods:
-   
-   - The ``findOne()`` method returns the first document that matches the query filter, but
-     doesn't delete it.
-     
-   - The ``deleteOne()`` method finds and deletes the first document that matches the query
-     filter.
+   Like the ``deleteOne()`` method, the ``FindOneAndDelete()`` method is an atomic 
+   operation that deletes the first 
+   document that matches the query filter. Unlike the ``deleteOne()`` method, however, the
+   ``FindOneAndDelete()`` method lets you specify the sort order of the matched 
+   documents. This allows more control over which document is deleted.
 
-   - The ``FindOneAndDelete()`` method finds and deletes the first document that matches the
-     query filter, but also lets you specify the sort order of the returned documents.
-     This allows more control over the document that is deleted.
-
-   Calling ``findOne()`` and then ``deleteOne()`` is not recommended, since another 
-   process could update the found document between operations.
+   If you don't need to find and delete a document in a single transaction, you can call 
+   the ``findOne()`` method followed by the ``deleteOne()`` method. 
    
 Modify Behavior
 ~~~~~~~~~~~~~~~
