@@ -53,10 +53,12 @@ func main() {
 	}
 
 	result, err := coll.InsertMany(context.TODO(), docs)
+	// end insert docs
+
 	if err != nil {
 		panic(err)
 	}
-	// end insert docs
+
 	fmt.Printf("Number of documents inserted: %d\n", len(result.InsertedIDs))
 
 	fmt.Println("\nAggregation Example - Average\n")
@@ -64,12 +66,8 @@ func main() {
 		groupStage := bson.D{
 			{"$group", bson.D{
 				{"_id", "$category"},
-				{"average_price", bson.D{
-					{"$avg", "$price"},
-				}},
-				{"type_total", bson.D{
-					{"$sum", 1},
-				}},
+				{"average_price", bson.D{{"$avg", "$price"}}},
+				{"type_total", bson.D{{"$sum", 1}}},
 			}}}
 
 		cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{groupStage})
@@ -91,10 +89,7 @@ func main() {
 	{
 		matchStage := bson.D{{"$match", bson.D{{"toppings", "milk foam"}}}}
 		unsetStage := bson.D{{"$unset", bson.A{"_id", "category"}}}
-		sortStage := bson.D{{"$sort", bson.D{
-			{"price", 1},
-			{"toppings", 1}},
-		}}
+		sortStage := bson.D{{"$sort", bson.D{{"price", 1}, {"toppings", 1}}}}
 		limitStage := bson.D{{"$limit", 2}}
 
 		cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{matchStage, unsetStage, sortStage, limitStage})

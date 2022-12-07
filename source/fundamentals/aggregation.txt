@@ -123,34 +123,29 @@ the ``$sum`` expression operator.
    .. input::
       :language: go
 
-      // create $group stage
-	  groupStage := bson.D{
-	  	{"$group", bson.D{
-	  		{"_id", "$category"},
-	  		{"average_price", bson.D{
-	  			{"$avg", "$price"},
-	  		}},
-	  		{"type_total", bson.D{
-	  			{"$sum", 1},
-	  		}},
-	  	}}}
+      // create group stage
+      groupStage := bson.D{
+          {"$group", bson.D{
+              {"_id", "$category"},
+              {"average_price", bson.D{{"$avg", "$price"}}},
+              {"type_total", bson.D{{"$sum", 1}}},
+          }}}
       
-
       // pass the pipeline to the Aggregate() method
-	  cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{groupStage})
-	  if err != nil {
-	  	panic(err)
-	  }
+      cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{groupStage})
+      if err != nil {
+	      panic(err)
+      }
       
       // display the results
-	  var results []bson.M
-	  if err = cursor.All(context.TODO(), &results); err != nil {
-	  	panic(err)
-	  }
-	  for _, result := range results {
-	  	fmt.Printf("Average price of %v tea options: $%v \n", result["_id"], result["average_price"])
-	  	fmt.Printf("Number of %v tea options: %v \n\n", result["_id"], result["type_total"])
-	  }
+      var results []bson.M
+      if err = cursor.All(context.TODO(), &results); err != nil {
+	      panic(err)
+      }
+      for _, result := range results {
+          fmt.Printf("Average price of %v tea options: $%v \n", result["_id"], result["average_price"])
+          fmt.Printf("Number of %v tea options: %v \n\n", result["_id"], result["type_total"])
+      }
 
    .. output::
       :language: none
@@ -184,25 +179,22 @@ The aggregation pipeline contains the following stages:
       // create the stages
       matchStage := bson.D{{"$match", bson.D{{"toppings", "milk foam"}}}}
       unsetStage := bson.D{{"$unset", bson.A{"_id", "category"}}}
-      sortStage := bson.D{{"$sort", bson.D{
-      	{"price", 1},
-      	{"toppings", 1}},
-      }}
+      sortStage := bson.D{{"$sort", bson.D{{"price", 1}, {"toppings", 1}}}}
       limitStage := bson.D{{"$limit", 2}}
       
       // pass the pipeline to the Aggregate() method
       cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{matchStage, unsetStage, sortStage, limitStage})
       if err != nil {
-      	panic(err)
+          panic(err)
       }
       
       // display the results
       var results []Tea
       if err = cursor.All(context.TODO(), &results); err != nil {
-      	panic(err)
+          panic(err)
       }
       for _, result := range results {
-      	fmt.Printf("Tea: %v \nToppings: %v \nPrice: $%v \n\n", result.Type, strings.Join(result.Toppings, ", "), result.Price)
+          fmt.Printf("Tea: %v \nToppings: %v \nPrice: $%v \n\n", result.Type, strings.Join(result.Toppings, ", "), result.Price)
       }
 
    .. output::
