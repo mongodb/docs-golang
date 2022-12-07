@@ -57,15 +57,15 @@ the specified query filter and deletes it. The method returns a
 
 .. note:: 
 
-   Like the ``deleteOne()`` method, the ``FindOneAndDelete()`` method is an atomic 
-   operation that deletes the first 
-   document that matches the query filter. Unlike the ``deleteOne()`` method, however, the
-   ``FindOneAndDelete()`` method lets you specify the sort order of the matched 
-   documents. This allows more control over which document is deleted.
+  The ``FindOneAndDelete()`` method is an atomic operation, which means it prevents
+   any other write operations from changing the matching document until it
+   completes. The ``deleteOne()`` method is also an atomic operation, but differs from
+   ``findOneAndDelete()`` in that you cannot specify a sort order for the
+   matched documents. 
 
    If you don't need to find and delete a document in a single transaction, you can call 
    the ``findOne()`` method followed by the ``deleteOne()`` method. 
-   
+
 Modify Behavior
 ~~~~~~~~~~~~~~~
 
@@ -144,21 +144,14 @@ document.
 
 .. note:: 
 
-   The ``FindOneAndUpdate()`` method behaves differently than the ``findOne()`` and 
-   ``updateOne()`` methods:
-   
-   - The ``findOne()`` method returns the first document that matches the query filter, but
-     doesn't update it.
-     
-   - The ``updateOne()`` method finds and updates the first document that matches the query
-     filter.
+  The ``FindOneAndUpdate()`` method is an atomic operation, which means it prevents
+   any other write operations from changing the matching document until it
+   completes. The ``updateOne()`` method is also an atomic operation, but differs from
+   ``findOneAndUpdate()`` in that you cannot specify a sort order for the
+   matched documents. 
 
-   - The ``FindOneAndUpdate()`` method finds and updates the first document that matches the
-     query filter, but also lets you specify the sort order of the returned documents.
-     This allows more control over the document that is updated.
-
-   Calling ``findOne()`` and then ``updateOne()`` is not recommended, since another 
-   process could update the found document between operations.
+   If you don't need to find and update a document in a single transaction, you can call 
+   the ``findOne()`` method followed by the ``updateOne()`` method. 
  
 Modify Behavior
 ~~~~~~~~~~~~~~~
