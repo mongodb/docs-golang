@@ -110,7 +110,7 @@ Average Rating
 ~~~~~~~~~~~~~~
 
 The following example calculates and displays the average rating and
-amount of ratings for each tea category.
+number of ratings for each tea category.
 
 The aggregation pipeline uses the ``$group`` stage to group the
 documents by the ``category`` field, calculates the average using the
@@ -165,7 +165,7 @@ topping and lists the two cheapest options.
 
 The aggregation pipeline contains the following stages:
 
-- ``$match`` stage to match documents where the ``toppings`` field contain "milk foam"
+- ``$match`` stage to match documents where the ``toppings`` field contains "milk foam"
 - ``$unset`` stage to omit the ``_id`` and ``category`` fields
 - ``$sort`` stage to sort the ``price`` and ``toppings`` in ascending order
 - ``$limit`` stage to show the first two documents
