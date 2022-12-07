@@ -134,13 +134,13 @@ the ``$sum`` expression operator.
       // pass the pipeline to the Aggregate() method
       cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{groupStage})
       if err != nil {
-	      panic(err)
+          panic(err)
       }
       
       // display the results
       var results []bson.M
       if err = cursor.All(context.TODO(), &results); err != nil {
-	      panic(err)
+          panic(err)
       }
       for _, result := range results {
           fmt.Printf("Average price of %v tea options: $%v \n", result["_id"], result["average_price"])
