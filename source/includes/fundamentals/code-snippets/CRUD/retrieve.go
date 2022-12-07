@@ -17,7 +17,7 @@ import (
 type Review struct {
 	Item        string
 	Rating      int32
-	DateOrdered time.Time `bson:"date_ordered" json:"date_ordered,omitempty"`
+	DateOrdered time.Time `bson:"date_ordered"`
 }
 
 // end-review-struct
