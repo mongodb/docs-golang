@@ -57,7 +57,7 @@ the specified query filter and deletes it. The method returns a
 
 .. note:: 
 
-  The ``FindOneAndDelete()`` method is an atomic operation, which means it prevents
+   The ``FindOneAndDelete()`` method is an atomic operation, which means it prevents
    any other write operations from changing the matching document until it
    completes. The ``deleteOne()`` method is also an atomic operation, but differs from
    ``findOneAndDelete()`` in that you cannot specify a sort order for the
@@ -144,7 +144,7 @@ document.
 
 .. note:: 
 
-  The ``FindOneAndUpdate()`` method is an atomic operation, which means it prevents
+   The ``FindOneAndUpdate()`` method is an atomic operation, which means it prevents
    any other write operations from changing the matching document until it
    completes. The ``updateOne()`` method is also an atomic operation, but differs from
    ``findOneAndUpdate()`` in that you cannot specify a sort order for the
