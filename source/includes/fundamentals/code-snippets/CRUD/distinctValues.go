@@ -54,7 +54,7 @@ func main() {
 	fmt.Printf("Number of documents inserted: %d\n", len(result.InsertedIDs))
 
 	// begin distinct
-	results, err := coll.Distinct(context.TODO(), "department", bson.D{})
+	results, err := coll.Distinct(context.TODO(), "department", bson.D{{"enrollment", bson.D{{"$lt", 50}}}})
 	if err != nil {
 		panic(err)
 	}
