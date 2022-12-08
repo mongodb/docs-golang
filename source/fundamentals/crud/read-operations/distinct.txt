@@ -21,8 +21,17 @@ specified field across a single collection.
 Sample Data
 ~~~~~~~~~~~
 
+The examples in this guide use the following ``Course`` struct as a model for documents
+in the ``courses`` collection:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/distinctValues.go
+   :start-after: start-course-struct
+   :end-before: end-course-struct
+   :language: go
+   :dedent:
+
 To run the examples in this guide, load the sample data into the
-``tea.ratings`` collection with the following
+``db.courses`` collection with the following
 snippet:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/distinctValues.go
@@ -33,8 +42,10 @@ snippet:
 
 .. include:: /includes/fundamentals/automatic-db-coll-creation.rst
 
-Each document contains a rating for a type of tea that corresponds to
-the ``type`` and ``rating`` fields.
+Each document contains a description of a university course that
+includes the course title, department, and enrollment. These items
+correspond to the ``title``, ``department``, and ``enrollment`` fields
+in each document.
 
 Distinct
 --------
@@ -48,8 +59,8 @@ method:
 
 .. tip::
 
-   If you specify an empty query filter, the method matches all the
-   documents in a collection.
+   If you specify an empty query filter, the ``Distinct()`` method
+   searches for distinct values across all documents in a collection.
 
 Modify Behavior
 ~~~~~~~~~~~~~~~
@@ -81,7 +92,7 @@ Example
 ```````
 
 The following example matches all documents and prints the distinct values
-of the ``type`` field using the ``Distinct()`` method: 
+of the ``department`` field using the ``Distinct()`` method: 
 
 .. io-code-block::
    :copyable: true
@@ -89,23 +100,22 @@ of the ``type`` field using the ``Distinct()`` method:
    .. input::
       :language: go
 
-      results, err := coll.Distinct(context.TODO(), "type", bson.D{})
+      results, err := coll.Distinct(context.TODO(), "department", bson.D{})
       if err != nil {
-         panic(err)
+          panic(err)
       }
-
+      
       for _, result := range results {
-         fmt.Println(result)
+          fmt.Println(result)
       }
 
    .. output::
       :language: none
       :visible: false
 
-      Earl Grey
-      Masala
-      Matcha
-      Oolong
+      Earth Science
+      English
+      Mathematics
 
 Additional Information
 ----------------------
