@@ -45,9 +45,8 @@ snippet:
    :start-after: begin insert docs
    :end-before: end insert docs
 
-Each document contains the name and description of an dish on a
-restaurant's menu. These items correspond to the ``name`` and
-``description`` fields in each document.
+Each document contains the ``name`` and ``description`` of a dish on a
+restaurant's menu.
 
 .. include:: /includes/fundamentals/automatic-db-coll-creation.rst
 
@@ -335,8 +334,8 @@ The following example runs a text search for descriptions that contain the term 
       {"Name":"Kale Tabbouleh","Description":"A bright, herb-based salad. A perfect starter for vegetarians and vegans."}
       {"Name":"Herbed Whole Branzino","Description":"Grilled whole fish stuffed with herbs and pomegranate seeds. Serves 3-4."}
 
-Match then Sort by Relevance
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Sort by Relevance
+~~~~~~~~~~~~~~~~~
 
 The following example performs the following actions:
 
