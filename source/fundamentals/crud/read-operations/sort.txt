@@ -175,8 +175,9 @@ the following documents:
    {"Title":"World Fiction","Enrollment":35}
    {"Title":"Plate Tectonics","Enrollment":35}
 
-To guarantee a specific order for documents when ties occur, specify
-additional fields to sort by.
+You can sort on additional fields to resolve ties in the original sort.
+If you want to guarantee a specific order for documents, you should
+select sort fields that will not result in additional ties.
 
 Example
 ```````
