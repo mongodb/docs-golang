@@ -53,7 +53,7 @@ To skip a specified number of returned results from a query, pass the
 number of documents you want to skip to the ``SetSkip()`` method of
 the read operation's options.
 
-The following read operations take options as a parameter:
+The following read operations take an options object as a parameter:
 
 - ``Find()``
 - ``FindOne()``
@@ -79,7 +79,7 @@ Example
 The following example performs a ``Find()`` operation with the following
 behavior:
 
-- Sorts results in the ascending direction on the ``enrollment`` field
+- Sorts results in ascending order on the ``enrollment`` field
 - Skips the first two documents
 
 .. io-code-block::
@@ -119,10 +119,10 @@ stage in an aggregation pipeline to skip documents.
 Example
 ~~~~~~~
 
-The following example performs a ``Aggregate()`` operation with the following
+The following example performs an ``Aggregate()`` operation with the following
 behavior:
 
-- Sorts results in the descending direction on the ``enrollment`` field
+- Sorts results in descending order on the ``enrollment`` field
 - Skips the first document
 
 .. io-code-block::
