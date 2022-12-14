@@ -73,7 +73,7 @@ func main() {
 		//end limit
 	}
 
-	fmt.Println("\nLimit, Skip and Sort:\n")
+	fmt.Println("\nLimit, Skip, and Sort:\n")
 	{
 		//begin multi options
 		filter := bson.D{}

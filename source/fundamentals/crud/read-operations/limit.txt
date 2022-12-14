@@ -60,7 +60,7 @@ The following read operations take an options object as a parameter:
 
 If the limit is ``0`` or exceeds the number of matched
 documents, the method returns all the documents. If the limit is a
-negative number, the method take the absolute value of the negative
+negative number, the method uses the absolute value of the negative
 number as the limit and closes the cursor after retrieving
 documents.
 
@@ -100,16 +100,15 @@ The following example shows how to return two documents that have an
 Multiple Options
 ----------------
 
-If you configure other options alongside the ``SetLimit()`` method,
-the driver performs the limit last regardless of the order in which you set
-the other options.
+The driver performs the limit behavior last regardless of the order in which you set
+any other options.
 
 Example
 ~~~~~~~
 
-The following example performs a Find() operation with the following behavior:
+The following example performs a ``Find()`` operation with the following behavior:
 
-- Sorts results in descending order on the ``enrollment`` field
+- Sorts the results in descending order on the ``enrollment`` field
 - Skips the first document
 - Returns the first two of the remaining documents
 
