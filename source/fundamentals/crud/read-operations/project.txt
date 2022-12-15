@@ -81,8 +81,8 @@ not explicitly excluded in the projection document.
 Example
 ```````
 
-The following example excludes the ``course_id`` from the matched documents
-returned by the ``Find()`` method:
+The following example excludes the ``course_id`` and ``enrollment``
+fields from the matched documents returned by the ``Find()`` method:
 
 .. io-code-block::
    :copyable: true
@@ -91,7 +91,7 @@ returned by the ``Find()`` method:
       :language: go
 
       filter := bson.D{}
-      opts := options.Find().SetProjection(bson.D{{"course_id", 0}})
+      opts := options.Find().SetProjection(bson.D{{"course_id", 0}, {"enrollment", 0}})
       
       cursor, err := coll.Find(context.TODO(), filter, opts)
       if err != nil {
@@ -103,6 +103,51 @@ returned by the ``Find()`` method:
           panic(err)
       }
 
+      for _, result := range results {
+          res, _ := bson.MarshalExtJSON(result, false, false)
+          fmt.Println(string(res))
+      }
+
+   .. output::
+      :language: none
+      :visible: false
+
+      {"title":"Primate Behavior"}
+      {"title":"Revolution and Reform"}
+
+Include a Field
+~~~~~~~~~~~~~~~
+
+To include a field, pass the field you want to include with a ``1`` to
+the ``SetProjection()`` method. The driver excludes all fields that are
+not explicitly included in the projection document.
+
+.. _golang-include-projection:
+
+Example
+```````
+
+The following example includes only the ``title`` and ``enrollment`` fields
+from the matched documents returned by the ``Find()`` method:
+
+.. io-code-block::
+   :copyable: true
+
+   .. input::
+      :language: go
+
+      filter := bson.D{}
+      opts := options.Find().SetProjection(bson.D{{"title", 1}, {"enrollment", 1}})
+      
+      cursor, err := coll.Find(context.TODO(), filter, opts)
+      if err != nil {
+          panic(err)
+      }
+      
+      var results []Course
+      if err = cursor.All(context.TODO(), &results); err != nil {
+          panic(err)
+      }
       for _, result := range results {
           res, _ := bson.MarshalExtJSON(result, false, false)
           fmt.Println(string(res))
@@ -114,51 +159,6 @@ returned by the ``Find()`` method:
 
       {"title":"Primate Behavior","enrollment":40}
       {"title":"Revolution and Reform","enrollment":12}
-
-Include a Field
-~~~~~~~~~~~~~~~
-
-To include a field, pass the field you want to exclude with a ``1`` to
-the ``SetProjection()`` method. The driver excludes all fields that are
-not explicitly included in the projection document.
-
-.. _golang-include-projection:
-
-Example
-```````
-
-The following example includes only the ``title`` and ``course_id`` fields
-from the matched documents returned by the ``Find()`` method:
-
-.. io-code-block::
-   :copyable: true
-
-   .. input::
-      :language: go
-
-      filter := bson.D{}
-      opts := options.Find().SetProjection(bson.D{{"title", 1}, {"course_id", 1}})
-      
-      cursor, err := coll.Find(context.TODO(), filter, opts)
-      if err != nil {
-          panic(err)
-      }
-      
-      var results []Course
-      if err = cursor.All(context.TODO(), &results); err != nil {
-          panic(err)
-      }
-      for _, result := range results {
-          res, _ := bson.MarshalExtJSON(result, false, false)
-          fmt.Println(string(res))
-      }
-
-   .. output::
-      :language: none
-      :visible: false
-
-      {"title":"Primate Behavior","course_id":"PSY2030"}
-      {"title":"Revolution and Reform","course_id":"HIST3080"}
 
 Aggregation
 ~~~~~~~~~~~

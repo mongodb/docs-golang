@@ -56,7 +56,7 @@ func main() {
 	{
 		//begin exclude projection
 		filter := bson.D{}
-		opts := options.Find().SetProjection(bson.D{{"course_id", 0}})
+		opts := options.Find().SetProjection(bson.D{{"course_id", 0}, {"enrollment", 0}})
 
 		cursor, err := coll.Find(context.TODO(), filter, opts)
 		if err != nil {
@@ -78,7 +78,7 @@ func main() {
 	{
 		//begin include projection
 		filter := bson.D{}
-		opts := options.Find().SetProjection(bson.D{{"title", 1}, {"course_id", 1}})
+		opts := options.Find().SetProjection(bson.D{{"title", 1}, {"enrollment", 1}})
 
 		cursor, err := coll.Find(context.TODO(), filter, opts)
 		if err != nil {
