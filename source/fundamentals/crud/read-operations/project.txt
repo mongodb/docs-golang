@@ -54,8 +54,8 @@ Projection
 
 A projection specifies which fields to return in matched documents. The
 projection document contains field names with a ``1`` to include the
-corresponding field or ``0`` to exclude it. Projections can only include
-or exclude fields.
+corresponding field or ``0`` to exclude it. If you are using an aggregation framework,
+you can also specify a projection to include newly computed fields.
 
 You can specify a projection by passing a projection document to the ``SetProjection()``
 method. The following read operations take an options object as a parameter:
@@ -76,7 +76,8 @@ Exclude a Field
 
 To exclude a field, pass the field you want to exclude with a ``0`` to
 the ``SetProjection()`` method. The driver includes all fields that are
-not explicitly excluded in the projection document.
+not explicitly excluded in the projection document, if you specify any
+fields to exclude.
 
 Example
 ```````
@@ -120,7 +121,8 @@ Include a Field
 
 To include a field, pass the field you want to include with a ``1`` to
 the ``SetProjection()`` method. The driver excludes all fields that are
-not explicitly included in the projection document.
+not explicitly included in the projection document, if you specify any
+fields to include.
 
 .. _golang-include-projection:
 
