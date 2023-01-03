@@ -71,7 +71,7 @@ outputs all changes:
    }
    defer changeStream.Close(context.TODO())
 
-   // iterate over the cursor to print the change stream events
+   // iterate over the cursor to print the change-stream events
    for changeStream.Next(context.TODO()) {
       fmt.Println(changeStream.Current)
    }
@@ -79,7 +79,7 @@ outputs all changes:
 If you modify the ``db.courses`` collection in a separate program or shell, this code will print
 your changes as they occur. Inserting a document with a ``title`` value
 of "Advanced Screenwriting" and an ``enrollment`` value of ``20``
-results in the following change stream event:
+results in the following change-stream event:
 
 .. code-block:: go
    :copyable: false
@@ -128,7 +128,7 @@ new delete operations:
    }
 
 Deleting the document with the ``title`` value of "Advanced Screenwriting"
-in a separate program or shell results in the following change stream event:
+in a separate program or shell results in the following change-stream event:
 
 .. code-block:: go
    :copyable: false
@@ -183,7 +183,7 @@ specifies the ``FullDocument`` options parameter to output a copy of the entire 
 
 Updating the ``enrollment`` value of the document with the
 ``title`` of "World Fiction" from ``35`` to ``30`` results in the
-following change stream event:
+following change-stream event:
 
 .. code-block:: go
    :copyable: false
