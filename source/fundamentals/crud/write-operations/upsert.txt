@@ -1,3 +1,5 @@
+.. _golang-upsert-guide:
+
 ======================================
 Insert or Update in a Single Operation
 ======================================
