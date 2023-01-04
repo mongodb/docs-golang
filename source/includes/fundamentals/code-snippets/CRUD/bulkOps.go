@@ -159,7 +159,7 @@ func main() {
 	{
 		// begin bulk delete model
 		models := []mongo.WriteModel{
-			mongo.NewDeleteManyModel().SetFilter(bson.D{{"length", bson.D{{"$gt", 400}}}}),
+			mongo.NewDeleteManyModel().SetFilter(bson.D{{"length", bson.D{{"$gt", 300}}}}),
 		}
 		// end bulk delete model
 

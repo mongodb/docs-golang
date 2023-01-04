@@ -274,7 +274,7 @@ Example
 ```````
 
 The following example creates a ``DeleteManyModel`` to delete
-documents where the ``length`` is greater than ``400``:
+documents where the ``length`` is greater than ``300``:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/bulkOps.go
    :language: go
