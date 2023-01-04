@@ -123,9 +123,9 @@ with the following methods:
 Example
 ```````
 
-The following example matches and deletes a document where the
-``enrollment`` field value is less than 20 using the
-``FindOneAndDelete()`` method:
+The following example uses the ``FindOneAndDelete()`` method 
+to match and delete the first document where the ``enrollment`` 
+field value is less than 20:
 
 .. io-code-block::
    :copyable: true
@@ -228,10 +228,10 @@ with the following methods:
 Example
 ```````
 
-The following example performs the following actions in order using the
-``FindOneAndUpdate()`` method:
+The following example uses the ``FindOneAndUpdate()`` method to 
+perform the following actions in order:
 
-- Matches a document where the ``title`` field value includes "Modern"
+- Matches the first document where the ``title`` field value includes "Modern"
 - Updates the matched document's ``enrollment`` field value to ``32``
 - Returns the updated document
 
@@ -330,10 +330,10 @@ with the following methods:
 Example
 ```````
 
-The following example performs the following actions in order using the
-``FindOneAndReplace()`` method:
+The following example uses the ``FindOneAndReplace()`` method to 
+perform the following actions in order:
 
-- Matches a document where the ``title`` is "Representation Theory"
+- Matches the first document where the ``title`` is "Representation Theory"
 - Replaces the matched document with a new document where the ``title``
   is "Combinatorial Theory" and the ``enrollment`` is ``35``
 
