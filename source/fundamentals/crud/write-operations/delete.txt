@@ -149,7 +149,9 @@ following guides:
 - :ref:`golang-query-document`
 
 To learn about how the driver uses Context, see :ref:`golang-context`.
+
 To learn more about specifying hints, see :ref:`golang-indexes`.
+
 To learn more about collations, see :ref:`golang-collations`.
 
 API Documentation
