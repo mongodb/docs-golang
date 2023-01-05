@@ -142,7 +142,7 @@ Example
 
 This example performs the following actions:
 
-- Creates an array filter with an identifier called ``hot_options`` to match
+- Creates an array filter with an identifier called ``hotOptions`` to match
   array elements that contain "hot".
 - Applies the array filter using the ``SetArrayFilters()`` method.
 - Removes these array elements.
