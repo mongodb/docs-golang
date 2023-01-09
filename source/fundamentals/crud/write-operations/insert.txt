@@ -212,10 +212,10 @@ Assume you want to insert the following documents:
 .. code-block:: json
    :copyable: false
 
-   { "_id": 1, "name": "Tanzania" }
-   { "_id": 2, "name": "Lithuania" }
-   { "_id": 1, "name": "Vietnam" }
-   { "_id": 3, "name": "Argentina" }
+   { "_id": 1, "title": "Where the Wild Things Are" }
+   { "_id": 2, "title": "The Very Hungry Caterpillar" }
+   { "_id": 1, "title": "Blueberries for Sal" }
+   { "_id": 3, "title": "Goodnight Moon" }
 
 If you attempt to insert these documents with default ``InsertManyOptions``, a
 ``BulkWriteException`` occurs at the third document because of the repeated
@@ -233,18 +233,18 @@ inserted into your collection.
       .. input::
          :language: go
    
-         type Country struct {
-             ID   int `bson:"_id"`
-             Name string
+         type Book struct {
+             ID    int `bson:"_id"`
+             Title string
          }
 
          ...
 
          docs := []interface{}{
-             Country{ID: 1, Name: "Tanzania"},
-             Country{ID: 2, Name: "Lithuania"},
-             Country{ID: 1, Name: "Vietnam"},
-             Country{ID: 3, Name: "Argentina"},
+             Book{ID: 1, Title: "Where the Wild Things Are"},
+             Book{ID: 2, Title: "The Very Hungry Caterpillar"},
+             Book{ID: 1, Title: "Blueberries for Sal"},
+             Book{ID: 3, Title: "Goodnight Moon"},
          }
    
          result, err := coll.InsertMany(context.TODO(), docs)
@@ -269,8 +269,8 @@ inserted into your collection.
    .. code-block:: json
       :copyable: false
    
-      { "_id": 1, "name": "Tanzania" }
-      { "_id": 2, "name": "Lithuania" }
+      { "_id": 1, "title": "Where the Wild Things Are" }
+      { "_id": 2, "title": "The Very Hungry Caterpillar" }
 
 
 Additional Information

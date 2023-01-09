@@ -104,7 +104,7 @@ The following example performs the following with the ``DeleteMany()``
 method:
 
 - Matches and deletes documents where the ``length`` is greater than ``300``
-- Specifies the method to use the ``_id`` as the index
+- Instructs the method to use the ``_id`` as the index
 
 .. io-code-block::
    :copyable: true

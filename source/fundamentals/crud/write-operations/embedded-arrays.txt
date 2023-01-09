@@ -15,8 +15,8 @@ Update Arrays in a Document
 Overview
 --------
 
-In this guide, you can learn how to update array elements in a document
-or multiple documents.
+In this guide, you can learn how to update array elements in one or more
+documents.
 
 To update elements in an array, perform the following actions:
 
@@ -27,8 +27,8 @@ To update elements in an array, perform the following actions:
 Sample Data
 ~~~~~~~~~~~
 
-The examples in this guide use the following ``Book`` struct as a model for documents
-in the ``books`` collection:
+The examples in this guide use the following ``Drink`` struct as a model for documents
+in the ``drinks`` collection:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/updateArray.go
    :start-after: start-drink-struct
@@ -49,7 +49,7 @@ To run the examples in this guide, load the sample data into the
    :end-before: end insertDocs
 
 Each document contains a description of a drink that
-includes the drink's description, available sizes (in ounces), and available
+includes the drink's description, available sizes in ounces, and available
 preparation styles, corresponding to the ``description``, ``sizes``, and
 ``styles`` fields in each document.
 
