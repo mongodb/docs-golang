@@ -19,15 +19,15 @@ FAQ
    see the :ref:`golang-issues-and-help` page for next steps and more
    resources.
    
-How Can I Fix the "``WriteXXX()`` can only write while positioned on an Element or Value but is positioned on a TopLevel" Error?
+How Can I Fix the "WriteXXX() can only write while positioned on an Element or Value but is positioned on a TopLevel" Error?
 --------------------------------------------------------------------------------------------------------------------------------
 
 The ``bson.Marshal()`` method requires a parameter that can be decoded
-into a BSON Document, such as a ``primitive.D`` type. This error occurs
+into a BSON Document, such as a ``bson.D`` type. This error occurs
 when the input to ``bson.Marshal()`` is something *other* than a BSON
 Document.
 
-The following list includes some example situations that surface this error:
+The following list includes some situations that surface this error:
 
 - You pass a string to ``bson.Marshal()``, causing a ``WriteString`` error.
 - You pass a ``null`` to ``bson.Marshal()``, causing a ``WriteNull`` error.
@@ -71,6 +71,8 @@ encode a BSON document as JSON, such as the ``MarshalExtJSON()`` method:
       :language: go
       :emphasize-lines: 3
 
+      doc := bson.D{{"hello", "world"}}
+
       jsonBytes, err := bson.MarshalExtJSON(doc, true, false)
       if err != nil {
       	log.Fatalf("error encoding: %v", err)
@@ -88,7 +90,7 @@ encode a BSON document as JSON, such as the ``MarshalExtJSON()`` method:
 
       json: map[hello:world]
 
-To learn more about encoding and decoding, see the
+To learn more about encoding and decoding with BSON, see the
 :ref:`golang-bson` guide.
 
 Why Did My Authentication Fail?
@@ -100,13 +102,14 @@ authentication configuration are incorrect. For example, the following
 error message is returned when ``SCRAM-SHA-256`` authentication fails:
 
 .. code-block:: none
+   :copyable: false
 
    connection() error occurred during connection handshake: auth error:
    sasl conversation error: unable to authenticate using mechanism
    "SCRAM-SHA-256": (AuthenticationFailed) Authentication failed.
 
 The error message intentionally omits the exact authentication failure
-reason, but common causes for authentication failure include the
+reason for security purposes, but common causes for authentication failure include the
 following:
 
 - Incorrect password
