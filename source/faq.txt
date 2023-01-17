@@ -6,12 +6,118 @@ FAQ
 
 .. default-domain:: mongodb
 
-Frequently Asked Questions
-
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
-Lorem ipsum.
+.. tip::
+
+   This page contains frequently asked questions and their corresponding
+   answers. If you can't find an answer to your problem on this page,
+   see the :ref:`golang-issues-and-help` page for next steps and more
+   resources.
+   
+How Can I Fix the "``WriteXXX()`` can only write while positioned on an Element or Value but is positioned on a TopLevel" Error?
+--------------------------------------------------------------------------------------------------------------------------------
+
+The ``bson.Marshal()`` method requires a parameter that can be decoded
+into a BSON Document, such as a ``primitive.D`` type. This error occurs
+when the input to ``bson.Marshal()`` is something *other* than a BSON
+Document.
+
+The following list includes some example situations that surface this error:
+
+- You pass a string to ``bson.Marshal()``, causing a ``WriteString`` error.
+- You pass a ``null`` to ``bson.Marshal()``, causing a ``WriteNull`` error.
+- You pass a string to ``bson.Marshal()``, causing a ``WriteInt32`` error.
+
+Many CRUD operations use the ``bson.Marshal()`` method internally,
+so you may encounter this error even if you are not directly attempting
+to encode data.
+
+The following code produces this error because of how the ``sort``
+variable is initialized:
+
+.. code-block:: go
+
+   var sort bson.D // this is null and will result in a WriteNull error
+   opts := options.FindOneAndUpdate().SetSort(sort)
+
+   update := bson.D{{"$inc", bson.D{{"counter", 1}}}}
+   result := coll.FindOneAndUpdate(ctx, bson.D{}, update)
+   if err := result.Err(); err != nil {
+   	log.Fatalf("error getting single result: %v", err)
+   }
+
+The following code shows how to correctly initialize the ``sort``
+variable as a ``bson.D`` type:
+
+.. code-block:: go
+
+   sort := bson.D{}
+
+How Do I Convert a BSON Document to JSON?
+-----------------------------------------
+
+The driver provides a variety of marshaller methods that can be used to
+encode a BSON document as JSON, such as the ``MarshalExtJSON()`` method:
+
+.. io-code-block::
+   :copyable: true
+
+   .. input::
+      :language: go
+      :emphasize-lines: 3
+
+      jsonBytes, err := bson.MarshalExtJSON(doc, true, false)
+      if err != nil {
+      	log.Fatalf("error encoding: %v", err)
+      }
+      
+      m := make(map[string]interface{})
+      if err := json.Unmarshal(jsonBytes, &m); err != nil {
+      	log.Fatalf("error decoding: %v", err)
+      }
+      fmt.Printf("json: %v\n", m)
+
+   .. output::
+      :language: none
+      :visible: false
+
+      json: map[hello:world]
+
+To learn more about encoding and decoding, see the
+:ref:`golang-bson` guide.
+
+Why Did My Authentication Fail?
+-------------------------------
+
+When connecting to a MongoDB deployment that requires password
+authentication, you may get an error message if any credentials or the
+authentication configuration are incorrect. For example, the following
+error message is returned when ``SCRAM-SHA-256`` authentication fails:
+
+.. code-block:: none
+
+   connection() error occurred during connection handshake: auth error:
+   sasl conversation error: unable to authenticate using mechanism
+   "SCRAM-SHA-256": (AuthenticationFailed) Authentication failed.
+
+The error message intentionally omits the exact authentication failure
+reason, but common causes for authentication failure include the
+following:
+
+- Incorrect password
+- Incorrect username
+- Incorrect specification of authentication method in the
+  ``AuthSource`` property
+
+To avoid this error, ensure that the username and password in your
+connection string or ``SetAuth()`` call are correct. In most cases,
+you do not need to specify ``AuthSource`` unless you are using a
+non-default authentication database.
+
+To learn more about authentication, see the
+:ref:`golang-authentication-mechanisms` guide.
