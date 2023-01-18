@@ -9,7 +9,7 @@ Run a Command
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 Overview
@@ -52,8 +52,9 @@ the :ref:`Additional Information section <addl-info-runcommand>`.
 .. note:: Read Preference
 
    ``RunCommand()`` and ``RunCommandCursor()`` do not obey the read
-   preference you set on your ``Database`` object. You can set a read preference for a
-   database command by passing a ``RunCmdOptions`` object to either method:
+   preference you may have set on your ``Database`` object elsewhere in
+   your code. You can set a read preference for command execution by
+   passing a ``RunCmdOptions`` object to either method:
    
    .. code-block:: go
 
@@ -67,11 +68,11 @@ the :ref:`Additional Information section <addl-info-runcommand>`.
 Response
 --------
 
-Each method returns a result or a cursor that contains the response
-from the database after you run a command. Each database command
-requests different information, so the response content
-can vary across commands. However, every response contains documents with the
-following fields:
+Each method returns a ``SingleResult`` object or a cursor that contains
+the response from the database after the command has been executed. Each
+database command performs a different function, so the response content
+can vary across commands. However, every response contains documents
+with the following fields:
 
 .. list-table::
    :header-rows: 1
@@ -112,7 +113,7 @@ Example
 -------
 
 The following code shows how you can use the ``RunCommand()`` method to
-run the ``explain`` command for a count operation on the ``flowers`` collection of the
+run the ``explain`` command for a ``count`` operation on the ``flowers`` collection of the
 ``plants`` database. The ``explain`` command runs in the
 ``"queryPlanner"`` verbosity mode:
 
@@ -126,8 +127,10 @@ Output
 ~~~~~~
 
 In the output, you should see fields explaining the
-execution of the count operation, such as the winning plan and rejected
-plans. The output also contains the explain command execution information:
+execution of the ``count`` operation, such as the winning plan, which is
+the plan selected by the query optimizer, and any rejected
+plans. The output also contains information about the execution of the
+``explain`` command:
 
 .. code-block:: json
    :emphasize-lines: 9-13,19-29
