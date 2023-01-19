@@ -55,7 +55,7 @@ the ``FindOneAndUpdate()`` operation:
        panic(err)
    }
 
-The following code shows how to correctly initialize the ``sort``
+The following code shows how to correctly initialize the ``sortOrder``
 variable as a ``bson.D`` type so that the driver can convert it to BSON:
 
 .. code-block:: go
@@ -106,8 +106,8 @@ Why Did the Driver Throw an "Authentication failed" Error?
 If you attempt to connect to a MongoDB deployment using incorrect
 username and password credentials or specifying the wrong authentication
 mechanism, you receive an "Authentication failed" error message. For
-example, the following error message is returned when ``SCRAM-SHA-256``
-authentication fails:
+example, the following error message is returned when you pass invalid
+credentials when authenticating with ``SCRAM-SHA-256``:
 
 .. code-block:: none
    :copyable: false
