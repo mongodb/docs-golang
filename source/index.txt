@@ -13,6 +13,7 @@
    /usage-examples
    /fundamentals
    API Documentation <{+api+}/mongo>
+   /faq
    /issues-and-help
    /compatibility
    Release Notes <https://github.com/mongodb/mongo-go-driver/releases>
