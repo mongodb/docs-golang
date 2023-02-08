@@ -4,8 +4,6 @@
 Watch for Changes
 =================
 
-.. default-domain:: mongodb
-
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -33,11 +31,7 @@ snippet:
    :start-after: begin insertDocs
    :end-before: end insertDocs
 
-.. tip:: Non-existent Databases and Collections
-
-   If the necessary database and collection don't exist when
-   you perform a write operation, the server implicitly creates
-   them.
+.. include:: /includes/fundamentals/automatic-db-coll-creation.rst
 
 Each document contains a description of a university course that
 includes the course title and maximum enrollment, corresponding to
@@ -52,7 +46,8 @@ Open a Change Stream
 --------------------
 
 To open a change stream, use the ``Watch()`` method. The ``Watch()`` method requires a context
-parameter and a pipeline parameter. To return all changes, pass in an empty Pipeline object.
+parameter and a pipeline parameter. To return all changes, pass in an
+empty ``Pipeline`` object.
 
 Example
 ~~~~~~~
@@ -81,7 +76,7 @@ your changes as they occur. Inserting a document with a ``title`` value
 of "Advanced Screenwriting" and an ``enrollment`` value of ``20``
 results in the following change-stream event:
 
-.. code-block:: go
+.. code-block:: none
    :copyable: false
 
    map[_id:map[_data:...] clusterTime: {...} documentKey:map[_id:ObjectID("...")]
@@ -127,10 +122,10 @@ new delete operations:
       fmt.Println(changeStream.Current)
    }
 
-Deleting the document with the ``title`` value of "Advanced Screenwriting"
-in a separate program or shell results in the following change-stream event:
+Deleting the document in a separate program or shell results in the
+following change-stream event:
 
-.. code-block:: go
+.. code-block:: none
    :copyable: false
 
    {"_id": {"_data": "..."},"operationType": "delete","clusterTime":
@@ -152,13 +147,19 @@ You can specify the following options in the opts parameter:
 - ``ResumeAfter``
 - ``StartAfter``
 - ``FullDocument``
+- ``FullDocumentBeforeChange``
 - ``BatchSize``
 - ``MaxAwaitTime``
 - ``Collation``
 - ``StartAtOperationTime``
+- ``Comment``
+- ``ShowExpandedEvents``
+- ``StartAtOperationTime``
+- ``Custom``
+- ``CustomPipeline``
 
 For more information on these fields, visit the
-:manual:`MongoDB manual </reference/method/Mongo.watch/#mongodb-method-Mongo.watch>`.
+:manual:`MongoDB Server manual </reference/method/db.collection.watch/>`.
 
 Example
 ~~~~~~~
@@ -196,7 +197,7 @@ following change-stream event:
    "removedFields": [],"truncatedArrays": []}}
 
 Without specifying the ``FullDocument`` option, the same update operation no longer
-outputs the ``"fullDocument"`` value.
+outputs the ``"fullDocument"`` value in the change event document.
 
 Additional Information
 ----------------------
