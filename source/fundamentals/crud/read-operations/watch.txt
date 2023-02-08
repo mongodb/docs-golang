@@ -113,36 +113,18 @@ new delete operations:
 
    pipeline := bson.D{{"$match", bson.D{{"operationType", "delete"}}}}
    changeStream, err := db.Watch(context.TODO(), mongo.Pipeline{pipeline})
-   if err != nil {
-      panic(err)
-   }
-   defer changeStream.Close(context.TODO())
-
-   for changeStream.Next(context.TODO()) {
-      fmt.Println(changeStream.Current)
-   }
-
-Deleting the document in a separate program or shell results in the
-following change-stream event:
-
-.. code-block:: none
-   :copyable: false
-
-   {"_id": {"_data": "..."},"operationType": "delete","clusterTime":
-   {"$timestamp":{"t":"...","i":"..."}},"ns": {"db": "db","coll": "courses"},
-   "documentKey": {"_id": {"$oid":"..."}}}
 
 .. note::
 
    The ``Watch()`` method was called on the ``db`` database, so the code outputs
    new delete operations in any collection within this database.
 
-Modify the Behavior of Watch()
-------------------------------
+Modify the Behavior of ``Watch()``
+----------------------------------
 
-Use an opts parameter to modify the behavior of the ``Watch()`` method.
+Use options to modify the behavior of the ``Watch()`` method.
 
-You can specify the following options in the opts parameter:
+You can specify the following options on the ``Watch()`` methods:
 
 - ``ResumeAfter``
 - ``StartAfter``
@@ -161,11 +143,60 @@ You can specify the following options in the opts parameter:
 For more information on these fields, visit the
 :manual:`MongoDB Server manual </reference/method/db.collection.watch/>`.
 
+Pre- and Post-Images
+~~~~~~~~~~~~~~~~~~~~
+
+When you perform any CRUD operation on a collection, by default, the corresponding
+change event document contains only the delta of the fields modified
+by the operation. To access the pre-image (the document before a
+change) or the post-image (the document after a change) of a document,
+set the ``FullDocument`` and ``FullDocumentBeforeChange`` fields in the
+options for ``Watch()``.
+
+.. note::
+
+   There is no pre-image for an inserted document and no post-image for
+   a deleted document.
+
+If you want to access the entire most current
+majority-committed version of the changed document, specify the
+``FullDocument`` options parameter using the setter method.
+If you enable this feature, ``FullDocument`` can take the
+following values:
+
+- ``UpdateLookup``: The change event document includes a delta
+  and a copy of the entire changed document.
+- ``WhenAvailable``: The change event document includes a post-image of
+  the modified document for change events if the
+  post-image is available.
+- ``Required``: The output is the same as for ``WhenAvailable``, but the
+  driver raises a server-side error if the post-image is not available.
+
+If you want to access the document pre-image, specify the
+``FullDocumentBeforeChange`` options parameter using the
+setter method. If you enable this feature, ``FullDocumentBeforeChange`` can take the
+following values:
+
+- ``WhenAvailable``: The change event document includes a pre-image of
+  the modified document for change events if the
+  post-image is available.
+- ``Required``: The output is the same as for ``WhenAvailable``, but the
+  driver raises a server-side error if the pre-image is not available.
+
+.. important::
+
+   To access document pre- and post-images, you must enable
+   ``changeStreamPreAndPostImages`` for the collection. See the
+   :manual:`MongoDB Server manual
+   </reference/command/collMod/#change-streams-with-document-pre--and-post-images>` for instructions and more
+   information.
+
 Example
 ~~~~~~~
 
 The following example calls the ``Watch()`` method on the ``db.courses`` collection. It
-specifies the ``FullDocument`` options parameter to output a copy of the entire modified document:
+specifies the ``FullDocument`` options parameter to output a copy of the
+entire modified document, instead of only the changed fields:
 
 .. code-block:: go
 
