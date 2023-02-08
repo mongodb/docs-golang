@@ -124,7 +124,7 @@ Modify the Behavior of ``Watch()``
 
 Use options to modify the behavior of the ``Watch()`` method.
 
-You can specify the following options on the ``Watch()`` methods:
+You can specify the following options on the ``Watch()`` method:
 
 - ``ResumeAfter``
 - ``StartAfter``
@@ -140,7 +140,7 @@ You can specify the following options on the ``Watch()`` methods:
 - ``Custom``
 - ``CustomPipeline``
 
-For more information on these fields, visit the
+For more information on these options, visit the
 :manual:`MongoDB Server manual </reference/method/db.collection.watch/>`.
 
 Pre- and Post-Images
@@ -179,7 +179,7 @@ following values:
 
 - ``WhenAvailable``: The change event document includes a pre-image of
   the modified document for change events if the
-  post-image is available.
+  pre-image is available.
 - ``Required``: The output is the same as for ``WhenAvailable``, but the
   driver raises a server-side error if the pre-image is not available.
 
