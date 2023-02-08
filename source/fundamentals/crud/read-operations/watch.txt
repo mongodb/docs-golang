@@ -217,7 +217,7 @@ Updating the ``enrollment`` value of the document with the
 ``title`` of "World Fiction" from ``35`` to ``30`` results in the
 following change-stream event:
 
-.. code-block:: go
+.. code-block:: none
    :copyable: false
 
    {"_id": {"_data": "..."},"operationType": "update","clusterTime": {"$timestamp":
