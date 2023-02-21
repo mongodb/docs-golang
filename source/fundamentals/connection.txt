@@ -56,9 +56,9 @@ options. In the example, we set two connection options:
 options, read the :ref:`golang-connection-options` section of this guide.
 
 The following code shows how you can use a connection string in a
-client to connect to MongoDB. In this example, options are set for the
-client to use the :ref:`Stable API <golang-stable-api>` feature, though
-setting this option is not necessary for connecting to MongoDB.
+client to connect to MongoDB. In this example, the client uses 
+the :ref:`Stable API <golang-stable-api>` feature, though
+you can connect to MongoDB without this feature.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/srv.go
    :language: go

@@ -9,7 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-// Paste your connection string here
+// Paste your connection string URI here
 const uri = "<connection string>"
 
 func main() {
