@@ -60,11 +60,12 @@ Create a Client to Connect to MongoDB
 
 You need to create a client to connect to MongoDB, manage your
 connection, and run database commands. You can create a client by
-passing your connection string and any options to the ``Connect()``
-method.
+passing options to the ``Connect()`` method. These options
+include your connection string and any other client options.
 
 To learn more about creating a client in the {+driver-short+}, see the
-API documentation for `Client <{+api+}#Client>`__ and `Connect() <{+api+}#Connect>`__.
+API documentation for `Client <{+api+}/mongo#Client>`__ and `Connect()
+<{+api+}/mongo#Connect>`__.
 
 In the options, you can set a Stable API server version to avoid
 breaking changes when you upgrade to a new server version. To 
