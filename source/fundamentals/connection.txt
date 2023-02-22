@@ -55,10 +55,15 @@ options. In the example, we set two connection options:
 ``maxPoolSize=20`` and ``w=majority``. To learn more about connection
 options, read the :ref:`golang-connection-options` section of this guide.
 
-The following code shows how you can use a connection string in a
-client to connect to MongoDB. In this example, the client uses 
-the :ref:`Stable API <golang-stable-api>` feature, though
-you can connect to MongoDB without this feature.
+To connect to MongoDB, create a client by passing your connection string
+and any options. In the options, you can set a Stable API server version
+to avoid breaking changes when you upgrade to a new server version. To
+learn more about the Stable API feature, see the :ref:`Stable API page
+<golang-stable-api>`.
+
+The following code shows how you can instantiate a client that uses your
+connection string and a Stable API version, connect to MongoDB, and
+verify that the connection is successful:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/srv.go
    :language: go
