@@ -35,21 +35,13 @@ What's New in 1.11
 
 .. important:: Upgrade to Version 1.11.3 or Higher
 
-   Support for versions 1.11.0 through 1.11.2 has been retracted because
-   of a bug that can cause undefined behavior when reading the ``Raw`` field
+   Versions 1.11.0 through 1.11.2 of the driver have been retracted because
+   of a bug that could cause undefined behavior when reading the ``Raw`` field
    on database error types, such as ``CommandError`` and
    ``WriteException``.
    
-   Upgrade to version 1.11.3 if you are using a retracted version of the driver.
-
-.. note:: Bug Fixes in Version 1.11.2
-
-  The 1.11.2 Go driver contains the following bug fixes:
-  
-  - The ``bson.Raw.String()`` method outputs the correct Extended JSON type for 
-    timestamps when the BSON document contains a UTC Timestamp field.
-  - Resolved conflicts when retrying reads with read concern ``"available"`` 
-    or ``"linearizable"``.
+   Upgrade to version 1.11.3 or higher if you are using a retracted
+   version of the driver.
 
 New features of the 1.11 Go driver release include: 
 
@@ -79,6 +71,13 @@ New features of the 1.11 Go driver release include:
 
 - ``SERVICE_HOST`` Kerberos authentication parameter specification enabled with 
   the ``authMechanismProperties`` connection string option.
+
+- Corrected output from the ``bson.Raw.String()`` method to Extended JSON
+  type for timestamps when the BSON document contains a UTC Timestamp
+  field.
+
+- Resolution of conflicts when retrying reads with read concern
+  ``"available"`` or ``"linearizable"``.
 
 
 .. _version-1.10.0:
