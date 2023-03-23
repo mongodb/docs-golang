@@ -59,7 +59,7 @@ returns the total number of documents in the collection.
    Using ``CountDocuments()`` to return the total number of documents in the
    collection results in a collection scan. You can avoid a collection scan and
    improve the performance of this method by using a :manual:`hint
-   </reference/method/cursor.hint>` to take advantage of the build-in index on
+   </reference/method/cursor.hint>` to take advantage of the built-in index on
    the ``_id`` field. Use this technique only when calling ``CountDocuments()``
    with an empty query parameter.
 
