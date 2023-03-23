@@ -67,12 +67,12 @@ returns the total number of documents in the collection.
       :emphasize-lines: 2, 4
 
       filter := bson.D{{}}
-	   opts := options.Count().SetHint("_id_")
+      opts := options.Count().SetHint("_id_")
 
-	   count, err := coll.CountDocuments(context.TODO(), filter, opts)
-	   if err != nil {
-		   panic(err)
-	   }
+      count, err := coll.CountDocuments(context.TODO(), filter, opts)
+      if err != nil {
+   	   panic(err)
+      }
 
 Modify Behavior
 ~~~~~~~~~~~~~~~
