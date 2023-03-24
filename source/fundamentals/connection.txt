@@ -64,7 +64,7 @@ your connections and runs database commands.
    
    We recommend that you reuse your client across sessions and operations.
    You can use the same ``Client`` instance to perform multiple tasks, instead of
-   creating new connections each time. The ``Client`` type is safe for
+   creating a new one each time. The ``Client`` type is safe for
    concurrent use by multiple `goroutines
    <https://www.golang-book.com/books/intro/10>`__. To learn more about
    how connection pools work in the driver, see the :ref:`FAQ page <golang-faq-connection-pool>`.
