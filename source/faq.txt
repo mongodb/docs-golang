@@ -26,15 +26,14 @@ How Does Connection Pooling Work in the {+driver-short+}?
 ---------------------------------------------------------
 
 Every ``Client`` instance has a built-in connection pool for each server
-in your MongoDB topology. These pools open sockets on demand to support
+in your MongoDB topology. Connection pools open sockets on demand to support
 concurrent MongoDB operations, or `goroutines
 <https://www.golang-book.com/books/intro/10>`__, in your application.
 
-The maximum size of each connection pool is set by ``maxPoolSize``, which
-defaults to ``100``. If the number of connections to a server is
-the value of ``maxPoolSize`` and every connection is in use, the next
-request to that server will wait until one of the connections becomes
-available.
+The maximum size of each connection pool is set by the ``maxPoolSize`` option, which
+defaults to ``100``. If the number of in-use connections to a server reaches
+the value of ``maxPoolSize``, the next request to that server will wait
+until a connection becomes available.
 
 The ``Client`` instance opens two additional sockets per server in your
 MongoDB topology for monitoring the server's state.
@@ -48,19 +47,18 @@ connection pool grows and there can be at most ``106`` total connections. If the
 application uses a :ref:`read preference <golang-read-pref>` to query the
 secondary nodes, their pools also grow and there can be ``306`` total connections.
 
-Additionally, connection pools are rate limited such that each connection pool
+Additionally, connection pools are rate-limited such that each connection pool
 can only create, at maximum, the value of ``maxConnecting`` connections
 in parallel at any time. Any additional goroutine stops waiting in the
 following cases:
 
 - One of the existing goroutines finishes creating a connection, or
   an existing connection is checked back into the pool.
-- Rate limiting concurrent connection creation reduces the likelihood of
-  connection storms and improves the driver's ability to reuse existing
-  connections.
+- The driver's ability to reuse existing connections improves due to
+  rate-limits on connection creation.
 
 You can set the minimum number of concurrent connections to
-each server with ``minPoolSize``, which defaults to ``0``. The connection pool
+each server with the ``minPoolSize`` option, which defaults to ``0``. The connection pool
 will be initialized with this number of sockets. If sockets are closed
 due to any network errors, causing the total number of sockets (both in
 use and idle) to drop below the minimum, more sockets are opened until
@@ -68,7 +66,7 @@ the minimum is reached.
 
 You can set the maximum number of milliseconds that a connection can
 remain idle in the pool before being removed and replaced with
-``maxIdleTimeMS``, which defaults to ``None`` (no limit).
+the ``maxIdleTimeMS`` option, which defaults to ``None`` (no limit).
 
 The following default configuration for a ``Client`` works for most applications:
 
@@ -89,7 +87,7 @@ The driver does not limit the number of operations that
 can wait for sockets to become available and it is the application's
 responsibility to limit the size of its pool to bound queuing
 during a load spike. Threads can wait for any length of time
-unless you define ``waitQueueTimeoutMS``.
+unless you define the ``waitQueueTimeoutMS`` option.
 
 An operation that waits more than the length of time defined by
 ``waitQueueTimeoutMS`` for a socket raises a connection error. Use this
