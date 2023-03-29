@@ -224,7 +224,7 @@ The driver checks for you credentials in the following sources in order:
 
          The following examples set the appropriate credentials using the ``SetAuth()`` 
          method. You can also specify these credentials using the ``ApplyURI()`` 
-         method. If you use the ``ApplyURI()``, you must URL encode the username 
+         method. If you use the ``ApplyURI()`` method you must URL encode the username 
          and password to ensure they are correctly parsed.
    
       To connect to your MongoDB instance using your AWS IAM credentials, perform the
