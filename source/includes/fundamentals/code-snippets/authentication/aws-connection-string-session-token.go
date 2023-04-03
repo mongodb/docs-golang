@@ -1,4 +1,4 @@
-var sessionToken string
+var accessKeyID, secretAccessKey, sessionToken string
 assumeRoleCredential := options.Credential{
 	AuthMechanism: "MONGODB-AWS",
 	AuthSource:    "<authenticationDb>",
