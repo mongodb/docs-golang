@@ -196,24 +196,25 @@ The ``MONGODB-AWS`` authentication mechanism uses your Amazon Web Services
 Identity and Access Management (AWS IAM) credentials to authenticate your
 user.
 
-To connect to a MongoDB instance with ``MONGODB-AWS`` authentication enbaled,
+To connect to a MongoDB instance with ``MONGODB-AWS`` authentication enabled,
 specify the ``MONGODB-AWS`` authentication mechanism.
 
-The driver checks for you credentials in the following sources in order:
+The driver checks for your credentials in the following sources in the order
+they are listed:
 
 1. Connection string
 #. Environment variables
 #. Web identity token file
-#. AWS ECS endpoint specified in ``AWS_CONTAINER_CREDENTIALS_RELATIVE_URI``
+#. AWS ECS endpoint specified in the ``AWS_CONTAINER_CREDENTIALS_RELATIVE_URI``
+   environment variable
 #. AWS EC2 endpoint. For more information, see `IAM Roles for Tasks
    <https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html>`_.
 
 .. important::
    
-   The driver only reads the credentials from the first method that it detects
-   in the order as given by the preceding list. For example, if you specify 
-   your AWS credentials in the connection string, the driver ignores any 
-   credentials that you specified in environment variables.
+   The driver obtains the credentials only from the first source in which they are found.
+   For example, if you specify your AWS credentials in the connection string, the
+   driver ignores any credentials that you have specified in environment variables.
 
 .. tabs::
 
@@ -222,8 +223,8 @@ The driver checks for you credentials in the following sources in order:
 
       .. tip::
 
-         The following examples set the appropriate credentials using the ``SetAuth()`` 
-         method. You can also specify these credentials using the ``ApplyURI()`` 
+         The following examples set the appropriate credentials by using the ``SetAuth()`` 
+         method. You can also specify these credentials by using the ``ApplyURI()`` 
          method. If you use the ``ApplyURI()`` method you must URL encode the username 
          and password to ensure they are correctly parsed.
    
@@ -238,10 +239,10 @@ The driver checks for you credentials in the following sources in order:
          :language: go
 
       If you need to specify an AWS session token, use the temporary
-      credentials returned from an assume role request.
+      credentials returned from an `assume role request <https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html>`__.
       
-      To use temporary credentials, assign the ``AuthMechanismProperties``
-      option the value of your ``sessionToken``:
+      To use temporary credentials, assign the value of your ``sessionToken`` to 
+      the ``AuthMechanismProperties`` option:
 
       .. literalinclude:: /includes/fundamentals/code-snippets/authentication/aws-connection-string-session-token.go
          :language: go
@@ -260,8 +261,8 @@ The driver checks for you credentials in the following sources in order:
 
       .. note::
 
-         Omit the line containing ``AWS_SESSION_TOKEN`` if you don't need an AWS
-         session token for that role.
+         If you don't need an AWS session token for the role you're
+         authenticating with, omit the line containing ``AWS_SESSION_TOKEN`` .
 
       After you've set the preceding environment variables, specify the ``MONGODB-AWS``
       authentication mechanism as shown in the following example:
