@@ -16,5 +16,4 @@ Fundamentals section:
 - :ref:`Store and Retrieve Files in MongoDB <golang-gridfs>`
 - :ref:`Use a Time Series Collection <golang-time-series>`
 
-.. - :doc:`Use the Driver's Data Formats </fundamentals/data-formats>`
 .. - :doc:`Record Events in the Driver </fundamentals/logging>`
