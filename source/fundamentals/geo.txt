@@ -171,6 +171,7 @@ Geospatial Indexes
 To enable querying for geospatial data, you must first create a supporting
 index. The following index types that enable geospatial queries:
 
+:ref:`errortest <sdffsdfsf>`
 
 - ``2dsphere`` for GeoJSON data
 - ``2d`` for legacy coordinate pairs
