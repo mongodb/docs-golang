@@ -443,10 +443,8 @@ Query Operators </reference/operator/query-bitwise/>` page.
 Additional Information
 ----------------------
 
-.. For information on specifying a geospatial query, see the guide on
-.. :doc:`Geospatial Data </fundamentals/crud/read-operations/geospatial>`.
-
-API Documentation
+For information on specifying a geospatial query, see the guide on
+:ref:`Geospatial Data <golang-geo>`.
 ~~~~~~~~~~~~~~~~~
 
 To learn more about any of the methods or types used in this
