@@ -249,7 +249,7 @@ guides:
 - :ref:`golang-skip`
 - :ref:`golang-limit`
 - :ref:`golang-aggregation` 
-- :ref: `golang-collations`
+- :ref: `Collations <golang-collations>`
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
