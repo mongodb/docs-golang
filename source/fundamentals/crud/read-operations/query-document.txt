@@ -445,6 +445,8 @@ Additional Information
 
 For information on specifying a geospatial query, see the guide on
 :ref:`Geospatial Data <golang-geo>`.
+
+API Documentation
 ~~~~~~~~~~~~~~~~~
 
 To learn more about any of the methods or types used in this
