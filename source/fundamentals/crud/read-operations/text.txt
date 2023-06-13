@@ -385,8 +385,7 @@ guides:
 - :manual:`$text </reference/operator/query/text/>`
 - :manual:`$meta </reference/operator/aggregation/meta/>`
 - :ref:`golang-aggregation`
-
-.. - :doc:`Indexes <golang-indexes>`
+- :ref:`Indexes <golang-indexes>`
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
