@@ -17,5 +17,3 @@ Fundamentals section:
 - :ref:`Use a Time Series Collection <golang-time-series>`
 - :ref:`Encrypt Fields <golang-fle>`
 - :ref:`Work with Geospatial Data <golang-geo>`
-
-.. - :doc:`Record Events in the Driver </fundamentals/logging>`
