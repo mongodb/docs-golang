@@ -4,8 +4,6 @@
 Specify a Query
 ===============
 
-.. default-domain:: mongodb
-
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -444,7 +442,7 @@ Additional Information
 ----------------------
 
 .. For information on specifying a geospatial query, see the guide on
-.. :doc:`Geospatial Data </fundamentals/crud/read-operations/geospatial>`.
+.. :ref:`golang-geo`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
