@@ -23,6 +23,7 @@ Fundamentals
    /fundamentals/monitoring
    /fundamentals/gridfs
    /fundamentals/time-series
+   /fundamentals/geo
 
 ..
   /fundamentals/logging
