@@ -442,7 +442,7 @@ Additional Information
 ----------------------
 
 For information on specifying a geospatial query, see the guide on
-:ref:`golang-geo`.
+:ref:`Geospatial Data <golang-geo>`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
