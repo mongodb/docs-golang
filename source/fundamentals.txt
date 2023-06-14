@@ -16,6 +16,7 @@ Fundamentals
    /fundamentals/enterprise-auth
    /fundamentals/bson
    /fundamentals/crud
+   /fundamentals/run-command
    /fundamentals/aggregation
    /fundamentals/indexes
    /fundamentals/transactions
