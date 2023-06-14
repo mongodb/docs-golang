@@ -15,4 +15,3 @@ Fundamentals section:
 - :ref:`Use Driver Events in Your Code <golang-monitoring>`
 - :ref:`Store and Retrieve Files in MongoDB <golang-gridfs>`
 - :ref:`Use a Time Series Collection <golang-time-series>`
-
