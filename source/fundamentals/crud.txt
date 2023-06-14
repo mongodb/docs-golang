@@ -4,15 +4,12 @@
 CRUD Operations
 ===============
 
-.. default-domain:: mongodb
-
 .. toctree::
    :caption: CRUD Operations
 
    /fundamentals/crud/read-operations
    /fundamentals/crud/write-operations
    /fundamentals/crud/compound-operations
-   /fundamentals/crud/run-command
    /fundamentals/crud/write-read-pref
 
 CRUD (Create, Read, Update, Delete) operations enable you to work with
