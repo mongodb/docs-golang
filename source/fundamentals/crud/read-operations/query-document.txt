@@ -441,8 +441,8 @@ Query Operators </reference/operator/query-bitwise/>` page.
 Additional Information
 ----------------------
 
-..For information on specifying a geospatial query, see the guide on
-..:ref:`Geospatial Data <golang-geo>`.
+.. For information on specifying a geospatial query, see the guide on
+.. :ref:`Geospatial Data <golang-geo>`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
