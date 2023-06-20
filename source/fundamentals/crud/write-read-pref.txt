@@ -4,8 +4,6 @@
 Modify Execution of CRUD Operations
 ===================================
 
-.. default-domain:: mongodb
-
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -33,6 +31,8 @@ the following levels:
 
 You should read this guide if you need to customize the consistency and
 availability of the data in your replica sets.
+
+.. _golang-writeconcern:
 
 Write Concern
 -------------
