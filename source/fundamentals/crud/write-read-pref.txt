@@ -49,8 +49,8 @@ Options
 
 The {+driver-long+} provides the ``writeconcern`` package, which lets
 you specify the write concern for a replica set. Set the write
-concern using the ``SetWriteConcern()`` method with an ``WriteConcern``
-type. The ``WriteConcern`` type has the following convenience methods to
+concern using the ``SetWriteConcern()`` method with a ``WriteConcern``
+type. The ``WriteConcern`` type has the following methods to
 select common write concern specifications:
 
 .. list-table::
@@ -137,7 +137,7 @@ If you require a more specialized write concern, you can define a custom
 .. tip::
 
    You can alternatively specify a write concern in your connection
-   string. See the :manual:`Server Manual entry on Write Concern Options
+   string. See the :manual:`Server manual entry on Write Concern Options
    </reference/connection-string/#write-concern-options>` for more information.
 
 Example
@@ -264,30 +264,30 @@ type has the following methods to specify the read preference:
    * - ``Nearest()``
      - The client reads from a random eligible replica set member,
        primary or secondary, based on a specified latency threshold. For more information, see the
-       :rapid:`Read Preference Server Manual entry </core/read-preference/#mongodb-readmode-nearest>`.
+       :rapid:`Read Preference Server manual entry </core/read-preference/#mongodb-readmode-nearest>`.
 
    * - ``Primary()``
      - The client reads from the current replica set primary node. For more information, see the
-       :rapid:`Read Preference Server Manual entry </core/read-preference/#mongodb-readmode-primary>`.
+       :rapid:`Read Preference Server manual entry </core/read-preference/#mongodb-readmode-primary>`.
 
    * - ``PrimaryPreferred()``
      - The client reads from the primary node in most situations. If the primary is
        unavailable, operations read from secondary members. For more
-       information, see the :rapid:`Read Preference Server Manual entry </core/read-preference/#mongodb-readmode-primaryPreferred>`.
+       information, see the :rapid:`Read Preference Server manual entry </core/read-preference/#mongodb-readmode-primaryPreferred>`.
 
    * - ``Secondary()``
      - The client reads from the secondary members of the replica set. For more information, see the
-       :rapid:`Read Preference Server Manual entry </core/read-preference/#mongodb-readmode-secondary>`.
+       :rapid:`Read Preference Server manual entry </core/read-preference/#mongodb-readmode-secondary>`.
 
    * - ``SecondaryPreferred()``
      - The client reads from the secondary nodes in most situations. If the secondaries are
        unavailable, operations read from the primary member. For more information, see the
-       :rapid:`Read Preference Server Manual entry </core/read-preference/#mongodb-readmode-secondaryPreferred>`.
+       :rapid:`Read Preference Server manual entry </core/read-preference/#mongodb-readmode-secondaryPreferred>`.
 
 .. tip::
 
    You can alternatively specify a read preference in your connection
-   string. See the :manual:`Server Manual entry on Read Preference
+   string. See the :manual:`Server manual entry on Read Preference
    Options </reference/connection-string/#read-preference-options>` for
    more information.
 
