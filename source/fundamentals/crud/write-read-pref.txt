@@ -153,14 +153,14 @@ acknowledgement from the majority of replica set members.
    :emphasize-lines: 2-6,10-11
    
    uri := "mongodb://<hostname>:<port>"
-	 cliWC := &writeconcern.WriteConcern{
+   cliWC := &writeconcern.WriteConcern{
        W: 2,
        Journal: false,
-	 }
+   }
    clOpts := options.Client().ApplyURI(uri).SetWriteConcern(cliWC)
    client, err := mongo.Connect(context.TODO(), clOpts)
    ...
-
+   
    collWC := writeconcern.Majority()
    collOpts := options.Collection().SetWriteConcern(collWC)
    coll := client.Database("myDB").Collection("myColl", collOpts)
