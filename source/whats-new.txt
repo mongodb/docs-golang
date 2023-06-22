@@ -51,7 +51,7 @@ Queryable Encryption
 This driver version adds support for :ref:`qe-manual-feature-qe` (QE). To learn
 more about the requirements for using the QE feature, see the
 :ref:`Queryable Encryption Driver Compatibility Table
-<qe-driver-compatibility-table>`.
+<qe-compatibility-reference>`.
   
 The ``ClientEncryption.CreateEncryptedCollection()``
 method automatically creates data encryption keys when
