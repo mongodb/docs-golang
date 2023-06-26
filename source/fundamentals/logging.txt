@@ -1,0 +1,120 @@
+.. _golang-logging:
+
+=======
+Logging
+=======
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+Starting in version 1.12, the {+driver-short+} provides a logging
+interface to record driver events. In this guide, you can learn how to
+use the driver to configure logging for your application.
+
+Enable Logging
+--------------
+
+To configure a logger on your ``Client`` instance, call the
+``SetLoggerOptions()`` method when specifying your ``ClientOptions``
+object and pass your options to the ``Connect()`` method. The
+``SetLoggerOptions()`` method takes a ``LoggerOptions`` type 
+as a parameter, which contains the specifications that the driver uses
+to configure the logger for your application.
+
+The following code shows how to configure logging in a ``ClientOptions``
+object and create a client with logging enabled:
+
+.. code-block:: go
+   :emphasize-lines: 4
+   
+   clientOptions := options.
+   	Client().
+   	ApplyURI(uri).
+   	SetLoggerOptions(myLoggerOptions)
+
+   client, err := mongo.Connect(context.TODO(), clientOptions)
+
+Configure a Logger
+------------------
+
+To create a ``LoggerOptions`` object, call the ``options.Logger()``
+method. The following table describes how to set properties on
+``LoggerOptions`` to configure your logger. The first column contains
+the ``LoggerOptions`` properties, the second column describes the
+properties, and the third column describes the
+setter methods:
+
+.. list-table::
+   :widths: 30 60
+   :header-rows: 1
+
+   * - Property
+     - Description
+     - Setter Method
+
+   * - | ``ComponentLevels``
+       | **Type**: ``map[LogComponent]LogLevel``
+     - | A mapping of components, specified by ``LogComponent``, to log
+         severity levels, specified by ``LogLevel``. The driver uses the
+         ``LogLevel`` for each ``LogComponent`` to determine if the log
+         message should be generated. To learn more about
+         ``LogComponent`` and ``LogLevel``, see :ref:`Logging Components
+         and Severity Levels <golang-logging-component-severity>`.
+     - | ``SetComponentLevel()``
+       | **Parameters**: ``LogComponent``, ``LogLevel``
+
+   * - | ``Sink``
+       | **Type**: ``LogSink``
+     - | The logging interface that the driver uses to log messages.
+         The ``LogSink`` type is an interface that you can implement to
+         provide a :ref:`custom sink <golang-logging-custom>` or integrate an :ref:`existing
+         logger <golang-logging-existing>` for the driver's logs. If you don't set this
+         property, driver uses the standard logging library.
+     - | ``SetSink()``
+       | **Parameter**: ``LogSink``
+
+   * - | ``MaxDocumentLength``
+       | **Type**: ``uint``
+     - | The maximum length of a document that the driver logs. If the
+         underlying document is larger than this value, the driver
+         truncates it and appends an ellipses to the partial log message.
+     - | ``SetMaxDocumentLength()``
+       | **Parameter**: ``uint``
+
+.. _golang-logging-component-severity:
+
+Logging Components and Severity Levels
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Example
+~~~~~~~
+
+.. _golang-logging-custom:
+
+Specify a Custom Logger
+-----------------------
+
+Example
+~~~~~~~
+
+.. _golang-logging-existing:
+
+Integrate Existing Loggers
+--------------------------
+
+Example
+~~~~~~~
+
+Additional Information
+----------------------
+
+.. _golang-logging-api:
+
+API Documentation
+~~~~~~~~~~~~~~~~~
