@@ -22,7 +22,7 @@ Enable Logging
 
 To configure a logger on your ``Client`` instance, call the
 ``SetLoggerOptions()`` method when specifying your ``ClientOptions``
-object and pass your options to the ``Connect()`` method. The
+object and pass these options to the ``Connect()`` method. The
 ``SetLoggerOptions()`` method takes a ``LoggerOptions`` type 
 as a parameter, which contains the specifications that the driver uses
 to configure the logger for your application.
@@ -81,7 +81,8 @@ setter methods:
 
    * - | ``MaxDocumentLength``
        | **Type**: ``uint``
-     - | The maximum length of a document that the driver logs. If the
+       | **Default**: ``1000``
+     - | The maximum length in bytes of a document that the driver logs. If the
          underlying document is larger than this value, the driver
          truncates it and appends an ellipses to the partial log message.
      - | ``SetMaxDocumentLength()``
@@ -91,6 +92,51 @@ setter methods:
 
 Logging Components and Severity Levels
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can specify which components that the driver will log against by
+specifying the ``LogComponent`` type. The driver provides the following
+built-in specifications for ``LogComponent``:
+
+- ``LogComponentAll``: enables logging for all components.
+- ``LogComponentCommand``: enables command monitor logging.
+- ``LogComponentTopology``: enables topology logging.
+- ``LogComponentServerSelection``: enables server selection logging.
+- ``LogComponentConnection``: enables connection services logging.
+
+You can also specify the logging component by using the enumeration of
+the preceding specifications. The following code shows equivalent ways
+of enabling command monitoring:
+
+.. code-block:: go
+
+   // Using named value
+   comp := options.LogComponentCommand
+
+   // Using enumeration
+   comp := options.LogComponent(1)
+
+You can specify the log severity level by specifying the ``LogLevel``
+type. The driver provides the following
+built-in specifications for ``LogLevel``:
+
+- ``LevelOff``: suppresses logging.
+- ``LevelInfo``: enables logging of high-level informational messages.
+- ``LevelDebug``: enables logging of detailed debug messages.
+
+You can also specify the severity level by using the enumeration of
+the preceding specifications. The following code shows equivalent ways
+of enabling logging at the ``INFO`` level:
+
+.. code-block:: go
+
+   // Using named value
+   lvl := options.LogLevelInfo
+
+   // Using enumeration
+   lvl := options.LogLevel(1)
+
+To learn more about logging severity levels, see the Wikipedia entry on
+the :wikipedia:`Syslog standard for message logging <Syslog#Severity_level>`.
 
 Example
 ~~~~~~~
