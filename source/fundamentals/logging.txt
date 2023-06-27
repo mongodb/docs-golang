@@ -51,7 +51,7 @@ properties, and the third column describes the
 setter methods:
 
 .. list-table::
-   :widths: 30 60
+   :widths: 31 38 31
    :header-rows: 1
 
    * - Property
@@ -140,6 +140,11 @@ the :wikipedia:`Syslog standard for message logging <Syslog#Severity_level>`.
 
 Example
 ~~~~~~~
+
+The following shows how to configure a logger with the following
+specifications:
+
+- 
 
 .. _golang-logging-custom:
 
