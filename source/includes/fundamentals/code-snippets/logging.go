@@ -1,9 +1,13 @@
 package main
 
 import (
+	"bytes"
 	"context"
+	"fmt"
+	"io"
 	"log"
 	"os"
+	"sync"
 
 	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/bson"
@@ -20,7 +24,12 @@ func main() {
 	if uri = os.Getenv("MONGODB_URI"); uri == "" {
 		log.Fatal("You must set your 'MONGODB_URI' environmental variable. See\n\t https://www.mongodb.com/docs/drivers/go/current/usage-examples/#environment-variable")
 	}
-	// start-logger
+	//standardLogging(uri)
+	customLogging(uri)
+}
+
+func standardLogging(uri string) {
+	// start-standard-logger
 	loggerOptions := options.
 		Logger().
 		SetMaxDocumentLength(25).
@@ -32,19 +41,83 @@ func main() {
 		SetLoggerOptions(loggerOptions)
 
 	client, err := mongo.Connect(context.TODO(), clientOptions)
-	// end-logger
+	// end-standard-logger
 	if err != nil {
 		log.Fatalf("error connecting to MongoDB: %v", err)
 	}
 
 	defer client.Disconnect(context.TODO())
 
-	// start-log-insert
+	// start-insert
 	coll := client.Database("testDB").Collection("testColl")
 	_, err = coll.InsertOne(context.TODO(), bson.D{{"item", "grapefruit"}, {"qty", 4}})
-	// end-log-insert
+	// end-insert
 
 	if err != nil {
 		log.Fatalf("InsertOne failed: %v", err)
 	}
+}
+
+// start-customlogger-struct
+type CustomLogger struct {
+	io.Writer
+	mu sync.Mutex
+}
+
+// end-customlogger-struct
+
+// start-customlogger-funcs
+func (logger *CustomLogger) Info(level int, msg string, _ ...interface{}) {
+	logger.mu.Lock()
+	defer logger.mu.Unlock()
+	if level == 1 {
+		fmt.Fprintf(logger, "level: %d [DEBUG], message: %s\n", level, msg)
+	} else {
+		fmt.Fprintf(logger, "level: %d [INFO], message: %s\n", level, msg)
+	}
+}
+
+func (logger *CustomLogger) Error(err error, msg string, _ ...interface{}) {
+	logger.mu.Lock()
+	defer logger.mu.Unlock()
+	fmt.Fprintf(logger, "error: %v, message: %s\n", err, msg)
+}
+
+// end-customlogger-funcs
+
+func customLogging(uri string) {
+	// start-set-customlogger
+	buf := bytes.NewBuffer(nil)
+	sink := &CustomLogger{Writer: buf}
+
+	loggerOptions := options.
+		Logger().
+		SetSink(sink).
+		SetComponentLevel(options.LogComponentCommand, options.LogLevelDebug).
+		SetComponentLevel(options.LogComponentConnection, options.LogLevelDebug)
+
+	clientOptions := options.
+		Client().
+		ApplyURI(uri).
+		SetLoggerOptions(loggerOptions)
+
+	client, err := mongo.Connect(context.TODO(), clientOptions)
+	// end-set-customlogger
+
+	if err != nil {
+		log.Fatalf("error connecting to MongoDB: %v", err)
+	}
+
+	defer client.Disconnect(context.TODO())
+
+	// start-standard-log-insert
+	coll := client.Database("testDB").Collection("testColl")
+	_, err = coll.InsertOne(context.TODO(), bson.D{{"item", "grapefruit"}, {"qty", 4}})
+	// end-standard-log-insert
+	if err != nil {
+		log.Fatalf("InsertOne failed: %v", err)
+	}
+
+	// Print the logs.
+	fmt.Println(buf.String())
 }

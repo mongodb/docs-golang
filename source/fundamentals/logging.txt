@@ -73,8 +73,8 @@ setter methods:
        | **Type**: ``LogSink``
      - | The logging interface that the driver uses to log messages.
          The ``LogSink`` type is an interface that you can implement to
-         provide a :ref:`custom sink <golang-logging-custom>` or integrate an :ref:`existing
-         logger <golang-logging-existing>` for the driver's logs. If you don't set this
+         provide a :ref:`custom sink <golang-logging-custom>` or integrate a :ref:`third-party
+         logger <golang-logging-thirdparty>` for the driver's logs. If you don't set this
          property, driver uses the standard logging library.
      - | ``SetSink()``
        | **Parameter**: ``LogSink``
@@ -93,7 +93,7 @@ setter methods:
 Logging Components and Severity Levels
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can specify which components that the driver will log against by
+You can specify which components the driver will log against by
 specifying the ``LogComponent`` type. The driver provides the following
 built-in specifications for ``LogComponent``:
 
@@ -135,6 +135,10 @@ of enabling logging at the ``INFO`` level:
    // Using enumeration
    lvl := options.LogLevel(1)
 
+.. important::
+
+   The {+driver-short+} supports only ``DEBUG`` level messages currently.
+
 To learn more about logging severity levels, see the Wikipedia entry on
 the :wikipedia:`Syslog standard for message logging <Syslog#Severity_level>`.
 
@@ -142,7 +146,7 @@ Example
 ~~~~~~~
 
 This example shows how to configure a basic logger that uses the standard
-logging library and write log messages. The logger has the the following
+logging library and prints log messages. The logger has the following
 specifications:
 
 - The maximum document length is ``25``.
@@ -153,38 +157,106 @@ specifications:
    :language: go
    :dedent:
    :emphasize-lines: 1-4, 9
-   :start-after: start-logger
-   :end-before: end-logger
+   :start-after: start-standard-logger
+   :end-before: end-standard-logger
 
-The following code executes an insert operation, which causes the driver
-to emit log messages for that command:
+The following code inserts a document, which causes the driver
+to emit log messages on that operation:
 
 .. io-code-block::
    :copyable: true
 
    .. input:: /includes/fundamentals/code-snippets/logging.go
       :language: go
-      :start-after: start-log-insert
-      :end-before: end-log-insert
+      :dedent:
+      :start-after: start-insert
+      :end-before: end-insert
 
    .. output::
       :language: console
 
-      {"command":"{\"insert\": \"test\",\"ordere...","commandName":"insert","databaseName":"test","driverConnectionId":1,"message":"Command started","operationId":0,"requestId":13,"serverConnectionId":...,"serverHost":"...","serverPort":27017,"timestamp":...}
-      {"commandName":"insert","driverConnectionId":1,"durationMS":31,"message":"Command succeeded","operationId":0,"reply":"{\"n\": {\"$numberInt\":\"1\"},...","requestId":13,"serverConnectionId":92153,"serverHost":"...","serverPort":27017,"timestamp":...}
+      {"command":"{\"insert\": \"testColl\",\"or...","commandName":"insert","databaseName":"testDB","driverConnectionId":1,"message":"Command started","operationId":0,"requestId":13,"serverConnectionId":97377,"serverHost":"...","serverPort":27017,"timestamp":...}
+      {"commandName":"insert","driverConnectionId":1,"durationMS":19,"message":"Command succeeded","operationId":0,"reply":"{\"n\": {\"$numberInt\":\"1\"},...","requestId":13,"serverConnectionId":97377,"serverHost":"...","serverPort":27017,"timestamp":...}
 
 .. _golang-logging-custom:
 
-Specify a Custom Logger
------------------------
+Create a Custom Logger
+----------------------
+
+If the standard logging library does not meet your needs, you can
+implement a custom logger. By customizing your logging configuration,
+you have more control over the content, format, and frequency of log messages.
+
+To use a custom logger, define a logger struct and implement the
+``Info()`` and ``Error()`` methods for the struct. Next, set the logger as
+the ``LogSink`` for your ``Client`` by calling the ``SetSink()`` method on
+your ``LoggerOptions`` instance.
 
 Example
 ~~~~~~~
 
-.. _golang-logging-existing:
+This example demonstrates how to define and implement a custom logger.
 
-Integrate Existing Loggers
---------------------------
+1. Define the ``CustomLogger`` struct.
+
+.. literalinclude:: /includes/fundamentals/code-snippets/logging.go
+   :language: go
+   :dedent:
+   :start-after: start-customlogger-struct
+   :end-before: end-customlogger-struct
+
+2. Implement the ``Info()`` and ``Error()`` methods with custom log message formatting.
+
+.. literalinclude:: /includes/fundamentals/code-snippets/logging.go
+   :language: go
+   :dedent:
+   :start-after: start-customlogger-funcs
+   :end-before: end-customlogger-funcs
+
+3. Assign a ``Writer`` to your logger and set it as the ``Sink`` for
+   your ``Client``. In this example, the logger logs against commands
+   and connection events at the ``DEBUG`` level.
+
+.. literalinclude:: /includes/fundamentals/code-snippets/logging.go
+   :language: go
+   :dedent:
+   :emphasize-lines: 1-2, 4-8, 13
+   :start-after: start-set-customlogger
+   :end-before: end-set-customlogger
+
+The following code inserts a document, which causes the driver
+to emit log messages on that operation:
+
+.. io-code-block::
+   :copyable: true
+
+   .. input:: /includes/fundamentals/code-snippets/logging.go
+      :language: go
+      :dedent:
+      :start-after: start-insert
+      :end-before: end-insert
+
+   .. output::
+      :language: console
+
+      level: 1 [DEBUG], message: Connection pool created
+      level: 1 [DEBUG], message: Connection pool ready
+      level: 1 [DEBUG], message: Connection pool created
+      level: 1 [DEBUG], message: Connection pool ready
+      level: 1 [DEBUG], message: Connection pool created
+      level: 1 [DEBUG], message: Connection pool ready
+      level: 1 [DEBUG], message: Connection checkout started
+      level: 1 [DEBUG], message: Connection created
+      level: 1 [DEBUG], message: Connection ready
+      level: 1 [DEBUG], message: Connection checked out
+      level: 1 [DEBUG], message: Command started
+      level: 1 [DEBUG], message: Command succeeded
+      level: 1 [DEBUG], message: Connection checked in
+
+.. _golang-logging-thirdparty:
+
+Integrate Third-Party Loggers
+-----------------------------
 
 Example
 ~~~~~~~
