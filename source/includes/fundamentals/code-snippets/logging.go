@@ -3,14 +3,24 @@ package main
 import (
 	"context"
 	"log"
+	"os"
 
+	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func main() {
-	// Create a client with our logger options.
+	if err := godotenv.Load(); err != nil {
+		log.Println("No .env file found")
+	}
+
+	var uri string
+	if uri = os.Getenv("MONGODB_URI"); uri == "" {
+		log.Fatal("You must set your 'MONGODB_URI' environmental variable. See\n\t https://www.mongodb.com/docs/drivers/go/current/usage-examples/#environment-variable")
+	}
+	// start-logger
 	loggerOptions := options.
 		Logger().
 		SetMaxDocumentLength(25).
@@ -18,20 +28,22 @@ func main() {
 
 	clientOptions := options.
 		Client().
-		ApplyURI("mongodb://localhost:27017").
+		ApplyURI(uri).
 		SetLoggerOptions(loggerOptions)
 
 	client, err := mongo.Connect(context.TODO(), clientOptions)
+	// end-logger
 	if err != nil {
 		log.Fatalf("error connecting to MongoDB: %v", err)
 	}
 
 	defer client.Disconnect(context.TODO())
 
-	// Make a database request to test our logging solution.
-	coll := client.Database("test").Collection("test")
+	// start-log-insert
+	coll := client.Database("testDB").Collection("testColl")
+	_, err = coll.InsertOne(context.TODO(), bson.D{{"item", "grapefruit"}, {"qty", 4}})
+	// end-log-insert
 
-	_, err = coll.InsertOne(context.TODO(), bson.D{{"Alice", "123"}})
 	if err != nil {
 		log.Fatalf("InsertOne failed: %v", err)
 	}

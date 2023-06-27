@@ -36,7 +36,7 @@ object and create a client with logging enabled:
    clientOptions := options.
    	Client().
    	ApplyURI(uri).
-   	SetLoggerOptions(myLoggerOptions)
+   	SetLoggerOptions(loggerOptions)
 
    client, err := mongo.Connect(context.TODO(), clientOptions)
 
@@ -141,10 +141,37 @@ the :wikipedia:`Syslog standard for message logging <Syslog#Severity_level>`.
 Example
 ~~~~~~~
 
-The following shows how to configure a logger with the following
+This example shows how to configure a basic logger that uses the standard
+logging library and write log messages. The logger has the the following
 specifications:
 
-- 
+- The maximum document length is ``25``.
+- The logging component is ``LogComponentCommand``.
+- The logging severity level is ``LogLevelDebug``.
+
+.. literalinclude:: /includes/fundamentals/code-snippets/logging.go
+   :language: go
+   :dedent:
+   :emphasize-lines: 1-4, 9
+   :start-after: start-logger
+   :end-before: end-logger
+
+The following code executes an insert operation, which causes the driver
+to emit log messages for that command:
+
+.. io-code-block::
+   :copyable: true
+
+   .. input:: /includes/fundamentals/code-snippets/logging.go
+      :language: go
+      :start-after: start-log-insert
+      :end-before: end-log-insert
+
+   .. output::
+      :language: console
+
+      {"command":"{\"insert\": \"test\",\"ordere...","commandName":"insert","databaseName":"test","driverConnectionId":1,"message":"Command started","operationId":0,"requestId":13,"serverConnectionId":...,"serverHost":"...","serverPort":27017,"timestamp":...}
+      {"commandName":"insert","driverConnectionId":1,"durationMS":31,"message":"Command succeeded","operationId":0,"reply":"{\"n\": {\"$numberInt\":\"1\"},...","requestId":13,"serverConnectionId":92153,"serverHost":"...","serverPort":27017,"timestamp":...}
 
 .. _golang-logging-custom:
 
