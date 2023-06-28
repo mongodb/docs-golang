@@ -88,7 +88,7 @@ setter methods:
      - | ``SetMaxDocumentLength()``
        | **Parameter**: ``uint``
 
-.. tip:: Write Logs to a File
+.. tip:: Write Logs to a Specific File
    
    By default, the standard logger emits messages to your console (``stderr``). You can
    specify a logging destination by setting the ``MONGODB_LOG_PATH``
@@ -143,7 +143,7 @@ of enabling logging at the ``INFO`` level:
 
 .. important::
 
-   The {+driver-short+} supports only ``DEBUG`` level messages currently.
+   The {+driver-short+} currently supports only ``DEBUG`` level messages.
 
 To learn more about logging severity levels, see the Wikipedia entry on
 the :wikipedia:`Syslog standard for message logging <Syslog#Severity_level>`.
@@ -299,7 +299,7 @@ the ``logrus`` packages needed for this example:
 The code creates a ``logrus`` logger with the following
 specifications:
 
-- The logger writes log messages to the terminal.
+- The logger writes log messages to the console.
 - The logger logs messages at ``DEBUG`` level.
 - The logger formats messages as ``[<level>]: <timestamp> - message <<command type>>``.
 
@@ -364,7 +364,7 @@ guide, see the following API Documentation:
 - `LoggerOptions <{+api+}/mongo/options#LoggerOptions>`__
 - `LogSink <{+api+}/mongo/options#LogSink>`__
 - `SetComponentLevel() <{+api+}/mongo/options#LoggerOptions.SetComponentLevel>`__
-- `SetMaxDocumentLength <{+api+}/mongo/options#LoggerOptions.SetMaxDocumentLength>`__
-- `SetSink <{+api+}/mongo/options#LoggerOptions.SetSink>`__
+- `SetMaxDocumentLength() <{+api+}/mongo/options#LoggerOptions.SetMaxDocumentLength>`__
+- `SetSink() <{+api+}/mongo/options#LoggerOptions.SetSink>`__
 - `LogComponent <{+api+}/mongo/options#LogComponent>`__
 - `LogLevel <{+api+}/mongo/options#LogLevel>`__
