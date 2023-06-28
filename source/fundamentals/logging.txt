@@ -166,8 +166,8 @@ specifications:
    :start-after: start-standard-logger
    :end-before: end-standard-logger
 
-The following code inserts a document, which causes the driver
-to emit log messages on that operation:
+The following code performs an insert operation, which generates log
+messages:
 
 .. io-code-block::
    :copyable: true
@@ -231,8 +231,8 @@ This example demonstrates how to define and implement a custom logger.
    :start-after: start-set-customlogger
    :end-before: end-set-customlogger
 
-The following code inserts a document, which causes the driver
-to emit log messages on that operation:
+The following code performs an insert operation, which generates log
+messages:
 
 .. io-code-block::
    :copyable: true
@@ -320,8 +320,8 @@ specifications:
    :start-after: start-set-thirdparty-logger
    :end-before: end-set-thirdparty-logger
 
-The following code performs some CRUD operations, which causes the driver
-to emit log messages:
+The following code performs some CRUD operations, which generate log
+messages:
 
 .. io-code-block::
    :copyable: true
