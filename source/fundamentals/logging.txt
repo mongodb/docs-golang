@@ -330,8 +330,8 @@ as the sink in your ``LoggerOptions`` instance.
 Example
 ~~~~~~~
 
-This example demonstrates how to define and integrate a ``logrus``
-logger into your application.
+This example demonstrates how to define and integrate a :github:`logrus <sirupsen/logrus>`
+logger in your application.
 
 .. procedure::
 
