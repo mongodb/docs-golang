@@ -64,7 +64,7 @@ Logging Interface
 You can now record connection management and command execution events by
 using the ``LogSink`` logging interface.
 
-To learn more about logging in the {+driver-short+}, see :ref:`golang-logging`.
+To learn more, see the :ref:`golang-logging` Fundamentals guide.
 
 Additional BSON Marshalling Options
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
