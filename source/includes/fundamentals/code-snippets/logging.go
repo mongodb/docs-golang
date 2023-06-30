@@ -43,9 +43,8 @@ func standardLogging(uri string) {
 		Client().
 		ApplyURI(uri).
 		SetLoggerOptions(loggerOptions)
-
-	client, err := mongo.Connect(context.TODO(), clientOptions)
 	// end-standard-logger
+	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
 		log.Fatalf("error connecting to MongoDB: %v", err)
 	}
@@ -102,10 +101,8 @@ func customLogging(uri string) {
 		Client().
 		ApplyURI(uri).
 		SetLoggerOptions(loggerOptions)
-
+    // end-set-customlogger
 	client, err := mongo.Connect(context.TODO(), clientOptions)
-	// end-set-customlogger
-
 	if err != nil {
 		log.Fatalf("error connecting to MongoDB: %v", err)
 	}
@@ -144,9 +141,8 @@ func thirdPartyLogging(uri string) {
 		Client().
 		ApplyURI(uri).
 		SetLoggerOptions(loggerOptions)
-
+    // end-set-thirdparty-logger
 	client, err := mongo.Connect(context.TODO(), clientOptions)
-	// end-set-thirdparty-logger
 	if err != nil {
 		log.Fatalf("error connecting to MongoDB: %v", err)
 	}

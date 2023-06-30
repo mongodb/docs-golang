@@ -13,9 +13,8 @@ Logging
 Overview
 --------
 
-Starting in {+driver-short+} version 1.12, the driver provides a logging
-interface to record driver events. In this guide, you can learn how to
-use the driver to configure logging for your application.
+In this guide, you can learn how to use the driver to configure **logging**
+for your application. The purpose of logging is to record driver events.
 
 Enable Logging
 --------------
@@ -26,8 +25,7 @@ object. The ``SetLoggerOptions()`` method takes a ``LoggerOptions`` type
 as a parameter. Set this ``LoggerOptions`` type to configure the
 logger for your application.
 
-The following code shows how to configure logging in a ``ClientOptions``
-object and create a client with logging enabled:
+The following code shows how to create a client with logging enabled:
 
 .. code-block:: go
    :emphasize-lines: 8
@@ -68,8 +66,9 @@ parameters for each property:
          ``LogLevel`` for each ``LogComponent`` to determine if the log
          message should be generated.
        |
-       | To learn more about ``LogComponent`` and ``LogLevel``, see
-         :ref:`Logging Components and Severity Levels <golang-logging-component-severity>`.
+       | To learn more about the ``LogComponent`` and ``LogLevel`` types, see
+         the :ref:`Log Components and Severity Levels <golang-logging-component-severity>`
+         section of this guide.
      - | ``SetComponentLevel()``
        |
        | **Parameters**: ``LogComponent``, ``LogLevel``
@@ -94,7 +93,7 @@ parameters for each property:
        |
        | **Type**: ``uint``
        | **Default**: ``1000``
-     - | The maximum length in bytes of log message that the driver emits. If the
+     - | The maximum length in bytes of each log message that the driver emits. If the
          message is larger than this value, the driver
          truncates it and appends ellipses to the partial log message.
      - | ``SetMaxDocumentLength()``
@@ -109,8 +108,8 @@ parameters for each property:
 
 .. _golang-logging-component-severity:
 
-Logging Components and Severity Levels
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Log Components and Severity Levels
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To specify the components that the driver logs against, set the
 ``LogComponent`` type. The following table describes built-in
@@ -122,30 +121,30 @@ specifications for ``LogComponent``:
 
    * - Setting
      - Description
-     - Enumeration
+     - Enumeration Value
 
    * - ``LogComponentAll``
-     - Enables logging for all components.
+     - Enables logging for all components
      - ``0``
 
    * - ``LogComponentCommand``
-     - Enables command monitor logging.
+     - Enables command monitor logging
      - ``1``
 
    * - ``LogComponentTopology``
-     - Enables topology logging.
+     - Enables topology logging
      - ``2``
 
    * - ``LogComponentServerSelection``
-     - Enables server selection logging.
+     - Enables server selection logging
      - ``3``
 
    * - ``LogComponentConnection``
-     - Enables connection services logging.
+     - Enables connection services logging
      - ``4``
 
-You can specify the logging component by using either the setting name
-or its enumeration. The following code shows equivalent ways
+You can specify the log component by using either the setting name
+or its enumeration value. The following code shows equivalent ways
 of enabling command monitoring:
 
 .. code-block:: go
@@ -166,22 +165,22 @@ specifications for ``LogLevel``:
 
    * - Setting
      - Description
-     - Enumeration
+     - Enumeration Value
 
    * - ``LevelOff``
-     - Suppresses logging.
+     - Suppresses logging
      - ``0``
 
    * - ``LevelInfo``
-     - Enables logging of high-level informational messages.
+     - Enables logging of high-level informational messages
      - ``1``
 
    * - ``LevelDebug``
-     - Enables logging of detailed debug messages.
+     - Enables logging of detailed debug messages
      - ``2``
 
 You can specify the severity level by using either the setting name
-or its enumeration. The following code shows equivalent ways
+or its enumeration value. The following code shows equivalent ways
 of enabling logging at the ``INFO`` level:
 
 .. code-block:: go
@@ -194,7 +193,7 @@ of enabling logging at the ``INFO`` level:
 
 .. important::
 
-   The {+driver-short+} currently supports only ``DEBUG`` level messages.
+   The {+driver-short+} currently emits only ``DEBUG`` level messages.
 
 .. tip::
 
@@ -208,7 +207,7 @@ This example shows how to configure the standard logger with the
 following specifications:
 
 - The maximum document length is ``25`` bytes.
-- The logging component is ``LogComponentCommand``.
+- The log component is ``LogComponentCommand``.
 - The logging severity level is ``LogLevelDebug``.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/logging.go
@@ -258,7 +257,7 @@ This example demonstrates how to define and implement a custom logger.
 
 .. procedure::
 
-   .. step:: Define the ``CustomLogger`` struct
+   .. step:: Define the ``CustomLogger`` struct.
 
       .. literalinclude:: /includes/fundamentals/code-snippets/logging.go
          :language: go
@@ -266,7 +265,7 @@ This example demonstrates how to define and implement a custom logger.
          :start-after: start-customlogger-struct
          :end-before: end-customlogger-struct
 
-   .. step:: Implement the ``Info()`` and ``Error()`` methods with custom log message formatting
+   .. step:: Implement the ``Info()`` and ``Error()`` methods with custom log message formatting.
 
       .. literalinclude:: /includes/fundamentals/code-snippets/logging.go
          :language: go
@@ -274,7 +273,7 @@ This example demonstrates how to define and implement a custom logger.
          :start-after: start-customlogger-funcs
          :end-before: end-customlogger-funcs
 
-   .. step:: Assign a ``Writer`` to your logger and set it as the ``Sink`` for your ``Client``
+   .. step:: Assign a ``Writer`` to your logger and set it as the ``Sink`` for your ``Client``.
 
       In this example, the logger logs against commands and connection
       events at the ``DEBUG`` level:
@@ -286,7 +285,7 @@ This example demonstrates how to define and implement a custom logger.
          :start-after: start-set-customlogger
          :end-before: end-set-customlogger
 
-   .. step:: Perform an operation
+   .. step:: Perform an operation.
 
       The following code performs an insert operation, which generates log
       messages:
@@ -330,12 +329,12 @@ as the sink in your ``LoggerOptions`` instance.
 Example
 ~~~~~~~
 
-This example demonstrates how to define and integrate a :github:`logrus <sirupsen/logrus>`
-logger in your application.
+This example demonstrates how to integrate ``logrus``,
+a third-party logging package, into your application.
 
 .. procedure::
 
-   .. step:: Install the necessary packages
+   .. step:: Install the necessary packages.
 
       Run the following ``go get`` commands in your terminal to download
       the ``logrus`` packages needed for this example:
@@ -346,9 +345,9 @@ logger in your application.
          go get github.com/sirupsen/logrus
          go get github.com/t-tomalak/logrus-easy-formatter
 
-   .. step:: Define the ``logrus`` logger
+   .. step:: Define the ``logrus`` logger.
 
-      The code creates a ``logrus`` logger with the following
+      The following code creates a ``logrus`` logger with these
       specifications:
       
       - The logger writes log messages to the console.
@@ -361,7 +360,7 @@ logger in your application.
          :start-after: start-make-logrus
          :end-before: end-make-logrus
 
-   .. step:: Set the logger as the ``Sink`` for your ``Client``
+   .. step:: Set the logger as the ``Sink`` for your ``Client``.
 
       In this example, the logger logs against commands at the ``DEBUG`` level.
       
@@ -372,7 +371,7 @@ logger in your application.
          :start-after: start-set-thirdparty-logger
          :end-before: end-set-thirdparty-logger
 
-   .. step:: Perform operations
+   .. step:: Perform operations.
 
       The following code performs some CRUD operations, which generate log
       messages:
@@ -399,10 +398,15 @@ logger in your application.
 
 .. tip:: Logging Packages
 
-   Some of the other third-party loggers you can integrate with the {+driver-short+}
-   include :github:`zap <uber-go/zap>` and :github:`zerolog <rs/zerolog>`. For full examples
-   using these loggers, see the :github:`logging tests in the
-   {+driver-short+} Github repository <mongodb/mongo-go-driver/tree/master/examples/_logger>`.
+   You can find more information on third-party logging packages in their
+   respective GitHub repositories:
+   
+   - :github:`logrus <sirupsen/logrus>`
+   - :github:`zap <uber-go/zap>`
+   - :github:`zerolog <rs/zerolog>`
+   
+   To see full code examples that integrate these loggers, see the
+   :github:`logging tests in the {+driver-short+} Github repository <mongodb/mongo-go-driver/tree/master/examples/_logger>`.
 
 Additional Information
 ----------------------
