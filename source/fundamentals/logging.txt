@@ -246,6 +246,13 @@ This example demonstrates how to define and implement a custom logger.
          :dedent:
          :start-after: start-customlogger-struct
          :end-before: end-customlogger-struct
+      
+      .. note::
+
+         The preceding code snippet uses a ``Mutex`` type in the
+         ``CustomLogger`` struct to ensure atomic writes and prevent
+         race conditions. Setting a ``Mutex`` makes your logger safe for
+         concurrent use by multiple goroutines.
 
    .. step:: Implement the ``Info()`` and ``Error()`` methods with custom log message formatting.
 
