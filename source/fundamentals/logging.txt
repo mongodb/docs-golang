@@ -332,7 +332,6 @@ a third-party logging package, into your application.
       
          go get github.com/bombsimon/logrusr/v4
          go get github.com/sirupsen/logrus
-         go get github.com/t-tomalak/logrus-easy-formatter
 
    .. step:: Define the ``logrus`` logger.
 
