@@ -341,7 +341,8 @@ a third-party logging package, into your application.
       
       - The logger logs messages to the console.
       - The logger logs messages at the ``DebugLevel`` level.
-      - The logger formats messages as ``[<level>]: <timestamp> - message <<command type>>``.
+      - The logger formats messages using the ``JSONFormatter``
+        formatter.
       
       .. literalinclude:: /includes/fundamentals/code-snippets/logging.go
          :language: go
@@ -379,12 +380,46 @@ a third-party logging package, into your application.
             :language: console
             :visible: false
 
-            [DEBUG]: 2023-06-28 11:13:41 - Command started <insert>
-            [DEBUG]: 2023-06-28 11:13:41 - Command succeeded <insert>
-            [DEBUG]: 2023-06-28 11:13:41 - Command started <delete>
-            [DEBUG]: 2023-06-28 11:13:41 - Command succeeded <delete>
-            [DEBUG]: 2023-06-28 11:13:41 - Command started <update>
-            [DEBUG]: 2023-06-28 11:13:41 - Command succeeded <update>
+            {
+              "command": "{\"insert\": \"testColl\", ...}",
+              "commandName": "insert",
+              "databaseName": "testDB",
+              ...
+              "level": "debug",
+              "message": "Command started",
+              "msg": "Command started",
+              ...
+              "time": "2023-07-06 10:23:42"
+            }
+            {
+              "commandName": "insert",
+              ...
+              "level": "debug",
+              "message": "Command succeeded",
+              "msg": "Command succeeded",
+              ...
+              "time": "2023-07-06 10:23:42"
+            }
+            {
+              "command": "{\"delete\": \"testColl\", ...}",
+              "commandName": "delete",
+              "databaseName": "testDB",
+              ...
+              "level": "debug",
+              "message": "Command started",
+              "msg": "Command started",
+              ...
+              "time": "2023-07-06 10:23:42"
+            }
+            {
+              "commandName": "delete",
+              ...
+              "level": "debug",
+              "message": "Command succeeded",
+              "msg": "Command succeeded",
+              ...
+              "time": "2023-07-06 10:23:42"
+            }
 
 .. tip:: Logging Packages
 
