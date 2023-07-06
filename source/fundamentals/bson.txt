@@ -213,11 +213,11 @@ Driver will marshal structs using the following rules:
 BSON Options
 ------------
 
-You can set ``BSONOptions`` from the ``options`` package to specify how
+You can set ``BSONOptions`` to specify how
 the driver marshals and unmarshals BSON.
 
-The following table describes the ``BSONOptions`` available to set on
-your ``Client``.
+The following table describes the behaviors of the ``BSONOptions`` if
+set to true.
 
 .. list-table::
    :widths: 25 75
@@ -235,6 +235,7 @@ your ``Client``.
 
    * - NilSliceAsEmpty
      - The driver marshals ``nil`` Go slice types as empty BSON arrays.
+
 
 .. _golang-bson-unmarshalling:
 
