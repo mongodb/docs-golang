@@ -131,8 +131,8 @@ their related reference and API documentation.
 
              result, err := coll.UpdateMany(
                  context.TODO(), 
-                 bson.D{{"age", bson.D{{"$lt", 10}}}}, 
-                 bson.D{{"$set", bson.D{{"age", 1}}}}
+                 bson.D{{"age", bson.D{{"$gte", 58}}}}, 
+                 bson.D{{"$set", bson.D{{"description", "Senior"}}}}
              )
              fmt.Printf("The number of modified documents: %d\n", result.ModifiedCount)
 
@@ -441,7 +441,7 @@ their related reference and API documentation.
              :language: go
              :visible: false 
 
-             [{firstName Lester} ]
+             [{firstName Lester}]
              [{firstName Wendall} {lastName Griffin}]
              ...
 
@@ -474,5 +474,4 @@ their related reference and API documentation.
              :language: go
              :visible: false 
 
-             [{"firstName": "Emily" , "Description": "I love to play sports and
-             walk my beagle."} ... ]
+             [{"firstName": "Emily" , "Description": "I love to play sports and walk my beagle."} ... ]
