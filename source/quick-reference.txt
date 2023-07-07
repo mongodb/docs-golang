@@ -85,7 +85,7 @@ their related reference and API documentation.
           :copyable: true
 
           docs := []interface{} {
-              bson.D{{"point", "ABC}, {"xValue", 6}},
+              bson.D{{"point", "ABC"}, {"xValue", 6}},
               bson.D{{"point", "XYZ"}, {"xValue", 7}, {"yValue", 10}},
               bson.D{{"point", "BCE"}},
               bson.D{{"point", "DEF"}, {"xValue", 8}, {"yValue", 12}},
