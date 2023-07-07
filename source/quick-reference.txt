@@ -245,7 +245,7 @@ their related reference and API documentation.
              :language: go
              :visible: false
 
-             [{type ABC}, {xValue 5} ... ]
+             [{point ABC}, {xValue 5} ... ]
              [{point DCE},  ... ]
 
    * - | **Monitor Data Changes**
@@ -442,8 +442,8 @@ their related reference and API documentation.
              :language: go
              :visible: false 
 
-             [{type XYZ} {xValue 10}]
-             [{type DEF} {xValue 8}]
+             [{point XYZ} {xValue 10}]
+             [{point DEF} {xValue 8}]
              ...
 
    * - | **Create an Index**
