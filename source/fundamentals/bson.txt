@@ -222,7 +222,6 @@ the ``movies`` collection:
 
 .. code-block:: go
    :copyable: false
-   :dedent:
 
    bsonOpts := &options.BSONOptions{
       UseJSONStructTags: true,
@@ -233,7 +232,7 @@ the ``movies`` collection:
 .. tip::    
 
    To learn more about ``BSONOptions``, see the `API Documentation
-   <{+api+}mongo#example-Connect-BSONOptions>`__.
+   <{+api+}/mongo#example-Connect-BSONOptions>`__.
 
 .. _golang-bson-unmarshalling:
 
