@@ -223,11 +223,11 @@ the ``movies`` collection:
 .. code-block:: go
    :copyable: false
 
-   bsonOpts := &options.BSONOptions{
-      UseJSONStructTags: true,
-	}
-   coll := client.Database("sample_mflix").Collection("movies",
-   bsonOpts)
+   bsonOpts := &options.BSONOptions {
+       UseJSONStructTags: true,
+   }
+   coll := client.Database("sample_mflix")
+       .Collection("movies",bsonOpts)
 
 .. tip::    
 
