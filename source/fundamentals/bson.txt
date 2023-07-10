@@ -214,24 +214,26 @@ BSON Options
 ------------
 
 You can set ``BSONOptions`` to specify how
-the driver marshals and unmarshals BSON on any level, from
-``collection`` to ``Client``.
+the driver marshals and unmarshals BSON on your collection, database, or
+client.  
 
-The following example demonstrates how the ``BSONOptions`` is set using
-the ``Movies`` collection as an example.
+The following example demonstrates how to set ``BSONOptions`` for 
+the ``movies`` collection:
 
 .. code-block:: go
    :copyable: false
+   :dedent:
 
    bsonOpts := &options.BSONOptions{
-		UseJSONStructTags: true,
+      UseJSONStructTags: true,
 	}
-	coll := client.Database("sample_mflix").Collection("movies",
-	bsonOpts)
-   
-To learn more about the options and usage of ``BSONOptions``, visit the `API Documentation
-<https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#example-Connect-BSONOptions>`_
-for more information.
+   coll := client.Database("sample_mflix").Collection("movies",
+   bsonOpts)
+
+.. tip::    
+
+   To learn more about ``BSONOptions``, see the `API Documentation
+   <{+api+}mongo#example-Connect-BSONOptions>`__.
 
 .. _golang-bson-unmarshalling:
 
