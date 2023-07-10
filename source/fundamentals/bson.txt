@@ -233,27 +233,6 @@ To learn more about the options and usage of ``BSONOptions``, visit the `API Doc
 <https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#example-Connect-BSONOptions>`_
 for more information.
 
-The following table describes the behaviors of the ``BSONOptions`` if
-set to true.
-
-.. list-table::
-   :widths: 25 75
-   :header-rows: 1
-
-   * - Option
-     - Description
-
-   * - UseJSONStructTags
-     - The driver falls back to ``json`` :ref:`struct tags
-       <golang-struct-tags>` if ``bson`` struct tags are absent.
-
-   * - NilMapAsEmpty
-     - The driver marshals ``nil`` Go map types as empty BSON documents.
-
-   * - NilSliceAsEmpty
-     - The driver marshals ``nil`` Go slice types as empty BSON arrays.
-
-
 .. _golang-bson-unmarshalling:
 
 Unmarshalling
