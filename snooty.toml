@@ -1,5 +1,8 @@
 name = "golang"
 title = "Go"
+
+eol = true
+
 toc_landing_pages = [
     "/fundamentals/connection",
     "/fundamentals/crud",
@@ -28,3 +31,11 @@ cmk-long = "Customer Master Key"
 dek-long = "Data Encryption Key"
 csfle-short = "CSFLE"
 csfle-long = "Client-side Field Level Encryption"
+current-url-base = "https://www.mongodb.com/docs/drivers/go/current"
+
+[[banners]]
+targets = ["*"]
+variant = "info"
+value = """\
+    This version of the documentation is archived and no longer supported. View the `current documentation <{+current-url-base+}/>`__ to learn how to `upgrade your version of the {+driver-long+} <{+current-url-base+}/quick-start/#add-mongodb-as-a-dependency>`__.\
+    """
