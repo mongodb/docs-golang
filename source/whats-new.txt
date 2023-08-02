@@ -121,7 +121,7 @@ What's New in 1.11
    on database error types, such as ``CommandError`` and
    ``WriteException``.
 
-   Version 1.11.18 of the driver has been retracted because 
+   Version 1.11.8 of the driver has been retracted because 
    it incorrectly contains minor release changes intended for 1.12.1.
    
    Upgrade to version 1.11.9 or higher if you are using a retracted
