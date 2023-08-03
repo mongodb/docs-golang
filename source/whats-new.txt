@@ -18,6 +18,7 @@ What's New
 
 Learn what's new in:
 
+* :ref:`Version 1.12.1 <version-1.12.1>`
 * :ref:`Version 1.12 <version-1.12>`
 * :ref:`Version 1.11 <version-1.11>`
 * :ref:`Version 1.10 <version-1.10>`
@@ -31,6 +32,21 @@ Learn what's new in:
 * :ref:`Version 1.2 <version-1.2>`
 * :ref:`Version 1.1 <version-1.1>`
 * :ref:`Version 1.0 <version-1.0>`
+
+.. _version-1.12.1:
+
+What's New in 1.12.1
+--------------------
+
+The 1.12.1 Go driver includes the following fixes: 
+
+- The driver now unpins connections when ending a session. This prevents connections
+  from being leaked if a user runs a transaction while connected to a load balancer.
+
+- The driver no longer throws a runtime error if you unmarshal an empty
+  ``bson.RawValue`` with an invalid type or marshal a ``nil`` pointer of ``ReadConcern``.
+
+- The ``options.LogComponentAll`` logging option no longer prevents log publication.
 
 .. _version-1.12:
 
