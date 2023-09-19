@@ -7,7 +7,7 @@ Connection Guide
 .. default-domain:: mongodb
 
 .. facet::
-  :type: genre 
+  :name: genre 
   :values: tutorial
 
 .. contents:: On this page
