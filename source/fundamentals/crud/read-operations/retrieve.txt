@@ -203,6 +203,46 @@ to the ``FindOne()`` method, which performs the following actions:
 
       {"Item":"Masala","Rating":9,"DateOrdered":"2009-11-12T05:00:00Z"}
 
+Find by Object ID Example
+`````````````````````````
+
+The following example defines an ``id`` variable with an ``ObjectId``
+value and passes a context, filter, and ``FindOneOptions`` to the 
+``FindOne()`` method. Then, ``FindOne()`` performs the following actions:
+
+- Matches the document with the specified ``ObjectId`` value
+- Projects the ``Item`` and ``Rating`` fields of the matched document
+
+.. io-code-block::
+   :copyable: true
+
+   .. input::
+      :language: go
+
+      id, err := primitive.ObjectIDFromHex("65170b42b99efdd0b07d42de")
+      if err != nil {
+        log.Println("Invalid id")
+      }
+
+      filter := bson.D{{"_id", id}}
+      opts := options.FindOne().SetProjection(
+        bson.D{{"item",1}, {"rating",1}}
+      )
+
+      var result Review
+      err = coll.FindOne(context.TODO(), filter).Decode(&result)
+      if err != nil {
+        panic(err)
+      }
+      res, _ := json.Marshal(result)
+      fmt.Println(string(res))
+
+   .. output::
+      :language: none
+      :visible: false
+
+      {"Item":"Hibiscus","Rating":4}
+
 .. _golang-retrieve-aggregation:
 
 Aggregation Operations
