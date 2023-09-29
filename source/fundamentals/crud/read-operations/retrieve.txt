@@ -203,6 +203,8 @@ to the ``FindOne()`` method, which performs the following actions:
 
       {"Item":"Masala","Rating":9,"DateOrdered":"2009-11-12T05:00:00Z"}
 
+.. _golang-find-by-id:
+
 Find by Object ID Example
 `````````````````````````
 
@@ -226,10 +228,10 @@ value and passes a context, filter, and ``FindOneOptions`` to the
 
       filter := bson.D{{"_id", id}}
       opts := options.FindOne().SetProjection(
-        bson.D{{"item",1}, {"rating",1}}
+        bson.D{{"item",1}, {"rating",1}, {"_id", 0}}
       )
 
-      var result Review
+      var result bson.D
       err = coll.FindOne(context.TODO(), filter).Decode(&result)
       if err != nil {
         panic(err)
@@ -241,7 +243,7 @@ value and passes a context, filter, and ``FindOneOptions`` to the
       :language: none
       :visible: false
 
-      {"Item":"Hibiscus","Rating":4}
+      [{"Key":"item","Value":"Hibiscus"},{"Key":"rating","Value":4}]
 
 .. _golang-retrieve-aggregation:
 
