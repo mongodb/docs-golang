@@ -66,7 +66,8 @@ The ``Find()`` method expects you to pass a ``Context`` type and a
 query filter. The method returns *all* documents that match the filter
 as a ``Cursor`` type.
 
-To learn how to access data in a cursor, see :ref:`golang-cursor`.
+For a ``Find()`` method code example, see :ref:`golang-find-example` on
+this page. To learn how to access data in a cursor, see :ref:`golang-cursor`.
 
 Find One Document
 ~~~~~~~~~~~~~~~~~
@@ -75,7 +76,12 @@ The ``FindOne()`` method expects you to pass a ``Context`` type and a
 query filter. The method returns *the first document* that matches the
 filter as a ``SingleResult`` type.
 
-To learn how to access data in a ``SingleResult`` see :ref:`golang-bson-unmarshalling`.
+For a ``FindOne()`` method code example, see :ref:`golang-find-one-example`
+on this page. For a ``FindOne()`` code example that queries for a specified
+ObjectId value, see :ref:`golang-find-one-by-id` on this page.
+
+To learn how to access data in a ``SingleResult``, see
+:ref:`golang-bson-unmarshalling` in the BSON guide.
 
 .. _golang-retrieve-options:
 
@@ -121,6 +127,8 @@ following methods:
    * - ``SetSort()`` 
      - | The field and type of sort to order the matched documents. You can specify an ascending or descending sort.
        | Default: none
+
+.. _golang-find-example:
 
 Find Example
 ````````````
@@ -169,6 +177,8 @@ the ``Find()`` method, which performs the following actions:
       {"Item":"Sencha","Rating":7,"DateOrdered":"2009-11-18T05:00:00Z"}
       {"Item":"Masala","Rating":8,"DateOrdered":"2009-12-01T05:00:00Z"}
 
+.. _golang-find-one-example:
+
 Find One Example
 ````````````````
 
@@ -203,10 +213,10 @@ to the ``FindOne()`` method, which performs the following actions:
 
       {"Item":"Masala","Rating":9,"DateOrdered":"2009-11-12T05:00:00Z"}
 
-.. _golang-find-by-id:
+.. _golang-find-one-by-id:
 
-Find by Object ID Example
-`````````````````````````
+Find One by Object ID Example
+`````````````````````````````
 
 The following example defines an ``id`` variable with an ``ObjectId``
 value and passes a context, filter, and ``FindOneOptions`` to the 
@@ -244,6 +254,13 @@ value and passes a context, filter, and ``FindOneOptions`` to the
       :visible: false
 
       [{"Key":"item","Value":"Hibiscus"},{"Key":"rating","Value":4}]
+
+.. note::
+
+   The {+driver-short+} automatically generates a unique ``ObjectId`` value for
+   each document's ``_id`` field. The preceding code example uses an ``ObjectID``
+   with a hexidecimal string representation of ``"65170b42b99efdd0b07d42de"``,
+   but your ``ObjectID`` values are unique.
 
 .. _golang-retrieve-aggregation:
 
