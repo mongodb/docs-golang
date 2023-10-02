@@ -217,8 +217,8 @@ to the ``FindOne()`` method, which performs the following actions:
 
 .. _golang-find-one-by-id:
 
-Find One by Object ID Example
-`````````````````````````````
+Find One by ObjectId Example
+````````````````````````````
 
 This example defines an ``id`` variable with a value of type ``ObjectId``
 and specifies a query filter with the ``id`` variable. The value of ``id``
@@ -226,7 +226,7 @@ corresponds to the ``_id`` field value of the following document:
 
 .. code-block:: json
    :copyable: false
-   :emphasize-lines: 1
+   :emphasize-lines: 3
 
    [
       {
