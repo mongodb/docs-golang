@@ -148,9 +148,10 @@ the ``Find()`` method, which performs the following actions:
    :language: go
    :dedent:
 
-.. output::
-   :language: none
-   :visible: false
+The preceding code example outputs the following documents:
+
+.. code-block:: none
+   :copyable: false
 
    {"Item":"Sencha","Rating":7,"DateOrdered":"2009-11-18T05:00:00Z"}
    {"Item":"Masala","Rating":8,"DateOrdered":"2009-12-01T05:00:00Z"}
@@ -167,22 +168,18 @@ to the ``FindOne()`` method, which performs the following actions:
   30, 2009
 - Skips the first two matched documents
 
-.. io-code-block::
-   :copyable: true
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
+   :start-after: begin find one docs
+   :end-before: end find one docs
+   :language: go
+   :dedent:
 
-   .. input::
+The preceding code example outputs the following document:
 
-      .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
-         :start-after: begin find one docs
-         :end-before: end find one docs
-         :language: go
-         :dedent:
+.. code-block:: none
+   :copyable: false
 
-   .. output::
-      :language: none
-      :visible: false
-
-      {"Item":"Masala","Rating":9,"DateOrdered":"2009-11-12T05:00:00Z"}
+   {"Item":"Masala","Rating":9,"DateOrdered":"2009-11-12T05:00:00Z"}
 
 .. _golang-find-one-by-id:
 
@@ -212,23 +209,18 @@ instance as parameters and performs the following actions:
 - Matches the document with the specified ``ObjectId`` value
 - Projects the ``Item`` and ``Rating`` fields of the matched document
 
-.. io-code-block::
-   :copyable: true
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
+   :start-after: begin objectid
+   :end-before: end objectid
+   :language: go
+   :dedent:
 
-   .. input::
-      :language: go
+The preceding code example outputs the following document:
 
-      .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
-         :start-after: begin objectid
-         :end-before: end objectid
-         :language: go
-         :dedent:
+.. code-block:: none
+   :copyable: false 
 
-   .. output::
-      :language: none
-      :visible: false
-
-      [{"Key":"item","Value":"Hibiscus"},{"Key":"rating","Value":4}]
+   [{"Key":"item","Value":"Hibiscus"},{"Key":"rating","Value":4}]
 
 .. note::
 
@@ -324,25 +316,20 @@ performs the following actions:
 - Groups reviews by item ordered
 - Calculates the average rating for each item
 
-.. io-code-block::
-   :copyable: true
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
+   :start-after: begin aggregate docs
+   :end-before: end aggregate docs
+   :language: go
+   :dedent:
 
-   .. input::
-      :language: go
+The preceding code example outputs the following documents:
 
-      .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
-         :start-after: begin aggregate docs
-         :end-before: end aggregate docs
-         :language: go
-         :dedent:
+.. code-block:: none
+   :copyable: false
 
-   .. output::
-      :language: none
-      :visible: false
-
-      Sencha had an average rating of 8.5 
-      Hibiscus had an average rating of 4 
-      Masala had an average rating of 9
+   Sencha had an average rating of 8.5 
+   Hibiscus had an average rating of 4 
+   Masala had an average rating of 9
 
 To learn more about how to construct an aggregation pipeline, see
 the MongoDB server manual page on :manual:`Aggregation
