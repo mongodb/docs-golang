@@ -233,7 +233,7 @@ value and passes a context, filter, and ``FindOneOptions`` to the
 
       id, err := primitive.ObjectIDFromHex("65170b42b99efdd0b07d42de")
       if err != nil {
-          log.Println("Invalid ID string")
+          panic(err)
       }
 
       filter := bson.D{{"_id", id}}
