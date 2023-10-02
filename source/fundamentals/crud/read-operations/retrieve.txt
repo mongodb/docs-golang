@@ -146,31 +146,12 @@ the ``Find()`` method, which performs the following actions:
    :copyable: true
 
    .. input::
-      :language: go
 
-      filter := bson.D{
-          {"$and",
-              bson.A{
-                  bson.D{{"rating", bson.D{{"$gt", 5}}}},
-                  bson.D{{"rating", bson.D{{"$lt", 9}}}},
-              }},
-      }
-      sort := bson.D{{"date_ordered", 1}}
-      opts := options.Find().SetSort(sort)
-      
-      cursor, err := coll.Find(context.TODO(), filter, opts)
-      if err != nil {
-          panic(err)
-      }
-      
-      var results []Review
-      if err = cursor.All(context.TODO(), &results); err != nil {
-          panic(err)
-      }
-      for _, result := range results {
-          res, _ := json.Marshal(result)
-          fmt.Println(string(res))
-      }
+      .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
+         :start-after: begin find docs
+         :end-before: end find docs
+         :language: go
+         :dedent:
 
    .. output::
       :language: none
@@ -195,19 +176,12 @@ to the ``FindOne()`` method, which performs the following actions:
    :copyable: true
 
    .. input::
-      :language: go
 
-      filter := bson.D{{"date_ordered", bson.D{{"$lte", time.Date(2009, 11, 30, 0, 0, 0, 0, time.Local)}}}}
-      opts := options.FindOne().SetSkip(2)
-      
-      var result Review
-      err := coll.FindOne(context.TODO(), filter, opts).Decode(&result)
-      if err != nil {
-          panic(err)
-      }
-      
-      res, _ := json.Marshal(result)
-      fmt.Println(string(res))
+      .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
+         :start-after: begin find one docs
+         :end-before: end find one docs
+         :language: go
+         :dedent:
 
    .. output::
       :language: none
@@ -249,24 +223,11 @@ instance as parameters and performs the following actions:
    .. input::
       :language: go
 
-      id, err := primitive.ObjectIDFromHex("65170b42b99efdd0b07d42de")
-      if err != nil {
-          panic(err)
-      }
-
-      filter := bson.D{{"_id", id}}
-      opts := options.FindOne().SetProjection(
-          bson.D{{"item",1}, {"rating",1}, {"_id", 0}}
-      )
-
-      var result bson.D
-      err = coll.FindOne(context.TODO(), filter).Decode(&result)
-      if err != nil {
-          panic(err)
-      }
-
-      res, _ := json.Marshal(result)
-      fmt.Println(string(res))
+      .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
+         :start-after: begin objectid
+         :end-before: end objectid
+         :language: go
+         :dedent:
 
    .. output::
       :language: none
@@ -374,26 +335,11 @@ performs the following actions:
    .. input::
       :language: go
 
-      groupStage := bson.D{
-         {"$group", bson.D{
-            {"_id", "$item"},
-            {"average", bson.D{
-               {"$avg", "$rating"},
-            }},
-      }}}
-
-      cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{groupStage})
-      if err != nil {
-         panic(err)
-      }
-
-      var results []bson.M
-      if err = cursor.All(context.TODO(), &results); err != nil {
-         panic(err)
-      }
-      for _, result := range results {
-         fmt.Printf("%v had an average rating of %v \n", result["_id"], result["average"])
-      }
+      .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
+         :start-after: begin aggregate docs
+         :end-before: end aggregate docs
+         :language: go
+         :dedent:
 
    .. output::
       :language: none

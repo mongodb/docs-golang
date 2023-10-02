@@ -104,6 +104,30 @@ func main() {
 		// end find one docs
 	}
 
+	fmt.Println("\nFind One by ObjectId:\n")
+	{
+		// begin objectid
+		id, err := primitive.ObjectIDFromHex("65170b42b99efdd0b07d42de")
+		if err != nil {
+			panic(err)
+		}
+  
+		filter := bson.D{{"_id", id}}
+		opts := options.FindOne().SetProjection(
+			bson.D{{"item",1}, {"rating",1}, {"_id", 0}}
+		)
+  
+		var result bson.D
+		err = coll.FindOne(context.TODO(), filter).Decode(&result)
+		if err != nil {
+			panic(err)
+		}
+  
+		res, _ := json.Marshal(result)
+		fmt.Println(string(res))
+		// end objectid
+	}
+	
 	fmt.Println("\nAggregation:\n")
 	{
 		// begin aggregate docs
