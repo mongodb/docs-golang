@@ -66,8 +66,9 @@ The ``Find()`` method expects you to pass a ``Context`` type and a
 query filter. The method returns *all* documents that match the filter
 as a ``Cursor`` type.
 
-For a ``Find()`` method code example, see :ref:`golang-find-example` on
-this page. To learn how to access data in a cursor, see :ref:`golang-cursor`.
+For a ``Find()`` method code example, see the :ref:`golang-find-example`
+section of this page. To learn how to access data by using a cursor, see
+the :ref:`golang-cursor` guide.
 
 Find One Document
 ~~~~~~~~~~~~~~~~~
@@ -76,9 +77,10 @@ The ``FindOne()`` method expects you to pass a ``Context`` type and a
 query filter. The method returns *the first document* that matches the
 filter as a ``SingleResult`` type.
 
-For a ``FindOne()`` method code example, see :ref:`golang-find-one-example`
-on this page. For a ``FindOne()`` code example that queries for a specified
-ObjectId value, see :ref:`golang-find-one-by-id` on this page.
+For a ``FindOne()`` method code example, see the :ref:`golang-find-one-example`
+section of this page. For a ``FindOne()`` code example that queries by using
+a specific ``ObjectId`` value, see the :ref:`golang-find-one-by-id` section
+of this page.
 
 To learn how to access data in a ``SingleResult``, see
 :ref:`golang-bson-unmarshalling` in the BSON guide.
@@ -218,9 +220,25 @@ to the ``FindOne()`` method, which performs the following actions:
 Find One by Object ID Example
 `````````````````````````````
 
-The following example defines an ``id`` variable with an ``ObjectId``
-value and passes a context, filter, and ``FindOneOptions`` to the 
-``FindOne()`` method. Then, ``FindOne()`` performs the following actions:
+This example defines an ``id`` variable with a value of type ``ObjectId``
+and specifies a query filter with the ``id`` variable. The value of ``id``
+corresponds to the ``_id`` field value of the following document:
+
+.. code-block:: json
+   :copyable: false
+   :emphasize-lines: 1
+
+   [
+      {
+         _id: ObjectId('65170b42b99efdd0b07d42de'),
+         item: "Hibiscus",
+         rating : 4,
+         date_ordered : 2009-12-18T05:00:00.000+00:00
+      }
+   ]
+
+The ``FindOne()`` method recieves the filter and a ``FindOneOptions``
+instance as parameters and performs the following actions:
 
 - Matches the document with the specified ``ObjectId`` value
 - Projects the ``Item`` and ``Rating`` fields of the matched document
@@ -258,10 +276,11 @@ value and passes a context, filter, and ``FindOneOptions`` to the
 
 .. note::
 
-   The {+driver-short+} automatically generates a unique ``ObjectId`` value for
-   each document's ``_id`` field. The preceding code example uses an ``ObjectID``
-   with a hexidecimal string representation of ``"65170b42b99efdd0b07d42de"``,
-   but your ``ObjectID`` values are unique.
+   The {+driver-short+} automatically generates a unique ``ObjectId``
+   value for each document's ``_id`` field, so your ``ObjectId`` value
+   will differ from the preceding code example. For more information
+   about the ``_id`` field, see the :ref:`_id Field <golang-insert-id>`
+   section of the Insert a Document page.
 
 .. _golang-retrieve-aggregation:
 
