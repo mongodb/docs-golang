@@ -142,23 +142,18 @@ the ``Find()`` method, which performs the following actions:
   ``9`` (exclusive)
 - Sorts matched documents in ascending order by ``date_ordered``
 
-.. io-code-block::
-   :copyable: true
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
+   :start-after: begin find docs
+   :end-before: end find docs
+   :language: go
+   :dedent:
 
-   .. input::
+.. output::
+   :language: none
+   :visible: false
 
-      .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
-         :start-after: begin find docs
-         :end-before: end find docs
-         :language: go
-         :dedent:
-
-   .. output::
-      :language: none
-      :visible: false
-
-      {"Item":"Sencha","Rating":7,"DateOrdered":"2009-11-18T05:00:00Z"}
-      {"Item":"Masala","Rating":8,"DateOrdered":"2009-12-01T05:00:00Z"}
+   {"Item":"Sencha","Rating":7,"DateOrdered":"2009-11-18T05:00:00Z"}
+   {"Item":"Masala","Rating":8,"DateOrdered":"2009-12-01T05:00:00Z"}
 
 .. _golang-find-one-example:
 
