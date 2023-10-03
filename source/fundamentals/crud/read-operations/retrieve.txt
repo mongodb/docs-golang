@@ -197,7 +197,7 @@ This example queries for the following document based on its ``_id`` value:
 
 .. code-block:: json
    :copyable: false
-   :emphasize-lines: 3
+   :emphasize-lines: 2
 
     {
         _id: ObjectId('65170b42b99efdd0b07d42de'),
