@@ -9,15 +9,16 @@ import (
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 // start-review-struct
 type Review struct {
-	Item        string
-	Rating      int32
-	DateOrdered time.Time `bson:"date_ordered"`
+	Item        string    `bson:"item,omitempty"`
+	Rating      int32     `bson:"rating,omitempty"`
+	DateOrdered time.Time `bson:"date_ordered,omitempty"`
 }
 
 // end-review-struct
@@ -111,23 +112,21 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-  
+
 		filter := bson.D{{"_id", id}}
-		opts := options.FindOne().SetProjection(
-			bson.D{{"item",1}, {"rating",1}, {"_id", 0}}
-		)
-  
-		var result bson.D
-		err = coll.FindOne(context.TODO(), filter).Decode(&result)
+		opts := options.FindOne().SetProjection(bson.D{{"item", 1}, {"rating", 1}, {"_id", 0}})
+
+		var result Review
+		err = coll.FindOne(context.TODO(), filter, opts).Decode(&result)
 		if err != nil {
 			panic(err)
 		}
-  
-		res, _ := json.Marshal(result)
+
+		res, _ := bson.MarshalExtJSON(result, false, false)
 		fmt.Println(string(res))
 		// end objectid
 	}
-	
+
 	fmt.Println("\nAggregation:\n")
 	{
 		// begin aggregate docs
