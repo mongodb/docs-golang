@@ -4,10 +4,10 @@
 Network Compression
 ===================
 
-This page provides information about **network compression** and the compression
-algorithms supported by the {+driver-short+}. You can enable a driver option
-to compress messages, which reduces the amount of data passed over the network
-between MongoDB and your application.
+In this guide, you can learn how to enable **network compression** by using
+the {+driver-short+}. You can specify a driver option to compress messages,
+which reduces the amount of data passed over the network between MongoDB and
+your application.
 
 The {+driver-short+} supports the following compression algorithms:
 
@@ -51,7 +51,7 @@ by specifying the algorithms in one of two ways:
             opts := options.Client().ApplyURI("mongodb://localhost:27017/?compressors=snappy,zlib,zstd")
             client, _ := mongo.Connect(context.TODO(), opts)
 
-   .. tab:: MongoClientOptions
+   .. tab:: SetCompressors()
       :tabid: mongoclientoptions
 
       To enable compression using `SetCompressors()
