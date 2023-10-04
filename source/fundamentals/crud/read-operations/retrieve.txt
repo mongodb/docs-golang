@@ -231,7 +231,7 @@ as parameters to the ``FindOne()`` method to perform the following actions:
 
    The {+driver-short+} automatically generates a unique ``ObjectId``
    value for each document's ``_id`` field, so your ``ObjectId`` value
-   will differ from the preceding code example. For more information
+   might differ from the preceding code example. For more information
    about the ``_id`` field, see the :ref:`_id Field <golang-insert-id>`
    section of the Insert a Document page.
 

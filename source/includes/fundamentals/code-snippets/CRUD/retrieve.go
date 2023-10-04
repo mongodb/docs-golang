@@ -114,7 +114,7 @@ func main() {
 		}
 
 		filter := bson.D{{"_id", id}}
-		opts := options.FindOne().SetProjection(bson.D{{"item", 1}, {"rating", 1}})
+		opts := options.FindOne().SetProjection(bson.D{{"date_ordered", 0}, {"rating", 0}})
 
 		var result Review
 		err = coll.FindOne(context.TODO(), filter, opts).Decode(&result)
