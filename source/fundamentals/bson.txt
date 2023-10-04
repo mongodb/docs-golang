@@ -19,9 +19,8 @@ In this guide, you can learn about how the Go Driver handles conversions
 between BSON and Go types. The process of converting a Go type to
 BSON is called **marshalling**, while the reverse process is called **unmarshalling**.
 
-You should read this guide if you want to learn more about how the Go Driver
-represents BSON data or need to adjust default marshalling
-and unmarshalling behaviors.
+The following sections explain how the {+driver-short+} represents BSON data
+and how to adjust default marshalling and unmarshalling behaviors.
 
 .. _golang-bson-types:
 
@@ -213,12 +212,11 @@ Driver will marshal structs using the following rules:
 BSON Options
 ------------
 
-You can set ``BSONOptions`` to specify how
-the driver marshals and unmarshals BSON on your collection, database, or
-client.  
+You can specify a ``BSONOptions`` instance to adjust how the driver marshals
+and unmarshals BSON on your collection, database, or client.  
 
-The following example demonstrates how to set ``BSONOptions`` for 
-the ``movies`` collection:
+The following example uses the ``SetBSONOptions()`` method with a ``BSONOptions``
+parameter to specify a ``ClientOptions`` instance:
 
 .. code-block:: go
    :copyable: false
@@ -226,8 +224,12 @@ the ``movies`` collection:
    bsonOpts := &options.BSONOptions {
        UseJSONStructTags: true,
    }
-   coll := client.Database("sample_mflix")
-       .Collection("movies",bsonOpts)
+
+   clientOpts := options.Client().
+		ApplyURI("mongodb://localhost:27017").
+		SetBSONOptions(bsonOpts)
+
+   client, err := mongo.Connect(context.TODO(), clientOpts)
 
 .. tip::    
 
