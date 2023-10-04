@@ -212,8 +212,15 @@ Driver will marshal structs using the following rules:
 BSON Options
 ------------
 
-You can specify a ``BSONOptions`` instance to adjust how the driver marshals
-and unmarshals BSON on your collection, database, or client.  
+You can specify a ``BSONOptions`` instance to set BSON options on your ``Client``.
+BSON options adjust how the driver marshals and unmarshals BSON data.
+
+This example specifies the following ``BSONOptions`` struct fields:
+
+- ``UseJSONStructTags``, which instructs the driver to use the ``"json"``
+  struct tag if a ``"bson"`` struct tag is not specified
+- ``DefaultDocumentD``, which instructs the driver to always unmarshal documents
+  into the ``primitive.D`` type
 
 The following example uses the ``SetBSONOptions()`` method with a ``BSONOptions``
 parameter to specify a ``ClientOptions`` instance:
@@ -222,6 +229,7 @@ parameter to specify a ``ClientOptions`` instance:
 
    bsonOpts := &options.BSONOptions {
        UseJSONStructTags: true,
+       DefaultDocumentD: true,
    }
 
    clientOpts := options.Client().
