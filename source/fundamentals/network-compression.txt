@@ -4,8 +4,10 @@
 Network Compression
 ===================
 
-You can enable a driver option to compress messages, which reduces the amount
-of data passed over the network between MongoDB and your application.
+This page provides information about **network compression** and the compression
+algorithms supported by the {+driver-short+}. You can enable a driver option
+to compress messages, which reduces the amount of data passed over the network
+between MongoDB and your application.
 
 The {+driver-short+} supports the following compression algorithms:
 
