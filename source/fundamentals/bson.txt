@@ -219,15 +219,14 @@ The following example uses the ``SetBSONOptions()`` method with a ``BSONOptions`
 parameter to specify a ``ClientOptions`` instance:
 
 .. code-block:: go
-   :copyable: false
 
    bsonOpts := &options.BSONOptions {
        UseJSONStructTags: true,
    }
 
    clientOpts := options.Client().
-		ApplyURI("mongodb://localhost:27017").
-		SetBSONOptions(bsonOpts)
+       ApplyURI("mongodb://localhost:27017").
+       SetBSONOptions(bsonOpts)
 
    client, err := mongo.Connect(context.TODO(), clientOpts)
 
