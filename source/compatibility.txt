@@ -18,6 +18,8 @@ The following compatibility table specifies the recommended version of the
 
 The first column lists the driver version.
 
+.. sharedinclude:: dbx/lifecycle-schedule-callout.rst
+
 .. sharedinclude:: dbx/compatibility-table-legend.rst
 
 .. sharedinclude:: dbx/mongodb-compatibility-table-go.rst
