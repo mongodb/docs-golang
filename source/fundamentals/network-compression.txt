@@ -94,3 +94,20 @@ You do not need to add any dependencies to use the Zlib compression
 algorithm. Instead, import the built-in ``zlib`` package by adding ``import 
 "compress/zlib"`` to application files that specify a ``Client`` with
 Zlib compression.
+
+Additional Information
+----------------------
+
+For more information about the concepts in this guide, see the following
+documentation:
+
+- :ref:`golang-connection-uri`
+- :manual:`Connection String Compression Options </reference/connection-string/#compression-options>`
+  in the Server manual
+- `zlib <https://pkg.go.dev/compress/zlib>`__
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+- `SetCompressors() <{+api+}/mongo/options#ClientOptions.SetCompressors>`__
+- `ClientOptions <{+api+}/mongo/options#ClientOptions>`__
