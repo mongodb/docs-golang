@@ -57,10 +57,10 @@ In Go, a **struct** is a collection of data fields with declared data
 types. The {+driver-short+} can marshal/unmarshal structs and other native Go
 types to/from BSON using a `configurable codec system <{+api+}/bson/bsoncodec>`_.
 
-You can modify the default marshalling and unmarshalling behavior of the Go
-Driver using **struct tags**, which are optional pieces of metadata attached
-to struct fields. The most common use of struct tags is for specifying the
-field name in the BSON document that corresponds to the struct field.
+You can modify the default marshalling and unmarshalling behavior of the
+{+driver-short+} using **struct tags**, which are optional pieces of metadata
+attached to struct fields. The most common use of struct tags is for specifying
+the field name in the BSON document that corresponds to the struct field.
 The following table describes the additional struct tags that you can
 use with the {+driver-short+}:
 
