@@ -241,7 +241,7 @@ parameter to specify a ``ClientOptions`` instance:
 .. tip::    
 
    To learn more about the ``BSONOptions`` type, see the
-   `BSONOptions API Documentation <{+api+}/mongo/options#BSONOptions>`__.
+   `BSONOptions API documentation <{+api+}/mongo/options#BSONOptions>`__.
    For an example that configures a ``BSONOptions`` instance, see the
    `API documentation example <{+api+}/mongo#example-Connect-BSONOptions>`__.
 
