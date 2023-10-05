@@ -57,9 +57,9 @@ In Go, a **struct** is a collection of data fields with declared data
 types. The Go Driver can marshal/unmarshal structs and other native Go
 types to/from BSON using a `configurable codec system <{+api+}/bson/bsoncodec>`_.
 
-You can modify the default marshalling and unmarshalling behavior of the Go Driver using
-**struct tags**, which are optional pieces of metadata attached to
-struct fields. The most common use of struct tags is for specifying the
+You can modify the default marshalling and unmarshalling behavior of the Go
+Driver using **struct tags**, which are optional pieces of metadata attached
+to struct fields. The most common use of struct tags is for specifying the
 field name in the BSON document that corresponds to the struct field.
 The following table describes the additional struct tags that you can
 use with the Go Driver:
@@ -94,7 +94,7 @@ Driver will marshal structs using the following rules:
 
 #. The Go Driver only marshals and unmarshals exported fields.
 
-#. The Go Driver generates BSON key using the lowercase of the
+#. The Go Driver generates a BSON key using the lowercase of the
    corresponding struct field.
 
 #. The Go Driver marshals embedded struct fields as subdocuments.
@@ -293,9 +293,8 @@ operation:
 The ``Cursor`` type also uses the ``All()`` method, which unmarshals all
 documents stored in the cursor into an array at the same time.
 
-The ``bson`` package includes a family of
-``Marshal()`` and ``Unmarshal()`` methods that work with BSON-encoded data
-of ``[]byte`` type.
+The ``bson`` package includes a family of ``Marshal()`` and ``Unmarshal()``
+methods that work with BSON-encoded data of ``[]byte`` type.
 
 The following code demonstrates how you can unmarshal BSON back into a
 user-defined struct by using methods from the ``bson`` package:
