@@ -20,9 +20,9 @@ The {+driver-short+} supports the following compression algorithms:
 If you specify multiple compression algorithms, the driver selects the
 first one in the list supported by your MongoDB deployment.
 
-If you use the Snappy or Zstandard compression algorithm, you must add explicit
-dependencies. For more information, see the :ref:`compression-dependencies` section
-of this guide.
+You must add dependencies to use the Snappy or Zstandard compression algorithm.
+For more information, see the :ref:`compression-dependencies` section of this
+guide.
 
 .. _enable-compression:
 
@@ -33,7 +33,7 @@ You can enable compression for the connection to your MongoDB deployment
 by specifying the algorithms in one of two ways: 
 
 - Set the compression algorithm in your connection string.
-- Set the compression algorithm in a ``ClientOptions``  instance.
+- Set the compression algorithm in a ``ClientOptions`` instance.
 
 .. tabs::
 
@@ -90,10 +90,13 @@ following code:
 
    go get -u github.com/klauspost/compress
 
-You do not need to add any dependencies to use the Zlib compression
-algorithm. Instead, import the built-in ``zlib`` package by adding ``import 
-"compress/zlib"`` to application files that specify a ``Client`` with
-Zlib compression.
+To add the Zlib compression algorithm to your application, import the built-in
+``zlib`` package. You must add the following import statement to application files
+that instantiate a ``Client`` with Zlib compression:
+
+.. code-block:: go
+
+   import "compress/zlib"
 
 Additional Information
 ----------------------
@@ -101,10 +104,10 @@ Additional Information
 For more information about the concepts in this guide, see the following
 documentation:
 
-- :ref:`golang-connection-uri`
+- :ref:`golang-connection-uri` in the Connection Guide
 - :manual:`Connection String Compression Options </reference/connection-string/#compression-options>`
   in the Server manual
-- `zlib <https://pkg.go.dev/compress/zlib>`__
+- `The zlib package <https://pkg.go.dev/compress/zlib>`__ Go documentation
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
