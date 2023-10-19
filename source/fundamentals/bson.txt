@@ -20,7 +20,7 @@ between BSON and Go types. The process of converting a Go type to
 BSON is called **marshalling**, while the reverse process is called **unmarshalling**.
 
 The following sections explain how the {+driver-short+} represents BSON data
-and how to adjust default marshalling and unmarshalling behaviors.
+and how you can adjust default marshalling and unmarshalling behaviors.
 
 .. _golang-bson-types:
 
@@ -37,7 +37,7 @@ The {+driver-short+} provides four main types for working with BSON data:
 - ``A``: An ordered representation of a BSON array
 - ``E``: A single element inside a D type
 
-The following example demonstrates how to construct a query filter using the
+The following example demonstrates how to construct a query filter by using the
 ``bson.D`` type to match documents with a ``quantity`` field value greater
 than 100:
 
@@ -55,7 +55,7 @@ Struct Tags
 
 In Go, a **struct** is a collection of data fields with declared data
 types. The {+driver-short+} can marshal and unmarshal structs and other native Go
-types to and from BSON using a `configurable codec system <{+api+}/bson/bsoncodec>`_.
+types to and from BSON by using a `configurable codec system <{+api+}/bson/bsoncodec>`_.
 
 You can modify the default marshalling and unmarshalling behavior of the
 {+driver-short+} by using **struct tags**, which are optional pieces of metadata
@@ -94,7 +94,7 @@ the following rules:
 
 #. The driver only marshals and unmarshals exported fields.
 
-#. The driver generates a BSON key using the lowercase of the
+#. The driver generates a BSON key by using the lowercase of the
    corresponding struct field.
 
 #. The driver marshals embedded struct fields as subdocuments. Each key
@@ -212,18 +212,20 @@ the following rules:
 BSON Options
 ------------
 
-You can create a ``BSONOptions`` instance to set BSON options on your ``Client``.
-BSON options adjust how the driver marshals and unmarshals BSON data.
+You can create a ``BSONOptions`` instance to set BSON options on your ``Client``
+instance. BSON options adjust how the driver marshals and unmarshals BSON data.
 
-This example performs the follow actions when configuring a ``BSONOptions`` instance:
+This example performs the following actions to set BSON options on a ``Client``:
 
-- Sets the ``UseJSONStructTags`` field to ``true``, which instructs the driver
-  to use the ``"json"`` struct tag if a ``"bson"`` struct tag is not specified.
-- Sets the ``DefaultDocumentD`` field to ``true``, which instructs the driver
-  to always unmarshal documents into the ``primitive.D`` type.
+- Creates a ``BSONOptions`` instance by configuring the following settings:
+  
+  - Sets the ``UseJSONStructTags`` field to ``true``, which instructs the driver
+    to use the ``"json"`` struct tag if a ``"bson"`` struct tag is not specified
+  - Sets the ``DefaultDocumentD`` field to ``true``, which instructs the driver
+    to always unmarshal documents into the ``primitive.D`` type
 
-The following example uses the ``SetBSONOptions()`` method with a ``BSONOptions``
-parameter to specify a ``ClientOptions`` instance:
+- Passes the ``BSONOptions`` instance to the ``SetBSONOptions()`` method to specify
+  a ``ClientOptions`` instance
 
 .. code-block:: go
 
