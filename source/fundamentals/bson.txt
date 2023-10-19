@@ -212,10 +212,10 @@ the following rules:
 BSON Options
 ------------
 
-You can create a ``BSONOptions`` instance to set BSON options on your ``Client``
-instance. BSON options adjust how the driver marshals and unmarshals BSON data.
+You can create a ``BSONOptions`` instance to set BSON options on your ``Client``.
+BSON options adjust how the driver marshals and unmarshals BSON data.
 
-This example performs the following actions to set BSON options on a ``Client``:
+This example performs the following actions:
 
 - Creates a ``BSONOptions`` instance by configuring the following settings:
   
@@ -224,8 +224,9 @@ This example performs the following actions to set BSON options on a ``Client``:
   - Sets the ``DefaultDocumentD`` field to ``true``, which instructs the driver
     to always unmarshal documents into the ``primitive.D`` type
 
-- Passes the ``BSONOptions`` instance to the ``SetBSONOptions()`` method to specify
+- Passes the ``BSONOptions`` instance to the ``SetBSONOptions()`` helper method to specify
   a ``ClientOptions`` instance
+- Creates a ``Client`` to apply the specified BSON marshalling and unmarshalling behavior
 
 .. code-block:: go
 
