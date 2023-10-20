@@ -54,11 +54,8 @@ Struct Tags
 -----------
 
 In Go, a **struct** is a collection of data fields with declared data
-types. The {+driver-short+} can marshal and unmarshal structs and other native Go
-types to and from BSON by using a `configurable codec system <{+api+}/bson/bsoncodec>`_.
-
-You can modify the default marshalling and unmarshalling behavior of the
-{+driver-short+} by using **struct tags**, which are optional pieces of metadata
+types. You can modify the default marshalling and unmarshalling behavior of
+a struct field by using **struct tags**, which are optional pieces of metadata
 attached to struct fields. The most common use of struct tags is for specifying
 the field name in the BSON document that corresponds to the struct field.
 The following table describes the additional struct tags that you can
@@ -212,17 +209,18 @@ the following rules:
 BSON Options
 ------------
 
-You can create a ``BSONOptions`` instance to set BSON options on your ``Client``.
-BSON options adjust how the driver marshals and unmarshals BSON data.
-
+You can specify BSON options to adjust the marshalling and unmarshalling behavior of
+your ``Client`` instance. To set BSON options on your ``Client``, create and configure
+a ``BSONOptions`` instance.
+ 
 This example performs the following actions:
 
 - Creates a ``BSONOptions`` instance by configuring the following settings:
   
   - Sets the ``UseJSONStructTags`` field to ``true``, which instructs the driver
     to use the ``"json"`` struct tag if a ``"bson"`` struct tag is not specified
-  - Sets the ``DefaultDocumentD`` field to ``true``, which instructs the driver
-    to always unmarshal documents into the ``primitive.D`` type
+  - Sets the ``OmitZeroStruct`` field to ``true``, which instructs the driver
+    to marshal ``nil`` Go slices as empty BSON arrays
 
 - Passes the ``BSONOptions`` instance to the ``SetBSONOptions()`` helper method to specify
   a ``ClientOptions`` instance
@@ -232,7 +230,7 @@ This example performs the following actions:
 
    bsonOpts := &options.BSONOptions {
        UseJSONStructTags: true,
-       DefaultDocumentD: true,
+       OmitZeroStruct: true,
    }
 
    clientOpts := options.Client().
