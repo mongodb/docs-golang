@@ -14,8 +14,8 @@ import (
 func main() {
 
 	caFile := "<path to CA certificate>"
-    certFile := "<path to public client certificate>"
-    keyFile := "<path to private client key>"
+	certFile := "<path to public client certificate>"
+	keyFile := "<path to private client key>"
 
 	// Load CA certificate file
 	caCert, err := os.ReadFile(caFile)
@@ -31,11 +31,11 @@ func main() {
 		log.Fatal(err)
 	}
 
-    // Instantiate a Config
-    tlsConfig := &tls.Config{
+	// Instantiate a Config
+	tlsConfig := &tls.Config{
 		RootCAs:      caCertPool,
-    	Certificates: []tls.Certificate{cert},
-    }
+		Certificates: []tls.Certificate{cert},
+	}
 
 	uri := "<connection string>"
 	opts := options.Client().ApplyURI(uri).SetTLSConfig(tlsConfig)

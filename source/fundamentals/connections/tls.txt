@@ -182,7 +182,7 @@ following actions:
 Additional Information
 ----------------------
 
-To learn about enabling TLS on a connection, see the
+To learn more about enabling TLS on a connection, see the
 following Server manual documentation:
 
 - :manual:`TLS/SSL (Transport Encryption) </core/security-transport-encryption/>`
