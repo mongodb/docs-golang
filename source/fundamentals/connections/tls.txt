@@ -33,7 +33,7 @@ You can enable TLS on a connection to your MongoDB instance
 in the following ways:
 
 - Setting the ``tls`` option to ``true`` in your connection string
-- Passing an empty ``tls.Config`` struct to the ``SetTLSConfig()``
+- Passing an empty ``Config`` struct to the ``SetTLSConfig()``
   method when creating a ``ClientOptions`` instance
 
 .. tabs::
@@ -56,7 +56,7 @@ in the following ways:
 
       A ``Client`` instance can connect with TLS if you set the
       ``TLSConfig`` field of a ``ClientOptions`` instance to an empty
-      ``tls.Config`` struct:
+      ``Config`` struct:
       
       .. code-block:: go
          :emphasize-lines: 2
@@ -71,7 +71,7 @@ in the following ways:
    the ``+srv`` modification in your connection string, you enable
    TLS on your connection by default.
 
-Within your ``tls.Config`` instance, you can set additional
+Within your ``Config`` instance, you can set additional
 options to configure TLS on your connection. For **testing purposes**,
 you can set the ``InsecureSkipVerify`` field to ``true``.
 
@@ -138,126 +138,51 @@ a connection with TLS:
 Reference Certificates in a Client
 ----------------------------------
 
-You must reference your certificates in your ``MongoClientOptions``
+You must reference your certificates in your ``ClientOptions``
 object so that the server can validate them before the client connects.
-You can reference your certificates in the following ways:
-
-- Create a ``tls.Config`` struct to store certificates *(Recommended)*
-- Provide filepath strings of your certificates in your
-  connection string options
-
-.. _golang-tls-config-struct:
-
-Create a tls.Config Struct to Store Certificates
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 We recommend that you set the ``TLSConfig`` field of your
-``ClientOptions`` instance to a ``tls.Config`` struct to configure your
-TLS connection. ``tls.Config`` structs are native to Go and allow you to keep
+``ClientOptions`` instance to a ``Config`` struct to configure your
+TLS connection. ``Config`` structs are native to Go and allow you to keep
 all your TLS options in a single reusable object.
 
-To create a ``tls.Config`` object, import the ``crypto/tls`` package.
-Next, create a ``tls.Config`` struct instance and set the relevant
-struct fields for your configuration.
+To create a ``Config`` instance, import the ``crypto/tls`` and
+``crypto/x509`` packages. Next, create a ``Config`` struct instance and
+set the relevant struct fields for your configuration.
 
-The following code shows how to create a ``SecureContext`` object and
-pass it to your client:
+To learn more about the ``Config`` struct and the
+``tls`` package, see the `tls.Config API documentation
+<https://pkg.go.dev/crypto/tls#Config>`__.
 
-.. code-block:: js
-   :emphasize-lines: 2-6, 9
-   
-   // Create a SecureContext object
-   const secureContext = tls.createSecureContext({
-     ca: fs.readFileSync(`<path to CA certificate>`),
-     cert: fs.readFileSync(`<path to public client certificate>`),
-     key: fs.readFileSync(`<path to private client key>`),
-   });
-   
-   // Pass the SecureContext as a client option
-   const client = new MongoClient(uri, { tls: true, secureContext });
+.. _node-tls-config-full-example:
 
-To learn more about the ``createSecureContext()`` method and the
-``tls`` package, see the `Node.js TLS API documentation
-<https://nodejs.org/api/tls.html#tlscreatesecurecontextoptions>`__.
+Example
+~~~~~~~
 
-For a runnable example that uses a ``SecureContext`` object, see
-the :ref:`SecureContext Example <node-securecontext-full-example>`.
+This example shows how to create a ``Config`` instance and
+a ``Client`` instance that includes TLS options by performing the
+following actions:
 
-.. _node-tls-filepaths:
+1. Creating variables to reference the certificate filepaths
 
-Provide Certificate Filepaths
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#. Creating a CA file pool by using the ``x509.NewCertPool()`` method
+   and appending the contents of the CA file
 
-You can include the filepaths for your certificates as client options to
-retrieve your certificates while connecting with TLS. The driver reads
-these files when you call the ``connect()`` method on your
-``MongoClient`` instance.
+#. Loading the client certificate files by using the
+   ``tls.LoadX509KeyPair()`` method
 
-The following code shows how to provide certificate filepaths as options
-in your ``MongoClient``:
+#. Instantiating a ``Config`` struct and setting the ``RootCAs`` and
+   ``Certificates`` fields
 
-.. code-block:: js
-   :emphasize-lines: 4-5
-   
-   // Pass filepaths as client options
-   const client = new MongoClient(uri, {
-     tls: true,
-     tlsCAFile: `<path to CA certificate>`,
-     tlsCertificateKeyFile: `<path to private client key>`,
-   });
+#. Passing the ``Config`` instance to the ``SetTLSConfig()`` method to
+   set the ``TLSConfig`` field of the ``ClientOptions``
 
-.. note:: CRL Files
-   
-   Your TLS configuration might require that you present a certificate
-   revocation list (CRL) when connecting to MongoDB. Starting in version
-   6.0 of the driver, you can pass the filepath of your CRL file to the
-   ``tlsCRLFile`` option in your connection string or your
-   ``MongoClientOptions`` instance.
-
-.. _node-securecontext-full-example:
-
-SecureContext Example
----------------------
-
-This example shows how to create a ``SecureContext`` object and
-a ``MongoClient`` instance that includes TLS options. The example
-connects to MongoDB and executes a find query:
-
-.. code-block:: js
-   
-   import { MongoClient } from "mongodb";
-   import * as fs from "fs";
-   import * as tls from "tls";
-   
-   // Replace the uri string with your connection string.
-   const uri = "<connection uri>";
-   
-   // Replace the filepaths with your certificate filepaths.
-   const secureContext = tls.createSecureContext({
-     ca: fs.readFileSync(`<path to CA certificate>`),
-     cert: fs.readFileSync(`<path to public client certificate>`),
-     key: fs.readFileSync(`<path to private client key>`),
-   });
-   
-   // Create a client with the secureContext option
-   const client = new MongoClient(uri, { tls: true, secureContext });
-   
-   async function run() {
-     try {
-       const db = client.db("myDB");
-       const myColl = db.collection("myColl");
-       const doc = await myColl.findOne({});   
-       console.log(doc);
-     } finally {
-       await client.close();
-     }
-   }
-   run().catch(console.dir);
+.. literalinclude:: /includes/fundamentals/code-snippets/tls.go
+   :language: go
 
 Additional Information
 ----------------------
 
-For more information about enabling TLS on a connection, see the
+To learn about enabling TLS on a connection, see the
 following Server manual documentation:
 
 - :manual:`TLS/SSL (Transport Encryption) </core/security-transport-encryption/>`
@@ -266,13 +191,5 @@ following Server manual documentation:
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-- `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
-- `MongoClient <{+api+}/classes/MongoClient.html>`__
-- `tlsAllowInvalidHostnames client option <{+api+}/interfaces/MongoClientOptions.html#tlsAllowInvalidHostnames>`__
-- `tlsAllowInvalidCertificates client option <{+api+}/interfaces/MongoClientOptions.html#tlsAllowInvalidCertificates>`__
-- `secureContext client option <{+api+}/interfaces/MongoClientOptions.html#secureContext>`__
-- `tlsCAFile client option <{+api+}/interfaces/MongoClientOptions.html#tlsCAFile>`__
-- `tlsCertificateKeyFile client option <{+api+}/interfaces/MongoClientOptions.html#tlsCertificateKeyFile>`__
-- `ca client option <{+api+}/interfaces/MongoClientOptions.html#ca>`__
-- `cert client option <{+api+}/interfaces/MongoClientOptions.html#cert>`__
-- `key client option <{+api+}/interfaces/MongoClientOptions.html#key>`__
+- `ClientOptions <{+api+}/mongo/options#ClientOptions>`__
+- `SetTLSConfig() <{+api+}/mongo/options#ClientOptions.SetTLSConfig>`__
