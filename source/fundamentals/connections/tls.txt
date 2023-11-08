@@ -152,7 +152,7 @@ set the relevant struct fields for your configuration.
 To learn more about the ``Config`` struct, see the `tls.Config API
 documentation <https://pkg.go.dev/crypto/tls#Config>`__.
 
-.. _node-tls-config-full-example:
+.. _golang-tls-config-full-example:
 
 Example
 ~~~~~~~
