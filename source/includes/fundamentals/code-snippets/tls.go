@@ -4,7 +4,6 @@ import (
 	"context"
 	"crypto/tls"
 	"crypto/x509"
-	"log"
 	"os"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -20,7 +19,7 @@ func main() {
 	// Load CA certificate file
 	caCert, err := os.ReadFile(caFile)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 	caCertPool := x509.NewCertPool()
 	caCertPool.AppendCertsFromPEM(caCert)
@@ -28,7 +27,7 @@ func main() {
 	// Load client certificate files
 	cert, err := tls.LoadX509KeyPair(certFile, keyFile)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	// Instantiate a Config

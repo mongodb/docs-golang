@@ -22,7 +22,7 @@ the TLS option and provide your certificates for validation.
 .. tip::
    
    To learn more about TLS, see the Wikipedia entry on
-   :wikipedia:`Transport Layer Security <Transport_Layer_Security>`.
+   :wikipedia:`Transport Layer Security <w/index.php?title=Transport_Layer_Security&oldid=1184063676>`.
 
 .. _golang-enable-tls:
 
@@ -131,7 +131,7 @@ a connection with TLS:
 .. tip::
    
    To learn more about the PEM format, see the Wikipedia entry on
-   :wikipedia:`Privacy-Enhanced Mail <Privacy-Enhanced_Mail>`.
+   :wikipedia:`Privacy-Enhanced Mail <w/index.php?title=Privacy-Enhanced_Mail&oldid=1184023212>`.
 
 .. _golang-client-tls-connect:
 
@@ -149,9 +149,8 @@ To create a ``Config`` instance, import the ``crypto/tls`` and
 ``crypto/x509`` packages. Next, create a ``Config`` struct instance and
 set the relevant struct fields for your configuration.
 
-To learn more about the ``Config`` struct and the
-``tls`` package, see the `tls.Config API documentation
-<https://pkg.go.dev/crypto/tls#Config>`__.
+To learn more about the ``Config`` struct, see the `tls.Config API
+documentation <https://pkg.go.dev/crypto/tls#Config>`__.
 
 .. _node-tls-config-full-example:
 
@@ -191,5 +190,10 @@ following Server manual documentation:
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
+To learn more about the methods and types mentioned in this
+guide, see the following API documentation:
+
 - `ClientOptions <{+api+}/mongo/options#ClientOptions>`__
 - `SetTLSConfig() <{+api+}/mongo/options#ClientOptions.SetTLSConfig>`__
+- `tls package <https://pkg.go.dev/crypto/tls>`__
+- `x509 package <https://pkg.go.dev/crypto/x509>`__
