@@ -1,8 +1,15 @@
 .. _golang-tls:
 
-==========================
-Enable TLS on a Connection
-==========================
+========================
+Enable and Configure TLS
+========================
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: code example, security, connection options
 
 .. contents:: On this page
    :local:
@@ -13,11 +20,26 @@ Enable TLS on a Connection
 Overview
 --------
 
-In this guide, you can learn how to connect to MongoDB instances with
-the TLS security protocol.
+In this guide, you can learn how to use the TLS protocol to secure 
+your connection to a MongoDB deployment. To configure your connection to
+use TLS, enable the TLS option and provide your certificates for
+validation when creating a client.
 
-To configure your connection to use TLS, enable
-the TLS option and provide your certificates for validation.
+This guide includes the following sections:
+
+- :ref:`Enable TLS <golang-enable-tls>` describes ways to enable TLS on
+  your connection
+
+- :ref:`Configure Certificates <golang-configure-tls-certificates>`
+  describes the certificates required to configure TLS
+
+- :ref:`Reference Certificates in a Client <golang-client-tls-connect>`
+  provides an example of how to create a ``Config`` struct to configure your
+  TLS options
+
+- :ref:`Additional Information <golang-tls-addtl-info>`
+  provides links to resources and API documentation for types
+  and methods mentioned in this guide
 
 .. tip::
    
@@ -30,19 +52,19 @@ Enable TLS
 ----------
 
 You can enable TLS on a connection to your MongoDB instance
-in the following ways:
+in one of the following ways:
 
 - Setting the ``tls`` option to ``true`` in your connection string
 - Passing an empty ``Config`` struct to the ``SetTLSConfig()``
   method when creating a ``ClientOptions`` instance
 
+Select from the following :guilabel:`Connection String` and
+:guilabel:`ClientOptions` tabs to see a corresponding code sample:
+
 .. tabs::
 
    .. tab:: Connection String
       :tabid: connection string tls true
-
-      A ``Client`` instance can connect with TLS if you set the
-      ``tls`` option to ``true`` in your connection string:
 
       .. code-block:: go
          :emphasize-lines: 1
@@ -53,10 +75,6 @@ in the following ways:
 
    .. tab:: ClientOptions
       :tabid: clientoptions tls true
-
-      A ``Client`` instance can connect with TLS if you set the
-      ``TLSConfig`` field of a ``ClientOptions`` instance to an empty
-      ``Config`` struct:
       
       .. code-block:: go
          :emphasize-lines: 2
@@ -67,23 +85,9 @@ in the following ways:
 
 .. note::
    
-   If you use a DNS SRV record when connecting to MongoDB by specifying
-   the ``+srv`` modification in your connection string, you enable
-   TLS on your connection by default.
-
-Within your ``Config`` instance, you can set optional
-fields to configure TLS on your connection. For **testing purposes**,
-you can set the ``InsecureSkipVerify`` field to ``true``.
-
-Setting the ``InsecureSkipVerify`` field to ``true`` disables
-both certificate and hostname validation.
-   
-.. warning::
-
-   Specifying this option in a production environment makes
-   your application insecure and potentially
-   vulnerable to expired certificates and foreign processes posing
-   as valid client instances.
+   If your connection string uses a use a DNS SRV record by including
+   the ``mongodb+srv`` prefix, TLS is enabled on your connection by
+   default.
 
 For a full list of client options, see :ref:`golang-connection-options`.
 
@@ -92,19 +96,18 @@ For a full list of client options, see :ref:`golang-connection-options`.
 Configure Certificates
 ----------------------
 
-To successfully initiate a TLS request, an application must prove its
-identity by referencing cryptographic certificates. To connect to
-MongoDB with TLS, your certificates must be stored as PEM
-files.
+To successfully initiate a TLS request, your application must present 
+cryptographic certificates to prove its identity. Your application's
+certificates must be stored as PEM files to enable TLS when connecting.
 
 .. important::
 
-   For production use, we recommend that your MongoDB deployment uses valid
+   For production use, we recommend that your MongoDB deployment use valid
    certificates generated and signed by the same certificate authority.
-   For testing, it can use self-signed certificates.
+   For testing, your deployment can use self-signed certificates.
 
-The following list describes the components needed to establish
-a connection with TLS:
+The following list describes the components that your client must
+present to establish a TLS-enabled connection:
 
 .. list-table::
    :header-rows: 1
@@ -118,7 +121,7 @@ a connection with TLS:
        trust when making a TLS connection.
 
    * - Client Certificate
-     - A digital certificate and a key that allows the server to verify the identity
+     - A digital certificate that allows the server to verify the identity
        of your application to establish an encrypted network connection.
 
    * - Certificate Key
@@ -127,11 +130,6 @@ a connection with TLS:
 
    * - Passphrase
      - The password to decrypt the private client key if it is encrypted.
-
-.. tip::
-   
-   To learn more about the PEM format, see the Wikipedia entry on
-   :wikipedia:`Privacy-Enhanced Mail <w/index.php?title=Privacy-Enhanced_Mail&oldid=1184023212>`.
 
 .. _golang-client-tls-connect:
 
@@ -149,6 +147,20 @@ To create a ``Config`` instance, import the ``crypto/tls`` and
 ``crypto/x509`` packages. Next, create a ``Config`` struct instance and
 set the relevant struct fields for your configuration.
 
+Within your ``Config`` instance, you can set optional
+fields to configure TLS on your connection. For **testing purposes**,
+you can set the ``InsecureSkipVerify`` field to ``true``.
+   
+.. warning::
+
+   Setting the ``InsecureSkipVerify`` field to ``true`` disables
+   both certificate and hostname validation.
+   
+   Specifying this option in a production environment makes
+   your application insecure and potentially
+   vulnerable to expired certificates and foreign processes posing
+   as valid client instances.
+
 To learn more about the ``Config`` struct, see the `tls.Config API
 documentation <https://pkg.go.dev/crypto/tls#Config>`__.
 
@@ -157,26 +169,27 @@ documentation <https://pkg.go.dev/crypto/tls#Config>`__.
 Example
 ~~~~~~~
 
-This example shows how to create a ``Config`` instance and
-a ``Client`` instance that includes TLS options by performing the
-following actions:
+This example performs the following actions to create a ``Config``
+instance and a ``Client`` instance that includes the TLS options:
 
-1. Creating variables to reference the certificate filepaths
+1. Creates variables to reference the certificate filepaths
 
-#. Creating a CA file pool by using the ``x509.NewCertPool()`` method
-   and appending the contents of the CA file
+#. Creates a CA file pool by using the ``x509.NewCertPool()`` method
+   and appends the contents of the CA file
 
-#. Loading the client certificate files by using the
+#. Loads the client certificate files by using the
    ``tls.LoadX509KeyPair()`` method
 
-#. Instantiating a ``Config`` struct and setting the ``RootCAs`` and
+#. Instantiates a ``Config`` struct and sets the ``RootCAs`` and
    ``Certificates`` fields
 
-#. Passing the ``Config`` instance to the ``SetTLSConfig()`` method to
+#. Passes the ``Config`` instance to the ``SetTLSConfig()`` method to
    set the ``TLSConfig`` field of the ``ClientOptions``
 
 .. literalinclude:: /includes/fundamentals/code-snippets/tls.go
    :language: go
+
+.. _golang-tls-addtl-info:
 
 Additional Information
 ----------------------

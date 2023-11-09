@@ -23,9 +23,9 @@ Overview
 Learn how to use the {+driver-short+} to configure your application's
 connection to a MongoDB deployment in the following sections:
 
-- :ref:`Connection Guide <golang-connection-guide>`
-- :ref:`Enable Network Compression <golang-network-compression>`
-- :ref:`Enable TLS on a Connection <golang-tls>`
+- :ref:`golang-connection-guide`
+- :ref:`golang-network-compression`
+- :ref:`golang-tls`
 - :atlas:`Connect to MongoDB Atlas from AWS Lambda </manage-connections-aws-lambda/>`
 
 To learn how to authenticate to MongoDB, see the following pages:
