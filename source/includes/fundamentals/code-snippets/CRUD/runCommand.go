@@ -30,7 +30,7 @@ func main() {
 	}()
 
 	// start-runcommand
-	db := client.Database("plants")
+	db := client.Database("db")
 	countCommand := bson.D{{"count", "flowers"}}
 	explainCommand := bson.D{{"explain", countCommand}, {"verbosity", "queryPlanner"}}
 

@@ -14,14 +14,14 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// start-review-struct
-type Review struct {
+// start-tea-struct
+type Tea struct {
 	Item        string    `bson:"item,omitempty"`
 	Rating      int32     `bson:"rating,omitempty"`
 	DateOrdered time.Time `bson:"date_ordered,omitempty"`
 }
 
-// end-review-struct
+// end-tea-struct
 
 func main() {
 	var uri string
@@ -41,7 +41,7 @@ func main() {
 	}()
 
 	// begin insert docs
-	coll := client.Database("tea").Collection("reviews")
+	coll := client.Database("db").Collection("tea")
 	docs := []interface{}{
 		Review{Item: "Masala", Rating: 10, DateOrdered: time.Date(2009, 11, 17, 0, 0, 0, 0, time.Local)},
 		Review{Item: "Sencha", Rating: 7, DateOrdered: time.Date(2009, 11, 18, 0, 0, 0, 0, time.Local)},

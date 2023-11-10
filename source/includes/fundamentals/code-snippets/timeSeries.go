@@ -29,10 +29,10 @@ func main() {
 		}
 	}()
 
-	client.Database("spring_weather").Collection("temperature").Drop(context.TODO())
+	client.Database("db").Collection("temperature").Drop(context.TODO())
 
 	// begin create ts coll
-	db := client.Database("spring_weather")
+	db := client.Database("db")
 	tso := options.TimeSeries().SetTimeField("temperature")
 	opts := options.CreateCollection().SetTimeSeriesOptions(tso)
 
@@ -42,7 +42,7 @@ func main() {
 	// begin check ts coll
 	command := bson.D{{"listCollections", 1}}
 	var result bson.M
-	
+
 	commandErr := db.RunCommand(context.TODO(), command).Decode(&result)
 	if commandErr != nil {
 		panic(commandErr)

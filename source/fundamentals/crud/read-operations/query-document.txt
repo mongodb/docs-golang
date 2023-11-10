@@ -51,7 +51,7 @@ Sample Data
 ~~~~~~~~~~~
 
 The examples in this section use the following ``Tea`` struct as a model for documents
-in the ``ratings`` collection:
+in the ``tea`` collection:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/query.go
    :start-after: start-tea-struct
@@ -62,9 +62,8 @@ in the ``ratings`` collection:
 The ``omitempty`` :ref:`struct tag<golang-struct-tags>` omits the corresponding 
 field from the inserted document when left empty.
 
-To run the examples in this guide, load the sample data into the
-``tea.ratings`` collection with the following
-snippet:
+To run the examples in this guide, load the sample data into the ``tea`` collection in
+the ``db`` database with the following snippet:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/query.go
    :language: go

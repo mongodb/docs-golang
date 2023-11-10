@@ -79,7 +79,7 @@ Example
 The following example performs a ``Find()`` operation with the following
 behavior:
 
-- Sorts results in ascending order on the ``enrollment`` field
+- Sorts the results in ascending order on the ``enrollment`` field
 - Skips the first two documents
 
 .. io-code-block::
@@ -122,7 +122,7 @@ Example
 The following example performs an ``Aggregate()`` operation with the following
 behavior:
 
-- Sorts results in descending order on the ``enrollment`` field
+- Sorts the results in descending order on the ``enrollment`` field
 - Skips the first document
 
 .. io-code-block::

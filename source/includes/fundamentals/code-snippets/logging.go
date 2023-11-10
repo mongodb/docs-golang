@@ -54,7 +54,7 @@ func standardLogging(uri string) {
 		Name string
 	}
 
-	coll := client.Database("testDB").Collection("testColl")
+	coll := client.Database("db").Collection("testColl")
 	_, err = coll.InsertOne(context.TODO(), Item{Name: "grapefruit"})
 	// end-insert
 
@@ -117,7 +117,7 @@ func customLogging(uri string) {
 		Name string
 	}
 
-	coll := client.Database("testDB").Collection("testColl")
+	coll := client.Database("db").Collection("testColl")
 	_, err = coll.InsertOne(context.TODO(), Item{Name: "grapefruit"})
 	if err != nil {
 		panic(err)
@@ -162,7 +162,7 @@ func thirdPartyLogging(uri string) {
 		Name string
 	}
 
-	coll := client.Database("testDB").Collection("testColl")
+	coll := client.Database("db").Collection("testColl")
 	docs := []interface{}{
 		Item{Name: "starfruit"},
 		Item{Name: "kiwi"},
