@@ -18,6 +18,7 @@ What's New
 
 Learn what's new in:
 
+* :ref:`Version 1.13 <version-1.13>`
 * :ref:`Version 1.12.1 <version-1.12.1>`
 * :ref:`Version 1.12 <version-1.12>`
 * :ref:`Version 1.11 <version-1.11>`
@@ -32,6 +33,30 @@ Learn what's new in:
 * :ref:`Version 1.2 <version-1.2>`
 * :ref:`Version 1.1 <version-1.1>`
 * :ref:`Version 1.0 <version-1.0>`
+
+.. _version-1.13:
+
+What's New in 1.13
+------------------
+
+The 1.13 {+driver-short+} release includes the following improvements and fixes:
+
+- Logging for server selection and SDAM. See the :ref:`golang-logging` documentation
+  for more information about logging.
+
+- Methods on the ``mongo.Collection`` type for managing search indexes programmatically.
+
+- The ``event.CommandStartedEvent`` and ``event.CommandFinishedEvent`` events return
+  the ``DatabaseName`` field. This field is also included in the command-logging analogs.
+
+- In a sharded topology, when selecting a server to retry a failing query, the driver
+  excludes the server used for the initial failed attempt. Instead, if there's more than
+  one eligible ``mongos`` instance, the driver randomly selects one. Unhealthy instances
+  are automatically excluded from selection. 
+
+- Streaming SDAM is disabled by default on AWS Lambda and similar function-as-a-service
+  (FaaS) platforms. You can change the monitoring mode by using the
+  ``serverMonitoringMode`` URI option.
 
 .. _version-1.12.1:
 

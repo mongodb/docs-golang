@@ -10,7 +10,7 @@ The first column lists the driver version.
 
    * - Go Driver Version
      - Minimum Go Language Version
-   * - 1.12
+   * - 1.12+
      - 1.13
    * - 1.11
      - 1.13 
