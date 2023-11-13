@@ -85,7 +85,7 @@ Select from the following :guilabel:`Connection String` and
 
 .. note::
    
-   If your connection string uses a use a DNS SRV record by including
+   If your connection string uses a DNS SRV record by including
    the ``mongodb+srv`` prefix, TLS is enabled on your connection by
    default.
 
@@ -170,7 +170,7 @@ Example
 ~~~~~~~
 
 This example performs the following actions to create a ``Config``
-instance and a ``Client`` instance that includes the TLS options:
+instance and a ``Client`` instance with TLS enabled:
 
 1. Creates variables to reference the certificate filepaths
 
