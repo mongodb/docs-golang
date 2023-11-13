@@ -10,6 +10,13 @@ What's New
    :depth: 1
    :class: singlecol
 
+.. facet::
+   :name: genre
+   :values: reference
+ 
+.. meta::
+   :keywords: update, backward compatibility, version
+
 .. tip:: Release Notes
    
    To learn more about changes and updates between versions, you can
