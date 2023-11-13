@@ -22,7 +22,9 @@ func main() {
 		panic(err)
 	}
 	caCertPool := x509.NewCertPool()
-	caCertPool.AppendCertsFromPEM(caCert)
+	if ok := caCertPool.AppendCertsFromPEM(caCert); !ok {
+		panic("expected CA certificates file to be PEM format")
+	}
 
 	// Load client certificate files
 	cert, err := tls.LoadX509KeyPair(certFile, keyFile)
