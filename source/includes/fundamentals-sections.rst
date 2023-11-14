@@ -10,6 +10,7 @@ Fundamentals section:
 - :ref:`Read from and Write to MongoDB <golang-crud>`
 - :ref:`Perform Aggregations <golang-aggregation>`
 - :ref:`Construct Indexes <golang-indexes>`
+- :ref:`Perform Transactions <golang-transactions>`
 - :ref:`Specify Collations to Order Results <golang-collations>`
 - :ref:`Run A Database Command <golang-run-command>`
 - :ref:`Use Driver Events in Your Code <golang-monitoring>`
