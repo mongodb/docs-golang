@@ -21,6 +21,7 @@ Fundamentals
    /fundamentals/monitoring
    /fundamentals/gridfs
    /fundamentals/time-series
+   /fundamentals/encrypt-fields
    /fundamentals/geo
 
 ..
