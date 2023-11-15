@@ -4,7 +4,12 @@
 FAQ
 ===
 
-.. default-domain:: mongodb
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: code example, connection error, question, help
 
 .. contents:: On this page
    :local:

@@ -4,6 +4,13 @@
 Transactions
 ============
 
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: code example, rollback, undo operation
+
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -17,7 +24,7 @@ In this guide, you can learn how to use **transactions** with the
 {+driver-long+}. :manual:`Transactions </core/transactions/>` allow you
 to run a series of operations that do not change any data until the
 transaction is committed. If any operation in the transaction fails, the 
-driver aborts the transaction and discards all data changes before they
+driver cancels the transaction and discards all data changes before they
 ever become visible.
 
 In MongoDB, transactions run within logical **sessions**. A

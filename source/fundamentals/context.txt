@@ -4,7 +4,12 @@
 Context
 =======
 
-.. default-domain:: mongodb
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: code example, unblock
 
 .. contents:: On this page
    :local:
