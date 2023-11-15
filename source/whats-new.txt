@@ -49,7 +49,7 @@ What's New in 1.13
 The 1.13 {+driver-short+} release includes the following improvements and fixes:
 
 - Logging for server selection and SDAM. To learn more about logging, see the
-  :ref:`golang-logging` documentation for more information about logging.
+  :ref:`golang-logging` documentation.
 
 - Methods on the ``Collection`` type that allow you to manage search indexes programmatically.
 
@@ -62,7 +62,7 @@ The 1.13 {+driver-short+} release includes the following improvements and fixes:
   are automatically excluded from selection. 
 
 - Streaming SDAM is disabled by default on AWS Lambda and similar function-as-a-service
-  (FaaS) platforms. You can change the monitoring mode by using the
+  (FaaS) platforms. You can enable monitoring by using the
   ``serverMonitoringMode`` URI option.
 
 .. _version-1.12.1:
