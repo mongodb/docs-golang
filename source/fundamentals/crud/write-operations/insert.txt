@@ -4,7 +4,12 @@
 Insert a Document
 =================
 
-.. default-domain:: mongodb
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: code example, write operation, add data
 
 .. contents:: On this page
    :local:

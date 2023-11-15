@@ -4,7 +4,12 @@
 Access Data From a Cursor
 =========================
 
-.. default-domain:: mongodb
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: code example, read operation, see results, iterate
 
 .. contents:: On this page
    :local:
