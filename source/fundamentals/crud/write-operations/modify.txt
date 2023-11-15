@@ -41,7 +41,7 @@ The pattern expects you to:
 
 * Specify a query filter to match one or more documents to modify.
 * Specify the field and value changes.
-* Specify options to modify behavior, if necessary.
+* Specify options, if you must modify the method behavior.
 
 The driver provides the following methods to modify documents:
 

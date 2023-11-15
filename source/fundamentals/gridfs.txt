@@ -28,7 +28,7 @@ driver implementation of GridFS is an abstraction that manages the operations
 and organization of the file storage.
 
 Use GridFS if the size of your files exceeds the BSON document size limit of
-16 MB. GridFS is also useful for accessing files without loading the entire file
+16 MB. GridFS also helps you access files without loading the entire file
 into memory. For more detailed information on whether GridFS is suitable for
 your use case, see the :manual:`GridFS server manual page </core/gridfs>`.
 

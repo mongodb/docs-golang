@@ -331,8 +331,8 @@ user-defined struct by using methods from the ``bson`` package:
 .. note::
 
    You can use the ``Raw`` type to retrieve elements from a BSON
-   document byte slice without unmarshalling it to a Go type. This can
-   be useful for looking up individual elements without unmarshalling
+   document byte slice without unmarshalling it to a Go type. This type
+   allows you to look up individual elements without unmarshalling
    the entire BSON document.
 
 To learn more about the marshalling and unmarshalling methods used with the
