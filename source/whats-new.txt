@@ -15,7 +15,7 @@ What's New
    :values: reference
  
 .. meta::
-   :keywords: update, backward compatibility, version
+   :keywords: update, backward compatibility
 
 .. tip:: Release Notes
    
@@ -48,16 +48,16 @@ What's New in 1.13
 
 The 1.13 {+driver-short+} release includes the following improvements and fixes:
 
-- Logging for server selection and SDAM. See the :ref:`golang-logging` documentation
-  for more information about logging.
+- Logging for server selection and SDAM. To learn more about logging, see the
+  :ref:`golang-logging` documentation for more information about logging.
 
-- Methods on the ``mongo.Collection`` type for managing search indexes programmatically.
+- Methods on the ``Collection`` type that allow you to manage search indexes programmatically.
 
 - The ``event.CommandStartedEvent`` and ``event.CommandFinishedEvent`` events return
   the ``DatabaseName`` field. This field is also included in the command-logging analogs.
 
-- In a sharded topology, when selecting a server to retry a failing query, the driver
-  excludes the server used for the initial failed attempt. Instead, if there's more than
+- In a sharded topology, when selecting a server to retry an unsuccessful query, the driver
+  excludes the server used for the initial attempt. Instead, if there's more than
   one eligible ``mongos`` instance, the driver randomly selects one. Unhealthy instances
   are automatically excluded from selection. 
 
