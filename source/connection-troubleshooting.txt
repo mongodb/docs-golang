@@ -110,9 +110,9 @@ are in the correct format.
 
       : / ? # [ ] @
 
-When connecting to a replica set, you should include all of the hosts
-in the replica set in your connection string. Separate each of the hosts
-in the connection string with a comma. This enables the driver to establish a
+When connecting to a replica set, include all of the hosts in the
+replica set in your connection string. Separate each of the hosts in the
+connection string with a comma. This enables the driver to establish a
 connection if one of the hosts is unreachable.
 
 .. _golang-troubleshooting-connection-auth-mechanism:
@@ -183,7 +183,7 @@ information about the authentication database, see
 Configure Firewall
 ------------------
 
-The firewall needs to have an open port for communicating with the MongoDB
+The firewall must have an open port for communicating with the MongoDB
 instance. For more information about configuring the firewall, see
 :ref:`Connection Error <golang-troubleshooting-connection-firewall>`.
 

@@ -31,7 +31,7 @@ MongoDB supports the following compound operations:
 
 .. tip::
     
-   If you need to read and write to more than one document, use
+   If you must read and write to more than one document, use
    :ref:`transactions <golang-transactions>`.
 
 Sample Data
@@ -79,8 +79,8 @@ the specified query filter and deletes it. The method returns a
    ``FindOneAndDelete()`` in that you cannot specify a sort order for the
    matched documents. 
 
-   If you don't need to find and delete a document in a single transaction, you can call 
-   the ``findOne()`` method followed by the ``deleteOne()`` method. 
+   To find and delete a document in separate transactions, call the
+   ``findOne()`` method followed by the ``deleteOne()`` method. 
 
 Modify Behavior
 ~~~~~~~~~~~~~~~
@@ -168,7 +168,7 @@ document.
    ``FindOneAndUpdate()`` in that you cannot specify a sort order for the
    matched documents. 
 
-   If you don't need to find and update a document in a single transaction, you can call 
+   To find and update a document in separate transactions, call 
    the ``findOne()`` method followed by the ``updateOne()`` method. 
  
 Modify Behavior

@@ -83,10 +83,10 @@ out a connection, the method returns a timeout error.
 Connection Establishment
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-The driver might block an method call if it needs to create a new
+The driver might block an method call if it must create a new
 connection.
 
-When the driver needs to create a new connection to execute an
+When the driver must create a new connection to execute an
 operation, the Context sets a timeout for the establishment process. The
 driver sets the timeout to either the Context expiration or connection
 timeout, whichever is shorter.

@@ -43,7 +43,7 @@ instantiating a new client each time.
 
 .. warning::
 
-   You should use a ``Session`` only with the ``Client`` (or associated
+   Use a ``Session`` only with the ``Client`` (or associated
    ``Database`` or ``Collection``) that created it. Using a
    ``Session`` with a different ``Client`` will result in operation
    errors.
@@ -132,7 +132,7 @@ following steps:
    :start-after: start-session
    :end-before: end-session
 
-If you need more control over your transactions, you can find an example
+If you require more control over your transactions, you can find an example
 showing how to manually create, commit, and abort transactions in the
 `full code example <https://raw.githubusercontent.com/mongodb/docs-golang/{+docs-branch+}/source/includes/fundamentals/code-snippets/transaction.go>`__.
 
