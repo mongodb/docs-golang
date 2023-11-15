@@ -115,7 +115,7 @@ following steps:
 #. Use the ``WithTransaction()`` method to start a transaction.
 #. Insert multiple documents. The ``WithTransaction()`` method executes the
    insert and commits the transaction. If any operation results in
-   errors, ``WithTransaction()`` handles aborting the transaction.
+   errors, ``WithTransaction()`` handles canceling the transaction.
 #. Close the transaction and session using the ``EndSession()`` method.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/transaction.go

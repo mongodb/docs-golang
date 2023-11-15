@@ -18,7 +18,7 @@ Bugs / Feature Requests
 If you think you've found a bug or want to see a new feature in the Go
 driver, please open a case in our issue management tool, JIRA:
 
-* `Create an account and login <https://jira.mongodb.org>`_.
+* `Create an account and log in <https://jira.mongodb.org>`_.
 * Navigate to `the GODRIVER project <https://jira.mongodb.org/browse/GODRIVER>`_.
 * Click **Create Issue**. Please provide as much information as possible
   about the issue and the steps to reproduce it.
