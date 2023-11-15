@@ -262,7 +262,7 @@ they are listed:
       .. note::
 
          If you don't require an AWS session token for the role you're
-         authenticating with, omit the line containing ``AWS_SESSION_TOKEN`` .
+         authenticating with, omit the line containing ``AWS_SESSION_TOKEN``.
 
       After you've set the preceding environment variables, specify the ``MONGODB-AWS``
       authentication mechanism as shown in the following example:

@@ -167,7 +167,7 @@ Set a Collation on an Index
 
 You can apply a collation when you create a new index on a collection. The index stores
 an ordered representation of the documents in the collection, so your MongoDB instance
-does not perform the ordering for sorting operations in-memory. 
+doesn't perform the ordering for sorting operations in-memory. 
 
 To use the index in an operation, your operation must use the same collation as the one
 specified in the index. Additionally, ensure that the operation is covered by the index that

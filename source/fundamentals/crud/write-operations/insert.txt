@@ -25,8 +25,8 @@ In this guide, you can learn how to **insert** documents into a MongoDB
 collection.
 
 Before you can find, update, and delete documents in MongoDB, you must
-insert those documents. You can insert one document using the ``InsertOne()``
-method, or insert multiple documents using either the ``InsertMany()``
+insert those documents. You can insert one document by using the ``InsertOne()``
+method, or insert multiple documents by using either the ``InsertMany()``
 or ``BulkWrite()`` method.
 
 The following sections focus on ``InsertOne()`` and ``InsertMany()``.
