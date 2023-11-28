@@ -114,8 +114,8 @@ func main() {
 		// begin aggregate projection
 		projectStage := bson.D{{"$project", bson.D{{"title", 1}, {"course_id", 1}}}}
 
-		// Aggregates results and prints them as structs with the
-		// specified projection
+		// Aggregates results and prints them as structs including
+		// only the specified fields
 		cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{projectStage})
 		if err != nil {
 			panic(err)

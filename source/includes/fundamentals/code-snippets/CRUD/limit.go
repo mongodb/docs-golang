@@ -86,7 +86,7 @@ func main() {
 		filter := bson.D{}
 
 		// Sets options to sort by descending order on "enrollment",
-		// return only 2 documents, and skip the 1 matched document
+		// return only 2 documents, and skip the first matched document
 		opts := options.Find().SetSort(bson.D{{"enrollment", -1}}).SetLimit(2).SetSkip(1)
 
 		// Retrieves documents that match the filter and prints them as structs
