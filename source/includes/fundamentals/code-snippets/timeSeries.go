@@ -1,4 +1,4 @@
-// Creates a timeseries collection to record temperature data
+// Creates a time series collection to record temperature data
 package main
 
 import (
