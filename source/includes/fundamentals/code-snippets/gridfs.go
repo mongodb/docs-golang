@@ -1,4 +1,4 @@
-// Store and retrieves large files by using the GridFS specification
+// Stores and retrieves large files by using the Go driver GridFS feature
 package main
 
 import (
