@@ -34,7 +34,7 @@ func main() {
 	db := client.Database("plants")
 
 	// Creates commands to count documents in a collection and explain
-	// the how the count command runs
+	// how the count command runs
 	countCommand := bson.D{{"count", "flowers"}}
 	explainCommand := bson.D{{"explain", countCommand}, {"verbosity", "queryPlanner"}}
 

@@ -56,7 +56,7 @@ func main() {
 	fmt.Println("\nPositional $ Operator:\n")
 	{
 		// Creates a filter and update document to match a "sizes" array
-		// entry and decrease the value by 2
+		// value and decrease the value by 2
 		// begin positional
 		filter := bson.D{{"sizes", bson.D{{"$lte", 16}}}}
 		update := bson.D{{"$inc", bson.D{{"sizes.$", -2}}}}
@@ -92,7 +92,7 @@ func main() {
 	fmt.Println("\nPositional $[<identifier>] Operator:\n")
 	{
 		// Creates a filter and update document to match "sizes" array
-		// entries and remove those values
+		// values and remove those values
 		// begin filtered positional
 		identifier := []interface{}{bson.D{{"hotOptions", bson.D{{"$regex", "hot"}}}}}
 		update := bson.D{{"$unset", bson.D{{"styles.$[hotOptions]", ""}}}}
@@ -128,7 +128,7 @@ func main() {
 	fmt.Println("\nPositional $[] Operator:\n")
 	{
 		// Creates a filter and update document to match all "sizes" array
-		// entries and multiply them by a value
+		// values and multiply them by a value
 		// begin positional all
 		update := bson.D{{"$mul", bson.D{{"sizes.$[]", 29.57}}}}
 		opts := options.FindOneAndUpdate().

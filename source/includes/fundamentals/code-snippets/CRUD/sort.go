@@ -59,7 +59,7 @@ func main() {
 	fmt.Println("\nAscending Sort:\n")
 	{
 		// Retrieves matching documents and sets an ascending sort on
-		// "enrollment"
+		// the "enrollment" field
 		//begin ascending sort
 		filter := bson.D{}
 		opts := options.Find().SetSort(bson.D{{"enrollment", 1}})
@@ -82,7 +82,7 @@ func main() {
 	fmt.Println("\nDescending Sort:\n")
 	{
 		// Retrieves matching documents and sets a descending sort on
-		// "enrollment"
+		// the "enrollment" field
 		//begin descending sort
 		filter := bson.D{}
 		opts := options.Find().SetSort(bson.D{{"enrollment", -1}})
@@ -105,7 +105,7 @@ func main() {
 	fmt.Println("\nMulti Sort:\n")
 	{
 		// Retrieves matching documents and sets a descending sort on
-		// "enrollment" and an ascending sort on "title"
+		// the "enrollment" field and an ascending sort on the "title" field
 		//begin multi sort
 		filter := bson.D{}
 		opts := options.Find().SetSort(bson.D{{"enrollment", -1}, {"title", 1}})
@@ -128,7 +128,7 @@ func main() {
 	fmt.Println("\nAggregation Sort:\n")
 	{
 		// Uses an aggregation pipeline to set a descending sort on
-		// "enrollment" and an ascending sort on "title"
+		// the "enrollment" field and an ascending sort on the "title" field
 		// begin aggregate sort
 		sortStage := bson.D{{"$sort", bson.D{{"enrollment", -1}, {"title", 1}}}}
 
