@@ -63,7 +63,7 @@ collection with the ``temperature`` as the time field:
 .. literalinclude:: /includes/fundamentals/code-snippets/timeSeries.go
    :start-after: begin create ts coll
    :end-before: end create ts coll
-   :emphasize-lines: 2, 5
+   :emphasize-lines: 4, 7
    :language: go
    :dedent:
 
