@@ -36,8 +36,8 @@ func main() {
 	// begin countDocuments
 	coll := client.Database("sample_mflix").Collection("movies")
 
-	// Specifies a filter to match documents where the "countries" value
-	// includes "China"
+	// Specifies a filter to match documents where the "countries" array
+	// includes a value of "China"
 	filter := bson.D{{"countries", "China"}}
 
 	// Retrieves and prints the estimated number of documents in the collection
