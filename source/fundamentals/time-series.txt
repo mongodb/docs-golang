@@ -4,8 +4,6 @@
 Time Series Collections
 =======================
 
-.. default-domain:: mongodb
-
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -73,12 +71,11 @@ To check if you created the collection, send the ``"listCollections"``
 command to the ``RunCommand()`` method:
 
 .. io-code-block::
-   :caption: Testing whether we created a time series collection.
    :copyable: true
 
    .. input:: /includes/fundamentals/code-snippets/timeSeriesRunCommand.go
       :language: go
-      :emphasize-lines: 1, 4
+      :emphasize-lines: 2, 6
 
    .. output:: 
       :visible: false
