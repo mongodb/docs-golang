@@ -16,7 +16,7 @@ type Book struct {
 // end-book-struct
 
 func insertManyOpts() {
-	// Sets options to bypass document validation and specify and
+	// Sets options to bypass document validation and specify an
 	// unordered insert when inserting multiple documents
 	// begin insertManyOpts
 	opts := options.InsertMany().SetBypassDocumentValidation(true).SetOrdered(false)
