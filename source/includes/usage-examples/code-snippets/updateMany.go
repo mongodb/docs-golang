@@ -40,7 +40,8 @@ func main() {
 	// Creates instructions to update the values of the "price" field
 	update := bson.D{{"$mul", bson.D{{"price", 1.15}}}}
 
-	// Updates documents that have a "address.market" value of "Sydney"
+	// Updates documents in which the value of the "address.market"
+	// field is "Sydney"
 	result, err := coll.UpdateMany(context.TODO(), filter, update)
 	if err != nil {
 		panic(err)
