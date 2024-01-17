@@ -23,9 +23,9 @@ Overview
 In this guide, you can learn how to use the {+driver-long+} to perform
 **transactions**. :manual:`Transactions </core/transactions/>` allow
 you to run a series of operations that do not change any data until the
-transaction is committed. If any operation in the transaction fails, the 
-driver cancels the transaction and discards all data changes before they
-ever become visible.
+transaction is committed. If any operation in the transaction returns an
+error, the driver cancels the transaction and discards all data changes
+before they ever become visible.
 
 In MongoDB, transactions run within logical **sessions**. A
 :manual:`session </reference/server-sessions/>` is a grouping of related
@@ -102,11 +102,11 @@ following table describes these methods:
             means that you can attempt to commit a transaction multiple times
             without changing data after the first successful commit.
             
-            A transaction can succeed but return a failure message
+            A transaction can succeed but return an error message
             if a timeout occurs when the driver tries to read the
             server response. In a situation like this, you might rerun
-            the ``CommitTransaction()`` method, but your data would not
-            be changed by this second attempt.
+            the ``CommitTransaction()`` method, but your data is not
+            changed by this second attempt.
 
        |
        | **Parameter**: ``Context``
