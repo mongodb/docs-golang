@@ -71,8 +71,8 @@ following table describes these methods:
    * - ``StartTransaction()``
      - | Starts a new transaction, configured with the given options, on
          this session. Returns an error if there is already
-         a transaction in progress for the session. For more
-         information, see :manual:`startTransaction()
+         a transaction in progress for the session. To learn more about
+         this method, see the :manual:`startTransaction() page
          </reference/method/Session.startTransaction/>`  in the Server manual.
        |
        | **Parameter**: ``TransactionOptions``
@@ -81,9 +81,9 @@ following table describes these methods:
    * - ``AbortTransaction()``
      - | Ends the active transaction for this session. Returns an
          error if there is no active transaction for the session or the
-         transaction has been committed or ended. For more
-         information, see :manual:`abortTransaction()
-         </reference/method/Session.abortTransaction/>` in the Server manual.
+         transaction has been committed or ended. To learn more about
+         this method, see the :manual:`abortTransaction() page
+         </reference/method/Session.abortTransaction/>`  in the Server manual.
        |
        | **Parameter**: ``Context``
        | **Return Type**: ``error``
@@ -91,10 +91,9 @@ following table describes these methods:
    * - ``CommitTransaction()``
      - | Commits the active transaction for this session. Returns an
          error if there is no active transaction for the session or if the
-         transaction was ended. For more
-         information, see :manual:`commitTransaction()
-         </reference/method/Session.commitTransaction/>` in the Server
-         manual.
+         transaction was ended. To learn more about
+         this method, see the :manual:`commitTransaction() page
+         </reference/method/Session.commitTransaction/>`  in the Server manual.
          
          .. note:: Retrying a Transaction
             
