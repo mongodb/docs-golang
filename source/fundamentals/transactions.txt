@@ -118,7 +118,7 @@ following table describes these methods:
        | **Return Type**: ``interface{}``, ``error``
 
    * - ``EndSession()``
-     - | Aborts any existing transactions and closes the session.
+     - | Ends any existing transactions and closes the session.
        |
        | **Parameter**: ``Context``
        | **Return Type**: none
@@ -149,7 +149,7 @@ following steps:
    :end-before: end-session
 
 If you require more control over your transactions, you can find an example
-showing how to manually create, commit, and abort transactions in the
+showing how to manually create, commit, and end transactions in the
 `full code example <https://raw.githubusercontent.com/mongodb/docs-golang/{+docs-branch+}/source/includes/fundamentals/code-snippets/transaction.go>`__.
 
 Additional Information
