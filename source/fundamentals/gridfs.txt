@@ -358,20 +358,15 @@ manual:
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-..
-  TODO when v2 API documentation is published because location for the
-  methods is changing
+To learn more about the methods and types mentioned in this guide, see
+the following API documentation:
 
-  To learn more about the methods or types discussed in this guide, see the following
-  API Documentation:
-
-..
-  - `NewBucket() <{+api+}/>`__
-  - `OpenUploadStream() <{+api+}/>`__
-  - `UploadFromStream() <{+api+}/>`__
-  - `Find() <{+api+}/mongo/>`__
-  - `OpenDownloadStream() <{+api+}/>`__
-  - `DownloadToStream() <{+api+}/>`__
-  - `Rename() <{+api+}/>`__
-  - `Delete() <{+api+}/>`__
-  - `Drop() <{+api+}/>`__
+- `GridFSBucket() <{+api+}/mongo#Database.GridFSBucket>`__
+- `OpenUploadStream() <{+api+}/mongo#GridFSBucket.OpenUploadStream>`__
+- `UploadFromStream() <{+api+}/mongo#GridFSBucket.UploadFromStream>`__
+- `Find() <{+api+}/mongo#GridFSBucket.Find>`__
+- `OpenDownloadStream() <{+api+}/mongo#GridFSBucket.OpenDownloadStream>`__
+- `DownloadToStream() <{+api+}/mongo#GridFSBucket.DownloadToStream>`__
+- `Rename() <{+api+}/mongo#GridFSBucket.Rename>`__
+- `Delete() <{+api+}/mongo#GridFSBucket.Delete>`__
+- `Drop() <{+api+}/mongo#GridFSBucket.Drop>`__

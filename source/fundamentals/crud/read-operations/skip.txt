@@ -177,5 +177,4 @@ guide, see the following API Documentation:
 - `FindOptions.SetSkip() <{+api+}/mongo/options#FindOptions.SetSkip>`__
 - `Aggregate() <{+api+}/mongo#Collection.Aggregate>`__
 - `CountDocuments() <{+api+}/mongo#Collection.CountDocuments>`__
-
-.. TODO after go v2 release - `GridFSBucket.Find() <{+api+}/>`__
+- `GridFSBucket.Find() <{+api+}/mongo#GridFSBucket.Find>`__

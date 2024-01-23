@@ -283,5 +283,4 @@ guide, see the following API Documentation:
 - `FindOneAndDelete() <{+api+}/mongo#Collection.FindOneAndDelete>`__
 - `FindOneAndUpdate() <{+api+}/mongo#Collection.FindOneAndUpdate>`__
 - `FindOneAndReplace() <{+api+}/mongo#Collection.FindOneAndReplace>`__
-
-.. TODO after go v2 - `GridFSBucket.Find() <{+api+}/>`__
+- `GridFSBucket.Find() <{+api+}/mongo#GridFSBucket.Find>`__
