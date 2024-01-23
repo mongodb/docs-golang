@@ -8,6 +8,5 @@ assumeRoleCredential := options.Credential{
 		"AWS_SESSION_TOKEN": "<sessionToken>",
 	},
 }
-assumeRoleClient, err := mongo.Connect(
-	options.Client().SetAuth(assumeRoleCredential)
-)
+
+assumeRoleClient, err := mongo.Connect(options.Client().SetAuth(assumeRoleCredential))
