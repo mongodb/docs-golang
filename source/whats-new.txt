@@ -55,6 +55,13 @@ What's New in 2.0
    :ref:`Connection Example Code <go-connection-example-code>` in the
    Connection Guide.
 
+The 2.0 {+driver-short+} release includes the following improvements and fixes:
+
+- You can access the GridFS API from the ``mongo`` package. In previous
+  versions, you could access GridFS functions from the separate ``gridfs``
+  package, but this functionality is now merged with the main driver
+  ``mongo`` package. To learn more, see the :ref:`golang-gridfs` guide.
+
 .. _version-1.13:
 
 What's New in 1.13
