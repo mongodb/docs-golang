@@ -6,7 +6,6 @@ awsCredential := options.Credential{
 	Password:      "<secretAccessKey>",
 }
 awsIAMClient, err := mongo.Connect(
-	context.TODO(),
 	options.Client().SetAuth(awsCredential))
 if err != nil {
 	panic(err)

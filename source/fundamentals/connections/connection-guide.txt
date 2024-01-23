@@ -318,8 +318,10 @@ URI option and execute an operation that inherits this setting:
 .. code-block:: go
 
    uri := "mongodb://user:pass@sample.host:27017/?timeoutMS=5000"
-   client := mongo.Connect(uri)
+   
+   client, err := mongo.Connect(options.Client().ApplyURI(uri))
    coll := client.Database("<db>").Collection("<collection>")
+   
    ...
    coll.InsertOne(context.Background(), doc)
 
