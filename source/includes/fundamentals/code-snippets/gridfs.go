@@ -8,7 +8,6 @@ import (
 	"os"
 
 	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/gridfs"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
@@ -22,13 +21,14 @@ func main() {
 	defer client.Disconnect(context.TODO())
 
 	// Creates a GridFS bucket
-	bucket, err := gridfs.NewBucket(client.Database("foo"))
+	db := client.Database("myDB")
+	bucket, err := db.GridFSBucket()
 	if err != nil {
 		panic(err)
 	}
 
 	// begin OpenUploadStream example
-	file, err := os.Open("path/to/file.txt")
+	file, err := os.Open("home/documents/file.txt")
 	if err != nil {
 		panic(err)
 	}
