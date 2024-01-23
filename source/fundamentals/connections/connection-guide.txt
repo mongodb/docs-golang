@@ -103,6 +103,8 @@ The following code shows how you can create a client that uses an Atlas
 connection string and the {+stable-api+} version, connect to MongoDB, and
 verify that the connection is successful:
 
+.. _go-connection-example-code:
+
 .. literalinclude:: /includes/fundamentals/code-snippets/srv.go
    :language: go
 

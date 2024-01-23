@@ -51,7 +51,9 @@ What's New in 2.0
 
    Starting in version 2.0, the ``mongo.Connect()`` method does not
    accept a context parameter. This method accepts only an options
-   object as a parameter.
+   object. To view an example that uses this method, see the
+   :ref:`Connection Example Code <go-connection-example-code>` in the
+   Connection Guide.
 
 .. _version-1.13:
 
