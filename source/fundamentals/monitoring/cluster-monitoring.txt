@@ -236,9 +236,9 @@ TopologyDescriptionChangedEvent
 
 .. important::
 
-   Because the driver calls ``TopologyDescriptionChanged`` when the
+   Because the driver calls ``TopologyDescriptionChangedEvent`` when the
    deployment topology is locked, the callback (function argument) for this event
-   should not attempt any operation that requires server selection on
+   must not attempt any operation that requires server selection on
    the same client.
 
 .. code-block:: bash

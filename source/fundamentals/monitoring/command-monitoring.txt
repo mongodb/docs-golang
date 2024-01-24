@@ -86,6 +86,7 @@ CommandStartedEvent
        "CommandName": "...",
        "RequestID": ...,
        "ConnectionID": "...",
+       "ServerConnectionID": ...,
        "ServerConnectionID64": ...,
        "ServiceID": "..."
    }
