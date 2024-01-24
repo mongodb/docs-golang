@@ -3,7 +3,6 @@ title = "Go Driver"
 toc_landing_pages = [
     "/fundamentals/connections",
     "/fundamentals/crud",
-    "/fundamentals/monitoring",
     "/usage-examples",
 ]
 
