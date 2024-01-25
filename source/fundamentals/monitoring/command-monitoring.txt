@@ -24,7 +24,7 @@ This guide shows you how to use the {+driver-short+} to monitor the
 outcome of commands that the driver sends to your MongoDB deployment.
 
 You might use information about command events in your
-application to understand changes in performance or resolve bottlenecks.
+application to understand changes in query performance or resolve bottlenecks.
 
 Subscribe to Events
 -------------------
