@@ -59,15 +59,14 @@ The 2.0 {+driver-short+} release includes the following improvements and fixes:
 
 - Updates to monitoring event documents:
 
-  - Consolidation of the ``ServerConnectionID64`` and ``ServerConnectionID``
-    fields of the ``CommandStartedEvent`` and ``CommandFinishedEvent``
-    structs into the ``ServerConnectionID`` field, which takes a value of
-    type ``int64``.
+  - The ``CommandStartedEvent`` and ``CommandFinishedEvent`` structs
+    have a single ``ServerConnectionID`` field of type ``int64`` to
+    capture the connection ID.
     
   - Changes the type of the ``ConnectionID`` field in ``PoolEvent``
     structs to ``int64`` from ``uint64``.
 
-  To view samples of all event documents, see the :ref:`golang-monitoring` guides.
+  To view sample event documents, see the :ref:`golang-monitoring` guides.
 
 .. _version-1.13:
 
