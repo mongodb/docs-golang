@@ -27,9 +27,8 @@ maintains with a MongoDB instance. Connection pools help reduce the
 number of new connections your application needs to create,
 which might make your application run faster.
 
-You can use information about changes to your connection pool in your
-application, or you can monitor the connection pool to learn more about
-how the driver uses connections.
+You might use information about connection pool events in your
+application to optimize performance or understand the client lifecycle.
 
 Subscribe to Events
 -------------------
@@ -70,7 +69,7 @@ emits:
      - Created when a connection pool is ready.
 
    * - ``ConnectionPoolCleared``
-     - Created when a connection pool is cleared.
+     - Created when all the connections in the pool are closed.
 
    * - ``ConnectionPoolClosed``
      - Created when a connection pool is closed, before the destruction of

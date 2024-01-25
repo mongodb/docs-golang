@@ -26,9 +26,9 @@ driver creates topology events, also known as Server Discovery and
 Monitoring (SDAM) events, when there are any changes in the state of the
 instance or cluster that you are connected to. 
 
-You can use information about topology changes in your
-application, or you can monitor cluster changes to learn more about
-how they affect your application.
+You might use information about topology events in your
+application to understand cluster changes, assess cluster health, or
+perform capacity planning.
 
 .. tip:: Logging
 
@@ -103,7 +103,7 @@ The following sections show sample output for each type of SDAM event.
 ServerDescriptionChangedEvent
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
       
    *event.ServerDescriptionChangedEvent
@@ -210,7 +210,7 @@ single server in a topology and can have the following values:
 ServerOpeningEvent
 ~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    *event.ServerOpeningEvent
@@ -222,7 +222,7 @@ ServerOpeningEvent
 ServerClosedEvent
 ~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    *event.ServerClosedEvent
@@ -241,7 +241,7 @@ TopologyDescriptionChangedEvent
    must not attempt any operation that requires server selection on
    the same client.
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    *event.TopologyDescriptionChangedEvent
@@ -302,7 +302,7 @@ Value section <golang-monitoring-kind-field>`.
 TopologyOpeningEvent
 ~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    *event.TopologyOpeningEvent
@@ -313,7 +313,7 @@ TopologyOpeningEvent
 TopologyClosedEvent
 ~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    *event.TopologyClosedEvent
@@ -324,7 +324,7 @@ TopologyClosedEvent
 ServerHeartbeatStartedEvent
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    *event.ServerHeartbeatStartedEvent
@@ -336,7 +336,7 @@ ServerHeartbeatStartedEvent
 ServerHeartbeatSucceededEvent
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    *event.ServerHeartbeatSucceededEvent
@@ -383,7 +383,7 @@ Value section <golang-monitoring-kind-field>`.
 ServerHeartbeatFailedEvent
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    *event.ServerHeartbeatFailedEvent

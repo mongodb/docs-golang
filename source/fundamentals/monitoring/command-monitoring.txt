@@ -23,9 +23,8 @@ Overview
 This guide shows you how to use the {+driver-short+} to monitor the
 outcome of commands that the driver sends to your MongoDB deployment.
 
-You can use information about command events in your
-application, or you can monitor commands to learn more about
-how the driver executes them.
+You might use information about command events in your
+application to understand changes in performance or resolve bottlenecks.
 
 Subscribe to Events
 -------------------
@@ -76,7 +75,7 @@ The following sections show sample output for each type of command monitoring ev
 CommandStartedEvent
 ~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    *event.CommandStartedEvent
@@ -94,7 +93,7 @@ CommandStartedEvent
 CommandSucceededEvent
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    *event.CommandSucceededEvent
