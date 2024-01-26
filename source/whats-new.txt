@@ -63,8 +63,8 @@ The 2.0 {+driver-short+} release includes the following improvements and fixes:
     have a single ``ServerConnectionID`` field of type ``int64`` to
     capture the connection ID.
     
-  - The ``ConnectionID`` field in the ``PoolEvent``
-    struct take a value of type ``int64`` instead of ``uint64``.
+  - The ``ConnectionID`` field of the ``PoolEvent``
+    struct takes a value of type ``int64`` instead of ``uint64``.
 
   To view sample event documents, see the :ref:`golang-monitoring` guides.
 
