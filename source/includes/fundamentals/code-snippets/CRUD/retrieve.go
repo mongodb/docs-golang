@@ -85,7 +85,7 @@ func main() {
 			panic(err)
 		}
 		for _, result := range results {
-			res, _ := json.Marshal(result)
+			res, _ := bson.MarshalExtJSON(result, false, false)
 			fmt.Println(string(res))
 		}
 		// end find docs
@@ -107,7 +107,7 @@ func main() {
 			panic(err)
 		}
 
-		res, _ := json.Marshal(result)
+		res, _ := bson.MarshalExtJSON(result, false, false)
 		fmt.Println(string(res))
 		// end find one docs
 	}

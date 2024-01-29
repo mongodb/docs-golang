@@ -154,8 +154,8 @@ the ``Find()`` method, which performs the following actions:
       :language: none
       :visible: false
 
-      {"Item":"Sencha","Rating":7,"DateOrdered":"2009-11-18T05:00:00Z"}
-      {"Item":"Masala","Rating":8,"DateOrdered":"2009-12-01T05:00:00Z"}
+      {"item":"Sencha","rating":7,"date_ordered":"2009-11-18T05:00:00Z"}
+      {"item":"Masala","rating":8,"date_ordered":"2009-12-01T05:00:00Z"}
 
 .. _golang-find-one-example:
 
@@ -182,7 +182,7 @@ to the ``FindOne()`` method, which performs the following actions:
       :language: none
       :visible: false
 
-      {"Item":"Masala","Rating":9,"DateOrdered":"2009-11-12T05:00:00Z"}
+      {"item":"Masala","rating":9,"date_ordered":"2009-11-12T05:00:00Z"}
 
 .. _golang-find-one-by-id:
 
