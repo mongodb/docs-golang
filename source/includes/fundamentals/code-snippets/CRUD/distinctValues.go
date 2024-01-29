@@ -1,3 +1,4 @@
+// Finds distinct values of a document field by using the Go driver
 package main
 
 import (
@@ -26,7 +27,7 @@ func main() {
 		log.Fatal("You must set your 'MONGODB_URI' environment variable. See\n\t https://www.mongodb.com/docs/drivers/go/current/usage-examples/")
 	}
 
-	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
+	client, err := mongo.Connect(options.Client().ApplyURI(uri))
 	if err != nil {
 		panic(err)
 	}
@@ -53,6 +54,8 @@ func main() {
 	}
 	fmt.Printf("Number of documents inserted: %d\n", len(result.InsertedIDs))
 
+	// Retrieves and prints distinct values of the "department" field in
+	// documents that match the filter
 	// begin distinct
 	results, err := coll.Distinct(context.TODO(), "department", bson.D{{"enrollment", bson.D{{"$lt", 50}}}})
 	if err != nil {

@@ -1,3 +1,4 @@
+// Runs a database command by using the Go driver
 package main
 
 import (
@@ -23,7 +24,7 @@ func main() {
 		log.Fatal("You must set your 'MONGODB_URI' environment variable. See\n\t https://www.mongodb.com/docs/drivers/go/current/usage-examples/#environment-variable")
 	}
 
-	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
+	client, err := mongo.Connect(options.Client().ApplyURI(uri))
 	if err != nil {
 		panic(err)
 	}
@@ -36,10 +37,15 @@ func main() {
 	{
 		// begin runCommand
 		db := client.Database("sample_restaurants")
+
+		// Retrieves statistics about the specified database
 		command := bson.D{{"dbStats", 1}}
 
 		var result bson.M
+		// Runs the command and prints the database statistics
 		err := db.RunCommand(context.TODO(), command).Decode(&result)
+
+		// Prints a message if any errors occur during the command execution
 		if err != nil {
 			panic(err)
 		}

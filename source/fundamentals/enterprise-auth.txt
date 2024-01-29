@@ -93,7 +93,7 @@ preferences:
    uri := "<connection uri>"
    clientOpts := options.Client().ApplyURI(uri).SetAuth(credential)
    
-   client, err := mongo.Connect(context.TODO(), clientOpts)
+   client, err := mongo.Connect(clientOpts)
 
 You don't need to define a password or the ``PasswordSet`` field in
 your ``Credential`` struct if you store authentication keys in
@@ -154,7 +154,7 @@ using your directory server username and password.
 .. warning::
 
    This authentication mechanism sends the password to the server in
-   plaintext, so you should use this mechanism only with TLS connections.
+   plaintext, so use this mechanism only with TLS connections.
 
 Example
 ~~~~~~~
@@ -181,7 +181,7 @@ preferences:
    uri := "<connection uri>"
    clientOpts := options.Client().ApplyURI(uri).SetAuth(credential)
    
-   client, err := mongo.Connect(context.TODO(), clientOpts)
+   client, err := mongo.Connect(clientOpts)
 
 You can alternatively authenticate using a connection string URI,
 specifying your LDAP username, password, and ``hostname``, the network

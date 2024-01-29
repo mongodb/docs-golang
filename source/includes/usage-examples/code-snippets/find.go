@@ -1,3 +1,4 @@
+// Retrieves documents that match a query filter by using the Go driver
 package main
 
 import (
@@ -37,7 +38,7 @@ func main() {
 		log.Fatal("You must set your 'MONGODB_URI' environment variable. See\n\t https://www.mongodb.com/docs/drivers/go/current/usage-examples/#environment-variable")
 	}
 
-	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
+	client, err := mongo.Connect(options.Client().ApplyURI(uri))
 	if err != nil {
 		panic(err)
 	}
@@ -49,8 +50,12 @@ func main() {
 
 	// begin find
 	coll := client.Database("sample_restaurants").Collection("restaurants")
+
+	// Creates a query filter to match documents in which the "cuisine"
+	// is "Italian"
 	filter := bson.D{{"cuisine", "Italian"}}
 
+	// Retrieves documents that match the query filer
 	cursor, err := coll.Find(context.TODO(), filter)
 	if err != nil {
 		panic(err)
@@ -62,6 +67,7 @@ func main() {
 		panic(err)
 	}
 
+	// Prints the results of the find operation as structs
 	for _, result := range results {
 		cursor.Decode(&result)
 		output, err := json.MarshalIndent(result, "", "    ")

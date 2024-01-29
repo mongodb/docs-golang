@@ -1,3 +1,4 @@
+// Performs an aggregation by using the Go driver
 package main
 
 import (
@@ -28,7 +29,7 @@ func main() {
 		log.Fatal("You must set your 'MONGODB_URI' environment variable. See\n\t https://docs.mongodb.com/drivers/go/current/usage-examples/")
 	}
 
-	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
+	client, err := mongo.Connect(options.Client().ApplyURI(uri))
 
 	if err != nil {
 		panic(err)
@@ -39,6 +40,7 @@ func main() {
 		}
 	}()
 
+	// Inserts sample documents describing tea varieties
 	// begin insert docs
 	coll := client.Database("db").Collection("tea")
 	docs := []interface{}{
@@ -63,6 +65,9 @@ func main() {
 
 	fmt.Println("\nAggregation Example - Average\n")
 	{
+		// Creates a stage to group documents by "category" and
+		// calculates the average price and total number of documents
+		// for each "category"
 		groupStage := bson.D{
 			{"$group", bson.D{
 				{"_id", "$category"},
@@ -70,6 +75,7 @@ func main() {
 				{"type_total", bson.D{{"$sum", 1}}},
 			}}}
 
+		// Performs the aggregation and prints the results
 		cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{groupStage})
 		if err != nil {
 			panic(err)
@@ -87,11 +93,14 @@ func main() {
 
 	fmt.Println("\nAggregation Example - Unset\n")
 	{
+		// Creates stages to match documents, remove the "category"
+		// field, specify a sort, and limit the output to 2 documents
 		matchStage := bson.D{{"$match", bson.D{{"toppings", "milk foam"}}}}
 		unsetStage := bson.D{{"$unset", bson.A{"_id", "category"}}}
 		sortStage := bson.D{{"$sort", bson.D{{"price", 1}, {"toppings", 1}}}}
 		limitStage := bson.D{{"$limit", 2}}
 
+		// Performs the aggregation and prints the results
 		cursor, err := coll.Aggregate(context.TODO(), mongo.Pipeline{matchStage, unsetStage, sortStage, limitStage})
 		if err != nil {
 			panic(err)

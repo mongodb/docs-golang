@@ -4,8 +4,6 @@
 Connection Guide
 ================
 
-.. default-domain:: mongodb
-
 .. facet::
    :name: genre
    :values: tutorial
@@ -16,12 +14,11 @@ Connection Guide
    :depth: 2
    :class: singlecol
 
-This guide shows you how to connect to a MongoDB instance or replica set
-deployment using the Go Driver.
+Overview
+--------
 
--------------
-Compatibility
--------------
+In this guide, you can learn how to connect to a MongoDB instance or
+replica set deployment by using the {+driver-short+}.
 
 You can use the {+driver-short+} to connect to deployments hosted in the
 following environments:
@@ -72,8 +69,8 @@ options, read the :ref:`golang-connection-options` section of this guide.
 Connection Example
 ~~~~~~~~~~~~~~~~~~
 
-To connect to MongoDB, you need to create a client. A client manages
-your connections and runs database commands.
+To connect to MongoDB, you must create a client. A client manages your
+connections and runs database commands.
 
 .. tip:: Reuse Your Client
 
@@ -106,6 +103,8 @@ The following code shows how you can create a client that uses an Atlas
 connection string and the {+stable-api+} version, connect to MongoDB, and
 verify that the connection is successful:
 
+.. _go-connection-example-code:
+
 .. literalinclude:: /includes/fundamentals/code-snippets/srv.go
    :language: go
 
@@ -119,7 +118,7 @@ verify that the connection is successful:
    To learn about connecting to Atlas Serverless, see the
    :ref:`Serverless Instance Limitations page
    <atlas-serverless-drivers>` to identify the minimum driver version
-   you need.
+   required.
 
 --------------------------------
 Other Ways to Connect to MongoDB
@@ -162,7 +161,7 @@ When connecting to a replica set, the driver takes the following actions by defa
 
 .. tip::
 
-   You only need to specify one host to connect to a replica set.
+   You can specify just one host to connect to a replica set.
    However, to ensure connectivity when the specified host
    is unavailable, you should provide the full list of hosts.
 
@@ -321,8 +320,10 @@ URI option and execute an operation that inherits this setting:
 .. code-block:: go
 
    uri := "mongodb://user:pass@sample.host:27017/?timeoutMS=5000"
-   client := mongo.Connect(uri)
+   
+   client, err := mongo.Connect(options.Client().ApplyURI(uri))
    coll := client.Database("<db>").Collection("<collection>")
+   
    ...
    coll.InsertOne(context.Background(), doc)
 
