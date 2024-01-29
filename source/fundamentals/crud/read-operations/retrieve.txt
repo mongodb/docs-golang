@@ -26,7 +26,7 @@ Read operations allow you to do the following:
 Sample Data
 ~~~~~~~~~~~
 
-The examples in this section use the following ``Tea`` struct as a model for documents
+The examples in this guide use the following ``Tea`` struct as a model for documents
 in the ``tea`` collection:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retrieve.go
