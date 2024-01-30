@@ -62,6 +62,17 @@ The 2.0 {+driver-short+} release includes the following improvements and fixes:
   package, but this functionality is now merged with the main driver
   ``mongo`` package. To learn more, see the :ref:`golang-gridfs` guide.
 
+- Updates to monitoring event documents:
+
+  - The ``CommandStartedEvent`` and ``CommandFinishedEvent`` structs
+    have a single ``ServerConnectionID`` field of type ``int64`` to
+    capture the connection ID.
+    
+  - The ``ConnectionID`` field of the ``PoolEvent``
+    struct takes a value of type ``int64`` instead of ``uint64``.
+
+  To view sample event documents, see the :ref:`golang-monitoring` guides.
+
 .. _version-1.13:
 
 What's New in 1.13
