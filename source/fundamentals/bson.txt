@@ -78,10 +78,10 @@ use in the {+driver-short+}:
        corresponding to the field type.
 
    * - ``minsize``
-     - If the field type is type int64, uint, uint32, or uint64 and the value of
-       the field can fit in a signed int32, the field will be serialized
-       as a BSON int32 rather than a BSON int64. If the value can't fit
-       in a signed int32, this tag is ignored.
+     - If the field is type ``int64``, ``uint``, ``uint32``, or ``uint64`` and
+       the value of the field can fit in a signed ``int32``, the field will be
+       serialized as a BSON ``int32`` rather than a BSON ``int64``. If the value
+       can't fit in a signed ``int32``, this tag is ignored.
 
    * - ``truncate``
      - If the field type is a non-float numeric type, BSON doubles
