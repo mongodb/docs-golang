@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"log"
 	"os"
@@ -80,7 +79,7 @@ func main() {
 			panic(err)
 		}
 		for _, result := range results {
-			res, _ := json.Marshal(result)
+			res, _ := bson.MarshalExtJSON(result, false, false)
 			fmt.Println(string(res))
 		}
 		//end term search
@@ -101,7 +100,7 @@ func main() {
 			panic(err)
 		}
 		for _, result := range results {
-			res, _ := json.Marshal(result)
+			res, _ := bson.MarshalExtJSON(result, false, false)
 			fmt.Println(string(res))
 		}
 		//end phrase search
@@ -122,7 +121,7 @@ func main() {
 			panic(err)
 		}
 		for _, result := range results {
-			res, _ := json.Marshal(result)
+			res, _ := bson.MarshalExtJSON(result, false, false)
 			fmt.Println(string(res))
 		}
 		//end exclude term search
@@ -166,7 +165,7 @@ func main() {
 			panic(err)
 		}
 		for _, result := range results {
-			res, _ := json.Marshal(result)
+			res, _ := bson.MarshalExtJSON(result, false, false)
 			fmt.Println(string(res))
 		}
 		// end aggregate text search

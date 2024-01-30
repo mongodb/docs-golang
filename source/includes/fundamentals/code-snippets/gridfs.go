@@ -20,7 +20,8 @@ func main() {
 	}
 	defer client.Disconnect(context.TODO())
 
-	bucket, err := gridfs.NewBucket(client.Database("foo"))
+	// Creates a GridFS bucket
+	bucket, err := gridfs.NewBucket(client.Database("db"))
 	if err != nil {
 		panic(err)
 	}

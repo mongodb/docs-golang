@@ -67,7 +67,7 @@ func main() {
 			panic(err)
 		}
 		for _, result := range results {
-			res, _ := json.Marshal(result)
+			res, _ := bson.MarshalExtJSON(result, false, false)
 			fmt.Println(string(res))
 		}
 		//end ascending sort
@@ -86,7 +86,7 @@ func main() {
 			panic(err)
 		}
 		for _, result := range results {
-			res, _ := json.Marshal(result)
+			res, _ := bson.MarshalExtJSON(result, false, false)
 			fmt.Println(string(res))
 		}
 		//end descending sort
@@ -105,7 +105,7 @@ func main() {
 			panic(err)
 		}
 		for _, result := range results {
-			res, _ := json.Marshal(result)
+			res, _ := bson.MarshalExtJSON(result, false, false)
 			fmt.Println(string(res))
 		}
 		//end multi sort
@@ -126,7 +126,7 @@ func main() {
 			panic(err)
 		}
 		for _, result := range results {
-			res, _ := json.Marshal(result)
+			res, _ := bson.MarshalExtJSON(result, false, false)
 			fmt.Println(string(res))
 		}
 		// end aggregate sort

@@ -25,7 +25,7 @@ func main() {
 	}
 	defer client.Disconnect(context.TODO())
 
-	database := client.Database("myDB")
+	database := client.Database("db")
 	coll := database.Collection("myColl")
 
 	// start-session

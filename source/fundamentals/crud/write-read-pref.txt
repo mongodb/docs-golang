@@ -174,7 +174,7 @@ with this option.
 
    rc := readconcern.Majority()
    opts := options.Collection().SetReadConcern(rc)
-   database := client.Database("myDB")
+   database := client.Database("db")
    coll := database.Collection("myCollection", opts)
 
 .. _golang-read-pref:
@@ -248,7 +248,7 @@ with this option.
 
    rp := readpref.Secondary()
    opts := options.Database().SetReadPreference(rp)
-   database := client.Database("myDB", opts)
+   database := client.Database("db", opts)
 
 Additional Information
 ----------------------
