@@ -23,6 +23,7 @@ func main() {
 	// Creates a GridFS bucket
 	db := client.Database("myDB")
 	bucket, err := db.GridFSBucket()
+  
 	if err != nil {
 		panic(err)
 	}
