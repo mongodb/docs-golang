@@ -60,6 +60,17 @@ The 2.0 {+driver-short+} release includes the following improvements and fixes:
 - The ``Comment`` field in any options struct takes a value of type ``any`` instead of type
   ``string``. To set this field, you can use the ``SetComment()`` method and pass a parameter
   of type ``any``.
+  
+- Updates to monitoring event documents:
+
+  - The ``CommandStartedEvent`` and ``CommandFinishedEvent`` structs
+    have a single ``ServerConnectionID`` field of type ``int64`` to
+    capture the connection ID.
+    
+  - The ``ConnectionID`` field of the ``PoolEvent``
+    struct takes a value of type ``int64`` instead of ``uint64``.
+
+  To view sample event documents, see the :ref:`golang-monitoring` guides.
 
 .. _version-1.13:
 
