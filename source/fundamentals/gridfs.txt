@@ -93,10 +93,7 @@ in the following code:
 .. code-block:: go
 
    db := client.Database("myDB")
-   bucket, err := db.GridFSBucket()
-   if err != nil {
-      panic(err)
-   }
+   bucket := db.GridFSBucket()
 
 .. note::
 
@@ -112,10 +109,7 @@ on a ``BucketOptions`` instance, as shown in the following code:
    db := client.Database("myDB")
    bucketOpts := options.GridFSBucket().SetName("myCustomBucket")
    
-   bucket, err := db.GridFSBucket(bucketOpts)
-   if err != nil {
-      panic(err)
-   }
+   bucket := db.GridFSBucket(bucketOpts)
 
 .. _golang-upload-files:
 

@@ -22,11 +22,7 @@ func main() {
 
 	// Creates a GridFS bucket
 	db := client.Database("myDB")
-	bucket, err := db.GridFSBucket()
-  
-	if err != nil {
-		panic(err)
-	}
+	bucket := db.GridFSBucket()
 
 	// begin OpenUploadStream example
 	file, err := os.Open("home/documents/file.txt")
