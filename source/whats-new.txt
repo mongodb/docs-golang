@@ -85,7 +85,7 @@ What's New in 1.14
 
 The 1.14 {+driver-short+} release includes the following improvements and fixes:
 
-- Go versions prior to 1.18 are no longer supported.
+- Go versions before 1.18 are no longer supported.
   
 - In case of a heartbeat timeout, in-progress operations are preemptively canceled.
 
