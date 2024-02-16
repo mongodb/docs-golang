@@ -100,7 +100,7 @@ Use the Default Collation Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you call an operation that uses a collation on the ``books`` collection, the operation
-will now use the default collation specified in the :ref:`golang-create-collection`.
+uses the default collation specified in the :ref:`golang-create-collection`.
 
 Assume the ``books`` collection contains the following documents:
 
