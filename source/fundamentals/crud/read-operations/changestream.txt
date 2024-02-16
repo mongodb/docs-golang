@@ -39,7 +39,7 @@ in the ``courses`` collection:
    :dedent:
 
 To run the examples in this guide, load these documents into the
-``courses`` collection in the ``db`` database with the following snippet:
+``courses`` collection in the ``db`` database by using the following snippet:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/changeStream.go
    :language: go
