@@ -176,7 +176,7 @@ the following documents:
 
 You can sort on additional fields to resolve ties in the original sort.
 If you want to guarantee a specific order for documents, you should
-select sort fields that do not result in additional ties.
+select sort fields that do not result in more ties.
 
 Example
 ```````
