@@ -25,7 +25,6 @@ What's New
 
 Learn what's new in:
 
-* :ref:`Version 2.0 <version-2.0>`
 * :ref:`Version 1.14 <version-1.14>`
 * :ref:`Version 1.13 <version-1.13>`
 * :ref:`Version 1.12.1 <version-1.12.1>`
@@ -42,41 +41,6 @@ Learn what's new in:
 * :ref:`Version 1.2 <version-1.2>`
 * :ref:`Version 1.1 <version-1.1>`
 * :ref:`Version 1.0 <version-1.0>`
-
-.. _version-2.0:
-
-What's New in 2.0
------------------
-
-.. important:: Breaking Change
-
-   Starting in version 2.0, the ``mongo.Connect()`` method does not
-   accept a context parameter. This method accepts only an options
-   object. To view an example that uses this method, see the
-   :ref:`Connection Example Code <go-connection-example-code>` in the
-   Connection Guide.
-
-The 2.0 {+driver-short+} release includes the following improvements and fixes:
-
-- You can access the GridFS API from the ``mongo`` package. In previous
-  versions, you could access GridFS functions from the separate ``gridfs``
-  package, but this functionality is now merged with the main driver
-  ``mongo`` package. To learn more, see the :ref:`golang-gridfs` guide.
-
-- The ``Comment`` field in any options struct takes a value of type ``any`` instead of type
-  ``string``. To set this field, you can use the ``SetComment()`` method and pass a parameter
-  of type ``any``.
-
-- Updates to monitoring event documents:
-
-  - The ``CommandStartedEvent`` and ``CommandFinishedEvent`` structs
-    have a single ``ServerConnectionID`` field of type ``int64`` to
-    capture the connection ID.
-    
-  - The ``ConnectionID`` field of the ``PoolEvent``
-    struct takes a value of type ``int64`` instead of ``uint64``.
-
-  To view sample event documents, see the :ref:`golang-monitoring` guides.
 
 .. _version-1.14:
 
