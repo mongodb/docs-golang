@@ -77,6 +77,9 @@ Specify your MongoDB Atlas connection string as the value of the
    Make sure to replace the "<password>" section of the connection string with
    the password you created for your user that has **atlasAdmin** permissions.
 
+:manual:`connection string </reference/connection-string/>` to define your
+``MONGODB_URI`` environment variable to run the usage examples.
+
 .. literalinclude:: /includes/quick-start/main.go
    :language: go
    :dedent:
