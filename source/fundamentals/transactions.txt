@@ -86,7 +86,7 @@ following table describes these methods:
          error if there is no active transaction for the session or if the
          transaction was ended. To learn more about
          this method, see the :manual:`commitTransaction() page
-         </reference/method/Session.commitTransaction/>`  in the Server manual.
+         </reference/method/Session.commitTransaction/>` in the Server manual.
 
          .. note:: Retrying a Transaction
 
