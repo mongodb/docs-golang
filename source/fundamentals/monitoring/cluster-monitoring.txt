@@ -30,11 +30,6 @@ You might use information about topology events in your
 application to understand cluster changes, assess cluster health, or
 perform capacity planning.
 
-.. tip:: Logging
-
-   You can also configure logging in your application to learn more
-   about driver events. To learn more, see :ref:`golang-logging`.
-
 Subscribe to Events
 -------------------
 
