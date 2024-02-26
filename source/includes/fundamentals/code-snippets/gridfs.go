@@ -8,13 +8,12 @@ import (
 	"os"
 
 	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/gridfs"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func main() {
 	// Create a new client and connect to the server
-	client, err := mongo.Connect(context.TODO())
+	client, err := mongo.Connect()
 
 	if err != nil {
 		panic(err)
@@ -28,7 +27,7 @@ func main() {
 	}
 
 	// begin OpenUploadStream example
-	file, err := os.Open("path/to/file.txt")
+	file, err := os.Open("home/documents/file.txt")
 	if err != nil {
 		panic(err)
 	}
