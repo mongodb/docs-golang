@@ -1,3 +1,5 @@
+.. _golang-struct-tags:
+
 ===============
 Use Struct Tags
 ===============
