@@ -110,4 +110,4 @@ You can find usage examples for the following tasks:
 - :ref:`golang-count-usage-example`
 - :ref:`golang-distinct-usage-example`
 - :ref:`golang-run-command-usage-example`
-- :ref:`golang-struct-tags`
+- :ref:`golang-struct-tags-usage-example`

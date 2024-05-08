@@ -1,4 +1,4 @@
-.. _golang-struct-tags:
+.. _golang-struct-tags-usage-example:
 
 ===============
 Use Struct Tags
