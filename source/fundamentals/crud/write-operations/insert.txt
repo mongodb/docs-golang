@@ -17,6 +17,15 @@ Insert a Document
    :depth: 2
    :class: singlecol
 
+Send a Message
+--------------
+
+You can send a message to MongoDB by calling the ``sendMessage()``
+method.
+
+.. code-block:: go
+
+   result := collection.sendMessage("Hello World!")
 
 Overview
 --------
