@@ -51,16 +51,18 @@ func main() {
 	coll := client.Database("sample_restaurants").Collection("restaurants")
 	filter := bson.D{{"cuisine", "Italian"}}
 
+	// Retrieves documents that match the query filter
 	cursor, err := coll.Find(context.TODO(), filter)
 	if err != nil {
 		panic(err)
 	}
-	// end find
 
+	// Unpacks the cursor into a slice
 	var results []Restaurant
 	if err = cursor.All(context.TODO(), &results); err != nil {
 		panic(err)
 	}
+	// end find
 
 	for _, result := range results {
 		cursor.Decode(&result)
