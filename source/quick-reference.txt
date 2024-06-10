@@ -347,7 +347,7 @@ their related reference and API documentation.
              :language: go
 
              var results []string
-	         coll.Distinct(context.TODO(), "firstName", bson.D{}).Decode(&results)
+             coll.Distinct(context.TODO(), "firstName", bson.D{}).Decode(&results)
 
           .. output::
              :language: go
