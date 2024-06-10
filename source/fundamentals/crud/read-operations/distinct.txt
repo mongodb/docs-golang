@@ -103,21 +103,17 @@ of the ``department`` field by using the ``Distinct()`` method:
 .. io-code-block::
    :copyable: true
 
-   .. input::
+   .. input:: /includes/fundamentals/code-snippets/CRUD/distinctValues.go
+      :start-after: begin distinct
+      :end-before: end distinct
       :language: go
-
-	   filter := bson.D{{"enrollment", bson.D{{"$lt", 50}}}}
-
-	   var results []string
-	   coll.Distinct(context.TODO(), "department", filter).Decode(&results)
-
-	   fmt.Printf("%s\n", results)
+      :dedent:
 
    .. output::
       :language: none
       :visible: false
 
-      [Geology English]
+      [English Geology]
 
 Additional Information
 ----------------------
