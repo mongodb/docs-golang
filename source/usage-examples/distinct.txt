@@ -21,7 +21,7 @@ collection:
 .. literalinclude:: /includes/usage-examples/code-snippets/distinct.go
    :start-after: begin distinct
    :end-before: end distinct
-   :emphasize-lines: 6
+   :emphasize-lines: 7
    :language: go
    :dedent:
 

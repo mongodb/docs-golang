@@ -58,10 +58,12 @@ func main() {
 	// documents that match the filter
 	// begin distinct
 	filter := bson.D{{"enrollment", bson.D{{"$lt", 50}}}}
-	res := coll.Distinct(context.TODO(), "department", filter)
 
 	var arr []string
-	res.Decode(&arr)
+	err = coll.Distinct(context.TODO(), "department", filter).Decode(&arr)
+	if err != nil {
+		panic(err)
+	}
 
 	fmt.Printf("%s\n", arr)
 	// end distinct

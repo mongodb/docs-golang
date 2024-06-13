@@ -39,10 +39,11 @@ func main() {
 
 	// Retrieves the distinct values of the "title" field in documents
 	// that match the filter
-	res := coll.Distinct(context.TODO(), "title", filter)
-
 	var arr []string
-	res.Decode(&arr)
+	err = coll.Distinct(context.TODO(), "title", filter).Decode(&arr)
+	if err != nil {
+		panic(err)
+	}
 	// end distinct
 
 	// Prints the distinct "title" values
