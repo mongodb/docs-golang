@@ -20,7 +20,7 @@ func main() {
 		log.Fatal("You must set your 'MONGODB_URI' environment variable. See\n\t https://www.mongodb.com/docs/drivers/go/current/usage-examples/")
 	}
 
-	client, err := mongo.Connect(options.Client().ApplyURI(uri))
+	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
 	if err != nil {
 		panic(err)
 	}
@@ -43,7 +43,7 @@ func main() {
 
 	// Inserts multiple documents into a collection within a transaction,
 	// then commits or ends the transaction
-	result, err := session.WithTransaction(context.TODO(), func(ctx context.Context) (interface{}, error) {
+	result, err := session.WithTransaction(context.TODO(), func(ctx mongo.SessionContext) (interface{}, error) {
 		result, err := coll.InsertMany(ctx, []interface{}{
 			bson.D{{"title", "The Bluest Eye"}, {"author", "Toni Morrison"}},
 			bson.D{{"title", "Sula"}, {"author", "Toni Morrison"}},
