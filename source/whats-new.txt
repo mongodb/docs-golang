@@ -116,8 +116,7 @@ and fixes:
   left behind ``rttMonitor`` connections.
 
 - Adds support for manually specifying a ``maxTimeMS`` value for read and aggregation
-  operations when a client-wide timeout and an operation timeout is set. Previously,
-  ``maxTimeMS`` was always omitted.
+  operations when a client-wide timeout and an operation timeout are set.
 
 - Adds a ``RemainingBatchLength()`` method that you can call on a change stream.
 
