@@ -88,8 +88,8 @@ The 2.0 {+driver-short+} release includes the following improvements and fixes:
   specified type. See the :ref:`golang-retrieve-distinct` guide to learn more.
 
 - The ``IndexView.DropOne()`` method returns only an error, if present. In
-  previous versions, this method returns the server response, which
-  contains the number of dropped indexes. See the
+  previous versions, this method also returned the server response, which
+  contained the number of dropped indexes. See the
   :ref:`golang-remove-index` section of the Indexes guide to learn more.
 
 .. _version-1.16:
