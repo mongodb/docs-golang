@@ -444,7 +444,7 @@ You can delete any index from a collection except the default unique index on th
 ``_id`` field. To remove an index, pass the name of your index to the
 ``DropOne()`` method.
 
-The following example removes the index called ``title_1``
+The following example removes an index called ``title_1``
 from the ``sample_mflix.movies`` collection:
 
 .. code-block:: go
