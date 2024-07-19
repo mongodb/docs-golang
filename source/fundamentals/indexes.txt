@@ -451,6 +451,9 @@ from the ``sample_mflix.movies`` collection:
 
    coll := client.Database("sample_mflix").Collection("movies")
    err := coll.Indexes().DropOne(context.TODO(), "title_1")
+   if err != nil {
+       panic(err)
+   }
 
 Additional Information
 ----------------------
