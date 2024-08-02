@@ -94,7 +94,7 @@ The 2.0 {+driver-short+} release includes the following improvements and fixes:
 
 - Updates to the builder pattern for types in the ``options`` package.
   The pattern maintains a slice of setter functions, so you cannot set
-  data directly to an options object. This update should not
+  data directly to an options object. This update does not
   generally change how you create and use options. To learn more, see
   the `feature JIRA ticket <https://jira.mongodb.org/browse/GODRIVER-2696>`__.
 
