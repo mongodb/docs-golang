@@ -94,9 +94,9 @@ The 2.0 {+driver-short+} release includes the following improvements and fixes:
 
 - You can set options for transactions run in a given session by
   creating a ``TransactionOptions`` instance and passing the instance to
-  the ``SetDefaultTransactionOptions()`` method of ``SessionOptions``.
-  To learn more, see the :ref:`golang-session-txn-options` section of
-  the Transactions guide.
+  the ``SetDefaultTransactionOptions()`` method of the
+  ``SessionOptions`` type. To learn more, see the
+  :ref:`golang-session-txn-options` section of the Transactions guide.
 
 .. _version-1.16:
 

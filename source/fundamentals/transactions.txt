@@ -146,14 +146,14 @@ describe how to set options for all transactions run within a given
    ``SetDefaultTransactionOptions()`` method, passing the
    ``TransactionOptions`` instance as the parameter.
 
-   You can also specify other session options such as enabling causal
-   consistency.
+   You can also specify other session options such as causal
+   consistency in your ``SessionOptions`` instance.
 
 #. Pass the ``SessionOptions`` instance to the ``client.StartSession()``
    method.
 
-The following code demonstrates how to specify session and transaction
-options, then create a session with these options:
+The following code specifies session and transaction
+options, then creates a session with these options:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/transaction.go
    :language: go
