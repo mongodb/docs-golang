@@ -92,11 +92,23 @@ The 2.0 {+driver-short+} release includes the following improvements and fixes:
   contained the number of dropped indexes. See the
   :ref:`golang-remove-index` section of the Indexes guide to learn more.
 
-- To confirm that the server acknowledged a write operation, you must
-  access the ``Acknowledged`` property from the result struct returned
-  by the write method. The driver no longer returns a
-  ``ErrUnacknowledgedWrite`` error if a write operation is not
-  acknowledged.
+- The driver no longer returns an ``ErrUnacknowledgedWrite`` error if a
+  write operation is not acknowledged. To confirm that the server
+  acknowledged a write operation, you must access the ``Acknowledged``
+  property from the result struct returned by the write method.
+
+  The following example shows how to confirm acknowledgment of an insert
+  operation:
+
+  .. code-block:: go
+     :emphasize-lines: 6
+
+     res, err := coll.InsertOne(context.TODO(), bson.D{{"x", 2}})
+     if err != nil {
+     	panic(err)
+     }
+     
+     fmt.Print(res.Acknowledged)
 
 .. _version-1.16:
 
