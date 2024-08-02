@@ -92,6 +92,12 @@ The 2.0 {+driver-short+} release includes the following improvements and fixes:
   contained the number of dropped indexes. See the
   :ref:`golang-remove-index` section of the Indexes guide to learn more.
 
+- To confirm that the server acknowledged a write operation, you must
+  access the ``Acknowledged`` property from the result struct returned
+  by the write method. The driver no longer returns a
+  ``ErrUnacknowledgedWrite`` error if a write operation is not
+  acknowledged.
+
 .. _version-1.16:
 
 What's New in 1.16
