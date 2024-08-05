@@ -92,8 +92,8 @@ The 2.0 {+driver-short+} release includes the following improvements and fixes:
   contained the number of dropped indexes. See the
   :ref:`golang-remove-index` section of the Indexes guide to learn more.
 
-- The driver no longer returns an ``ErrUnacknowledgedWrite`` error if a
-  write operation is not acknowledged. To confirm that the server
+- The driver no longer supports the ``mongo.ErrUnacknowledgedWrite`` sentinel
+  error if a write operation is not acknowledged. To confirm that the server
   acknowledged a write operation, you must access the ``Acknowledged``
   property from the result struct returned by the write method.
 
