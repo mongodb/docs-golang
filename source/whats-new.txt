@@ -98,6 +98,30 @@ The 2.0 {+driver-short+} release includes the following improvements and fixes:
   generally change how you create and use options. To learn more, see
   the `feature JIRA ticket <https://jira.mongodb.org/browse/GODRIVER-2696>`__.
 
+- The driver no longer supports the ``mongo.ErrUnacknowledgedWrite`` sentinel
+  error if a write operation is not acknowledged. To confirm that the server
+  acknowledged a write operation, you must access the ``Acknowledged``
+  property from the result struct returned by the write method.
+
+  The following example shows how to confirm acknowledgment of an insert
+  operation:
+
+  .. code-block:: go
+     :emphasize-lines: 6
+
+     res, err := coll.InsertOne(context.TODO(), bson.D{{"x", 2}})
+     if err != nil {
+     	panic(err)
+     }
+     
+     fmt.Print(res.Acknowledged)
+
+- You can set options for transactions run in a given session by
+  creating a ``TransactionOptions`` instance and passing the instance to
+  the ``SetDefaultTransactionOptions()`` method of the
+  ``SessionOptions`` type. To learn more, see the
+  :ref:`golang-session-txn-options` section of the Transactions guide.
+
 .. _version-1.16:
 
 What's New in 1.16
