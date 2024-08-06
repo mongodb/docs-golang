@@ -9,7 +9,7 @@ Connection Options
    :values: reference
 
 .. meta::
-   :description: Learn how to set connection options when using the MongoDB Go Driver.
+   :keywords: code example, timeout, customize connection
 
 .. contents:: On this page
    :local:
