@@ -21,7 +21,7 @@ Overview
 --------
 
 This guide explains several common MongoDB connection and authentication
-options. You can pass the connection options as parameters of the connection
+options. You can pass the connection options as parameters in the connection
 URI to specify the behavior of the client.
 
 Options
@@ -50,8 +50,8 @@ default value, and a description of the option.
    * - **connectTimeoutMS**
      - integer
      - ``30000``
-     - Specifies the number of milliseconds to wait before timeout on a TCP
-       connection.
+     - Specifies the time in milliseconds to attempt a connection before
+       timing out.
 
    * - **maxPoolSize**
      - integer
@@ -123,17 +123,20 @@ Single Timeout Setting
 ----------------------
 
 You can set a single ``Timeout`` option on your ``Client`` instance to
-specify the amount of time that a single operation can take to execute.
-Set a timeout by using the ``SetTimeout()`` method or specifying the
-``timeoutMS`` option in your connection URI string. ``Database``, ``Collection``,
-``Session``, ``ChangeStream``, and ``Bucket`` instances elsewhere in
-your code inherit the ``Timeout`` option from ``Client`` if you do not
-set a different timeout in a Context for specific operations.
+specify the maximum amount of time that a single operation can take to
+execute.
 
-If you pass a Context into an operation with a deadline, the driver uses
-that Context deadline for the operation. If the context does not have a
-deadline, the driver derives a new Context from the given Context by using
-the ``Timeout`` option set on the ``Client``.
+Set a timeout by calling the ``SetTimeout()`` method when specifying
+options for your ``Client`` instance orby specifying the
+``timeoutMS`` option in your connection URI. By default, all
+``Database``, ``Collection``, ``Session``, ``ChangeStream``, and
+``Bucket`` instances elsewhere in your application inherit the
+``Timeout`` option from ``Client`` if you do not set a different timeout
+on specific operations in the operation's Context.
+
+If you set a timeout on a Context passed into an operation, the driver uses
+that value for the operation. If you do not specify a Context timeout,
+the operation Context derives the timeout from the ``Client`` instance.
 
 .. note:: Retries under Timeout Specification
 
@@ -165,13 +168,14 @@ by using the ``SetTimeout()`` method:
 Connection String Option
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following example shows how you can set a single timeout with the
-URI option and execute an operation that inherits this setting:
+The following example shows how to set a single timeout by using the
+``timeoutMS`` URI option. Then, the code executes an insert operation
+that inherits the timeout:
 
 .. code-block:: go
+   :emphasize-lines: 1, 5
 
    uri := "mongodb://user:pass@sample.host:27017/?timeoutMS=5000"
-   
    client, err := mongo.Connect(options.Client().ApplyURI(uri))
    
    ...
@@ -180,9 +184,9 @@ URI option and execute an operation that inherits this setting:
 Multiple Timeouts
 ^^^^^^^^^^^^^^^^^
 
-The following example shows how you can set the ``Timeout`` option on a
-``Client`` instance, then set a different timeout for an insert option
-within the Context passed to the ``InsertOne()`` method:
+The following example shows how to set the ``Timeout`` option on a
+``Client`` instance. Then, the code sets a different timeout within the
+Context passed to the ``InsertOne()`` method:
 
 .. code-block:: go
    :emphasize-lines: 1, 5
