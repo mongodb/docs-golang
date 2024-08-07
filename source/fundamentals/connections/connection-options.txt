@@ -127,7 +127,7 @@ specify the maximum amount of time that a single operation can take to
 execute.
 
 Set a timeout by calling the ``SetTimeout()`` method when specifying
-options for your ``Client`` instance orby specifying the
+options for your ``Client`` instance or by specifying the
 ``timeoutMS`` option in your connection URI. By default, all
 ``Database``, ``Collection``, ``Session``, ``ChangeStream``, and
 ``Bucket`` instances elsewhere in your application inherit the
