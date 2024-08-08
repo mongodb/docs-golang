@@ -122,6 +122,13 @@ The 2.0 {+driver-short+} release includes the following improvements and fixes:
   ``SessionOptions`` type. To learn more, see the
   :ref:`golang-session-txn-options` section of the Transactions guide.
 
+- The ``Cursor.SetMaxTime()`` method is renamed to
+  ``Cursor.SetMaxAwaitTime()``. This method specifies the maximum time
+  that the server waits for new documents when you retrieve documents by
+  using a tailable cursor when querying a capped collection.
+
+- The ``Collection.Clone()`` method does not return an error.
+
 .. _version-1.16:
 
 What's New in 1.16
