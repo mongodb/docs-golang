@@ -126,8 +126,8 @@ You can set a single ``Timeout`` option on your ``Client`` instance to
 specify the maximum amount of time that a single operation can take to
 execute.
 
-Set a timeout by calling the ``SetTimeout()`` method when specifying
-options for your ``Client`` instance or by specifying the
+Set a client-level timeout by calling the ``SetTimeout()`` method when
+specifying options for your ``Client`` instance or by specifying the
 ``timeoutMS`` option in your connection URI. By default, all
 ``Database``, ``Collection``, ``Session``, ``ChangeStream``, and
 ``Bucket`` instances elsewhere in your application inherit the
@@ -140,19 +140,20 @@ the operation Context derives the timeout from the ``Client`` instance.
 
 .. note:: Retries under Timeout Specification
 
-   When using default settings, if you set a ``Timeout`` option on your ``Client``
-   and your operation requires a retry, the driver retries the operation
-   as many times as possible before the timeout expires. Once the timeout
-   expires, the driver returns a timeout error. Versions 1.1 and later
-   of the {+driver-short+} enable retryable reads and writes by default.
+   If you set a timeout on your ``Client`` or in an operation-level
+   Context and the server returns a retryable error, the driver retries the
+   operation as many times as possible before the timeout expires.
+   
+   Once the timeout expires, the driver returns a timeout error.
    See the Server manual for more information about :ref:`retryable
-   reads <retryable-reads>` and :manual:`retryable writes </core/retryable-writes/>`.
+   reads <retryable-reads>` and :manual:`retryable writes
+   </core/retryable-writes/>`.
 
 Timeout Examples
 ~~~~~~~~~~~~~~~~
 
-This section provides examples that demonstrate different ways to set the
-``Timeout`` setting in your application.
+This section provides examples that demonstrate different ways to set a
+timeout in your application.
 
 Client Option
 ^^^^^^^^^^^^^
@@ -181,20 +182,15 @@ that inherits the timeout:
    ...
    coll.InsertOne(context.Background(), doc)
 
-Multiple Timeouts
+Operation Timeout
 ^^^^^^^^^^^^^^^^^
 
-The following example shows how to set the ``Timeout`` option on a
-``Client`` instance. Then, the code sets a different timeout within the
-Context passed to the ``InsertOne()`` method:
+The following example shows how to set an operation-level timeout in a
+Context, which takes priority over a client-level timeout you might have
+set:
 
 .. code-block:: go
-   :emphasize-lines: 1, 5
 
-   opts := options.Client().SetTimeout(5 * time.Second)
-   client, err := mongo.Connect(opts)
-
-   ...
    ctx, cancel := context.WithTimeout(context.TODO(), time.Second)
    defer cancel()
    
