@@ -51,8 +51,8 @@ Learn what's new in:
 What's New in 2.0
 -----------------
 
-.. important:: Breaking Change
-   
+.. important:: Breaking Changes
+
    The {+driver-short+} v2.0 release introduces the following breaking
    changes:
 
@@ -65,6 +65,30 @@ What's New in 2.0
      ``Cursor.SetMaxAwaitTime()``. This method specifies the maximum time
      that the server waits for new documents retrieved from a capped
      collection with a tailable cursor.
+   
+   - Removal of operation-specific timeout options. The following fields
+     and setter methods have been removed from the driver:
+
+     - ``AggregateOptions.MaxTime``, ``AggregateOptions.SetMaxTime()``
+     - ``ClientOptions.SocketTimeout``, ``ClientOptions.SetSocketTimeout()``
+     - ``CountOptions.MaxTime``, ``CountOptions.SetMaxTime()``
+     - ``DistinctOptions.MaxTime``, ``DistinctOptions.SetMaxTime()``
+     - ``EstimatedDocumentCountOptions.MaxTime``, ``EstimatedDocumentCountOptions.SetMaxTime()``
+     - ``FindOptions.MaxTime``, ``FindOptions.SetMaxTime()``
+     - ``FindOneOptions.MaxTime``, ``FindOneOptions.SetMaxTime()``
+     - ``FindOneAndReplaceOptions.MaxTime``, ``FindOneAndReplaceOptions.SetMaxTime()``
+     - ``FindOneAndUpdateOptions.MaxTime``, ``FindOneAndUpdateOptions.SetMaxTime()``
+     - ``GridFSFindOptions.MaxTime``, ``GridFSFindOptions.SetMaxTime()``
+     - ``CreateIndexesOptions.MaxTime``, ``CreateIndexesOptions.SetMaxTime()``
+     - ``DropIndexesOptions.MaxTime``, ``DropIndexesOptions.SetMaxTime()``
+     - ``ListIndexesOptions.MaxTime``, ``ListIndexesOptions.SetMaxTime()``
+     - ``SessionOptions.DefaultMaxCommitTime``, ``SessionOptions.SetDefaultMaxCommitTime()``
+     - ``TransactionOptions.MaxCommitTime``, ``TransactionOptions.SetMaxCommitTime()``
+     - ``WriteConcern.WTimeout``
+
+     Instead, you can set a timeout on your client or within a Context.
+     Learn more in the :ref:`golang-timeout-setting` section of the
+     Connection Options guide.
 
 The 2.0 {+driver-short+} release includes the following improvements and fixes:
 
