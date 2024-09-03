@@ -19,10 +19,10 @@ func main() {
 	}
 
 	uri := os.Getenv("MONGODB_URI")
+	link := "www.mongodb.com/docs/drivers/go/current/usage-examples/#environment-variable"
 	if uri == "" {
 		log.Fatal("Set your 'MONGODB_URI' environment variable. " +
-			"See: " +
-			"www.mongodb.com/docs/drivers/go/current/usage-examples/#environment-variable")
+			"See: " + link)
 	}
 	client, err := mongo.Connect(options.Client().
 		ApplyURI(uri))
