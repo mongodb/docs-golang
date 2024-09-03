@@ -53,7 +53,8 @@ What's New in 2.0
 
 The 2.0 {+driver-short+} release supports various new features, provides
 a smoother timeout experience, and implements clearer, more idiomatic Go
-APIs by improving errors descriptions and simplifying package structure.
+code by streamlining APIs, improving errors descriptions, and
+simplifying the driver package structure.
 
 In this section, you can learn more about these changes.
 
