@@ -265,7 +265,7 @@ You can configure OIDC for Azure IMDS in the following ways:
         previously created.
 
       The following code example shows how to set these options when creating a
-      ``MongoClient``:
+      ``Client``:
 
       .. literalinclude:: /includes/authentication/azure-imds-client.go
             :dedent:
@@ -351,7 +351,7 @@ You can configure OIDC for GCP IMDS in the following ways:
         previously created.
 
       The following code example shows how to set these options when creating a
-      ``MongoClient``:
+      ``Client``:
 
       .. literalinclude:: /includes/authentication/gcp-imds-client.go
             :language: go
