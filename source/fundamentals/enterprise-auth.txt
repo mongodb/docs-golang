@@ -444,10 +444,11 @@ following command:
 
    go get -u github.com/Azure/azure-sdk-for-go/sdk/azidentity
 
-Your ``OIDCCallback`` function should return the ``AccessToken``
-generated from the ``azidentity`` package. See the preceding
-:ref:`golang-mongodb-oidc-custom-callback` section for an example that
-implements a custom callback.
+Your ``OIDCCallback`` function must return an ``OIDCCredential``
+instance that uses the ``AccessToken`` generated from the ``azidentity``
+package. See the preceding :ref:`golang-mongodb-oidc-custom-callback`
+section for an example that implements a custom callback to retrieve an
+access token and then creates a ``Credential``.
 
 .. _golang-mongodb-oidc-gcp-gke:
 
