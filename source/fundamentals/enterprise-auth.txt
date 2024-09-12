@@ -268,6 +268,7 @@ You can configure OIDC for Azure IMDS in the following ways:
       ``MongoClient``:
 
       .. literalinclude:: /includes/authentication/azure-imds-client.go
+            :dedent:
             :language: go
             :copyable: true
             :start-after: start-azure-imds-client
@@ -354,6 +355,7 @@ You can configure OIDC for GCP IMDS in the following ways:
 
       .. literalinclude:: /includes/authentication/gcp-imds-client.go
             :language: go
+            :dedent:
             :copyable: true
             :start-after: start-gcp-imds-client
             :end-before: end-gcp-imds-client
@@ -402,6 +404,7 @@ environment variable:
 
 .. literalinclude:: /includes/authentication/eks-custom-callback.go
       :language: go
+      :dedent:
       :copyable: true
       :start-after: start-custom-callback
       :end-before: end-custom-callback
@@ -422,6 +425,7 @@ map and the EKS callback function:
 
 .. literalinclude:: /includes/authentication/eks-custom-callback.go
       :language: go
+      :dedent:
       :copyable: true
       :start-after: start-credential-callback
       :end-before: end-credential-callback
@@ -470,6 +474,7 @@ service-account token-file location:
 .. literalinclude:: /includes/authentication/gke-callback.go
    :language: go
    :copyable: true
+   :dedent:
    :start-after: start-callback
    :end-before: end-callback
    :emphasize-lines: 10
@@ -492,6 +497,7 @@ map and the GKE callback function:
 .. literalinclude:: /includes/authentication/gke-callback.go
    :language: go
    :copyable: true
+   :dedent:
    :start-after: start-credential-callback
    :end-before: end-credential-callback
    :emphasize-lines: 10
