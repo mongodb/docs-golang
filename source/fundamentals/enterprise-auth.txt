@@ -477,7 +477,6 @@ service-account token-file location:
    :dedent:
    :start-after: start-callback
    :end-before: end-callback
-   :emphasize-lines: 10
 
 Next, create a map to store your authentication
 mechanism properties, as shown in the following example. Replace
@@ -500,7 +499,7 @@ map and the GKE callback function:
    :dedent:
    :start-after: start-credential-callback
    :end-before: end-credential-callback
-   :emphasize-lines: 10
+   :emphasize-lines: 11
 
 Additional Information
 ----------------------
