@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	// start-custom callback
+	// start-custom-callback
 	eksCallback := func(_ context.Context,
 		_ *options.OIDCArgs) (*options.OIDCCredential, error) {
 		accessToken, err := os.ReadFile(
@@ -21,7 +21,7 @@ func main() {
 			AccessToken: string(accessToken),
 		}, nil
 	}
-	// end-custom callback
+	// end-custom-callback
 
 	// start-credential-callback
 	uri := "mongodb://<hostname>:<port>"
