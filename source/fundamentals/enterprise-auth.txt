@@ -409,19 +409,8 @@ environment variable:
       :start-after: start-custom-callback
       :end-before: end-custom-callback
 
-Next, create a map to store your authentication
-mechanism properties, as shown in the following example. Replace
-the ``<audience>`` placeholder with the value of the ``audience``
-parameter configured on your MongoDB deployment.
-
-.. code-block:: go
-
-   props := map[string]string{
-   	"TOKEN_RESOURCE": "<audience>",
-   }
-
-Then, you can create a ``Credential`` struct that uses the properties
-map and the EKS callback function:
+Then, you can create a ``Credential`` struct that uses the EKS callback
+function that you defined:
 
 .. literalinclude:: /includes/authentication/eks-custom-callback.go
       :language: go
@@ -429,7 +418,7 @@ map and the EKS callback function:
       :copyable: true
       :start-after: start-credential-callback
       :end-before: end-credential-callback
-      :emphasize-lines: 10
+      :emphasize-lines: 6
 
 .. _golang-mongodb-oidc-azure-envs:
 
@@ -478,20 +467,8 @@ service-account token-file location:
    :start-after: start-callback
    :end-before: end-callback
 
-Next, create a map to store your authentication
-mechanism properties, as shown in the following example. Replace
-the ``<audience>`` placeholder with the value of the ``audience``
-parameter configured on your MongoDB deployment.
-
-.. code-block:: go
-
-   props := map[string]string{
-   	"ENVIRONMENT":    "gcp",
-   	"TOKEN_RESOURCE": "<audience>",
-   }
-
-Then, you can create a ``Credential`` struct that uses the properties
-map and the GKE callback function:
+Then, you can create a ``Credential`` struct that uses the the GKE
+callback function that you defined:
 
 .. literalinclude:: /includes/authentication/gke-callback.go
    :language: go
@@ -499,7 +476,7 @@ map and the GKE callback function:
    :dedent:
    :start-after: start-credential-callback
    :end-before: end-credential-callback
-   :emphasize-lines: 11
+   :emphasize-lines: 6
 
 Additional Information
 ----------------------

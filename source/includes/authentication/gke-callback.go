@@ -25,16 +25,11 @@ func main() {
 
 	// start-credential-callback
 	uri := "mongodb://<hostname>:<port>"
-	props := map[string]string{
-		"ENVIRONMENT":    "gcp",
-		"TOKEN_RESOURCE": "<audience>",
-	}
 	opts := options.Client().ApplyURI(uri)
 	opts.SetAuth(
 		options.Credential{
-			AuthMechanism:           "MONGODB-OIDC",
-			AuthMechanismProperties: props,
-			OIDCMachineCallback:     gkeCallback,
+			AuthMechanism:       "MONGODB-OIDC",
+			OIDCMachineCallback: gkeCallback,
 		},
 	)
 	client, err := mongo.Connect(opts)
