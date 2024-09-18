@@ -51,6 +51,12 @@ Learn what's new in:
 What's New in 1.17
 ------------------
 
+.. important::
+
+   v1.17 is the final planned v1.x version release. This version will
+   receive bug fixes, but future development and features will be
+   included only in 2.x versions of the driver.
+
 The 1.17 {+driver-short+} release includes the following improvements
 and fixes:
 
