@@ -195,7 +195,7 @@ and fixes:
   more information about QE range queries, see :manual:`Queryable
   Encryption </core/queryable-encryption>` in the {+mdb-server+} manual.
 
-- Adds partial support for {+mdb-server+} 8.0, with the exception of
+- Adds support for {+mdb-server+} 8.0, except for
   the client bulk write feature.
 
 - Extends the ``IndexView`` type to include the
