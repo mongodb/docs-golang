@@ -10,7 +10,7 @@ Fundamentals
    Stable API </fundamentals/stable-api>
    Context </fundamentals/context>
    Authentication </fundamentals/auth>
-   Enterprise Authentication Mechanisms </fundamentals/enterprise-auth>
+   Enterprise Authentication </fundamentals/enterprise-auth>
    BSON </fundamentals/bson>
    CRUD Operations </fundamentals/crud>
    Aggregation </fundamentals/aggregation>

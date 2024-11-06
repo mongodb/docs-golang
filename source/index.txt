@@ -15,9 +15,9 @@
    :maxdepth: 1
 
    Quick Start </quick-start>
-   Quick reference </quick-reference>
+   Quick Reference </quick-reference>
    What's New </whats-new>
-   Usage examples </usage-examples>
+   Usage Examples </usage-examples>
    Fundamentals </fundamentals>
    API Documentation <{+api+}/mongo>
    FAQ </faq>
