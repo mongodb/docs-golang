@@ -7,19 +7,19 @@ Write Operations
 .. meta::
    :description: Learn about the commands for running MongoDB write operations by using the {+driver-long+}.
 
+.. toctree::
+   :caption: Write Operations
+
+   Insert a Document </fundamentals/crud/write-operations/insert>
+   Delete a Document </fundamentals/crud/write-operations/delete>
+   Modify Documents </fundamentals/crud/write-operations/modify>
+   Update Array Elements </fundamentals/crud/write-operations/embedded-arrays>
+   Upsert Documents </fundamentals/crud/write-operations/upsert>
+   Bulk Operations </fundamentals/crud/write-operations/bulk>
+
 - :ref:`golang-insert-guide`
 - :ref:`golang-delete-guide`
 - :ref:`golang-change-document`
 - :ref:`golang-update-arrays`
 - :ref:`golang-upsert-guide`
 - :ref:`golang-bulk`
-
-.. toctree::
-   :caption: Write Operations
-
-   /fundamentals/crud/write-operations/insert
-   /fundamentals/crud/write-operations/delete
-   /fundamentals/crud/write-operations/modify
-   /fundamentals/crud/write-operations/embedded-arrays
-   /fundamentals/crud/write-operations/upsert
-   /fundamentals/crud/write-operations/bulk
