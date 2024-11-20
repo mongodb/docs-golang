@@ -11,5 +11,5 @@ Find Operations
 .. toctree::
    :caption: Examples
 
-   Find a Document </usage-examples/findOne>
-   Find Multiple Documents </usage-examples/find>
+   Find One </usage-examples/findOne>
+   Find Many </usage-examples/find>

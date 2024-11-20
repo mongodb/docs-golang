@@ -16,10 +16,10 @@ Write Operations
 .. toctree::
    :caption: Examples
 
-   Insert a Document </usage-examples/insertOne>
-   Insert Multiple Documents </usage-examples/insertMany>
-   Update a Document </usage-examples/updateOne>
-   Update Multiple Documents </usage-examples/updateMany>
-   Replace a Document </usage-examples/replaceOne>
-   Delete a Document </usage-examples/deleteOne>
-   Delete Multiple Documents </usage-examples/deleteMany>
+   Insert One </usage-examples/insertOne>
+   Insert Many </usage-examples/insertMany>
+   Update One </usage-examples/updateOne>
+   Update Many </usage-examples/updateMany>
+   Replace One </usage-examples/replaceOne>
+   Delete One </usage-examples/deleteOne>
+   Delete Many </usage-examples/deleteMany>

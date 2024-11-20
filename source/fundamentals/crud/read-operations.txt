@@ -12,8 +12,7 @@ Read Operations
 
    Query </fundamentals/crud/read-operations/query-document>
    Count Documents </fundamentals/crud/read-operations/count>
-   Retrieve Data </fundamentals/crud/read-operations/retrieve>
-   Cursor Data Access </fundamentals/crud/read-operations/cursor>
+   Data Cursors </fundamentals/crud/read-operations/cursor>
    Distinct Field Values </fundamentals/crud/read-operations/distinct>
    Sort Results </fundamentals/crud/read-operations/sort>
    Skip Returned Results </fundamentals/crud/read-operations/skip>
