@@ -15,8 +15,8 @@ Read Operations
    Data Cursors </fundamentals/crud/read-operations/cursor>
    Distinct Field Values </fundamentals/crud/read-operations/distinct>
    Sort Results </fundamentals/crud/read-operations/sort>
-   Skip Returned Results </fundamentals/crud/read-operations/skip>
-   Limit Returned Results </fundamentals/crud/read-operations/limit>
+   Skip Results </fundamentals/crud/read-operations/skip>
+   Limit Results </fundamentals/crud/read-operations/limit>
    Specify Fields to Return </fundamentals/crud/read-operations/project>
    Search Text </fundamentals/crud/read-operations/text>
    Monitor Data Changes </fundamentals/crud/read-operations/changestream>
