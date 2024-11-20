@@ -10,11 +10,11 @@ Write Operations
 .. toctree::
    :caption: Write Operations
 
-   Insert a Document </fundamentals/crud/write-operations/insert>
-   Delete a Document </fundamentals/crud/write-operations/delete>
-   Modify Documents </fundamentals/crud/write-operations/modify>
+   Insert </fundamentals/crud/write-operations/insert>
+   Delete </fundamentals/crud/write-operations/delete>
+   Modify </fundamentals/crud/write-operations/modify>
    Update Array Elements </fundamentals/crud/write-operations/embedded-arrays>
-   Upsert Documents </fundamentals/crud/write-operations/upsert>
+   Upsert </fundamentals/crud/write-operations/upsert>
    Bulk Operations </fundamentals/crud/write-operations/bulk>
 
 - :ref:`golang-insert-guide`
