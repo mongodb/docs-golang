@@ -73,7 +73,7 @@ operations, keep the following in mind:
   limit </reference/limits/#BSON-Document-Size>` of 16 megabytes.
 - Pipeline stages have a memory limit of 100 megabytes by default. If
   required, you may exceed this limit by using the `allowDiskUse
-  <{+api+}/mongo/options#AggregateOptions.SetAllowDiskUse>`__
+  <{+api+}/mongo/options#AggregateOptionsBuilder.SetAllowDiskUse>`__
   method.
 - The :manual:`$graphLookup
   </reference/operator/aggregation/graphLookup/>` stage
