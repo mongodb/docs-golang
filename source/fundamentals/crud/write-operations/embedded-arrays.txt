@@ -4,8 +4,6 @@
 Update Arrays in a Document
 ===========================
 
-.. default-domain:: mongodb
-
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -91,7 +89,7 @@ This example performs the following actions:
 - Decrements the first matching array value by ``2``.
 
 .. io-code-block::
-   :copyable: 
+   :copyable:
 
    .. input:: /includes/fundamentals/code-snippets/CRUD/updateArray.go
       :start-after: begin positional
@@ -180,7 +178,7 @@ to convert from ounces to milliliters:
    .. input:: /includes/fundamentals/code-snippets/CRUD/updateArray.go
       :start-after: begin filtered positional
       :end-before: end filtered positional
-      :emphasize-lines: 1
+      :emphasize-lines: 1-2
       :language: go
       :dedent:
 
@@ -211,8 +209,8 @@ To learn more about any of the methods or types discussed in this
 guide, see the following API documentation:
 
 - `FindOneAndUpdate() <{+api+}/mongo#Collection.FindOneAndUpdate>`__
-- `FindOneAndUpdateOptions.SetReturnDocument()
+- `FindOneAndUpdateOptionsBuilder.SetReturnDocument()
   <{+api+}/mongo/options#FindOneAndUpdateOptionsBuilder.SetReturnDocument>`__
-- `FindOneAndUpdateOptions.SetArrayFilters()
+- `FindOneAndUpdateOptionsBuilder.SetArrayFilters()
   <{+api+}/mongo/options#FindOneAndUpdateOptionsBuilder.SetArrayFilters>`__
 - `UpdateMany() <{+api+}/mongo#Collection.UpdateMany>`__

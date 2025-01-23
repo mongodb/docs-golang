@@ -7,9 +7,9 @@ import (
 	"log"
 	"os"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 // start-drink-struct
@@ -42,11 +42,11 @@ func main() {
 
 	// begin insertDocs
 	coll := client.Database("db").Collection("drinks")
-	docs := []interface{}{
+	docsToInsert := []interface{}{
 		Drink{Description: "Matcha Latte", Sizes: []int32{12, 16, 20}, Styles: []string{"iced", "hot", "extra hot"}},
 	}
 
-	result, err := coll.InsertMany(context.TODO(), docs)
+	result, err := coll.InsertMany(context.TODO(), docsToInsert)
 	//end insertDocs
 	if err != nil {
 		panic(err)
@@ -84,7 +84,7 @@ func main() {
 
 		_, err := coll.UpdateOne(context.TODO(), filter, update)
 		if err != nil {
-			log.Fatal(err)
+			panic(err)
 		}
 
 		fmt.Println("\nData Restored\n")
@@ -121,7 +121,7 @@ func main() {
 
 		_, err := coll.UpdateOne(context.TODO(), bson.D{}, update)
 		if err != nil {
-			log.Fatal(err)
+			panic(err)
 		}
 
 		fmt.Println("\nData Restored\n")
