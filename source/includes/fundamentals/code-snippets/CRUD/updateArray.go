@@ -63,14 +63,15 @@ func main() {
 		opts := options.FindOneAndUpdate().
 			SetReturnDocument(options.After)
 
-		// Updates the first document that matches the filter and prints
-		// the updated document as a struct
+		// Updates the first document that matches the filter
 		var updatedDoc Drink
-		err := coll.FindOneAndUpdate(context.TODO(), filter, update, opts).Decode(&updatedDoc)
+		err := coll.FindOneAndUpdate(context.TODO(), filter, update, opts).
+			Decode(&updatedDoc)
 		if err != nil {
 			panic(err)
 		}
 
+		// Prints the updated document
 		res, _ := bson.MarshalExtJSON(updatedDoc, false, false)
 		fmt.Println(string(res))
 		// end positional
@@ -97,17 +98,18 @@ func main() {
 		identifier := []interface{}{bson.D{{"hotOptions", bson.D{{"$regex", "hot"}}}}}
 		update := bson.D{{"$unset", bson.D{{"styles.$[hotOptions]", ""}}}}
 		opts := options.FindOneAndUpdate().
-			SetArrayFilters(options.ArrayFilters{Filters: identifier}).
+			SetArrayFilters(identifier).
 			SetReturnDocument(options.After)
 
-		// Updates the first document that matches the filter and prints
-		// the updated document as a struct
+		// Updates the first document that matches the filter
 		var updatedDoc Drink
-		err := coll.FindOneAndUpdate(context.TODO(), bson.D{}, update, opts).Decode(&updatedDoc)
+		err := coll.FindOneAndUpdate(context.TODO(), bson.D{}, update, opts).
+			Decode(&updatedDoc)
 		if err != nil {
 			panic(err)
 		}
 
+		// Prints the updated document
 		res, _ := bson.MarshalExtJSON(updatedDoc, false, false)
 		fmt.Println(string(res))
 		// end filtered positional
@@ -134,14 +136,14 @@ func main() {
 		opts := options.FindOneAndUpdate().
 			SetReturnDocument(options.After)
 
-		// Updates the first document that matches the filter and prints
-		// the updated document as a struct
+		// Updates the first document that matches the filter
 		var updatedDoc Drink
 		err := coll.FindOneAndUpdate(context.TODO(), bson.D{}, update, opts).Decode(&updatedDoc)
 		if err != nil {
 			panic(err)
 		}
 
+		// Prints the updated document
 		res, _ := bson.MarshalExtJSON(updatedDoc, false, false)
 		fmt.Println(string(res))
 		// end positional all
