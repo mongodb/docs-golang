@@ -25,7 +25,7 @@ Set Up Your Project
 Use Go Mod to Initialize a Project
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Create a new directory and initialize your project by using ``go mod``.
+Create a new directory and initialize your project using ``go mod``.
 
 .. code-block:: shell
 
@@ -98,7 +98,7 @@ Run the sample code with the following command from your command line:
    If your output is empty, ensure you have loaded the
    :atlas:`sample datasets </sample-data/>` into your cluster.
 
-After completing this step, you should have a working application that uses
+After completing this step, you have a working application that uses
 the Go driver to connect to your MongoDB cluster, run a query on the
 sample data, and print out the result.
 
