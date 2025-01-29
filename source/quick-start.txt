@@ -38,24 +38,24 @@ Use Go Mod to Initialize a Project
          cd go-quickstart
          go mod init go-quickstart
 
-.. step:: Add the Go driver as a dependency
+   .. step:: Add the Go driver as a dependency
 
-   Use ``go get`` to add the Go driver as a dependency.
+      Use ``go get`` to add the Go driver as a dependency.
 
-   .. code-block:: shell
+      .. code-block:: shell
 
-      go get go.mongodb.org/mongo-driver/v2/mongo
+         go get go.mongodb.org/mongo-driver/v2/mongo
 
-.. step:: Add other dependencies
+   .. step:: Add other dependencies
 
-   Use ``go get`` to add any necessary dependencies. This Quick Start
-   uses the ``godotenv`` package to read a MongoDB connection string
-   from an environment variable to avoid embedding credentials within
-   source code.
+      Use ``go get`` to add any necessary dependencies. This Quick Start
+      uses the ``godotenv`` package to read a MongoDB connection string
+      from an environment variable to avoid embedding credentials within
+      source code.
 
-   .. code-block:: shell
+      .. code-block:: shell
 
-      go get github.com/joho/godotenv
+         go get github.com/joho/godotenv
 
 Create a MongoDB Cluster
 ------------------------
