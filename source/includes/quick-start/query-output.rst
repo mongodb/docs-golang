@@ -1,4 +1,4 @@
-When you run ``main.go``, it should output the details of the movie from
+When you run ``main.go``, it outputs the details of the movie from
 the sample dataset which looks something like the following:
 
 .. code-block:: json

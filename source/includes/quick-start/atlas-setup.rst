@@ -43,7 +43,7 @@ when applicable, and connection options.
    .. step:: Retrieve your MongoDB Atlas connection string
 
       To retrieve your connection string for the cluster you created in the
-      previous step, log into your Atlas account and navigate to the
+      previous step, log in to your Atlas account. Navigate to the
       :guilabel:`Database` section and click :guilabel:`Clusters`. Click the
       :guilabel:`Connect` button for the cluster that you want to connect to as
       shown below.
