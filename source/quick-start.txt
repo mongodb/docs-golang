@@ -25,36 +25,39 @@ Set Up Your Project
 Use Go Mod to Initialize a Project
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Create a new directory and initialize your project using ``go mod``.
+.. procedure::
+   :style: connected
 
-.. code-block:: shell
+   .. step:: Create and initialize your project
 
-   mkdir go-quickstart
-   cd go-quickstart
-   go mod init go-quickstart
+      Create a new directory and initialize your project using ``go mod``.
+
+      .. code-block:: shell
+
+         mkdir go-quickstart
+         cd go-quickstart
+         go mod init go-quickstart
 
 .. _golang-add-mongodb-dependency:
 
-Add MongoDB as a Dependency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. step:: Add the Go driver as a dependency
 
-Use ``go get`` to add the Go driver as a dependency.
+   Use ``go get`` to add the Go driver as a dependency.
 
-.. code-block:: shell
+   .. code-block:: shell
 
-   go get go.mongodb.org/mongo-driver/v2/mongo
+      go get go.mongodb.org/mongo-driver/v2/mongo
 
-Add Other Dependencies
-~~~~~~~~~~~~~~~~~~~~~~
+.. step:: Add other dependencies
 
-Use ``go get`` to add any additional dependencies. This Quick Start
-uses the ``godotenv`` package to read a MongoDB connection string
-from an environment variable to avoid embedding credentials within
-source code.
+   Use ``go get`` to add any additional dependencies. This Quick Start
+   uses the ``godotenv`` package to read a MongoDB connection string
+   from an environment variable to avoid embedding credentials within
+   source code.
 
-.. code-block:: shell
+   .. code-block:: shell
 
-   go get github.com/joho/godotenv
+      go get github.com/joho/godotenv
 
 Create a MongoDB Cluster
 ------------------------
@@ -62,7 +65,7 @@ Create a MongoDB Cluster
 .. include:: /includes/quick-start/atlas-setup.rst
 
 Query Your MongoDB Cluster from Your Application
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------------
 
 Next, create a file to contain your application called ``main.go``
 in the base directory of your project. Use the following sample

@@ -26,7 +26,7 @@ into your cluster.
 .. _golang-connect-to-your-cluster:
 
 Connect to your Cluster
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 You can connect to your MongoDB deployment by providing a
 **connection URI**, also called a *connection string*, which
