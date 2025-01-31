@@ -103,7 +103,7 @@ After completing this step, you have a working application that uses
 the Go driver to connect to your MongoDB cluster, run a query on the
 sample data, and print out the result.
 
-Next steps
+Next Steps
 ----------
 
 .. include:: /includes/quick-start/next-steps.rst
