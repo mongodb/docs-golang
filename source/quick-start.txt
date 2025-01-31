@@ -98,7 +98,7 @@ Query Your MongoDB Cluster from Your Application
 
       .. literalinclude:: /includes/quick-start/main.go
          :language: go
-         :dedent: 3
+         :dedent:
 
    .. step:: Run your application
 
