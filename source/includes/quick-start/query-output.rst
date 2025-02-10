@@ -9,7 +9,3 @@ the sample dataset which looks something like the following:
        "title": "Back to the Future",
        ...
    }
-
-If you receive no output or an error, check whether you properly set up
-your environment variable and whether you loaded the sample dataset in
-your MongoDB Atlas cluster.

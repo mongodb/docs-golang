@@ -22,9 +22,6 @@ Go Driver Quick Start
 Set Up Your Project
 -------------------
 
-Use Go Mod to Initialize a Project
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. procedure::
    :style: connected
 
@@ -38,9 +35,9 @@ Use Go Mod to Initialize a Project
          cd go-quickstart
          go mod init go-quickstart
 
-   .. step:: Add the Go driver as a dependency
+   .. step:: Add MongoDB as a dependency
 
-      Use ``go get`` to add the Go driver as a dependency.
+      Use ``go get`` to add the {+driver-long+} as a dependency.
 
       .. code-block:: shell
 
@@ -112,11 +109,12 @@ Query Your MongoDB Cluster from Your Application
 
       .. tip::
 
-         If your output is empty, ensure you have loaded the
+         If you receive no output or an error, check whether you properly set up
+         your environment variable and ensure you have loaded the 
          :atlas:`sample datasets </sample-data/>` into your cluster.
 
 After you complete these steps, you have a working application that uses
-the Go driver to connect to your MongoDB cluster, runs a query on the
+the {+driver-long+} to connect to your MongoDB cluster, runs a query on the
 sample data, and prints out the result.
 
 Next Steps
