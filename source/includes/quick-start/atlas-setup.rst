@@ -75,6 +75,6 @@ when applicable, and connection options.
 After completing these steps, you have a connection string that corresponds your
 Atlas cluster.
 
-To learn more about connecting to the Go driver through Atlas, see
+To learn more about connecting to the {+driver-long+} through Atlas, see
 the :atlas:`Atlas driver connection guide </driver-connection>`
 and select **Go** from the *Select your language* dropdown.

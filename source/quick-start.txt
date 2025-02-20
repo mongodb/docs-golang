@@ -35,24 +35,13 @@ Set Up Your Project
          cd go-quickstart
          go mod init go-quickstart
 
-   .. step:: Add MongoDB as a dependency
+   .. step:: Add the {+driver-long+} as a dependency
 
       Use ``go get`` to add the {+driver-long+} as a dependency.
 
       .. code-block:: shell
 
          go get go.mongodb.org/mongo-driver/v2/mongo
-
-   .. step:: Add other dependencies
-
-      Use ``go get`` to add any necessary dependencies. This Quick Start
-      uses the ``godotenv`` package to read a MongoDB connection string
-      from an environment variable to avoid embedding credentials within
-      source code.
-
-      .. code-block:: shell
-
-         go get github.com/joho/godotenv
 
 Create a MongoDB Cluster
 ------------------------
@@ -75,9 +64,8 @@ Query Your MongoDB Cluster from Your Application
 
    .. step:: Add your connection string
 
-      Specify your MongoDB Atlas connection string as the value of the
-      ``uri`` variable or create an environment variable called
-      ``MONGODB_URI`` and set your Atlas connection string as its value.
+      Create an environment variable called ``MONGODB_URI`` and set your
+      Atlas connection string as its value.
 
       .. code-block:: bash
 
