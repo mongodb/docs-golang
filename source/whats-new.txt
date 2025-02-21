@@ -91,6 +91,12 @@ in the {+driver-short+} source code on GitHub.
      Learn more in the :ref:`golang-timeout-setting` section of the
      Connection Options guide.
 
+   - Removal of the ``bson/primitive`` package. This package is now merged with
+     the ``bson`` package. Update your import statements from
+     ``go.mongodb.org/mongo-driver/bson/primitive`` to
+     ``go.mongodb.org/mongo-driver/bson`` and change any instance of
+     ``primitive.ObjectID`` to ``bson.ObjectId``.
+
 This release includes the following improvements and fixes:
 
 - Support for OpenID Connect (OIDC) authentication. To learn more, see
