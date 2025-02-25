@@ -54,14 +54,6 @@ Query Your MongoDB Cluster from Your Application
 .. procedure::
    :style: connected
 
-   .. step:: Create a new file
-
-      Create a new file called ``main.go`` in the base directory of your project.
-
-      .. code-block:: shell
-
-         touch main.go
-
    .. step:: Add your connection string
 
       Create an environment variable called ``MONGODB_URI`` and set your
@@ -75,6 +67,14 @@ Query Your MongoDB Cluster from Your Application
 
          Make sure to replace the "<password>" section of the connection string with
          the password you created for your user that has **atlasAdmin** permissions.
+
+   .. step:: Create a new file
+
+      Create a new file called ``main.go`` in the base directory of your project.
+
+      .. code-block:: shell
+
+         touch main.go
 
    .. step:: Create your Go application
 
