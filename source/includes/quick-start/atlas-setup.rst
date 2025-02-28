@@ -11,8 +11,8 @@ cloud.
    .. step:: Create a free tier cluster
 
       Complete the :atlas:`Get Started with Atlas </getting-started>` guide to
-      set up a new Atlas account, free tier MongoDB cluster, load datasets, and
-      interact with the data.
+      set up a new Atlas account,create a free tier MongoDB cluster, load
+      datasets, and interact with the data.
 
    .. step:: Save your credentials
 
@@ -43,7 +43,7 @@ when applicable, and connection options.
    .. step:: Retrieve your MongoDB Atlas connection string
 
       To retrieve your connection string for the cluster you created in the
-      previous step, log in to your Atlas account. Navigate to the
+      previous section, log in to your Atlas account. Navigate to the
       :guilabel:`Database` section and click :guilabel:`Clusters`. Click the
       :guilabel:`Connect` button for the cluster that you want to connect to as
       shown below.
@@ -58,7 +58,7 @@ when applicable, and connection options.
 
    .. step:: Copy your connection string
 
-      Click the :guilabel:`Copy` button to copy the connection string to your
+      Click the button to the right of the connection string to copy it to your
       clipboard, as shown in the following screenshot:
 
       .. figure:: /includes/figures/atlas_connection_copy_string_go.png
@@ -77,4 +77,4 @@ Atlas cluster.
 
 To learn more about connecting to the {+driver-long+} through Atlas, see
 the :atlas:`Atlas driver connection guide </driver-connection>`
-and select **Go** from the *Select your language* dropdown.
+and select **Go** from the :guilabel:`Select your language` dropdown.

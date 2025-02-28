@@ -27,7 +27,8 @@ Set Up Your Project
 
    .. step:: Create and initialize your project
 
-      Create a new directory and initialize your project using ``go mod``.
+      Create a new directory and initialize your project by using ``go mod``, as
+      shown in the following commands:
 
       .. code-block:: shell
 
@@ -37,7 +38,8 @@ Set Up Your Project
 
    .. step:: Add the {+driver-long+} as a dependency
 
-      Use ``go get`` to add the {+driver-long+} as a dependency.
+      Use ``go get`` to add the {+driver-short+} as a dependency, as shown in
+      the following command.
 
       .. code-block:: shell
 
@@ -65,12 +67,14 @@ Query Your MongoDB Cluster from Your Application
 
       .. note::
 
-         Make sure to replace the "<password>" section of the connection string with
-         the password you created for your user that has **atlasAdmin** permissions.
+         Make sure to replace the ``<db_password>`` section of the connection
+         string with the password you created for your user that has
+         **atlasAdmin** permissions.
 
    .. step:: Create a new file
 
-      Create a new file called ``main.go`` in the base directory of your project.
+      Run the following command from the base directory of your project to
+      create a new file called ``main.go``:
 
       .. code-block:: shell
 
