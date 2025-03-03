@@ -11,7 +11,7 @@ cloud.
    .. step:: Create a free tier cluster
 
       Complete the :atlas:`Get Started with Atlas </getting-started>` guide to
-      set up a new Atlas account,create a free tier MongoDB cluster, load
+      set up a new Atlas account, create a free tier MongoDB cluster, load
       datasets, and interact with the data.
 
    .. step:: Save your credentials
