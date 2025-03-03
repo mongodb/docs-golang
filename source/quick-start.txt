@@ -39,7 +39,7 @@ Set Up Your Project
    .. step:: Add the {+driver-long+} as a dependency
 
       Use ``go get`` to add the {+driver-short+} as a dependency, as shown in
-      the following command.
+      the following command:
 
       .. code-block:: shell
 
@@ -58,8 +58,9 @@ Query Your MongoDB Cluster from Your Application
 
    .. step:: Add your connection string
 
-      Create an environment variable called ``MONGODB_URI`` and set your
-      Atlas connection string as its value.
+      In your terminal, run the following command to create an environment
+      variable called ``MONGODB_URI`` and set your Atlas connection string as
+      its value: 
 
       .. code-block:: bash
 

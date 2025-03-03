@@ -25,7 +25,7 @@ into your cluster.
 
 .. _golang-connect-to-your-cluster:
 
-Connect to your Cluster
+Connect to Your Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 You can connect to your MongoDB deployment by providing a
@@ -46,7 +46,7 @@ when applicable, and connection options.
       previous section, log in to your Atlas account. Navigate to the
       :guilabel:`Database` section and click :guilabel:`Clusters`. Click the
       :guilabel:`Connect` button for the cluster that you want to connect to as
-      shown below.
+      shown below:
 
       .. figure:: /includes/figures/atlas_connection_select_cluster.png
          :alt: Atlas Connection GUI cluster selection screen
