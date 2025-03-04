@@ -243,6 +243,71 @@ field in the ``sample_mflix.movies`` collection:
 
       Name of Index Created: cast_-1
 
+.._golang-atlas-search-indexes:
+
+Atlas Search and Vector Search Indexes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can programmatically manage your Atlas Search and Atlas Vector
+Search indexes by using the {+driver-short+}.
+
+The Atlas Search feature enables you to perform full-text searches on
+collections hosted on MongoDB Atlas. To learn more about MongoDB Atlas
+Search, see the :atlas:`Atlas Search Indexes
+</atlas-search/atlas-search-overview/#fts-indexes>` documentation.
+
+Atlas Vector Search enables you to perform semantic searches on vector
+embeddings stored in MongoDB Atlas. To learn more about Atlas Vector Search, see the
+:ref:`kotlin-atlas-vector-search` guide.
+
+The following sections contain code examples that describe how to manage Atlas Search indexes.
+
+Create a Search Index
+`````````````````````
+
+The following example creates an Atlas Vector Search index in the 
+``sample_mflix.embedded_movies`` collection:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/indexes/atlasVectorSearch.go
+   :language: go
+   :start-after: start-create-vector-search
+   :end-before: end-create-vector-search
+   :dedent:
+
+List a Search Index
+```````````````````
+
+The following example lists the details of the specified index:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/indexes/atlasVectorSearch.go
+   :language: go
+   :start-after: start-list-index
+   :end-before: end-list-index
+   :dedent:
+
+Update Search Indexes
+`````````````````````
+
+The following example updates a vector search index by providing the name of the index and
+a new index definition:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/indexes/atlasVectorSearch.go
+   :language: go
+   :start-after: start-update-index
+   :end-before: end-update-index
+   :dedent:
+
+Delete Search Indexes
+`````````````````````
+
+The following example deletes an index with the specified name:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/indexes/atlasVectorSearch.go
+   :language: go
+   :start-after: start-delete-index
+   :end-before: end-delete-index
+   :dedent:
+
 .. _golang-clustered-indexes:
 
 Clustered Indexes
