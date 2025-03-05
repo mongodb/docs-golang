@@ -248,16 +248,16 @@ field in the ``sample_mflix.movies`` collection:
 Atlas Search and Vector Search Indexes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can programmatically manage your Atlas Search and Atlas Vector
+You can programmatically manage your MongoDB Atlas Search and Atlas Vector
 Search indexes by using the {+driver-short+}.
 
 The Atlas Search feature enables you to perform full-text searches on
-collections hosted on MongoDB Atlas. To learn more about MongoDB Atlas
-Search, see the :atlas:`Atlas Search Indexes
-</atlas-search/atlas-search-overview/#fts-indexes>` documentation.
+collections hosted on MongoDB Atlas. To learn more about Atlas
+Search, see the :atlas:`Atlas Search
+</atlas-search/atlas-search-overview/>` documentation.
 
 Atlas Vector Search enables you to perform semantic searches on vector
-embeddings stored in MongoDB Atlas. To learn more about MongoDB Atlas
+embeddings stored in Atlas. To learn more about Atlas
 Vector Search, see the :atlas:`Atlas Vector Search
 </atlas-vector-search/vector-search-overview/>` documentation.
 
