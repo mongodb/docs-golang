@@ -57,7 +57,7 @@ func main() {
 		Options: opts,
 	}
 
-	// Create the index
+	// Creates the index
 	searchIndexName, err := coll.SearchIndexes().CreateOne(ctx, vectorSearchIndexModel)
 	// end-create-vector-search
 
