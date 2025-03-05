@@ -6,9 +6,9 @@ import (
 	"log"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 func main() {
@@ -86,6 +86,9 @@ func main() {
 
 	// Creates the index
 	searchIndexName, err := coll.SearchIndexes().CreateOne(ctx, indexModel)
+	if err != nil {
+		log.Fatalf("failed to create the search index: %v", err)
+	}
 	// end-create-atlas-search
 
 	// start-list-index
@@ -93,7 +96,18 @@ func main() {
 	indexName := "<indexName>"
 	opts := options.SearchIndexes().SetName(indexName)
 
-	coll.SearchIndexes().List(ctx, opts)
+	cursor, err := coll.SearchIndexes().List(ctx, opts)
+
+	// Print the index details to the console as JSON
+	var results []bson.M
+	if err := cursor.All(ctx, &results); err != nil {
+		log.Fatalf("failed to unmarshal results to bson: %v", err)
+	}
+	res, err := json.Marshal(results)
+	if err != nil {
+		log.Fatalf("failed to marshal results to json: %v", err)
+	}
+	fmt.Println(res)
 	// end-list-index
 
 	// start-update-index
@@ -115,10 +129,17 @@ func main() {
 			NumDimensions: <numberOfDimensions>,
 			Similarity:    "dotProduct"}},
 	}
-	coll.SearchIndexes().UpdateOne(ctx, indexName, definition)
+	err := coll.SearchIndexes().UpdateOne(ctx, indexName, definition)
+
+	if err != nil {
+		log.Fatalf("failed to update the index: %v", err)
+	}
 	// end-update-index
 
 	// start-delete-index
-	coll.SearchIndexes().DropOne(ctx, "<indexName>")
+	err := coll.SearchIndexes().DropOne(ctx, "<indexName>")
+	if err != nil {
+		log.Fatalf("failed to delete the index: %v", err)
+	}
 	// end-delete-index
 }
