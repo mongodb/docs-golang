@@ -264,12 +264,13 @@ Vector Search, see the :atlas:`Atlas Vector Search
 .. Add when Go AVS guide is ready:
 .. To learn more about Atlas Vector Search, see the :ref:`golang-atlas-vector-search` guide.
 
-The following sections contain code examples that describe how to manage Atlas Search indexes.
+The following sections contain code examples that demonstrate how to manage Atlas 
+Search indexes.
 
 Create a Search Index
 `````````````````````
 
-You can create an Atlas Search index or an Atlas Vector Search index by providing
+You can create an Atlas Vector Search index or an Atlas Search index by providing
 an index definition to the ``createOne()`` method.
 
 The following example creates an Atlas Vector Search index on the ``plot_embedding`` 
@@ -304,10 +305,10 @@ The following example lists the details of the specified search index:
 Update Search Indexes
 `````````````````````
 
-You can update an Atlas Search or Vector Search index by specifying the name of the index 
+You can update an Atlas Search or Atlas Vector Search index by specifying the name of the index 
 and the new index definition.
 
-The following example updates a vector search index by providing the name of the index and
+The following example updates an Atlas Vector Search index by providing the name of the index and
 a new index definition:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/indexes/atlasVectorSearch.go
@@ -319,7 +320,7 @@ a new index definition:
 Delete Search Indexes
 `````````````````````
 
-The following example deletes a search index with the specified name:
+The following example deletes an Atlas Search index with the specified name:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/indexes/atlasVectorSearch.go
    :language: go

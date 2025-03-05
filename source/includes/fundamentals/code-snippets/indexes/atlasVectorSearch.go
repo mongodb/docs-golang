@@ -21,7 +21,7 @@ func main() {
 	clientOptions := options.Client().ApplyURI(uri)
 	client, err := mongo.Connect(ctx, clientOptions)
 	if err != nil {
-		log.Fatalf("failed to connect to the server: %v", err)
+		log.Fatalf("Failed to connect to the server: %v", err)
 	}
 	defer func() { _ = client.Disconnect(ctx) }()
 
@@ -62,7 +62,7 @@ func main() {
 	// Creates the index
 	searchIndexName, err := coll.SearchIndexes().CreateOne(ctx, vectorSearchIndexModel)
 	if err != nil {
-		log.Fatalf("failed to create the vector search index: %v", err)
+		log.Fatalf("Failed to create the vector search index: %v", err)
 	}
 	// end-create-vector-search
 
@@ -90,7 +90,7 @@ func main() {
 	// Creates the index
 	searchIndexName, err := coll.SearchIndexes().CreateOne(ctx, searchIndexModel)
 	if err != nil {
-		log.Fatalf("failed to create the atlas search index: %v", err)
+		log.Fatalf("Failed to create the atlas search index: %v", err)
 	}
 	// end-create-atlas-search
 
@@ -105,11 +105,11 @@ func main() {
 	// Prints the index details to the console as JSON
 	var results []bson.M
 	if err := cursor.All(ctx, &results); err != nil {
-		log.Fatalf("failed to unmarshal results to bson: %v", err)
+		log.Fatalf("Failed to unmarshal results to bson: %v", err)
 	}
 	res, err := json.Marshal(results)
 	if err != nil {
-		log.Fatalf("failed to marshal results to json: %v", err)
+		log.Fatalf("Failed to marshal results to json: %v", err)
 	}
 	fmt.Println(res)
 	// end-list-index
@@ -138,14 +138,14 @@ func main() {
 	// Updates the specified index
 	err := coll.SearchIndexes().UpdateOne(ctx, indexName, definition)
 	if err != nil {
-		log.Fatalf("failed to update the index: %v", err)
+		log.Fatalf("Failed to update the index: %v", err)
 	}
 	// end-update-index
 
 	// start-delete-index
 	err := coll.SearchIndexes().DropOne(ctx, "<indexName>")
 	if err != nil {
-		log.Fatalf("failed to delete the index: %v", err)
+		log.Fatalf("Failed to delete the index: %v", err)
 	}
 	// end-delete-index
 }
