@@ -148,4 +148,5 @@ func main() {
 		log.Fatalf("Failed to delete the index: %v", err)
 	}
 	// end-delete-index
+	
 }
