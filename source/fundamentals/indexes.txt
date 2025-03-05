@@ -265,13 +265,25 @@ The following sections contain code examples that describe how to manage Atlas S
 Create a Search Index
 `````````````````````
 
-The following example creates an Atlas Vector Search index in the 
-``sample_mflix.embedded_movies`` collection:
+You can create an Atlas Search index or an Atlas Vector Search index by providing
+an index definition to the ``createOne()`` method. The index definition for the type of 
+
+The following example creates an Atlas Vector Search index on the ``plot_embedding`` 
+field in the ``sample_mflix.embedded_movies`` collection:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/indexes/atlasVectorSearch.go
    :language: go
    :start-after: start-create-vector-search
    :end-before: end-create-vector-search
+   :dedent:
+
+The following example creates an Atlas Search index on the ``plot`` field of the
+``sample_mflix.movies`` collection:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/indexes/atlasVectorSearch.go
+   :language: go
+   :start-after: start-create-atlas-search
+   :end-before: end-create-atlas-search
    :dedent:
 
 List a Search Index

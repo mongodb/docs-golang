@@ -58,42 +58,12 @@ func main() {
 	}
 
 	// Create the index
-	searchIndexName := coll.SearchIndexes().CreateOne(ctx, vectorSearchIndexModel)
+	searchIndexName, err := coll.SearchIndexes().CreateOne(ctx, vectorSearchIndexModel)
 	// end-create-vector-search
-
-	if err != nil {
-		log.Fatalf("failed to create the search index: %v", err)
-	}
-	log.Println("New search index named " + searchIndexName + " is building.")
-
-	// Await the creation of the index.
-	log.Println("Polling to check if the index is ready. This may take up to a minute.")
-	searchIndexes := coll.SearchIndexes()
-	var doc bson.Raw
-	for doc == nil {
-		cursor, err := searchIndexes.List(ctx, options.SearchIndexes().SetName(searchIndexName))
-		if err != nil {
-			fmt.Errorf("failed to list search indexes: %w", err)
-		}
-
-		if !cursor.Next(ctx) {
-			break
-		}
-
-		name := cursor.Current.Lookup("name").StringValue()
-		queryable := cursor.Current.Lookup("queryable").Boolean()
-		if name == searchIndexName && queryable {
-			doc = cursor.Current
-		} else {
-			time.Sleep(5 * time.Second)
-		}
-	}
-
-	log.Println(searchIndexName + " is ready for querying.")
 
 	// Creates an Atlas Search index
 	// start-create-atlas-search
-	// Define the Atlas Search index
+	// Defines the Atlas Search index
 	indexName := "atlas_search_index"
 	opts := options.SearchIndexes().SetName(indexName).SetType("atlasSearch")
 
@@ -102,8 +72,8 @@ func main() {
 			"mappings": map[string]interface{}{
 				"dynamic": false,
 				"fields": map[string]interface{}{
-					"<fieldName>": map[string]<fieldType>{
-						"type": "<fieldType>",
+					"plot": map[string]string{
+						"type": "string",
 					},
 				},
 			},
