@@ -95,7 +95,7 @@ func main() {
 	// end-create-atlas-search
 
 	// start-list-index
-	// Specify the options for the index to retrieve
+	// Specify the index to retrieve
 	indexName := "<indexName>"
 	opts := options.SearchIndexes().SetName(indexName)
 

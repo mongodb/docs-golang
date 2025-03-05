@@ -293,7 +293,7 @@ The following example creates an Atlas Search index on the ``plot`` field of the
 List a Search Index
 ```````````````````
 
-The following example lists the details of the specified index:
+The following example lists the details of the specified search index:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/indexes/atlasVectorSearch.go
    :language: go
@@ -303,6 +303,9 @@ The following example lists the details of the specified index:
 
 Update Search Indexes
 `````````````````````
+
+You can update an Atlas Search or Vector Search index by specifying the name of the index 
+and the new index definition.
 
 The following example updates a vector search index by providing the name of the index and
 a new index definition:
@@ -316,7 +319,7 @@ a new index definition:
 Delete Search Indexes
 `````````````````````
 
-The following example deletes an index with the specified name:
+The following example deletes a search index with the specified name:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/indexes/atlasVectorSearch.go
    :language: go
