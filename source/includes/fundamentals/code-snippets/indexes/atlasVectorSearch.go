@@ -29,7 +29,7 @@ func main() {
 	coll := client.Database("sample_mflix").Collection("embedded_movies")
 
 	// start-create-vector-search
-	// Defines the Atlas Vector Search index definition
+	// Defines the structs used for the index definition
 	type vectorDefinitionField struct {
 		Type          string `bson:"type"`
 		Path          string `bson:"path"`
@@ -42,9 +42,11 @@ func main() {
 		Fields []vectorDefinitionField `bson:"fields"`
 	}
 
+	// Sets the index name and type to "vectorSearch"
 	indexName := "vector_index"
 	opts := options.SearchIndexes().SetName(indexName).SetType("vectorSearch")
 
+	// Defines the index definition
 	vectorSearchIndexModel := mongo.SearchIndexModel{
 		Definition: vectorDefinition{
 			Fields: []vectorDefinitionField{{
@@ -63,27 +65,27 @@ func main() {
 
 	// Creates an Atlas Search index
 	// start-create-atlas-search
-	// Defines the Atlas Search index
+	// Sets the index name and type to "search"
 	indexName := "atlas_search_index"
-	opts := options.SearchIndexes().SetName(indexName).SetType("atlasSearch")
+	opts := options.SearchIndexes().SetName(indexName).SetType("search")
 
+	// Defines the index definition 
 	indexModel := mongo.SearchIndexModel{
-		Definition: map[string]interface{}{
-			"mappings": map[string]interface{}{
-				"dynamic": false,
-				"fields": map[string]interface{}{
-					"plot": map[string]string{
-						"type": "string",
-					},
-				},
-			},
+		Definition: bson.D{
+			{Key: "mappings", Value: bson.D{
+				{Key: "dynamic", Value: false},
+				{Key: "fields", Value: bson.D{
+					{Key: "plot", Value: bson.D{
+						{Key: "type", Value: "string"},
+					}},
+				}},
+			}},
 		},
 		Options: opts,
 	}
 
 	// Creates the index
 	searchIndexName, err := coll.SearchIndexes().CreateOne(ctx, indexModel)
-	
 	// end-create-atlas-search
 
 	// start-list-index

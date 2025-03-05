@@ -266,8 +266,7 @@ Create a Search Index
 `````````````````````
 
 You can create an Atlas Search index or an Atlas Vector Search index by providing
-an index definition to the ``createOne()`` method. You will define your index 
-definition differently depending on which index type you would like to create. 
+an index definition to the ``createOne()`` method.
 
 The following example creates an Atlas Vector Search index on the ``plot_embedding`` 
 field in the ``sample_mflix.embedded_movies`` collection:
