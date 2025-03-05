@@ -61,6 +61,9 @@ func main() {
 
 	// Creates the index
 	searchIndexName, err := coll.SearchIndexes().CreateOne(ctx, vectorSearchIndexModel)
+	if err != nil {
+		log.Fatalf("failed to create the vector search index: %v", err)
+	}
 	// end-create-vector-search
 
 	// Creates an Atlas Search index
@@ -70,7 +73,7 @@ func main() {
 	opts := options.SearchIndexes().SetName(indexName).SetType("search")
 
 	// Defines the index definition 
-	indexModel := mongo.SearchIndexModel{
+	searchIndexModel := mongo.SearchIndexModel{
 		Definition: bson.D{
 			{Key: "mappings", Value: bson.D{
 				{Key: "dynamic", Value: false},
@@ -85,20 +88,21 @@ func main() {
 	}
 
 	// Creates the index
-	searchIndexName, err := coll.SearchIndexes().CreateOne(ctx, indexModel)
+	searchIndexName, err := coll.SearchIndexes().CreateOne(ctx, searchIndexModel)
 	if err != nil {
-		log.Fatalf("failed to create the search index: %v", err)
+		log.Fatalf("failed to create the atlas search index: %v", err)
 	}
 	// end-create-atlas-search
 
 	// start-list-index
-	// Specifies the options for the index to retrieve
+	// Specify the options for the index to retrieve
 	indexName := "<indexName>"
 	opts := options.SearchIndexes().SetName(indexName)
 
+	// Retrieves the details of the specified index
 	cursor, err := coll.SearchIndexes().List(ctx, opts)
 
-	// Print the index details to the console as JSON
+	// Prints the index details to the console as JSON
 	var results []bson.M
 	if err := cursor.All(ctx, &results); err != nil {
 		log.Fatalf("failed to unmarshal results to bson: %v", err)
@@ -111,6 +115,7 @@ func main() {
 	// end-list-index
 
 	// start-update-index
+	// Specify the index name and the new index definition 
 	indexName := "<indexName>"
 
 	type vectorDefinitionField struct {
@@ -129,8 +134,9 @@ func main() {
 			NumDimensions: <numberOfDimensions>,
 			Similarity:    "dotProduct"}},
 	}
-	err := coll.SearchIndexes().UpdateOne(ctx, indexName, definition)
 
+	// Updates the specified index
+	err := coll.SearchIndexes().UpdateOne(ctx, indexName, definition)
 	if err != nil {
 		log.Fatalf("failed to update the index: %v", err)
 	}
