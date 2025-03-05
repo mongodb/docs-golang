@@ -257,8 +257,12 @@ Search, see the :atlas:`Atlas Search Indexes
 </atlas-search/atlas-search-overview/#fts-indexes>` documentation.
 
 Atlas Vector Search enables you to perform semantic searches on vector
-embeddings stored in MongoDB Atlas. To learn more about Atlas Vector Search, see the
-:ref:`kotlin-atlas-vector-search` guide.
+embeddings stored in MongoDB Atlas. To learn more about MongoDB Atlas
+Vector Search, see the :atlas:`Atlas Vector Search
+</atlas-vector-search/vector-search-overview/>` documentation.
+
+.. Add when Go AVS guide is ready:
+.. To learn more about Atlas Vector Search, see the :ref:`golang-atlas-vector-search` guide.
 
 The following sections contain code examples that describe how to manage Atlas Search indexes.
 
