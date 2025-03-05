@@ -29,7 +29,7 @@ func main() {
 	coll := client.Database("sample_mflix").Collection("embedded_movies")
 
 	// start-create-vector-search
-	// Define the Atlas Vector Search index definition
+	// Defines the Atlas Vector Search index definition
 	type vectorDefinitionField struct {
 		Type          string `bson:"type"`
 		Path          string `bson:"path"`

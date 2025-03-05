@@ -243,7 +243,7 @@ field in the ``sample_mflix.movies`` collection:
 
       Name of Index Created: cast_-1
 
-.._golang-atlas-search-indexes:
+.. _golang-atlas-search-indexes:
 
 Atlas Search and Vector Search Indexes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -266,7 +266,8 @@ Create a Search Index
 `````````````````````
 
 You can create an Atlas Search index or an Atlas Vector Search index by providing
-an index definition to the ``createOne()`` method. The index definition for the type of 
+an index definition to the ``createOne()`` method. You will define your index 
+definition differently depending on which index type you would like to create. 
 
 The following example creates an Atlas Vector Search index on the ``plot_embedding`` 
 field in the ``sample_mflix.embedded_movies`` collection:
