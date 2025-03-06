@@ -14,8 +14,11 @@ import (
 func main() {
 	ctx := context.Background()
 
-	// Replace the placeholder with your Atlas connection string
-	const uri = "mongodb+srv://user:123@atlascluster.spm1ztf.mongodb.net/?retryWrites=true&w=majority&appName=AtlasCluster"
+	// Retrieves your Atlas connection string
+	uri := os.Getenv("MONGODB_ATLAS_URI")
+	if uri == "" {
+		log.Fatal("MONGODB_ATLAS_URI environment variable is not set")
+	}
 
 	// Connect to your Atlas cluster
 	clientOptions := options.Client().ApplyURI(uri)
@@ -23,7 +26,11 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to connect to the server: %v", err)
 	}
-	defer func() { _ = client.Disconnect(ctx) }()
+	defer func() {
+		if err  := client.Disconnect(ctx); err != nil {
+			log.Fatalf("Failed to disconnect: %v", err)
+		}
+   }()
 
 	// Set the namespace
 	coll := client.Database("sample_mflix").Collection("embedded_movies")
@@ -43,7 +50,7 @@ func main() {
 	}
 
 	// Sets the index name and type to "vectorSearch"
-	indexName := "vector_index"
+	const indexName = "vector_index"
 	opts := options.SearchIndexes().SetName(indexName).SetType("vectorSearch")
 
 	// Defines the index definition
@@ -69,7 +76,7 @@ func main() {
 	// Creates an Atlas Search index
 	// start-create-atlas-search
 	// Sets the index name and type to "search"
-	indexName := "atlas_search_index"
+	const indexName = "atlas_search_index"
 	opts := options.SearchIndexes().SetName(indexName).SetType("search")
 
 	// Defines the index definition 
@@ -96,14 +103,14 @@ func main() {
 
 	// start-list-index
 	// Specify the index to retrieve
-	indexName := "<indexName>"
+	const indexName = "<indexName>"
 	opts := options.SearchIndexes().SetName(indexName)
 
 	// Retrieves the details of the specified index
 	cursor, err := coll.SearchIndexes().List(ctx, opts)
 
 	// Prints the index details to the console as JSON
-	var results []bson.M
+	var results []bson.D
 	if err := cursor.All(ctx, &results); err != nil {
 		log.Fatalf("Failed to unmarshal results to bson: %v", err)
 	}
@@ -116,7 +123,7 @@ func main() {
 
 	// start-update-index
 	// Specify the index name and the new index definition 
-	indexName := "<indexName>"
+	const indexName = "<indexName>"
 
 	type vectorDefinitionField struct {
 		Type          string `bson:"type"`
@@ -124,9 +131,11 @@ func main() {
 		NumDimensions int    `bson:"numDimensions"`
 		Similarity    string `bson:"similarity"`
 	}
+
 	type vectorDefinition struct {
 		Fields []vectorDefinitionField `bson:"fields"`
 	}
+	
 	definition := vectorDefinition{
 		Fields: []vectorDefinitionField{{
 			Type:          "vector",
