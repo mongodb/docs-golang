@@ -26,6 +26,7 @@ What's New
 
 Learn what's new in:
 
+* :ref:`Version 2.1 <golang-version-2.1>`
 * :ref:`Version 2.0 <golang-version-2.0>`
 * :ref:`Version 1.17 <golang-version-1.17>`
 * :ref:`Version 1.16 <version-1.16>`
@@ -35,6 +36,30 @@ Learn what's new in:
 * :ref:`Version 1.13 <version-1.13>`
 * :ref:`Version 1.12.1 <version-1.12.1>`
 * :ref:`Version 1.12 <version-1.12>`
+
+.. _golang-version-2.1:
+
+What's New in 2.1
+-----------------
+
+The 2.1 {+driver-short+} release includes the following improvements
+and fixes:
+
+- You can use the new `Client.BulkWrite <{+api+}/mongo#Client.BulkWrite>`__ method 
+  to perform many insert, update, and delete operations on multiple databases and 
+  collections in one request.
+
+- The new `bson.Vector <{+api+}/bson#Vector>`__ type makes inserting and querying 
+  vector data using :atlas:`Atlas Vector Search </atlas-vector-search/vector-search-overview/>` 
+  easier and more efficient.
+
+- Extends the `ServerError <{+api+}/mongo#ServerError>`__ interface to include 
+  ``ErrorCodes``, which returns a list of deduplicated error codes returned by 
+  the server during the lifetime of operation execution.
+
+- Adds ths ``sort`` option to `UpdateOneOptions <{+api+}/mongo/options#UpdateOneOptions>`__ 
+  and `ReplaceOptions <{+api+}/mongo/options#ReplaceOptions>`__ for the ``updateOne`` 
+  and ``replaceOne`` operations. 
 
 .. _golang-version-2.0:
 
