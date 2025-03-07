@@ -46,7 +46,7 @@ The 2.1 {+driver-short+} release includes the following improvements
 and fixes:
 
 - You can use the new `Client.BulkWrite <{+api+}/mongo#Client.BulkWrite>`__ method 
-  to perform many insert, update, and delete operations on multiple databases and 
+  to perform many insert, update and delete operations on multiple databases and 
   collections in one request.
 
 - The new `bson.Vector <{+api+}/bson#Vector>`__ type makes inserting and querying 
