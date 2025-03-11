@@ -54,10 +54,12 @@ Indexes guide. To learn more about vector embeddings, see
 </atlas-search/field-types/knn-vector/>` in the Atlas documentation.
 
 After you create a vector search index on your vector embeddings, you
-can reference this index in your pipeline stage. 
+can reference this index in your aggregation pipeline to run your vector 
+search query.
 
-The following sections demonstrate how to create a BSON binary vector and
-hpw to use your vector search index to run a vector search query.
+The following sections demonstrate how to create a BSON binary vector
+for your query vector and how to use your vector search index to run a 
+vector search query.
 
 Create a BSON Binary Vector
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
