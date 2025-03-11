@@ -42,6 +42,7 @@ func main() {
 	// end-binary-vector
 
 	// start-aggregation
+	// Creates the aggregation pipeline
 	vectorSearchStage := bson.D{
 		{"$vectorSearch", bson.D{
 			{"index", "vector_index"},
@@ -58,11 +59,13 @@ func main() {
 			{"title", 1},
 		}}}
 
+	// Runs the aggregation pipeline
 	cursor, err := coll.Aggregate(ctx, mongo.Pipeline{vectorSearchStage, projectStage})
 	if err != nil {
 		log.Fatalf("failed to retrieve data from the server: %v", err)
 	}
-	// Display the results
+
+	// Displays the results
 	type ProjectedMovieResult struct {
 		Title string `bson:"title"`
 		Plot  string `bson:"plot"`
@@ -72,6 +75,7 @@ func main() {
 	if err = cursor.All(ctx, &results); err != nil {
 		log.Fatalf("failed to unmarshal retrieved docs to ProjectedMovieResult objects: %v", err)
 	}
+
 	for _, result := range results {
 		fmt.Printf("Title: %v \nPlot: %v \nScore: %v \n\n", result.Title, result.Plot, result.Score)
 	}
