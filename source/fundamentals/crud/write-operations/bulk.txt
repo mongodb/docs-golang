@@ -15,36 +15,54 @@ Bulk Operations
 Overview
 --------
 
-In this guide, you can learn how to use **bulk operations**.
+In this guide, you can learn how to use {+driver-short+} to
+perform **bulk operations**. Bulk operations reduce the number
+of calls to the server by performing multiple write operations
+in a single method.
 
-Bulk operations perform a large number of write operations. Instead of
-making a call for each operation to the database, bulk operations
-perform multiple operations with one call to the database.
+The ``Collection`` and ``Client`` classes both provide a ``BulkWrite()``
+method. When calling ``BulkWrite()`` on a ``Collection`` instance, you can
+perform multiple write operations on a single collection. When calling
+``BulkWrite()`` on a ``Client`` instance, you can perform bulk writes across
+multiple namespaces. In MongoDB, a namespace consists of the database name and the collection
+name in the format ``<database>.<collection>``. 
+
+.. important::
+
+   To perform bulk operations on a ``Client`` instance,
+   ensure that your application meets the following
+   requirements:
+
+   - Uses {+driver-short+} v2.1 or later 
+   - Connects to {+mdb-server+} v8.0 or later
 
 Sample Data
 ~~~~~~~~~~~
 
-The examples in this guide use the following ``Book`` struct as a model for documents
-in the ``books`` collection:
+The examples in this guide use the following structs:
+
+- ``Book`` struct, which models documents in the ``db.books`` collection.
+  Each document contains a description of a book that includes the title,
+  author, and page length.
+
+- ``Poem`` struct, which models documents in the ``db.poems`` collection.
+  Each document contains a description of a poem that includes the title,
+  author, and publication year.
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/bulkOps.go
-   :start-after: start-book-struct
-   :end-before: end-book-struct
+   :start-after: start-structs
+   :end-before: end-structs
    :language: go
    :dedent:
 
 To run the examples in this guide, load the sample data into the
-``db.books`` collection with the following snippet:
+``books`` and ``poems`` collection by using the following snippet:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/bulkOps.go
    :language: go
    :dedent:
    :start-after: begin insertDocs
    :end-before: end insertDocs
-
-Each document contains a description of a book that
-includes the title, author, and page length corresponding to
-the ``title``, ``author``, and ``length`` fields in each document.
 
 .. include:: /includes/fundamentals/automatic-db-coll-creation.rst
 
@@ -57,12 +75,13 @@ To perform a bulk operation, pass an array of :ref:`WriteModel
 Modify Behavior
 ~~~~~~~~~~~~~~~
 
-The ``BulkWrite()`` method optionally takes a ``BulkWriteOptions``
-type, which represents options you can use to modify its behavior. If
-you don't specify a ``BulkWriteOptions``, the driver uses the default
-values for each option.
+To modify the behavior of your collection-level or client-level
+bulk operation, use the following types:
 
-The ``BulkWriteOptions`` type allows you to configure options with the
+- Pass a ``BulkWriteOptions`` type to the ``Collection.BulkWrite()`` method 
+- Pass a ``ClientBulkWriteOptions`` type to the ``Client.BulkWrite()`` method
+
+The ``BulkWriteOptions`` type allows you to configure options by using the
 following methods:
 
 .. list-table::
@@ -73,19 +92,62 @@ following methods:
      - Description
 
    * - ``SetBypassDocumentValidation()`` 
-     - | Whether to allow the write to opt-out of document level validation.
+     - | Specifies whether the operation can opt-out of document level validation.
        | Default: ``false``
 
    * - ``SetOrdered()``
-     - | Whether to stop performing write operations after an error occurs. 
+     - | Specifies whether the driver stops performing write operations after an error occurs. 
        | Default: ``true``
+
+The ``ClientBulkWriteOptions`` type allows you to configure options by using the
+following methods:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Method
+     - Description
+
+   * - ``SetBypassDocumentValidation()`` 
+     - | Specifies whether the operation can opt-out of document level validation.
+       | Default: ``false``
+
+   * - ``SetOrdered()``
+     - | Specifies whether the driver stops performing write operations after an error occurs. 
+       | Default: ``true``
+
+   * - ``SetComment()``
+     - | Specifies a comment to attach to the operation.
+       | Default: ``nil``
+
+   * - ``SetLet()``
+     - | Specifies parameters for update and delete operations, which improves command
+         readability by separating the variables from the query text.
+       | Default: none
+
+   * - ``SetWriteConcern()``
+     - | Specifies the write concern for the operations. 
+       | Default: ``nil``
+
+   * - ``SetVerboseResults()``
+     - | Specifies whether detailed information about each successful operation is
+         included in the result.
+       | Default: ``false``
 
 Return Values
 ~~~~~~~~~~~~~
 
-The ``BulkWrite()`` method returns a ``BulkWriteResult`` type, which
-contains information about the bulk operation if it's successful. The
-``BulkWriteResult`` type contains the following properties:
+The ``BulkWrite()`` method can return the following types,
+which include information about the bulk operation:
+
+- ``BulkWriteResult`` type, if you run the bulk write
+  on a ``Collection``
+
+- ``ClientBulkWriteResult`` type, if you run the bulk write
+  on a ``Client``
+
+The ``BulkWriteResult`` type contains the following properties:
 
 .. list-table::
    :widths: 30 70
@@ -112,12 +174,53 @@ contains information about the bulk operation if it's successful. The
    * - ``UpsertedIDs`` 
      - A map of an operation index to the ``_id`` of each :ref:`upserted <golang-upsert-definition>` document.
 
+The ``ClientBulkWriteResult`` type contains the following properties:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Property
+     - Description
+
+   * - ``InsertedCount``
+     - The number of documents inserted.
+
+   * - ``MatchedCount``
+     - The number of documents matched by the :ref:`query filter <golang-query-filter-definition>` in update and replace operations.
+
+   * - ``ModifiedCount``
+     - The number of documents modified by update and replace operations.
+
+   * - ``DeletedCount``
+     - The number of documents deleted.
+   
+   * - ``UpsertedCount`` 
+     - The number of documents :ref:`upserted <golang-upsert-definition>` by update and replace operations.
+
+   * - ``InsertResults`` 
+     - A map of an operation index to the ``_id`` value of each inserted document.
+
+   * - ``UpdateResults`` 
+     - A map of an operation index to the ``_id`` value of each updated document.
+
+   * - ``DeleteResults`` 
+     - A map of an operation index to the ``_id`` value of each deleted document.
+
+   * - ``Acknowledged`` 
+     - A boolean value that indicates whether the write operation was acknowledged.
+
+   * - ``HasVerboseResults`` 
+     - A boolean value that indicates whether the result contains detailed results.
+
 .. _golang-write-model:
 
 Operations
 ----------
 
-A ``WriteModel`` represents an insert, replace, update, or delete operation.
+To define the write operations to include in your bulk operation,
+create a ``WriteModel`` or ``ClientWriteModel`` for each insert,
+replace, update, or delete.
 
 Insert
 ~~~~~~

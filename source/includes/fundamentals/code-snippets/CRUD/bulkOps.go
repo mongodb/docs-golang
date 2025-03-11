@@ -12,14 +12,20 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
-// start-book-struct
+// start-structs
 type Book struct {
 	Title  string
 	Author string
 	Length int32
 }
 
-// end-book-struct
+type Poem struct {
+	Title  string
+	Author string
+	Year   int32
+}
+
+// end-structs
 
 func main() {
 	var uri string
@@ -38,18 +44,27 @@ func main() {
 	}()
 
 	// begin insertDocs
-	coll := client.Database("db").Collection("books")
-	docs := []interface{}{
+	bookColl := client.Database("db").Collection("books")
+	poemColl := client.Database("db").Collection("poems")
+
+	books := []interface{}{
 		Book{Title: "My Brilliant Friend", Author: "Elena Ferrante", Length: 331},
 		Book{Title: "Lucy", Author: "Jamaica Kincaid", Length: 103},
 	}
 
-	result, err := coll.InsertMany(context.TODO(), docs)
+	poems := []interface{}{
+		Poem{Title: "Song of Myself", Author: "Walt Whitman", Year: 1855},
+		Poem{Title: "The Raincoat", Author: "Ada Limón", Year: 2018},
+	}
+
+	bookInsert, err := bookColl.InsertMany(context.TODO(), books)
+	poemInsert, err := poemColl.InsertMany(context.TODO(), poems)
 	//end insertDocs
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("Number of documents inserted: %d\n", len(result.InsertedIDs))
+	fmt.Printf("Number of book documents inserted: %d\n", len(bookInsert.InsertedIDs))
+	fmt.Printf("Number of poem documents inserted: %d\n", len(poemInsert.InsertedIDs))
 
 	fmt.Println("\nInsertOneModel:\n")
 	{
