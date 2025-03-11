@@ -1,4 +1,4 @@
-. _golang-atlas-vector-search:
+.. _golang-atlas-vector-search:
 
 ===================
 Atlas Vector Search
@@ -98,7 +98,18 @@ with the following specifications:
 Additional Information
 ----------------------
 
+To learn more about Atlas Vector Search, see the :atlas:`Atlas Vector Search
+</atlas-vector-search/vector-search-overview/>` guide in 
+the MongoDB Atlas documentation.
+
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-- Add links
+To learn more about any of the methods or types discussed in this
+guide, see the following API Documentation:
+
+- `NewVector() <{+api+}/bson#NewVector>`__
+- `NewVectorfromBinary() <{+api+}/bson#NewVectorFromBinary>`__
+- `Vector <{+api+}/bson#Vector>`__
+- `Aggregate() <{+api+}/mongo#Collection.Aggregate>`__
+- `Pipeline <{+api+}/mongo#Pipeline>`__
