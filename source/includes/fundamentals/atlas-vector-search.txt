@@ -1,0 +1,104 @@
+. _golang-atlas-vector-search:
+
+===================
+Atlas Vector Search
+===================
+
+.. facet::
+   :name: genre
+   :values: reference
+ 
+.. meta::
+   :keywords: code example, semantic, nearest
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to use the :atlas:`Atlas Vector Search
+</atlas-vector-search/vector-search-overview/>` feature
+in the {+driver-short+} by using the :atlas:`$vectorSearch </atlas-vector-search/vector-search-stage/>`
+pipeline stage. This pipeline stage allows you to perform a **semantic
+search** on your documents. A semantic search is a type of search which
+locates information that is similar in meaning, but not necessarily
+identical, to your provided search term or phrase.
+
+.. important:: Feature Compatibility
+
+   To learn what versions of MongoDB Atlas support this feature, see
+   :atlas:`Limitations </atlas-vector-search/vector-search-stage/#limitations>`
+   in the MongoDB Atlas documentation.
+
+Sample Data
+~~~~~~~~~~~
+
+The example in this guide uses the ``embedded_movies`` collection in the
+``sample_mflix`` database from the :atlas:`Atlas sample datasets
+</sample-data>`. To learn how to create a free MongoDB Atlas cluster and
+load the sample datasets, see the :atlas:`Get Started with Atlas
+</getting-started>` guide.
+
+Perform a Vector Search
+-----------------------
+
+To use this feature, you must create a vector search index and index your
+vector embeddings. To learn about how to programmatically create a
+vector search index, see the :ref:`golang-atlas-search-indexes` section in the
+Indexes guide. To learn more about vector embeddings, see
+:atlas:`How to Index Vector Embeddings for Vector Search
+</atlas-search/field-types/knn-vector/>` in the Atlas documentation.
+
+After you create a vector search index on your vector embeddings, you
+can reference this index in your pipeline stage. 
+
+The following sections demonstrate how to create a BSON binary vector and
+hpw to use your vector search index to run a vector search query.
+
+Create a BSON Binary Vector
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following example shows how to create a BSON binary vector that you can
+use as a query vector:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/vector-search.go
+   :language: go
+   :start-after: start-binary-vector
+   :end-before: end-binary-vector
+   :dedent:
+
+.. tip:: Query Vector Type
+
+   The preceding example creates an instance of a BSON binary vector to
+   serve as the query vector, but you can also use a ``float`` or ``double`` 
+   array. However, we recommend that you use a BSON binary vector to improve 
+   storage efficiency.
+
+Run the Vector Search Query
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following example shows how to build an aggregation pipeline that uses the
+``$vectorSearch`` and ``$project`` methods to perform an exact vector search 
+with the following specifications:
+
+- Queries the ``plot_embedding`` field with the BSON binary ``queryVector``
+- Uses the ``vector_search`` index created on the ``plot_embedding`` field
+- Returns 10 documents with the specified ``plot`` and ``title`` fields
+
+.. literalinclude:: /includes/fundamentals/code-snippets/vector-search.go
+   :language: go
+   :start-after: start-aggregation
+   :end-before: end-aggregation
+   :dedent:
+
+Additional Information
+----------------------
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+- Add links
