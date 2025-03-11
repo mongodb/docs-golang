@@ -45,13 +45,13 @@ What's New in 2.1
 The 2.1 {+driver-short+} release includes the following improvements
 and fixes:
 
-- Adds the new `Client.BulkWrite <{+api+}/mongo#Client.BulkWrite>`__ method 
-  to make performing many insert, update, and delete operations on multiple databases and 
-  collections in one request more efficient.
+- Introduces the new `Client.BulkWrite <{+api+}/mongo#Client.BulkWrite>`__ method, 
+  enabling clients to perform multiple insert, update, and delete operations across 
+  multiple databases and collections in a single request.
 
-- Adds the new `bson.Vector <{+api+}/bson#Vector>`__ type to make inserting and querying 
+- Introduces the new `bson.Vector <{+api+}/bson#Vector>`__ type to make inserting and querying 
   vector data by using :atlas:`Atlas Vector Search </atlas-vector-search/vector-search-overview/>` 
-  more efficient.
+  easier and more efficient.
 
 - Extends the `ServerError <{+api+}/mongo#ServerError>`__ interface to include 
   ``ErrorCodes``, which returns a list of deduplicated error codes returned by 
