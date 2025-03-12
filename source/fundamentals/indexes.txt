@@ -294,8 +294,8 @@ field in the ``sample_mflix.embedded_movies`` collection:
 List a Search Index
 ```````````````````
 
-You can list an Atlas Search or Atlas Vector Search index by specifying the 
-name of the index.
+You can use the ``SearchIndexView.List()`` method to list an Atlas Search or Atlas 
+Vector Search index by specifying the name of the index.
 
 The following example lists the details of the specified search index:
 
@@ -308,8 +308,9 @@ The following example lists the details of the specified search index:
 Update a Search Index
 `````````````````````
 
-You can update an Atlas Search or Atlas Vector Search index by specifying the 
-name of the index and the new index definition.
+You can use the ``SearchIndexView.UpdateOne()`` method to update an Atlas Search 
+or Atlas Vector Search index by specifying the name of the index and the new 
+index definition.
 
 The following example updates an Atlas Vector Search index by providing the name of the index and
 a new index definition:
@@ -323,8 +324,8 @@ a new index definition:
 Delete a Search Index
 `````````````````````
 
-You can delete an Atlas Search or Atlas Vector Search index by specifying the 
-name of the index.
+You can use the ``SearchIndexView.DropOne()`` method to delete an Atlas Search or 
+Atlas Vector Search index by specifying the name of the index.
 
 The following example deletes a search index with the specified name:
 
