@@ -271,7 +271,7 @@ Create a Search Index
 `````````````````````
 
 You can create an Atlas Search or an Atlas Vector Search index by providing
-an index definition to the ``createOne()`` method.
+an index definition to the ``SearchIndexVie.CreateOne()`` method.
 
 The following example creates an Atlas Search index on the ``plot`` field of the
 ``sample_mflix.movies`` collection:
