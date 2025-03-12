@@ -2,9 +2,10 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"log"
-	"time"
+	"os"
 
 	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
@@ -27,10 +28,10 @@ func main() {
 		log.Fatalf("Failed to connect to the server: %v", err)
 	}
 	defer func() {
-		if err  := client.Disconnect(ctx); err != nil {
+		if err := client.Disconnect(ctx); err != nil {
 			log.Fatalf("Failed to disconnect: %v", err)
 		}
-   }()
+	}()
 
 	// Set the namespace
 	coll := client.Database("sample_mflix").Collection("embedded_movies")
@@ -79,7 +80,7 @@ func main() {
 	const indexName = "atlas_search_index"
 	opts := options.SearchIndexes().SetName(indexName).SetType("search")
 
-	// Defines the index definition 
+	// Defines the index definition
 	searchIndexModel := mongo.SearchIndexModel{
 		Definition: bson.D{
 			{Key: "mappings", Value: bson.D{
@@ -102,8 +103,8 @@ func main() {
 	// end-create-atlas-search
 
 	// start-list-index
-	// Specify the index to retrieve
-	const indexName = "<indexName>"
+	// Specifies the index to retrieve
+	const indexName = "myIndex"
 	opts := options.SearchIndexes().SetName(indexName)
 
 	// Retrieves the details of the specified index
@@ -122,8 +123,8 @@ func main() {
 	// end-list-index
 
 	// start-update-index
-	// Specify the index name and the new index definition 
-	const indexName = "<indexName>"
+	// Specifies the index name and the new index definition
+	const indexName = "vector_index"
 
 	type vectorDefinitionField struct {
 		Type          string `bson:"type"`
@@ -135,13 +136,16 @@ func main() {
 	type vectorDefinition struct {
 		Fields []vectorDefinitionField `bson:"fields"`
 	}
-	
+
 	definition := vectorDefinition{
-		Fields: []vectorDefinitionField{{
-			Type:          "vector",
-			Path:          "<fieldToIndex>",
-			NumDimensions: <numberOfDimensions>,
-			Similarity:    "dotProduct"}},
+		Fields: []vectorDefinitionField{
+			{
+				Type:          "vector",
+				Path:          "plot_embedding",
+				NumDimensions: 1600,
+				Similarity:    "dotProduct",
+			},
+		},
 	}
 
 	// Updates the specified index
@@ -152,10 +156,11 @@ func main() {
 	// end-update-index
 
 	// start-delete-index
-	err := coll.SearchIndexes().DropOne(ctx, "<indexName>")
+	// Deletes the specified index
+	err := coll.SearchIndexes().DropOne(ctx, "myIndex")
 	if err != nil {
 		log.Fatalf("Failed to delete the index: %v", err)
 	}
 	// end-delete-index
-	
+
 }

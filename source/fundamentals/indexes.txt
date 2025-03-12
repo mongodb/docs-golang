@@ -245,8 +245,8 @@ field in the ``sample_mflix.movies`` collection:
 
 .. _golang-atlas-search-indexes:
 
-Atlas Search and Vector Search Indexes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Atlas Search and Atlas Vector Search Indexes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can programmatically manage your MongoDB Atlas Search and Atlas Vector
 Search indexes by using the {+driver-short+}.
@@ -265,22 +265,13 @@ Vector Search, see the :atlas:`Atlas Vector Search
 .. To learn more about Atlas Vector Search, see the :ref:`golang-atlas-vector-search` guide.
 
 The following sections contain code examples that demonstrate how to manage Atlas 
-Search indexes.
+Search and Atlas Vector Search indexes.
 
 Create a Search Index
 `````````````````````
 
-You can create an Atlas Vector Search index or an Atlas Search index by providing
+You can create an Atlas Search or an Atlas Vector Search index by providing
 an index definition to the ``createOne()`` method.
-
-The following example creates an Atlas Vector Search index on the ``plot_embedding`` 
-field in the ``sample_mflix.embedded_movies`` collection:
-
-.. literalinclude:: /includes/fundamentals/code-snippets/indexes/atlasVectorSearch.go
-   :language: go
-   :start-after: start-create-vector-search
-   :end-before: end-create-vector-search
-   :dedent:
 
 The following example creates an Atlas Search index on the ``plot`` field of the
 ``sample_mflix.movies`` collection:
@@ -291,8 +282,20 @@ The following example creates an Atlas Search index on the ``plot`` field of the
    :end-before: end-create-atlas-search
    :dedent:
 
+The following example creates an Atlas Vector Search index on the ``plot_embedding`` 
+field in the ``sample_mflix.embedded_movies`` collection:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/indexes/atlasVectorSearch.go
+   :language: go
+   :start-after: start-create-vector-search
+   :end-before: end-create-vector-search
+   :dedent:
+
 List a Search Index
 ```````````````````
+
+You can list an Atlas Search or Atlas Vector Search index by specifying the 
+name of the index.
 
 The following example lists the details of the specified search index:
 
@@ -302,11 +305,11 @@ The following example lists the details of the specified search index:
    :end-before: end-list-index
    :dedent:
 
-Update Search Indexes
+Update a Search Index
 `````````````````````
 
-You can update an Atlas Search or Atlas Vector Search index by specifying the name of the index 
-and the new index definition.
+You can update an Atlas Search or Atlas Vector Search index by specifying the 
+name of the index and the new index definition.
 
 The following example updates an Atlas Vector Search index by providing the name of the index and
 a new index definition:
@@ -317,10 +320,13 @@ a new index definition:
    :end-before: end-update-index
    :dedent:
 
-Delete Search Indexes
+Delete a Search Index
 `````````````````````
 
-The following example deletes an Atlas Search index with the specified name:
+You can delete an Atlas Search or Atlas Vector Search index by specifying the 
+name of the index.
+
+The following example deletes a search index with the specified name:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/indexes/atlasVectorSearch.go
    :language: go
@@ -579,3 +585,5 @@ guide, see the following API Documentation:
 - `DropOne() <{+api+}/mongo#IndexView.DropOne>`__
 - `CreateCollection() <{+api+}/mongo#Database.CreateCollection>`__
 - `CreateCollectionOptions <{+api+}/mongo/options#CreateCollectionOptions>`__
+- `SearchIndexes <{+api+}/mongo#Collection.SearchIndexes>`__
+- `SearchIndexView <{+api+}/mongo#SearchIndexView>`__
