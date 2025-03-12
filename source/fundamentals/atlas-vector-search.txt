@@ -53,21 +53,27 @@ Indexes guide. To learn more about vector embeddings, see
 :atlas:`How to Index Vector Embeddings for Vector Search
 </atlas-search/field-types/knn-vector/>` in the Atlas documentation.
 
+.. TODO: Ensure above link is working once indexes page is merged.
+
 After you create a vector search index on your vector embeddings, you
 can reference this index in your aggregation pipeline to run your vector 
 search query.
 
+The example on this page queries the ``plot_embedding`` field from the sample
+data. ``plot_embedding`` contains vector embeddings with 1536 dimensions,
+created using OpenAI's ``text-embedding-ada-002`` embedding model.
+
 The following sections demonstrate how to create a BSON binary vector
 for your query vector and how to use your vector search index to run a 
-vector search query.
+vector search query. 
 
 Create a BSON Binary Vector
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following example shows how to create a BSON binary vector that you can
-use as a query vector:
+use as the query vector:
 
-.. literalinclude:: /includes/fundamentals/code-snippets/vector-search.go
+.. literalinclude:: /includes/fundamentals/code-snippets/vectorSearchQuery.go
    :language: go
    :start-after: start-binary-vector
    :end-before: end-binary-vector
@@ -76,7 +82,7 @@ use as a query vector:
 You can also deserialize your query vector back to a BSON vector by using
 the ``NewVectorFromBinary()`` method:
 
-.. literalinclude:: /includes/fundamentals/code-snippets/vector-search.go
+.. literalinclude:: /includes/fundamentals/code-snippets/vectorSearchQuery.go
    :language: go
    :start-after: start-convert-back-vector
    :end-before: end-convert-back-vector
@@ -85,26 +91,54 @@ the ``NewVectorFromBinary()`` method:
 .. tip:: Query Vector Type
 
    The preceding example creates an instance of a BSON binary vector to
-   serve as the query vector, but you can also use a BSON ``double`` 
-   array. However, we recommend that you use a BSON binary vector to improve 
+   serve as the query vector, but you can also use an array of BSON ``double`` 
+   values. However, we recommend that you use a BSON binary vector to improve 
    storage efficiency.
 
 Run the Vector Search Query
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following example shows how to build an aggregation pipeline that uses the
-``$vectorSearch`` and ``$project`` methods to perform an exact vector search 
-with the following specifications:
+``$vectorSearch`` and ``$project`` methods to perform an Approximate Nearest 
+Neighbor (ANN) vector search with the following specifications:
 
 - Queries the ``plot_embedding`` field with the BSON binary ``queryVector``
+- Searches with 150 nearest neighbors, as determined by ``numCandidates``
 - Uses the ``vector_search`` index created on the ``plot_embedding`` field
-- Returns 10 documents with the specified ``plot`` and ``title`` fields
+- Returns 5 documents with the specified ``plot`` and ``title`` fields
 
-.. literalinclude:: /includes/fundamentals/code-snippets/vector-search.go
-   :language: go
-   :start-after: start-aggregation
-   :end-before: end-aggregation
-   :dedent:
+.. io-code-block::
+   :copyable: true
+
+   .. input:: /includes/fundamentals/code-snippets/vectorSearchQuery.go
+      :language: go
+      :start-after: start-aggregation
+      :end-before: end-aggregation
+      :dedent:
+
+   .. output::
+      :language: none
+      :visible: false
+
+      Title: Thrill Seekers 
+      Plot: A reporter, learning of time travelers visiting 20th century disasters, tries to change the history they know by averting upcoming disasters. 
+      Score: 0.92730712890625 
+
+      Title: About Time 
+      Plot: At the age of 21, Tim discovers he can travel in time and change what happens and has happened in his own life. His decision to make his world a better place by getting a girlfriend turns out not to be as easy as you might think. 
+      Score: 0.926605224609375 
+
+      Title: The Time Machine 
+      Plot: Hoping to alter the events of the past, a 19th century inventor instead travels 800,000 years into the future, where he finds humankind divided into two warring races. 
+      Score: 0.9239959716796875 
+
+      Title: Timecop 
+      Plot: An officer for a security agency that regulates time travel, must fend for his life against a shady politician who has a tie to his past. 
+      Score: 0.923583984375 
+
+      Title: Crusade in Jeans 
+      Plot: After using his mother's newly built time machine, Dolf gets stuck involuntary in the year 1212. He ends up in a children's crusade where he confronts his new friends with modern techniques... 
+      Score: 0.9222412109375 
 
 Additional Information
 ----------------------

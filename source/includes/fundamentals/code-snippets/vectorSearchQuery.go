@@ -51,7 +51,7 @@ func main() {
 			{"path", "plot_embedding"},
 			{"queryVector", queryVector},
 			{"numCandidates", 150},
-			{"limit", 10},
+			{"limit", 5},
 		}}}
 
 	projectStage := bson.D{
