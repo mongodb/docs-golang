@@ -73,10 +73,19 @@ use as a query vector:
    :end-before: end-binary-vector
    :dedent:
 
+You can also deserialize your query vector back to a BSON vector by using
+the ``NewVectorFromBinary()`` method:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/vector-search.go
+   :language: go
+   :start-after: start-convert-back-vector
+   :end-before: end-convert-back-vector
+   :dedent:
+
 .. tip:: Query Vector Type
 
    The preceding example creates an instance of a BSON binary vector to
-   serve as the query vector, but you can also use a ``float`` or ``double`` 
+   serve as the query vector, but you can also use a BSON ``double`` 
    array. However, we recommend that you use a BSON binary vector to improve 
    storage efficiency.
 
@@ -101,8 +110,13 @@ Additional Information
 ----------------------
 
 To learn more about Atlas Vector Search, see the :atlas:`Atlas Vector Search
-</atlas-vector-search/vector-search-overview/>` guide in 
+</atlas-vector-search/vector-search-overview/>` guides in 
 the MongoDB Atlas documentation.
+
+To learn more about the syntax of the ``$vectorSearch`` pipeline stage,
+see the Syntax and Fields sections of the 
+:atlas:`Create and Run Queries </atlas-vector-search/vector-search-stage/#syntax>`
+guide in the Atlas Vector Search section of the MongoDB Atlas documentation.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
