@@ -1,8 +1,8 @@
 .. _golang-atlas-vector-search:
 
-===================
-Atlas Vector Search
-===================
+================================
+Run an Atlas Vector Search Query
+================================
 
 .. facet::
    :name: genre
@@ -37,9 +37,15 @@ identical, to your provided search term or phrase.
 Sample Data
 ~~~~~~~~~~~
 
-The example in this guide uses the ``embedded_movies`` collection in the
-``sample_mflix`` database from the :atlas:`Atlas sample datasets
-</sample-data>`. To learn how to create a free MongoDB Atlas cluster and
+The example on this page queries the ``plot_embedding`` field from the 
+``embedded_movies`` collection, found in the 
+:atlas:`sample_mflix </sample-data/sample-mflix>` database of the Atlas sample 
+datasets.  
+
+The ``plot_embedding`` field contains vector embeddings with 1536 dimensions,
+created using OpenAI's ``text-embedding-ada-002`` embedding model.
+
+To learn how to create a free MongoDB Atlas cluster and
 load the sample datasets, see the :atlas:`Get Started with Atlas
 </getting-started>` guide.
 
@@ -59,16 +65,15 @@ After you create a vector search index on your vector embeddings, you
 can reference this index in your aggregation pipeline to run your vector 
 search query.
 
-The example on this page queries the ``plot_embedding`` field from the sample
-data. ``plot_embedding`` contains vector embeddings with 1536 dimensions,
-created using OpenAI's ``text-embedding-ada-002`` embedding model.
-
 The following sections demonstrate how to create a BSON binary vector
 for your query vector and how to use your vector search index to run a 
-vector search query. 
+vector search query on the ``plot_embedding`` field. 
 
 Create a BSON Binary Vector
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can create a 1536 dimensional vector to use as the query vector 
+for you vector search query on the ``plot_embedding`` field. 
 
 The following example shows how to create a BSON binary vector that you can
 use as the query vector:
