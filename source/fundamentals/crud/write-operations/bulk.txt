@@ -230,7 +230,7 @@ collection, create an ``InsertOneModel`` specifying the document you want to ins
 insert multiple documents, create an ``InsertOneModel`` for each
 document you want to insert.
 
-To define an insert operation for a bulk write on multiple collections,
+To define an insert operation for a bulk write on multiple namespaces,
 create a ``ClientInsertOneModel`` specifying the document you want to
 insert. To insert multiple documents, create a ``ClientInsertOneModel`` for each
 document you want to insert.
@@ -283,7 +283,7 @@ To replace multiple documents, create a ``ReplaceOneModel`` for
 each document you want to replace.
 
 To define a replace operation for a bulk write on multiple
-collections, create a ``ClientReplaceOneModel`` specifying the document
+namespaces, create a ``ClientReplaceOneModel`` specifying the document
 you want to replace and a replacement document. To replace
 multiple documents, create a ``ClientReplaceOneModel`` for
 each document you want to replace.
@@ -357,7 +357,7 @@ the document you want to update and an :ref:`update document
 ``UpdateManyModel``.
 
 To define an update operation for a bulk write on multiple
-collections, create a ``ClientUpdateOneModel`` specifying
+namespaces, create a ``ClientUpdateOneModel`` specifying
 the document you want to update and an update document.
 To update multiple documents, use a ``ClientUpdateManyModel``.
 
@@ -434,7 +434,7 @@ the document you want to delete. To delete multiple documents, use the
 ``DeleteManyModel``. 
 
 To define a delete operation for a bulk write on multiple
-collections, create a ``ClientDeleteOneModel`` specifying
+namespaces, create a ``ClientDeleteOneModel`` specifying
 the document you want to delete. To delete multiple documents, use the
 ``ClientDeleteManyModel``. 
 
