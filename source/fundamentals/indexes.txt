@@ -297,7 +297,8 @@ List a Search Index
 You can use the ``SearchIndexView.List()`` method to list an Atlas Search or Atlas 
 Vector Search index by specifying the name of the index.
 
-The following example lists the details of the specified search index:
+The following example lists the details of the specified Atlas Search or Atlas 
+Vector Search index:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/indexes/atlasVectorSearch.go
    :language: go
@@ -312,8 +313,8 @@ You can use the ``SearchIndexView.UpdateOne()`` method to update an Atlas Search
 or Atlas Vector Search index by specifying the name of the index and the new 
 index definition.
 
-The following example updates an Atlas Vector Search index by providing the name of the index and
-a new index definition:
+The following example updates an Atlas Vector Search index by providing the name 
+of the index and a new index definition:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/indexes/atlasVectorSearch.go
    :language: go
@@ -327,7 +328,8 @@ Delete a Search Index
 You can use the ``SearchIndexView.DropOne()`` method to delete an Atlas Search or 
 Atlas Vector Search index by specifying the name of the index.
 
-The following example deletes a search index with the specified name:
+The following example deletes an Atlas Search or Atlas Vector Search 
+index with the specified name:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/indexes/atlasVectorSearch.go
    :language: go
@@ -576,7 +578,7 @@ API Documentation
 ~~~~~~~~~~~~~~~~~
 
 To learn more about the methods discussed in this
-guide, as well as related ones, see the following API Documentation:
+guide and related ones, see the following API Documentation:
 
 - `IndexModel <{+api+}/mongo#IndexModel>`__
 - `IndexOptions <{+api+}/mongo/options#IndexOptions>`__
