@@ -248,7 +248,7 @@ field in the ``sample_mflix.movies`` collection:
 Atlas Search and Atlas Vector Search Indexes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can programmatically manage your MongoDB Atlas Search and Atlas Vector
+You can programmatically manage your Atlas Search and Atlas Vector
 Search indexes by using the {+driver-short+}.
 
 The Atlas Search feature enables you to perform full-text searches on
@@ -271,7 +271,7 @@ Create a Search Index
 `````````````````````
 
 You can create an Atlas Search or an Atlas Vector Search index by providing
-an index definition to the ``SearchIndexVie.CreateOne()`` method.
+an index definition to the ``SearchIndexView.CreateOne()`` method.
 
 The following example creates an Atlas Search index on the ``plot`` field of the
 ``sample_mflix.movies`` collection:
@@ -575,14 +575,14 @@ guides:
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-To learn more about any of the methods discussed in this
-guide, see the following API Documentation:
+To learn more about the methods discussed in this
+guide, as well as related ones, see the following API Documentation:
 
 - `IndexModel <{+api+}/mongo#IndexModel>`__
-- `CreateOne() <{+api+}/mongo#IndexView.CreateOne>`__
 - `IndexOptions <{+api+}/mongo/options#IndexOptions>`__
 - `SetDefaultLanguage()
   <{+api+}/mongo/options#IndexOptionsBuilder.SetDefaultLanguage>`__
+- `CreateOne() <{+api+}/mongo#IndexView.CreateOne>`__
 - `DropOne() <{+api+}/mongo#IndexView.DropOne>`__
 - `CreateCollection() <{+api+}/mongo#Database.CreateCollection>`__
 - `CreateCollectionOptions <{+api+}/mongo/options#CreateCollectionOptions>`__

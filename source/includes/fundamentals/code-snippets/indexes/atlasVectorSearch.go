@@ -51,7 +51,7 @@ func main() {
 	}
 
 	// Sets the index name and type to "vectorSearch"
-	const indexName = "vector_index"
+	const indexName = "vector_search_index"
 	opts := options.SearchIndexes().SetName(indexName).SetType("vectorSearch")
 
 	// Defines the index definition
@@ -70,14 +70,14 @@ func main() {
 	// Creates the index
 	searchIndexName, err := coll.SearchIndexes().CreateOne(ctx, vectorSearchIndexModel)
 	if err != nil {
-		log.Fatalf("Failed to create the vector search index: %v", err)
+		log.Fatalf("Failed to create the Atlas Vector Search index: %v", err)
 	}
 	// end-create-vector-search
 
 	// Creates an Atlas Search index
 	// start-create-atlas-search
 	// Sets the index name and type to "search"
-	const indexName = "atlas_search_index"
+	const indexName = "search_index"
 	opts := options.SearchIndexes().SetName(indexName).SetType("search")
 
 	// Defines the index definition
@@ -98,7 +98,7 @@ func main() {
 	// Creates the index
 	searchIndexName, err := coll.SearchIndexes().CreateOne(ctx, searchIndexModel)
 	if err != nil {
-		log.Fatalf("Failed to create the atlas search index: %v", err)
+		log.Fatalf("Failed to create the Atlas Search index: %v", err)
 	}
 	// end-create-atlas-search
 
@@ -124,7 +124,7 @@ func main() {
 
 	// start-update-index
 	// Specifies the index name and the new index definition
-	const indexName = "vector_index"
+	const indexName = "vector_search_index"
 
 	type vectorDefinitionField struct {
 		Type          string `bson:"type"`
