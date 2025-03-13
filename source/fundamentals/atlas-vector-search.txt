@@ -59,8 +59,6 @@ Indexes guide. To learn more about vector embeddings, see
 :atlas:`How to Index Vector Embeddings for Vector Search
 </atlas-search/field-types/knn-vector/>` in the Atlas documentation.
 
-.. TODO: Ensure above link is working once indexes page is merged.
-
 After you create a vector search index on your vector embeddings, you
 can reference this index in your aggregation pipeline to run your vector 
 search query.
