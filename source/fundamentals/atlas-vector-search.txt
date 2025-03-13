@@ -67,16 +67,18 @@ search query.
 
 The following sections demonstrate how to create a BSON binary vector
 for your query vector and how to use your vector search index to run a 
-vector search query on the ``plot_embedding`` field. 
+vector search query by using the ``plot_embedding`` field. 
 
 Create a BSON Binary Vector
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can create a 1536 dimensional vector to use as the query vector 
-for you vector search query on the ``plot_embedding`` field. 
+In this example, you can create a 1536 dimensional vector to use as the query 
+vector for your vector search query on the ``plot_embedding`` field. 
+The query searches the ``plot_embedding`` field by using a vector 
+embedding for the string "time travel". 
 
-The following example shows how to create a BSON binary vector that you can
-use as the query vector:
+The following example shows how to translate this vector embedding to a BSON 
+binary vector that you can use as the query vector:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/vectorSearchQuery.go
    :language: go
@@ -84,8 +86,11 @@ use as the query vector:
    :end-before: end-binary-vector
    :dedent:
 
-You can also deserialize your query vector back to a BSON vector by using
-the ``NewVectorFromBinary()`` method:
+If you need to access a slice of the original vector, you can also deserialize 
+your query vector back to a BSON vector. 
+
+The following example shows how to convert the query vector from a BSON binary 
+vector to a BSON vector by using the ``NewVectorFromBinary()`` method:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/vectorSearchQuery.go
    :language: go
