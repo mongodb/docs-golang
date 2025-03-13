@@ -42,6 +42,7 @@ func main() {
 		log.Fatal(err)
 	}
 	// end-convert-back-vector
+	fmt.Println(backToVectorFloat.Type())
 
 	// start-aggregation
 	// Creates the aggregation pipeline
@@ -59,6 +60,7 @@ func main() {
 			{"_id", 0},
 			{"plot", 1},
 			{"title", 1},
+			{"score", bson.D{{"$meta", "vectorSearchScore"}}},
 		}}}
 
 	// Runs the aggregation pipeline
@@ -69,8 +71,9 @@ func main() {
 
 	// Displays the results
 	type ProjectedMovieResult struct {
-		Title string `bson:"title"`
-		Plot  string `bson:"plot"`
+		Title string  `bson:"title"`
+		Plot  string  `bson:"plot"`
+		Score float64 `bson:"score"`
 	}
 
 	var results []ProjectedMovieResult
