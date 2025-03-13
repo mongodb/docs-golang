@@ -27,7 +27,7 @@ perform multiple write operations on a single collection. When calling
 multiple namespaces. In MongoDB, a namespace consists of the database name and the collection
 name in the format ``<database>.<collection>``. 
 
-.. important::
+.. important:: Client Bulk Write Requirements
 
    To perform bulk operations on a ``Client`` instance,
    ensure that your application meets the following
