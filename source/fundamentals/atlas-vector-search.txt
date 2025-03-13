@@ -108,7 +108,8 @@ The following example shows how to build an aggregation pipeline that uses the
 Neighbor (ANN) vector search with the following specifications:
 
 - Queries the ``plot_embedding`` field with the BSON binary ``queryVector``
-- Searches with 150 nearest neighbors, as determined by ``numCandidates``
+- During the search, uses 15o nearest neighbors, as determined by the 
+  ``numCandidates`` option
 - Uses the ``vector_search`` index created on the ``plot_embedding`` field
 - Returns 5 documents with the specified ``plot`` and ``title`` fields
 
