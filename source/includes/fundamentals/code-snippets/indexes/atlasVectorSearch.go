@@ -142,8 +142,9 @@ func main() {
 			{
 				Type:          "vector",
 				Path:          "plot_embedding",
-				NumDimensions: 1600,
-				Similarity:    "dotProduct",
+				NumDimensions: 1536,
+				Similarity:    "cosine",
+				Quantization:  "scalar",
 			},
 		},
 	}
