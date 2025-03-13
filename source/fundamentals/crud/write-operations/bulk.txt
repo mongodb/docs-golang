@@ -130,104 +130,10 @@ The ``BulkWriteResult`` type contains the following properties:
    * - ``UpsertedIDs`` 
      - A map of an operation index to the ``_id`` of each :ref:`upserted <golang-upsert-definition>` document.
 
-Write to Multiple Namespaces
-----------------------------
-
-To perform a bulk operation across multiple namespaces, call the
-``BulkWrite()`` method on your client and pass an array of
-:ref:`ClientWriteModel <golang-write-model-client>` documents as a parameter.
-
-Modify Client.BulkWrite() Behavior
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-To modify the behavior of your bulk write operation, pass a ``ClientBulkWriteOptions``
-instance to the ``BulkWrite()`` method.
-
-The ``ClientBulkWriteOptions`` type allows you to configure options by using the
-following methods:
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Method
-     - Description
-
-   * - ``SetBypassDocumentValidation()`` 
-     - | Specifies whether the operation can opt-out of document level validation.
-       | Default: ``false``
-
-   * - ``SetOrdered()``
-     - | Specifies whether the driver stops performing write operations after an error occurs. 
-       | Default: ``true``
-
-   * - ``SetComment()``
-     - | Specifies a comment to attach to the operation.
-       | Default: ``nil``
-
-   * - ``SetLet()``
-     - | Specifies parameters for update and delete operations, which improves command
-         readability by separating the variables from the query text.
-       | Default: none
-
-   * - ``SetWriteConcern()``
-     - | Specifies the write concern for the operations. 
-       | Default: ``nil``
-
-   * - ``SetVerboseResults()``
-     - | Specifies whether detailed information about each successful operation is
-         included in the result.
-       | Default: ``false``
-
-Client.BulkWrite() Return Value
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The ``BulkWrite()`` method returns a ``ClientBulkWriteResult`` type, which
-includes information about the bulk operation.
-
-The ``ClientBulkWriteResult`` type contains the following properties:
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Property
-     - Description
-
-   * - ``InsertedCount``
-     - The number of documents inserted.
-
-   * - ``MatchedCount``
-     - The number of documents matched by the :ref:`query filter <golang-query-filter-definition>` in update and replace operations.
-
-   * - ``ModifiedCount``
-     - The number of documents modified by update and replace operations.
-
-   * - ``DeletedCount``
-     - The number of documents deleted.
-   
-   * - ``UpsertedCount`` 
-     - The number of documents :ref:`upserted <golang-upsert-definition>` by update and replace operations.
-
-   * - ``InsertResults`` 
-     - A map of an operation index to the ``_id`` value of each inserted document.
-
-   * - ``UpdateResults`` 
-     - A map of an operation index to the ``_id`` value of each updated document.
-
-   * - ``DeleteResults`` 
-     - A map of an operation index to the ``_id`` value of each deleted document.
-
-   * - ``Acknowledged`` 
-     - A boolean value that indicates whether the write operation was acknowledged.
-
-   * - ``HasVerboseResults`` 
-     - A boolean value that indicates whether the result contains detailed results.
-
 .. _golang-write-model-collection:
 
-Define Collection-Level Operations
-----------------------------------
+Define Collection-Level Operation Models
+----------------------------------------
 
 To define the write operations for your bulk operation on one
 namespace, create a ``WriteModel`` for each insert, replace,
@@ -408,6 +314,168 @@ greater than ``300``:
    :dedent:
    :start-after: begin bulk delete model collection
    :end-before: end bulk delete model collection
+
+Collection-Level Execution Order
+--------------------------------
+
+To specify whether the bulk write performs the operations
+in order, you can set the ``Ordered`` option
+to a boolean value. To set this option, specify the ``Ordered``
+field of a ``BulkWriteOptions`` instance.
+
+Ordered
+~~~~~~~
+
+By default, the ``BulkWrite()`` method runs bulk operations in
+order you added them and stops if an error occurs.
+
+.. tip::
+
+   This is equivalent to passing a value of ``true`` to the ``SetOrdered()``
+   method, as shown in the following code: 
+
+   .. code-block:: go
+     
+      opts := options.BulkWrite().SetOrdered(true)
+
+Unordered
+~~~~~~~~~
+
+To run bulk write operations in any order and continue if an error
+occurs, pass a value of ``false`` to the ``SetOrdered()`` method. The method
+reports errors after the operation completes.
+
+Example
+```````
+
+The following example performs the following actions in any order: 
+
+- Inserts two documents
+- Replaces a document where the ``title`` is "My Brilliant Friend" with a new document
+- Increments every document's ``length`` by ``10`` if the current
+  ``length`` value is less than ``200``
+- Deletes all documents where the ``author`` field value includes ``"Jam"``
+
+.. io-code-block::
+   :copyable: true
+
+   .. input:: /includes/fundamentals/code-snippets/CRUD/bulkOps.go
+      :start-after: begin unordered collection
+      :end-before: end unordered collection
+      :language: go
+      :dedent:
+
+   .. output::
+      :language: none
+      :visible: false
+
+      Number of documents inserted: 2
+      Number of documents replaced or updated: 2
+      Number of documents deleted: 1
+
+The following documents are present in the ``books`` collection after
+the bulk operation:
+
+.. code-block:: none
+   :copyable: false
+
+   {"title":"Atonement","author":"Ian McEwan","length":351}
+   {"title":"Middlemarch","author":"George Eliot","length":904}
+   {"title":"Pale Fire","author":"Vladimir Nabokov","length":246}
+
+Write to Multiple Namespaces
+----------------------------
+
+To perform a bulk operation across multiple namespaces, call the
+``BulkWrite()`` method on your client and pass an array of
+:ref:`ClientWriteModel <golang-write-model-client>` documents as a parameter.
+
+Modify Client.BulkWrite() Behavior
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To modify the behavior of your bulk write operation, pass a ``ClientBulkWriteOptions``
+instance to the ``BulkWrite()`` method.
+
+The ``ClientBulkWriteOptions`` type allows you to configure options by using the
+following methods:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Method
+     - Description
+
+   * - ``SetBypassDocumentValidation()`` 
+     - | Specifies whether the operation can opt-out of document level validation.
+       | Default: ``false``
+
+   * - ``SetOrdered()``
+     - | Specifies whether the driver stops performing write operations after an error occurs. 
+       | Default: ``true``
+
+   * - ``SetComment()``
+     - | Specifies a comment to attach to the operation.
+       | Default: ``nil``
+
+   * - ``SetLet()``
+     - | Specifies parameters for update and delete operations, which improves command
+         readability by separating the variables from the query text.
+       | Default: none
+
+   * - ``SetWriteConcern()``
+     - | Specifies the write concern for the operations. 
+       | Default: ``nil``
+
+   * - ``SetVerboseResults()``
+     - | Specifies whether detailed information about each successful operation is
+         included in the result.
+       | Default: ``false``
+
+Client.BulkWrite() Return Value
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``BulkWrite()`` method returns a ``ClientBulkWriteResult`` type, which
+includes information about the bulk operation.
+
+The ``ClientBulkWriteResult`` type contains the following properties:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Property
+     - Description
+
+   * - ``InsertedCount``
+     - The number of documents inserted.
+
+   * - ``MatchedCount``
+     - The number of documents matched by the :ref:`query filter <golang-query-filter-definition>` in update and replace operations.
+
+   * - ``ModifiedCount``
+     - The number of documents modified by update and replace operations.
+
+   * - ``DeletedCount``
+     - The number of documents deleted.
+   
+   * - ``UpsertedCount`` 
+     - The number of documents :ref:`upserted <golang-upsert-definition>` by update and replace operations.
+
+   * - ``InsertResults`` 
+     - A map of an operation index to the ``_id`` value of each inserted document.
+
+   * - ``UpdateResults`` 
+     - A map of an operation index to the ``_id`` value of each updated document.
+
+   * - ``DeleteResults`` 
+     - A map of an operation index to the ``_id`` value of each deleted document.
+
+   * - ``Acknowledged`` 
+     - A boolean value that indicates whether the write operation was acknowledged.
+
+   * - ``HasVerboseResults`` 
+     - A boolean value that indicates whether the result contains detailed results.
 
 .. _golang-write-model-client:
 
@@ -611,79 +679,11 @@ the following operations:
    :start-after: begin bulk delete model client
    :end-before: end bulk delete model client
 
-Collection-Level Execution Order
---------------------------------
-
-To specify whether the bulk write performs the operations
-in order or unordered, you can set the ``Ordered`` option
-to a boolean value. To set this option, specify the ``Ordered``
-field of a ``BulkWriteOptions`` instance.
-
-Ordered
-~~~~~~~
-
-By default, the ``BulkWrite()`` method runs bulk operations in
-order you added them and stops if an error occurs.
-
-.. tip::
-
-   This is equivalent to passing a value of ``true`` to the ``SetOrdered()``
-   method, as shown in the following code: 
-
-   .. code-block:: go
-     
-      opts := options.BulkWrite().SetOrdered(true)
-
-Unordered
-~~~~~~~~~
-
-To run bulk write operations in any order and continue if an error
-occurs, pass a value of ``false`` to the ``SetOrdered()`` method. The method
-reports errors after the operation completes.
-
-Example
-```````
-
-The following example performs the following actions in any order: 
-
-- Inserts two documents
-- Replaces a document where the ``title`` is "My Brilliant Friend" with a new document
-- Increments every document's ``length`` by ``10`` if the current
-  ``length`` value is less than ``200``
-- Deletes all documents where the ``author`` field value includes ``"Jam"``
-
-.. io-code-block::
-   :copyable: true
-
-   .. input:: /includes/fundamentals/code-snippets/CRUD/bulkOps.go
-      :start-after: begin unordered collection
-      :end-before: end unordered collection
-      :language: go
-      :dedent:
-
-   .. output::
-      :language: none
-      :visible: false
-
-      Number of documents inserted: 2
-      Number of documents replaced or updated: 2
-      Number of documents deleted: 1
-
-The following documents are present in the ``books`` collection after
-the bulk operation:
-
-.. code-block:: none
-   :copyable: false
-
-   {"title":"Atonement","author":"Ian McEwan","length":351}
-   {"title":"Middlemarch","author":"George Eliot","length":904}
-   {"title":"Pale Fire","author":"Vladimir Nabokov","length":246}
-
 Client-Level Execution Order
 ----------------------------
 
 To specify whether the bulk write performs the operations
-in order or unordered, you can set the ``Ordered`` option
+in order, you can set the ``Ordered`` option
 to a boolean value. To set this option, specify the ``Ordered``
 field of a ``ClientBulkWriteOptions`` instance.
 
