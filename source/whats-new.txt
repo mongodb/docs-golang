@@ -26,6 +26,7 @@ What's New
 
 Learn what's new in:
 
+* :ref:`Version 2.1 <golang-version-2.0>`
 * :ref:`Version 2.0 <golang-version-2.0>`
 * :ref:`Version 1.17 <golang-version-1.17>`
 * :ref:`Version 1.16 <version-1.16>`
@@ -35,6 +36,22 @@ Learn what's new in:
 * :ref:`Version 1.13 <version-1.13>`
 * :ref:`Version 1.12.1 <version-1.12.1>`
 * :ref:`Version 1.12 <version-1.12>`
+
+.. _golang-version-2.1:
+
+What's New in 2.1
+-----------------
+
+This release includes the following improvements and fixes:
+
+- Adds a new bulk write API that allows you to perform
+  insert, update, and delete operations on multiple databases and collections
+  in one request. To learn more, see the :ref:`golang-bulk` guide.
+
+- Adds the ``bson.Vector`` type, which improves the efficiency of Atlas
+  Vector Search queries.
+
+.. TODO: add link to Atlas Vector search page
 
 .. _golang-version-2.0:
 
