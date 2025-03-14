@@ -533,15 +533,15 @@ You can configure OIDC for Kubernetes in the following ways:
       The following code example shows how to set these options in your connection string:
       
       .. code-block:: go
-
-	      uri := "mongodb://<hostname>:<port>/?" +
-	      	   "&authMechanism=MONGODB-OIDC" +
-	      	   "&authMechanismProperties=ENVIRONMENT:k8s"
-      
-	      client, err := mongo.Connect(options.Client().ApplyURI(uri))
-	      if err != nil {
-	      	panic(err)
-	      }
+         
+         uri := "mongodb://<hostname>:<port>/?" +
+                  "&authMechanism=MONGODB-OIDC" +
+	      	      "&authMechanismProperties=ENVIRONMENT:k8s"
+                  
+         client, err := mongo.Connect(options.Client().ApplyURI(uri))
+         if err != nil {
+         	panic(err)
+         }
 
 Additional Information
 ----------------------
