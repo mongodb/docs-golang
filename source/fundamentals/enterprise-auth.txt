@@ -232,9 +232,9 @@ built-in Azure support.
 
 You can configure OIDC for Azure IMDS in the following ways:
 
-- By creating a ``Credential`` struct and passing it to the
-  ``SetAuth()`` method when creating a client
-- By setting parameters in your connection string
+- Create a ``Credential`` struct and pass it to the
+  ``SetAuth()`` method when you create a client
+- Set parameters in your connection string
 
 .. include:: /includes/authentication/auth-properties-commas.rst
 
@@ -321,9 +321,9 @@ support.
 
 You can configure OIDC for GCP IMDS in the following ways:
 
-- By creating a ``Credential`` struct and passing it to the
-  ``SetAuth()`` method when creating a client
-- By setting parameters in your connection string
+- Create a ``Credential`` struct and pass it to the
+  ``SetAuth()`` method when you create a client
+- Set parameters in your connection string
 
 .. include:: /includes/authentication/auth-properties-commas.rst
    
@@ -486,9 +486,9 @@ by using the {+driver-short+}'s built-in Kubernetes support.
 
 You can configure OIDC for Kubernetes in the following ways:
 
-- By creating a ``Credential`` struct and passing it to the
-  ``SetAuth()`` method when creating a client
-- By setting parameters in your connection string
+- Create a ``Credential`` struct and pass it to the
+  ``SetAuth()`` method when you create a client
+- Set parameters in your connection string
 
 .. include:: /includes/authentication/auth-properties-commas.rst
    
@@ -498,7 +498,7 @@ You can configure OIDC for Kubernetes in the following ways:
       :tabid: credential struct
 
       First, create a map to store your authentication
-      mechanism properties, as shown in the following example.
+      mechanism properties, as shown in the following example:
 
       .. code-block:: go
 
@@ -528,7 +528,7 @@ You can configure OIDC for Kubernetes in the following ways:
       Include the following connection options in your connection string:
 
       - ``authMechanism``: Set to ``MONGODB-OIDC``.
-      - ``authMechanismProperties``: Set to``ENVIRONMENT:k8s``.
+      - ``authMechanismProperties``: Set to ``ENVIRONMENT:k8s``.
 
       The following code example shows how to set these options in your connection string:
       
