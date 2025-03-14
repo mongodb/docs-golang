@@ -22,8 +22,8 @@ in a single method.
 
 The ``Collection`` and ``Client`` classes both provide a ``BulkWrite()``
 method. You can use the ``Collection.BulkWrite()`` method to perform
-multiple write operations on a single collection. When calling
-the ``Client.BulkWrite()`` method, you can perform bulk writes across
+multiple write operations on a single collection. You can use the
+``Client.BulkWrite()`` method to perform bulk writes across
 multiple namespaces. In MongoDB, a namespace consists of a database name 
 and a collection name.
 
