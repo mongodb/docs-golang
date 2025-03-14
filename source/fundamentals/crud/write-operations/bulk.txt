@@ -158,8 +158,8 @@ document in the ``books`` collection in which the ``title`` value is ``"Lucy"``:
    :start-after: begin bulk replace model collection
    :end-before: end bulk replace model collection
 
-UpdateOneModel
-``````````````
+UpdateOneModel and UpdateManyModel
+``````````````````````````````````
 
 To define an update operation for a bulk write, create
 an ``UpdateOneModel`` specifying the document you want to update
@@ -209,8 +209,8 @@ document's ``length`` by ``15`` if the ``author`` is ``"Elena Ferrante"``:
    :start-after: begin bulk update model collection
    :end-before: end bulk update model collection
 
-DeleteOneModel
-``````````````
+DeleteOneModel and DeleteManyModel
+``````````````````````````````````
 
 To define a delete operation for a bulk write, create a
 ``DeleteOneModel`` specifying the document you want to delete.
@@ -477,8 +477,8 @@ the following operations:
    :start-after: begin bulk replace model client
    :end-before: end bulk replace model client
 
-ClientUpdateOneModel
-````````````````````
+ClientUpdateOneModel and ClientUpdateManyModel
+``````````````````````````````````````````````
 
 To define an update operation for a bulk write, create
 a ``ClientUpdateOneModel`` specifying the document you
@@ -509,7 +509,7 @@ by using the following methods:
 
    * - ``SetSort()`` 
      - | The criteria to use when ordering matching documents.
-         This method is not available for the ``ClientUpdateManyModel`` class.
+         This method is only available for the ``ClientUpdateOneModel`` class.
 
    * - ``SetUpdate()`` 
      - | The modifications to apply on the matched documents.
@@ -539,8 +539,8 @@ the following operations:
    query filters in the preceding example, use ``ClientUpdateManyModel``
    instances.
 
-ClientDeleteOneModel
-````````````````````
+ClientDeleteOneModel and ClientDeleteManyModel
+``````````````````````````````````````````````
 
 To define a delete operation for a bulk write, create
 a ``ClientDeleteOneModel`` specifying the document you want
@@ -743,8 +743,8 @@ following guides:
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-To learn more about any of the methods or types discussed in this
-guide used for collection bulk writes, see the following API documentation:
+To learn more about the methods or types used for collection bulk
+writes, see the following API documentation:
 
 - `Collection.BulkWrite() <{+api+}/mongo#Collection.BulkWrite>`__
 - `BulkWriteOptions <{+api+}/mongo/options#BulkWriteOptions>`__
@@ -756,8 +756,8 @@ guide used for collection bulk writes, see the following API documentation:
 - `NewDeleteOneModel() <{+api+}/mongo#NewDeleteOneModel>`__
 - `NewDeleteManyModel() <{+api+}/mongo#NewDeleteManyModel>`__
 
-To learn more about any of the methods or types discussed in this
-guide used for client bulk writes, see the following API documentation:
+To learn more about the methods or types used for client bulk writes,
+see the following API documentation:
 
 - `Client.BulkWrite() <{+api+}/mongo#Client.BulkWrite>`__
 - `ClientBulkWriteOptions <{+api+}/mongo/options#ClientBulkWriteOptions>`__
