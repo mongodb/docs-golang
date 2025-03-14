@@ -114,7 +114,7 @@ Neighbor (ANN) vector search with the following specifications:
 - Sets the number of nearest neighbors used in the search to 150 by using the 
   ``numCandidates`` option
 - Uses the ``vector_search`` index created on the ``plot_embedding`` field
-- Returns 5 documents with the specified ``plot`` and ``title`` fields
+- Returns 5 documents with the specified ``plot``, ``title``, and ``score`` fields
 
 .. io-code-block::
    :copyable: true
