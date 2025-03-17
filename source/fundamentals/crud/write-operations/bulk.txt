@@ -15,7 +15,7 @@ Bulk Operations
 Overview
 --------
 
-In this guide, you can learn how to use {+driver-short+} to
+In this guide, you can learn how to use the {+driver-long+} to
 perform **bulk operations**. Bulk operations reduce the number
 of calls to the server by performing multiple write operations
 in a single method.
@@ -265,6 +265,17 @@ following methods:
      - | Specifies whether the operation can opt-out of document level validation.
        | Default: ``false``
 
+   * - ``SetComment()``
+     - | Specifies a comment to attach to the operation. 
+       | Default: ``nil``
+
+   * - ``SetLet()``
+     - | Specifies a document with a list of values to improve operation readability. Values
+         must be constant or closed expressions that don't reference document fields. For more
+         information, see the :manual:`let statement
+         </reference/command/delete/#std-label-delete-let-syntax>` in the {+mdb-server+} manual.
+       | Default: ``nil``
+
    * - ``SetOrdered()``
      - | Specifies whether the driver stops performing write operations after an error occurs. 
        | Default: ``true``
@@ -301,6 +312,9 @@ The ``BulkWriteResult`` type contains the following properties:
 
    * - ``UpsertedIDs`` 
      - A map of an operation index to the ``_id`` of each :ref:`upserted <golang-upsert-definition>` document.
+
+   * - ``Acknowledged`` 
+     - A boolean value that indicates whether the write operation was acknowledged.
 
 Collection-Level Execution Order
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
