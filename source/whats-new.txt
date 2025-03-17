@@ -26,11 +26,7 @@ What's New
 
 Learn what's new in:
 
-<<<<<<< HEAD
-* :ref:`Version 2.1 <golang-version-2.0>`
-=======
 * :ref:`Version 2.1 <golang-version-2.1>`
->>>>>>> upstream/master
 * :ref:`Version 2.0 <golang-version-2.0>`
 * :ref:`Version 1.17 <golang-version-1.17>`
 * :ref:`Version 1.16 <version-1.16>`
