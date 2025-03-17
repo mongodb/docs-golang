@@ -226,6 +226,8 @@ This example performs the following actions:
     to use the ``"json"`` struct tag if a ``"bson"`` struct tag is not specified
   - Sets the ``NilSliceAsEmpty`` field to ``true``, which instructs the driver
     to marshal ``nil`` Go slices as empty BSON arrays
+  - Sets the ``OmitEmpty`` field to ``true``, which instructs the driver to globally omit
+    empty values from the marshaled BSON, rather than set empty values to null
 
 - Passes the ``BSONOptions`` instance to the ``SetBSONOptions()`` helper method to specify
   a ``ClientOptions`` instance
@@ -236,6 +238,7 @@ This example performs the following actions:
    bsonOpts := &options.BSONOptions {
        UseJSONStructTags: true,
        NilSliceAsEmpty: true,
+       OmitEmpty: true,
    }
 
    clientOpts := options.Client().
