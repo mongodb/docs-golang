@@ -624,9 +624,11 @@ following methods:
        | Default: ``nil``
 
    * - ``SetLet()``
-     - | Specifies parameters for update and delete operations, which improves command
-         readability by separating the variables from the query text.
-       | Default: none
+     - | Specifies a document with a list of values to improve operation readability. Values
+         must be constant or closed expressions that don't reference document fields. For more
+         information, see the :manual:`let statement
+         </reference/command/delete/#std-label-delete-let-syntax>` in the {+mdb-server+} manual.
+       | Default: ``nil``
 
    * - ``SetWriteConcern()``
      - | Specifies the write concern for the operations. 
