@@ -75,7 +75,10 @@ use in the {+driver-short+}:
 
    * - ``omitempty``
      - The field will not be marshalled if it is set to the zero value
-       corresponding to the field type.
+       corresponding to the field type. To learn more about how to globally 
+       omit fields with zero values by using the ``OmitEmpty`` BSON option, 
+       see the example in the :ref:`BSON Options <golang-bson-options>` section
+       of this page. 
 
    * - ``minsize``
      - If the field is type ``int64``, ``uint``, ``uint32``, or ``uint64`` and
