@@ -227,7 +227,7 @@ This example performs the following actions:
   - Sets the ``NilSliceAsEmpty`` field to ``true``, which instructs the driver
     to marshal ``nil`` Go slices as empty BSON arrays
   - Sets the ``OmitEmpty`` field to ``true``, which instructs the driver to globally omit
-    empty values from the marshaled BSON, rather than set empty values to ``null``
+    empty values from the marshaled BSON, rather than set empty values to ``null`` 
 
 - Passes the ``BSONOptions`` instance to the ``SetBSONOptions()`` helper method to specify
   a ``ClientOptions`` instance
