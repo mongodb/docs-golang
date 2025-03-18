@@ -40,16 +40,15 @@ Learn what's new in:
 
 .. _golang-version-2.2:
 
-What's New in 2.1
+What's New in 2.2
 -----------------
 
 The 2.2 {+driver-short+} release includes the following improvements
 and fixes:
 
-- Adds a new ``OmitEmpty`` global flag to globally omit empty values from
-  marshaled BSON. This prevents the driver from writing null values for fields
-  with empty values. For more information on setting the ``OmitEmpty`` global flag,
-  see the example in the :ref:`BSON Options<golang-bson-options>` section of the 
+- Adds the ``OmitEmpty`` global flag to globally omit empty values from
+  being serialized. For more information on setting the ``OmitEmpty`` global flag,
+  see the example in the :ref:`BSON Options <golang-bson-options>` section of the 
   BSON guide. 
 
 .. _golang-version-2.1:
