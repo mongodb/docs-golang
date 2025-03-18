@@ -14,7 +14,6 @@ func main() {
 	opts := options.Client().ApplyURI(uri)
 	opts.SetAuth(
 		options.Credential{
-			Username:                null,
 			AuthMechanism:           "MONGODB-OIDC",
 			AuthMechanismProperties: props,
 		},

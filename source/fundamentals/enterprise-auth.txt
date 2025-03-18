@@ -481,8 +481,11 @@ callback function that you defined:
 Kubernetes
 ~~~~~~~~~~
 
-If your application runs on a Kubernetes cluster, you can authenticate to MongoDB 
-by using the {+driver-short+}'s built-in Kubernetes support.
+If your application runs on a Kubernetes cluster with a configured service account, 
+you can authenticate to MongoDB by using the {+driver-short+}'s built-in Kubernetes 
+support. To learn more about how to configure a service account, see the 
+`Managing Service Accounts <https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/>`__ 
+guide in the Kubernetes documentation. 
 
 You can configure OIDC for Kubernetes in the following ways:
 
