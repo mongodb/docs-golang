@@ -46,8 +46,8 @@ What's New in 2.2
 The 2.2 {+driver-short+} release includes the following improvements
 and fixes:
 
-- Adds the ``OmitEmpty`` global flag to globally omit empty values from
-  being serialized. For more information on setting the ``OmitEmpty`` global flag,
+- Adds the ``OmitEmpty`` BSON option to globally prevent empty values from
+  being serialized. To learn more about setting the ``OmitEmpty`` global flag,
   see the example in the :ref:`BSON Options <golang-bson-options>` section of the 
   BSON guide. 
 
