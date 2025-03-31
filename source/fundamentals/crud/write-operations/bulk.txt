@@ -272,8 +272,9 @@ following methods:
    * - ``SetLet()``
      - | Specifies a document with a list of values to improve operation readability. Values
          must be constant or closed expressions that don't reference document fields. For more
-         information, see the :manual:`let statement
-         </reference/command/delete/#std-label-delete-let-syntax>` in the {+mdb-server+} manual.
+         information, see the ``let`` field for the :manual:`delete
+         </reference/command/delete/#std-label-delete-let-syntax>` and :manual:`update
+         </reference/command/update/#std-label-update-let-syntax>` commands in the {+mdb-server+} manual.
        | Default: ``nil``
 
    * - ``SetOrdered()``
@@ -626,8 +627,10 @@ following methods:
    * - ``SetLet()``
      - | Specifies a document with a list of values to improve operation readability. Values
          must be constant or closed expressions that don't reference document fields. For more
-         information, see the :manual:`let statement
-         </reference/command/delete/#std-label-delete-let-syntax>` in the {+mdb-server+} manual.
+         information, see the ``let`` field for the :manual:`delete
+         </reference/command/delete/#std-label-delete-let-syntax>` and :manual:`update
+         </reference/command/update/#std-label-update-let-syntax>` commands in the {+mdb-server+}
+         manual.
        | Default: ``nil``
 
    * - ``SetWriteConcern()``
