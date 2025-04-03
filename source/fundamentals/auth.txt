@@ -197,22 +197,23 @@ user.
 To connect to a MongoDB instance with ``MONGODB-AWS`` authentication enabled,
 specify the ``MONGODB-AWS`` authentication mechanism.
 
-The driver checks for your credentials in the following sources in the order
-they are listed:
+The driver checks for your credentials in the following sources in the
+order listed:
 
-1. Connection string
-#. Environment variables
-#. Web identity token file
-#. AWS ECS endpoint specified in the ``AWS_CONTAINER_CREDENTIALS_RELATIVE_URI``
-   environment variable
-#. AWS EC2 endpoint. For more information, see `IAM Roles for Tasks
-   <https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html>`_.
+1. Connection string.
+#. Environment variables.
+#. Web identity token file.
+#. AWS ECS endpoint specified in the
+   ``AWS_CONTAINER_CREDENTIALS_RELATIVE_URI`` environment variable.
+#. AWS EC2 endpoint. To learn more, see `IAM Roles for Tasks
+   <https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html>`__
+   in the AWS documentation.
 
 .. important::
    
    The driver obtains the credentials only from the first source in which they are found.
    For example, if you specify your AWS credentials in the connection string, the
-   driver ignores any credentials that you have specified in environment variables.
+   driver ignores any credentials that you specify in environment variables.
 
 .. tabs::
 
