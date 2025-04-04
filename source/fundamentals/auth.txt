@@ -282,13 +282,13 @@ order listed:
         file that contains your OIDC token.
 
       - ``AWS_ROLE_ARN``: Set to the IAM role used to connect to your
-        cluster, for example ``arn:aws:iam::111122223333:role/my-role``.
+        cluster. For example: ``arn:aws:iam::111122223333:role/my-role``.
      
       The following shell command sets these environment variables:      
 
       .. code-block:: bash
 
-         export AWS_WEB_IDENTITY_TOKEN_FILE=<path to file that contains OIDC token>
+         export AWS_WEB_IDENTITY_TOKEN_FILE=<absolute path to file that contains OIDC token>
          export AWS_ROLE_ARN=<IAM role name>
 
       After you set the preceding environment variables, specify the ``MONGODB-AWS``
