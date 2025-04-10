@@ -58,6 +58,21 @@ This release includes the following improvements and fixes:
   see the example in the :ref:`BSON Options <golang-bson-options>` section of the 
   BSON guide. 
 
+- Adds support for Kubernetes OIDC authentication. To learn more about how to configure 
+  MongoDB authentication for a Kubernetes cluster, see the Kubernetes section of the 
+  :ref:`golang-enterprise-authentication-mechanisms` guide.
+
+- Adds support to configure the lifetime of the Data Encryption Key (DEK) cache. To learn
+  more about DEK management, see the :manual:`</csfle/fundamentals/manage-keys>` guide. 
+
+- Adds support for error.Is and error.As in all stable public APIs for improved 
+  error management. To learn more, see the `error.Is <https://pkg.go.dev/errors#Is>`__ 
+  and `error.As <https://pkg.go.dev/errors#As>`__ Go API documentation. 
+
+For more information about the changes in this version, see the
+:github:`v2.2 release notes </mongodb/mongo-go-driver/releases/tag/v2.2.0>` 
+on GitHub.
+
 .. _golang-version-2.1:
 
 What's New in 2.1
