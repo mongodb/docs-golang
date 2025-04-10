@@ -67,7 +67,7 @@ This release includes the following improvements and fixes:
   :manual:`Encryption Key Management </csfle/fundamentals/manage-keys>` guide in the 
   {+mdb-server+} manual. 
 
-- Adds support for error.Is and error.As in all stable public APIs for improved 
+- Adds support for ``error.Is`` and ``error.As`` in all stable public APIs for improved 
   error management. To learn more, see the `error.Is <https://pkg.go.dev/errors#Is>`__ 
   and `error.As <https://pkg.go.dev/errors#As>`__ Go API documentation. 
 
