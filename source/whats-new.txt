@@ -63,7 +63,8 @@ This release includes the following improvements and fixes:
   :ref:`golang-enterprise-authentication-mechanisms` guide.
 
 - Adds support to configure the lifetime of the Data Encryption Key (DEK) cache. To learn
-  more about DEK management, see the :manual:`</csfle/fundamentals/manage-keys>` guide. 
+  more about DEK management, see the 
+  :manual:`Encryption Key Management </csfle/fundamentals/manage-keys>` guide. 
 
 - Adds support for error.Is and error.As in all stable public APIs for improved 
   error management. To learn more, see the `error.Is <https://pkg.go.dev/errors#Is>`__ 
