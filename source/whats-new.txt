@@ -43,13 +43,14 @@ Learn what's new in:
 What's New in 2.2
 -----------------
 
-.. important:: Breaking Changes
+.. important:: Breaking Change
 
    The {+driver-short+} v2.2 release introduces the following breaking
-   changes:
+   change:
 
    - Drops support for {+mdb-server+} v3.6. The minimum supported {+mdb-server+}
-     version is now v4.0. 
+     version is now v4.0. To learn more about compatibility for {+driver-short+}
+     versions, see the :ref:`Compatibility <golang-compatibility>` reference. 
 
 This release includes the following improvements and fixes:
 
@@ -59,15 +60,16 @@ This release includes the following improvements and fixes:
   BSON guide. 
 
 - Adds support for Kubernetes OIDC authentication. To learn more about how to configure 
-  MongoDB authentication for a Kubernetes cluster, see the Kubernetes section of the 
-  :ref:`golang-enterprise-authentication-mechanisms` guide.
+  MongoDB authentication for a Kubernetes cluster, see the 
+  :ref:`Kubernetes OIDC <golang-kubernetes-oidc>` section of the Enterprise 
+  Authentication Mechanisms guide. 
 
 - Adds support to configure the lifetime of the Data Encryption Key (DEK) cache. To learn
   more about DEK management, see the 
-  :manual:`Encryption Key Management <core/csfle/fundamentals/manage-keys/>` guide in the 
+  :manual:`Encryption Key Management </core/csfle/fundamentals/manage-keys>` guide in the 
   {+mdb-server+} manual. 
 
-- Adds support for ``error.Is`` and ``error.As`` in all stable public APIs for improved 
+- Adds support for ``error.Is`` and ``error.As`` functions for improved 
   error management. To learn more, see the `error.Is <https://pkg.go.dev/errors#Is>`__ 
   and `error.As <https://pkg.go.dev/errors#As>`__ Go API documentation. 
 
