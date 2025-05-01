@@ -7,8 +7,6 @@ Compound Operations
 .. meta::
    :description: Learn how to perform compound operations in MongoDB using Go, combining read and write actions into a single atomic operation to prevent data alteration.
 
-.. default-domain:: mongodb
-
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -78,12 +76,12 @@ the specified query filter and deletes it. The method returns a
 
    The ``FindOneAndDelete()`` method is an atomic operation, which means it prevents
    any other write operations from changing the matching document until it
-   completes. The ``deleteOne()`` method is also an atomic operation, but differs from
+   completes. The ``DeleteOne()`` method is also an atomic operation, but differs from
    ``FindOneAndDelete()`` in that you cannot specify a sort order for the
    matched documents. 
 
    To find a document and delete it in separate operations, call the
-	 ``findOne()`` method followed by the ``deleteOne()`` method.
+   ``FindOne()`` method followed by the ``DeleteOne()`` method.
 
 Modify Behavior
 ~~~~~~~~~~~~~~~
@@ -163,12 +161,12 @@ document.
 
    The ``FindOneAndUpdate()`` method is an atomic operation, which means it prevents
    any other write operations from changing the matching document until it
-   completes. The ``updateOne()`` method is also an atomic operation, but differs from
-   ``FindOneAndUpdate()`` in that you cannot specify a sort order for the
-   matched documents. 
+   completes. The ``UpdateOne()`` method is also an atomic operation, but differs from
+   ``FindOneAndUpdate()`` because you cannot return the pre-image of the
+   updated document when using ``UpdateOne()``.
 
    To find a document and update it in separate operations, call 
-   the ``findOne()`` method followed by the ``updateOne()`` method. 
+   the ``FindOne()`` method followed by the ``UpdateOne()`` method. 
  
 Modify Behavior
 ~~~~~~~~~~~~~~~
