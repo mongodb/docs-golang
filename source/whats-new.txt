@@ -102,7 +102,7 @@ and fixes:
 
 - Adds the ``sort`` option to `UpdateOneOptions <{+api+}/mongo/options#UpdateOneOptions>`__ 
   and `ReplaceOptions <{+api+}/mongo/options#ReplaceOptions>`__ for
-  standalone update and replace operations as well as for bulk operations.
+  standalone update and replace operations and in bulk operations.
 
 For more information about the changes in this version, see the
 :github:`v2.1 release notes </mongodb/mongo-go-driver/releases/tag/v2.1.0>` 
