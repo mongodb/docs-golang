@@ -93,8 +93,8 @@ and fixes:
 
 - Introduces the `bson.Vector <{+api+}/bson#Vector>`__ type to make inserting and querying 
   vector data by using :atlas:`Atlas Vector Search </atlas-vector-search/vector-search-overview/>` 
-  easier and more efficient. For an example using the ``bson.Vector`` type, see
-  the {+driver-short+}'s :ref:`Atlas Vector Search <golang-atlas-vector-search>` guide. 
+  easier and more efficient. To view an example that uses the ``bson.Vector`` type, see
+  the :ref:`Atlas Vector Search <golang-atlas-vector-search>` guide. 
 
 - Extends the `ServerError <{+api+}/mongo#ServerError>`__ interface to include 
   ``ErrorCodes``, which returns a list of deduplicated error codes returned by 
@@ -102,8 +102,7 @@ and fixes:
 
 - Adds the ``sort`` option to `UpdateOneOptions <{+api+}/mongo/options#UpdateOneOptions>`__ 
   and `ReplaceOptions <{+api+}/mongo/options#ReplaceOptions>`__ for
-  ``UpdateOne()`` and ``ReplaceOne()`` operations and update and replace
-  operations in bulk operations.
+  standalone update and replace operations as well as for bulk operations.
 
 For more information about the changes in this version, see the
 :github:`v2.1 release notes </mongodb/mongo-go-driver/releases/tag/v2.1.0>` 
