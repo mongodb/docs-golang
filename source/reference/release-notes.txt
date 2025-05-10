@@ -1,8 +1,11 @@
 .. _golang-whats-new:
+.. _golang-release-notes:
 
-==========
-What's New
-==========
+.. TODO clean up
+
+=============
+Release Notes
+=============
 
 .. contents:: On this page
    :local:
