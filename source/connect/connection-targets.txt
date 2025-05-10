@@ -1,0 +1,5 @@
+.. _go-connection-targets:
+
+==========================
+Choose a Connection Target
+==========================
