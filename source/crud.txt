@@ -23,7 +23,7 @@ CRUD Operations
 CRUD (Create, Read, Update, Delete) operations enable you to work with
 data stored in MongoDB.
 
-- :ref:`golang-insert`
+- :ref:`golang-insert-guide`
 - :ref:`golang-query`
 - :ref:`golang-update`
 - :ref:`golang-delete`
