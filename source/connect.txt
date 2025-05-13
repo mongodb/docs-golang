@@ -1,4 +1,5 @@
 .. _go-connect:
+.. _golang-connection:
 
 ==================
 Connect to MongoDB
@@ -19,8 +20,17 @@ Connect to MongoDB
    :maxdepth: 1
 
    Create a MongoClient <connect/mongoclient>
+   Choose a Connection Target <connect/connection-targets>
+   Connection Options </connect/connection-options>
+   Connection Troubleshooting </connect/connection-troubleshooting>
 
 Overview
 --------
 
-.. TODO
+Learn how to use the {+driver-short+} to configure your application's
+connection to a MongoDB deployment in the following sections:
+
+- :ref:`golang-connection-guide`
+- :ref:`golang-connection-options`
+- :ref:`golang-network-compression`
+- :ref:`golang-connection-troubleshooting`

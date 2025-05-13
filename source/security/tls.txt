@@ -1,3 +1,4 @@
+.. _golang-tls:
 
 ==========================
 Enable TLS on a Connection

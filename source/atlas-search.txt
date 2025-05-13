@@ -1,3 +1,4 @@
+.. _golang-atlas-search:
 
 =========================
 Run an Atlas Search Query

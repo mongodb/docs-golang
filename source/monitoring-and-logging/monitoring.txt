@@ -1,3 +1,4 @@
+.. _golang-monitoring:
 
 ==========================
 Monitor Application Events

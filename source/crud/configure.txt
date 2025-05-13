@@ -1,3 +1,4 @@
+.. _golang-configure-crud:
 
 =========================
 Configure CRUD Operations
