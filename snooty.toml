@@ -1,9 +1,10 @@
 name = "golang"
 title = "Go Driver"
 toc_landing_pages = [
-    "/fundamentals/connections",
-    "/fundamentals/crud",
-    "/usage-examples",
+    "/connect",
+    "/crud",
+    "/monitoring-and-logging",
+    "/security"
 ]
 
 intersphinx = [

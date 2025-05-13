@@ -1,0 +1,21 @@
+.. _golang-configure-crud:
+
+=========================
+Configure CRUD Operations
+=========================
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: insert, update, replace, delete, options, code example
+
+.. TODO
+
