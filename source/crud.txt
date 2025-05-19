@@ -27,8 +27,8 @@ data stored in MongoDB.
 - :ref:`golang-query`
 - :ref:`golang-update`
 - :ref:`golang-delete`
-- :ref:`golang-bulk-write`
+- :ref:`golang-bulk`
 - :ref:`golang-compound-operations`
 - :ref:`golang-transactions`
-- :ref:`golang-configure`
+- :ref:`golang-configure-crud`
 - :ref:`golang-gridfs`
