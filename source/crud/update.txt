@@ -1,4 +1,5 @@
 .. _golang-change-document:
+.. _golang-update:
 
 ================
 Modify Documents
@@ -17,6 +18,8 @@ Modify Documents
    :backlinks: none
    :depth: 2
    :class: singlecol
+
+.. TODO edit
 
 Overview
 --------

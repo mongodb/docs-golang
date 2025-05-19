@@ -1,4 +1,6 @@
 .. _golang-query-document:
+.. _golang-query:
+.. _golang-crud-read-operations:
 
 ===============
 Specify a Query

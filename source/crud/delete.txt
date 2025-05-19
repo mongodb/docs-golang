@@ -1,4 +1,5 @@
 .. _golang-delete-guide:
+.. _golang-delete:
 
 ================
 Delete Documents

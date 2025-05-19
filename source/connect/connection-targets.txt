@@ -1,0 +1,16 @@
+.. _golang-connection-targets:
+
+==========================
+Choose a Connection Target
+==========================
+
+.. meta::
+   :keywords: connection string, URI, server, settings, client, load balancing, srv, dns
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. TODO
