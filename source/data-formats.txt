@@ -1,0 +1,26 @@
+.. _node-data-formats:
+
+========================
+Specialized Data Formats
+========================
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: bson, uuid, date, time 
+
+.. TODO Landing page
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   BSON </data-formats/bson>
