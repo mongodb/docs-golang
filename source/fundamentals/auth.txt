@@ -68,7 +68,7 @@ Each authentication mechanism contains the following placeholders:
 ``SCRAM-SHA-256``
 ~~~~~~~~~~~~~~~~~
 
-``SCRAM-SHA-256`` a salted challenge-response authentication mechanism
+``SCRAM-SHA-256`` is a salted challenge-response authentication mechanism
 (SCRAM) that uses your database username and password, encrypted with the ``SHA-256``
 algorithm, to authenticate your user. This is the default authentication mechanism.
 
