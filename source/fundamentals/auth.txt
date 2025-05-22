@@ -104,7 +104,7 @@ by assigning the ``AuthMechanism`` option the value ``"SCRAM-SHA-256"``:
    client, err := mongo.Connect(clientOpts)
 
 To learn more about the challenge-response authentication mechanisms (SCRAM) that MongoDB supports,
-see the :manual:`SCRAM </core/security-scram/>` section of the server manual.
+see the :manual:`SCRAM </core/security-scram/>` section of the Server manual.
 
 .. _golang-scram-sha-1-auth-mechanism:
 .. _golang-sha-1:
