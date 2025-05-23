@@ -1,4 +1,5 @@
 .. _golang_sha_256:
+.. _golang-authentication-scram:
 
 ===============================
 SCRAM Authentication Mechanisms

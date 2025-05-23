@@ -1,4 +1,5 @@
 .. _golang-mongodb-oidc:
+.. _golang-authentication-oidc:
 
 =============================
 OIDC Authentication Mechanism

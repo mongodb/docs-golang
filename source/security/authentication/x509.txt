@@ -1,4 +1,5 @@
 .. _golang-x509:
+.. _golang-authentication-x509:
 
 ==============================
 X.509 Authentication Mechanism

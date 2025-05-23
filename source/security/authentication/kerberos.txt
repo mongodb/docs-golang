@@ -1,4 +1,5 @@
 .. _golang-kerberos:
+.. _golang-authentication-kerberos:
 
 ==========================================
 Kerberos (GSSAPI) Authentication Mechanism
