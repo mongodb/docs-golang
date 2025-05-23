@@ -19,8 +19,6 @@ Authentication Mechanisms
    LDAP (PLAIN) </security/authentication/ldap>
    Kerberos (GSSAPI) </security/authentication/kerberos>
 
-.. TODO make sure correct
-
 Overview
 --------
 
@@ -73,3 +71,4 @@ a mechanism to learn more about how to use it with your application.
      - No
      - Yes
      - No
+     
