@@ -54,8 +54,8 @@ Each authentication mechanism contains the following placeholders:
 
 .. _golang-scram-sha-256:
 
-SCRAM-SHA-256
--------------
+Specify SCRAM-SHA-256 Authentication
+------------------------------------
 
 ``SCRAM-SHA-256`` is a salted challenge-response authentication mechanism
 (SCRAM) that uses your database username and password, encrypted with the ``SHA-256``
