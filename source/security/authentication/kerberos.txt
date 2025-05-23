@@ -90,8 +90,8 @@ MongoDB server:
    
    uri := "mongodb://<kerberos_principal>:<password>@<hostname>/?authMechanism=GSSAPI"
 
-Set Custom ``SERVICE_NAME`` and ``SERVICE_REALM`` Fields
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Set Custom SERVICE_NAME and SERVICE_REALM Fields
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can specify more properties with your authentication
 mechanism using the ``AuthMechanismProperties`` field in the
