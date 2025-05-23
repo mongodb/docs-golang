@@ -4,7 +4,8 @@ toc_landing_pages = [
     "/connect",
     "/crud",
     "/monitoring-and-logging",
-    "/security"
+    "/security",
+    "/authentication"
 ]
 
 intersphinx = [

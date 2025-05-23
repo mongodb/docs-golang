@@ -93,7 +93,7 @@ MongoDB server:
 Set Custom ``SERVICE_NAME`` and ``SERVICE_REALM`` Fields
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can specify additional properties with your authentication
+You can specify more properties with your authentication
 mechanism using the ``AuthMechanismProperties`` field in the
 ``Credential`` struct. The default service name for Kerberos is
 "mongodb". The following code shows how you can set custom values
@@ -112,7 +112,7 @@ for the ``SERVICE_NAME`` and ``SERVICE_REALM`` fields when defining a
            },
    }
 
-For additional properties, see the
+For more properties, see the
 :manual:`Server manual entry on authentication properties </reference/connection-string/#mongodb-urioption-urioption.authMechanismProperties>`.
 
 API Documentation

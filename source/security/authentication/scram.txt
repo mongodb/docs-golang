@@ -23,8 +23,7 @@ Overview
 **Salted Challenge Response Authentication Mechanism (SCRAM)** is a family of
 authentication mechanisms that use a challenge-response mechanism to authenticate
 the user. SCRAM-SHA-256, which uses the SHA-256 algorithm to hash your password, is the
-default authentication mechanism in {+mdb-server+} version 4.0
-and later. 
+default authentication mechanism.
 
 You can use SCRAM to authenticate to MongoDB Atlas, MongoDB
 Enterprise Advanced, and MongoDB Community Edition.
@@ -62,9 +61,8 @@ SCRAM-SHA-256
 (SCRAM) that uses your database username and password, encrypted with the ``SHA-256``
 algorithm, to authenticate your user.
 
-Because ``SCRAM-SHA-256`` is the default authentication mechanism in 
-{+mdb-server+} version 4.0 and later, you don't need to specify an 
-authentication mechanism to enable ``SCRAM-SHA-256``. 
+Because ``SCRAM-SHA-256`` is the default authentication mechanism, 
+you don't need to specify an authentication mechanism to enable ``SCRAM-SHA-256``. 
 
 To specify the default authentication mechanism, omit the
 ``AuthMechanism`` option:

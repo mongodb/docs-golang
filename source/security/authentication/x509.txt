@@ -76,7 +76,7 @@ The following code example shows how to specify the ``X.509`` authentication mec
 
 ..
   To learn more about configuring your application to use
-  certificates as well as TLS/SSL options, see
+  certificates and TLS/SSL options, see
   :ref:`golang-tls-ssl-guide`.
 
 API Documentation
