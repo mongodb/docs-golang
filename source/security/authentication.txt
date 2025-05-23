@@ -1,5 +1,6 @@
 .. _golang-enterprise-authentication-mechanisms:
 .. _golang-authentication-mechanisms:
+.. _golang-authentication:
 
 =========================
 Authentication Mechanisms
@@ -18,8 +19,6 @@ Authentication Mechanisms
    OIDC </security/authentication/oidc>
    LDAP (PLAIN) </security/authentication/ldap>
    Kerberos (GSSAPI) </security/authentication/kerberos>
-
-.. TODO make sure correct
 
 Overview
 --------

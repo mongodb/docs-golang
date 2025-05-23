@@ -10,7 +10,7 @@ Getting Started with Go
 
 .. meta:: 
    :description: Learn how to create an app to connect to MongoDB deployment by using the Go driver.
-   :keywords: node.js
+   :keywords: go
 
 .. contents:: On this page
    :local:
