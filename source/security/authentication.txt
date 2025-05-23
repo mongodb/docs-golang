@@ -1,5 +1,6 @@
 .. _golang-enterprise-authentication-mechanisms:
 .. _golang-authentication-mechanisms:
+.. _golang-authentication:
 
 =========================
 Authentication Mechanisms
@@ -71,4 +72,3 @@ a mechanism to learn more about how to use it with your application.
      - No
      - Yes
      - No
-     

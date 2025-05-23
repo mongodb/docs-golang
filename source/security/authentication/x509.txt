@@ -31,7 +31,7 @@ Enterprise Advanced, and MongoDB Community Edition.
 .. tip:: X.509 Mechanism
 
    To learn how to use TLS/SSL with the {+driver-short+},
-   see the :ref:`node-tls` guide.
+   see the :ref:`golang-tls` guide.
 
    For more information about X.509 certificates, see
    :manual:`Use x.509 Certificates to Authenticate Clients on Self-Managed Deployments

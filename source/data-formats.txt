@@ -1,4 +1,4 @@
-.. _node-data-formats:
+.. _golang-data-formats:
 
 ========================
 Specialized Data Formats
