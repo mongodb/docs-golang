@@ -1,9 +1,9 @@
 .. _golang_sha_256:
 .. _golang-authentication-scram:
 
-===============================
-SCRAM Authentication Mechanisms
-===============================
+==============================
+SCRAM Authentication Mechanism
+==============================
 
 .. contents:: On this page
    :local:
