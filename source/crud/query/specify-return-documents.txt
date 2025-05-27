@@ -23,9 +23,9 @@ Overview
 In this guide, you can learn how to specify which documents to return from a read
 operation by using the following methods:
 
-- ``setSort()``: Specifies the sort order for the returned documents.
-- ``setSkip()``: Specifies the number of documents to skip before returning query results.
-- ``setLimit()``: Specifies the maximum number of documents to return from a query.
+- ``SetSort()``: Specifies the sort order for the returned documents.
+- ``SetSkip()``: Specifies the number of documents to skip before returning query results.
+- ``SetLimit()``: Specifies the maximum number of documents to return from a query.
 
 Sample Data for Examples
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -297,9 +297,6 @@ on any field. To avoid skipping random documents, use the ``SetSort()``
 method to sort documents on a field with unique values before setting a
 skip option.
 
-Example
-~~~~~~~
-
 The following example performs a ``Find()`` operation with the following
 behavior:
 
@@ -380,7 +377,7 @@ behavior:
 .. _golang-limit:
 
 Limit
-~~~~~
+-----
 
 To limit the number of documents returned from a query, pass the
 number of documents you want returned to the ``SetLimit()`` method of
