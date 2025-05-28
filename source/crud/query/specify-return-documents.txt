@@ -326,7 +326,7 @@ behavior:
       :language: none
       :visible: false
 
-      {"title":"Plate Tectonics","enrollment":45}
+      {"title":"Plate Tectonics","enrollment":35}
       {"title":"Abstract Algebra","enrollment":60}
 
 .. _golang-skip-aggregation:
@@ -370,7 +370,7 @@ behavior:
       :language: none
       :visible: false
 
-      {"title":"Plate Tectonics","enrollment":45}
+      {"title":"Plate Tectonics","enrollment":35}
       {"title":"World Fiction","enrollment":35}
       {"title":"Modern Poetry","enrollment":12}
 
@@ -462,7 +462,7 @@ The following example performs a ``Find()`` operation with the following behavio
       :visible: false
 
       {"title":"Abstract Algebra","enrollment":60}
-      {"title":"Plate Tectonics","enrollment":45}
+      {"title":"Plate Tectonics","enrollment":35}
 
 .. tip::
 
