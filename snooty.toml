@@ -5,7 +5,8 @@ toc_landing_pages = [
     "/crud",
     "/monitoring-and-logging",
     "/security",
-    "/security/authentication"
+    "/security/authentication",
+    "/connect/specify-connection-options.txt"
 ]
 
 intersphinx = [
