@@ -60,10 +60,7 @@ Specify SCRAM-SHA-256 Authentication
 
 ``SCRAM-SHA-256`` is a salted challenge-response authentication mechanism
 (SCRAM) that uses your database username and password, encrypted with the ``SHA-256``
-algorithm, to authenticate your user.
-
-Because ``SCRAM-SHA-256`` is the default authentication mechanism, 
-you don't need to specify an authentication mechanism to enable ``SCRAM-SHA-256``. 
+algorithm, to authenticate your user. ``SCRAM-SHA-256`` is the default authentication mechanism.
 
 To specify the default authentication mechanism, omit the
 ``AuthMechanism`` option:

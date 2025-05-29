@@ -75,7 +75,7 @@ The following code example shows how to specify the ``X.509`` authentication mec
 
    clientOpts := options.Client().ApplyURI(uri).SetAuth(credential)
 
-..
+.. TODO
   To learn more about configuring your application to use
   certificates and TLS/SSL options, see
   :ref:`golang-tls-ssl-guide`.

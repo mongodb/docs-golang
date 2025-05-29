@@ -68,7 +68,7 @@ preferences:
    
    client, err := mongo.Connect(clientOpts)
 
-You don't need to define a password or the ``PasswordSet`` field in
+You can omit a password or the ``PasswordSet`` field in
 your ``Credential`` struct if you store authentication keys in
 ``keytab`` files. You can initialize a credential cache for
 authenticating the Kerberos principal using the ``kinit`` binary. To

@@ -1,3 +1,4 @@
+.. _golang-connection-pools:
 
 ================
 Connection Pools

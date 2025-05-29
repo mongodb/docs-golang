@@ -93,8 +93,10 @@ connections and runs database commands.
    You can use the same ``Client`` instance to perform multiple tasks, instead of
    creating a new one each time. The ``Client`` type is safe for
    concurrent use by multiple `goroutines
-   <https://www.golang-book.com/books/intro/10>`__. To learn more about
-   how connection pools work in the driver, see the :ref:`FAQ page <golang-faq-connection-pool>`.
+   <https://www.golang-book.com/books/intro/10>`__. 
+
+.. TODO, Add back this line when Connection Pools page is made: To learn more about
+   how connection pools work in the driver, see the :ref:`Connection Pools guide <golang-connection-pools>`.
 
 You can create a client that uses your connection string and other
 client options by passing a ``ClientOptions`` object to the ``Connect()``
