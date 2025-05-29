@@ -12,7 +12,7 @@ Connection Guide
 
 .. meta::
    :description: Learn how to use the MongoDB Go Driver to connect to MongoDB.
-   :keywords: connection string, client options, replica set
+   :keywords: connection string, client options, replica set, code example
 
 .. contents:: On this page
    :local:
@@ -26,7 +26,7 @@ Connection Guide
 
    Create a MongoClient <connect/mongoclient>
    Choose a Connection Target <connect/connection-targets>
-   Connection Options </connect/connection-options>
+   Connection Options </connect/specify-connection-options>
    Connection Troubleshooting </connect/connection-troubleshooting>
 
 Overview
@@ -52,7 +52,7 @@ driver how to connect to MongoDB and how to behave while connected.
 Parts of a Connection URI
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following example explains each part of a sample connection URI:
+The following image explains each part of a sample connection URI:
 
 .. figure:: /includes/figures/connection_uri_parts.png
    :alt: Each part of the connection string
@@ -60,8 +60,8 @@ The following example explains each part of a sample connection URI:
 In this example, we use ``mongodb`` for the protocol, which specifies the
 :manual:`Standard Connection String Format
 </reference/connection-string/#std-label-connections-standard-connection-string-format>`.
-You can also use the :manual:`DNS Seed List Connection Format
-</reference/connection-string/#dns-seed-list-connection-format>` if you
+You can also use the :manual:`SRV Connection Format
+</reference/connection-string/#srv-connection-format>` if you
 want more flexibility of deployment and the ability to change the
 servers in rotation without reconfiguring clients.
 
