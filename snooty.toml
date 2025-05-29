@@ -6,7 +6,7 @@ toc_landing_pages = [
     "/monitoring-and-logging",
     "/security",
     "/security/authentication",
-    "/connect/specify-connection-options.txt"
+    "/connect/specify-connection-options"
 ]
 
 intersphinx = [
