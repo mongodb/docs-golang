@@ -40,7 +40,7 @@ in the ``courses`` collection:
    :dedent:
 
 To run the examples in this guide, load the sample data into the
-``db.courses`` collection with the following snippet:
+``db.courses`` collection by using the following snippet:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/sort.go
    :language: go
@@ -50,7 +50,7 @@ To run the examples in this guide, load the sample data into the
 
 .. include:: /includes/fundamentals/automatic-db-coll-creation.rst
 
-Each document contains a description of a university course that
+Each document represents a description of a university course and
 includes the course title and maximum enrollment, corresponding to
 the ``title`` and ``enrollment`` fields in each document.
 
@@ -62,7 +62,7 @@ Sort
 To specify the order of your results, pass an interface specifying the
 sort fields and direction to the ``SetSort()`` method of an operation's options.
 
-The following operations take options as a parameter:
+The following operations take ``SetSort()`` as an option:
 
 - ``Find()``
 - ``FindOne()``
@@ -229,7 +229,7 @@ Aggregation
 ~~~~~~~~~~~
 
 You can also include the :manual:`$sort </reference/operator/aggregation/sort/>`
-stage to specify a  sort in an aggregation pipeline.
+stage to specify a sort in an aggregation pipeline.
 
 Example
 ```````
@@ -277,7 +277,7 @@ To skip a specified number of returned results from a query, pass the
 number of documents you want to skip to the ``SetSkip()`` method of
 the read operation's options.
 
-The following read operations take an options object as a parameter:
+The following read operations take ``SetSkip()`` as an option:
 
 - ``Find()``
 - ``FindOne()``
@@ -286,11 +286,6 @@ The following read operations take an options object as a parameter:
 
 If the number of documents exceeds the number of matched documents for a
 query, that query returns no documents.
-
-.. tip::
-
-   Passing in a negative number to the ``SetSkip()`` method results
-   in a runtime error.
 
 Find operations return documents in a natural order that is not sorted
 on any field. To avoid skipping random documents, use the ``SetSort()``
@@ -383,7 +378,7 @@ To limit the number of documents returned from a query, pass the
 number of documents you want returned to the ``SetLimit()`` method of
 the read operation's options.
 
-The following read operations take an options object as a parameter:
+The following read operations take ``SetLimit()`` as an option:
 
 - ``Find()``
 - ``CountDocuments()``
@@ -429,7 +424,14 @@ Multiple Options
 ~~~~~~~~~~~~~~~~
 
 The driver performs the limit behavior last regardless of the order in which you set
-any other options.
+any other options. For example, the following option configurations produce the same 
+result, regardless of the order in which ``SetLimit()`` is called:
+
+.. code-block:: go
+   :copyable: false
+
+   opts := options.Find().SetSort(bson.D{{"enrollment", -1}}).SetSkip(1).SetLimit(2)
+   opts := options.Find().SetLimit(2).SetSort(bson.D{{"enrollment", -1}}).SetSkip(1)
 
 The following example performs a ``Find()`` operation with the following behavior:
 
@@ -463,19 +465,6 @@ The following example performs a ``Find()`` operation with the following behavio
 
       {"title":"Abstract Algebra","enrollment":60}
       {"title":"Plate Tectonics","enrollment":35}
-
-.. tip::
-
-   Using any of the following option configurations also produces the same result:
-
-   .. code-block:: go
-      :copyable: false
-
-      opts := options.Find().SetSort(bson.D{{"enrollment", -1}}).SetSkip(1).SetLimit(2)
-      opts := options.Find().SetLimit(2).SetSort(bson.D{{"enrollment", -1}}).SetSkip(1)
-      opts := options.Find().SetLimit(2).SetSkip(1).SetSort(bson.D{{"enrollment", -1}})
-      opts := options.Find().SetSkip(1).SetSort(bson.D{{"enrollment", -1}}).SetLimit(2)
-      opts := options.Find().SetSkip(1).SetLimit(2).SetSort(bson.D{{"enrollment", -1}})
 
 .. _golang-limit-aggregation:
 
@@ -521,14 +510,12 @@ The following example shows how to return three documents:
 Additional Information
 ----------------------
 
-To learn more about the operations mentioned, see the following
-guides:
+To learn more about the operations discussed in this guide, see the following
+documentation:
 
 - :ref:`golang-query-document`
 - :ref:`golang-retrieve`
 - :ref:`golang-compound-operations`
-- :ref:`golang-sort-results`
-- :ref:`golang-skip`
 - :ref:`golang-aggregation`
 
 To learn about sorting text scores from your text search, see :ref:`golang-search-text`.
