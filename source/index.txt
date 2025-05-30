@@ -55,6 +55,12 @@ Quick Start
 Learn how to establish a connection to MongoDB Atlas and begin
 working with data in the :ref:`golang-quickstart` section.
 
+Databases and Collections
+-------------------------
+
+Learn how to interact with MongoDB databases and collections in the
+:ref:`golang-databases-collections` section.
+
 Quick Reference
 ---------------
 
