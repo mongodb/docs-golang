@@ -17,7 +17,7 @@ Databases and Collections
 
 .. meta::
    :keywords: table, row, organize, storage, code example
-   :description: Learn how to manage MongoDB databases and collections using the Go driver, including accessing, creating, and deleting collections, and configuring read and write operations.
+   :description: Learn how to manage MongoDB databases and collections using the Go driver, including accessing, creating, and deleting collections.
 
 Overview
 --------
@@ -57,8 +57,7 @@ Access a Collection
 You can access a collection by using the ``Collection()`` method on a
 ``Database`` instance.
 
-The following example accesses a collection named ``test_collection`` in the
-``test_database`` database:
+The following example accesses a collection named ``test_collection``:
 
 .. literalinclude:: /includes/databases-collections.go
    :start-after: start-access-collection
@@ -78,7 +77,7 @@ Create a Collection
 To explicity create a collection, you can use the ``CreateCollection()`` method
 on a ``Database`` instance.
 
-The following example creates a collectioned named ``example_collection``:
+The following example creates a collection named ``example_collection``:
 
 .. literalinclude:: /includes/databases-collections.go
    :start-after: start-create-collection
@@ -88,7 +87,7 @@ The following example creates a collectioned named ``example_collection``:
    :dedent:
 
 You can specify collection options, such as maximum size and document validation
-rules, by passing a ``options.CreateCollectionOptions`` struct to the
+rules, by passing an ``options.CreateCollectionOptions`` struct to the
 ``CreateCollection()`` method of a ``Database`` instance. For a full list of
 optional parameters, see the :manual:`create command
 </reference/command/create>` entry in the {+mdb-server+} manual.
@@ -98,6 +97,9 @@ Get a List of Collections
 
 You can query for a list of collections in a database by using the
 ``ListCollections()`` method on a ``Database`` instance.
+
+The following example gets a list of all the collections in a database, and then
+prints the collection names to the console:
 
 .. literalinclude:: /includes/databases-collections.go
    :start-after: start-list-collections
