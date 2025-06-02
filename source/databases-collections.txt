@@ -114,6 +114,9 @@ Delete a Collection
 You can delete a collection by using the ``Drop()`` method on a ``Database``
 instance.
 
+The following example deletes a collection named
+``test_collection``:
+
 .. literalinclude:: /includes/databases-collections.go
    :start-after: start-delete-collection
    :end-before: end-delete-collection
@@ -126,7 +129,7 @@ instance.
    Dropping a collection from your database permanently deletes all documents
    and all indexes within that collection.
 
-   Drop a collection only if the data in it is no longer needed.
+   Drop a collection only if you no longer need the data in that collection.
 
 API Documentation
 -----------------
