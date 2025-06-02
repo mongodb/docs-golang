@@ -27,8 +27,8 @@ operation by using the following methods:
 - ``SetSkip()``: Specifies the number of documents to skip before returning query results.
 - ``SetLimit()``: Specifies the maximum number of documents to return from a query.
 
-Sample Data for Examples
-~~~~~~~~~~~~~~~~~~~~~~~~
+Sample Data
+~~~~~~~~~~~
 
 The examples in this guide use the following ``Course`` struct as a model for documents
 in the ``courses`` collection:
@@ -83,12 +83,9 @@ specify this sort, pass the field you want to sort by and ``1`` to the
 .. tip::
 
    With an ascending sort, the method orders values of type
-   ``Boolean`` from ``false`` *to* ``true``, ``String`` type values
-   from *a to z* and numeric type values from *negative infinity to
-   positive infinity*.
-
-Example 
-```````
+   ``Boolean`` from ``false`` to ``true``, ``String`` type values
+   from a to z and numeric type values from negative infinity to
+   positive infinity.
 
 The following example specifies an ascending sort on the ``enrollment`` field:
 
@@ -131,12 +128,9 @@ specify this sort, pass the field you want to sort by and ``-1`` to the
 .. tip::
 
    With an descending sort, the method orders values of type
-   ``Boolean`` from ``true`` *to* ``false``, ``String`` type values
-   from *z to a* and numeric type values from *positive infinity to
-   negative infinity*.
-
-Example
-```````
+   ``Boolean`` from ``true`` to ``false``, ``String`` type values
+   from z to a and numeric type values from positive infinity to
+   negative infinity.
 
 The following example specifies a descending sort on the ``enrollment`` field:
 
@@ -189,9 +183,6 @@ You can sort on additional fields to resolve ties in the original sort.
 If you want to guarantee a specific order for documents, select sort fields
 that do not result in ties.
 
-Example
-```````
-
 The following example specifies a descending sort on the ``enrollment`` field,
 then an ascending sort on the ``title`` field:
 
@@ -230,9 +221,6 @@ Aggregation
 
 You can also include the :manual:`$sort </reference/operator/aggregation/sort/>`
 stage to specify a sort in an aggregation pipeline.
-
-Example
-```````
 
 The following example specifies a descending sort on the ``enrollment``
 field, then an ascending sort on the ``title`` field:
