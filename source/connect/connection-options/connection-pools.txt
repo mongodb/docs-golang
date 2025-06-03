@@ -35,9 +35,9 @@ Create a Connection Pool
 ------------------------
 
 Every ``Client`` instance has a built-in connection pool for each server in your
-MongoDB topology. If you do not cofigure the ``minPoolSize`` option, connection
+MongoDB topology. If you do not configure the ``minPoolSize`` option, connection
 pools open sockets on demand. These sockets support concurrent MongoDB
-operations, or `goroutines <https://www.golang-book.com/books/intro/10>`__, in
+operations, or `goroutines <https://go.dev/tour/concurrency/1>`__, in
 your application.
 
 Each ``Client`` instance opens two more sockets per server in your MongoDB
@@ -149,3 +149,12 @@ Additional Information
 For more information on using a connection pool, see the :manual:`Connection
 Pool </administration/connection-pool-overview>` documentation in the Server
 manual. 
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+To learn more about any of the methods or types discussed in this
+guide, see the following API documentation:
+
+- `Client <{+api+}/mongo#Client>`__
+- `Client.Diconnect() <{+api+}/mongo#Client.Disconnect>`__
