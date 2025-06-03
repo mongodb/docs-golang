@@ -115,38 +115,27 @@ The following code creates a client with a maximum connection pool size of
    :end-before: end-connection-pool-uri
    :dedent:
 
-maxPoolSize
-~~~~~~~~~~~
+Optimize Connection Pools
+-------------------------
 
-To suppor high numbers of concurrent operations, you can increase
-``maxPoolSize``. Once the pool reaches its maximum size, additional operations
-wait for sockets to become availble.
+Connection pools are rate-limited such that each connection pool can only create,
+at maximum, the value of ``maxConnecting`` connections in parallel at any time.
+Any new goroutine stops waiting in the following cases:
 
-minPoolSize
-~~~~~~~~~~~
+- One of the existing goroutines finishes creating a connection, or an existing
+  connection is checked back into the pool.
+- The driver's ability to reuse existing connections improves due to rate-limits
+  on connection creation.
 
-The connection pool initializes with the number of sockets specified by
-``minPoolSize``. If the total number of sockets drops below this minimum, more
-sockets open until the minimum is reached.
+The driver does not limit the number of operations that can wait for sockets to
+become available and it is the application's responsibility to limit the size of
+its pool to bound queuing during a load spike. Operations can wait for any length of time
+unless you define the ``waitQueueTimeoutMS`` option.
 
-maxConnecting
-~~~~~~~~~~~~~
-
-This option limits the number of connections that a deployment can create
-simultaneously. This helps manage resource usage and improve the driver's
-ability to reuse existing connections.
-
-maxIdleTimeMS
-~~~~~~~~~~~~~
-
-Use this option to specify how long a connection can remain idle before being
-removed. This helps manage resource usage by closing unused connections.
-
-waitQueueTimeoutMS
-~~~~~~~~~~~~~~~~~~
-
-This option allows you to specify how long an operation can wait for a
-connection. This is useful for managing operation duration during load spikes.
+An operation that waits more than the length of time defined by
+``waitQueueTimeoutMS`` for a socket raises a connection error. Use this option
+if it is more important to bound the duration of operations during a load spike
+than it is to complete every operation.
 
 Disconnecting
 -------------
