@@ -157,4 +157,5 @@ To learn more about any of the methods or types discussed in this
 guide, see the following API documentation:
 
 - `Client <{+api+}/mongo#Client>`__
+- `ClientOptions <{+api+}/mongo/options#ClientOptions>`__
 - `Client.Diconnect() <{+api+}/mongo#Client.Disconnect>`__
