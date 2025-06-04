@@ -40,8 +40,8 @@ pools open sockets on demand. These sockets support concurrent MongoDB
 operations, or `goroutines <https://go.dev/tour/concurrency/1>`__, in
 your application.
 
-Each ``Client`` instance opens two more sockets per server in your MongoDB
-topology for monitoring the server's state. 
+When a new ``Client`` instance is instatiated, it opens two sockets per server
+in your MongoDB topology for monitoring the server's state.
 
 For example, a client connected to a three-node replica set opens six monitoring
 sockets. If the application uses the default setting for ``maxPoolSize`` and
@@ -50,8 +50,9 @@ sockets and ``100`` connections in the connection pool. If the application uses
 a :ref:`read preference <golang-read-pref>` to query the secondary nodes, their
 pools also grow and there can be ``306`` total connections.
 
-Create a client once for each process, and reuse it for all operations. Avoid
-creating a new client for each request, as this is inefficient.
+For efficiency, create a client once for each process, and reuse it for all
+operations. Avoid creating a new client for each request because this will
+increase latency.
 
 Configure a Connection Pool
 ---------------------------
@@ -105,6 +106,9 @@ connection pool:
 
        *Default*: ``0`` (no limit)
 
+Example
+~~~~~~~
+
 The following code creates a client with a maximum connection pool size of
 ``50``, a minimum pool size of ``10``, and a maximum idle time of
 ``30000`` milliseconds (30 seconds):
@@ -128,9 +132,9 @@ Any new goroutine stops waiting in the following cases:
   on connection creation.
 
 The driver does not limit the number of operations that can wait for sockets to
-become available and it is the application's responsibility to limit the size of
-its pool to bound queuing during a load spike. Operations can wait for any length of time
-unless you define the ``waitQueueTimeoutMS`` option.
+become available, so it is the application's responsibility to manage its
+operation queue. Operations can wait for any length of time unless you define
+the ``waitQueueTimeoutMS`` option.
 
 An operation that waits more than the length of time defined by
 ``waitQueueTimeoutMS`` for a socket raises a connection error. Use this option
@@ -141,7 +145,7 @@ Disconnecting
 -------------
 
 When you call ``Client.Disconnect()`` from any goroutine, the driver closes all
-idle sockets and closes all sockets in use as they are returned to the pool.
+idle sockets, and then closes all sockets as they are returned to the pool.
 
 Additional Information
 ----------------------
