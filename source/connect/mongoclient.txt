@@ -10,5 +10,191 @@ Create a MongoClient
    :depth: 2
    :class: singlecol
 
+.. facet::
+   :name: genre
+   :values: reference
+ 
+.. meta::
+   :keywords: connection string, URI, Atlas, code example
 
-.. TODO
+Overview
+--------
+
+In this guide, you can learn how to connect to a `MongoDB Atlas deployment
+<https://www.mongodb.com/docs/atlas>`__, a MongoDB instance, or a replica set
+using the {+driver-short+}.
+
+To connect to a MongoDB deployment, you need the following two things:
+
+- **Connection URI**, also known as a *connection string*, which tells the {+driver-short+}
+  which MongoDB deployment to connect to.
+
+- **MongoClient** object, which creates the connection to and performs operations
+  on the MongoDB deployment.
+
+You can use ``options.Client()`` to customize the way the {+driver-short+}
+behaves while connected to MongoDB.
+
+Connection URI
+--------------
+
+A standard connection string includes the following components:
+
+.. list-table::
+   :widths: 20 80
+   :header-rows: 1
+
+   * - Component
+     - Description
+
+   * - ``mongodb://``
+
+     - Required. A prefix that identifies this as a string in the
+       standard connection format.
+
+   * - ``username:password``
+
+     - Optional. Authentication credentials. If you include these, the client
+       authenticates the user against the database specified in ``authSource``.
+       For more information about the ``authSource`` connection option, 
+       see :ref:`golang-connection-troubleshooting` in the Connection Troubleshooting guide.
+
+   * - ``host[:port]``
+
+     - Required. The host and optional port number where MongoDB is running. If you don't
+       include the port number, the driver uses the default port, ``27017``.
+
+   * - ``/defaultauthdb``
+     
+     - Optional. The authentication database to use if the
+       connection string includes ``username:password@``
+       authentication credentials but not the ``authSource`` option.  
+       When you call ``client.db()`` with no argument, this is the database that is used. If you don't include 
+       this component, the client authenticates the user against the ``admin`` database.
+
+   * - ``?<options>``
+
+     - Optional. A query string that specifies connection-specific
+       options as ``<name>=<value>`` pairs. See
+       :ref:`golang-connection-options` for a full description of
+       these options.
+
+For more information about creating a connection string, see :manual:`Connection
+Strings </reference/connection-string>` in the MongoDB Server documentation.
+
+Atlas Connection Example
+------------------------
+
+To connect to MongoDB, you must create a client. A client manages your
+connections and runs database commands.
+
+.. tip:: Reuse Your Client
+
+   We recommend that you reuse your client across sessions and operations. You
+   can use the same ``Client`` instance to perform multiple tasks, instead of
+   creating a new one each time. The ``Client`` type is safe for concurrent use
+   by multiple `goroutines <https://go.dev/tour/concurrency/1>`__. To learn more
+   about how connection pools work in the driver, see the
+   :ref:`golang-connection-pools` guide.
+
+You can create a client that uses your connection string and other client
+options by passing a ``ClientOptions`` object to the ``Connect()`` method.
+
+To specify your connection URI, pass it to the ``ApplyURI()`` method, which
+returns a new ``ClientOptions`` instance. To set any other options, call the
+relevant helper method from the options package.
+
+To learn more about connection options, see the :ref:`Connection Options section
+<golang-connection-options>`. To learn more about creating a client, see the API
+documentation for `Client <{+api+}/mongo#Client>`__ and `Connect()
+<{+api+}/mongo#Connect>`__.
+
+You can set the {+stable-api+} version as an option to avoid breaking changes
+when you upgrade to a new server version. To learn more about the {+stable-api+}
+feature, see the :ref:`{+stable-api+} page <golang-stable-api>`.
+
+The following code shows how you can create a client that uses an Atlas
+connection string and the {+stable-api+} version, connect to MongoDB, and verify
+that the connection is successful:
+
+.. _go-connection-example-code:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/srv.go
+   :language: go
+   :copyable:
+   :dedent:
+
+.. tip::
+
+   Follow the :ref:`Quick Start guide <golang-connect-to-your-cluster>`
+   to learn how to retrieve your Atlas connection string.
+
+.. note::
+
+   To learn about connecting to Atlas Serverless, see the
+   :ref:`Serverless Instance Limitations page
+   <atlas-serverless-drivers>` to identify the minimum driver version
+   required.
+
+Other Ways to Connect to MongoDB
+--------------------------------
+
+If you are connecting to a single MongoDB server instance or replica set
+that is not hosted on Atlas, see the following sections to find out how to
+connect.
+
+Connect to a MongoDB Server on Your Local Machine
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/localhost-connection.rst
+
+To test whether you can connect to your server, replace the connection
+string with your localhost connection string in the preceding code example.
+
+Connect to a Replica Set
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+A MongoDB replica set deployment is a group of connected instances that
+store the same set of data. This configuration provides data
+redundancy and high data availability.
+
+To connect to a replica set deployment, specify the hostname and port numbers
+of each instance, separated by commas, and the replica set name as the value
+of the ``replicaSet`` parameter in the connection string. In the following
+example, the hostnames are ``host1``, ``host2``, and ``host3``, and the
+port numbers are all ``27017``. The replica set name is ``myRS``.
+
+.. code-block:: none
+
+   mongodb://host1:27017,host2:27017,host3:27017/?replicaSet=myRS
+
+When connecting to a replica set, the driver takes the following actions by default:
+
+- Discovers all replica set members when given the address of any one member.
+- Dispatches operations to the appropriate member, such as instructions
+  to write against the **primary**.
+
+.. tip::
+
+   You can specify just one host to connect to a replica set.
+   However, to ensure connectivity when the specified host
+   is unavailable, you should provide the full list of hosts.
+
+To learn more about replication in MongoDB, see the :manual:`Replication </replication>` section of server manual.
+
+Direct Connection
+`````````````````
+
+To force operations on the host designated in the connection URI,
+specify the ``directConnection`` option. Direct connections exhibit the
+following behavior:
+
+- They don't support SRV strings.
+- They fail on writes when the specified host is not the **primary**.
+- They require you to specify a :manual:`secondary read preference
+  </core/read-preference/#mongodb-readmode-secondary>` when the
+  specified host isn't the **primary** node.
+
+.. note:: Replica Set in Docker
+
+   .. sharedinclude:: dbx/docker-replica-set.rst
