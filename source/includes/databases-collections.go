@@ -40,6 +40,7 @@ func main() {
 	// start-access-collection
 	collection := database.Collection("test_collection")
 	// end-access-collection
+	fmt.Println("Collection accessed:", collection.Name())
 
 	// Explicitly creates a collection in the database
 	// start-create-collection
@@ -51,7 +52,7 @@ func main() {
 
 	// Retrieves information about each colllection in the database
 	// start-list-collections
-	cursor, err := database.ListCollections(context.TODO(), bson.M{}, options.ListCollections())
+	cursor, err := database.ListCollections(context.TODO(), bson.D{})
 	if err != nil {
 		log.Fatalf("Failed to list collections: %v", err)
 	}
