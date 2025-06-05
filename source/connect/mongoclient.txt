@@ -178,7 +178,7 @@ When connecting to a replica set, the driver takes the following actions by defa
 
    You can specify just one host to connect to a replica set.
    However, to ensure connectivity when the specified host
-   is unavailable, you should provide the full list of hosts.
+   is unavailable, you must provide the full list of hosts.
 
 To learn more about replication in MongoDB, see the :manual:`Replication </replication>` section of server manual.
 
