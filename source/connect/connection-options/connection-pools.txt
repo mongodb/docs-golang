@@ -58,7 +58,7 @@ Configure a Connection Pool
 ---------------------------
 
 You can specify settings for your connection pool either by using a connection
-string with the ``options.Client().ApplyURI()`` method.
+string or by using the ``options.Client`` methods.
 
 Select the :guilabel:`Connection String` or :guilabel:`MongoClientSettings`  tab to
 see the corresponding syntax:
@@ -117,8 +117,6 @@ see the corresponding syntax:
     .. tab:: ClientOptions
       :tabid: ClientOptions
 
-      You can set the connection pool options directly using the ``options.Client`` methods.
-
       The following table describes the methods you can chain to your settings
       to modify the driver's behavior:
 
@@ -151,7 +149,7 @@ see the corresponding syntax:
                   
             *Default:* ``2``
               
-        * - ``SetMAxConnIdleTime()``
+        * - ``SetMaxConnIdleTime()``
               
           - The maximum number of milliseconds that a connection can remain idle in
             the pool before being removed and closed.
