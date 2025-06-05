@@ -82,8 +82,8 @@ A standard connection string includes the following components:
 For more information about creating a connection string, see :manual:`Connection
 Strings </reference/connection-string>` in the MongoDB Server documentation.
 
-Atlas Connection Example
-------------------------
+Create a Client to Connect to MongoDB Atlas 
+-------------------------------------------
 
 To connect to MongoDB, you must create a client. A client manages your
 connections and runs database commands.
@@ -112,6 +112,9 @@ documentation for `Client <{+api+}/mongo#Client>`__ and `Connect()
 You can set the {+stable-api+} version as an option to avoid breaking changes
 when you upgrade to a new server version. To learn more about the {+stable-api+}
 feature, see the :ref:`{+stable-api+} page <golang-stable-api>`.
+
+Example
+~~~~~~~
 
 The following code shows how you can create a client that uses an Atlas
 connection string and the {+stable-api+} version, connect to MongoDB, and verify

@@ -22,5 +22,6 @@ If your MongoDB Server is running locally, you can use the connection string
 ``"mongodb://localhost:<port>"`` where ``<port>`` is the port number you
 configured your server to listen for incoming connections.
 
-If you want to specify a different hostname or IP address, see our Server
-Manual entry on :manual:`Connection Strings </reference/connection-string/>`.
+For more information on how to specify a different hostname or IP address, see
+:manual:`Connection Strings </reference/connection-string/>` in the server
+manual.

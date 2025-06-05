@@ -38,10 +38,10 @@ sections:
 
 - :ref:`golang-mongoclient`: Create a MongoClient object
   to connect to a MongoDB deployment.
-- :ref:`golang-connection-options`: Customize the
-     connection behavior of the MongoClient object.
+- :ref:`golang-connection-options`: Customize the connection behavior of the
+   MongoClient object.
 - :ref:`golang-connection-troubleshooting`: Explore solutions to common
-     connection issues.
+   connection issues.
 
 For more information about authenticating with a MongoDB instance, see the
 :ref:`golang-authentication` section.
