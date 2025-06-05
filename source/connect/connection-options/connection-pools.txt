@@ -60,64 +60,146 @@ Configure a Connection Pool
 You can specify settings for your connection pool either by using a connection
 string with the ``options.Client().ApplyURI()`` method.
 
-The following are connection string settings you can use to configure your
-connection pool:
+Select the :guilabel:`Connection String` or :guilabel:`MongoClientSettings`  tab to
+see the corresponding syntax:
 
-.. list-table::
-   :widths: 25,75                                                          
-   :header-rows: 1
+.. tabs::
 
-   * - Setting
-     - Description
-         
-   * - ``maxPoolSize``
+    .. tab:: Connection String
+      :tabid: uri
+  
+      The following are connection string settings you can use to configure your
+      connection pool:
 
-     - Maximum number of connections opened in the pool. If an operation needs a
-       new connection while the connection pool has ``maxPoolSize`` connections
-       open, the new operation waits for a new connection to open. To limit this
-       waiting time, use the single timeout setting.
+      .. list-table::
+        :widths: 25,75                                                          
+        :header-rows: 1
 
-       *Default:* ``100`` 
+        * - Setting
+          - Description
+              
+        * - ``maxPoolSize``
 
-   * - ``minPoolSize``
+          - Maximum number of connections opened in the pool. If an operation needs a
+            new connection while the connection pool has ``maxPoolSize`` connections
+            open, the new operation waits for a new connection to open. To limit this
+            waiting time, use the single timeout setting.
 
-     - Minimum number of connections opened in the pool. The value of
-       ``minPoolSize`` must be less than the value of ``maxPoolSize``.
+            *Default:* ``100`` 
 
-       *Default*: ``0``
+        * - ``minPoolSize``
 
-   * - ``maxConnecting``
-         
-     - Maximum number of connections a pool may establish concurrently.
-            
-       *Default:* ``2``
-         
-   * - ``maxIdleTimeMS``
-         
-     - The maximum number of milliseconds that a connection can remain idle in
-       the pool before being removed and closed.
+          - Minimum number of connections opened in the pool. The value of
+            ``minPoolSize`` must be less than the value of ``maxPoolSize``.
 
-       *Default:* ``None`` (no limit)
+            *Default*: ``0``
 
-   * - ``waitQueueTimeoutMS```
+        * - ``maxConnecting``
+              
+          - Maximum number of connections a pool may establish concurrently.
+                  
+            *Default:* ``2``
+              
+        * - ``maxIdleTimeMS``
+              
+          - The maximum number of milliseconds that a connection can remain idle in
+            the pool before being removed and closed.
 
-     - Specifies the maximum wait time in milliseconds that a thread can wait
-       for a connection to become available.
+            *Default:* ``None`` (no limit)
 
-       *Default*: ``0`` (no limit)
+        * - ``waitQueueTimeoutMS```
+
+          - Specifies the maximum wait time in milliseconds that a thread can wait
+            for a connection to become available.
+
+            *Default*: ``0`` (no limit)
+
+    .. tab:: ClientOptions
+      :tabid: ClientOptions
+
+      You can set the connection pool options directly using the ``options.Client`` methods.
+
+      The following table describes the methods you can chain to your settings
+      to modify the driver's behavior:
+
+      .. list-table::
+        :widths: 25,75                                                          
+        :header-rows: 1
+
+        * - Setting
+          - Description
+              
+        * - ``SetMaxPoolSize()``
+
+          - Maximum number of connections opened in the pool. If an operation needs a
+            new connection while the connection pool has the configured maximum connections
+            open, the new operation waits for a new connection to open. To limit this
+            waiting time, use the single timeout setting.
+
+            *Default:* ``100`` 
+
+        * - ``SetMinPoolSize()``
+
+          - Minimum number of connections opened in the pool. The value of
+            ``MinPoolSize`` must be less than the value of ``MaxPoolSize``.
+
+            *Default*: ``0``
+
+        * - ``SetMaxConnecting()``
+              
+          - Maximum number of connections a pool may establish concurrently.
+                  
+            *Default:* ``2``
+              
+        * - ``SetMAxConnIdleTime()``
+              
+          - The maximum number of milliseconds that a connection can remain idle in
+            the pool before being removed and closed.
+
+            *Default:* ``0`` (no limit)
 
 Example
 ~~~~~~~
 
-The following code creates a client with a maximum connection pool size of
-``50``, a minimum pool size of ``10``, and a maximum idle time of
-``30000`` milliseconds (30 seconds):
+Select the :guilabel:`Connection String` or :guilabel:`MongoClientSettings`  tab to
+see the corresponding example:
 
-.. literalinclude:: /includes/connect/connection-pools-uri.go
-   :language: go
-   :start-after: start-connection-pool-uri
-   :end-before: end-connection-pool-uri
-   :dedent:
+.. tabs::
+
+    .. tab:: Connection String
+      :tabid: uriExample
+
+      The following code uses the connection string to configure the maximum
+      connection pool size of ``50``, a minimum pool size of ``10``, and a
+      maximum idle time of ``30000`` milliseconds (30 seconds):
+
+      .. literalinclude:: /includes/connect/connection-pools-uri.go
+        :language: go
+        :start-after: start-uri-variable
+        :end-before: end-uri-variable
+        :dedent:
+
+      The following code creates a client and passes the connection string to the
+      ``ApplyURI()`` method:
+
+      .. literalinclude:: /includes/connect/connection-pools-uri.go
+        :language: go
+        :start-after: start-apply-uri
+        :end-before: end-apply-uri
+        :dedent:
+    
+    .. tab:: ClientOptions
+      :tabid: optionsExample
+
+      The following code creates a client and sets the connection pool options
+      with a maximum connection pool size of ``50``, a minimum pool size of
+      ``10``, and a maximum idle time of ``30000`` milliseconds (30 seconds):
+
+      .. literalinclude:: /includes/connect/connection-pools-client-options.go
+        :language: go
+        :start-after: start-client-options
+        :end-before: end-client-options
+        :dedent:
 
 Optimize Connection Pools
 -------------------------
