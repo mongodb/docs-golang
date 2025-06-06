@@ -19,7 +19,12 @@ Modify Documents
    :depth: 2
    :class: singlecol
 
-.. TODO edit
+.. toctree::
+   :caption: Update Documents
+
+   Replace Documents </crud/update/replace>
+   Update Arrays </crud/update/embedded-arrays>
+   Upsert </crud/update/upsert>
 
 Overview
 --------
@@ -311,7 +316,7 @@ following usage examples:
 
 - :ref:`golang-update-one`
 - :ref:`golang-update-many`
-- :ref:`golang-replace`
+- :ref:`golang-replacement-document`
 
 To learn more about the operations mentioned, see the following
 guides:

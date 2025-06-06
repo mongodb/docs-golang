@@ -24,8 +24,8 @@ Connection Guide
    :titlesonly:
    :maxdepth: 1
 
-   Create a MongoClient <connect/mongoclient>
-   Choose a Connection Target <connect/connection-targets>
+   Create a MongoClient </connect/mongoclient>
+   Choose a Connection Target </connect/connection-targets>
    Connection Options </connect/specify-connection-options>
    Connection Troubleshooting </connect/connection-troubleshooting>
 
