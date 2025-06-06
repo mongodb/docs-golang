@@ -4,6 +4,20 @@
 Choose a Connection Target
 ==========================
 
+.. facet::
+   :name: genre
+   :values: tutorial
+
+.. meta::
+   :description: Learn how to select connection targets for the MongoDB Go Driver.
+   :keywords: 
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
 Overview
 --------
 
@@ -13,7 +27,7 @@ In this guide, you can learn how to use a connection string and a
 .. tip::
 
    To learn more about how to retrieve or format your connection string, see 
-   the :ref:`Connection URI <connection-guide>` guide in 
+   the :ref:`Connection URI <golang-connection-uri>` guide in 
    the Go Connection Guide.
 
 Atlas
@@ -37,4 +51,8 @@ The following code shows how to use the {+driver-short+} to connect to an Atlas 
 code also uses the ``server_api`` field to specify a {+stable-api+} version.
 
 .. _go-connection-example-code:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/srv.go
+   :language: go
+
 

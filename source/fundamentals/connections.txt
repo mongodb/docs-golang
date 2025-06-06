@@ -10,6 +10,7 @@ Connections
 .. toctree::
 
    Connection Guide </fundamentals/connections/connection-guide>
+   Choose a Connection Target </fundamentals/connections/connection-target>
    Connection Options </fundamentals/connections/connection-options>
    Network Compression </fundamentals/connections/network-compression>
    Configure TLS </fundamentals/connections/tls>
