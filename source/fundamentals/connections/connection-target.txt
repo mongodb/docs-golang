@@ -55,4 +55,53 @@ code also uses the ``server_api`` field to specify a {+stable-api+} version.
 .. literalinclude:: /includes/fundamentals/code-snippets/srv.go
    :language: go
 
+Local Deployments
+-----------------
 
+.. include:: /includes/localhost-connection.rst
+
+Replica Set
+-----------
+
+A MongoDB replica set deployment is a group of connected instances that
+store the same set of data. This configuration provides data
+redundancy and high data availability.
+
+To connect to a replica set deployment, specify the hostname and port numbers
+of each instance, separated by commas, and the replica set name as the value
+of the ``replicaSet`` parameter in the connection string. In the following
+example, the hostnames are ``host1``, ``host2``, and ``host3``, and the
+port numbers are all ``27017``. The replica set name is ``myRS``.
+
+.. code-block:: none
+
+   mongodb://host1:27017,host2:27017,host3:27017/?replicaSet=myRS
+
+When connecting to a replica set, the driver takes the following actions by default:
+
+- Discovers all replica set members when given the address of any one member.
+- Dispatches operations to the appropriate member, such as instructions
+  to write against the **primary**.
+
+.. tip::
+
+   You can specify just one host to connect to a replica set.
+   However, to ensure connectivity when the specified host
+   is unavailable, you should provide the full list of hosts.
+
+Direct Connection
+`````````````````
+
+To force operations on the host designated in the connection URI,
+specify the ``directConnection`` option. Direct connections exhibit the
+following behavior:
+
+- They don't support SRV strings.
+- They fail on writes when the specified host is not the **primary**.
+- They require you to specify a :manual:`secondary read preference
+  </core/read-preference/#mongodb-readmode-secondary>` when the
+  specified host isn't the **primary** node.
+
+.. note:: Replica Set in Docker
+
+   .. sharedinclude:: dbx/docker-replica-set.rst
