@@ -36,10 +36,10 @@ Learn how to set up a connection and specify connection behavior from your
 application to a MongoDB deployment using the {+driver-short+} in the following
 sections:
 
-- :ref:`golang-mongoclient`: Create a MongoClient object
-  to connect to a MongoDB deployment.
-- :ref:`golang-connection-options`: Customize the connection behavior of the
-   MongoClient object.
+- :ref:`golang-mongoclient`: Learn how to create a MongoClient object to connect
+   to a MongoDB deployment.
+- :ref:`golang-connection-options`: Learn how to customize your connection
+   behavior.
 - :ref:`golang-connection-troubleshooting`: Explore solutions to common
    connection issues.
 

@@ -104,14 +104,16 @@ To specify your connection URI, pass it to the ``ApplyURI()`` method, which
 returns a new ``ClientOptions`` instance. To set any other options, call the
 relevant helper method from the options package.
 
-To learn more about connection options, see the :ref:`Connection Options section
-<golang-connection-options>`. To learn more about creating a client, see the API
-documentation for `Client <{+api+}/mongo#Client>`__ and `Connect()
+To learn more about connection options, see the :ref:`Connection Options
+<golang-connection-options>` section. To learn more about creating a client, see
+the API documentation for `Client <{+api+}/mongo#Client>`__ and `Connect()
 <{+api+}/mongo#Connect>`__.
 
 You can set the {+stable-api+} version as an option to avoid breaking changes
 when you upgrade to a new server version. To learn more about the {+stable-api+}
 feature, see the :ref:`{+stable-api+} page <golang-stable-api>`.
+
+.. _go-connection-example-code:
 
 Example
 ~~~~~~~
@@ -119,8 +121,6 @@ Example
 The following code shows how you can create a client that uses an Atlas
 connection string and the {+stable-api+} version, connect to MongoDB, and verify
 that the connection is successful:
-
-.. _go-connection-example-code:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/srv.go
    :language: go
@@ -143,7 +143,7 @@ Other Ways to Connect to MongoDB
 --------------------------------
 
 If you are connecting to a single MongoDB server instance or replica set
-that is not hosted on Atlas, see the following sections to find out how to
+that is not hosted on Atlas, see the following sections to learn how to
 connect.
 
 Connect to a MongoDB Server on Your Local Machine
@@ -151,8 +151,8 @@ Connect to a MongoDB Server on Your Local Machine
 
 .. include:: /includes/localhost-connection.rst
 
-To test whether you can connect to your server, replace the connection
-string with your localhost connection string in the preceding code example.
+To test whether you can connect to your server, replace the connection string
+with your localhost connection string in the preceding `code example <go-connection-example-code>`.
 
 Connect to a Replica Set
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -183,7 +183,7 @@ When connecting to a replica set, the driver takes the following actions by defa
    However, to ensure connectivity when the specified host
    is unavailable, you must provide the full list of hosts.
 
-To learn more about replication in MongoDB, see the :manual:`Replication </replication>` section of server manual.
+To learn more about replication in MongoDB, see the :manual:`Replication </replication>` section of Server manual.
 
 Direct Connection
 `````````````````

@@ -11,9 +11,9 @@ purposes, complete the following steps:
 
 .. important::
 
-   Always secure your MongoDB server from malicious attacks. See our
-   :manual:`Security Checklist </administration/security-checklist/>` for a
-   list of security recommendations.
+   Always secure your MongoDB server from malicious attacks. See the
+   :manual:`Security Checklist </administration/security-checklist/>` in the
+   Server manual for a list of security recommendations.
 
 After you successfully start your MongoDB server, specify your connection
 string in your driver connection code.
@@ -23,5 +23,5 @@ If your MongoDB Server is running locally, you can use the connection string
 configured your server to listen for incoming connections.
 
 For more information on how to specify a different hostname or IP address, see
-:manual:`Connection Strings </reference/connection-string/>` in the server
+:manual:`Connection Strings </reference/connection-string/>` in the Server
 manual.
