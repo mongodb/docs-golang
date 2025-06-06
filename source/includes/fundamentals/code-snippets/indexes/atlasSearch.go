@@ -33,14 +33,13 @@ func main() {
 	searchStage := bson.D{{"$search", bson.D{
 		{"text", bson.D{
 			{"path", "title"},
-			{"query", "baseball"},
+			{"query", "Alabama"},
 		}},
 	}}}
-	limitStage := bson.D{{"$limit", 3}}
-	projectStage := bson.D{{"$project", bson.D{{"title", 1}, {"plot", 1}, {"_id", 0}}}}
+	projectStage := bson.D{{"$project", bson.D{{"title", 1}}}}
 
 	// Runs the pipeline
-	cursor, err := collection.Aggregate(ctx, mongo.Pipeline{searchStage, limitStage, projectStage})
+	cursor, err := collection.Aggregate(ctx, mongo.Pipeline{searchStage, projectStage})
 	if err != nil {
 		panic(err)
 	}
