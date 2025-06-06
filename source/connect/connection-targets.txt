@@ -13,4 +13,100 @@ Choose a Connection Target
    :depth: 2
    :class: singlecol
 
-.. TODO
+Overview
+--------
+
+In this guide, you can learn how to use a connection string and a ``MongoClient`` 
+object to connect to different types of MongoDB deployments.
+
+.. tip::
+
+   Follow the :ref:`Quick Start guide <golang-connect-to-your-cluster>`
+   to retrieve your Atlas connection string.
+
+Connect to Atlas
+----------------
+
+To connect to a MongoDB deployment on Atlas, include the following elements
+in your connection string:
+
+- URL of your Atlas cluster
+- MongoDB username
+- MongoDB password
+
+Then, pass your connection string to the ``MongoClient`` constructor.
+
+When you connect to Atlas, we recommend using the {+stable-api+} client option to avoid
+breaking changes when Atlas upgrades to a new version of {+mdb-server+}.
+To learn more about the {+stable-api+} feature, see the :ref:`<golang-stable-api>`
+guide.
+
+The following code shows how you can create a client that uses an Atlas
+connection string and the {+stable-api+} version, connect to MongoDB, and
+verify that the connection is successful:
+
+.. _go-connection-example-code:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/srv.go
+   :language: go
+
+.. note::
+
+   To learn about connecting to Atlas Serverless, see the
+   :ref:`Serverless Instance Limitations page
+   <atlas-serverless-drivers>` to identify the minimum driver version
+   required.
+
+Connect to Local Deployments
+----------------------------
+
+.. include:: /includes/localhost-connection.rst
+
+To test whether you can connect to your server, replace the connection
+string with your localhost connection string in the preceding code example.
+
+Connect to Replica Sets
+-----------------------
+
+A MongoDB replica set deployment is a group of connected instances that
+store the same set of data. This configuration provides data
+redundancy and high data availability.
+
+To connect to a replica set deployment, specify the hostname and port numbers
+of each instance, separated by commas, and the replica set name as the value
+of the ``replicaSet`` parameter in the connection string. In the following
+example, the hostnames are ``host1``, ``host2``, and ``host3``, and the
+port numbers are all ``27017``. The replica set name is ``myRS``.
+
+.. code-block:: none
+
+   mongodb://host1:27017,host2:27017,host3:27017/?replicaSet=myRS
+
+When connecting to a replica set, the driver takes the following actions by default:
+
+- Discovers all replica set members when given the address of any one member.
+- Dispatches operations to the appropriate member, such as instructions
+  to write against the **primary**.
+
+.. tip::
+
+   You can specify just one host to connect to a replica set.
+   However, to ensure connectivity when the specified host
+   is unavailable, you should provide the full list of hosts.
+
+Direct Connection
+~~~~~~~~~~~~~~~~~
+
+To force operations on the host designated in the connection URI,
+specify the ``directConnection`` option. Direct connections exhibit the
+following behavior:
+
+- They don't support SRV strings.
+- They fail on writes when the specified host is not the **primary**.
+- They require you to specify a :manual:`secondary read preference
+  </core/read-preference/#mongodb-readmode-secondary>` when the
+  specified host isn't the **primary** node.
+
+.. note:: Replica Set in Docker
+
+   .. sharedinclude:: dbx/docker-replica-set.rst
