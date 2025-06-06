@@ -88,6 +88,13 @@ Create a Client to Connect to MongoDB Atlas
 To connect to MongoDB, you must create a client. A client manages your
 connections and runs database commands.
 
+You can create a client that uses your connection string and other client
+options by passing a ``ClientOptions`` object to the ``Connect()`` method.
+
+To specify your connection URI, pass it to the ``ApplyURI()`` method, which
+returns a new ``ClientOptions`` instance. To set any other options, call the
+relevant helper method from the options package.
+
 .. tip:: Reuse Your Client
 
    We recommend that you reuse your client across sessions and operations. You
@@ -96,13 +103,6 @@ connections and runs database commands.
    by multiple `goroutines <https://go.dev/tour/concurrency/1>`__. To learn more
    about how connection pools work in the driver, see the
    :ref:`golang-connection-pools` guide.
-
-You can create a client that uses your connection string and other client
-options by passing a ``ClientOptions`` object to the ``Connect()`` method.
-
-To specify your connection URI, pass it to the ``ApplyURI()`` method, which
-returns a new ``ClientOptions`` instance. To set any other options, call the
-relevant helper method from the options package.
 
 To learn more about connection options, see the :ref:`Connection Options
 <golang-connection-options>` section. To learn more about creating a client, see
@@ -119,7 +119,7 @@ Example
 ~~~~~~~
 
 The following code shows how you can create a client that uses an Atlas
-connection string and the {+stable-api+} version, connect to MongoDB, and verify
+connection string and the {+stable-api+} version, connects to MongoDB, and verifies
 that the connection is successful:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/srv.go
