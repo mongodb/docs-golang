@@ -1,0 +1,40 @@
+.. _golang-connection-targets:
+
+==========================
+Choose a Connection Target
+==========================
+
+Overview
+--------
+
+In this guide, you can learn how to use a connection string and a
+``MongoClient`` object to connect to different types of MongoDB deployments.
+
+.. tip::
+
+   To learn more about how to retrieve or format your connection string, see 
+   the :ref:`Connection URI <connection-guide>` guide in 
+   the Go Connection Guide.
+
+Atlas
+-----
+
+To connect to a MongoDB deployment on Atlas, include the following elements in your
+connection string:
+
+- URL of your Atlas cluster
+- MongoDB username
+- MongoDB password
+
+Then, pass your connection string to the ``MongoClient`` constructor.
+
+When you connect to Atlas, we recommend using the {+stable-api+} client option to avoid
+breaking changes when Atlas upgrades to a new version of {+mdb-server+}.
+To learn more about the {+stable-api+} feature, see the :ref:`<stable-api>`
+guide.
+
+The following code shows how to use the {+driver-short+} to connect to an Atlas cluster. The
+code also uses the ``server_api`` field to specify a {+stable-api+} version.
+
+.. _go-connection-example-code:
+

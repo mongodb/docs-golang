@@ -28,6 +28,7 @@ Learn how to use the {+driver-short+} to configure your application's
 connection to a MongoDB deployment in the following sections:
 
 - :ref:`golang-connection-guide`
+- :ref:`golang-connection-targets`
 - :ref:`golang-connection-options`
 - :ref:`golang-network-compression`
 - :ref:`golang-tls`
