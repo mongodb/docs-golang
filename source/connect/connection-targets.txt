@@ -23,6 +23,8 @@ object to connect to different types of MongoDB deployments by using the Go driv
 
    To see how to create and configure your ``MongoClient`` object, see the :ref:`Create a Mongo Client <golang-mongoclient>` page.
 
+.. _go-atlas-connection-target:
+
 Connect to Atlas
 ----------------
 
@@ -58,6 +60,8 @@ verify that the connection is successful:
    Serverless Instances page <manage-serverless-instances>` to learn more about
    how to manually handle existing Serverless instances.
 
+.. _go-local-connection-target:
+
 Connect to Local Deployments
 ----------------------------
 
@@ -67,7 +71,7 @@ To test whether you can connect to your server, replace the connection
 string with your localhost connection string in the preceding :ref:`code example
 <go-connection-example-code>`.
 
-.. _connection_targets_replica_sets:
+.. _go-replica-set-connection-target:
 
 Connect to Replica Sets
 -----------------------
@@ -98,7 +102,7 @@ When connecting to a replica set, the driver takes the following actions by defa
    However, to ensure connectivity when the specified host
    is unavailable, you should provide the full list of hosts.
 
-.. _connection_targets_direct_connection:
+.. _go-direct-connection-target:
 
 Direct Connection
 ~~~~~~~~~~~~~~~~~
@@ -116,8 +120,6 @@ following behavior:
 .. note:: Replica Set in Docker
 
    .. sharedinclude:: dbx/docker-replica-set.rst
-
-.. _connection_targets_API_docs:
 
 API Documentation
 -----------------
