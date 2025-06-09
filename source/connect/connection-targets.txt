@@ -125,5 +125,5 @@ API Documentation
 -----------------
 
 To learn more about connecting to different MongoDB instances with a
-``MongoClient``, see the :ref:`MongoClient API Documentation
- <https://mongodb.github.io/node-mongodb-native/6.17/classes/MongoClient.html>`.
+``MongoClient``, see the :ref:`MongoClient API
+Documentation<https://mongodb.github.io/node-mongodb-native/6.17/classes/MongoClient.html>`.
