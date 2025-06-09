@@ -17,12 +17,11 @@ Overview
 --------
 
 In this guide, you can learn how to use a connection string and a ``MongoClient`` 
-object to connect to different types of MongoDB deployments.
+object to connect to different types of MongoDB deployments by using the Go driver.
 
 .. tip::
 
-   Follow the :ref:`Quick Start guide <golang-connect-to-your-cluster>`
-   to retrieve your Atlas connection string.
+   ~ Add link to ``MongoClient`` to redirect users to create a mongo client -
 
 Connect to Atlas
 ----------------
