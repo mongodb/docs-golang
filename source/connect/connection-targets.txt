@@ -21,7 +21,7 @@ object to connect to different types of MongoDB deployments by using the Go driv
 
 .. tip::
 
-   ~ Add link to ``MongoClient`` to redirect users to create a mongo client -
+   To see how to create and configure your ``MongoClient`` object, see the :ref:`Create a Mongo Client <golang-mongoclient>` page.
 
 Connect to Atlas
 ----------------
