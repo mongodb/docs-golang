@@ -67,6 +67,8 @@ To test whether you can connect to your server, replace the connection
 string with your localhost connection string in the preceding :ref:`code example
 <go-connection-example-code>`.
 
+.. _connection_targets_replica_sets:
+
 Connect to Replica Sets
 -----------------------
 
@@ -96,6 +98,8 @@ When connecting to a replica set, the driver takes the following actions by defa
    However, to ensure connectivity when the specified host
    is unavailable, you should provide the full list of hosts.
 
+.. _connection_targets_direct_connection:
+
 Direct Connection
 ~~~~~~~~~~~~~~~~~
 
@@ -113,9 +117,11 @@ following behavior:
 
    .. sharedinclude:: dbx/docker-replica-set.rst
 
+.. _connection_targets_API_docs:
+
 API Documentation
 -----------------
 
 To learn more about connecting to different MongoDB instances with a
 ``MongoClient``, see the :ref:`MongoClient API Documentation
-<https://deploy-preview-512--docs-golang.netlify.app/connect/connection-targets/>`.
+ <https://mongodb.github.io/node-mongodb-native/6.17/classes/MongoClient.html>`.
