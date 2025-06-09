@@ -142,7 +142,7 @@ documentation:
   manual
 - :manual:`Connection String Options </reference/connection-string>` in the
   Server manual
-- :atlas:`Connect via Drivers </driver-connection/>` in the Atlas documentation
+- :atlas:`Driver Connection </driver-connection/>` guide in the Atlas documentation
   and select :guilabel:`Go` from the language dropdown
 
 API Documentation
@@ -152,4 +152,4 @@ To learn more about the methods and types discussed in this guide, see the
 following API Documentation:
 
 - `Client <{+api+}/mongo#Client>`__
-- `ClientOptions <{+api+}/options#ClientOptions>`__
+- `ClientOptions <{+api+}/mongo/options#ClientOptions>`__
