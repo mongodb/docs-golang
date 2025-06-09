@@ -83,7 +83,7 @@ redundancy and high data availability.
 To connect to a replica set deployment, specify the hostname and port numbers
 of each instance, separated by commas, and the replica set name as the value
 of the ``replicaSet`` parameter in the connection string. In the following
-example, the hostnames are ``host1``, ``host2``, and ``host3``, and the
+example connection string, the hostnames are ``host1``, ``host2``, and ``host3``, and the
 port numbers are all ``27017``. The replica set name is ``myRS``.
 
 .. code-block:: none
@@ -98,9 +98,9 @@ When connecting to a replica set, the driver takes the following actions by defa
 
 .. tip::
 
-   You can specify just one host to connect to a replica set.
-   However, to ensure connectivity when the specified host
-   is unavailable, you should provide the full list of hosts.
+   You can specify just one host to connect to a replica set. However, you must
+   provide the full list of hosts to ensure connectivity when the specified host
+   is unavailable.
 
 .. _go-direct-connection-target:
 
