@@ -51,10 +51,10 @@ verify that the connection is successful:
 
 .. note::
 
-   To learn about connecting to Atlas Serverless, see the
-   :ref:`Serverless Instance Limitations page
-   <atlas-serverless-drivers>` to identify the minimum driver version
-   required.
+   If you have an existing Atlas Serverless instance, see the :ref:`Serverless
+   Instance Limitations page <atlas-serverless-drivers>` to identify the minimum
+   driver version required. Otherwise, see the :ref:`Flex Cluster Limitations
+   page <atlas-flex-limitations>` for an alternative.
 
 Connect to Local Deployments
 ----------------------------
@@ -62,7 +62,8 @@ Connect to Local Deployments
 .. include:: /includes/localhost-connection.rst
 
 To test whether you can connect to your server, replace the connection
-string with your localhost connection string in the preceding code example.
+string with your localhost connection string in the preceding :ref:`code example
+<go-connection-example-code>`.
 
 Connect to Replica Sets
 -----------------------
@@ -109,3 +110,10 @@ following behavior:
 .. note:: Replica Set in Docker
 
    .. sharedinclude:: dbx/docker-replica-set.rst
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+To learn more about connecting to different MongoDB instances with a
+``MongoClient``, see the :ref:`MongoClient API Documentation
+<https://deploy-preview-512--docs-golang.netlify.app/connect/connection-targets/>`.
