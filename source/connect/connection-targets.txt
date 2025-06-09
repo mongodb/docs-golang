@@ -54,8 +54,8 @@ verify that the connection is successful:
 .. important::
 
    New Serverless instances can no longer be created, and as of May 5 2025, all
-   existing Serverless instances will be migrated. The :ref:`All Clusters page
-   <https://cloud.mongodb.com/v2#/clusters>` in the Atlas UI shows which tiers
+   existing Serverless instances will be migrated. The `All Clusters
+   <https://cloud.mongodb.com/v2#/clusters>`__ page in the Atlas UI shows which tiers
    your instances will be migrated to, based on usage. See the :ref:`Manage
    Serverless Instances page <manage-serverless-instances>` to learn more about
    how to manually handle existing Serverless instances.
@@ -125,5 +125,5 @@ API Documentation
 -----------------
 
 To learn more about connecting to different MongoDB instances with a
-``MongoClient``, see the :ref:`MongoClient API
-Documentation<https://mongodb.github.io/node-mongodb-native/6.17/classes/MongoClient.html>`.
+``MongoClient``, see the `MongoClient API
+Documentation <https://mongodb.github.io/node-mongodb-native/6.17/classes/MongoClient.html>`__.
