@@ -1,3 +1,4 @@
+eol = true
 name = "golang"
 title = "Go Driver"
 toc_landing_pages = [
@@ -28,3 +29,11 @@ cmk-long = "Customer Master Key"
 dek-long = "Data Encryption Key"
 csfle-short = "CSFLE"
 csfle-long = "Client-side Field Level Encryption"
+mdb-server = "MongoDB Server"
+
+[[banners]]
+targets = ["*"]
+variant = "info"
+value = """\
+    This version of the documentation is archived and no longer supported. View the `current documentation <https://www.mongodb.com/docs/drivers/go/current/>`__ to learn how to `upgrade your version of the {+driver-long+} <https://www.mongodb.com/docs/drivers/go/current/quick-start/#add-mongodb-as-a-dependency>`__.\
+    """
