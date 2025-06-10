@@ -1,4 +1,4 @@
-eol = "true"
+eol = true
 name = "golang"
 title = "Go"
 toc_landing_pages = [
