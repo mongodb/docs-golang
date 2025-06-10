@@ -29,6 +29,7 @@ cmk-long = "Customer Master Key"
 dek-long = "Data Encryption Key"
 csfle-short = "CSFLE"
 csfle-long = "Client-side Field Level Encryption"
+mdb-server = "MongoDB Server"
 
 [[banners]]
 targets = ["*"]
