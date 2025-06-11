@@ -187,7 +187,7 @@ Modify Behavior
 ~~~~~~~~~~~~~~~
 
 You can modify the behavior of ``Find()`` and ``FindOne()`` by passing
-in a ``FindOptions`` and ``FindOneOptions`` type respectively. If you
+in a ``FindOptions`` and ``FindOneOptions`` type. If you
 don't specify any options, the driver uses the default values for each
 option.
 
