@@ -1,5 +1,6 @@
 .. _golang-change-document:
 .. _golang-update:
+.. _golang-update-documents:
 
 ================
 Update Documents
@@ -56,28 +57,23 @@ The driver provides the following methods to update documents:
 * ``UpdateOne()``
 * ``UpdateMany()``
 
-A Note About ``_id``
-~~~~~~~~~~~~~~~~~~~~
+Use the ``UpdateOne()`` or ``UpdateByID()`` method to update a single
+document.
+
+Use the ``UpdateMany()`` method to update multiple documents.
+
+A Note About _id
+~~~~~~~~~~~~~~~~~
 
 Each document in a MongoDB collection has a unique and immutable ``_id``
 field. You cannot use update operations to change the
 ``_id`` field. If you attempt to change this field, the update
 methods return a ``WriteError``.
 
-.. _golang-update-documents:
-
-Update
-------
-
-Use the ``UpdateOne()`` or ``UpdateByID()`` method to update a single
-document.
-
-Use the ``UpdateMany()`` method to update multiple documents.
-
 .. _golang-update-document:
 
 Parameters
-~~~~~~~~~~
+----------
 
 Each method takes an **update document** that includes at least one **update operator**.
 The update operator specifies the type of update to perform. The update
@@ -110,7 +106,7 @@ and descriptions </reference/operator/update-field/>`.
    </tutorial/update-documents-with-aggregation-pipeline/>`.
 
 Return Values
-~~~~~~~~~~~~~
+-------------
 
 ``UpdateOne()``, ``UpdateByID()``, and ``UpdateMany()`` return an
 ``UpdateResult`` type that contains information about the update
@@ -145,7 +141,7 @@ See our :ref:`upsert guide <golang-upsert-guide>`
 to learn how to insert a new document if no documents match the query filter.
 
 UpdateOne() Example
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
 The following document describes an employee:
 
@@ -204,7 +200,7 @@ The following shows the updated document resulting from the preceding update ope
    }
 
 UpdateMany() Example
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 The following example uses the ``listingsAndReviews`` collection in the 
 ``sample_airbnb`` dataset from the :atlas:`Atlas sample datasets </sample-data>`.
@@ -213,13 +209,25 @@ The example performs the following on the ``listingsAndReviews`` collection:
 - Matches documents in which the market field of the address subdocument, ``address.market`` is "Sydney"
 - Updates the ``price`` in the matched documents by 1.15 times
 
-.. literalinclude:: /includes/usage-examples/code-snippets/updateMany.go
-   :start-after: begin updatemany
-   :end-before: end updatemany
-   :emphasize-lines: 9
-   :language: go
-   :copyable:
-   :dedent:
+.. io-code-block::
+   :copyable: true
+
+   .. input::
+      :language: go
+
+      .. literalinclude:: /includes/usage-examples/code-snippets/updateMany.go
+         :start-after: begin updatemany
+         :end-before: end updatemany
+         :emphasize-lines: 9
+         :language: go
+         :copyable:
+         :dedent:
+
+   .. output::
+      :language: none
+      :visible: false
+
+      Documents updated: 609
 
 After you run the example, you can find the following updated
 documents in the ``listingsAndReviews`` collection:
