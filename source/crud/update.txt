@@ -2,7 +2,7 @@
 .. _golang-update:
 
 ================
-Modify Documents
+Update Documents
 ================
 
 .. facet::
@@ -150,8 +150,8 @@ changes.
 See our :ref:`upsert guide <golang-upsert-guide>`
 to learn how to insert a new document if no documents match the query filter.
 
-Example
-```````
+UpdateOne() Example
+-------------------
 
 The following document describes an employee:
 
@@ -167,7 +167,7 @@ The following document describes an employee:
       ...
    }
 
-The following example uses the ``UpdateByID()`` method to:
+The following example uses the ``UpdateOne()`` method to:
 
 - Match the document where the ``_id`` value is 2158.
 - Set the ``name`` field to "Mary Wollstonecraft Shelley" and the
@@ -208,6 +208,39 @@ The following shows the updated document resulting from the preceding update ope
       "bonus" : 4500,
       ...
    }
+
+UpdateMany() Example
+--------------------
+
+The following example uses the ``listingsAndReviews`` collection in the 
+``sample_airbnb`` dataset from the :atlas:`Atlas sample datasets </sample-data>`.
+The example performs the following on the ``listingsAndReviews`` collection:
+
+- Matches documents in which the market field of the address subdocument, ``address.market`` is "Sydney"
+- Updates the ``price`` in the matched documents by 1.15 times
+
+.. literalinclude:: /includes/usage-examples/code-snippets/updateMany.go
+   :start-after: begin updatemany
+   :end-before: end updatemany
+   :emphasize-lines: 9
+   :language: go
+   :copyable:
+   :dedent:
+
+After you run the example, you can find the following updated
+documents in the ``listingsAndReviews`` collection:
+
+.. code-block:: json
+   :copyable: false
+
+   // results truncated
+   ...
+   { "_id" : "10091713", ... , "name" : "Surry Hills Studio", ... , "price" : 181.00, ... },
+   { "_id" : "9908871", ... , "name" : "Family friendly beach house", ... , "price" : 751.00, ... },
+   { "_id" : "20989061", ... , "name" : "Big and sunny Narraben room", ... , "price" : 60.00, ... },
+   ...
+
+For an example on how to find multiple documents, see :ref:`golang-find-example`.
 
 .. _golang-replacement-document:
 

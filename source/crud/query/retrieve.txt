@@ -130,7 +130,7 @@ following methods:
 .. _golang-find-example:
 
 Find Example
-````````````
+------------
 
 The following example passes a context, filter, and ``FindOptions`` to
 the ``Find()`` method, which performs the following actions:
@@ -158,7 +158,7 @@ the ``Find()`` method, which performs the following actions:
 .. _golang-find-one-example:
 
 Find One Example
-````````````````
+----------------
 
 The following example passes a context, filter, and ``FindOneOptions``
 to the ``FindOne()`` method, which performs the following actions:
@@ -185,7 +185,7 @@ to the ``FindOne()`` method, which performs the following actions:
 .. _golang-find-one-by-id:
 
 Find One by ObjectId Example
-````````````````````````````
+----------------------------
 
 This example defines an ``id`` variable with a value of type ``ObjectId``
 and uses ``id`` to specify a query filter. The filter matches a document
