@@ -19,3 +19,24 @@ Configure CRUD Operations
 
 .. TODO
 
+Retryable Reads and Writes
+--------------------------
+
+{+driver-short+} automatically retries certain read and write operations a single time
+if they fail due to a network or server error.
+
+You can explicitly disable retryable reads or retryable writes by setting the
+``retryReads`` or ``retryWrites`` option to ``False`` when creating a new client
+by using the ``options.Client`` struct. 
+
+The following example disables retryable reads and writes for a client:
+
+.. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retryableReadsWrites.go
+   :start-after: start-retryable-example
+   :end-before: end-retryable-example
+   :language: go
+   :dedent:
+
+To learn more about supported retryable read operations, see :manual:`Retryable Reads </core/retryable-reads/>`
+in the {+mdb-server+} manual. To learn more about supported retryable write
+operations, see :manual:`Retryable Writes </core/retryable-writes/>` in the {+mdb-server+} manual.
