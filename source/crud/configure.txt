@@ -22,14 +22,15 @@ Configure CRUD Operations
 Retryable Reads and Writes
 --------------------------
 
-{+driver-short+} automatically retries certain read and write operations a single time
+The +driver-short+} automatically retries certain read and write operations a single time
 if they fail due to a network or server error.
 
 You can explicitly disable retryable reads or retryable writes by setting the
-``retryReads`` or ``retryWrites`` option to ``False`` when creating a new client
+``RetryReads`` or ``RetryWrites`` option to ``False`` when creating a new client
 by using the ``options.Client`` struct. 
 
-The following example disables retryable reads and writes for a client:
+The following example disables retryable reads and writes for a client by using
+the ``ClientOptions`` setter functions:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/retryableReadsWrites.go
    :start-after: start-retryable-example

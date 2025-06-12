@@ -22,7 +22,7 @@ func main() {
 		SetRetryWrites(false).
 		SetRetryReads(false)
 
-	// Creates a new client and connects to the server
+	// Creates a new client using the specified options
 	client, err := mongo.Connect(clientOps)
 	if err != nil {
 		panic(err)
