@@ -22,7 +22,7 @@ Configure CRUD Operations
 Retryable Reads and Writes
 --------------------------
 
-The +driver-short+} automatically retries certain read and write operations a single time
+The {+driver-short+} automatically retries certain read and write operations a single time
 if they fail due to a network or server error.
 
 You can explicitly disable retryable reads or retryable writes by setting the
