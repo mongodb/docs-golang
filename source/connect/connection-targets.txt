@@ -102,8 +102,8 @@ When connecting to a replica set, the driver takes the following actions by defa
    provide the full list of hosts to ensure connectivity when the specified host
    is unavailable.
 
-To learn more about working with replica sets, see the :manual:`Replication </replication>` 
-guide in the Server manual.
+To learn more about replica sets, see the :manual:`Replication </replication>` 
+entry in the Server manual.
 
 .. _go-direct-connection-target:
 
