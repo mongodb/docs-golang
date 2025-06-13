@@ -30,7 +30,7 @@ Update Documents
 Overview
 --------
 
-In this guide, you can learn how to update documents in MongoDB using
+In this guide, you can learn how to update documents in MongoDB by using
 **update** operations.
 
 Update operations change the fields that you specify while leaving other
@@ -53,14 +53,9 @@ The pattern expects you to:
 
 The driver provides the following methods to update documents:
 
-* ``UpdateByID()``
-* ``UpdateOne()``
-* ``UpdateMany()``
-
-Use the ``UpdateOne()`` or ``UpdateByID()`` method to update a single
-document.
-
-Use the ``UpdateMany()`` method to update multiple documents.
+* ``UpdateByID()``: Updates a single document based on its ``_id``.
+* ``UpdateOne()``: Updates a single document.
+* ``UpdateMany()``: Updates multiple documents.
 
 A Note About _id
 ~~~~~~~~~~~~~~~~~
@@ -69,6 +64,11 @@ Each document in a MongoDB collection has a unique and immutable ``_id``
 field. You cannot use update operations to change the
 ``_id`` field. If you attempt to change this field, the update
 methods return a ``WriteError``.
+
+Sample Data
+~~~~~~~~~~~
+
+
 
 .. _golang-update-document:
 
@@ -98,8 +98,8 @@ and descriptions </reference/operator/update-field/>`.
 
 .. note:: Aggregation Pipelines in Update Operations
 
-   If you are using MongoDB Server version 4.2 or later, you can use aggregation
-   pipelines made up of a subset of aggregation stages in update operations. To learn more about 
+   You can use aggregation pipelines made up of a subset of aggregation 
+   stages in update operations. To learn more about 
    the aggregation stages MongoDB supports in
    aggregation pipelines, see our tutorial on performing
    :manual:`updates with aggregation pipelines
@@ -143,26 +143,31 @@ to learn how to insert a new document if no documents match the query filter.
 UpdateOne() Example
 -------------------
 
-The following document describes an employee:
+The following example uses the ``listingsAndReviews`` collection in the 
+``sample_airbnb`` dataset from the :atlas:`Atlas sample datasets </sample-data/sample-airbnb>`.
+The following document describes an airbnb listing:
 
 .. code-block:: json
    :copyable: false
 
    {
-      "_id" : 2158,
-      "name" : "Mary Shelley",
-      "department" : "Marketing",
-      "role" : "Marketing Analyst",
-      "bonus" : 2500,
+       "_id": "10006546",
+      "listing_url": "https://www.airbnb.com/rooms/10006546",
+      "name": "Ribeira Charming Duplex",
+      "summary": "Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...",
+      ...
+      "minimum_nights": "2",
+      "maximum_nights": "30",
+      ...
+       "accommodates": 8,
       ...
    }
 
 The following example uses the ``UpdateOne()`` method to:
 
-- Match the document where the ``_id`` value is 2158.
-- Set the ``name`` field to "Mary Wollstonecraft Shelley" and the
-  ``role`` field to "Marketing Director".
-- Increment the value of the ``bonus`` field by 2000.
+- Match the document where the ``_id`` value is ``"10006546"``.
+- Set the ``name`` field to "Ribiera River View Duplex".
+- Increment the value of the ``accommodates`` field by 1.
 
 .. io-code-block::
    :copyable: true
@@ -170,9 +175,9 @@ The following example uses the ``UpdateOne()`` method to:
    .. input::
       :language: go
 
-      filter := bson.D{{"_id", 2158}}
-      update := bson.D{{"$set", bson.D{{"name", "Mary Wollstonecraft Shelley"},
-         {"role", "Marketing Director"}}}, {"$inc", bson.D{{"bonus", 2000}}}}
+      filter := bson.D{{"_id", "10006546"}}
+      update := bson.D{{"$set", bson.D{{"name", "Ribiera River View Duplex"}}},
+         {"$inc", bson.D{{"accomodates", 1}}}}
 
       result, err := collection.UpdateOne(context.TODO(), filter, update)
       fmt.Printf("Documents matched: %v\n", result.MatchedCount)
@@ -191,11 +196,15 @@ The following shows the updated document resulting from the preceding update ope
    :copyable: false
 
    {
-      "_id" : 2158,
-      "name" : "Mary Wollstonecraft Shelley",
-      "department" : "Marketing",
-      "role" : "Marketing Director",
-      "bonus" : 4500,
+       "_id": "10006546",
+      "listing_url": "https://www.airbnb.com/rooms/10006546",
+      "name": "Ribeira River View Duplex",
+      "summary": "Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...",
+      ...
+      "minimum_nights": "2",
+      "maximum_nights": "30",
+      ...
+       "accommodates": 9,
       ...
    }
 
@@ -203,11 +212,12 @@ UpdateMany() Example
 --------------------
 
 The following example uses the ``listingsAndReviews`` collection in the 
-``sample_airbnb`` dataset from the :atlas:`Atlas sample datasets </sample-data>`.
-The example performs the following on the ``listingsAndReviews`` collection:
+``sample_airbnb`` dataset from the :atlas:`Atlas sample datasets </sample-data/sample-airbnb>`.
 
-- Matches documents in which the market field of the address subdocument, ``address.market`` is "Sydney"
-- Updates the ``price`` in the matched documents by 1.15 times
+The following example uses the ``UpdateMany()`` method to:
+
+- Match documents in which the value of the ``address.market`` field is ``"Sydney"``.
+- Multiply the ``price`` value in the matched documents by ``1.15``
 
 .. literalinclude:: /includes/usage-examples/code-snippets/updateMany.go
    :start-after: begin updatemany
@@ -217,20 +227,9 @@ The example performs the following on the ``listingsAndReviews`` collection:
    :copyable:
    :dedent:
 
-The following query updates 609 documents. After you run the example, you can
-find the following updated documents in the ``listingsAndReviews`` collection:
+The update operation updates ``609`` documents. 
 
-.. code-block:: json
-   :copyable: false
-
-   // results truncated
-   ...
-   { "_id" : "10091713", ... , "name" : "Surry Hills Studio", ... , "price" : 181.00, ... },
-   { "_id" : "9908871", ... , "name" : "Family friendly beach house", ... , "price" : 751.00, ... },
-   { "_id" : "20989061", ... , "name" : "Big and sunny Narraben room", ... , "price" : 60.00, ... },
-   ...
-
-For an example on how to find multiple documents, see :ref:`golang-find-example`.
+To learn more about how to retrieve multiple documents, see :ref:`golang-find-example`.
 
 Additional Information
 ----------------------
