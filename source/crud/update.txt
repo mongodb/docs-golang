@@ -165,9 +165,9 @@ The following document describes an airbnb listing:
 
 The following example uses the ``UpdateOne()`` method to:
 
-- Match the document where the ``_id`` value is "10006546".
-- Set the ``name`` field to "Ribiera River View Duplex".
-- Increment the value of the ``accommodates`` field by 1.
+- Match the document where the ``_id`` value is ``"10006546"``.
+- Set the ``name`` field to ``"Ribiera River View Duplex"``.
+- Increment the value of the ``accommodates`` field by ``1``.
 
 .. io-code-block::
    :copyable: true
