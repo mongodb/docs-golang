@@ -74,7 +74,7 @@ following actions:
    .. input:: /includes/fundamentals/code-snippets/indexes/atlasSearch.go
       :start-after: begin-atlas-search
       :end-before: end-atlas-search
-      :language: java
+      :language: go
       :dedent:
 
    .. output:: 
