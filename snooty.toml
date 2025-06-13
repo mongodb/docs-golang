@@ -3,6 +3,7 @@ title = "Go Driver"
 toc_landing_pages = [
     "/connect",
     "/crud",
+    "/crud/update",
     "/monitoring-and-logging",
     "/security",
     "/security/authentication",
