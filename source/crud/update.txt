@@ -65,11 +65,6 @@ field. You cannot use update operations to change the
 ``_id`` field. If you attempt to change this field, the update
 methods return a ``WriteError``.
 
-Sample Data
-~~~~~~~~~~~
-
-
-
 .. _golang-update-document:
 
 Parameters
@@ -101,9 +96,10 @@ and descriptions </reference/operator/update-field/>`.
    You can use aggregation pipelines made up of a subset of aggregation 
    stages in update operations. To learn more about 
    the aggregation stages MongoDB supports in
-   aggregation pipelines, see our tutorial on performing
-   :manual:`updates with aggregation pipelines
-   </tutorial/update-documents-with-aggregation-pipeline/>`.
+   aggregation pipelines, see the tutorial on performing
+   :manual:`Updates with Aggregation Pipeline
+   </tutorial/update-documents-with-aggregation-pipeline/>`
+   tutorial in the Server Manual.
 
 Return Values
 -------------
@@ -137,7 +133,7 @@ the method selects and updates the first matched document. If no
 documents match the query filter, the update operation makes no
 changes. 
 
-See our :ref:`upsert guide <golang-upsert-guide>`
+See the :ref:`upsert guide <golang-upsert-guide>`
 to learn how to insert a new document if no documents match the query filter.
 
 UpdateOne() Example
