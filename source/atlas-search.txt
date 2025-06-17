@@ -39,8 +39,15 @@ Run an Atlas Search Query
 -------------------------
 
 This section shows how to create an aggregation pipeline to run an
-Atlas Search query on a collection. In your array of pipeline stages,
-add the ``$search`` stage to specify the search criteria. Then, call
+Atlas Search query on a collection. 
+
+To run an Atlas Search query, you must create an Atlas Search index on your
+collection. To learn how to programmatically create 
+an Atlas Search index, see the :ref:`golang-atlas-search-indexes` section of the 
+Indexes guide.
+
+After you create an Atlas Search index, add the ``$search`` stage in your array 
+of pipeline stages to specify the search criteria. Then, call
 the ``Aggregate()`` method and pass your pipeline array as a parameter.
 
 .. tip:: 
@@ -97,8 +104,9 @@ following actions:
 Additional Information
 ----------------------
 
-To learn more about Atlas Search, see :atlas:`Atlas Search </atlas-search/>`
-in the Atlas documentation.
+To learn more about Atlas Search, see the :atlas:`Atlas Search </atlas-search/>`
+guides and the :atlas:`$search </atlas-search/aggregation-stages/search/>` pipeline 
+stage reference in the Atlas documentation.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
