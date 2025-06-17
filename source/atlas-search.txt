@@ -55,10 +55,6 @@ the ``Aggregate()`` method and pass your pipeline array as a parameter.
    To learn more about aggregation operations, see the :ref:`golang-aggregation`
    guide. 
 
-Before running an Atlas Search query, you must create an Atlas Search index
-on your collection. To learn how to programmatically create an Atlas Search
-index, see the :ref:`golang-atlas-search-indexes` section of the Indexes guide. 
-
 Atlas Search Example
 ~~~~~~~~~~~~~~~~~~~~
 
