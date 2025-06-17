@@ -85,7 +85,7 @@ method in the options of the following write operation methods:
    equivalent to passing ``false`` to the ``SetUpsert()`` method.
 
 Example
-~~~~~~~
+-------
 
 The following example performs the following actions:
 
