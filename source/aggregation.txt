@@ -25,6 +25,12 @@ pipeline consists of one or more **stages**. Each stage performs an
 operation based on its expression operators. After the driver executes
 the aggregation pipeline, it returns an aggregated result.
 
+.. sharedinclude:: dbx/agg-tutorials-manual-tip.rst
+
+   .. replacement:: language
+
+      :guilabel:`{+language+}`
+
 Analogy
 ~~~~~~~
 
