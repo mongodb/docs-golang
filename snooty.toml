@@ -6,7 +6,7 @@ toc_landing_pages = [
     "/monitoring-and-logging",
     "/security",
     "/security/authentication",
-    "/connect/specify-connection-options"
+    "/connect/specify-connection-options",
 ]
 
 intersphinx = [
@@ -20,6 +20,7 @@ sharedinclude_root = "https://raw.githubusercontent.com/10gen/docs-shared/main/"
 api-version = "v2"
 driver-long = "MongoDB Go Driver"
 driver-short = "Go driver"
+language = "Go"
 docs-branch = "master"
 version = "v2.2"
 full-version = "{+version+}.2"
