@@ -35,7 +35,7 @@ This guide includes the following sections:
   describes the certificates required to configure TLS
 
 - :ref:`Reference Certificates in a Client <golang-client-tls-connect>`
-  provides an example of how to create a ``Config`` struct to configure your
+  provides an example of how to create a ``tls.Config`` struct to configure your
   TLS options
 
 - :ref:`Additional Information <golang-tls-addtl-info>`
@@ -56,7 +56,7 @@ You can enable TLS on a connection to your MongoDB instance
 in one of the following ways:
 
 - Setting the ``tls`` option to ``true`` in your connection string
-- Passing an empty ``Config`` struct to the ``SetTLSConfig()``
+- Passing an empty ``tls.Config`` struct to the ``SetTLSConfig()``
   method when creating a ``ClientOptions`` instance
 
 Select from the following :guilabel:`Connection String` and
@@ -147,16 +147,16 @@ You must reference your certificates in your ``ClientOptions``
 object so that the server can validate them before the client connects.
 
 We recommend that you set the ``TLSConfig`` field of your
-``ClientOptions`` instance to a ``Config`` struct to configure your
-TLS connection. ``Config`` structs are native to Go and allow you to keep
+``ClientOptions`` instance to a ``tls.Config`` struct to configure your
+TLS connection. ``tls.Config`` structs are native to Go and allow you to keep
 all your TLS options in a single reusable object.
 
-To create a ``Config`` instance, import the ``crypto/tls`` and
-``crypto/x509`` packages. Next, create a ``Config`` struct instance and
+To create a ``tls.Config`` instance, import the ``crypto/tls`` and
+``crypto/x509`` packages. Next, create a ``tls.Config`` struct instance and
 set the relevant struct fields for your configuration, as shown in the
 following section.
 
-To learn more about the ``Config`` struct, see the `tls.Config API
+To learn more about the ``tls.Config`` struct, see the `tls.Config API
 documentation <https://pkg.go.dev/crypto/tls#Config>`__.
 
 .. _golang-tls-config-full-example:
@@ -164,7 +164,7 @@ documentation <https://pkg.go.dev/crypto/tls#Config>`__.
 Example
 ~~~~~~~
 
-This example performs the following actions to create a ``Config``
+This example performs the following actions to create a ``tls.Config``
 instance and a ``Client`` instance with TLS enabled:
 
 1. Creates variables to reference the certificate filepaths
@@ -175,10 +175,10 @@ instance and a ``Client`` instance with TLS enabled:
 #. Loads the client certificate files by using the
    ``tls.LoadX509KeyPair()`` method
 
-#. Instantiates a ``Config`` struct and sets the ``RootCAs`` and
+#. Instantiates a ``tls.Config`` struct and sets the ``RootCAs`` and
    ``Certificates`` fields
 
-#. Passes the ``Config`` instance to the ``SetTLSConfig()`` method to
+#. Passes the ``tls.Config`` instance to the ``SetTLSConfig()`` method to
    set the ``TLSConfig`` field of the ``ClientOptions``
 
 .. literalinclude:: /includes/fundamentals/code-snippets/tls.go
@@ -190,7 +190,7 @@ instance and a ``Client`` instance with TLS enabled:
 Insecure Option
 ~~~~~~~~~~~~~~~
 
-Within your ``Config`` instance, you can set optional
+Within your ``tls.Config`` instance, you can set optional
 fields to configure TLS on your connection. For **testing purposes**,
 you can set the ``InsecureSkipVerify`` field to ``true``.
    
