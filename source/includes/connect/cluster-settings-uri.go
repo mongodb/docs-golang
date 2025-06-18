@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 
 	"go.mongodb.org/mongo-driver/v2/mongo"
@@ -9,12 +10,13 @@ import (
 )
 
 // start-uri-variable
-// Connection string with connection pool options
+// Connection string with cluster settings options
 const (
-	uri = "mongodb://localhost:27017/?maxPoolSize=50&minPoolSize=10&maxIdleTimeMS=30000"
+	uri = "mongodb://localhost:27017/?serverSelectionTimeoutMS=10000&localThresholdMS=15"
 )
 
 // end-uri-variable
+
 func main() {
 	// start-apply-uri
 	// Creates a new client and connects to the server
@@ -24,7 +26,7 @@ func main() {
 	}
 	// end-apply-uri
 
-	fmt.log("Connected to MongoDB with connection pool options")
+	fmt.Println("Connected to MongoDB with cluster settings options")
 	defer func() {
 		if err = client.Disconnect(context.TODO()); err != nil {
 			log.Fatal(err)

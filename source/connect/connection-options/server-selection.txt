@@ -1,1 +1,186 @@
-.. TODO
+.. _golang-server-selection:
+
+==========================
+Customize Cluster Settings
+==========================
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: code example, read preference, write
+
+Overview
+--------
+
+In this guide, you can learn how the {+driver-short+} manages clusters.
+
+Specify Settings
+----------------
+
+You can specify settings for your clusters by using either a connection string
+or by using the ``ClientOptions`` struct when creating a new ``Client``
+instance. Select the :guilabel:`Connection String` or :guilabel:`ClientOptions` tab to see the
+available options.
+
+.. tabs::
+
+  .. tab:: Connection String
+    :tabid: uri
+
+    You can use the following parameters in your connection string to modify the
+    driver's behavior when interacting with your MongoDB cluster:
+
+    .. list-table::
+       :header-rows: 1
+       :stub-columns: 1
+       :widths: 40 60
+
+       * - Method
+         - Description 
+
+       * - ``serverSelectionTimeoutMS``
+         - Specifies the maximum amount of time the driver will wait for a server to
+           be available before throwing an error.
+
+           *Default:* 30 seconds
+
+       * - ``localThresholdMS``
+         - Specifies the maximum latency in milliseconds for selecting a server.
+           
+           *Default:* 15 milliseconds
+
+       * - ``replicaSet``
+         - Specifies the name of the replica set to connect to.
+
+       * - ``directConnection``
+         - Specifies whether to connect directly to a single server, bypassing the
+           replica set or sharded cluster.
+
+           *Default:* ``false``
+
+       * - ``loadBalanced``
+         - Specifies whether or not the driver is connecting to MongoDB using a
+           load balancer.
+
+           *Default:* ``false``
+
+       * - ``srvServiceName``
+         - Specifies the service name of the `SRV resource records
+           <https://www.rfc-editor.org/rfc/rfc2782>`__ the driver retrieves to
+           construct your :manual:`seed list
+           </reference/glossary/#std-term-seed-list>`. You must use the
+           :manual:`DNS Seed List Connection Format
+           </reference/connection-string/#dns-seed-list-connection-format>` in
+           your connection string to use this option.
+
+  .. tab:: ClientOptions
+    :tabid: options
+
+    The following table describes some of the methods you can chain to your settings to
+    modify the driver's behavior:
+
+    .. list-table::
+       :header-rows: 1
+       :stub-columns: 1
+       :widths: 40 60
+
+       * - Field
+         - Description 
+
+       * - ``SetServerSelectionTimeout()``
+         - Specifies the maximum amount of time the driver will wait for a server to
+           be available before throwing an error.
+
+           *Default:* 30 seconds
+
+       * - ``SetLocalThreshold()``
+         - Specifies the maximum latency in milliseconds for selecting a server.
+           
+           *Default:* 15 milliseconds
+
+       * - ``SetReplicaSet()``
+         - Specifies the name of the replica set to connect to.
+
+       * - ``SetDirect()``
+         - Specifies whether to connect directly to a single server, bypassing the
+           replica set or sharded cluster.
+
+           *Default:* ``false``
+
+       * - ``SetLoadBalanced()``
+         - Specifies whether or not the driver is connecting to MongoDB using a
+           load balancer.
+
+           *Default:* ``false``
+
+       * - ``SetSRVServiceName()``
+         - Specifies a custom service name of the `SRV resource records
+           <https://www.rfc-editor.org/rfc/rfc2782>`__ the driver retrieves to
+           construct your :manual:`seed list
+           </reference/glossary/#std-term-seed-list>`. To use a custom SRV
+           service name in SRV discovery, you must call this function before you
+           call ``ApplyURI()``.
+
+    To learn more about the available methods, see the :ref:`golang-server-selection-resources` section.
+
+Example
+~~~~~~~
+
+Select the :guilabel:`Connection String` or :guilabel:`ClientOptions`  tab to
+see the corresponding example:
+
+.. tabs::
+
+    .. tab:: Connection String
+      :tabid: uriExample
+
+      The following code uses the connection string to configure the maximum
+      server selection timeout to 10 seconds and the local threshold to 15
+      milliseconds:
+
+      .. literalinclude:: /includes/connect/cluster-settings-uri.go
+        :language: go
+        :start-after: start-uri-variable
+        :end-before: end-uri-variable
+        :dedent:
+
+      The following code creates a client and passes the connection string to the
+      ``ApplyURI()`` method:
+
+      .. literalinclude:: /includes/connect/cluster-settings-uri.go
+        :language: go
+        :start-after: start-apply-uri
+        :end-before: end-apply-uri
+        :dedent:
+
+    .. tab:: ClientOptions
+      :tabid: optionsExample
+
+      The following code creates a client and sets the cluster options with a
+      maximum server selection timeout of 10 seconds and a local threshold of
+      15 milliseconds:
+
+      .. literalinclude:: /includes/connect/cluster-settings-client-options.go
+        :language: go
+        :start-after: start-client-options
+        :end-before: end-client-options
+        :dedent:
+
+.. _golang-server-selection-resources:
+
+API Documentation
+-----------------
+
+To learn more about the methods and types in this guide, see the following API documentation:
+
+- `Client <{+api+}/mongo#Client>`__
+- `ClientOptions <{+api+}/mongo/options#ClientOptions>`__
+- `ApplyURI() <{+api+}/mongo/options#ClientOptions.ApplyURI>`__
