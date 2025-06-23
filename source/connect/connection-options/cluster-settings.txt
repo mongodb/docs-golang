@@ -68,7 +68,7 @@ available options.
            *Default:* ``false``
 
        * - ``loadBalanced``
-         - Specifies whether or not the driver is connecting to MongoDB using a
+         - Specifies whether the driver is connecting to MongoDB using a
            load balancer.
 
            *Default:* ``false``
@@ -85,7 +85,7 @@ available options.
   .. tab:: ClientOptions
     :tabid: options
 
-    The following table describes some of the methods you can chain to your settings to
+    The following table describes several methods you can chain to your settings to
     modify the driver's behavior:
 
     .. list-table::
@@ -117,7 +117,7 @@ available options.
            *Default:* ``false``
 
        * - ``SetLoadBalanced()``
-         - Specifies whether or not the driver is connecting to MongoDB using a
+         - Specifies whether the driver is connecting to MongoDB using a
            load balancer.
 
            *Default:* ``false``
