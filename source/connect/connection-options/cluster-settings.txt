@@ -1,4 +1,4 @@
-.. _golang-server-selection:
+.. _golang-cluster-settings:
 
 ==========================
 Customize Cluster Settings
@@ -20,7 +20,8 @@ Customize Cluster Settings
 Overview
 --------
 
-In this guide, you can learn how the {+driver-short+} manages clusters.
+In this guide, you can learn how the {+driver-short+} manages clusters and how
+to customize the cluster settings.
 
 Specify Settings
 ----------------
@@ -129,7 +130,7 @@ available options.
            service name in SRV discovery, you must call this function before you
            call ``ApplyURI()``.
 
-    To learn more about the available methods, see the :ref:`golang-server-selection-resources` section.
+    To learn more about the available methods, see the :ref:`golang-cluster-settings-resources` section.
 
 Example
 ~~~~~~~
@@ -174,7 +175,7 @@ see the corresponding example:
         :end-before: end-client-options
         :dedent:
 
-.. _golang-server-selection-resources:
+.. _golang-cluster-settings-resources:
 
 API Documentation
 -----------------
