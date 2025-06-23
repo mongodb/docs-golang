@@ -12,7 +12,7 @@ import (
 // start-uri-variable
 // Connection string with cluster settings options
 const (
-	uri = "mongodb://localhost:27017/?serverSelectionTimeoutMS=10000&localThresholdMS=15"
+	uri = "mongodb://localhost:27017/?serverSelectionTimeoutMS=10000&localThresholdMS=20"
 )
 
 // end-uri-variable

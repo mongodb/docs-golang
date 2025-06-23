@@ -7,7 +7,7 @@ Customize Cluster Settings
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 .. facet::
@@ -144,7 +144,7 @@ see the corresponding example:
       :tabid: uriExample
 
       The following code uses the connection string to configure the maximum
-      server selection timeout to 10 seconds and the local threshold to 15
+      server selection timeout to 10 seconds and the local threshold to 20
       milliseconds:
 
       .. literalinclude:: /includes/connect/cluster-settings-uri.go
@@ -167,7 +167,7 @@ see the corresponding example:
 
       The following code creates a client and sets the cluster options with a
       maximum server selection timeout of 10 seconds and a local threshold of
-      15 milliseconds:
+      20 milliseconds:
 
       .. literalinclude:: /includes/connect/cluster-settings-client-options.go
         :language: go

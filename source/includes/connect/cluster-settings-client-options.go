@@ -20,7 +20,7 @@ func main() {
 	clientOptions := options.Client().
 		ApplyURI(uri).
 		SetServerSelectionTimeout(10 * time.Second).
-		SetLocalThreshold(15 * time.Millisecond)
+		SetLocalThreshold(20 * time.Millisecond)
 
 	// Creates a new client and connects to the server
 	client, err := mongo.Connect(clientOptions)
