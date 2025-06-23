@@ -462,10 +462,10 @@ that alphabetically precedes ``"Infinite Jest"``:
       {"name":"Cryptonomicon","length":"918"}
       {"name":"Ça","length":"1138"}
 
-Without specifying a default ``books`` collation, the ``Find()`` method would follow default
-binary collation rules to determine the ``name`` values that precede ``"Infinite Jest"``. These
-rules place words beginning with "Ç" after those beginning with "I". The output would resemble
-the following:
+Without specifying a default ``books`` collation, the ``Find()`` method follows
+default binary collation rules to determine the ``name`` values that precede
+``"Infinite Jest"``. These rules place words beginning with "Ç" after those
+beginning with "I". The output resembles the following:
 
 .. code-block:: json
    :copyable: false
@@ -533,7 +533,7 @@ Applying a collation to an operation overrides any default collation previously 
 for a collection. 
 
 If you apply a new collation to an operation that differs from an index's collation,
-you cannot use that index. As a result, the operation may not perform as well as one
+you cannot use that index. As a result, the operation may not perform as optimally as one
 that is covered by an index. For more information on the disadvantages of sorting operations
 not covered by an index, see :manual:`Using Indexes to Sort Query Results </tutorial/sort-results-with-indexes/>`.
 See the :manual:`MongoDB manual </reference/collation/#collation-document>` for a list of
