@@ -46,10 +46,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	// end updatemany
 
 	// Prints the number of updated documents
 	fmt.Printf("Documents updated: %v\n", result.ModifiedCount)
+	// end updatemany
 
 	// When you run this file for the first time, it should print:
 	// Number of documents replaced: 609
