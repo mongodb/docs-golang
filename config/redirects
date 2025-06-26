@@ -17,3 +17,6 @@ raw: ${prefix}/master -> ${base}/upcoming/
 [*-master]: ${prefix}/${version}/fundamentals/crud/write-operations/change-a-document/ -> ${base}/${version}/fundamentals/crud/write-operations/modify/
 [*-master]: ${prefix}/${version}/fundamentals/connection/ -> ${base}/${version}/fundamentals/connections/connection-guide
 [*-master]: ${prefix}/${version}/fundamentals/network-compression/ -> ${base}/${version}/fundamentals/connections/network-compression/
+[*-master]: ${prefix}/${version}/fundamentals/crud/write-read-pref/ -> ${base}/${version}/crud/configure/
+[*-master]: ${prefix}/${version}/fundamentals/collations/ -> ${base}/${version}/crud/configure/
+
