@@ -212,7 +212,7 @@ type has the following methods to specify the read concern:
    * - ``Linearizable()``
      - The query returns data that reflects all
        successful writes issued with a write concern of ``majority`` and
-       acknowledged prior to the start of the read operation. For more information, see the
+       acknowledged before the read operation begins. For more information, see the
        :rapid:`Read Concern specification </reference/read-concern-linearizable/#mongodb-readconcern-readconcern.-linearizable->`.
 
    * - ``Local()``
