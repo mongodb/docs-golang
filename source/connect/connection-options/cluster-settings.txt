@@ -80,7 +80,7 @@ available options.
            construct your :manual:`seed list
            </reference/glossary/#std-term-seed-list>`. You must use the
            :manual:`DNS Seed List Connection Format
-           </reference/connection-string/#srv-list-connection-format>` in
+           </reference/connection-string/#srv-connection-format>` in
            your connection string to use this option.
 
   .. tab:: ClientOptions
