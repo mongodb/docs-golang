@@ -25,8 +25,8 @@ Overview
 --------
 
 In this guide, you can learn how to set up and configure **monitoring** in the
-{+driver-long+}. You can monitor events using the {+driver-short+} by subscribing 
-to them in your application.
+{+driver-long+}. You can monitor **events** by using the {+driver-short+} to 
+subscribe to them in your application.
 
 Monitoring involves collecting information about the activities of a running
 program, which you can use with an application performance management
@@ -37,7 +37,7 @@ An event is any action that occurs within the driver during its operation. The
 events.
 
 Monitoring the {+driver-short+} lets you understand the driver's resource usage
-and performance,  and can help you make informed decisions when designing and
+and performance, and can help you make informed decisions when designing and
 debugging your application.
 
 In this guide you will learn how to perform these tasks:
@@ -56,7 +56,7 @@ Monitor Command Events
 ----------------------
 
 A command event is an event related to a MongoDB database command. You can
-access one or more command monitoring events using the driver by subscribing to
+access one or more command monitoring events by using the driver to subscribe to
 them in your application.
 
 To learn more about MongoDB database commands, see the
@@ -538,7 +538,7 @@ ServerHeartbeatFailedEvent
 Monitor Connection Pool Events
 ------------------------------
 
-A connection pool is a set of open TCP connections your driver maintains with a
+A connection pool is a set of open TCP connections that your driver maintains with a
 MongoDB instance. Connection pools help reduce the number of network handshakes
 your application needs to perform and can help your application run faster.
 
