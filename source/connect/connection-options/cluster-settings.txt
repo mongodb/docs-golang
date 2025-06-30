@@ -27,7 +27,7 @@ Specify Settings
 ----------------
 
 You can specify settings for your clusters by using either a connection string
-or by using the ``ClientOptions`` struct when creating a new ``Client``
+or a ``ClientOptions`` struct when creating a new ``Client``
 instance. Select the :guilabel:`Connection String` or :guilabel:`ClientOptions` tab to see the
 available options.
 
@@ -36,8 +36,9 @@ available options.
   .. tab:: Connection String
     :tabid: uri
 
-    You can use the following parameters in your connection string to modify the
-    driver's behavior when interacting with your MongoDB cluster:
+    The following table describes the parameters you can use in your connection
+    string to modify the driver's behavior when interacting with your MongoDB
+    cluster:
 
     .. list-table::
        :header-rows: 1
@@ -79,7 +80,7 @@ available options.
            construct your :manual:`seed list
            </reference/glossary/#std-term-seed-list>`. You must use the
            :manual:`DNS Seed List Connection Format
-           </reference/connection-string/#dns-seed-list-connection-format>` in
+           </reference/connection-string/#srv-list-connection-format>` in
            your connection string to use this option.
 
   .. tab:: ClientOptions

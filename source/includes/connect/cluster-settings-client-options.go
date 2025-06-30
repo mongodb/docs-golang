@@ -15,14 +15,14 @@ func main() {
 	if uri == "" {
 		log.Fatal("Set your 'MONGODB_URI' environment variable.")
 	}
-	// start-client-options
+
 	// Sets client options with cluster settings
+	// start-client-options
 	clientOptions := options.Client().
 		ApplyURI(uri).
 		SetServerSelectionTimeout(10 * time.Second).
 		SetLocalThreshold(20 * time.Millisecond)
 
-	// Creates a new client and connects to the server
 	client, err := mongo.Connect(clientOptions)
 	if err != nil {
 		log.Fatal(err)
