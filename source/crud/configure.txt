@@ -461,8 +461,8 @@ that alphabetically precedes ``"Infinite Jest"``:
       {"name":"Cryptonomicon","length":"918"}
       {"name":"Ça","length":"1138"}
 
-If the code didn't specify a default ``books`` collation, the ``Find()`` method
-would follow default binary collation rules to determine the ``name`` values
+If the code doesn't specify a default ``books`` collation, the ``Find()`` method
+follows default binary collation rules to determine the ``name`` values
 that precede ``"Infinite Jest"``. These rules place words beginning with "Ç"
 after those beginning with "I". The output resembles the following:
 
@@ -582,8 +582,8 @@ order:
       {"name":"Infinite Jest","length":"1104"}
       {"name":"Ça","length":"1138"}
 
-If the code didn't specify a collation with a ``NumericOrdering`` field set to
-``true``, the same ``Find()`` operation would compare ``length`` values as
+If the code doesn't specify a collation with a ``NumericOrdering`` field set to
+``true``, the same ``Find()`` operation compares ``length`` values as
 strings. In this case, the output resembles the following:
 
 .. code-block:: json
