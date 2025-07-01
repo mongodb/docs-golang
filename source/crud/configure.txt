@@ -46,8 +46,8 @@ the following levels:
 - Collection level
 
 The preceding list also indicates the increasing order of precedence of the
-option settings. For example, if you set a read concern level for a transaction,
-it will override a read concern level set for the client.
+option settings. For example, if you set a read concern for a transaction, it
+will override a read concern set for the client.
 
 .. _golang-writeconcern:
 
@@ -56,19 +56,18 @@ Write Concern
 
 A write concern describes the number of data-bearing
 members in a replica set that must acknowledge a write operation, such
-as an insert or update, before the operation is returned as successful.
-By default, the write concern requires only the primary
-replica set member to acknowledge the write operation before the
-operation is deemed successful.
+as an insert or update, before the operation returns as successful.
+By default, the write operation is successful if only the primary
+replica set member acknowledges it.
 
 Options
 ```````
 
-The {+driver-long+} provides the ``writeconcern`` package, which lets
-you specify the write concern for a replica set. Set the write
-concern using the ``SetWriteConcern()`` method with a ``WriteConcern``
-type. The ``WriteConcern`` type has the following methods to
-select common write concern specifications:
+The {+driver-long+} provides the ``writeconcern`` package, which lets you
+specify the write concern for a replica set. Set the write concern by passing an
+instance of the ``WriteConcern`` type to the ``SetWriteConcern()`` method. The
+``WriteConcern`` type provides the following methods to select common write
+concern specifications:
 
 .. list-table::
    :widths: 25 75
@@ -83,11 +82,11 @@ select common write concern specifications:
          information, see the :rapid:`Write Concern specification
          </reference/write-concern/#mongodb-writeconcern-writeconcern.-custom-write-concern-name->`.
        |
-       | **Parameter**: ``string``
+       | **Parameter**: ``tag (string)``
 
    * - ``Journaled()``
-     - | The client requests acknowledgement that write operations are
-         written to the on-disk journal. For more information, see the
+     - | The client requests acknowledgement that the replica set has
+         written the changes to the on-disk journal. For more information, see the
          :rapid:`Write Concern specification </reference/write-concern/#j-option>`.
        |
        | **Parameter**: none
@@ -109,8 +108,8 @@ select common write concern specifications:
        | **Parameter**: none
 
    * - ``W1()``
-     - | The client requests acknowledgement that write operations have
-         been written to memory on one node, such as the standalone mongod or
+     - | The client requests acknowledgement that the replica set has
+         written the changes to memory on one node, such as the standalone mongod or
          the primary in a replica set. For more
          information, see the :rapid:`Write Concern specification for w: 1
          </reference/write-concern/#mongodb-writeconcern-writeconcern.-number->`.
@@ -143,14 +142,14 @@ If you require a more specialized write concern, you can define a custom
        | **Type**: ``string`` or ``int``
 
    * - ``Journal``
-     - | Specifies if write operations must be written to the on-disk
+     - | Specifies whether write operations must write the changes to the on-disk
          journal for acknowledgement.
        |
        | **Type**: ``bool``
 
 .. tip::
 
-   You can alternatively specify a write concern in your connection
+   Alternatively, you can specify a write concern in your connection
    string. See the :manual:`Server manual entry on Write Concern Options
    </reference/connection-string/#write-concern-options>` for more information.
 
@@ -158,9 +157,9 @@ Example
 ```````
 
 The following code shows how you can specify different write concerns
-at the client and collection level. The *client-level* write concern
+at the client and collection level. The client-level write concern
 requests acknowledgement from two replica set members and sets journaling to
-``false``. The *collection-level* write concern requests
+``false``. The collection-level write concern requests
 acknowledgement from the majority of replica set members.
 
 .. code-block:: go
@@ -191,10 +190,10 @@ the data has been written to a majority of the replica set members.
 Options
 ```````
 
-The {+driver-long+} provides the ``readconcern`` package, which lets
-you specify the read concern for a replica set. Set the read concern using the
-``SetReadConcern()`` method with a ``ReadConcern`` type. The ``ReadConcern``
-type has the following methods to specify the read concern:
+The {+driver-long+} provides the ``readconcern`` package, which lets you specify
+the read concern for a replica set. Set the read concern by passing an instance
+of a ``ReadConcern`` type to the ``SetReadConcern()`` method. The
+``ReadConcern`` type has the following methods to specify the read concern:
 
 .. list-table::
    :widths: 25 75
@@ -228,7 +227,7 @@ type has the following methods to specify the read concern:
 
    * - ``Snapshot()``
      - The query returns a complete copy of the
-       data in a ``mongod`` instance at a specific point in time. Only
+       data in a ``mongod`` instance at a specific point in time. This option is only
        available for operations within multi-document transactions. For more information, see the
        :rapid:`Read Concern specification </reference/read-concern-snapshot/#mongodb-readconcern-readconcern.-snapshot->`.
 
@@ -264,10 +263,10 @@ Read preference consists of the read preference mode and, optionally, a
 Options
 ```````
 
-The {+driver-long+} provides the ``readpref`` package, which lets
-you specify the read preference for a replica set. Set the read preference using the
-``SetReadPreference()`` method with a ``ReadPref`` type. The ``ReadPref``
-type has the following methods to specify the read preference:
+The {+driver-long+} provides the ``readpref`` package, which lets you specify
+the read preference for a replica set. Set the read preference by passing an
+instance of the ``ReadPref`` type to the ``SetReadPreference()`` method. The
+``ReadPref`` type has the following methods to specify the read preference:
 
 .. list-table::
    :widths: 25 75
@@ -278,7 +277,7 @@ type has the following methods to specify the read preference:
 
    * - ``Nearest()``
      - The client reads from a random eligible replica set member,
-       primary or secondary, based on a specified latency threshold. For more information, see the
+       based on a specified latency threshold. For more information, see the
        :rapid:`Read Preference Server manual entry </core/read-preference/#mongodb-readmode-nearest>`.
 
    * - ``Primary()``
@@ -286,7 +285,7 @@ type has the following methods to specify the read preference:
        :rapid:`Read Preference Server manual entry </core/read-preference/#mongodb-readmode-primary>`.
 
    * - ``PrimaryPreferred()``
-     - The client reads from the primary node in most situations. If the primary is
+     - The client reads from the primary node if it's available. If the primary is
        unavailable, operations read from secondary members. For more
        information, see the :rapid:`Read Preference Server manual entry </core/read-preference/#mongodb-readmode-primaryPreferred>`.
 
@@ -295,13 +294,13 @@ type has the following methods to specify the read preference:
        :rapid:`Read Preference Server manual entry </core/read-preference/#mongodb-readmode-secondary>`.
 
    * - ``SecondaryPreferred()``
-     - The client reads from the secondary nodes in most situations. If the secondaries are
+     - The client reads from the secondary nodes if one or more is available. If the secondaries are
        unavailable, operations read from the primary member. For more information, see the
        :rapid:`Read Preference Server manual entry </core/read-preference/#mongodb-readmode-secondaryPreferred>`.
 
 .. tip::
 
-   You can alternatively specify a read preference in your connection
+   Alternatively, you can specify a read preference in your connection
    string. See the :manual:`Server manual entry on Read Preference
    Options </reference/connection-string/#read-preference-options>` for
    more information.
@@ -350,10 +349,10 @@ You can specify a **collation** to modify the behavior of read
 and write operations. A collation is a set of language-specific rules for string
 comparison, such as for letter case and accent marks.
 
-MongoDB sorts strings using *binary collation* by default. This default
-collation uses the `ASCII standard <https://en.wikipedia.org/wiki/ASCII>`_
+By default, MongoDB sorts strings using *binary collation*. This default
+collation uses the :wikipedia:`ASCII standard <ASCII>`
 character values to compare and order strings. Languages and locales
-have specific character ordering conventions that differ from the ASCII
+have specific character-ordering conventions that differ from the ASCII
 standard, and you can choose to apply a different set of collation rules
 to your operation.
 
@@ -370,7 +369,7 @@ Specify a Collation
 ~~~~~~~~~~~~~~~~~~~
 
 To specify a collation, create a ``Collation`` object. You must define the ``Locale`` field
-of the ``Collation`` object; all other fields are optional. For example, the following code
+of the ``Collation`` object, but all other fields are optional. For example, the following code
 example specifies a ``Collation`` object with the ``"en_US"`` locale collation:
 
 .. code-block:: go
@@ -462,10 +461,10 @@ that alphabetically precedes ``"Infinite Jest"``:
       {"name":"Cryptonomicon","length":"918"}
       {"name":"Ça","length":"1138"}
 
-Without specifying a default ``books`` collation, the ``Find()`` method follows
-default binary collation rules to determine the ``name`` values that precede
-``"Infinite Jest"``. These rules place words beginning with "Ç" after those
-beginning with "I". The output resembles the following:
+If the code didn't specify a default ``books`` collation, the ``Find()`` method
+would follow default binary collation rules to determine the ``name`` values
+that precede ``"Infinite Jest"``. These rules place words beginning with "Ç"
+after those beginning with "I". The output resembles the following:
 
 .. code-block:: json
    :copyable: false
@@ -533,7 +532,7 @@ Applying a collation to an operation overrides any default collation previously 
 for a collection. 
 
 If you apply a new collation to an operation that differs from an index's collation,
-you cannot use that index. As a result, the operation may not perform as optimally as one
+you cannot use that index. As a result, the operation may not perform as well as one
 that is covered by an index. For more information on the disadvantages of sorting operations
 not covered by an index, see :manual:`Using Indexes to Sort Query Results </tutorial/sort-results-with-indexes/>`.
 See the :manual:`MongoDB manual </reference/collation/#collation-document>` for a list of
@@ -583,9 +582,9 @@ order:
       {"name":"Infinite Jest","length":"1104"}
       {"name":"Ça","length":"1138"}
 
-Without specifying a collation with a ``NumericOrdering`` field set to ``true``, the
-same ``Find()`` operation compares ``length`` values as strings. In this case, the
-output resembles the following:
+If the code didn't specify a collation with a ``NumericOrdering`` field set to
+``true``, the same ``Find()`` operation would compare ``length`` values as
+strings. In this case, the output resembles the following:
 
 .. code-block:: json
    :copyable: false
