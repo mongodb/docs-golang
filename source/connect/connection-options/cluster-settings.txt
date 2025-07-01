@@ -15,7 +15,7 @@ Customize Cluster Settings
    :values: reference
 
 .. meta::
-   :keywords: code example, read preference, write
+   :keywords: code example, connection string, connection options
 
 Overview
 --------
@@ -45,7 +45,7 @@ available options.
        :stub-columns: 1
        :widths: 40 60
 
-       * - Method
+       * - Parameter
          - Description 
 
        * - ``serverSelectionTimeoutMS``
@@ -86,15 +86,15 @@ available options.
   .. tab:: ClientOptions
     :tabid: options
 
-    The following table describes several methods you can chain to your settings to
-    modify the driver's behavior:
+    The following table describes several methods you can chain to your
+    ``ClientOptions`` struct to modify the driver's behavior:
 
     .. list-table::
        :header-rows: 1
        :stub-columns: 1
        :widths: 40 60
 
-       * - Field
+       * - Method
          - Description 
 
        * - ``SetServerSelectionTimeout()``
