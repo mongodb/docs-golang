@@ -1,1 +1,1 @@
-The {+driver-long+} requires Go {+language-version+} or later.
+The {+driver-long+} requires Go {+min-lang-version+} or later.
