@@ -5,25 +5,24 @@ Quick Reference
 ===============
 
 .. meta::
-   :description: Explore with the MongoDB Go Driver syntax for various commands, including find, insert, update, delete, and more, with links to API documentation and usage examples.
+   :keywords: code example, summary, copyable
+   :description: See simple code examples for how to perform a variety of operations in the Go driver.
 
-.. default-domain:: mongodb
-
-This page shows the driver syntax for several MongoDB commands and links to
-their related reference and API documentation.
+This page shows the driver syntax for several MongoDB operations in the
+{+driver-short+} and provides links to related reference and API
+documentation.
 
 .. list-table::
    :header-rows: 1
    :widths: 25 75
 
-   * - Command
+   * - Operation
      - Syntax
 
    * - | **Find a Document**
        |
        | `API Documentation <{+api+}/mongo#Collection.FindOne>`__
-       | :ref:`Usage Example <golang-find-one>`
-       | :ref:`Fundamentals <golang-retrieve>`
+       | :ref:`Find Documents Guide <golang-retrieve>`
 
      - .. io-code-block::
           :copyable: true
@@ -42,8 +41,7 @@ their related reference and API documentation.
    * - | **Find Multiple Documents**
        |
        | `API Documentation <{+api+}/mongo#Collection.Find>`__
-       | :ref:`Usage Example <golang-find-multiple>`
-       | :ref:`Fundamentals <golang-retrieve>`
+       | :ref:`Find Documents Guide <golang-retrieve>`
 
      - .. io-code-block::
           :copyable: true
@@ -63,8 +61,7 @@ their related reference and API documentation.
    * - | **Insert a Document**
        |
        | `API Documentation <{+api+}/mongo#Collection.InsertOne>`__
-       | :ref:`Usage Example <golang-insert-one>`
-       | :ref:`Fundamentals <golang-insert-guide>`
+       | :ref:`Insert Documents Guide <golang-insert-guide>`
 
      - .. code-block:: go
           :copyable: true
@@ -80,8 +77,7 @@ their related reference and API documentation.
    * - | **Insert Multiple Documents**
        |
        | `API Documentation <{+api+}/mongo#Collection.InsertMany>`__
-       | :ref:`Usage Example <golang-insert-many>`
-       | :ref:`Fundamentals <golang-insert-guide>`
+       | :ref:`Insert Documents Guide <golang-insert-guide>`
 
      - .. code-block:: go
           :copyable: true
@@ -98,8 +94,7 @@ their related reference and API documentation.
    * - | **Update a Document**
        |
        | `API Documentation <{+api+}/mongo#Collection.UpdateOne>`__
-       | :ref:`Usage Example <golang-update-one>`
-       | :ref:`Fundamentals <golang-update-documents>`
+       | :ref:`Update Documents Guide <golang-update-documents>`
 
      - .. io-code-block::
           :copyable: true
@@ -123,8 +118,7 @@ their related reference and API documentation.
    * - | **Update Multiple Documents**
        |
        | `API Documentation <{+api+}/mongo#Collection.UpdateMany>`__
-       | :ref:`Usage Example <golang-update-many>`
-       | :ref:`Fundamentals <golang-update-documents>`
+       | :ref:`Update Documents Guide <golang-update-documents>`
 
      - .. io-code-block::
           :copyable: true
@@ -148,7 +142,7 @@ their related reference and API documentation.
    * - | **Update Arrays in Documents**
        |
        | `API Documentation <{+api+}/mongo#Collection.UpdateMany>`__
-       | :ref:`Fundamentals <golang-update-arrays>`
+       | :ref:`Update Arrays Guide <golang-update-arrays>`
 
      - .. io-code-block::
           :copyable: true
@@ -173,8 +167,7 @@ their related reference and API documentation.
    * - | **Replace a Document**
        |
        | `API Documentation <{+api+}/mongo#Collection.ReplaceOne>`__
-       | :ref:`Usage Example <golang-replace>`
-       | :ref:`Fundamentals <golang-replacement-document>`
+       | :ref:`Replace Documents Guide <golang-replacement-document>`
 
      - .. io-code-block::
           :copyable: true
@@ -197,8 +190,7 @@ their related reference and API documentation.
    * - | **Delete a Document**
        |
        | `API Documentation <{+api+}/mongo#Collection.DeleteOne>`__
-       | :ref:`Usage Example <golang-delete-one>`
-       | :ref:`Fundamentals <golang-delete-guide>`
+       | :ref:`Delete Documents Guide <golang-delete-guide>`
 
      - .. code-block:: go
           :copyable: true
@@ -211,8 +203,7 @@ their related reference and API documentation.
    * - | **Delete Multiple Documents**
        |
        | `API Documentation <{+api+}/mongo#Collection.DeleteMany>`__
-       | :ref:`Usage Example <golang-delete-many>`
-       | :ref:`Fundamentals <golang-delete-guide>`
+       | :ref:`Delete Documents Guide <golang-delete-guide>`
 
      - .. code-block:: go
           :copyable: true
@@ -225,8 +216,7 @@ their related reference and API documentation.
    * - | **Bulk Write**
        |
        | `API Documentation <{+api+}/mongo#Collection.BulkWrite>`__
-       | :ref:`Usage Example <golang-bulk-ops-usage-example>`
-       | :ref:`Fundamentals <golang-bulk>`
+       | :ref:`Bulk Operations Guide <golang-bulk>`
 
      - .. io-code-block::
           :copyable: true
@@ -253,7 +243,7 @@ their related reference and API documentation.
    * - | **Monitor Data Changes**
        |
        | `API Documentation <{+api+}/mongo#Collection.Watch>`__
-       | :ref:`Usage Example <golang-usageex-monitor-changes>`
+       | :ref:`Change Streams Guide <golang-watch-changes>`
 
      - .. code-block:: go
           :copyable: true
@@ -264,7 +254,7 @@ their related reference and API documentation.
    * - | **Access Data from a Cursor Iteratively**
        |
        | `API Documentation <{+api+}/mongo#Cursor.Next>`__
-       | :ref:`Fundamentals <golang-individual-documents>`
+       | :ref:`Cursor Guide <golang-individual-documents>`
 
      - .. io-code-block::
           :copyable: true
@@ -294,7 +284,7 @@ their related reference and API documentation.
    * - | **Access Data from a Cursor as an Array**
        |
        | `API Documentation <{+api+}/mongo#Cursor.All>`__
-       | :ref:`Fundamentals <golang-all-documents>`
+       | :ref:`Cursor Guide <golang-all-documents>`
 
      - .. io-code-block::
           :copyable: true
@@ -321,8 +311,7 @@ their related reference and API documentation.
    * - | **Count Documents**
        |
        | `API Documentation <{+api+}/mongo#Collection.CountDocuments>`__
-       | :ref:`Usage Example <golang-count-usage-example>`
-       | :ref:`Fundamentals <golang-count-documents>`
+       | :ref:`Count Documents Guide <golang-count-documents>`
 
      - .. io-code-block::
           :copyable: true
@@ -338,10 +327,10 @@ their related reference and API documentation.
 
              6
 
-   * - | **List the Distinct Documents or Field Values**
+   * - | **List Distinct Field Values**
+       |
        | `API Documentation <{+api+}/mongo#Collection.Distinct>`__
-       | :ref:`Usage Example <golang-distinct-usage-example>`
-       | :ref:`Fundamentals <golang-retrieve-distinct>`
+       | :ref:`Distinct Values Guide <golang-retrieve-distinct>`
 
      - .. io-code-block::
           :copyable: true
@@ -361,7 +350,7 @@ their related reference and API documentation.
    * - | **Limit the Number of Documents Retrieved**
        |
        | `API Documentation <{+api+}/mongo/options#FindOptionsBuilder.SetLimit>`__
-       | :ref:`Fundamentals <golang-limit>`
+       | :ref:`Limit Documents Reference <golang-limit>`
 
      - .. io-code-block::
           :copyable: true
@@ -381,7 +370,7 @@ their related reference and API documentation.
    * - | **Skip Retrieved Documents**
        |
        | `API Documentation <{+api+}/mongo/options#FindOptionsBuilder.SetSkip>`__
-       | :ref:`Fundamentals <golang-skip>`
+       | :ref:`Skip Documents Reference <golang-skip>`
 
      - .. io-code-block::
           :copyable: true
@@ -399,10 +388,10 @@ their related reference and API documentation.
              [{item Pen} ... ]
              [{item Chair} ...]
 
-   * - | **Sort the Documents When Retrieving Them**
+   * - | **Sort Retrieved Documents**
        |
        | `API Documentation <{+api+}/mongo/options#FindOptionsBuilder.SetSort>`__
-       | :ref:`Fundamentals <golang-sort-results>`
+       | :ref:`Sort Documents Reference <golang-sort-results>`
 
      - .. io-code-block::
           :copyable: true
@@ -420,10 +409,10 @@ their related reference and API documentation.
              [{firstName Jose} {age 7} ... ]
              [{firstName Om} {age 8} ... ]
 
-   * - | **Project Document Fields When Retrieving Them**
+   * - | **Project Document Fields in Results**
        |
        | `API Documentation <{+api+}/mongo/options#FindOptionsBuilder.SetProjection>`__
-       | :ref:`Fundamentals <golang-project>`
+       | :ref:`Projection Guide <golang-project>`
 
      - .. io-code-block::
           :copyable: true
@@ -450,7 +439,7 @@ their related reference and API documentation.
    * - | **Create an Index**
        |
        | `API Documentation <{+api+}/mongo#IndexView.CreateOne>`__
-       | :ref:`Fundamentals <golang-indexes>`
+       | :ref:`Indexes Guide <golang-indexes>`
 
      - .. code-block:: go
           :copyable: true
@@ -461,7 +450,7 @@ their related reference and API documentation.
    * - | **Search Text**
        |
        | `API Documentation <{+api+}/mongo#Collection.Find>`__
-       | :ref:`Fundamentals <golang-search-text>`
+       | :ref:`Search Text Guide <golang-search-text>`
 
      - .. io-code-block::
           :copyable: true
