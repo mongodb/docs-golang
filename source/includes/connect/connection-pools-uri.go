@@ -10,9 +10,7 @@ import (
 
 // start-uri-variable
 // Connection string with connection pool options
-const (
-	uri = "mongodb://localhost:27017/?maxPoolSize=50&minPoolSize=10&maxIdleTimeMS=30000"
-)
+const uri = "mongodb://localhost:27017/?maxPoolSize=50&minPoolSize=10&maxIdleTimeMS=30000"
 
 // end-uri-variable
 func main() {
