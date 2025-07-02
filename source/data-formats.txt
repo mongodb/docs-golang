@@ -15,7 +15,7 @@ Specialized Data Formats
    :values: reference
 
 .. meta::
-   :keywords: bson, uuid, date, time
+   :keywords: bson, JSON, date, time, marshal, unmarshal, serialization
 
 .. toctree::
    :titlesonly:
@@ -32,4 +32,5 @@ You can use several types of specialized data formats in the
 following guides:
 
 - Learn how to work with BSON documents in the :ref:`golang-bson` guide.
-- Learn how to translate BSON to Extended JSON in the :ref:`golang-extended-json` guide.
+- Learn how to convert between {+language+} types and Extended JSON in the
+  :ref:`golang-extended-json` guide.
