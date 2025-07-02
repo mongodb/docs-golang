@@ -69,8 +69,8 @@ documentation.
           result, err := coll.InsertOne(
               context.TODO(), 
               bson.D{
-                  {"animal", "Dog"}, 
-                  {"breed", "Beagle"} 
+                  {"firstName", "Aliya"}, 
+                  {"lastName", "Sanders"} 
               }
           )
 
@@ -107,13 +107,13 @@ documentation.
                  bson.D{{"firstName", "Erik"}}, 
                  bson.D{{"$set", bson.D{{"age", 28}}}}
              )
-             fmt.Printf("The number of modified documents: %d\n", result.ModifiedCount)
+             fmt.Printf("Number of modified documents: %d\n", result.ModifiedCount)
 		
           .. output::
              :language: go
              :visible: false 
 
-             The number of modified documents: 1
+             Number of modified documents: 1
 
    * - | **Update Multiple Documents**
        |
@@ -128,16 +128,16 @@ documentation.
 
              result, err := coll.UpdateMany(
                  context.TODO(), 
-                 bson.D{{"age", bson.D{{"$gte", 58}}}}, 
-                 bson.D{{"$set", bson.D{{"description", "Senior"}}}}
+                 bson.D{{"age", bson.D{{"$gte", 65}}}}, 
+                 bson.D{{"$set", bson.D{{"classification", "senior"}}}}
              )
-             fmt.Printf("The number of modified documents: %d\n", result.ModifiedCount)
+             fmt.Printf("Number of modified documents: %d\n", result.ModifiedCount)
 
           .. output::
              :language: go
              :visible: false 
 
-             The number of modified documents: 4
+             Number of modified documents: 4
 
    * - | **Update Arrays in Documents**
        |
@@ -153,15 +153,15 @@ documentation.
              result, err := coll.UpdateMany(
                  context.TODO(), 
                  bson.D{}, 
-                 bson.D{{"$push", bson.D{{family, "brother"}}}}
+                 bson.D{{"$push", bson.D{{"hobbies", "painting"}}}}
              )
 
           .. output::
              :language: go
-             :visible: false 
+             :visible: false
 
-             [{firstName Xiao}, {family ["brother"]}, ... ]
-             [{firstName Omar}, {family ["brother", "mother"]}, ... ]
+             [{firstName Xiao}, {hobbies ["painting"]}, ... ]
+             [{firstName Omar}, {hobbies ["kayaking", "painting"]}, ... ]
              ...
 
    * - | **Replace a Document**
@@ -177,15 +177,15 @@ documentation.
 
              result, err := coll.ReplaceOne(
                  context.TODO(), 
-                 bson.D{{"firstName", "Mick"}}, 
-                 bson.D{{"firstName", "Mike"}, {"lastName", "Doe"}}
+                 bson.D{{"firstName", "Mick"}, {"lastName", "Salazar"}}, 
+                 bson.D{{"firstName", "Michael"}, {"lastName", "Salazar Jr."}}
              )
 
           .. output::
              :language: go
              :visible: false 
 
-             [{{firstName Mike}, {lastName Doe} }]
+             [{{firstName Michael}, {lastName Salazar Jr.} }]
 
    * - | **Delete a Document**
        |
@@ -254,7 +254,7 @@ documentation.
    * - | **Access Data from a Cursor Iteratively**
        |
        | `API Documentation <{+api+}/mongo#Cursor.Next>`__
-       | :ref:`Cursor Guide <golang-individual-documents>`
+       | :ref:`Retrieve Documents Individually Reference <golang-individual-documents>`
 
      - .. io-code-block::
           :copyable: true
@@ -278,13 +278,13 @@ documentation.
 
              [{firstName Doug} ... ]
              [{firstName Erik} ...]
-             [{lastName Chang} ...]
+             [{firstName Oleg} ...]
              ...
 
    * - | **Access Data from a Cursor as an Array**
        |
        | `API Documentation <{+api+}/mongo#Cursor.All>`__
-       | :ref:`Cursor Guide <golang-all-documents>`
+       | :ref:`Retrieve All Documents Reference <golang-all-documents>`
 
      - .. io-code-block::
           :copyable: true
@@ -303,9 +303,9 @@ documentation.
              :language: go
              :visible: false 
 
-             [{name Mike} ... ]
-             [{name Edgar} ...]
-             [{name Freddie} ...]
+             [{firstName Mike} ... ]
+             [{firstName Edgar} ...]
+             [{firstName Freddie} ...]
              ...
 
    * - | **Count Documents**
@@ -325,7 +325,7 @@ documentation.
              :language: go
              :visible: false 
 
-             6
+             17
 
    * - | **List Distinct Field Values**
        |
@@ -364,8 +364,8 @@ documentation.
              :language: go
              :visible: false 
 
-             [{breed Beagle} ... ]
-             [{breed German Shepard} ...]
+             [{firstName Xiao} ... ]
+             [{firstName Oleg} ...]
 
    * - | **Skip Retrieved Documents**
        |
@@ -385,8 +385,8 @@ documentation.
              :language: go
              :visible: false 
 
-             [{item Pen} ... ]
-             [{item Chair} ...]
+             [{firstName Sandy} ... ]
+             [{firstName Michael} ...]
 
    * - | **Sort Retrieved Documents**
        |
@@ -432,7 +432,7 @@ documentation.
              :language: go
              :visible: false 
 
-             [{firstName Lester}]
+             [{firstName Lester} {lastName Franklin}]
              [{firstName Wendall} {lastName Griffin}]
              ...
 
@@ -458,11 +458,12 @@ documentation.
           .. input::
              :language: go
 
-             // only searches fields with text indexes
-             cursor, err := coll.Find(context.TODO(), bson.D{{"$text", bson.D{{"$search", "beagle"}}}})
+             // Only searches on fields covered by text indexes
+             cursor, err := coll.Find(context.TODO(), bson.D{{"$text", bson.D{{"$search", "arts"}}}})
 
           .. output::
              :language: go
              :visible: false 
 
-             [{"firstName": "Emily" , "Description": "I love to play sports and walk my beagle."} ... ]
+             [{"firstName": "Emily" , "biography": "I am involved with arts and culture in my community."} ... ]
+             [{"firstName": "Juan" , "biography": "I attended the School of Arts for cello performance."} ... ]

@@ -1,5 +1,3 @@
-.. _golang-limit:
-
 ====================================
 Limit the Number of Returned Results
 ====================================
