@@ -142,7 +142,7 @@ If you require a more specialized write concern, you can define a custom
        | **Type**: ``string`` or ``int``
 
    * - ``Journal``
-     - | Specifies whether write operations must write the changes to the on-disk
+     - | Specifies whether the replica set must write the changes to the on-disk
          journal for acknowledgement.
        |
        | **Type**: ``bool``
@@ -227,8 +227,8 @@ of a ``ReadConcern`` type to the ``SetReadConcern()`` method. The
 
    * - ``Snapshot()``
      - The query returns a complete copy of the
-       data in a ``mongod`` instance at a specific point in time. This option is only
-       available for operations within multi-document transactions. For more information, see the
+       data in a ``mongod`` instance at a specific point in time. This option is 
+       available only for operations within multi-document transactions. For more information, see the
        :rapid:`Read Concern specification </reference/read-concern-snapshot/#mongodb-readconcern-readconcern.-snapshot->`.
 
 Example
