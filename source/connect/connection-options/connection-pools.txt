@@ -60,7 +60,7 @@ Configure a Connection Pool
 You can specify settings for your connection pool either by using a connection
 string or by using the ``options.Client`` methods.
 
-Select the :guilabel:`Connection String` or :guilabel:`MongoClientSettings`  tab to
+Select the :guilabel:`Connection String` or :guilabel:`ClientOptions`  tab to
 see the corresponding syntax:
 
 .. tabs::
@@ -159,7 +159,7 @@ see the corresponding syntax:
 Example
 ~~~~~~~
 
-Select the :guilabel:`Connection String` or :guilabel:`MongoClientSettings`  tab to
+Select the :guilabel:`Connection String` or :guilabel:`ClientOptions`  tab to
 see the corresponding example:
 
 .. tabs::
