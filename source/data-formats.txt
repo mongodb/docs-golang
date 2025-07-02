@@ -1,3 +1,8 @@
+.. This page is hidden from the TOC and search indexing.
+
+.. meta::
+   :robots: noindex, nosnippet
+
 .. _golang-data-formats:
 
 ========================

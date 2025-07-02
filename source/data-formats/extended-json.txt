@@ -29,15 +29,15 @@ that MongoDB uses to store data.
 Extended JSON Formats
 ---------------------
 
-MongoDB Extended JSON features different string formats to represent BSON data.
-Each of the formats conforms to the `JSON RFC
+MongoDB Extended JSON features different string formats to represent
+BSON data. Each of the formats conforms to the `JSON RFC
 <https://datatracker.ietf.org/doc/html/rfc8259>`__ and meets specific
 use cases.
 
-The **extended** format, also known as the **canonical**
+The **Extended** format, also known as the **Canonical**
 format, features specific representations for every BSON type for
-bidirectional conversion without loss of information. The **Relaxed
-mode** format is more concise and closer to ordinary JSON, but does not
+bidirectional conversion without loss of information. The **Relaxed**
+format is more concise and closer to ordinary JSON, but does not
 represent all the type information such as the specific byte size of
 number fields.
 
