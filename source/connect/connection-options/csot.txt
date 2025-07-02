@@ -118,8 +118,7 @@ specified timeout to each server operation.
 Timeout Inheritance
 ~~~~~~~~~~~~~~~~~~~
 
-By default, all ``Database``, ``Collection``, ``Session``, ``ChangeStream``, and
-``Bucket`` instances elsewhere in your application inherit the
+By default, all operations in your application inherit the
 ``Timeout`` option from ``Client`` if you do not set a different timeout
 on specific operations in the operation's Context.
 
@@ -217,8 +216,8 @@ Cursors offer configurable timeout settings when using the CSOT feature. You can
 adjust cursor timeouts by passing Contexts that have timeout
 specifications to `Cursor <{+api+}/mongo#Cursor>`__ methods.
 
-For operations that create cursors, the timeout setting can either cap the
-lifetime of the cursor or be applied separately to the original
+For operations that create cursors, the timeout setting can either limit
+the lifetime of the cursor or be applied separately to the original
 operation and all subsequent calls.
 
 For example, if you pass a Context timeout to the ``Cursor.Next()``
