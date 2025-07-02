@@ -1,8 +1,8 @@
 .. _golang-search-text:
 
-===========
-Search Text
-===========
+=====================
+Perform a Text Search
+=====================
 
 .. meta::
    :description: Learn how to perform text searches with the MongoDB Go Driver, including creating text indexes and sorting results by relevance.
