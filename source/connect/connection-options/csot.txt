@@ -61,16 +61,15 @@ String` tab to see the corresponding code.
          :start-after: start-client-opts
          :end-before: end-client-opts
          :dedent:
-         :emphasize-lines: 1
 
    .. tab:: Connection String
       :tabid: connection-string
 
-      .. literalinclude:: /includes/connect/csot.go
-         :language: go
-         :start-after: start-string
-         :end-before: end-string
-         :dedent:
+      .. code-block:: go
+         :copyable: true
+         
+         uri := "<connection string>/?timeoutMS=200"
+         client, err := mongo.Connect(options.Client().ApplyURI(uri))
 
 .. note:: Retries Under Timeout Specification
 

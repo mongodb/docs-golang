@@ -16,10 +16,7 @@ func main() {
 	opts := options.Client().SetTimeout(200 * time.Millisecond)
 	client, err := mongo.Connect(opts)
 	// end-client-opts
-	// start-string
-	uri := "<connection string>/?timeoutMS=200"
-	client, err := mongo.Connect(options.Client().ApplyURI(uri))
-	// end-string
+
 	if err != nil {
 		log.Fatal(err)
 	}
