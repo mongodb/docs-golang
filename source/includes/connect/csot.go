@@ -41,7 +41,7 @@ func main() {
 
 	session, err := client.StartSession()
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	defer session.EndSession(context.TODO())
 
