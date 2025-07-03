@@ -31,13 +31,13 @@ func main() {
 	// begin-unmarshal
 	var extJsonString = "{\"_id\":{\"$oid\":\"578f6fa2df35c7fbdbaed8c5\"},\"name\":\"Liana Ruiz\",\"age\":46,\"birthday\":{\"$date\":\"1988-01-15T00:00:00Z\"},\"address\":{\"street\":\"500 Slippery Rock Road\",\"city\":\"Round Rock\",\"state\":\"AR\"},\"hobbies\":[\"cycling\", \"baking\"]}"
 
-	var person Person
-	err := bson.UnmarshalExtJSON([]byte(extJsonString), false, &person)
+	var p Person
+	err := bson.UnmarshalExtJSON([]byte(extJsonString), false, &p)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Go Struct Representation:\n", person)
+	fmt.Printf("Go Struct Representation:\n%+v\n", p)
 	// end-unmarshal
 
 	// begin-marshal

@@ -165,7 +165,7 @@ Extended JSON string and unmarshal the data into an instance of ``Person``:
       :visible: false
 
       Go Struct Representation:
-      {ObjectID("578f6fa2df35c7fbdbaed8c5") Liana Ruiz 46 569203200000 {500 Slippery Rock Road Round Rock AR} [cycling baking]}
+      {ID:ObjectID("578f6fa2df35c7fbdbaed8c5") Name:Liana Ruiz Age:46 Birthday:569203200000 Address:{Street:500 Slippery Rock Road City:Round Rock State:AR} Hobbies:[cycling baking]}
 
 Write Extended JSON
 -------------------
@@ -190,7 +190,7 @@ format from an instance of ``Person``:
       :visible: false
 
       Extended JSON Representation:
-      {"_id":{"$oid":"6865676087d421da7feaf0f2"},"name":"Matteo Carisi","age":50,"birthday":{"$date":"1975-10-30T00:00:00Z"},"address":{"street":"14a Corner Court","city":"Springfield","state":"IL"},"hobbies":["cooking","birdwatching"]}
+      {"_id":{"$oid":"686688fa7c1a2e75405f4697"},"name":"Matteo Carisi","age":49,"birthday":{"$date":"1975-10-30T00:00:00Z"},"address":{"street":"14a Corner Court","city":"Springfield","state":"IL"},"hobbies":["cooking","birdwatching"]}
 
 The second parameter to ``MarshalExtJSON()`` determines if the output
 string is in Canonical (Extended) format or Relaxed format. The
@@ -231,7 +231,7 @@ indentation:
 
       {
         "_id": {
-          "$oid": "68656b1d063ac2608439c843"
+          "$oid": "686688fa7c1a2e75405f4697"
         },
         "name": "Matteo Carisi",
         "age": 49,
