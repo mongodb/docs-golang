@@ -53,7 +53,8 @@ What's New in 2.2
    change:
 
    - Drops support for {+mdb-server+} v3.6. The minimum supported {+mdb-server+}
-     version is now v4.0. To learn more about compatibility with {+mdb-server+} 
+     version is now v4.0. This also drops support for the ``MONGODB-CR`` authentication
+     mechanism. To learn more about compatibility with {+mdb-server+} 
      versions, see the :ref:`Compatibility <golang-compatibility>` reference. 
 
 This release includes the following improvements and fixes:
