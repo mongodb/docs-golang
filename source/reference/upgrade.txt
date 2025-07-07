@@ -23,6 +23,24 @@ Overview
 This page describes the changes you must make to your application
 when you upgrade to a new version of {+driver-short+}.
 
+Before you upgrade, perform the following actions:
+
+- Ensure the new {+driver-short+} version is compatible with the {+mdb-server+}
+  version your application connects to and the Go version your application runs
+  on. For more information, see the :ref:`Compatibility <golang-compatibility>`
+  page.
+
+- Address any breaking changes between the driver versions your application uses
+  and your planned upgrade version in the :ref:`Breaking Changes
+  <golang-breaking-changes>` section. 
+
+.. tip::
+
+   To minimize the number of changes your application requires when
+   upgrading driver versions in the future, use the :ref:`{+stable-api+} <golang-stable-api>`.
+
+.. _golang-breaking-changes:
+
 Breaking Changes
 ----------------
 
