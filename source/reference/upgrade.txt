@@ -1,8 +1,8 @@
 .. _golang-upgrade:
 
-=================================
-Upgrade {+driver-short+} Versions
-=================================
+=======================
+Upgrade Driver Versions
+=======================
 
 .. contents:: On this page
    :local:
