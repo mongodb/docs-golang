@@ -56,7 +56,9 @@ default value, and a description of the option.
      - ``null``
      - Specifies the number of milliseconds that a single operation run on the
        ``Client`` can take before returning a timeout error. Operations honor
-       this setting only if there is no deadline on the operation Context.
+       this setting only if there is no deadline on the operation
+       Context. To learn more about this option, see the :ref:`CSOT
+       <golang-csot>` guide.
 
    * - **connectTimeoutMS**
      - integer
@@ -127,82 +129,3 @@ default value, and a description of the option.
 For a full list of connection options, see the `ClientOptions API
 documentation
 <{+api+}/mongo/options#ClientOptions>`__.
-
-.. _golang-timeout-setting:
-
-Single Timeout Setting
-----------------------
-
-You can set a single ``Timeout`` option on your ``Client`` instance to
-specify the maximum amount of time that a single operation can take to
-execute.
-
-Set a client-level timeout by calling the ``SetTimeout()`` method when
-specifying options for your ``Client`` instance or by specifying the
-``timeoutMS`` option in your connection URI. By default, all
-``Database``, ``Collection``, ``Session``, ``ChangeStream``, and
-``Bucket`` instances elsewhere in your application inherit the
-``Timeout`` option from ``Client`` if you do not set a different timeout
-on specific operations in the operation's Context.
-
-If you set a timeout on a Context passed into an operation, the driver uses
-that value for the operation. If you do not specify a Context timeout,
-the operation Context derives the timeout from the ``Client`` instance.
-
-.. note:: Retries under Timeout Specification
-
-   If you set a timeout on your ``Client`` or in an operation-level
-   Context and the server returns a retryable error, the driver retries the
-   operation as many times as possible before the timeout expires.
-   
-   Once the timeout expires, the driver returns a timeout error.
-   See the Server manual for more information about :ref:`retryable
-   reads <retryable-reads>` and :manual:`retryable writes
-   </core/retryable-writes/>`.
-
-Timeout Examples
-~~~~~~~~~~~~~~~~
-
-This section provides examples that demonstrate different ways to set a
-timeout in your application.
-
-Client Option
-^^^^^^^^^^^^^
-
-The following code shows how to set the ``Timeout`` option on a ``Client``
-by using the ``SetTimeout()`` method:
-
-.. code-block:: go
-
-   opts := options.Client().SetTimeout(5 * time.Second)
-   client, err := mongo.Connect(opts)
-
-Connection String Option
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-The following example shows how to set a single timeout by using the
-``timeoutMS`` URI option. Then, the code executes an insert operation
-that inherits the timeout:
-
-.. code-block:: go
-   :emphasize-lines: 1, 5
-
-   uri := "mongodb://user:pass@sample.host:27017/?timeoutMS=5000"
-   client, err := mongo.Connect(options.Client().ApplyURI(uri))
-   
-   ...
-   coll.InsertOne(context.Background(), doc)
-
-Operation Timeout
-^^^^^^^^^^^^^^^^^
-
-The following example shows how to set an operation-level timeout in a
-Context, which takes priority over a client-level timeout you might have
-set:
-
-.. code-block:: go
-
-   ctx, cancel := context.WithTimeout(context.TODO(), time.Second)
-   defer cancel()
-   
-   res, err := coll.InsertOne(ctx, bson.D{{"x", 2}})
