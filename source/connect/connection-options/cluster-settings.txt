@@ -69,8 +69,16 @@ available options.
            *Default:* ``false``
 
        * - ``loadBalanced``
-         - Specifies whether the driver is connecting to MongoDB using a
-           load balancer.
+         - Specifies whether the driver is connecting to MongoDB using a load
+           balancer. If set to ``true``, the driver assumes that it is
+           connecting through a load balancer.
+
+           You can set this option to ``true`` only if you meet the following requirements:
+
+           - You specify only one host name
+           - You aren't connecting to a replica set
+           - The ``srvMaxHosts`` option is unset or has a value of ``0``
+           - The ``directconnection`` option if unset or has a value of ``false``
 
            *Default:* ``false``
 
@@ -119,7 +127,15 @@ available options.
 
        * - ``SetLoadBalanced()``
          - Specifies whether the driver is connecting to MongoDB using a
-           load balancer.
+           load balancer. If set to ``true``, the driver assumes that it is
+           connecting through a load balancer. 
+          
+           You can set this option to ``true`` only if you meet the following requirements:
+
+           - You specify only one host name
+           - You aren't connecting to a replica set
+           - The ``srvMaxHosts`` option is unset or has a value of ``0``
+           - The ``directconnection`` option if unset or has a value of ``false``
 
            *Default:* ``false``
 
