@@ -21,7 +21,7 @@ Overview
 --------
 
 This page describes the changes you must make to your application
-when you upgrade to a new version of {+driver-short+}.
+when you upgrade to a new version of the {+driver-short+}.
 
 Before you upgrade, perform the following actions:
 
@@ -100,7 +100,7 @@ Version 2.0 Breaking Changes
   Instead, you can set a timeout on your client or within a Context.
   Learn more in the :ref:`golang-csot` guide.
 
-  - Removal of the ``bson/primitive`` package. This package is now merged with
-    the ``bson`` package. To update your code, remove any ``bson/primitive``
-    import statements and change any instance of ``primitive.ObjectID`` to
-    ``bson.ObjectId``.
+- Removal of the ``bson/primitive`` package. This package is now merged with
+  the ``bson`` package. To update your code, remove any ``bson/primitive``
+  import statements and change any instance of ``primitive.ObjectID`` to
+  ``bson.ObjectId``.
