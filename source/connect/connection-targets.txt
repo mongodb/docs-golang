@@ -145,4 +145,3 @@ To learn more about connecting to different MongoDB instances with a
   - `options <https://mongodb.github.io/node-mongodb-native/6.17/classes/MongoClient.html#options>`__
   - `connect <https://mongodb.github.io/node-mongodb-native/6.17/classes/MongoClient.html#connect>`__
   - `readPreference <https://mongodb.github.io/node-mongodb-native/6.17/classes/MongoClient.html#readPreference>`__
-
