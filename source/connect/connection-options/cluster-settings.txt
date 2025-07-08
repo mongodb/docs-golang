@@ -78,7 +78,7 @@ available options.
            - You specify only one host name
            - You aren't connecting to a replica set
            - The ``srvMaxHosts`` option is unset or has a value of ``0``
-           - The ``directconnection`` option is unset or has a value of ``false``
+           - The ``directConnection`` option is unset or has a value of ``false``
 
            *Default:* ``false``
 
@@ -135,7 +135,7 @@ available options.
            - You specify only one host name
            - You aren't connecting to a replica set
            - The ``srvMaxHosts`` option is unset or has a value of ``0``
-           - The ``directconnection`` option is unset or has a value of ``false``
+           - The ``directConnection`` option is unset or has a value of ``false``
 
            *Default:* ``false``
 
