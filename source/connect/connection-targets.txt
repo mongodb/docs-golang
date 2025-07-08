@@ -124,6 +124,17 @@ following behavior:
 
    .. sharedinclude:: dbx/docker-replica-set.rst
 
+DNS Service Discovery
+---------------------
+
+.. sharedinclude:: dbx/srv-polling.rst
+
+   .. replacement:: srv-uri
+
+      .. code-block:: go
+
+         uri := "mongodb+srv://<hostname>/"
+
 API Documentation
 -----------------
 
