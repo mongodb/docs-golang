@@ -89,7 +89,7 @@ Example
 ~~~~~~~
 
 The following example opens a change stream on the ``courses`` collection and
-outputs all changes:
+prints the change stream events as they occur:
 
 .. literalinclude:: /includes/fundamentals/code-snippets/CRUD/changeStream.go
    :language: go
@@ -109,42 +109,6 @@ results in the following change event:
    documentKey:map[_id:ObjectID("...")] fullDocument:map[_id:ObjectID("...")
    enrollment:20 title:Advanced Screenwriting] ns: map[coll:courses db:db]
    operationType:insert]
-
-Open a Change Stream Example: Full File
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. include:: /includes/usage-examples/run-example-tip.rst
-
-The following example opens a change stream on the ``restaurants`` collection
-and prints inserted documents:
-
-.. literalinclude:: /includes/usage-examples/code-snippets/watch.go
-   :start-after: begin watch
-   :end-before: end watch
-   :emphasize-lines: 7
-   :language: go
-   :dedent:
-
-View a `fully runnable example. <{+example+}/watch.go>`__
-
-Expected Result
-^^^^^^^^^^^^^^^
-
-After you run the full example, run the :ref:`Insert a Document full file
-example <golang-insert-one>` in a different shell. Once you run the insert
-operation, you see output similar to the following:
-
-.. code-block:: json
-   :copyable: false
-
-   // results truncated {
-     "_id": ..., "name": "8282", "cuisine": "Korean"
-   }
-
-.. important::
-
-   Make sure to shut down this usage example once you finish by closing your
-   terminal.
 
 Filter Change Events
 ~~~~~~~~~~~~~~~~~~~~
@@ -178,6 +142,44 @@ watches for new delete operations:
 
    The ``Watch()`` method was called on the ``db`` database, so the code outputs
    new delete operations on any collection within this database.
+
+Open a Change Stream Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/usage-examples/example-intro.rst
+
+The following example opens a change stream on the ``restaurants`` collection
+and prints inserted documents:
+
+.. literalinclude:: /includes/usage-examples/code-snippets/watch.go
+   :start-after: begin watch
+   :end-before: end watch
+   :emphasize-lines: 7
+   :language: go
+   :dedent:
+
+View a `fully runnable example. <{+example+}/watch.go>`__
+
+Expected Result
+^^^^^^^^^^^^^^^
+
+.. TODO - when porting over all usage examples, ensure this link is correct.
+
+After you run the full example, run the :ref:`Insert a Document full file
+example <golang-insert-one>` in a different shell. Once you run the insert
+operation, you see output similar to the following:
+
+.. code-block:: json
+   :copyable: false
+
+   // results truncated {
+     "_id": ..., "name": "8282", "cuisine": "Korean"
+   }
+
+.. important::
+
+   Make sure to shut down this usage example once you finish by closing your
+   terminal.
 
 Configure Change Stream Options
 -------------------------------
