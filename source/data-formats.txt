@@ -26,6 +26,7 @@ Specialized Data Formats
    :titlesonly:
    :maxdepth: 1
 
+   Use Struct Tag </data-formats/struct-tagging>
    BSON </data-formats/bson>
    Extended JSON </data-formats/extended-json>
 
