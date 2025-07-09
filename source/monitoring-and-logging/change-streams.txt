@@ -109,7 +109,7 @@ results in the following change event:
    enrollment:20 title:Advanced Screenwriting] ns: map[coll:courses db:db]
    operationType:insert]
 
-To view a fully runnable example, see the :ref:`Open a Change Stream Example:
+To view a fully runnable example, see :ref:`Open a Change Stream Example:
 Full File <golang-change-streams-full-file>`.
 
 Filter Change Events
