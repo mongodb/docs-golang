@@ -1,7 +1,6 @@
 .. _golang-watch-changes:
 .. _golang-monitor-changes:
 .. _golang-watch:
-.. _golang-usageex-monitor-changes:
 
 ================================
 Monitor Data with Change Streams
@@ -110,6 +109,9 @@ results in the following change event:
    enrollment:20 title:Advanced Screenwriting] ns: map[coll:courses db:db]
    operationType:insert]
 
+To view a fully runnable example, see the :ref:`Open a Change Stream Example:
+Full File <golang-change-streams-full-file>`.
+
 Filter Change Events
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -143,6 +145,9 @@ watches for new delete operations:
    The ``Watch()`` method was called on the ``db`` database, so the code outputs
    new delete operations on any collection within this database.
 
+.. _golang-usageex-monitor-changes:
+.. _golang-change-streams-full-file:
+
 Open a Change Stream Example: Full File
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -166,7 +171,7 @@ Expected Result
 .. TODO - when porting over all usage examples, ensure this link is correct.
 
 After you run the full example, run the :ref:`Insert a Document full file
-example <golang-insert-one>` in a different shell. Once you run the insert
+example <golang-insert-one>` in a different shell. When you run the insert
 operation, you see output similar to the following:
 
 .. code-block:: json
@@ -178,8 +183,8 @@ operation, you see output similar to the following:
 
 .. important::
 
-   Make sure to shut down this usage example once you finish by closing your
-   terminal.
+   When you finish working with this usage example, make sure to shut it down by
+   closing your terminal.
 
 Configure Change Stream Options
 -------------------------------
@@ -201,8 +206,8 @@ You can specify the following options for the ``Watch()`` method:
 - ``Custom``
 - ``CustomPipeline``
 
-For more information on these options, visit the :manual:`MongoDB Server manual
-</reference/method/db.collection.watch/>`.
+For more information on these options, see the :manual:`db.collection.watch() </reference/method/db.collection.watch/>` 
+entry in the Server manual.
 
 Pre- and Post-Images
 ~~~~~~~~~~~~~~~~~~~~
@@ -245,7 +250,7 @@ parameter to one of the following values:
   
    There is no pre-image for an inserted document and no post-image for a deleted document.
 
- Example
+Example
 ~~~~~~~~
 
 The following example calls the ``Watch()`` method on the ``courses``
@@ -284,8 +289,8 @@ For more information on change streams, see :manual:`Change Streams
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-To learn more about the ``Watch()`` method, visit the following API
-documentation links:
+To learn more about the ``Watch()`` method, see the following API
+documentation:
 
 - `Watch() for collections <{+api+}/mongo#Collection.Watch>`__
 - `Watch() for databases <{+api+}/mongo#Database.Watch>`__
