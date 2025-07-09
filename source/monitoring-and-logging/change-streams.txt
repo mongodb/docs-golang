@@ -132,7 +132,7 @@ Expected Result
 
 After you run the full example, run the :ref:`Insert a Document full file
 example <golang-insert-one>` in a different shell. Once you run the insert
-operation, you should see the following output:
+operation, you see output similar to the following:
 
 .. code-block:: json
    :copyable: false
