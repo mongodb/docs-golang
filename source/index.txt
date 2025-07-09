@@ -18,6 +18,7 @@
 
    Get Started </get-started>
    Connect </connect>
+   Context </context>
    Databases & Collections </databases-collections>
    CRUD Operations </crud>
    Aggregation </aggregation>
