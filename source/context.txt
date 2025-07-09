@@ -68,7 +68,8 @@ timeout error if the Context expired or the selection process took
 longer than the ``serverSelectionTimeoutMS`` setting.
 
 To learn more about how the driver selects a server, see the
-:ref:`replica-set-read-preference-behavior`.
+:ref:`Read Concern <golang-readconcern>` section in the Configure 
+CRUD Operations guide.
 
 Connection Checkout
 ~~~~~~~~~~~~~~~~~~~
@@ -110,7 +111,7 @@ Socket Read and Write
 ~~~~~~~~~~~~~~~~~~~~~
 
 When the driver retrieves a connection for an operation, it sets the
-socket’s read or write deadline to either the Context deadline or socket
+socket's read or write deadline to either the Context deadline or socket
 timeout, whichever is shorter.
 
 If you cancel the Context after the execution of the ``Read()`` or
