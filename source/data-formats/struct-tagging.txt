@@ -13,8 +13,6 @@ structs to :manual:`BSON </reference/bson-types/>` by using struct tags.
 Example
 -------
 
-.. include:: /includes/usage-examples/run-example-tip.rst
-
 The following code declares a struct of type ``BlogPost``. This struct
 contains a struct tag that maps the ``WordCount`` field to the BSON
 field name ``word_count``. By default, the driver marshals the other
