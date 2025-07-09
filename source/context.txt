@@ -1,8 +1,8 @@
 .. _golang-context:
 
-=======
-Context
-=======
+===============
+Context Package
+===============
 
 .. facet::
    :name: genre
