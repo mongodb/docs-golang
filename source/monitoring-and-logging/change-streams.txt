@@ -110,7 +110,7 @@ results in the following change event:
    operationType:insert]
 
 To view a fully runnable example, see :ref:`Open a Change Stream Example:
-Full File <golang-change-streams-full-file>`.
+Full File <golang-change-streams-full-file>` section in this guide.
 
 Filter Change Events
 ~~~~~~~~~~~~~~~~~~~~
