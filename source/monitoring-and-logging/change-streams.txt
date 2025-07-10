@@ -241,9 +241,10 @@ parameter to one of the following values:
 .. important::
 
    To access document pre- and post-images, you must enable
-   ``changeStreamPreAndPostImages`` for the collection. See the :manual:`MongoDB
-   Server manual
+   ``changeStreamPreAndPostImages`` for the collection. See the :manual:`Change
+   Streams
    </reference/command/collMod/#change-streams-with-document-pre--and-post-images>`
+   section of the collMod Database Command guide in the MongoDB Server manual
    for instructions and more information.
 
 .. note::
