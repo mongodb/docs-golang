@@ -179,6 +179,8 @@ acknowledgement from the majority of replica set members.
    collOpts := options.Collection().SetWriteConcern(collWC)
    coll := client.Database("db").Collection("myColl", collOpts) 
 
+.. _golang-readconcern:
+
 Read Concern
 ~~~~~~~~~~~~
 

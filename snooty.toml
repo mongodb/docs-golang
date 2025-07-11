@@ -2,6 +2,7 @@ name = "golang"
 title = "Go Driver"
 toc_landing_pages = [
     "/connect",
+    "/context",
     "/crud",
     "/crud/update",
     "/monitoring-and-logging",
