@@ -130,8 +130,9 @@ in the {+driver-short+} source code on GitHub.
 
 This release includes the following improvements and fixes:
 
-- Documentation support for OpenID Connect (OIDC) authentication. To learn more, see
-  the :ref:`golang-mongodb-oidc` guide.
+- Support for OpenID Connect (OIDC) authentication. To learn more, see
+  the :ref:`golang-mongodb-oidc` section of the Enterprise
+  Authentication Mechanisms guide.
 
 - You can access the GridFS API from the ``mongo`` package. In previous
   versions, you could access GridFS functions from the separate ``gridfs``
@@ -218,7 +219,8 @@ The 1.17 {+driver-short+} release includes the following improvements
 and fixes:
 
 - Adds support for OpenID Connect (OIDC) authentication. To learn more, see
-  the :ref:`golang-mongodb-oidc` guide.
+  the :ref:`golang-mongodb-oidc` section of the Enterprise
+  Authentication Mechanisms guide.
 
 - Adds support for Queryable Encryption (QE) range queries. To use this
   feature, your app must connect to {+mdb-server+} 8.0 or later. For
@@ -374,7 +376,7 @@ Logging Interface
 You can now record connection management and command execution events by
 using the ``LogSink`` logging interface.
 
-To learn more, see the :ref:`golang-logging` guide.
+To learn more, see the :ref:`golang-logging` Fundamentals guide.
 
 Additional BSON Marshalling Options
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

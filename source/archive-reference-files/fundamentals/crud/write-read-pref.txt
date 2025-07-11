@@ -37,6 +37,8 @@ the following levels:
 In the following sections, you can learn how to customize the consistency and
 availability of the data in your replica sets.
 
+.. _golang-writeconcern:
+
 Write Concern
 -------------
 
