@@ -20,3 +20,6 @@ raw: ${prefix}/master -> ${base}/upcoming/
 [*-master]: ${prefix}/${version}/fundamentals/crud/write-read-pref/ -> ${base}/${version}/crud/configure/
 [*-master]: ${prefix}/${version}/fundamentals/collations/ -> ${base}/${version}/crud/configure/
 
+# CC Redirects
+[v1.12-master]: ${prefix}/${version}/usage-examples/struct-tagging/ -> ${base}/${version}/data-formats/struct-tagging/
+[v1.12-master]: ${prefix}/${version}/fundamentals/context/ -> ${base}/${version}/context/
