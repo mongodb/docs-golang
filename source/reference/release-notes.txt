@@ -1,8 +1,6 @@
 .. _golang-whats-new:
 .. _golang-release-notes:
 
-.. TODO clean up
-
 =============
 Release Notes
 =============
