@@ -89,8 +89,8 @@ Strings </reference/connection-string>` in the MongoDB Server documentation.
 
 .. _golang-usage-examples-env-variable:
 
-Store Your Connection String as an Environment Variable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Environment Variable
+~~~~~~~~~~~~~~~~~~~~
 
 You can access your connection string as an environment variable
 by using the following code: 

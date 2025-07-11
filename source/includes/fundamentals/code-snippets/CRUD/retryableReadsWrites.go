@@ -12,7 +12,7 @@ import (
 func main() {
 	var uri string
 	if uri = os.Getenv("MONGODB_URI"); uri == "" {
-		log.Fatal("You must set your 'MONGODB_URI' environment variable. See\n\t https://www.mongodb.com/docs/drivers/go/current/usage-examples/#environment-variable")
+		log.Fatal("You must set your 'MONGODB_URI' environment variable. See\n\t https://www.mongodb.com/docs/drivers/go/current/connect/mongoclient/#environment-variable")
 	}
 
 	// start-retryable-example
