@@ -19,5 +19,10 @@ raw: ${prefix}/master -> ${base}/upcoming/
 [*-master]: ${prefix}/${version}/fundamentals/network-compression/ -> ${base}/${version}/fundamentals/connections/network-compression/
 [*-master]: ${prefix}/${version}/fundamentals/crud/write-read-pref/ -> ${base}/${version}/crud/configure/
 [*-master]: ${prefix}/${version}/fundamentals/collations/ -> ${base}/${version}/crud/configure/
+
 [*-master]: ${prefix}/${version}/usage-examples/changestream -> ${base}/${version}/monitoring-and-logging/change-streams/
 [*-master]: ${prefix}/${version}/fundamentals/crud/read-operations/changestream/ -> ${base}/${version}/monitoring-and-logging/change-streams/
+
+# CC Redirects
+[v1.12-master]: ${prefix}/${version}/usage-examples/struct-tagging/ -> ${base}/${version}/data-formats/struct-tagging/
+[v1.12-master]: ${prefix}/${version}/fundamentals/context/ -> ${base}/${version}/context

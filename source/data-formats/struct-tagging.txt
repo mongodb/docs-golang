@@ -1,3 +1,4 @@
+.. _golang-struct-tags-usage-example:
 
 ===============
 Use Struct Tags
@@ -11,8 +12,7 @@ structs to :manual:`BSON </reference/bson-types/>` by using struct tags.
 
 Example
 -------
-
-.. include:: /includes/usage-examples/run-example-tip.rst
+.. TODO: Add the Usage Examples intro include once it is merged
 
 The following code declares a struct of type ``BlogPost``. This struct
 contains a struct tag that maps the ``WordCount`` field to the BSON
@@ -29,8 +29,6 @@ The following example creates a ``BlogPost`` instance and inserts it
 into the ``posts`` collection. During the insert operation, the driver
 interprets the struct tag to marshal the ``WordCount``
 struct field as ``word_count``:
-
-.. include:: /includes/usage-examples/run-example-tip.rst
 
 .. literalinclude:: /includes/usage-examples/code-snippets/struct-tag.go
    :start-after: begin create and insert
@@ -58,13 +56,13 @@ in the ``posts`` collection:
        "tags" : ["seasons", "gardening", "flower"]
    }
 
-For an example on how to find a document, see :ref:`golang-find-one`.
+For an example on how to find a document, see the :ref:`golang-find-one` guide.
 
 Additional Information
 ----------------------
 
 To learn more about using struct tags, converting to/from BSON, and
-handling potential errors, see :ref:`working with BSON <golang-bson>`.
+handling potential errors, see the :ref:`Work with BSON <golang-bson>` guide.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
