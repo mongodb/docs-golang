@@ -198,8 +198,6 @@ address of your MongoDB server:
    authenticates using the PLAIN Simple Authentication and Security Layer
    (SASL) defined in `RFC-4616 <https://tools.ietf.org/html/rfc4616>`__.
 
-.. _golang-mongodb-oidc:
-
 MONGODB-OIDC
 ------------
 
@@ -478,8 +476,6 @@ callback function that you defined:
    :start-after: start-credential-callback
    :end-before: end-credential-callback
    :emphasize-lines: 6
-
-.. _golang-kubernetes-oidc:
 
 Kubernetes
 ~~~~~~~~~~
