@@ -48,6 +48,4 @@ func main() {
 	// Prints the ID of the inserted document
 	fmt.Printf("Document inserted with ID: %s\n", result.InsertedID)
 
-	// When you run this file, the expected output is similar to:
-	// Document inserted with ID: ObjectID("...")
 }

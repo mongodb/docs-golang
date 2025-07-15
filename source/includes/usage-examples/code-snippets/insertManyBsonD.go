@@ -59,6 +59,4 @@ func main() {
 		fmt.Printf("\t%s\n", id)
 	}
 
-	// When you run this file, the expected output is similar to:
-	// 2 documents inserted with IDs: ObjectID("..."), ObjectID("...")
 }

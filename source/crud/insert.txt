@@ -149,9 +149,21 @@ Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding
       The following code uses a struct to insert a new document into the
       ``restaurants`` collection:
 
-      .. literalinclude:: /includes/usage-examples/code-snippets/insertOne.go
-         :language: go
-         :dedent:
+      .. io-code-block::
+         :copyable: true
+
+         .. input::
+            :language: go
+
+            .. literalinclude:: /includes/usage-examples/code-snippets/insertOne.go
+               :language: go
+               :dedent:
+
+         .. output::
+            :language: none
+            :visible: false
+
+            Document inserted with ID: ObjectID("...")
 
     .. tab:: bson.D
       :tabid: bsonDExample
@@ -159,9 +171,21 @@ Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding
       The following code uses a ``bson.D`` type to insert a new document into the
       ``restaurants`` collection:
 
-      .. literalinclude:: /includes/usage-examples/code-snippets/insertOneBsonD.go
-         :language: go
-         :dedent:
+      .. io-code-block::
+         :copyable: true
+
+         .. input::
+            :language: go
+
+            .. literalinclude:: /includes/usage-examples/code-snippets/insertOneBsonD.go
+               :language: go
+               :dedent:
+
+         .. output::
+            :language: none
+            :visible: false
+
+            Document inserted with ID: ObjectID("...")
 
 Insert Multiple Documents
 -------------------------
@@ -326,9 +350,23 @@ Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding
       The following code uses a struct to insert multiple new documents into the
       ``restaurants`` collection:
 
-      .. literalinclude:: /includes/usage-examples/code-snippets/insertMany.go
-         :language: go
-         :dedent:
+      .. io-code-block::
+         :copyable: true
+
+         .. input::
+            :language: go
+
+            .. literalinclude:: /includes/usage-examples/code-snippets/insertMany.go
+               :language: go
+               :dedent:
+
+         .. output::
+            :language: none
+            :visible: false
+
+            2 documents inserted with IDs:
+                    ObjectID("...")
+                    ObjectID("...")
 
     .. tab:: bson.D
       :tabid: bsonDExample
@@ -336,9 +374,23 @@ Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding
       The following code uses a ``bson.D`` type to insert multiple new documents into the
       ``restaurants`` collection:
 
-      .. literalinclude:: /includes/usage-examples/code-snippets/insertManyBsonD.go
-         :language: go
-         :dedent:
+      .. io-code-block::
+         :copyable: true
+
+         .. input::
+            :language: go
+
+            .. literalinclude:: /includes/usage-examples/code-snippets/insertManyBsonD.go
+               :language: go
+               :dedent:
+
+         .. output::
+            :language: none
+            :visible: false
+
+            2 documents inserted with IDs:
+                    ObjectID("...")
+                    ObjectID("...")
 
 Additional Information
 ----------------------
