@@ -152,12 +152,9 @@ Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding
       .. io-code-block::
          :copyable: true
 
-         .. input::
+         .. input:: /includes/usage-examples/code-snippets/insertOne.go
             :language: go
-
-            .. literalinclude:: /includes/usage-examples/code-snippets/insertOne.go
-               :language: go
-               :dedent:
+            :dedent:
 
          .. output::
             :language: none
@@ -174,12 +171,9 @@ Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding
       .. io-code-block::
          :copyable: true
 
-         .. input::
+         .. input:: /includes/usage-examples/code-snippets/insertOneBsonD.go
             :language: go
-
-            .. literalinclude:: /includes/usage-examples/code-snippets/insertOneBsonD.go
-               :language: go
-               :dedent:
+            :dedent:
 
          .. output::
             :language: none
@@ -353,12 +347,9 @@ Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding
       .. io-code-block::
          :copyable: true
 
-         .. input::
+         .. input:: /includes/usage-examples/code-snippets/insertMany.go
             :language: go
-
-            .. literalinclude:: /includes/usage-examples/code-snippets/insertMany.go
-               :language: go
-               :dedent:
+            :dedent:
 
          .. output::
             :language: none
@@ -377,12 +368,9 @@ Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding
       .. io-code-block::
          :copyable: true
 
-         .. input::
+         .. input:: /includes/usage-examples/code-snippets/insertManyBsonD.go
             :language: go
-
-            .. literalinclude:: /includes/usage-examples/code-snippets/insertManyBsonD.go
-               :language: go
-               :dedent:
+            :dedent:
 
          .. output::
             :language: none
