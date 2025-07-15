@@ -36,8 +36,8 @@ To learn how to use the ``BulkWrite()`` method, see the
 
 .. _golang-insert-id:
 
-The ``_id`` Field
------------------
+The _id Field
+-------------
 
 In MongoDB, each document *must* contain a unique ``_id`` field.
 
@@ -105,8 +105,8 @@ The following example creates and inserts a document into the
 
       Inserted document with _id: ObjectID("...")
 
-Modify ``InsertOne`` Behavior
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Modify InsertOne() Behavior
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 You can modify the behavior of ``InsertOne()`` by constructing and passing
 an optional ``InsertOneOptions`` struct.  The available options to set with
 ``InsertOneOptions`` are:
@@ -222,8 +222,8 @@ After running the preceding code, your output resembles the following:
    Inserted document with _id: ObjectID("...")
    Inserted document with _id: ObjectID("...")
 
-Modify ``InsertMany`` Behavior
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Modify InsertMany() Behavior
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can modify the behavior of ``InsertMany()`` by constructing
 and passing an optional ``InsertManyOptions`` struct. The available options
@@ -260,8 +260,8 @@ Construct an ``InsertManyOptions`` as follows:
 
 .. _golang-ordered-behavior:
 
-``Ordered`` Behavior
-~~~~~~~~~~~~~~~~~~~~
+Ordered Behavior
+~~~~~~~~~~~~~~~~
 
 Assume you want to insert the following documents:
 
@@ -382,12 +382,6 @@ Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding
 
 Additional Information
 ----------------------
-
-For runnable examples of the insert operations, see the following usage
-examples:
-
-- :ref:`golang-insert-one`
-- :ref:`golang-insert-many`
 
 To learn more about performing the operations mentioned, see the
 following guides:

@@ -12,7 +12,7 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
-// Defines the structure of a restaurant documen
+// Defines the structure of a restaurant document
 type Restaurant struct {
 	Name         string
 	RestaurantId string        `bson:"restaurant_id,omitempty"`
