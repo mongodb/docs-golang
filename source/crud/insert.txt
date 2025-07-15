@@ -133,6 +133,36 @@ Construct an ``InsertOneOptions`` as follows:
    :copyable:
    :dedent:
 
+Insert a Document Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/usage-examples/example-intro.rst
+
+The following example inserts a new document into the ``restaurants`` collection.
+Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding code:
+
+.. tabs::
+   
+    .. tab:: Struct
+      :tabid: structExample
+
+      The following code uses a struct to insert a new document into the
+      ``restaurants`` collection:
+
+      .. literalinclude:: /includes/usage-examples/code-snippets/insertOne.go
+        :language: go
+        :dedent:
+
+    .. tab:: bson.D
+      :tabid: bsonDExample
+
+      The following code uses a ``bson.D`` type to insert a new document into the
+      ``restaurants`` collection:
+
+      .. literalinclude:: /includes/usage-examples/code-snippets/insertOneBsonD.go
+        :language: go
+        :dedent:
+
 Insert Multiple Documents
 -------------------------
 
@@ -280,6 +310,31 @@ inserted into your collection.
       { "_id": 1, "title": "Where the Wild Things Are" }
       { "_id": 2, "title": "The Very Hungry Caterpillar" }
 
+Insert Many Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/usage-examples/example-intro.rst
+
+The following example inserts multiple new documents into the ``restaurants`` collection.
+Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding code:
+
+.. tabs::
+   
+    .. tab:: Struct
+      :tabid: structExample
+
+      The following code uses a struct to insert multiple new documents into the
+      ``restaurants`` collection:
+
+      .. literalinclude:: /includes/usage-examples/code-snippets/insertMany.go
+
+    .. tab:: bson.D
+      :tabid: bsonDExample
+
+      The following code uses a ``bson.D`` type to insert multiple new documents into the
+      ``restaurants`` collection:
+
+      .. literalinclude:: /includes/usage-examples/code-snippets/insertManyBsonD.go
 
 Additional Information
 ----------------------

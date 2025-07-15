@@ -1,4 +1,4 @@
-// Inserts sample documents describing restaurants by using the Go driver
+// Inserts sample documents describing restaurants by using the Go driver with bson.D
 package main
 
 import (
@@ -8,19 +8,10 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
+	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
-
-// Defines the structure of a restaurant document
-type Restaurant struct {
-	Name         string
-	RestaurantId string        `bson:"restaurant_id,omitempty"`
-	Cuisine      string        `bson:"cuisine,omitempty"`
-	Address      interface{}   `bson:"address,omitempty"`
-	Borough      string        `bson:"borough,omitempty"`
-	Grades       []interface{} `bson:"grades,omitempty"`
-}
 
 func main() {
 	if err := godotenv.Load(); err != nil {
@@ -44,10 +35,16 @@ func main() {
 
 	coll := client.Database("sample_restaurants").Collection("restaurants")
 
-	// Creates two sample documents describing restaurants
+	// Creates two sample documents describing restaurants using bson.D
 	newRestaurants := []interface{}{
-		Restaurant{Name: "Rule of Thirds", Cuisine: "Japanese"},
-		Restaurant{Name: "Madame Vo", Cuisine: "Vietnamese"},
+		bson.D{
+			bson.E{Key: "name", Value: "Rule of Thirds"},
+			bson.E{Key: "cuisine", Value: "Japanese"},
+		},
+		bson.D{
+			bson.E{Key: "name", Value: "Madame Vo"},
+			bson.E{Key: "cuisine", Value: "Vietnamese"},
+		},
 	}
 
 	// Inserts sample documents into the collection
