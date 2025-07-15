@@ -150,8 +150,8 @@ Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding
       ``restaurants`` collection:
 
       .. literalinclude:: /includes/usage-examples/code-snippets/insertOne.go
-        :language: go
-        :dedent:
+         :language: go
+         :dedent:
 
     .. tab:: bson.D
       :tabid: bsonDExample
@@ -160,8 +160,8 @@ Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding
       ``restaurants`` collection:
 
       .. literalinclude:: /includes/usage-examples/code-snippets/insertOneBsonD.go
-        :language: go
-        :dedent:
+         :language: go
+         :dedent:
 
 Insert Multiple Documents
 -------------------------
@@ -327,6 +327,8 @@ Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding
       ``restaurants`` collection:
 
       .. literalinclude:: /includes/usage-examples/code-snippets/insertMany.go
+         :language: go
+         :dedent:
 
     .. tab:: bson.D
       :tabid: bsonDExample
@@ -335,6 +337,8 @@ Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding
       ``restaurants`` collection:
 
       .. literalinclude:: /includes/usage-examples/code-snippets/insertManyBsonD.go
+         :language: go
+         :dedent:
 
 Additional Information
 ----------------------
