@@ -36,8 +36,8 @@ To learn how to use the ``BulkWrite()`` method, see the
 
 .. _golang-insert-id:
 
-The ``_id`` Field
------------------
+The _id Field
+-------------
 
 In MongoDB, each document *must* contain a unique ``_id`` field.
 
@@ -105,8 +105,8 @@ The following example creates and inserts a document into the
 
       Inserted document with _id: ObjectID("...")
 
-Modify ``InsertOne`` Behavior
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Modify InsertOne() Behavior
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 You can modify the behavior of ``InsertOne()`` by constructing and passing
 an optional ``InsertOneOptions`` struct.  The available options to set with
 ``InsertOneOptions`` are:
@@ -132,6 +132,54 @@ Construct an ``InsertOneOptions`` as follows:
    :language: go
    :copyable:
    :dedent:
+
+Insert a Document Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/usage-examples/example-intro.rst
+
+The following example inserts a new document into the ``restaurants`` collection.
+Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding code:
+
+.. tabs::
+   
+    .. tab:: Struct
+      :tabid: structExample
+
+      The following code uses a struct to insert a new document into the
+      ``restaurants`` collection:
+
+      .. io-code-block::
+         :copyable: true
+
+         .. input:: /includes/usage-examples/code-snippets/insertOne.go
+            :language: go
+            :dedent:
+
+         .. output::
+            :language: none
+            :visible: false
+
+            Document inserted with ID: ObjectID("...")
+
+    .. tab:: bson.D
+      :tabid: bsonDExample
+
+      The following code uses a ``bson.D`` type to insert a new document into the
+      ``restaurants`` collection:
+
+      .. io-code-block::
+         :copyable: true
+
+         .. input:: /includes/usage-examples/code-snippets/insertOneBsonD.go
+            :language: go
+            :dedent:
+
+         .. output::
+            :language: none
+            :visible: false
+
+            Document inserted with ID: ObjectID("...")
 
 Insert Multiple Documents
 -------------------------
@@ -174,8 +222,8 @@ After running the preceding code, your output resembles the following:
    Inserted document with _id: ObjectID("...")
    Inserted document with _id: ObjectID("...")
 
-Modify ``InsertMany`` Behavior
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Modify InsertMany() Behavior
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can modify the behavior of ``InsertMany()`` by constructing
 and passing an optional ``InsertManyOptions`` struct. The available options
@@ -212,8 +260,8 @@ Construct an ``InsertManyOptions`` as follows:
 
 .. _golang-ordered-behavior:
 
-``Ordered`` Behavior
-~~~~~~~~~~~~~~~~~~~~
+Ordered Behavior
+~~~~~~~~~~~~~~~~
 
 Assume you want to insert the following documents:
 
@@ -280,15 +328,60 @@ inserted into your collection.
       { "_id": 1, "title": "Where the Wild Things Are" }
       { "_id": 2, "title": "The Very Hungry Caterpillar" }
 
+Insert Many Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/usage-examples/example-intro.rst
+
+The following example inserts multiple new documents into the ``restaurants`` collection.
+Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding code:
+
+.. tabs::
+   
+    .. tab:: Struct
+      :tabid: structExample
+
+      The following code uses a struct to insert multiple new documents into the
+      ``restaurants`` collection:
+
+      .. io-code-block::
+         :copyable: true
+
+         .. input:: /includes/usage-examples/code-snippets/insertMany.go
+            :language: go
+            :dedent:
+
+         .. output::
+            :language: none
+            :visible: false
+
+            2 documents inserted with IDs:
+                    ObjectID("...")
+                    ObjectID("...")
+
+    .. tab:: bson.D
+      :tabid: bsonDExample
+
+      The following code uses a ``bson.D`` type to insert multiple new documents into the
+      ``restaurants`` collection:
+
+      .. io-code-block::
+         :copyable: true
+
+         .. input:: /includes/usage-examples/code-snippets/insertManyBsonD.go
+            :language: go
+            :dedent:
+
+         .. output::
+            :language: none
+            :visible: false
+
+            2 documents inserted with IDs:
+                    ObjectID("...")
+                    ObjectID("...")
 
 Additional Information
 ----------------------
-
-For runnable examples of the insert operations, see the following usage
-examples:
-
-- :ref:`golang-insert-one`
-- :ref:`golang-insert-many`
 
 To learn more about performing the operations mentioned, see the
 following guides:
