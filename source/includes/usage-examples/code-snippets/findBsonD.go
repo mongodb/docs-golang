@@ -15,22 +15,6 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
-// Creates a Restaurant struct as a model for documents in the restaurants collection
-type Restaurant struct {
-	ID           bson.ObjectID `bson:"_id"`
-	Name         string
-	RestaurantId string `bson:"restaurant_id"`
-	Cuisine      string
-	Address      interface{}
-	Borough      string
-	Grades       interface{}
-}
-
-// Creates a filter struct to use for the query
-type RestaurantCuisineFilter struct {
-	Cuisine string
-}
-
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found")
@@ -55,7 +39,7 @@ func main() {
 
 	// Creates a query filter to match documents in which the "cuisine"
 	// is "Italian"
-	filter := RestaurantCuisineFilter{Cuisine: "Italian"}
+	filter := bson.D{{"cuisine", "Italian"}}
 
 	// Retrieves documents that match the query filter
 	cursor, err := coll.Find(context.TODO(), filter)
