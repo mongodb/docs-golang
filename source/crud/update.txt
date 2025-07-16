@@ -204,6 +204,52 @@ The following shows the updated document resulting from the preceding update ope
       ...
    }
 
+Update a Document Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/usage-examples/example-intro.rst
+
+The following example is a fully runnable file that finds and updates an existing document into the ``restaurants`` collection.
+Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding code:
+
+.. tabs::
+
+   .. tab:: Struct
+      :tabid: structExample
+
+      The following code uses a struct to define the filter and update a document in the ``restuarants`` collection:
+
+      .. io-code-block::
+         :copyable: true
+
+         .. input:: /includes/usage-examples/code-snippets/updateOne.go
+            :language: go
+            :dedent:
+
+         .. output::
+            :language: none
+            :visible: false
+
+            Documents updated: 1
+
+   .. tab:: bson.D
+      :tabid: bsonDExample
+
+      The following code uses a ``bson.D`` to define the filter and update a document in the ``restuarants`` collection:
+
+      .. io-code-block::
+         :copyable: true
+
+         .. input:: /includes/usage-examples/code-snippets/updateOneBson.go   
+            :language: go
+            :dedent:
+
+         .. output::
+            :language: none
+            :visible: false  
+
+            Documents updated: 1
+
 UpdateMany() Example
 --------------------
 
