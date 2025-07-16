@@ -465,9 +465,7 @@ guides:
 
 - :ref:`golang-query-document`
 - :ref:`golang-cursor`
-- :ref:`golang-skip`
-- :ref:`golang-sort-results`
-- :ref:`golang-limit`
+- :ref:`Specify Documents to Return <golang-specify-documents-to-return>`
 - :ref:`golang-project`
 - :ref:`golang-aggregation`
 - :ref:`golang-collations`
