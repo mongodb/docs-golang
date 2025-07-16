@@ -1,4 +1,3 @@
-// begin findOne
 // Retrieves a document that matches a query filter by using the Go driver
 package main
 
@@ -76,5 +75,3 @@ func main() {
 	}
 	fmt.Printf("%s\n", output)
 }
-
-// end findOne

@@ -460,12 +460,6 @@ the MongoDB server manual page on :manual:`Aggregation
 Additional Information
 ----------------------
 
-For runnable examples of the find operations, see the following usage
-examples:
-
-- :ref:`golang-find-one`
-- :ref:`golang-find-multiple`
-
 To learn more about the operations mentioned, see the following
 guides:
 

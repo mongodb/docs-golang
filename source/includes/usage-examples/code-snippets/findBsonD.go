@@ -1,4 +1,3 @@
-// begin find
 // Retrieves documents that match a query filter by using the Go driver
 package main
 
@@ -63,5 +62,3 @@ func main() {
 		fmt.Printf("%s\n", output)
 	}
 }
-
-// end find
