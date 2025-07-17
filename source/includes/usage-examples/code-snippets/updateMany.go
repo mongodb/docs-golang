@@ -21,7 +21,7 @@ type Restaurant struct {
 	AverageRating float64       `bson:"avg_rating,omitempty"`
 }
 
-// Create a filter struct to specify the document to update
+// Create a filter struct to specify the documents to update
 type UpdateManyRestaurantFilter struct {
 	Cuisine string `bson:"cuisine"`
 	Borough string `bson:"borough"`
