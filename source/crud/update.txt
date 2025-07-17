@@ -204,8 +204,8 @@ The following shows the updated document resulting from the preceding update ope
       ...
    }
 
-Update a Document Example: Full File
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+UpdateOne() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /includes/usage-examples/example-intro.rst
 
@@ -251,8 +251,8 @@ existing document in the ``restaurants`` collection. Select the
 
             Documents updated: 1
 
-Update Multiple Documents Example: Full File
---------------------------------------------
+UpdateMany() Example: Full File
+-------------------------------
 
 .. include:: /includes/usage-examples/example-intro.rst
 

@@ -33,15 +33,14 @@ func main() {
 		}
 	}()
 
-	// begin updatemany
 	coll := client.Database("sample_restaurants").Collection("restaurants")
 	filter := bson.D{{"cuisine", "Pizza"}, {"borough", "Brooklyn"}}
 
-	// Creates instructions to update the values of the "average rating" field
+	// Creates instructions to update the values of the "avg_rating" field
 	update := bson.D{{"$set", bson.D{{"avg_rating", 4.5}}}}
 
-	// Updates documents in which the value of the "address.market"
-	// field is "Sydney"
+	// Updates documents in which the value of the "cuisine" field is "Pizza"
+	// and the value of the "borough" field is "Brooklyn"
 	result, err := coll.UpdateMany(context.TODO(), filter, update)
 	if err != nil {
 		panic(err)
@@ -49,5 +48,4 @@ func main() {
 
 	// Prints the number of updated documents
 	fmt.Printf("Documents updated: %v\n", result.ModifiedCount)
-	// end updatemany
 }
