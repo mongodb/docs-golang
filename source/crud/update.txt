@@ -251,31 +251,8 @@ existing document in the ``restaurants`` collection. Select the
 
             Documents updated: 1
 
-UpdateMany() Example
---------------------
-
-The following example uses the ``listingsAndReviews`` collection in the 
-``sample_airbnb`` dataset from the :atlas:`Atlas sample datasets </sample-data/sample-airbnb>`.
-
-The following example uses the ``UpdateMany()`` method to:
-
-- Match documents in which the value of the ``address.market`` field is ``"Sydney"``.
-- Multiply the ``price`` value in the matched documents by ``1.15``
-
-.. literalinclude:: /includes/usage-examples/code-snippets/updateMany.go
-   :start-after: begin updatemany
-   :end-before: end updatemany
-   :emphasize-lines: 9
-   :language: go
-   :copyable:
-   :dedent:
-
-The update operation updates ``609`` documents. 
-
-To learn more about how to retrieve multiple documents, see :ref:`golang-find-example`.
-
 Update Multiple Documents Example: Full File
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------
 
 .. include:: /includes/usage-examples/example-intro.rst
 
