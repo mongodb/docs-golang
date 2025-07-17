@@ -56,7 +56,7 @@ func main() {
 	filter := UpdateRestaurantFilter{ID: id}
 
 	// Creates instructions to add the "avg_rating" field to documents
-	update := bson.D{{"$set", Restaurant{AverageRating: 4.4}}}
+	update := bson.D{{"$set", RestaurantUpdate{AverageRating: 4.4}}}
 
 	// Updates the first document that has the specified "_id" value
 	result, err := coll.UpdateOne(context.TODO(), filter, update)
