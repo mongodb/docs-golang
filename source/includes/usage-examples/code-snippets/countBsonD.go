@@ -13,21 +13,6 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
-type Restaurant struct {
-	ID           bson.ObjectID `bson:"_id"`
-	Name         string
-	RestaurantId string `bson:"restaurant_id"`
-	Cuisine      string
-	Address      interface{}
-	Borough      string
-	Grades       interface{}
-}
-
-// Creates a filter struct to use for the query
-type RestaurantCuisineFilter struct {
-	Cuisine string
-}
-
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found")
@@ -52,7 +37,7 @@ func main() {
 
 	// Specifies a filter to match documents where the "cuisine"
 	// has a value of "American"
-	filter := RestaurantCuisineFilter{Cuisine: "American"}
+	filter := bson.D{{"cuisine", "American"}}
 
 	// Retrieves and prints the estimated number of documents in the collection
 	estCount, estCountErr := coll.EstimatedDocumentCount(context.TODO())
