@@ -50,7 +50,7 @@ func main() {
 
 	// Prints the number of modified documents
 	if result.MatchedCount != 0 {
-		fmt.Println("Number of documents replaced: %d\n", result.ModifiedCount)
+		fmt.Println("Number of documents replaced:", result.ModifiedCount)
 	}
 
 	// When you run this file for the first time, it should print:
