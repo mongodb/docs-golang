@@ -128,7 +128,7 @@ Replace One Document Example: Full File
 This example performs the following actions on the ``restaurants``
 collection:
 
-- Matches a document in which the ``name`` is "Rizzo's Fine Pizza"
+- Matches a document in which the value of ``name`` is "Rizzo's Fine Pizza"
 - Replaces the matched document with a new document
 
 Select the **Struct** or **bson.D** tab to see the corresponding code:
@@ -154,7 +154,6 @@ Select the **Struct** or **bson.D** tab to see the corresponding code:
 
             Number of documents replaced: 1
 
-
    .. tab :: bson.D
       :tabid: bsonDExample
 
@@ -173,6 +172,20 @@ Select the **Struct** or **bson.D** tab to see the corresponding code:
             :visible: false 
 
             Number of documents replaced: 1
+
+Expected Result
+~~~~~~~~~~~~~~~
+
+After you run the full example, you can find the following replaced document 
+in the ``restaurants`` collection:
+
+.. code-block:: none
+
+   {
+      "_id" : ObjectId("..."),
+      "name" : "Rizzo's Pizza",
+      "cuisine" : "Pizza/American"
+   }
 
 API Documentation
 -----------------

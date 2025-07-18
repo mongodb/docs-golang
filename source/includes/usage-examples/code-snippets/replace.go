@@ -1,4 +1,3 @@
-// begin replace
 // Replaces the first document that matches a filter by using the Go driver
 package main
 
@@ -66,5 +65,3 @@ func main() {
 	// When you run this file for the first time, it should print:
 	// Number of documents replaced: 1
 }
-
-// end replace
