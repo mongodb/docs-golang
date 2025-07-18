@@ -9,22 +9,10 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
+	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
-
-type Restaurant struct {
-	Name         string
-	RestaurantId string        `bson:"restaurant_id,omitempty"`
-	Cuisine      string        `bson:"cuisine,omitempty"`
-	Address      interface{}   `bson:"address,omitempty"`
-	Borough      string        `bson:"borough,omitempty"`
-	Grades       []interface{} `bson:"grades,omitempty"`
-}
-
-type RestaurantNameFilter struct {
-	Name string
-}
 
 func main() {
 	if err := godotenv.Load(); err != nil {
@@ -47,10 +35,13 @@ func main() {
 	}()
 
 	coll := client.Database("sample_restaurants").Collection("restaurants")
-	filter := RestaurantNameFilter{Name: "Rizzo's Fine Pizza"}
+	filter := bson.D{{"name", "Rizzo's Fine Pizza"}}
 
 	// Creates a new document containing "Name" and "Cuisine" fields
-	replacement := Restaurant{Name: "Rizzo's Pizza", Cuisine: "Pizza/American"}
+	replacement := bson.D{
+		bson.E{Key: "name", Value: "Rizzo's Pizza"},
+		bson.E{Key: "cuisine", Value: "Pizza/American"},
+	}
 
 	// Replaces the first document that matches the filter with a new document
 	result, err := coll.ReplaceOne(context.TODO(), filter, replacement)
