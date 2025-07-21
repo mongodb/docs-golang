@@ -48,7 +48,7 @@ func main() {
 		}
 	}()
 
-	// Filter the collection for documents where the value of cuisine is "Tapas"
+	// Filters the collection for documents where the value of cuisine is "Tapas"
 	coll := client.Database("sample_restaurants").Collection("restaurants")
 	filter := RestaurantCuisineFilter{Cuisine: "Tapas"}
 
