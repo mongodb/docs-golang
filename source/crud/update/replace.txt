@@ -131,7 +131,7 @@ collection:
 - Matches a document in which the value of ``name`` is "Rizzo's Fine Pizza"
 - Replaces the matched document with a new document
 
-Select the **Struct** or **bson.D** tab to see the corresponding code:
+Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding code:
 
 .. tabs::
 
