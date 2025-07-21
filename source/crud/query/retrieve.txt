@@ -99,18 +99,18 @@ Find Multiple Documents Example: Full File
 
 .. include:: /includes/usage-examples/example-intro.rst
 
-The following example finds documents in the ``restaurants`` collection
-in which the ``cuisine`` is ``"Italian"``, returns a cursor that
-references the matched documents, then unpacks the documents into a slice.
-Select the **Struct** or **bson.D** tab to see the corresponding code:
+The following example finds all documents in the ``restaurants`` collection
+in which the value of ``cuisine`` is ``"Italian"``. The example returns a cursor that
+references the matched documents and unpacks the documents into a slice.
+Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding code:
 
 .. tabs::
 
   .. tab :: Struct
     :tabid: structExample
 
-    The following code uses structs to find documents in the ``restaurants`` collection
-    in which the ``cuisine`` is "Italian", returning all documents that match:
+    The following code uses structs to find and return all documents in the 
+    ``restaurants`` collection in which the value of ``cuisine`` is "Italian":
 
     .. io-code-block::
       :copyable: true
@@ -133,9 +133,8 @@ Select the **Struct** or **bson.D** tab to see the corresponding code:
   .. tab :: bson.D
     :tabid: bsonDExample
 
-    The following code uses a bson.D type to find documents in the ``restaurants`` 
-    collection in which the ``cuisine`` is "Italian", returning all documents 
-    that match:
+    The following code uses a bson.D type to find and return all documents in 
+    the ``restaurants`` collection in which the value of ``cuisine`` is "Italian":
 
     .. io-code-block::
       :copyable: true
@@ -248,18 +247,17 @@ Find One Document Example: Full File
 
 .. include:: /includes/usage-examples/example-intro.rst
 
-The following example finds a document that matches a query filter in the 
-``restaurants`` collection. Select the **Struct** or **bson.D** tab to see the 
-corresponding code:
+The following example finds a document in the ``restaurants`` collection that
+matches a query filter. Select the :guilabel:`Struct` or :guilabel:`bson.D` 
+tab to see the corresponding code:
 
 .. tabs::
 
   .. tab :: Struct
     :tabid: structExample
 
-    The following code uses structs to find documents in the ``restaurants`` collection
-    in which the ``name`` is "Bagels N Buns", returning the first document
-    matched:
+    The following code uses structs to find and return the first document in the 
+    ``restaurants`` collection in which the value of ``name`` is "Bagels N Buns":
 
     .. io-code-block::
       :copyable: true
@@ -286,10 +284,9 @@ corresponding code:
   .. tab :: bson.D
     :tabid: bsonDExample
 
-    The following code uses a bson.D type to find documents in the ``restaurants`` collection
-    in which the ``name`` is "Bagels N Buns", returning the first document
-    matched:
-
+    The following code uses a bson.D type to find and return the first document 
+    in the ``restaurants`` collection in which the value of ``name`` is "Bagels N Buns":
+    
     .. io-code-block::
       :copyable: true
 
