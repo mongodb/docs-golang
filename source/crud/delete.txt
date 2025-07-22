@@ -200,10 +200,10 @@ existing documents in the ``restaurants`` collection. Select the
 
          Documents deleted: 2
 
-   .. tab:: BSON
+   .. tab:: bson.D
       :tabid: bsonExample
 
-      The following code uses BSON documents to define and delete documents in the
+      The following code uses a bson.D type to define and delete documents in the
       ``restaurants`` collection:
 
       .. input:: /includes/usage-examples/code-snippets/deleteManyBson.go
