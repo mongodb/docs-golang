@@ -1,4 +1,4 @@
-// Updates the first document that matches a query filter by using the Go driver
+// Updates documents that match a query filter by using the Go driver
 package main
 
 import (
@@ -12,23 +12,6 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo"
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
-
-// Defines a Restaurant struct as a model for documents in the "restaurants" collection
-type Restaurant struct {
-	ID            bson.ObjectID `bson:"_id"`
-	Name          string        `bson:"name"`
-	AverageRating float64       `bson:"avg_rating,omitempty"`
-}
-
-// Create a filter struct to specify the document to update
-type UpdateRestaurantFilter struct {
-	ID bson.ObjectID `bson:"_id"`
-}
-
-// Defines a RestaurantUpdate struct to specify the fields to update
-type RestaurantUpdate struct {
-	AverageRating float64 `bson:"avg_rating"`
-}
 
 func main() {
 	if err := godotenv.Load(); err != nil {
@@ -51,15 +34,14 @@ func main() {
 	}()
 
 	coll := client.Database("sample_restaurants").Collection("restaurants")
+	filter := bson.D{{"cuisine", "Pizza"}, {"borough", "Brooklyn"}}
 
-	id, _ := bson.ObjectIDFromHex("5eb3d668b31de5d588f4292b")
-	filter := UpdateRestaurantFilter{ID: id}
+	// Creates instructions to update the values of the "avg_rating" field
+	update := bson.D{{"$set", bson.D{{"avg_rating", 4.5}}}}
 
-	// Creates instructions to add the "avg_rating" field to documents
-	update := bson.D{{"$set", RestaurantUpdate{AverageRating: 4.4}}}
-
-	// Updates the first document that has the specified "_id" value
-	result, err := coll.UpdateOne(context.TODO(), filter, update)
+	// Updates documents in which the value of the "cuisine" field is "Pizza"
+	// and the value of the "borough" field is "Brooklyn"
+	result, err := coll.UpdateMany(context.TODO(), filter, update)
 	if err != nil {
 		panic(err)
 	}
@@ -68,5 +50,5 @@ func main() {
 	fmt.Printf("Documents updated: %v\n", result.ModifiedCount)
 
 	// When you run this file for the first time, it should print output similar to the following:
-	// Documents updated: 1
+	// Documents updated: 296
 }
