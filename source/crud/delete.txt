@@ -136,6 +136,43 @@ method:
    ``DeleteMany()``, the driver would delete the first of the two
    matched documents.
 
+DeleteOne() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/usage-examples/example-intro.rst
+
+The following example is a fully runnable file that finds and deletes an
+existing document in the ``restaurants`` collection. Select the
+:guilabel:`Struct` or :guilabel:`bson.D` tba to see the corresponding code:
+
+.. tabs::
+
+   .. tab:: Struct
+      :tabid: structExample
+
+      The following code uses structs to define and delete a document in the
+      ``restaurants`` collection:
+
+      .. input:: /includes/usage-examples/code-snippets/deleteOne.go
+         :language: go
+         :dedent:
+
+      .. output::
+         :language: none
+         :visible: false
+
+         Documents deleted: 1
+
+      .. input:: /includes/usage-examples/code-snippets/deleteOneBson.go
+         :language: go
+         :dedent:
+
+      .. output::
+         :language: none
+         :visible: false
+
+         Documents deleted: 1
+
 Additional Information
 ----------------------
 

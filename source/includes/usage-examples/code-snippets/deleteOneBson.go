@@ -13,17 +13,6 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
-// Defines a Restaurant struct as a model for documents in the "restaurants" collection
-type Restaurant struct {
-	ID   bson.ObjectID `bson:"_id"`
-	Name string        `bson:"name"`
-}
-
-// Creates a filter struct to specify the document to delete
-type DeleteRestaurantFilter struct {
-	Name string `bson:"name"`
-}
-
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found")
@@ -45,7 +34,7 @@ func main() {
 	}()
 
 	coll := client.Database("sample_restaurants").Collection("restaurants")
-	filter := DeleteRestaurantFilter{Name: "New Corner"}
+	filter := bson.D{{"name", "New Corner"}}
 
 	// Deletes the first document that has a "name" value of "New Corner"
 	result, err := coll.DeleteOne(context.TODO(), filter)
@@ -58,6 +47,6 @@ func main() {
 	// Prints the number of deleted documents
 	fmt.Printf("Documents deleted: %d\n", result.DeletedCount)
 
-	// When you run this file for the first time, it should print:
+	// When you run this file for the first time, it prints output similar to the following:
 	// Documents deleted: 1
 }
