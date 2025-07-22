@@ -13,6 +13,25 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
+// Defines a Restaurant struct as a model for documents in the "restaurants" collection
+type Restaurant struct {
+	ID            bson.ObjectID `bson:"_id"`
+	Name          string        `bson:"name"`
+	Cuisine       string        `bson:"cuisine"`
+	AverageRating float64       `bson:"avg_rating,omitempty"`
+}
+
+// Create a filter struct to specify the documents to update
+type UpdateManyRestaurantFilter struct {
+	Cuisine string `bson:"cuisine"`
+	Borough string `bson:"borough"`
+}
+
+// Defines a RestaurantUpdate struct to specify the fields to update
+type RestaurantUpdateMany struct {
+	AverageRating float64 `bson:"avg_rating"`
+}
+
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found")
@@ -33,15 +52,17 @@ func main() {
 		}
 	}()
 
-	// begin updatemany
-	coll := client.Database("sample_airbnb").Collection("listingsAndReviews")
-	filter := bson.D{{"address.market", "Sydney"}}
+	coll := client.Database("sample_restaurants").Collection("restaurants")
+	filter := UpdateManyRestaurantFilter{
+		Cuisine: "Pizza",
+		Borough: "Brooklyn",
+	}
 
-	// Creates instructions to update the values of the "price" field
-	update := bson.D{{"$mul", bson.D{{"price", 1.15}}}}
+	// Creates instructions to update the values of the "AverageRating" field
+	update := bson.D{{"$set", RestaurantUpdateMany{AverageRating: 4.5}}}
 
-	// Updates documents in which the value of the "address.market"
-	// field is "Sydney"
+	// Updates documents in which the value of the "Cuisine"
+	// field is "Pizza"
 	result, err := coll.UpdateMany(context.TODO(), filter, update)
 	if err != nil {
 		panic(err)
@@ -49,8 +70,7 @@ func main() {
 
 	// Prints the number of updated documents
 	fmt.Printf("Documents updated: %v\n", result.ModifiedCount)
-	// end updatemany
 
-	// When you run this file for the first time, it should print:
-	// Number of documents replaced: 609
+	// When you run this file for the first time, it should print output similar to the following:
+	// Documents updated: 296
 }
