@@ -12,7 +12,7 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
-// start-restaurant-struct
+// Defines the structure of a restaurant document
 type Restaurant struct {
 	Name         string
 	RestaurantId string        `bson:"restaurant_id,omitempty"`
@@ -21,8 +21,6 @@ type Restaurant struct {
 	Borough      string        `bson:"borough,omitempty"`
 	Grades       []interface{} `bson:"grades,omitempty"`
 }
-
-// end-restaurant-struct
 
 func main() {
 	if err := godotenv.Load(); err != nil {
@@ -45,7 +43,6 @@ func main() {
 	}()
 
 	// Inserts a sample document describing a restaurant into the collection
-	// begin insertOne
 	coll := client.Database("sample_restaurants").Collection("restaurants")
 	newRestaurant := Restaurant{Name: "8282", Cuisine: "Korean"}
 
@@ -53,11 +50,12 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	// end insertOne
 
 	// Prints the ID of the inserted document
 	fmt.Printf("Document inserted with ID: %s\n", result.InsertedID)
 
-	// When you run this file, it should print:
+	// When you run this file for the first time, it should print output similar
+	// to the following:
 	// Document inserted with ID: ObjectID("...")
+
 }
