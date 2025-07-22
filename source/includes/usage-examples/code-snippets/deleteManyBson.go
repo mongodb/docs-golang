@@ -13,20 +13,6 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
-// Defines a Restaurant struct as a model for documents in the "restaurants" collection
-type Restaurant struct {
-	ID      bson.ObjectID `bson:"_id"`
-	Name    string        `bson:"name"`
-	Borough string        `bson:"borough"`
-	Cuisine string        `bson:"cuisine"`
-}
-
-// Creates a filter struct to specify the documents to delete
-type DeleteRestaurantFilter struct {
-	Borough string `bson:"borough"`
-	Cuisine string `bson:"cuisine"`
-}
-
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found")
@@ -47,10 +33,11 @@ func main() {
 		}
 	}()
 
+	// begin deleteMany
 	coll := client.Database("sample_restaurants").Collection("restaurants")
-	filter := DeleteRestaurantFilter{
-		Borough: "Queens",
-		Cuisine: "German",
+	filter := bson.D{
+		{"borough", "Queens"},
+		{"cuisine", "German"},
 	}
 
 	// Deletes all documents that have a "runtime" value greater than 800
@@ -58,6 +45,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	// end deleteMany
 
 	// Prints the number of deleted documents
 	fmt.Printf("Documents deleted: %d\n", results.DeletedCount)

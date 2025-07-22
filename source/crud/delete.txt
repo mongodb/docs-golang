@@ -173,10 +173,49 @@ existing document in the ``restaurants`` collection. Select the
 
          Documents deleted: 1
 
-Additional Information
-----------------------
+DeleteMany() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For runnable examples of the delete operations, see the following usage
+.. include:: /includes/usage-examples/example-intro.rst
+
+The following example is a fully runnable file that finds and deletes multiple
+existing documents in the ``restaurants`` collection. Select the
+:guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding code:
+
+.. tabs::
+
+   .. tab:: Struct
+      :tabid: structExample
+
+      The following code uses structs to define and delete documents in the
+      ``restaurants`` collection:
+
+      .. input:: /includes/usage-examples/code-snippets/deleteMany.go
+         :language: go
+         :dedent:
+
+      .. output::
+         :language: none
+         :visible: false
+
+         Documents deleted: 2
+
+   .. tab:: BSON
+      :tabid: bsonExample
+
+      The following code uses BSON documents to define and delete documents in the
+      ``restaurants`` collection:
+
+      .. input:: /includes/usage-examples/code-snippets/deleteManyBson.go
+         :language: go
+         :dedent:
+
+      .. output::
+         :language: none
+         :visible: false
+
+         Documents deleted: 2
+
 examples:
 
 - :ref:`golang-delete-one`
