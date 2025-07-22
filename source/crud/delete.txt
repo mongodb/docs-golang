@@ -153,15 +153,18 @@ existing document in the ``restaurants`` collection. Select the
       The following code uses structs to define and delete a document in the
       ``restaurants`` collection:
 
-      .. input:: /includes/usage-examples/code-snippets/deleteOne.go
-         :language: go
-         :dedent:
+      .. io-code-block::
+         :copyable: true
 
-      .. output::
-         :language: none
-         :visible: false
+         .. input:: /includes/usage-examples/code-snippets/deleteOne.go
+            :language: go
+            :dedent:
 
-         Documents deleted: 1
+         .. output::
+            :language: none
+            :visible: false
+
+            Documents deleted: 1
 
    .. tab:: bson.D
       :tabid: bsonExample
@@ -169,15 +172,18 @@ existing document in the ``restaurants`` collection. Select the
       The following code uses a bson.D type to define and delete a document in the
       ``restaurants`` collection:
 
-      .. input:: /includes/usage-examples/code-snippets/deleteOneBson.go
-         :language: go
-         :dedent:
+      .. io-code-block::
+         :copyable: true
 
-      .. output::
-         :language: none
-         :visible: false
+         .. input:: /includes/usage-examples/code-snippets/deleteOneBson.go
+            :language: go
+            :dedent:
 
-         Documents deleted: 1
+         .. output::
+            :language: none
+            :visible: false
+
+            Documents deleted: 1
 
 DeleteMany() Example: Full File
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -196,15 +202,19 @@ existing documents in the ``restaurants`` collection. Select the
       The following code uses structs to define and delete documents in the
       ``restaurants`` collection:
 
-      .. input:: /includes/usage-examples/code-snippets/deleteMany.go
-         :language: go
-         :dedent:
+      .. io-code-block::
+         :copyable: true
 
-      .. output::
-         :language: none
-         :visible: false
+         .. input:: /includes/usage-examples/code-snippets/deleteMany.go
+            :language: go
+            :dedent:
+         
 
-         Documents deleted: 2
+         .. output::
+            :language: none
+            :visible: false
+
+            Documents deleted: 6
 
    .. tab:: bson.D
       :tabid: bsonExample
@@ -212,15 +222,18 @@ existing documents in the ``restaurants`` collection. Select the
       The following code uses a bson.D type to define and delete documents in the
       ``restaurants`` collection:
 
-      .. input:: /includes/usage-examples/code-snippets/deleteManyBson.go
-         :language: go
-         :dedent:
+      .. io-code-block::
+         :copyable: true
 
-      .. output::
-         :language: none
-         :visible: false
+         .. input:: /includes/usage-examples/code-snippets/deleteManyBson.go
+            :language: go
+            :dedent:
 
-         Documents deleted: 2
+         .. output::
+            :language: none
+            :visible: false
+
+            Documents deleted: 6
 
 Additional Information
 ----------------------
