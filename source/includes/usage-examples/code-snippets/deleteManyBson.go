@@ -33,19 +33,17 @@ func main() {
 		}
 	}()
 
-	// begin deleteMany
 	coll := client.Database("sample_restaurants").Collection("restaurants")
 	filter := bson.D{
 		{"borough", "Queens"},
 		{"cuisine", "German"},
 	}
 
-	// Deletes all documents that have a "runtime" value greater than 800
+	// Deletes all documents that have a "borough" value of "Queens" and a "cuisine" value of "German
 	results, err := coll.DeleteMany(context.TODO(), filter)
 	if err != nil {
 		panic(err)
 	}
-	// end deleteMany
 
 	// Prints the number of deleted documents
 	fmt.Printf("Documents deleted: %d\n", results.DeletedCount)

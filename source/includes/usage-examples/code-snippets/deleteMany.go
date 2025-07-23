@@ -53,7 +53,7 @@ func main() {
 		Cuisine: "German",
 	}
 
-	// Deletes all documents that have a "runtime" value greater than 800
+	// Deletes all documents that have a "Borough" value of "Queens" and a "Cuisine" value of "German"
 	results, err := coll.DeleteMany(context.TODO(), filter)
 	if err != nil {
 		panic(err)
