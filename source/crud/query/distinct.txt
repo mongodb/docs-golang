@@ -126,7 +126,7 @@ Retrieve Distinct Values Example: Full File
 This example performs the following actions on the ``restaurant``
 collection:
 
-- Matches documents in which the value of ``cuisine`` is ``"Tapas"``
+- Matches documents in which the value of the ``cuisine`` field is ``"Tapas"``
 - Returns distinct values of the ``borough`` field from the matched documents
 
 .. tabs::
