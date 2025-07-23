@@ -123,7 +123,7 @@ Retrieve Distinct Values Example: Full File
 
 .. include:: /includes/usage-examples/example-intro.rst
 
-The following example performs the following actions on the ``restaurant``
+This example performs the following actions on the ``restaurant``
 collection:
 
 - Matches documents in which the value of ``cuisine`` is ``"Tapas"``
