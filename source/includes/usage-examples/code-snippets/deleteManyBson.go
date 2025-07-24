@@ -13,20 +13,6 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
-// Defines a Restaurant struct as a model for documents in the "restaurants" collection
-type Restaurant struct {
-	ID      bson.ObjectID `bson:"_id"`
-	Name    string        `bson:"name"`
-	Borough string        `bson:"borough"`
-	Cuisine string        `bson:"cuisine"`
-}
-
-// Creates a filter struct to specify the documents to delete
-type DeleteRestaurantFilter struct {
-	Borough string `bson:"borough"`
-	Cuisine string `bson:"cuisine"`
-}
-
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found")
@@ -48,12 +34,12 @@ func main() {
 	}()
 
 	coll := client.Database("sample_restaurants").Collection("restaurants")
-	filter := DeleteRestaurantFilter{
-		Borough: "Queens",
-		Cuisine: "German",
+	filter := bson.D{
+		{"borough", "Queens"},
+		{"cuisine", "German"},
 	}
 
-	// Deletes all documents that have a "Borough" value of "Queens" and a "Cuisine" value of "German"
+	// Deletes all documents that have a "borough" value of "Queens" and a "cuisine" value of "German
 	results, err := coll.DeleteMany(context.TODO(), filter)
 	if err != nil {
 		panic(err)
