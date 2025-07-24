@@ -405,6 +405,7 @@ The following example is a fully runnable file that performs the following actio
       :dedent:
 
    .. output::
+      :visible: false
       :language: none
 
       Number of documents matched: 2
