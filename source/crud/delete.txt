@@ -143,7 +143,7 @@ DeleteOne() Example: Full File
 
 The following example is a fully runnable file that finds and deletes an
 existing document in the ``restaurants`` collection. Select the
-:guilabel:`Struct` or :guilabel:`bson.D` tba to see the corresponding code:
+:guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding code:
 
 .. tabs::
 
