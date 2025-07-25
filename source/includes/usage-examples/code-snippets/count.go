@@ -23,11 +23,6 @@ type Restaurant struct {
 	Grades       interface{}
 }
 
-// Creates a filter struct to use for the query
-type RestaurantCuisineFilter struct {
-	Cuisine string
-}
-
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found")
@@ -50,9 +45,9 @@ func main() {
 
 	coll := client.Database("sample_restaurants").Collection("restaurants")
 
-	// Specifies a filter to match documents where the "cuisine"
+	// Specifies a filter to match documents where the "cuisine" field
 	// has a value of "American"
-	filter := RestaurantCuisineFilter{Cuisine: "American"}
+	filter := bson.D{{"cuisine", "American"}}
 
 	// Retrieves and prints the estimated number of documents in the collection
 	estCount, estCountErr := coll.EstimatedDocumentCount(context.TODO())
@@ -60,8 +55,7 @@ func main() {
 		panic(estCountErr)
 	}
 
-	// Retrieves and prints the number of documents in the collection
-	// that match the filter
+	// Retrieves and prints the number of matching documents in the collection
 	count, err := coll.CountDocuments(context.TODO(), filter)
 	if err != nil {
 		panic(err)
