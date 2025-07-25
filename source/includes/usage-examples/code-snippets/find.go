@@ -25,11 +25,6 @@ type Restaurant struct {
 	Grades       interface{}
 }
 
-// Creates a filter struct to use for the query
-type RestaurantCuisineFilter struct {
-	Cuisine string
-}
-
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found")
@@ -54,7 +49,7 @@ func main() {
 
 	// Creates a query filter to match documents in which the "cuisine"
 	// is "Italian"
-	filter := RestaurantCuisineFilter{Cuisine: "Italian"}
+	filter := bson.D{{"cuisine", "Italian"}}
 
 	// Retrieves documents that match the query filter
 	cursor, err := coll.Find(context.TODO(), filter)
@@ -70,7 +65,6 @@ func main() {
 
 	// Prints the results of the find operation as structs
 	for _, result := range results {
-		cursor.Decode(&result)
 		output, err := json.MarshalIndent(result, "", "    ")
 		if err != nil {
 			panic(err)

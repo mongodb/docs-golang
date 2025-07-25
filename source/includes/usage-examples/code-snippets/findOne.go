@@ -25,11 +25,6 @@ type Restaurant struct {
 	Grades       []interface{}
 }
 
-// Creates a filter struct to use for the query
-type RestaurantNameFilter struct {
-	Name string
-}
-
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found")
@@ -54,7 +49,7 @@ func main() {
 
 	// Creates a query filter to match documents in which the "name" is
 	// "Bagels N Buns"
-	filter := RestaurantNameFilter{Name: "Bagels N Buns"}
+	filter := bson.D{{"name", "Bagels N Buns"}}
 
 	// Retrieves the first matching document
 	var result Restaurant

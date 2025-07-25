@@ -101,58 +101,25 @@ Find Multiple Documents Example: Full File
 
 The following example finds all documents in the ``restaurants`` collection
 in which the value of ``cuisine`` is ``"Italian"``. The example returns a cursor that
-references the matched documents and unpacks the documents into a slice.
-Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding code:
+references the matched documents and unpacks the documents into a slice:
 
-.. tabs::
+.. io-code-block::
+  :copyable: true
 
-  .. tab :: Struct
-    :tabid: structExample
+  .. input:: /includes/usage-examples/code-snippets/find.go
+    :language: go
+    :dedent:
 
-    The following code uses structs to find and return all documents in the 
-    ``restaurants`` collection in which the value of ``cuisine`` is "Italian":
+  .. output::
+    :language: none
+    :visible: false
 
-    .. io-code-block::
-      :copyable: true
-
-      .. input:: /includes/usage-examples/code-snippets/find.go
-        :language: go
-        :dedent:
-
-      .. output::
-        :language: none
-        :visible: false
-
-        // results truncated
-        ...
-        { ... , "Name" : "Epistrophy Cafe", "RestaurantId": "41117553", "Cuisine" : "Italian", ... },
-        { ... , "Name" : "Remi", "RestaurantId": "41118090", "Cuisine" : "Italian", ... },
-        { ... , "Name" : "Sant Ambroeus", "RestaurantId": "41120682", "Cuisine" : "Italian", ... },
-        ...
-
-  .. tab :: bson.D
-    :tabid: bsonDExample
-
-    The following code uses a bson.D type to find and return all documents in 
-    the ``restaurants`` collection in which the value of ``cuisine`` is "Italian":
-
-    .. io-code-block::
-      :copyable: true
-
-      .. input:: /includes/usage-examples/code-snippets/findBsonD.go
-        :language: go
-        :dedent:
-
-      .. output::
-        :language: none
-        :visible: false
-
-        // results truncated
-        ...
-        { ... , "Name" : "Epistrophy Cafe", "RestaurantId": "41117553", "Cuisine" : "Italian", ... },
-        { ... , "Name" : "Remi", "RestaurantId": "41118090", "Cuisine" : "Italian", ... },
-        { ... , "Name" : "Sant Ambroeus", "RestaurantId": "41120682", "Cuisine" : "Italian", ... },
-        ...
+    // results truncated
+    ...
+    { ... , "Name" : "Epistrophy Cafe", "RestaurantId": "41117553", "Cuisine" : "Italian", ... },
+    { ... , "Name" : "Remi", "RestaurantId": "41118090", "Cuisine" : "Italian", ... },
+    { ... , "Name" : "Sant Ambroeus", "RestaurantId": "41120682", "Cuisine" : "Italian", ... },
+    ...
 
 .. _golang-find-one-example:
 
@@ -247,67 +214,30 @@ Find One Document Example: Full File
 
 .. include:: /includes/usage-examples/example-intro.rst
 
-The following example finds a document in the ``restaurants`` collection that
-matches a query filter. Select the :guilabel:`Struct` or :guilabel:`bson.D` 
-tab to see the corresponding code:
+The following example finds and returns the first document in the 
+``restaurants`` collection in which the value of ``name`` is ``"Bagels N Buns"``:
 
-.. tabs::
+.. io-code-block::
+  :copyable: true
 
-  .. tab :: Struct
-    :tabid: structExample
+  .. input:: /includes/usage-examples/code-snippets/findOne.go
+    :language: go
+    :dedent:
 
-    The following code uses structs to find and return the first document in the 
-    ``restaurants`` collection in which the value of ``name`` is "Bagels N Buns":
+  .. output::
+    :language: none
+    :visible: false
 
-    .. io-code-block::
-      :copyable: true
-
-      .. input:: /includes/usage-examples/code-snippets/findOne.go
-        :language: go
-        :dedent:
-
-      .. output::
-        :language: none
-        :visible: false
-
-        // results truncated
-        {
-            "ID": "5eb3d668b31de5d588f42950",
-            "Name": "Bagels N Buns",
-            "RestaurantId": "40363427"
-            "Address": [...],
-            "Borough": "Staten Island",
-            "Cuisine": "Delicatessen",
-            "Grades": [...]
-        }
-
-  .. tab :: bson.D
-    :tabid: bsonDExample
-
-    The following code uses a bson.D type to find and return the first document 
-    in the ``restaurants`` collection in which the value of ``name`` is "Bagels N Buns":
-    
-    .. io-code-block::
-      :copyable: true
-
-      .. input:: /includes/usage-examples/code-snippets/findOneBsonD.go
-        :language: go
-        :dedent:
-
-      .. output::
-        :language: none
-        :visible: false
-
-        // results truncated
-        {
-            "ID": "5eb3d668b31de5d588f42950",
-            "Name": "Bagels N Buns",
-            "RestaurantId": "40363427"
-            "Address": [...],
-            "Borough": "Staten Island",
-            "Cuisine": "Delicatessen",
-            "Grades": [...]
-        }
+    // results truncated
+    {
+        "ID": "5eb3d668b31de5d588f42950",
+        "Name": "Bagels N Buns",
+        "RestaurantId": "40363427"
+        "Address": [...],
+        "Borough": "Staten Island",
+        "Cuisine": "Delicatessen",
+        "Grades": [...]
+    }
 
 .. _golang-retrieve-options:
 
