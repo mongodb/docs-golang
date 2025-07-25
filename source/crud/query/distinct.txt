@@ -129,51 +129,20 @@ collection:
 - Matches documents in which the value of the ``cuisine`` field is ``"Tapas"``
 - Returns distinct values of the ``borough`` field from the matched documents
 
-.. tabs::
+.. io-code-block::
+   :copyable: true
 
-   .. tab:: Struct
-      :tabid: structExample
-      
-      The following code uses a struct to retrieve distinct values of the
-      ``borough`` field for documents in the ``restaurants`` collection that match
-      the specified filter:
+   .. input:: /includes/usage-examples/code-snippets/distinct.go
+      :language: go
+      :dedent:
 
-      .. io-code-block::
-         :copyable: true
+   .. output::
+      :language: none
+      :visible: false
 
-         .. input:: /includes/usage-examples/code-snippets/distinct.go
-            :language: go
-            :dedent:
-
-         .. output::
-            :language: none
-            :visible: false
-
-            Brooklyn
-            Manhattan
-            Queens
-
-   .. tab:: bson.D
-      :tabid: bsonDExample
-
-      The following code uses a bson.D type to retrieve distinct values of the
-      ``borough`` field for documents in the ``restaurants`` collection that match
-      the specified filter:
-
-      .. io-code-block::
-         :copyable: true
-
-         .. input:: /includes/usage-examples/code-snippets/distinctBsonD.go
-            :language: go
-            :dedent:
-
-         .. output::
-            :language: none
-            :visible: false
-
-            Brooklyn
-            Manhattan
-            Queens
+      Brooklyn
+      Manhattan
+      Queens
 
 Additional Information
 ----------------------

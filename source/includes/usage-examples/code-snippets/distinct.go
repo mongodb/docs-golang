@@ -23,11 +23,6 @@ type Restaurant struct {
 	Grades       interface{}
 }
 
-// Creates a filter struct to use for the query
-type RestaurantCuisineFilter struct {
-	Cuisine string
-}
-
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found")
@@ -50,7 +45,7 @@ func main() {
 
 	// Filters the collection for documents where the value of cuisine is "Tapas"
 	coll := client.Database("sample_restaurants").Collection("restaurants")
-	filter := RestaurantCuisineFilter{Cuisine: "Tapas"}
+	filter := bson.D{{"cuisine", "Tapas"}}
 
 	// Retrieves the distinct values of the "borough" field in documents
 	// that match the filter
