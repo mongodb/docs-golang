@@ -62,8 +62,8 @@ consist of the ``Find()`` and ``FindOne()`` methods.
 
 .. _golang-find-example:
 
-Find All Documents
-~~~~~~~~~~~~~~~~~~
+Find Multiple Documents
+~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``Find()`` method expects you to pass a ``Context`` type and a
 query filter. The method returns *all* documents that match the filter
@@ -93,6 +93,33 @@ the ``Find()`` method, which performs the following actions:
       {"item":"Masala","rating":8,"date_ordered":"2009-12-01T05:00:00Z"}
 
 To learn how to access data by using a cursor, see the :ref:`golang-cursor` guide.
+
+Find Multiple Documents Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/usage-examples/example-intro.rst
+
+The following example finds all documents in the ``restaurants`` collection
+in which the value of ``cuisine`` is ``"Italian"``. The example returns a cursor that
+references the matched documents and unpacks the documents into a slice:
+
+.. io-code-block::
+  :copyable: true
+
+  .. input:: /includes/usage-examples/code-snippets/find.go
+    :language: go
+    :dedent:
+
+  .. output::
+    :language: none
+    :visible: false
+
+    // results truncated
+    ...
+    { ... , "Name" : "Epistrophy Cafe", "RestaurantId": "41117553", "Cuisine" : "Italian", ... },
+    { ... , "Name" : "Remi", "RestaurantId": "41118090", "Cuisine" : "Italian", ... },
+    { ... , "Name" : "Sant Ambroeus", "RestaurantId": "41120682", "Cuisine" : "Italian", ... },
+    ...
 
 .. _golang-find-one-example:
 
@@ -181,6 +208,36 @@ as parameters to the ``FindOne()`` method to perform the following actions:
    might differ from the preceding code example. For more information
    about the ``_id`` field, see the :ref:`_id Field <golang-insert-id>`
    section of the Insert a Document page.
+
+Find One Document Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/usage-examples/example-intro.rst
+
+The following example finds and returns the first document in the 
+``restaurants`` collection in which the value of ``name`` is ``"Bagels N Buns"``:
+
+.. io-code-block::
+  :copyable: true
+
+  .. input:: /includes/usage-examples/code-snippets/findOne.go
+    :language: go
+    :dedent:
+
+  .. output::
+    :language: none
+    :visible: false
+
+    // results truncated
+    {
+        "ID": "5eb3d668b31de5d588f42950",
+        "Name": "Bagels N Buns",
+        "RestaurantId": "40363427"
+        "Address": [...],
+        "Borough": "Staten Island",
+        "Cuisine": "Delicatessen",
+        "Grades": [...]
+    }
 
 .. _golang-retrieve-options:
 
@@ -330,20 +387,12 @@ the MongoDB server manual page on :manual:`Aggregation
 Additional Information
 ----------------------
 
-For runnable examples of the find operations, see the following usage
-examples:
-
-- :ref:`golang-find-one`
-- :ref:`golang-find-multiple`
-
 To learn more about the operations mentioned, see the following
 guides:
 
 - :ref:`golang-query-document`
 - :ref:`golang-cursor`
-- :ref:`golang-skip`
-- :ref:`golang-sort-results`
-- :ref:`golang-limit`
+- :ref:`Specify Documents to Return <golang-specify-documents-to-return>`
 - :ref:`golang-project`
 - :ref:`golang-aggregation`
 - :ref:`golang-collations`
