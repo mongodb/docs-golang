@@ -131,47 +131,18 @@ collection:
 - Matches a document in which the value of ``name`` is "Rizzo's Fine Pizza"
 - Replaces the matched document with a new document
 
-Select the :guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding code:
+.. io-code-block::
+   :copyable: true
 
-.. tabs::
+   .. input:: /includes/usage-examples/code-snippets/replace.go
+      :language: go
+      :dedent:
 
-   .. tab :: Struct
-      :tabid: structExample
+   .. output::
+      :language: none
+      :visible: false 
 
-      The following code uses structs to replace a document, in which the value of
-      ``name`` is "Rizzo's Fine Pizza", with a new document:
-
-      .. io-code-block::
-         :copyable: true
-
-         .. input:: /includes/usage-examples/code-snippets/replace.go
-            :language: go
-            :dedent:
-
-         .. output::
-            :language: none
-            :visible: false 
-
-            Number of documents replaced: 1
-
-   .. tab :: bson.D
-      :tabid: bsonDExample
-
-      The following code uses a bson.D type to replace a document, in which the value of
-      ``name`` is "Rizzo's Fine Pizza", with a new document:
-
-      .. io-code-block::
-         :copyable: true
-
-         .. input:: /includes/usage-examples/code-snippets/replaceBsonD.go
-            :language: go
-            :dedent:
-
-         .. output::
-            :language: none
-            :visible: false 
-
-            Number of documents replaced: 1
+      Number of documents replaced: 1
 
 Expected Result
 ~~~~~~~~~~~~~~~
