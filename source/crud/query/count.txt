@@ -237,6 +237,30 @@ The following example estimates the number of documents in the
 
       Estimated number of documents in the tea collection: 9
 
+Count Documents Example: Full File 
+----------------------------------
+
+.. include:: /includes/usage-examples/example-intro.rst
+
+This example performs the following on the ``restaurants`` collection:
+
+- Approximates the number of documents in the collection
+- Counts the number of documents in which the value of the ``cuisine`` field is ``"American"``
+
+.. io-code-block::
+   :copyable: true
+
+   .. input:: /includes/usage-examples/code-snippets/count.go
+      :language: go
+      :dedent:
+
+   .. output::
+      :language: none
+      :visible: false 
+
+      Estimated number of documents in the restaurants collection: 25359
+      Number of restaurants with American cuisine: 6183
+
 Additional Information
 ----------------------
 
