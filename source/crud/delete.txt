@@ -136,14 +136,54 @@ method:
    ``DeleteMany()``, the driver would delete the first of the two
    matched documents.
 
+DeleteOne() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/usage-examples/example-intro.rst
+
+The following example is a fully runnable file that finds and deletes an
+existing document in the ``restaurants`` collection. 
+
+.. io-code-block::
+         :copyable: true
+
+         .. input:: /includes/usage-examples/code-snippets/deleteOne.go
+            :language: go
+            :dedent:
+
+         .. output::
+            :language: none
+            :visible: false
+
+            Documents deleted: 1
+
+DeleteMany() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/usage-examples/example-intro.rst
+
+The following example is a fully runnable file that performs the following
+actions on the ``restaurants`` collection:
+
+- Matches and deletes documents where the ``cuisine`` field value is ``German``
+  and the ``borough`` field value is ``Queens``
+- Deletes all matching documents
+
+.. io-code-block::
+   :copyable: true
+
+   .. input:: /includes/usage-examples/code-snippets/deleteMany.go
+      :language: go
+      :dedent:
+
+   .. output::
+      :language: none
+      :visible: false
+
+      Documents deleted: 6
+
 Additional Information
 ----------------------
-
-For runnable examples of the delete operations, see the following usage
-examples:
-
-- :ref:`golang-delete-one`
-- :ref:`golang-delete-many`
 
 To learn more about performing the operations mentioned, see the
 following guides:
@@ -160,7 +200,7 @@ API Documentation
 ~~~~~~~~~~~~~~~~~
 
 To learn more about any of the methods or types discussed in this
-guide, see the following API Documentation:
+guide, see the following API documentation:
 
 - `DeleteOne() <{+api+}/mongo#Collection.DeleteOne>`__
 - `DeleteMany() <{+api+}/mongo#Collection.DeleteMany>`__
