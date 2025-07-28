@@ -209,94 +209,49 @@ UpdateOne() Example: Full File
 
 .. include:: /includes/usage-examples/example-intro.rst
 
-The following example is a fully runnable file that finds and updates an
-existing document in the ``restaurants`` collection. Select the
-:guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding code:
+The following example is a fully runnable file that performs the following
+actions on the ``restaurants`` collection:
 
-.. tabs::
+- Finds a document with a specific ``_id``
+- Updates the ``avg_rating`` field value of the matched document
 
-   .. tab:: Struct
-      :tabid: structExample
+.. io-code-block::
+   :copyable: true
 
-      The following code uses a struct to define the filter and update a document in the ``restuarants`` collection:
+   .. input:: /includes/usage-examples/code-snippets/updateOne.go
+      :language: go
+      :dedent:
 
-      .. io-code-block::
-         :copyable: true
+   .. output::
+      :language: none
+      :visible: false
 
-         .. input:: /includes/usage-examples/code-snippets/updateOne.go
-            :language: go
-            :dedent:
-
-         .. output::
-            :language: none
-            :visible: false
-
-            Documents updated: 1
-
-   .. tab:: bson.D
-      :tabid: bsonDExample
-
-      The following code uses a ``bson.D`` type to define the filter and update a document in the ``restuarants`` collection:
-
-      .. io-code-block::
-         :copyable: true
-
-         .. input:: /includes/usage-examples/code-snippets/updateOneBson.go   
-            :language: go
-            :dedent:
-
-         .. output::
-            :language: none
-            :visible: false  
-
-            Documents updated: 1
+      Documents updated: 1
 
 UpdateMany() Example: Full File
 -------------------------------
 
 .. include:: /includes/usage-examples/example-intro.rst
 
-The following example is a fully runnable file that finds and updates multiple
-existing documents in the ``restaurants`` collection. Select the
-:guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding code:
+The following example is a fully runnable file that performs the following
+actions on the ``restaurants`` collection:
 
-.. tabs::
+- Finds documents with the ``cuisine`` field value of ``"Pizza"`` and the
+  ``borough`` field value of ``"Brooklyn"``
+- Updates the ``avg_rating`` field value of the matched documents
 
-   .. tab:: Struct
-      :tabid: structExample
+.. io-code-block::
+   :copyable: true
 
-      The following code uses a struct to define the filter and update multiple documents in the ``restuarants`` collection:
+   .. input:: /includes/usage-examples/code-snippets/updateMany.go
+      :language: go
+      :dedent:
 
-      .. io-code-block::
-         :copyable: true
+   .. output::
+      :language: none
+      :visible: false
 
-         .. input:: /includes/usage-examples/code-snippets/updateMany.go
-            :language: go
-            :dedent:
-
-         .. output::
-            :language: none
-            :visible: false
-
-            Documents updated: 296
-
-   .. tab:: bson.D
-      :tabid: bsonDExample
-
-      The following code uses a ``bson.D`` type to define the filter and update multiple documents in the ``restuarants`` collection:
-
-      .. io-code-block::
-         :copyable: true
-
-         .. input:: /includes/usage-examples/code-snippets/updateManyBson.go
-            :language: go
-            :dedent:
-
-         .. output::
-            :language: none
-            :visible: false  
-
-            Documents updated: 296
+      Documents updated: 296
 
 Additional Information
 ----------------------
