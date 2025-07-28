@@ -116,10 +116,36 @@ of the ``department`` field by using the ``Distinct()`` method:
 
       [English Geology]
 
+.. _golang-distinct-usage-example:
+
+Retrieve Distinct Values Example: Full File
+-------------------------------------------
+
+.. include:: /includes/usage-examples/example-intro.rst
+
+This example performs the following actions on the ``restaurant``
+collection:
+
+- Matches documents in which the value of the ``cuisine`` field is ``"Tapas"``
+- Returns distinct values of the ``borough`` field from the matched documents
+
+.. io-code-block::
+   :copyable: true
+
+   .. input:: /includes/usage-examples/code-snippets/distinct.go
+      :language: go
+      :dedent:
+
+   .. output::
+      :language: none
+      :visible: false
+
+      Brooklyn
+      Manhattan
+      Queens
+
 Additional Information
 ----------------------
-
-For a runnable example that retrieves distinct values, see :ref:`golang-distinct-usage-example`.
 
 To learn about constructing a query filter, see :ref:`golang-query-document`.
 
