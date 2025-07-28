@@ -20,16 +20,6 @@ type Restaurant struct {
 	AverageRating float64       `bson:"avg_rating,omitempty"`
 }
 
-// Create a filter struct to specify the document to update
-type UpdateRestaurantFilter struct {
-	ID bson.ObjectID `bson:"_id"`
-}
-
-// Defines a RestaurantUpdate struct to specify the fields to update
-type RestaurantUpdate struct {
-	AverageRating float64 `bson:"avg_rating"`
-}
-
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found")
@@ -53,10 +43,10 @@ func main() {
 	coll := client.Database("sample_restaurants").Collection("restaurants")
 
 	id, _ := bson.ObjectIDFromHex("5eb3d668b31de5d588f4292b")
-	filter := UpdateRestaurantFilter{ID: id}
+	filter := bson.D{{"_id", id}}
 
 	// Creates instructions to add the "avg_rating" field to documents
-	update := bson.D{{"$set", RestaurantUpdate{AverageRating: 4.4}}}
+	update := bson.D{{"$set", bson.D{{"avg_rating", 4.4}}}}
 
 	// Updates the first document that has the specified "_id" value
 	result, err := coll.UpdateOne(context.TODO(), filter, update)

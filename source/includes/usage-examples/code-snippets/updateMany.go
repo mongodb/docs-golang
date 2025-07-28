@@ -21,17 +21,6 @@ type Restaurant struct {
 	AverageRating float64       `bson:"avg_rating,omitempty"`
 }
 
-// Create a filter struct to specify the documents to update
-type UpdateManyRestaurantFilter struct {
-	Cuisine string `bson:"cuisine"`
-	Borough string `bson:"borough"`
-}
-
-// Defines a RestaurantUpdate struct to specify the fields to update
-type RestaurantUpdateMany struct {
-	AverageRating float64 `bson:"avg_rating"`
-}
-
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found")
@@ -53,13 +42,10 @@ func main() {
 	}()
 
 	coll := client.Database("sample_restaurants").Collection("restaurants")
-	filter := UpdateManyRestaurantFilter{
-		Cuisine: "Pizza",
-		Borough: "Brooklyn",
-	}
+	filter := bson.D{{"cuisine", "Pizza"}, {"borough", "Brooklyn"}}
 
-	// Creates instructions to update the values of the "AverageRating" field
-	update := bson.D{{"$set", RestaurantUpdateMany{AverageRating: 4.5}}}
+	// Creates instructions to update the values of the "avg_rating" field
+	update := bson.D{{"$set", bson.D{{"avg_rating", 4.5}}}}
 
 	// Updates documents in which the value of the "Cuisine"
 	// field is "Pizza"
