@@ -120,6 +120,44 @@ and the immutable ``_id`` field as follows:
       "quantity" : 107
    }
 
+Replace One Document Example: Full File
+---------------------------------------
+
+.. include:: /includes/usage-examples/example-intro.rst
+
+This example performs the following actions on the ``restaurants``
+collection:
+
+- Matches a document in which the value of ``name`` is ``"Rizzo's Fine Pizza"``
+- Replaces the matched document with a new document
+
+.. io-code-block::
+   :copyable: true
+
+   .. input:: /includes/usage-examples/code-snippets/replace.go
+      :language: go
+      :dedent:
+
+   .. output::
+      :language: none
+      :visible: false 
+
+      Number of documents replaced: 1
+
+Expected Result
+~~~~~~~~~~~~~~~
+
+After you run the full example, you can find the following replaced document 
+in the ``restaurants`` collection:
+
+.. code-block:: none
+
+   {
+      "_id" : ObjectId("..."),
+      "name" : "Rizzo's Pizza",
+      "cuisine" : "Pizza/American"
+   }
+
 API Documentation
 -----------------
 
