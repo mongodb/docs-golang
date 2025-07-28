@@ -35,7 +35,6 @@ func main() {
 	}()
 
 	{
-		// begin runCommand
 		db := client.Database("sample_restaurants")
 
 		// Retrieves statistics about the specified database
@@ -49,7 +48,6 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		// end runCommand
 
 		/* When you run this file, it should print something similar to the following:
 		{
