@@ -47,10 +47,10 @@ func main() {
 
 	// Creates write models that specify replace and update operations
 	models := []mongo.WriteModel{
-		mongo.NewReplaceOneModel().SetFilter(bson.D{{"name", "Cafe Tomato"}}).
-			SetReplacement(Restaurant{Name: "Cafe Zucchini", Cuisine: "French"}),
-		mongo.NewUpdateOneModel().SetFilter(bson.D{{"name", "Cafe Zucchini"}}).
-			SetUpdate(bson.D{{"$set", bson.D{{"name", "Zucchini Land"}}}}),
+		mongo.NewReplaceOneModel().SetFilter(bson.D{{"name", "Towne Cafe"}}).
+			SetReplacement(Restaurant{Name: "New Towne Cafe"}),
+		mongo.NewUpdateOneModel().SetFilter(bson.D{{"name", "New Towne Cafe"}}).
+			SetUpdate(bson.D{{"$set", bson.D{{"cuisine", "French"}}}}),
 	}
 
 	// Specifies that the bulk write is ordered
