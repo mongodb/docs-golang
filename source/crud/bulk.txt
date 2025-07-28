@@ -392,10 +392,11 @@ Bulk Operation Example: Full File
 
 The following example is a fully runnable file that performs the following actions:
 
-- Matches a document in which the ``name`` field value is ``"Cafe Tomato"`` and
-  replaces it with a new document
-- Matches a document in which the ``name`` field value is ``"Cafe Zucchini"``
-  and updates the value to ``"Zucchini Land"``
+- Matches a document in which the ``name`` field value is ``"Towne Cafe"`` and
+  replaces it with a new document with the name field value set to ``"New Towne
+  Cafe"``
+- Matches a document in which the ``name`` field value is ``"New Towne Cafe"``
+  and updates the ``cuisine`` field value to ``"French"``
 
 .. io-code-block::
    :copyable: true
