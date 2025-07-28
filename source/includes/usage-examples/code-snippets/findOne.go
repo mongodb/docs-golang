@@ -14,7 +14,7 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
-// start-restaurant-struct
+// Creates a Restaurant struct as a model for documents in the restaurants collection
 type Restaurant struct {
 	ID           bson.ObjectID `bson:"_id"`
 	Name         string
@@ -24,8 +24,6 @@ type Restaurant struct {
 	Borough      string
 	Grades       []interface{}
 }
-
-// end-restaurant-struct
 
 func main() {
 	if err := godotenv.Load(); err != nil {
@@ -47,7 +45,6 @@ func main() {
 		}
 	}()
 
-	// begin findOne
 	coll := client.Database("sample_restaurants").Collection("restaurants")
 
 	// Creates a query filter to match documents in which the "name" is
@@ -66,7 +63,6 @@ func main() {
 		}
 		panic(err)
 	}
-	// end findOne
 
 	output, err := json.MarshalIndent(result, "", "    ")
 	if err != nil {
