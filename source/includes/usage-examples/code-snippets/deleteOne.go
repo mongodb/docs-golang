@@ -15,13 +15,12 @@ import (
 
 // Defines a Restaurant struct as a model for documents in the "restaurants" collection
 type Restaurant struct {
-	ID   bson.ObjectID `bson:"_id"`
-	Name string        `bson:"name"`
-}
-
-// Creates a filter struct to specify the document to delete
-type DeleteRestaurantFilter struct {
-	Name string `bson:"name"`
+	ID      bson.ObjectID `bson:"_id"`
+	Name    string        `bson:"name"`
+	Cuisine string        `bson:"cuisine,omitempty"`
+	Address interface{}   `bson:"address,omitempty"`
+	Borough string        `bson:"borough,omitempty"`
+	Grades  []interface{} `bson:"grades,omitempty"`
 }
 
 func main() {
@@ -45,7 +44,7 @@ func main() {
 	}()
 
 	coll := client.Database("sample_restaurants").Collection("restaurants")
-	filter := DeleteRestaurantFilter{Name: "New Corner"}
+	filter := bson.D{{"name", "New Corner"}}
 
 	// Deletes the first document that has a "name" value of "New Corner"
 	result, err := coll.DeleteOne(context.TODO(), filter)

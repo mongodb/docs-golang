@@ -142,40 +142,12 @@ DeleteOne() Example: Full File
 .. include:: /includes/usage-examples/example-intro.rst
 
 The following example is a fully runnable file that finds and deletes an
-existing document in the ``restaurants`` collection. Select the
-:guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding code:
+existing document in the ``restaurants`` collection. 
 
-.. tabs::
-
-   .. tab:: Struct
-      :tabid: structExample
-
-      The following code uses structs to define and delete a document in the
-      ``restaurants`` collection:
-
-      .. io-code-block::
+.. io-code-block::
          :copyable: true
 
          .. input:: /includes/usage-examples/code-snippets/deleteOne.go
-            :language: go
-            :dedent:
-
-         .. output::
-            :language: none
-            :visible: false
-
-            Documents deleted: 1
-
-   .. tab:: bson.D
-      :tabid: bsonExample
-
-      The following code uses a bson.D type to define and delete a document in the
-      ``restaurants`` collection:
-
-      .. io-code-block::
-         :copyable: true
-
-         .. input:: /includes/usage-examples/code-snippets/deleteOneBson.go
             :language: go
             :dedent:
 
@@ -190,50 +162,25 @@ DeleteMany() Example: Full File
 
 .. include:: /includes/usage-examples/example-intro.rst
 
-The following example is a fully runnable file that finds and deletes multiple
-existing documents in the ``restaurants`` collection. Select the
-:guilabel:`Struct` or :guilabel:`bson.D` tab to see the corresponding code:
+The following example is a fully runnable file that performs the following
+actions on the ``restaurants`` collection:
 
-.. tabs::
+- Matches and deletes documents where the ``cuisine`` field value is ``German``
+  and the ``borough`` field value is ``Queens``
+- Deletes all matching documents
 
-   .. tab:: Struct
-      :tabid: structExample
+.. io-code-block::
+   :copyable: true
 
-      The following code uses structs to define and delete documents in the
-      ``restaurants`` collection:
+   .. input:: /includes/usage-examples/code-snippets/deleteMany.go
+      :language: go
+      :dedent:
 
-      .. io-code-block::
-         :copyable: true
+   .. output::
+      :language: none
+      :visible: false
 
-         .. input:: /includes/usage-examples/code-snippets/deleteMany.go
-            :language: go
-            :dedent:
-         
-
-         .. output::
-            :language: none
-            :visible: false
-
-            Documents deleted: 6
-
-   .. tab:: bson.D
-      :tabid: bsonExample
-
-      The following code uses a bson.D type to define and delete documents in the
-      ``restaurants`` collection:
-
-      .. io-code-block::
-         :copyable: true
-
-         .. input:: /includes/usage-examples/code-snippets/deleteManyBson.go
-            :language: go
-            :dedent:
-
-         .. output::
-            :language: none
-            :visible: false
-
-            Documents deleted: 6
+      Documents deleted: 6
 
 Additional Information
 ----------------------
