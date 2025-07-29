@@ -10,50 +10,59 @@ Use Struct Tags
 You can specify the way that the Go Driver converts Go
 structs to :manual:`BSON </reference/bson-types/>` by using struct tags.
 
-Example
--------
-.. TODO: Add the Usage Examples intro include once it is merged
+Example: Full File
+------------------
 
-The following code declares a struct of type ``BlogPost``. This struct
-contains a struct tag that maps the ``WordCount`` field to the BSON
-field name ``word_count``. By default, the driver marshals the other
-fields as the lowercase of the struct field name:
+.. include:: /includes/usage-examples/example-intro.rst
 
-.. literalinclude:: /includes/usage-examples/code-snippets/struct-tag.go
-   :start-after: begin struct
-   :end-before: end struct
+This example declares a struct of type ``Restaurant`` with the
+following struct tags:
+
+- A struct tag that maps the ``RestaurantId`` field to the BSON
+  field name ``restaurant_id``. By default, the driver marshals the other
+  fields as the lowercase of the struct field name.
+
+- The ``omitempty`` struct tag omits the corresponding field from the 
+  inserted document when left empty.
+
+The following code shows the ``Restaurant`` struct used in the example:
+
+.. literalinclude:: /includes/usage-examples/code-snippets/structTagStruct.go
    :language: go
-   :dedent:
 
-The following example creates a ``BlogPost`` instance and inserts it
-into the ``posts`` collection. During the insert operation, the driver
-interprets the struct tag to marshal the ``WordCount``
-struct field as ``word_count``:
+The following example creates a ``Restaurant`` instance and inserts it
+into the ``restaurants`` collection. During the insert operation, the driver
+interprets the struct tags to marshal the ``RestaurantId``
+struct field as ``restaurant_id`` and omits fields that are left empty in the 
+sample document:
 
-.. literalinclude:: /includes/usage-examples/code-snippets/struct-tag.go
-   :start-after: begin create and insert
-   :end-before: end create and insert
-   :language: go
-   :dedent:
+.. io-code-block::
+   :copyable: true
 
-View a `fully runnable example. <{+example+}/struct-tag.go>`__
+   .. input:: /includes/usage-examples/code-snippets/structTag.go
+      :language: go
+      :dedent:
+
+   .. output::
+      :language: none
+      :visible: false
+
+      Document inserted with ID: ObjectID("...")
 
 Expected Result
 ---------------
 
 After you run the full example, you can find the following document
-in the ``posts`` collection:
+in the ``restaurants`` collection:
 
 .. code-block:: json
    :copyable: false
 
    {
        "_id" : ObjectId("..."),
-       "title" : "Annuals vs. Perennials?",
-       "author" : "Sam Lee",
-       "word_count" : 682,
-       "lastupdated": ...,
-       "tags" : ["seasons", "gardening", "flower"]
+       "name" : "Amazing Pizza",
+       "restaurant_id" : "123456789",
+       "cuisine" : "American
    }
 
 For an example on how to find a document, see the :ref:`golang-find-one` guide.
