@@ -383,6 +383,34 @@ the bulk operation:
    {"title":"Middlemarch","author":"George Eliot","length":904}
    {"title":"Pale Fire","author":"Vladimir Nabokov","length":246}
 
+Bulk Operation Example: Full File
+---------------------------------
+
+.. include:: /includes/usage-examples/example-intro.rst
+
+The following example is a fully runnable file that performs the following actions:
+
+- Matches a document in which the ``name`` field value is ``"Towne Cafe"`` and
+  replaces it with a new document with the ``name`` field value set to ``"New Towne
+  Cafe"`` and the ``cuisine`` field value set to ``"French"``
+
+- Matches a document in which the ``name`` field value is ``Riviera Caterer`` and
+  updates the ``name`` field value to ``"Riviera Cafe"``
+
+.. io-code-block::
+   :copyable: true
+
+   .. input:: /includes/usage-examples/code-snippets/bulk.go
+      :language: go
+      :dedent:
+
+   .. output::
+      :visible: false
+      :language: none
+
+      Number of documents matched: 2
+      Number of documents modified: 2
+
 .. _golang-bulk-client:
 
 Client Bulk Write
@@ -744,12 +772,6 @@ The following example performs the following actions in any order:
 
 Additional Information
 ----------------------
-
-For a runnable example on performing a bulk operation, see
-:ref:`golang-bulk-ops-usage-example`.
-
-Related Operations
-~~~~~~~~~~~~~~~~~~
 
 To learn more about performing the operations mentioned, see the
 following guides:

@@ -13,7 +13,7 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
-// start-restaurant-struct
+// Defines a Restaurant struct as a model for documents in the "restaurants" collection
 type Restaurant struct {
 	Name         string
 	RestaurantId string        `bson:"restaurant_id,omitempty"`
@@ -22,8 +22,6 @@ type Restaurant struct {
 	Borough      string        `bson:"borough,omitempty"`
 	Grades       []interface{} `bson:"grades,omitempty"`
 }
-
-// end-restaurant-struct
 
 func main() {
 	if err := godotenv.Load(); err != nil {
@@ -45,15 +43,14 @@ func main() {
 		}
 	}()
 
-	// begin bulk
 	coll := client.Database("sample_restaurants").Collection("restaurants")
 
 	// Creates write models that specify replace and update operations
 	models := []mongo.WriteModel{
-		mongo.NewReplaceOneModel().SetFilter(bson.D{{"name", "Cafe Tomato"}}).
-			SetReplacement(Restaurant{Name: "Cafe Zucchini", Cuisine: "French"}),
-		mongo.NewUpdateOneModel().SetFilter(bson.D{{"name", "Cafe Zucchini"}}).
-			SetUpdate(bson.D{{"$set", bson.D{{"name", "Zucchini Land"}}}}),
+		mongo.NewReplaceOneModel().SetFilter(bson.D{{"name", "Towne Cafe"}}).
+			SetReplacement(Restaurant{Name: "New Towne Cafe", Cuisine: "French"}),
+		mongo.NewUpdateOneModel().SetFilter(bson.D{{"name", "Riviera Caterer"}}).
+			SetUpdate(bson.D{{"$set", bson.D{{"name", "Riviera Cafe"}}}}),
 	}
 
 	// Specifies that the bulk write is ordered
@@ -61,13 +58,12 @@ func main() {
 
 	// Runs a bulk write operation for the specified write operations
 	results, err := coll.BulkWrite(context.TODO(), models, opts)
-	// end bulk
 
 	if err != nil {
 		panic(err)
 	}
 
-	// When you run this file for the first time, it should print:
+	// When you run this file for the first time, it should print output similar to the following:
 	// Number of documents replaced or modified: 2
 	fmt.Printf("Number of documents replaced or modified: %d", results.ModifiedCount)
 }
