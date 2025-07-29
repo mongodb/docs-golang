@@ -1,4 +1,4 @@
-// Inserts a single document describing a restaurant by using the Go driver
+// Inserts sample documents describing restaurants by using the Go driver with bson.D
 package main
 
 import (
@@ -8,19 +8,10 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
+	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
-
-// Defines the structure of a restaurant document
-type Restaurant struct {
-	Name         string
-	RestaurantId string        `bson:"restaurant_id,omitempty"`
-	Cuisine      string        `bson:"cuisine,omitempty"`
-	Address      interface{}   `bson:"address,omitempty"`
-	Borough      string        `bson:"borough,omitempty"`
-	Grades       []interface{} `bson:"grades,omitempty"`
-}
 
 func main() {
 	if err := godotenv.Load(); err != nil {
@@ -42,20 +33,35 @@ func main() {
 		}
 	}()
 
-	// Inserts a sample document describing a restaurant into the collection
 	coll := client.Database("sample_restaurants").Collection("restaurants")
-	newRestaurant := Restaurant{Name: "8282", Cuisine: "Korean"}
 
-	result, err := coll.InsertOne(context.TODO(), newRestaurant)
+	// Creates two sample documents describing restaurants using bson.D
+	newRestaurants := []interface{}{
+		bson.D{
+			bson.E{Key: "name", Value: "Rule of Thirds"},
+			bson.E{Key: "cuisine", Value: "Japanese"},
+		},
+		bson.D{
+			bson.E{Key: "name", Value: "Madame Vo"},
+			bson.E{Key: "cuisine", Value: "Vietnamese"},
+		},
+	}
+
+	// Inserts sample documents into the collection
+	result, err := coll.InsertMany(context.TODO(), newRestaurants)
 	if err != nil {
 		panic(err)
 	}
 
-	// Prints the ID of the inserted document
-	fmt.Printf("Document inserted with ID: %s\n", result.InsertedID)
+	// Prints the IDs of the inserted documents
+	fmt.Printf("%d documents inserted with IDs:\n", len(result.InsertedIDs))
+	for _, id := range result.InsertedIDs {
+		fmt.Printf("\t%s\n", id)
+	}
 
 	// When you run this file for the first time, it should print output similar
 	// to the following:
-	// Document inserted with ID: ObjectID("...")
-
+	// 2 documents inserted with IDs:
+	// ObjectID("...")
+	// ObjectID("...")
 }
