@@ -19,7 +19,7 @@ contains a struct tag that maps the ``WordCount`` field to the BSON
 field name ``word_count``. By default, the driver marshals the other
 fields as the lowercase of the struct field name:
 
-.. literalinclude:: /includes/usage-examples/code-snippets/struct-tag.go
+.. literalinclude:: /includes/usage-examples/code-snippets/structTag.go
    :start-after: begin struct
    :end-before: end struct
    :language: go
@@ -32,13 +32,13 @@ struct field as ``word_count``:
 
 .. include:: /includes/usage-examples/run-example-tip.rst
 
-.. literalinclude:: /includes/usage-examples/code-snippets/struct-tag.go
+.. literalinclude:: /includes/usage-examples/code-snippets/structTag.go
    :start-after: begin create and insert
    :end-before: end create and insert
    :language: go
    :dedent:
 
-View a `fully runnable example. <{+example+}/struct-tag.go>`__
+View a `fully runnable example. <{+example+}/structTag.go>`__
 
 Expected Result
 ---------------
