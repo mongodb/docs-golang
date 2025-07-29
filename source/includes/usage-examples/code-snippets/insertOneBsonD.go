@@ -1,4 +1,4 @@
-// Inserts a single document describing a restaurant by using the Go driver
+// Inserts a single document describing a restaurant by using the Go driver with bson.D
 package main
 
 import (
@@ -8,19 +8,10 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
+	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
-
-// Defines the structure of a restaurant document
-type Restaurant struct {
-	Name         string
-	RestaurantId string        `bson:"restaurant_id,omitempty"`
-	Cuisine      string        `bson:"cuisine,omitempty"`
-	Address      interface{}   `bson:"address,omitempty"`
-	Borough      string        `bson:"borough,omitempty"`
-	Grades       []interface{} `bson:"grades,omitempty"`
-}
 
 func main() {
 	if err := godotenv.Load(); err != nil {
@@ -42,9 +33,12 @@ func main() {
 		}
 	}()
 
-	// Inserts a sample document describing a restaurant into the collection
+	// Inserts a sample document describing a restaurant into the collection using bson.D
 	coll := client.Database("sample_restaurants").Collection("restaurants")
-	newRestaurant := Restaurant{Name: "8282", Cuisine: "Korean"}
+	newRestaurant := bson.D{
+		bson.E{Key: "name", Value: "8282"},
+		bson.E{Key: "cuisine", Value: "Korean"},
+	}
 
 	result, err := coll.InsertOne(context.TODO(), newRestaurant)
 	if err != nil {
@@ -57,5 +51,4 @@ func main() {
 	// When you run this file for the first time, it should print output similar
 	// to the following:
 	// Document inserted with ID: ObjectID("...")
-
 }
