@@ -56,6 +56,7 @@ func main() {
 
 	// Prints the number of updated documents
 	fmt.Printf("Documents updated: %v\n", result.ModifiedCount)
+	// end updatemany
 
 	// When you run this file for the first time, it should print output similar to the following:
 	// Documents updated: 296
